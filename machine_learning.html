@@ -1,0 +1,1715 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Machine Learning 600 Study Hub</title>
+	<style>
+		:root {
+			--bg: #0d1117;
+			--panel: #161b22;
+			--border: #21262d;
+			--header: #1c2128;
+			--text: #e6edf3;
+			--muted: #8b949e;
+			--cyan: #58c4dd;
+			--green: #3fb950;
+			--amber: #d29922;
+			--red: #f85149;
+			--purple: #bc8cff;
+			--code-bg: #010409;
+			--code-text: #6ee787;
+			--sidebar: 310px;
+			--radius: 8px;
+			--shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		html {
+			scroll-behavior: smooth;
+		}
+
+		body {
+			margin: 0;
+			background: var(--bg);
+			color: var(--text);
+			font: 18px/1.65 Calibri, Arial, sans-serif;
+			letter-spacing: 0;
+		}
+
+		a {
+			color: var(--cyan);
+			text-decoration: none;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+
+		.skip-link {
+			position: fixed;
+			top: 12px;
+			left: 12px;
+			z-index: 200;
+			padding: 0.65rem 0.85rem;
+			border-radius: var(--radius);
+			background: var(--cyan);
+			color: #071015;
+			font-weight: 800;
+			transform: translateY(-160%);
+		}
+
+		.skip-link:focus {
+			transform: translateY(0);
+		}
+
+		.progress {
+			position: fixed;
+			inset: 0 0 auto var(--sidebar);
+			z-index: 150;
+			height: 4px;
+			background: rgba(88, 196, 221, 0.12);
+		}
+
+		.progress span {
+			display: block;
+			width: 0%;
+			height: 100%;
+			background: linear-gradient(90deg, var(--cyan), var(--green), var(--amber));
+		}
+
+		.menu-button {
+			display: none;
+			position: fixed;
+			top: 12px;
+			left: 12px;
+			z-index: 180;
+			width: 58px;
+			height: 44px;
+			border: 1px solid var(--border);
+			border-radius: var(--radius);
+			background: var(--panel);
+			color: var(--text);
+			font-size: 0.78rem;
+			font-weight: 900;
+			cursor: pointer;
+		}
+
+		.sidebar {
+			position: fixed;
+			inset: 0 auto 0 0;
+			width: var(--sidebar);
+			overflow-y: auto;
+			padding: 1.25rem 1rem 2rem;
+			border-right: 1px solid var(--border);
+			background: #0b1017;
+			box-shadow: var(--shadow);
+			z-index: 160;
+		}
+
+		.sidebar-header {
+			padding: 0.6rem 0.7rem 1rem;
+			border-bottom: 1px solid var(--border);
+			margin-bottom: 1rem;
+		}
+
+		.sidebar-title {
+			display: block;
+			color: var(--text);
+			font-size: 1.15rem;
+			font-weight: 900;
+			line-height: 1.2;
+		}
+
+		.sidebar-subtitle {
+			display: block;
+			margin-top: 0.35rem;
+			color: var(--muted);
+			font-size: 0.9rem;
+			line-height: 1.35;
+		}
+
+		.nav-group {
+			margin: 1rem 0 1.35rem;
+		}
+
+		.nav-group h2 {
+			margin: 0 0 0.45rem;
+			color: var(--muted);
+			font-size: 0.78rem;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+		}
+
+		.nav-group a {
+			display: block;
+			padding: 0.48rem 0.65rem;
+			border: 1px solid transparent;
+			border-radius: var(--radius);
+			color: var(--muted);
+			font-size: 0.94rem;
+			line-height: 1.25;
+		}
+
+		.nav-group a:hover,
+		.nav-group a[aria-current="true"] {
+			background: rgba(88, 196, 221, 0.11);
+			border-color: rgba(88, 196, 221, 0.42);
+			color: var(--text);
+			text-decoration: none;
+		}
+
+		.overlay {
+			display: none;
+			position: fixed;
+			inset: 0;
+			background: rgba(0, 0, 0, 0.58);
+			z-index: 140;
+		}
+
+		main {
+			margin-left: var(--sidebar);
+			min-height: 100vh;
+		}
+
+		.hero,
+		.section-band,
+		.footer {
+			padding: 3rem clamp(1.1rem, 3vw, 3rem);
+		}
+
+		.hero {
+			background: radial-gradient(circle at 20% 0%, rgba(88, 196, 221, 0.18), transparent 34%),
+				linear-gradient(135deg, #111820 0%, #13181f 45%, #10141b 100%);
+			border-bottom: 1px solid var(--border);
+		}
+
+		.hero-inner,
+		.section-inner,
+		.footer-inner {
+			max-width: 1180px;
+			margin: 0 auto;
+		}
+
+		.kicker {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.45rem;
+			margin: 0 0 0.8rem;
+			color: var(--cyan);
+			font-size: 0.86rem;
+			font-weight: 800;
+			text-transform: uppercase;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4 {
+			line-height: 1.18;
+		}
+
+		h1 {
+			margin: 0;
+			font-size: clamp(2.1rem, 5vw, 4.1rem);
+		}
+
+		.hero p {
+			max-width: 780px;
+			margin: 1rem 0 1.35rem;
+			color: var(--muted);
+			font-size: 1.08rem;
+		}
+
+		.hero-actions,
+		.legend,
+		.related-chapters,
+		.chip-row {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.65rem;
+			align-items: center;
+		}
+
+		.button {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			min-height: 44px;
+			padding: 0.65rem 0.95rem;
+			border: 1px solid rgba(88, 196, 221, 0.5);
+			border-radius: var(--radius);
+			background: rgba(88, 196, 221, 0.12);
+			color: var(--text);
+			font-weight: 800;
+		}
+
+		.button.secondary {
+			border-color: rgba(63, 185, 80, 0.45);
+			background: rgba(63, 185, 80, 0.11);
+		}
+
+		.button:hover {
+			text-decoration: none;
+			border-color: var(--cyan);
+		}
+
+		.legend {
+			margin-top: 1.35rem;
+			padding-top: 1.1rem;
+			border-top: 1px solid var(--border);
+		}
+
+		.legend span,
+		.chip {
+			display: inline-flex;
+			align-items: center;
+			min-height: 30px;
+			padding: 0.22rem 0.55rem;
+			border: 1px solid var(--border);
+			border-radius: 999px;
+			color: var(--muted);
+			font-size: 0.82rem;
+			font-weight: 700;
+			background: rgba(255, 255, 255, 0.03);
+		}
+
+		.legend .definition,
+		.chip.definition {
+			border-color: rgba(88, 196, 221, 0.45);
+			color: var(--cyan);
+		}
+
+		.legend .success,
+		.chip.success {
+			border-color: rgba(63, 185, 80, 0.45);
+			color: var(--green);
+		}
+
+		.legend .warning,
+		.chip.warning {
+			border-color: rgba(210, 153, 34, 0.48);
+			color: var(--amber);
+		}
+
+		.legend .risk,
+		.chip.risk {
+			border-color: rgba(248, 81, 73, 0.45);
+			color: var(--red);
+		}
+
+		.legend .structure,
+		.chip.structure {
+			border-color: rgba(188, 140, 255, 0.5);
+			color: var(--purple);
+		}
+
+		.section-band {
+			border-bottom: 1px solid var(--border);
+		}
+
+		.section-band.alt {
+			background: #0f141b;
+		}
+
+		.section-heading {
+			margin-bottom: 1.4rem;
+		}
+
+		.section-heading h2 {
+			margin: 0 0 0.45rem;
+			font-size: clamp(1.65rem, 3vw, 2.4rem);
+		}
+
+		.section-heading p {
+			max-width: 830px;
+			margin: 0;
+			color: var(--muted);
+		}
+
+		.grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1rem;
+		}
+
+		.grid.three {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		.card {
+			border: 1px solid var(--border);
+			border-radius: var(--radius);
+			background: var(--panel);
+			padding: 1.15rem;
+			scroll-margin-top: 1rem;
+		}
+
+		.card h3,
+		.card h4 {
+			margin: 0 0 0.65rem;
+		}
+
+		.card p,
+		.card li {
+			color: #d6dde6;
+		}
+
+		.card p {
+			margin: 0.55rem 0;
+		}
+
+		.card ul,
+		.card ol {
+			margin: 0.55rem 0 0;
+			padding-left: 1.25rem;
+		}
+
+		.exam-card {
+			border-top: 3px solid var(--cyan);
+		}
+
+		.exam-card.warning {
+			border-top-color: var(--amber);
+		}
+
+		.exam-card.success {
+			border-top-color: var(--green);
+		}
+
+		.exam-card.risk {
+			border-top-color: var(--red);
+		}
+
+		.exam-card.structure {
+			border-top-color: var(--purple);
+		}
+
+		.related-chapters {
+			margin-top: 1rem;
+			padding-top: 0.8rem;
+			border-top: 1px solid var(--border);
+		}
+
+		.related-chapters span {
+			color: var(--muted);
+			font-size: 0.86rem;
+			font-weight: 800;
+		}
+
+		.related-chapters a {
+			padding: 0.24rem 0.48rem;
+			border: 1px solid rgba(88, 196, 221, 0.35);
+			border-radius: var(--radius);
+			background: rgba(88, 196, 221, 0.07);
+			font-size: 0.85rem;
+		}
+
+		.table-wrap {
+			overflow-x: auto;
+			margin: 0.85rem 0;
+			border: 1px solid var(--border);
+			border-radius: var(--radius);
+		}
+
+		table {
+			width: 100%;
+			min-width: 680px;
+			border-collapse: collapse;
+			background: #111720;
+		}
+
+		th,
+		td {
+			padding: 0.75rem;
+			border-bottom: 1px solid var(--border);
+			text-align: left;
+			vertical-align: top;
+		}
+
+		th {
+			color: var(--cyan);
+			background: var(--header);
+		}
+
+		tr:last-child td {
+			border-bottom: 0;
+		}
+
+		.callout {
+			margin: 0.9rem 0;
+			padding: 0.82rem 0.95rem;
+			border: 1px solid var(--border);
+			border-left-width: 4px;
+			border-radius: var(--radius);
+			background: rgba(255, 255, 255, 0.03);
+			color: #d6dde6;
+		}
+
+		.callout.warning {
+			border-left-color: var(--amber);
+		}
+
+		.callout.success {
+			border-left-color: var(--green);
+		}
+
+		.callout.risk {
+			border-left-color: var(--red);
+		}
+
+		.callout.definition {
+			border-left-color: var(--cyan);
+		}
+
+		.callout.structure {
+			border-left-color: var(--purple);
+		}
+
+		code,
+		kbd {
+			border-radius: 5px;
+			background: var(--code-bg);
+			color: var(--code-text);
+			font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+			font-size: 0.92em;
+		}
+
+		code {
+			padding: 0.08rem 0.28rem;
+		}
+
+		pre {
+			overflow-x: auto;
+			margin: 0.9rem 0 0;
+			padding: 0.95rem;
+			border: 1px solid var(--border);
+			border-radius: var(--radius);
+			background: var(--code-bg);
+			color: var(--code-text);
+			font-size: 0.9rem;
+			line-height: 1.55;
+		}
+
+		pre code {
+			padding: 0;
+			background: transparent;
+			color: inherit;
+		}
+
+		.diagram {
+			display: grid;
+			gap: 0.65rem;
+			margin: 1rem 0;
+		}
+
+		.diagram.flow {
+			grid-template-columns: repeat(5, minmax(0, 1fr));
+		}
+
+		.diagram.compare {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		.diagram .node {
+			min-height: 70px;
+			padding: 0.75rem;
+			border: 1px solid var(--border);
+			border-radius: var(--radius);
+			background: #101720;
+			text-align: center;
+			font-weight: 800;
+			color: var(--text);
+		}
+
+		.diagram .node small {
+			display: block;
+			margin-top: 0.25rem;
+			color: var(--muted);
+			font-weight: 600;
+			line-height: 1.3;
+		}
+
+		.chapter {
+			margin-top: 1.5rem;
+			scroll-margin-top: 1rem;
+		}
+
+		.chapter > h3 {
+			margin: 0 0 0.85rem;
+			font-size: 1.55rem;
+		}
+
+		.back-row {
+			margin-top: 1rem;
+		}
+
+		.back-top {
+			position: fixed;
+			right: 18px;
+			bottom: 18px;
+			z-index: 130;
+			width: 46px;
+			height: 46px;
+			border: 1px solid rgba(88, 196, 221, 0.55);
+			border-radius: 50%;
+			background: var(--panel);
+			color: var(--text);
+			font-size: 0.72rem;
+			font-weight: 900;
+			cursor: pointer;
+			opacity: 0;
+			pointer-events: none;
+			transition: opacity 180ms ease, transform 180ms ease;
+		}
+
+		.back-top.visible {
+			opacity: 1;
+			pointer-events: auto;
+		}
+
+		.footer {
+			background: #0a0f15;
+			color: var(--muted);
+		}
+
+		@media (max-width: 980px) {
+			body.menu-open {
+				overflow: hidden;
+			}
+
+			.progress {
+				left: 0;
+			}
+
+			.menu-button {
+				display: block;
+			}
+
+			.sidebar {
+				transform: translateX(-105%);
+				transition: transform 220ms ease;
+			}
+
+			body.menu-open .sidebar {
+				transform: translateX(0);
+			}
+
+			body.menu-open .overlay {
+				display: block;
+			}
+
+			main {
+				margin-left: 0;
+			}
+
+			.hero {
+				padding-top: 4.5rem;
+			}
+
+			.grid,
+			.grid.three {
+				grid-template-columns: 1fr;
+			}
+
+			.diagram.flow,
+			.diagram.compare {
+				grid-template-columns: 1fr;
+			}
+		}
+
+		@media (max-width: 620px) {
+			body {
+				font-size: 16px;
+			}
+
+			.hero,
+			.section-band,
+			.footer {
+				padding-left: 1rem;
+				padding-right: 1rem;
+			}
+
+			.hero-actions .button {
+				width: 100%;
+			}
+
+			.sidebar {
+				width: min(88vw, 310px);
+			}
+		}
+	</style>
+</head>
+<body>
+	<a class="skip-link" href="#main-content">Skip to content</a>
+	<div class="progress" aria-hidden="true"><span id="scroll-progress"></span></div>
+	<button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false">Menu</button>
+	<div class="overlay" data-close-menu></div>
+
+	<aside class="sidebar" aria-label="Study navigation">
+		<div class="sidebar-header">
+			<span class="sidebar-title">Machine Learning 600</span>
+			<span class="sidebar-subtitle">Exam focus, chapter notes, and quick revision tables.</span>
+		</div>
+
+		<nav>
+			<div class="nav-group">
+				<h2>Exam Focus Areas</h2>
+				<a href="#exam-overview" data-nav-link="exam-overview">Exam Overview</a>
+				<a href="#focus-ml-foundations" data-nav-link="focus-ml-foundations">ML Foundations</a>
+				<a href="#focus-model-fit" data-nav-link="focus-model-fit">Model Fit & Metrics</a>
+				<a href="#focus-preprocessing" data-nav-link="focus-preprocessing">Preprocessing</a>
+				<a href="#focus-pca" data-nav-link="focus-pca">PCA</a>
+				<a href="#focus-regression" data-nav-link="focus-regression">Regression</a>
+				<a href="#focus-classification" data-nav-link="focus-classification">Classification</a>
+				<a href="#focus-clustering" data-nav-link="focus-clustering">Clustering</a>
+			</div>
+
+			<div class="nav-group">
+				<h2>General Module Content</h2>
+				<a href="#chapter-1" data-nav-link="chapter-1">Chapter 1: Introduction</a>
+				<a href="#chapter-2" data-nav-link="chapter-2">Chapter 2: Data Preparation</a>
+				<a href="#chapter-3" data-nav-link="chapter-3">Chapter 3: Regression</a>
+				<a href="#chapter-4" data-nav-link="chapter-4">Chapter 4: Classification</a>
+				<a href="#chapter-5" data-nav-link="chapter-5">Chapter 5: Clustering</a>
+			</div>
+
+			<div class="nav-group">
+				<h2>Revision Tables</h2>
+				<a href="#final-revision" data-nav-link="final-revision">Final Cheat Sheets</a>
+			</div>
+		</nav>
+	</aside>
+
+	<main id="main-content">
+		<header class="hero">
+			<div class="hero-inner">
+				<p class="kicker">Richfield Faculty of Information Technology</p>
+				<h1>Machine Learning 600 Study Hub</h1>
+				<p>A dark, readable one-page revision site built from the Machine Learning 600 study guide, covering exam focus areas first and the full chapter flow after that.</p>
+				<div class="hero-actions">
+					<a class="button" href="#exam-focus-areas">Start Exam Focus</a>
+					<a class="button secondary" href="#general-module-content">Browse General Content</a>
+				</div>
+				<div class="legend" aria-label="Colour legend">
+					<span class="definition">Definitions</span>
+					<span class="success">Correct patterns</span>
+					<span class="warning">Exam traps</span>
+					<span class="risk">Model risks</span>
+					<span class="structure">Algorithms & structure</span>
+				</div>
+			</div>
+		</header>
+
+		<section id="exam-focus-areas" class="section-band">
+			<div class="section-inner">
+				<div class="section-heading">
+					<h2>Exam Focus Areas</h2>
+					<p>Start here when you need the high-yield distinctions: learning type, data preparation choice, model family, evaluation metric, and the common traps that make an answer weak.</p>
+				</div>
+
+				<article class="card exam-card definition" id="exam-overview" data-nav-section>
+					<div class="chip-row">
+						<span class="chip definition">Exam Focus</span>
+						<span class="chip structure">Guide Chapters 1-5</span>
+					</div>
+					<h3>Exam Overview</h3>
+					<p>The module moves through the full machine learning pipeline: understand the problem, prepare the data, select a learning type, train a model, evaluate it, and explain the result.</p>
+					<div class="table-wrap">
+						<table>
+							<thead>
+								<tr>
+									<th>Focus</th>
+									<th>What to know</th>
+									<th>Typical exam angle</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>ML foundations</td>
+									<td>Models, supervised learning, unsupervised learning, reinforcement learning, feature engineering.</td>
+									<td>Choose the correct learning type for a scenario.</td>
+								</tr>
+								<tr>
+									<td>Model fit</td>
+									<td>Overfitting, underfitting, bias, variance, precision, recall, F1 score.</td>
+									<td>Diagnose why a model performs badly on training or unseen data.</td>
+								</tr>
+								<tr>
+									<td>Preprocessing</td>
+									<td>Structured vs unstructured data, missing values, outliers, duplicates, scaling.</td>
+									<td>Select the cleaning or scaling method before modelling.</td>
+								</tr>
+								<tr>
+									<td>Algorithms</td>
+									<td>Linear, polynomial, decision tree regression, logistic regression, k-NN, SVM, k-means, hierarchical clustering, DBSCAN.</td>
+									<td>Compare how algorithms work, what they predict, and where they fail.</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</article>
+
+				<div class="grid">
+					<article class="card exam-card definition" id="focus-ml-foundations" data-nav-section>
+						<div class="chip-row">
+							<span class="chip definition">Definitions</span>
+							<span class="chip structure">Learning types</span>
+						</div>
+						<h3>ML Foundations: What Kind of Problem Is It?</h3>
+						<p>Machine learning builds models that learn relationships from data rather than being explicitly programmed for every rule. The learning type depends mainly on whether the training data has labels and what kind of output is expected.</p>
+						<div class="table-wrap">
+							<table>
+								<thead>
+									<tr>
+										<th>Learning type</th>
+										<th>Input situation</th>
+										<th>Output</th>
+										<th>Guide example</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Supervised</td>
+										<td>Labeled input-output pairs.</td>
+										<td>Prediction or class.</td>
+										<td>House prices, spam detection, iris species.</td>
+									</tr>
+									<tr>
+										<td>Unsupervised</td>
+										<td>No predefined labels.</td>
+										<td>Hidden patterns or groups.</td>
+										<td>Customer segmentation, anomaly detection.</td>
+									</tr>
+									<tr>
+										<td>Reinforcement</td>
+										<td>Agent interacts with an environment.</td>
+										<td>Actions improved by rewards or penalties.</td>
+										<td>Game playing and robotics.</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="callout warning"><strong>Exam trap:</strong> Regression and classification are both supervised. The difference is the output: continuous number for regression, discrete label for classification.</div>
+						<nav class="related-chapters" aria-label="Related sections for machine learning foundations">
+							<span>Study this in</span>
+							<a href="#ch1-1-overview">1.1 ML Overview</a>
+							<a href="#ch1-3-learning-types">1.3 Learning Types</a>
+							<a href="#ch1-9-python-libraries">1.9 Python Libraries</a>
+						</nav>
+					</article>
+
+					<article class="card exam-card risk" id="focus-model-fit" data-nav-section>
+						<div class="chip-row">
+							<span class="chip risk">Model risks</span>
+							<span class="chip warning">Metrics</span>
+						</div>
+						<h3>Model Fit, Correctness, and Bias-Variance</h3>
+						<p>A useful answer goes beyond "accuracy is high". The guide stresses generalization, confusion-matrix thinking, and the balance between model complexity and error.</p>
+						<ul>
+							<li><strong>Underfitting:</strong> model is too simple and performs badly even on training data.</li>
+							<li><strong>Overfitting:</strong> model learns noise and performs well on training data but poorly on unseen data.</li>
+							<li><strong>High bias:</strong> systematic error from a too-simple model.</li>
+							<li><strong>High variance:</strong> sensitivity to small fluctuations in the training data.</li>
+						</ul>
+						<div class="callout success"><strong>Correct pattern:</strong> Use precision when false positives matter, recall when false negatives matter, and F1 score when both need a balanced view.</div>
+						<nav class="related-chapters" aria-label="Related sections for model fit">
+							<span>Study this in</span>
+							<a href="#ch1-4-over-under-fitting">1.4 Over/Underfitting</a>
+							<a href="#ch1-5-correctness">1.5 Correctness</a>
+							<a href="#ch1-6-bias-variance">1.6 Bias-Variance</a>
+						</nav>
+					</article>
+
+					<article class="card exam-card success" id="focus-preprocessing" data-nav-section>
+						<div class="chip-row">
+							<span class="chip success">Correct patterns</span>
+							<span class="chip structure">Pipeline</span>
+						</div>
+						<h3>Preprocessing: Clean Before You Train</h3>
+						<p>Real datasets contain missing values, outliers, duplicates, inconsistent scales, and mixed data types. Preprocessing improves reliability before algorithms try to learn patterns.</p>
+						<ol>
+							<li>Understand whether the data is structured or unstructured.</li>
+							<li>Handle missing values with removal, statistical imputation, or predictive imputation.</li>
+							<li>Deal with outliers by removal, transformation, robust scaling, or capping.</li>
+							<li>Remove duplicates so repeated records do not bias the model.</li>
+							<li>Scale features for distance-based and margin-based models.</li>
+						</ol>
+						<div class="callout warning"><strong>Exam trap:</strong> Decision trees are generally not affected by feature scaling, but k-NN and SVM can be strongly affected because they use distance or margins.</div>
+						<nav class="related-chapters" aria-label="Related sections for preprocessing">
+							<span>Study this in</span>
+							<a href="#ch2-1-datasets">2.1 Datasets</a>
+							<a href="#ch2-2-data-cleaning">2.2 Data Cleaning</a>
+							<a href="#ch2-3-scaling">2.3 Scaling</a>
+						</nav>
+					</article>
+
+					<article class="card exam-card structure" id="focus-pca" data-nav-section>
+						<div class="chip-row">
+							<span class="chip structure">Dimensionality</span>
+							<span class="chip definition">PCA</span>
+						</div>
+						<h3>PCA: Reduce Dimensions Without Just Deleting Columns</h3>
+						<p>Principal Component Analysis transforms the original features into new axes called principal components. These components are linear combinations of the original features and capture directions of maximum variance.</p>
+						<div class="diagram flow" aria-label="PCA process diagram">
+							<div class="node">Scale data<small>Features contribute equally</small></div>
+							<div class="node">Find variance<small>Directions with most information</small></div>
+							<div class="node">Rotate axes<small>Principal components</small></div>
+							<div class="node">Choose components<small>90-95% variance target</small></div>
+							<div class="node">Transform data<small>Lower-dimensional representation</small></div>
+						</div>
+						<div class="callout success"><strong>Correct pattern:</strong> Use scree plots, cumulative explained variance, or cross-validation to choose how many components to keep.</div>
+						<nav class="related-chapters" aria-label="Related sections for PCA">
+							<span>Study this in</span>
+							<a href="#ch2-4-pca">2.4 PCA</a>
+							<a href="#ch2-4-choosing-components">2.4.3 Components</a>
+							<a href="#ch2-5-pca-applications">2.5 Applications</a>
+						</nav>
+					</article>
+
+					<article class="card exam-card definition" id="focus-regression" data-nav-section>
+						<div class="chip-row">
+							<span class="chip definition">Supervised</span>
+							<span class="chip success">Continuous output</span>
+						</div>
+						<h3>Regression: Predict a Number</h3>
+						<p>Regression predicts continuous numerical outcomes. The guide uses house price prediction to compare linear regression, polynomial regression, and decision tree regression.</p>
+						<div class="table-wrap">
+							<table>
+								<thead>
+									<tr>
+										<th>Algorithm</th>
+										<th>Best when</th>
+										<th>Risk</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Linear Regression</td>
+										<td>The relationship is roughly linear and interpretability matters.</td>
+										<td>Underfits non-linear patterns.</td>
+									</tr>
+									<tr>
+										<td>Polynomial Regression</td>
+										<td>The relationship is curved but still modelled with feature powers.</td>
+										<td>High-degree polynomials can overfit.</td>
+									</tr>
+									<tr>
+										<td>Decision Tree Regression</td>
+										<td>You need interpretable rules and non-linear splits.</td>
+										<td>Can overfit and cannot extrapolate beyond the training range.</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<nav class="related-chapters" aria-label="Related sections for regression">
+							<span>Study this in</span>
+							<a href="#ch3-2-regression">3.2 Regression</a>
+							<a href="#ch3-3-linear-regression">3.3 Linear</a>
+							<a href="#ch3-5-decision-tree-regression">3.5 Trees</a>
+						</nav>
+					</article>
+
+					<article class="card exam-card definition" id="focus-classification" data-nav-section>
+						<div class="chip-row">
+							<span class="chip definition">Supervised</span>
+							<span class="chip warning">Discrete labels</span>
+						</div>
+						<h3>Classification: Predict a Category</h3>
+						<p>Classification assigns inputs to discrete labels. The guide covers logistic regression, k-NN, SVM, multiclass classification, regularization, and metrics.</p>
+						<ul>
+							<li><strong>Logistic regression:</strong> strong interpretable baseline for binary classification.</li>
+							<li><strong>k-NN:</strong> predicts by majority vote among nearby training points.</li>
+							<li><strong>SVM:</strong> finds a margin-maximizing hyperplane; kernels handle non-linear patterns.</li>
+							<li><strong>Metrics:</strong> accuracy, precision, recall, F1 score, and ROC curve.</li>
+						</ul>
+						<div class="callout warning"><strong>Exam trap:</strong> Accuracy alone can hide weak performance on imbalanced data. Always connect the metric to the cost of false positives or false negatives.</div>
+						<nav class="related-chapters" aria-label="Related sections for classification">
+							<span>Study this in</span>
+							<a href="#ch4-1-classification">4.1 Classification</a>
+							<a href="#ch4-3-knn">4.3 k-NN</a>
+							<a href="#ch4-4-svm">4.4 SVM</a>
+						</nav>
+					</article>
+
+					<article class="card exam-card structure" id="focus-clustering" data-nav-section>
+						<div class="chip-row">
+							<span class="chip structure">Unsupervised</span>
+							<span class="chip success">Pattern discovery</span>
+						</div>
+						<h3>Clustering: Find Groups Without Labels</h3>
+						<p>Clustering groups similar observations when there is no ground-truth label. It is useful for segmentation, anomaly detection, image segmentation, and document categorization.</p>
+						<div class="table-wrap">
+							<table>
+								<thead>
+									<tr>
+										<th>Algorithm</th>
+										<th>Main idea</th>
+										<th>Important limitation</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>k-Means</td>
+										<td>Assign points to nearest centroid and update centroids until stable.</td>
+										<td>Requires k and assumes fairly simple cluster shapes.</td>
+									</tr>
+									<tr>
+										<td>Hierarchical</td>
+										<td>Builds nested clusters, often shown with a dendrogram.</td>
+										<td>Linkage choice affects cluster structure.</td>
+									</tr>
+									<tr>
+										<td>DBSCAN</td>
+										<td>Finds dense regions and marks noise points.</td>
+										<td>Depends heavily on eps and min_samples.</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<nav class="related-chapters" aria-label="Related sections for clustering">
+							<span>Study this in</span>
+							<a href="#ch5-3-kmeans">5.3 k-Means</a>
+							<a href="#ch5-4-hierarchical">5.4 Hierarchical</a>
+							<a href="#ch5-5-dbscan">5.5 DBSCAN</a>
+						</nav>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<section id="general-module-content" class="section-band alt">
+			<div class="section-inner">
+				<div class="section-heading">
+					<h2>General Module Content</h2>
+					<p>Chapter-by-chapter notes from the study guide. All content is visible by default so you can scroll, scan, and jump directly from the menu or exam focus cards.</p>
+				</div>
+
+				<section id="chapter-1" class="chapter" data-nav-section>
+					<h3>Chapter 1: Introduction to Machine Learning</h3>
+					<div class="grid">
+						<article class="card chapter-card" id="ch1-1-overview">
+							<h4>1.1 Overview of Machine Learning</h4>
+							<p>Machine learning is a subfield of artificial intelligence focused on models that learn from data to make predictions without being explicitly programmed for every case. It is used in healthcare, finance, marketing, autonomous systems, cybersecurity, education, agriculture, and entertainment.</p>
+							<div class="callout definition"><strong>Core idea:</strong> ML is one part of a broader data workflow that includes collecting, cleaning, transforming, modelling, and evaluating data.</div>
+						</article>
+
+						<article class="card chapter-card" id="ch1-2-modeling">
+							<h4>1.2 Modeling</h4>
+							<p>A model represents relationships between variables. In ML, the model learns those relationships from data and can improve as more data becomes available.</p>
+							<ul>
+								<li>Business model: profit from revenue and expenses.</li>
+								<li>Recipe model: servings linked to ingredient quantities.</li>
+								<li>Poker model: probability of winning based on revealed cards.</li>
+							</ul>
+						</article>
+
+						<article class="card chapter-card" id="ch1-3-learning-types">
+							<h4>1.3 Types of Machine Learning</h4>
+							<p>The guide separates machine learning by the nature of the available data and output.</p>
+							<div class="diagram compare" aria-label="Machine learning type comparison">
+								<div class="node">Supervised<small>Labeled data: classification or regression</small></div>
+								<div class="node">Unsupervised<small>No labels: clusters or anomalies</small></div>
+								<div class="node">Reinforcement<small>Rewards and penalties from an environment</small></div>
+							</div>
+						</article>
+
+						<article class="card chapter-card" id="ch1-4-over-under-fitting">
+							<h4>1.4 Overfitting and Underfitting</h4>
+							<p>Underfitting happens when a model is too simple to capture the real pattern. Overfitting happens when a model is so complex that it learns noise instead of the underlying pattern.</p>
+							<div class="table-wrap">
+								<table>
+									<thead>
+										<tr>
+											<th>Problem</th>
+											<th>Training performance</th>
+											<th>Unseen-data performance</th>
+											<th>Typical fix</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Underfitting</td>
+											<td>Poor</td>
+											<td>Poor</td>
+											<td>Use richer features or a more flexible model.</td>
+										</tr>
+										<tr>
+											<td>Overfitting</td>
+											<td>Very strong</td>
+											<td>Poor</td>
+											<td>Simplify, regularize, prune, or add more data.</td>
+										</tr>
+										<tr>
+											<td>Good generalization</td>
+											<td>Strong enough</td>
+											<td>Strong enough</td>
+											<td>Balance complexity and error.</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</article>
+
+						<article class="card chapter-card" id="ch1-5-correctness">
+							<h4>1.5 Correctness</h4>
+							<p>Correctness is not just accuracy. The guide uses the confusion matrix to separate prediction outcomes into true positives, false positives, false negatives, and true negatives.</p>
+							<ul>
+								<li><strong>Precision:</strong> of the predicted positives, how many were correct?</li>
+								<li><strong>Recall:</strong> of the actual positives, how many were found?</li>
+								<li><strong>F1 score:</strong> harmonic mean that balances precision and recall.</li>
+							</ul>
+							<div class="callout warning"><strong>Scenario logic:</strong> In medical diagnosis, high recall may matter most because false negatives are dangerous. In spam detection, high precision may matter because false positives can hide important mail.</div>
+						</article>
+
+						<article class="card chapter-card" id="ch1-6-bias-variance">
+							<h4>1.6 The Bias-Variance Tradeoff</h4>
+							<p>Bias is error from a model being too simple. Variance is error from a model being too sensitive to training-data fluctuations. A good model balances both so it generalizes to new data.</p>
+							<div class="callout success"><strong>Reduce variance:</strong> simplify the model, increase training data, or use regularization such as L1/L2 penalties.</div>
+						</article>
+
+						<article class="card chapter-card" id="ch1-7-feature-engineering">
+							<h4>1.7 Feature Engineering</h4>
+							<p>Feature extraction transforms raw data into usable numerical representations. Feature selection identifies the most relevant features so the model avoids unnecessary complexity.</p>
+							<ul>
+								<li><strong>Extraction:</strong> text to vectors, image pixels or edges to numeric features.</li>
+								<li><strong>Selection:</strong> statistical filter methods, wrapper methods, recursive feature elimination, forward selection.</li>
+							</ul>
+						</article>
+
+						<article class="card chapter-card" id="ch1-8-applications">
+							<h4>1.8 Real-World Applications</h4>
+							<p>The guide lists ML uses in healthcare, finance, retail, transportation, manufacturing, cybersecurity, NLP, education, agriculture, and entertainment.</p>
+							<div class="callout definition"><strong>Memory hook:</strong> ML is valuable when large volumes of data can reveal patterns that improve prediction, automation, personalization, or anomaly detection.</div>
+						</article>
+
+						<article class="card chapter-card" id="ch1-9-python-libraries">
+							<h4>1.9 Introduction to Python ML Libraries</h4>
+							<p>The guide introduces NumPy for arrays and numerical computing, Pandas for DataFrame-based dataset work, Scikit-learn for ML models, and Matplotlib for visualizations.</p>
+							<pre><code>import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+
+df = pd.read_csv("iris.csv")
+X = df.drop(columns=["species"])
+y = df["species"]
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+model = LogisticRegression()
+model.fit(X_train, y_train)
+print(model.score(X_test, y_test))</code></pre>
+						</article>
+					</div>
+					<div class="back-row"><a class="button" href="#exam-focus-areas">Back to Exam Focus Areas</a></div>
+				</section>
+
+				<section id="chapter-2" class="chapter" data-nav-section>
+					<h3>Chapter 2: Data Preprocessing and Feature Engineering</h3>
+					<div class="grid">
+						<article class="card chapter-card" id="ch2-1-datasets">
+							<h4>2.1 Understanding Datasets</h4>
+							<p>Before applying ML algorithms, understand the data type, structure, and quality. Structured data is organised in rows and columns. Unstructured data includes text, images, audio, and video.</p>
+							<div class="table-wrap">
+								<table>
+									<thead>
+										<tr>
+											<th>Data type</th>
+											<th>Format</th>
+											<th>Typical tools or techniques</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Structured</td>
+											<td>Tables, spreadsheets, CSV, JSON, XML.</td>
+											<td>SQL, Pandas, standard ML algorithms.</td>
+										</tr>
+										<tr>
+											<td>Unstructured</td>
+											<td>Text, image, audio, video.</td>
+											<td>NLP, image analysis, deep learning approaches.</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</article>
+
+						<article class="card chapter-card" id="ch2-2-data-cleaning">
+							<h4>2.2 Data Cleaning</h4>
+							<p>Data cleaning handles missing values, inconsistencies, errors, outliers, and duplicates so the dataset becomes reliable enough for model training.</p>
+							<ul>
+								<li><strong>Missing Completely at Random:</strong> missingness is independent of observed and missing data.</li>
+								<li><strong>Missing at Random:</strong> missingness depends on observed data.</li>
+								<li><strong>Missing Not at Random:</strong> missingness depends on the missing value itself.</li>
+							</ul>
+							<pre><code>from sklearn.impute import SimpleImputer
+
+imputer = SimpleImputer(strategy="mean")
+df.iloc[:, :] = imputer.fit_transform(df)</code></pre>
+						</article>
+
+						<article class="card chapter-card" id="ch2-2-outliers-duplicates">
+							<h4>2.2.2-2.2.3 Outliers and Duplicates</h4>
+							<p>Outliers are unusually distant values. They can be errors or genuine extreme cases. Duplicates repeat observations and can skew the model.</p>
+							<pre><code>import numpy as np
+
+data = np.array([10, 12, 13, 15, 1000])
+filtered_data = data[data < np.percentile(data, 95)]
+
+df.drop_duplicates(inplace=True)</code></pre>
+						</article>
+
+						<article class="card chapter-card" id="ch2-3-scaling">
+							<h4>2.3 Feature Scaling and Normalization</h4>
+							<p>Scaling puts features on comparable ranges. It is important when a model uses distances, gradients, or margins, as with k-NN and SVM.</p>
+							<pre><code>from sklearn.preprocessing import MinMaxScaler, StandardScaler
+
+data = [[100, 200], [300, 400], [500, 600]]
+
+scaled = MinMaxScaler().fit_transform(data)
+standardized = StandardScaler().fit_transform(data)</code></pre>
+							<div class="callout warning"><strong>Exam trap:</strong> Scaling should be fitted on the training data, then applied to test data. Do not let test data influence preprocessing choices.</div>
+						</article>
+
+						<article class="card chapter-card" id="ch2-4-pca">
+							<h4>2.4 Principal Component Analysis</h4>
+							<p>PCA is a dimensionality reduction technique that creates principal components, which are new axes capturing maximum variance. It reduces high-dimensional data while preserving as much useful information as possible.</p>
+							<ul>
+								<li>Reduces computational cost.</li>
+								<li>Can reduce overfitting risk by removing noisy dimensions.</li>
+								<li>Improves interpretability and visualization for high-dimensional data.</li>
+							</ul>
+						</article>
+
+						<article class="card chapter-card" id="ch2-4-choosing-components">
+							<h4>2.4.3 Choosing Principal Components</h4>
+							<p>The explained variance ratio tells how much variance each principal component captures. The cumulative explained variance helps decide how many components to keep.</p>
+							<div class="table-wrap">
+								<table>
+									<thead>
+										<tr>
+											<th>Method</th>
+											<th>How it is used</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Scree plot</td>
+											<td>Look for the elbow point where extra components add little value.</td>
+										</tr>
+										<tr>
+											<td>Variance threshold</td>
+											<td>Keep enough components to explain about 90-95% of variance.</td>
+										</tr>
+										<tr>
+											<td>Cross-validation</td>
+											<td>Try different component counts and compare model performance.</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</article>
+
+						<article class="card chapter-card" id="ch2-5-pca-applications">
+							<h4>2.5 Applications of PCA</h4>
+							<p>The guide applies PCA to visualizing high-dimensional data such as the breast cancer dataset and to image feature extraction through eigenfaces. PCA can produce a better representation than raw pixel distances for some analysis tasks.</p>
+							<div class="callout structure"><strong>Important interpretation:</strong> PCA components are not original columns. They are weighted combinations of original features, so meaning must be explained carefully.</div>
+						</article>
+					</div>
+					<div class="back-row"><a class="button" href="#exam-focus-areas">Back to Exam Focus Areas</a></div>
+				</section>
+
+				<section id="chapter-3" class="chapter" data-nav-section>
+					<h3>Chapter 3: Supervised Learning - Regression Algorithms</h3>
+					<div class="grid">
+						<article class="card chapter-card" id="ch3-1-supervised-learning">
+							<h4>3.1 What Is Supervised Learning?</h4>
+							<p>Supervised learning uses labeled input-output pairs. The model learns a function from features to a target and adjusts its parameters to minimize prediction error.</p>
+							<ul>
+								<li><strong>Labeled data:</strong> each example has known features and a known target.</li>
+								<li><strong>Learning function:</strong> the model approximates the relationship.</li>
+								<li><strong>Error minimization:</strong> training reduces the gap between predictions and actual values.</li>
+							</ul>
+						</article>
+
+						<article class="card chapter-card" id="ch3-2-regression">
+							<h4>3.2 Regression</h4>
+							<p>Regression is supervised learning for continuous numerical outcomes. The guide uses examples such as house prices, stock prices, and sales revenue forecasting.</p>
+							<div class="callout definition"><strong>Fast test:</strong> If the answer can vary along a number line, think regression. If the answer is a category, think classification.</div>
+						</article>
+
+						<article class="card chapter-card" id="ch3-3-linear-regression">
+							<h4>3.3 Linear Regression</h4>
+							<p>Linear regression assumes a straight-line relationship between independent variables and the target. The slope shows how much the output changes for a unit change in the input; the intercept is the predicted output when the input is zero.</p>
+							<pre><code>import numpy as np
+from sklearn.linear_model import LinearRegression
+
+X = np.array([1200, 1500, 1800, 2100, 2500]).reshape(-1, 1)
+y = np.array([220, 270, 320, 370, 420])
+
+model = LinearRegression()
+model.fit(X, y)
+print(model.predict([[2000]]))</code></pre>
+						</article>
+
+						<article class="card chapter-card" id="ch3-4-polynomial-regression">
+							<h4>3.4 Polynomial Regression</h4>
+							<p>Polynomial regression handles non-linear relationships by adding higher-degree terms. It is more flexible than linear regression but can overfit when the degree is too high.</p>
+							<pre><code>from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import LinearRegression
+
+poly_model = make_pipeline(
+    PolynomialFeatures(degree=2),
+    LinearRegression()
+)
+poly_model.fit(X, y)</code></pre>
+						</article>
+
+						<article class="card chapter-card" id="ch3-5-decision-tree-regression">
+							<h4>3.5 Decision Tree Regression</h4>
+							<p>Decision tree regression splits the data into branches based on feature values. Each leaf predicts a value, usually the average outcome in that region.</p>
+							<ul>
+								<li>Easy to visualize for small trees.</li>
+								<li>Does not require feature scaling.</li>
+								<li>Can overfit if the tree grows too deep.</li>
+								<li>Cannot extrapolate beyond the range of the training data.</li>
+							</ul>
+							<div class="callout success"><strong>Control complexity:</strong> use pre-pruning parameters such as <code>max_depth</code>, <code>max_leaf_nodes</code>, or <code>min_samples_leaf</code>.</div>
+						</article>
+
+						<article class="card chapter-card" id="ch3-6-house-price-exercise">
+							<h4>3.6 Hands-On Exercise: House Price Prediction</h4>
+							<p>The practical task is to load a housing dataset, preprocess missing values and scales, train linear, polynomial, and decision tree models, evaluate with R2 score and MAE, and visualize predictions against actual values.</p>
+							<div class="diagram flow" aria-label="Regression workflow diagram">
+								<div class="node">Load data<small>Housing dataset</small></div>
+								<div class="node">Preprocess<small>Missing values and scaling</small></div>
+								<div class="node">Train<small>Linear, polynomial, tree</small></div>
+								<div class="node">Evaluate<small>R2 and MAE</small></div>
+								<div class="node">Visualize<small>Predicted vs actual</small></div>
+							</div>
+						</article>
+					</div>
+					<div class="back-row"><a class="button" href="#exam-focus-areas">Back to Exam Focus Areas</a></div>
+				</section>
+
+				<section id="chapter-4" class="chapter" data-nav-section>
+					<h3>Chapter 4: Supervised Learning - Classification Algorithms</h3>
+					<div class="grid">
+						<article class="card chapter-card" id="ch4-1-classification">
+							<h4>4.1 Classification</h4>
+							<p>Classification predicts categorical outcomes. A decision boundary separates categories in feature space. Common applications include fraud detection, automated decision-making, and medical diagnostics.</p>
+						</article>
+
+						<article class="card chapter-card" id="ch4-2-logistic-regression">
+							<h4>4.2 Logistic Regression</h4>
+							<p>Logistic regression is a linear classification algorithm that predicts the probability of class membership. It is commonly used as an interpretable baseline for binary classification.</p>
+							<pre><code>from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
+model = LogisticRegression()
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+print(accuracy_score(y_test, y_pred))</code></pre>
+						</article>
+
+						<article class="card chapter-card" id="ch4-3-knn">
+							<h4>4.3 k-Nearest Neighbors</h4>
+							<p>k-NN stores the training dataset and classifies a new point by looking at the majority class among its k closest neighbors, often using Euclidean distance.</p>
+							<ul>
+								<li><strong>Lazy learning:</strong> no heavy training phase.</li>
+								<li><strong>Distance based:</strong> scaling matters.</li>
+								<li><strong>Curse of dimensionality:</strong> performance can weaken with many features.</li>
+							</ul>
+							<pre><code>from sklearn.neighbors import KNeighborsClassifier
+
+knn = KNeighborsClassifier(n_neighbors=5)
+knn.fit(X_train, y_train)
+print(knn.score(X_test, y_test))</code></pre>
+						</article>
+
+						<article class="card chapter-card" id="ch4-4-svm">
+							<h4>4.4 Support Vector Machines</h4>
+							<p>SVM finds a hyperplane that maximizes the margin between classes. Support vectors are the closest points that define this margin. Kernel methods such as RBF help with non-linear separation.</p>
+							<div class="callout warning"><strong>Parameter trap:</strong> In Logistic Regression and LinearSVC, larger <code>C</code> means less regularization and a more flexible model. Smaller <code>C</code> means stronger regularization and a simpler model.</div>
+						</article>
+
+						<article class="card chapter-card" id="ch4-4-strengths-weaknesses">
+							<h4>4.4.1 Strengths, Weaknesses, and Parameters</h4>
+							<p>Linear models train and predict quickly, scale well to large and sparse datasets, and are easy to express mathematically. Their coefficient interpretation can become unclear when features are highly correlated.</p>
+							<ul>
+								<li>Use L1 regularization when only a few features are expected to matter.</li>
+								<li>Use L2 regularization as the usual default when many features may contribute.</li>
+								<li>Search regularization values on a logarithmic scale.</li>
+							</ul>
+						</article>
+
+						<article class="card chapter-card" id="ch4-4-evaluation-metrics">
+							<h4>4.4.2 Evaluation Metrics for Classification</h4>
+							<p>Classification metrics explain different kinds of correctness.</p>
+							<div class="table-wrap">
+								<table>
+									<thead>
+										<tr>
+											<th>Metric</th>
+											<th>Meaning</th>
+											<th>Use when</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Accuracy</td>
+											<td>Overall proportion of correct predictions.</td>
+											<td>Classes are balanced and errors have similar cost.</td>
+										</tr>
+										<tr>
+											<td>Precision</td>
+											<td>Correct predicted positives divided by all predicted positives.</td>
+											<td>False positives are costly.</td>
+										</tr>
+										<tr>
+											<td>Recall</td>
+											<td>Correct predicted positives divided by all actual positives.</td>
+											<td>False negatives are costly.</td>
+										</tr>
+										<tr>
+											<td>F1 score</td>
+											<td>Harmonic mean of precision and recall.</td>
+											<td>You need a balanced precision-recall summary.</td>
+										</tr>
+										<tr>
+											<td>ROC curve</td>
+											<td>Tradeoff between sensitivity and specificity.</td>
+											<td>You need to compare thresholds.</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</article>
+					</div>
+					<div class="back-row"><a class="button" href="#exam-focus-areas">Back to Exam Focus Areas</a></div>
+				</section>
+
+				<section id="chapter-5" class="chapter" data-nav-section>
+					<h3>Chapter 5: Unsupervised Learning - Clustering Algorithms</h3>
+					<div class="grid">
+						<article class="card chapter-card" id="ch5-1-introduction">
+							<h4>5.1 Introduction</h4>
+							<p>Unsupervised learning finds patterns in unlabeled data. It is useful when labels are unavailable but hidden structure may still support segmentation, anomaly detection, or exploration.</p>
+						</article>
+
+						<article class="card chapter-card" id="ch5-2-clustering">
+							<h4>5.2 Clustering</h4>
+							<p>Clustering groups similar data points so intra-cluster similarity is high and inter-cluster similarity is low. Cluster labels are arbitrary: cluster 0 does not inherently mean anything until you inspect the group.</p>
+							<div class="callout warning"><strong>Exam trap:</strong> Clustering produces group assignments, but there is no ground-truth label by default. Do not interpret cluster numbers as meaningful names without analysis.</div>
+						</article>
+
+						<article class="card chapter-card" id="ch5-3-kmeans">
+							<h4>5.3 k-Means Clustering</h4>
+							<p>k-Means is a centroid-based algorithm. It chooses k centroids, assigns points to the nearest centroid, updates centroids to the mean of assigned points, and repeats until cluster assignments stop changing.</p>
+							<ol>
+								<li>Choose the number of clusters k.</li>
+								<li>Randomly initialize k centroids.</li>
+								<li>Assign each point to its nearest centroid.</li>
+								<li>Update each centroid using the mean of its assigned points.</li>
+								<li>Repeat until convergence.</li>
+							</ol>
+							<pre><code>from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
+
+df_scaled = StandardScaler().fit_transform(df)
+kmeans = KMeans(n_clusters=3, random_state=42)
+df["Cluster"] = kmeans.fit_predict(df_scaled)</code></pre>
+						</article>
+
+						<article class="card chapter-card" id="ch5-4-hierarchical">
+							<h4>5.4 Hierarchical Clustering</h4>
+							<p>Hierarchical clustering creates nested clusters shown as a tree-like dendrogram. Agglomerative clustering starts with each point as its own cluster and merges the most similar clusters until the stopping condition is reached.</p>
+							<ul>
+								<li><strong>Ward:</strong> minimizes variance increase and often creates similar-sized clusters.</li>
+								<li><strong>Average:</strong> uses average distance between all points in two clusters.</li>
+								<li><strong>Complete:</strong> uses the smallest maximum distance between points in two clusters.</li>
+							</ul>
+						</article>
+
+						<article class="card chapter-card" id="ch5-5-dbscan">
+							<h4>5.5 Density-Based Clustering (DBSCAN)</h4>
+							<p>DBSCAN identifies dense regions and separates noise points. It does not require a predefined k and can find arbitrary-shaped clusters.</p>
+							<ul>
+								<li><strong>eps:</strong> neighborhood radius.</li>
+								<li><strong>min_samples:</strong> minimum points needed to form a dense region.</li>
+								<li><strong>Noise:</strong> points not assigned to a dense cluster.</li>
+							</ul>
+							<pre><code>from sklearn.cluster import DBSCAN
+
+dbscan = DBSCAN(eps=0.5, min_samples=5)
+df["DBSCAN_Cluster"] = dbscan.fit_predict(df_scaled)</code></pre>
+						</article>
+
+						<article class="card chapter-card" id="ch5-6-clustering-metrics">
+							<h4>5.6 Clustering Evaluation Metrics</h4>
+							<p>Because clustering is unsupervised, ordinary accuracy is not the main evaluation method. The guide lists internal evaluation methods.</p>
+							<div class="table-wrap">
+								<table>
+									<thead>
+										<tr>
+											<th>Metric</th>
+											<th>Meaning</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Silhouette Score</td>
+											<td>Measures how well-separated and cohesive clusters are.</td>
+										</tr>
+										<tr>
+											<td>Davies-Bouldin Index</td>
+											<td>Lower values indicate better cluster separation.</td>
+										</tr>
+										<tr>
+											<td>Elbow Method</td>
+											<td>Helps choose k for k-means by looking for diminishing improvement.</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</article>
+
+						<article class="card chapter-card" id="ch5-6-kmeans-failures">
+							<h4>5.6.1 Failure Cases of k-Means</h4>
+							<p>k-Means can fail even when the correct number of clusters is known because it assumes clusters are represented well by centers, have simple convex shapes, and have similar diameter.</p>
+							<div class="callout risk"><strong>Weakness:</strong> k-Means struggles with stretched, uneven-density, or complex-shaped clusters because it only considers distance to the nearest center.</div>
+						</article>
+					</div>
+					<div class="back-row"><a class="button" href="#exam-focus-areas">Back to Exam Focus Areas</a></div>
+				</section>
+			</div>
+		</section>
+
+		<section id="final-revision" class="section-band" data-nav-section>
+			<div class="section-inner">
+				<div class="section-heading">
+					<h2>Final Revision Tables</h2>
+					<p>Use these to check your answer framing quickly before an assessment.</p>
+				</div>
+
+				<div class="grid">
+					<article class="card">
+						<h3>Algorithm Selector</h3>
+						<div class="table-wrap">
+							<table>
+								<thead>
+									<tr>
+										<th>Need</th>
+										<th>Use</th>
+										<th>Reason</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Predict a continuous number</td>
+										<td>Regression</td>
+										<td>Output is numeric and continuous.</td>
+									</tr>
+									<tr>
+										<td>Predict a label</td>
+										<td>Classification</td>
+										<td>Output is a discrete class.</td>
+									</tr>
+									<tr>
+										<td>Find groups with no labels</td>
+										<td>Clustering</td>
+										<td>Output is hidden structure.</td>
+									</tr>
+									<tr>
+										<td>Reduce many features</td>
+										<td>PCA</td>
+										<td>Captures variance with fewer components.</td>
+									</tr>
+									<tr>
+										<td>Classify by nearby examples</td>
+										<td>k-NN</td>
+										<td>Uses majority vote among nearest neighbors.</td>
+									</tr>
+									<tr>
+										<td>Detect dense clusters and outliers</td>
+										<td>DBSCAN</td>
+										<td>Works by density and labels noise points.</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</article>
+
+					<article class="card">
+						<h3>Common Exam Traps</h3>
+						<ul>
+							<li>Calling classification "regression" because logistic regression has regression in the name.</li>
+							<li>Using accuracy only when the dataset is imbalanced.</li>
+							<li>Forgetting that k-NN and SVM are scale-sensitive.</li>
+							<li>Assuming PCA keeps original features instead of creating new components.</li>
+							<li>Assuming cluster numbers have semantic meaning by themselves.</li>
+							<li>Expecting decision tree regression to extrapolate beyond training data.</li>
+							<li>Choosing k-means when clusters are complex-shaped or uneven in density.</li>
+						</ul>
+					</article>
+
+					<article class="card">
+						<h3>Mini Pipeline Cheat Sheet</h3>
+						<div class="diagram flow" aria-label="Machine learning pipeline">
+							<div class="node">Problem<small>What output is needed?</small></div>
+							<div class="node">Data<small>Structured or unstructured?</small></div>
+							<div class="node">Preprocess<small>Clean, scale, engineer</small></div>
+							<div class="node">Model<small>Train and tune</small></div>
+							<div class="node">Evaluate<small>Metric matched to risk</small></div>
+						</div>
+					</article>
+
+					<article class="card">
+						<h3>Metric Memory Hook</h3>
+						<div class="table-wrap">
+							<table>
+								<thead>
+									<tr>
+										<th>Question</th>
+										<th>Metric</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>How many predictions were correct overall?</td>
+										<td>Accuracy</td>
+									</tr>
+									<tr>
+										<td>When the model says positive, how often is it right?</td>
+										<td>Precision</td>
+									</tr>
+									<tr>
+										<td>Of all real positives, how many did it catch?</td>
+										<td>Recall</td>
+									</tr>
+									<tr>
+										<td>How do I balance precision and recall?</td>
+										<td>F1 score</td>
+									</tr>
+									<tr>
+										<td>How well are clusters separated?</td>
+										<td>Silhouette Score</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<footer class="footer">
+			<div class="footer-inner">
+				<p>Machine Learning 600 Study Hub. Built as a self-contained local HTML revision page from the supplied study guide.</p>
+			</div>
+		</footer>
+	</main>
+
+	<button class="back-top" type="button" aria-label="Back to top">Top</button>
+
+	<script>
+		const body = document.body;
+		const menuButton = document.querySelector(".menu-button");
+		const closeTargets = document.querySelectorAll("[data-close-menu]");
+		const progress = document.querySelector("#scroll-progress");
+		const backTop = document.querySelector(".back-top");
+		const navLinks = Array.from(document.querySelectorAll("[data-nav-link]"));
+		const navLinkMap = new Map(navLinks.map((link) => [link.dataset.navLink, link]));
+		const navSections = Array.from(document.querySelectorAll("[data-nav-section], .chapter-card[id]"));
+
+		function setMenu(open) {
+			body.classList.toggle("menu-open", open);
+			menuButton.setAttribute("aria-expanded", String(open));
+			menuButton.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+		}
+
+		function navIdForElement(element) {
+			if (navLinkMap.has(element.id)) return element.id;
+			const chapter = element.closest(".chapter[data-nav-section]");
+			return chapter ? chapter.id : "";
+		}
+
+		function setActiveNav(id) {
+			navLinks.forEach((link) => {
+				const active = link.dataset.navLink === id;
+				link.toggleAttribute("aria-current", active);
+			});
+		}
+
+		function updateProgress() {
+			const max = document.documentElement.scrollHeight - window.innerHeight;
+			const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+			progress.style.width = `${Math.min(100, Math.max(0, pct))}%`;
+			backTop.classList.toggle("visible", window.scrollY > 520);
+		}
+
+		function updateActiveNav() {
+			const offset = window.innerHeight * 0.26;
+			let current = navSections[0];
+
+			for (const section of navSections) {
+				if (section.getBoundingClientRect().top - offset <= 0) {
+					current = section;
+				} else {
+					break;
+				}
+			}
+
+			const navId = current ? navIdForElement(current) : "exam-overview";
+			if (navId) setActiveNav(navId);
+		}
+
+		let ticking = false;
+		function requestScrollUpdate() {
+			if (ticking) return;
+			ticking = true;
+			window.requestAnimationFrame(() => {
+				updateProgress();
+				updateActiveNav();
+				ticking = false;
+			});
+		}
+
+		menuButton.addEventListener("click", () => setMenu(!body.classList.contains("menu-open")));
+		closeTargets.forEach((target) => target.addEventListener("click", () => setMenu(false)));
+
+		document.addEventListener("click", (event) => {
+			const link = event.target.closest('a[href^="#"]');
+			if (!link) return;
+			const id = link.getAttribute("href").slice(1);
+			const target = document.getElementById(id);
+			if (!target) return;
+
+			event.preventDefault();
+			target.scrollIntoView({ behavior: "smooth", block: "start" });
+			setMenu(false);
+
+			const directNavId = navLinkMap.has(id) ? id : navIdForElement(target);
+			if (directNavId) setActiveNav(directNavId);
+			history.pushState(null, "", `#${id}`);
+		});
+
+		backTop.addEventListener("click", () => {
+			window.scrollTo({ top: 0, behavior: "smooth" });
+			setActiveNav("exam-overview");
+		});
+
+		window.addEventListener("scroll", requestScrollUpdate, { passive: true });
+		window.addEventListener("resize", requestScrollUpdate);
+		updateProgress();
+		updateActiveNav();
+	</script>
+</body>
+</html>

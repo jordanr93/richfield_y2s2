@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Information Systems 622 Study Hub</title>
+	<style>
+		:root {
+			--bg: #0d1117;
+			--panel: #161b22;
+			--border: #21262d;
+			--header: #1c2128;
+			--text: #e6edf3;
+			--muted: #8b949e;
+			--cyan: #58c4dd;
+			--green: #3fb950;
+			--amber: #d29922;
+			--red: #f85149;
+			--purple: #bc8cff;
+			--code-bg: #010409;
+			--nav-width: 292px;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		html {
+			scroll-behavior: smooth;
+		}
+
+		body {
+			margin: 0;
+			background: var(--bg);
+			color: var(--text);
+			font-family: Calibri, Arial, sans-serif;
+			font-size: 18px;
+			line-height: 1.62;
+		}
+
+		a {
+			color: var(--cyan);
+			text-decoration: none;
+		}
+
+		a:hover,
+		a:focus {
+			text-decoration: underline;
+		}
+
+		.layout {
+			min-height: 100vh;
+		}
+
+		.sidebar {
+			position: fixed;
+			inset: 0 auto 0 0;
+			width: var(--nav-width);
+			overflow-y: auto;
+			background: #090d13;
+			border-right: 1px solid var(--border);
+			padding: 24px 18px;
+			z-index: 30;
+		}
+
+		.brand {
+			margin-bottom: 24px;
+			padding-bottom: 18px;
+			border-bottom: 1px solid var(--border);
+		}
+
+		.brand strong {
+			display: block;
+			font-size: 1.08rem;
+			line-height: 1.2;
+		}
+
+		.brand span {
+			display: block;
+			color: var(--muted);
+			font-size: 0.88rem;
+			margin-top: 6px;
+		}
+
+		.nav-group {
+			margin: 0 0 22px;
+		}
+
+		.nav-group h2 {
+			margin: 0 0 8px;
+			color: var(--muted);
+			font-size: 0.76rem;
+			text-transform: uppercase;
+			font-weight: 700;
+		}
+
+		.nav-link {
+			display: block;
+			padding: 8px 10px;
+			border-radius: 8px;
+			color: var(--text);
+			font-size: 0.92rem;
+			line-height: 1.25;
+			border: 1px solid transparent;
+		}
+
+		.nav-link:hover,
+		.nav-link:focus {
+			background: var(--header);
+			text-decoration: none;
+		}
+
+		.nav-link[aria-current="true"] {
+			color: #ffffff;
+			background: #102233;
+			border-color: rgba(88, 196, 221, 0.55);
+		}
+
+		.menu-toggle {
+			display: none;
+			position: fixed;
+			top: 14px;
+			left: 14px;
+			z-index: 50;
+			width: 44px;
+			height: 44px;
+			border-radius: 8px;
+			border: 1px solid var(--border);
+			background: var(--panel);
+			color: var(--text);
+			font-size: 1.25rem;
+			cursor: pointer;
+		}
+
+		.main {
+			margin-left: var(--nav-width);
+			padding: 38px 38px 72px;
+		}
+
+		.content {
+			max-width: 1180px;
+			margin: 0 auto;
+		}
+
+		.hero {
+			padding: 34px 0 24px;
+			border-bottom: 1px solid var(--border);
+		}
+
+		.eyebrow {
+			color: var(--cyan);
+			font-weight: 700;
+			text-transform: uppercase;
+			font-size: 0.8rem;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4 {
+			line-height: 1.16;
+			letter-spacing: 0;
+		}
+
+		h1 {
+			margin: 8px 0 12px;
+			font-size: clamp(2.1rem, 5vw, 4rem);
+		}
+
+		h2 {
+			margin: 0 0 14px;
+			font-size: 2rem;
+		}
+
+		h3 {
+			margin: 0 0 12px;
+			font-size: 1.35rem;
+		}
+
+		h4 {
+			margin: 0 0 8px;
+			font-size: 1.05rem;
+		}
+
+		p {
+			margin: 0 0 14px;
+		}
+
+		.hero p {
+			max-width: 840px;
+			color: var(--muted);
+			font-size: 1.08rem;
+		}
+
+		.actions,
+		.legend,
+		.related-chapters,
+		.tag-row {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px;
+			align-items: center;
+		}
+
+		.actions {
+			margin: 22px 0;
+		}
+
+		.button,
+		.back-link {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			min-height: 42px;
+			padding: 9px 14px;
+			border-radius: 8px;
+			border: 1px solid var(--border);
+			background: var(--header);
+			color: var(--text);
+			font-weight: 700;
+		}
+
+		.button.primary {
+			background: #0f3344;
+			border-color: rgba(88, 196, 221, 0.5);
+		}
+
+		.button:hover,
+		.button:focus,
+		.back-link:hover,
+		.back-link:focus {
+			text-decoration: none;
+			border-color: var(--cyan);
+		}
+
+		.legend {
+			margin-top: 18px;
+			color: var(--muted);
+			font-size: 0.9rem;
+		}
+
+		.legend-item,
+		.tag {
+			display: inline-flex;
+			align-items: center;
+			gap: 7px;
+		}
+
+		.swatch {
+			width: 12px;
+			height: 12px;
+			border-radius: 50%;
+			display: inline-block;
+		}
+
+		.cyan { color: var(--cyan); }
+		.green { color: var(--green); }
+		.amber { color: var(--amber); }
+		.red { color: var(--red); }
+		.purple { color: var(--purple); }
+		.bg-cyan { background: var(--cyan); }
+		.bg-green { background: var(--green); }
+		.bg-amber { background: var(--amber); }
+		.bg-red { background: var(--red); }
+		.bg-purple { background: var(--purple); }
+
+		.section {
+			padding: 44px 0 6px;
+			scroll-margin-top: 26px;
+		}
+
+		.section-intro {
+			max-width: 900px;
+			color: var(--muted);
+			margin-bottom: 22px;
+		}
+
+		.grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 16px;
+		}
+
+		.grid.three {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		.card {
+			background: var(--panel);
+			border: 1px solid var(--border);
+			border-radius: 8px;
+			padding: 18px;
+			scroll-margin-top: 24px;
+		}
+
+		.exam-card {
+			border-top: 4px solid var(--cyan);
+		}
+
+		.exam-card.strategy { border-top-color: var(--cyan); }
+		.exam-card.design { border-top-color: var(--green); }
+		.exam-card.data { border-top-color: var(--purple); }
+		.exam-card.architecture { border-top-color: var(--amber); }
+		.exam-card.implementation { border-top-color: var(--green); }
+		.exam-card.security { border-top-color: var(--red); }
+
+		.chapter {
+			padding: 42px 0 8px;
+			border-top: 1px solid var(--border);
+			scroll-margin-top: 24px;
+		}
+
+		.chapter-heading {
+			display: flex;
+			justify-content: space-between;
+			gap: 18px;
+			align-items: flex-start;
+			margin-bottom: 18px;
+		}
+
+		.chapter-heading p {
+			color: var(--muted);
+			max-width: 780px;
+		}
+
+		.chapter-number {
+			flex: 0 0 auto;
+			min-width: 84px;
+			padding: 6px 10px;
+			border-radius: 8px;
+			text-align: center;
+			background: var(--header);
+			color: var(--cyan);
+			border: 1px solid var(--border);
+			font-weight: 700;
+		}
+
+		ul,
+		ol {
+			margin: 0 0 12px 20px;
+			padding: 0;
+		}
+
+		li + li {
+			margin-top: 6px;
+		}
+
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin: 14px 0;
+			font-size: 0.96rem;
+		}
+
+		th,
+		td {
+			border: 1px solid var(--border);
+			padding: 10px 12px;
+			text-align: left;
+			vertical-align: top;
+		}
+
+		th {
+			background: var(--header);
+			color: var(--cyan);
+		}
+
+		.note {
+			border-left: 4px solid var(--amber);
+			padding: 12px 14px;
+			background: #18140a;
+			color: #f3d59a;
+			border-radius: 0 8px 8px 0;
+			margin: 14px 0;
+		}
+
+		.success {
+			border-left-color: var(--green);
+			background: #0d1f13;
+			color: #b7efc3;
+		}
+
+		.danger {
+			border-left-color: var(--red);
+			background: #211010;
+			color: #ffb4ad;
+		}
+
+		code,
+		kbd {
+			background: var(--code-bg);
+			color: #7ee787;
+			border: 1px solid #17351f;
+			border-radius: 6px;
+			padding: 0.12rem 0.32rem;
+			font-family: Consolas, "Courier New", monospace;
+			font-size: 0.92em;
+		}
+
+		.related-chapters {
+			margin-top: 16px;
+			font-size: 0.9rem;
+		}
+
+		.related-chapters span {
+			color: var(--muted);
+			font-weight: 700;
+		}
+
+		.related-chapters a,
+		.tag {
+			border: 1px solid var(--border);
+			background: var(--header);
+			border-radius: 999px;
+			padding: 5px 10px;
+		}
+
+		.cheat-grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 16px;
+		}
+
+		.footer {
+			margin-top: 46px;
+			padding-top: 20px;
+			border-top: 1px solid var(--border);
+			color: var(--muted);
+			font-size: 0.92rem;
+		}
+
+		.back-top {
+			position: fixed;
+			right: 18px;
+			bottom: 18px;
+			width: 46px;
+			height: 46px;
+			border-radius: 50%;
+			border: 1px solid var(--border);
+			background: var(--header);
+			color: var(--text);
+			font-size: 1.25rem;
+			cursor: pointer;
+			box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+		}
+
+		.back-top:hover,
+		.back-top:focus {
+			border-color: var(--cyan);
+		}
+
+		@media (max-width: 980px) {
+			body.nav-open {
+				overflow: hidden;
+			}
+
+			.menu-toggle {
+				display: block;
+			}
+
+			.sidebar {
+				transform: translateX(-100%);
+				transition: transform 180ms ease;
+				box-shadow: 18px 0 42px rgba(0, 0, 0, 0.45);
+			}
+
+			body.nav-open .sidebar {
+				transform: translateX(0);
+			}
+
+			.main {
+				margin-left: 0;
+				padding: 68px 18px 72px;
+			}
+
+			.grid,
+			.grid.three,
+			.cheat-grid {
+				grid-template-columns: 1fr;
+			}
+
+			.chapter-heading {
+				display: block;
+			}
+
+			.chapter-number {
+				display: inline-block;
+				margin-bottom: 12px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+	<div class="layout" id="top">
+		<aside class="sidebar" aria-label="Study navigation">
+			<div class="brand">
+				<strong>Information Systems 622</strong>
+				<span>Study Hub</span>
+			</div>
+			<nav>
+				<div class="nav-group">
+					<h2>Exam Focus Areas</h2>
+					<a class="nav-link" href="#exam-overview">Exam Overview</a>
+					<a class="nav-link" href="#focus-development-strategy">Development Strategy</a>
+					<a class="nav-link" href="#focus-interface-design">UI, Input and Output</a>
+					<a class="nav-link" href="#focus-data-design">Data Design</a>
+					<a class="nav-link" href="#focus-system-architecture">System Architecture</a>
+					<a class="nav-link" href="#focus-implementation">Implementation</a>
+					<a class="nav-link" href="#focus-support-security">Support and Security</a>
+				</div>
+				<div class="nav-group">
+					<h2>General Module Content</h2>
+					<a class="nav-link" href="#chapter-1">Chapter 1: Development Strategies</a>
+					<a class="nav-link" href="#chapter-2">Chapter 2: User Interface Design</a>
+					<a class="nav-link" href="#chapter-3">Chapter 3: Data Design</a>
+					<a class="nav-link" href="#chapter-4">Chapter 4: System Architecture</a>
+					<a class="nav-link" href="#chapter-5">Chapter 5: Implementation</a>
+					<a class="nav-link" href="#chapter-6">Chapter 6: Support and Security</a>
+				</div>
+				<div class="nav-group">
+					<h2>Revision Tables</h2>
+					<a class="nav-link" href="#final-cheat-sheets">Cheat Sheets</a>
+				</div>
+			</nav>
+		</aside>
+
+		<main class="main">
+			<div class="content">
+				<header class="hero">
+					<div class="eyebrow">2026 Study Guide Revision</div>
+					<h1>Information Systems 622 Study Hub</h1>
+					<p>A dark, readable one-page guide covering the major development, design, implementation, support, and security ideas from the Information Systems 622 study guide.</p>
+					<div class="actions">
+						<a class="button primary" href="#exam-overview">Start Exam Focus</a>
+						<a class="button" href="#general-module-content">Browse General Content</a>
+					</div>
+					<div class="legend" aria-label="Colour legend">
+						<span class="legend-item"><span class="swatch bg-cyan"></span>Core concepts</span>
+						<span class="legend-item"><span class="swatch bg-green"></span>Good practice</span>
+						<span class="legend-item"><span class="swatch bg-amber"></span>Trade-offs</span>
+						<span class="legend-item"><span class="swatch bg-red"></span>Risks</span>
+						<span class="legend-item"><span class="swatch bg-purple"></span>Structures</span>
+					</div>
+				</header>
+
+				<section class="section" id="exam-focus-areas">
+					<h2>Exam Focus Areas</h2>
+					<p class="section-intro">These focus areas are derived from the chapter learning outcomes and summaries in the 2026 Information Systems 622 Study Guide. Use them to revise the decisions, comparisons, and definitions that connect multiple chapters.</p>
+
+					<article class="card" id="exam-overview" data-nav-section>
+						<h3>Exam Overview</h3>
+						<table>
+							<thead>
+								<tr>
+									<th>Focus area</th>
+									<th>What to know</th>
+									<th>Likely exam action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Development strategy</td>
+									<td>Traditional vs web-based systems, in-house development, packages, outsourcing, SaaS, RFP/RFQ, TCO.</td>
+									<td>Compare options and justify a recommendation.</td>
+								</tr>
+								<tr>
+									<td>Interface and input design</td>
+									<td>UI, HCI, usability, forms, reports, validation rules, input/output controls, prototyping.</td>
+									<td>Evaluate whether a screen, form, or report supports users and controls errors.</td>
+								</tr>
+								<tr>
+									<td>Data design</td>
+									<td>DBMS components, keys, referential integrity, ERDs, cardinality, normalization, codes, controls.</td>
+									<td>Explain relationships, normalize data, and identify data-quality controls.</td>
+								</tr>
+								<tr>
+									<td>Architecture</td>
+									<td>Architecture checklist, ERP, client/server tiers, middleware, online vs batch, network models.</td>
+									<td>Select architecture features based on cost, scalability, security, and processing needs.</td>
+								</tr>
+								<tr>
+									<td>Implementation</td>
+									<td>QA, structured/OO/agile development, testing, documentation, installation, changeover, training.</td>
+									<td>Sequence implementation activities and compare changeover methods.</td>
+								</tr>
+								<tr>
+									<td>Support and security</td>
+									<td>User support, maintenance types, performance measures, security levels, backup, recovery, retirement.</td>
+									<td>Classify maintenance/security actions and explain operational controls.</td>
+								</tr>
+							</tbody>
+						</table>
+					</article>
+
+					<div class="grid">
+						<article class="card exam-card strategy" id="focus-development-strategy" data-nav-section>
+							<h3>Development Strategy</h3>
+							<p>Know how a systems analyst chooses between traditional development, web-based development, in-house software, commercial packages, outsourcing, offshoring, and SaaS. The guide stresses that the choice depends on requirements, cost, risk, long-term support, and total cost of ownership.</p>
+							<div class="note">Exam trap: a low initial price is not automatically the best option. TCO includes maintenance, support, upgrades, retraining, disruptions, and long-term operating costs.</div>
+							<nav class="related-chapters" aria-label="Related sections for development strategy">
+								<span>Study this in</span>
+								<a href="#ch1-1-traditional-vs-web">1.1 Traditional vs Web</a>
+								<a href="#ch1-3-development-options">1.3 Development Options</a>
+								<a href="#ch1-4-acquisition">1.4 Acquisition Process</a>
+							</nav>
+						</article>
+
+						<article class="card exam-card design" id="focus-interface-design" data-nav-section>
+							<h3>UI, Input and Output Design</h3>
+							<p>Focus on how UI design supports two-way communication between users and systems. Strong answers connect HCI, usability, feedback, validation rules, source documents, reports, input controls, output controls, and prototyping.</p>
+							<div class="note success">Good pattern: design from user tasks and business goals, then reduce errors with input masks, validation checks, clear feedback, and access controls.</div>
+							<nav class="related-chapters" aria-label="Related sections for interface design">
+								<span>Study this in</span>
+								<a href="#ch2-1-ui-hci">2.1 UI and HCI</a>
+								<a href="#ch2-3-validation">2.4 Validation Rules</a>
+								<a href="#ch2-5-prototyping">2.9 Prototyping</a>
+							</nav>
+						</article>
+
+						<article class="card exam-card data" id="focus-data-design" data-nav-section>
+							<h3>Data Design</h3>
+							<p>Revise how data moves from file-oriented systems into relational database design. Be ready to explain entities, fields, records, primary keys, foreign keys, referential integrity, ERDs, cardinality, normalization, and data controls.</p>
+							<div class="note">Exam trap: many-to-many relationships usually need an associative entity. Without it, the design is difficult to implement cleanly in relational tables.</div>
+							<nav class="related-chapters" aria-label="Related sections for data design">
+								<span>Study this in</span>
+								<a href="#ch3-1-dbms">3.1 DBMS Concepts</a>
+								<a href="#ch3-3-erd">3.5 ERDs</a>
+								<a href="#ch3-4-normalization">3.6 Normalization</a>
+							</nav>
+						</article>
+
+						<article class="card exam-card architecture" id="focus-system-architecture" data-nav-section>
+							<h3>System Architecture</h3>
+							<p>Architecture converts logical design into a physical structure: hardware, software, networks, processing methods, and security. The guide highlights ERP, SCM, scalability, web integration, legacy interfaces, client/server tiers, middleware, and network choices.</p>
+							<div class="note">Exam trap: architecture is not just hardware. It includes processing choices, security, data, procedures, people, and how the system fits the organization.</div>
+							<nav class="related-chapters" aria-label="Related sections for system architecture">
+								<span>Study this in</span>
+								<a href="#ch4-1-checklist">4.1 Checklist</a>
+								<a href="#ch4-2-client-server">4.3 Client/Server</a>
+								<a href="#ch4-4-networks">4.7 Networks</a>
+							</nav>
+						</article>
+
+						<article class="card exam-card implementation" id="focus-implementation" data-nav-section>
+							<h3>Implementation</h3>
+							<p>Implementation covers application development, testing, documentation, installation, training, changeover, data conversion, and post-implementation evaluation. QA is a thread through the whole phase, not a single final check.</p>
+							<div class="note success">Good pattern: prevent defects early, test in layers, keep operational and test environments separate, train users properly, and evaluate the new system after rollout.</div>
+							<nav class="related-chapters" aria-label="Related sections for implementation">
+								<span>Study this in</span>
+								<a href="#ch5-1-qa">5.1 Quality Assurance</a>
+								<a href="#ch5-4-testing-docs">5.7 Testing</a>
+								<a href="#ch5-5-changeover">5.9 Changeover</a>
+							</nav>
+						</article>
+
+						<article class="card exam-card security" id="focus-support-security" data-nav-section>
+							<h3>Support and Security</h3>
+							<p>After implementation, systems need user support, maintenance management, performance management, security, backup, recovery, and eventual retirement. The guide separates maintenance into corrective, adaptive, perfective, and preventive tasks.</p>
+							<div class="note danger">Watch for classification questions: fixing an error is corrective; adding new capabilities is adaptive; improving efficiency is perfective; avoiding future failure is preventive.</div>
+							<nav class="related-chapters" aria-label="Related sections for support and security">
+								<span>Study this in</span>
+								<a href="#ch6-1-support">6.1 User Support</a>
+								<a href="#ch6-2-maintenance">6.2 Maintenance</a>
+								<a href="#ch6-4-security">6.5 Security</a>
+							</nav>
+						</article>
+					</div>
+				</section>
+
+				<section class="section" id="general-module-content">
+					<h2>General Module Content</h2>
+					<p class="section-intro">The chapter notes below compress the study guide into always-visible revision blocks. Use the focus cards above for high-yield review, then read the chapter cards to fill the gaps.</p>
+
+					<section class="chapter" id="chapter-1" data-nav-section>
+						<div class="chapter-heading">
+							<div>
+								<h2>Chapter 1: Development Strategies</h2>
+								<p>Development strategy is about choosing the most suitable way to acquire or build software while balancing requirements, cost, risk, web integration, staffing, and long-term support.</p>
+							</div>
+							<span class="chapter-number">Chapter 1</span>
+						</div>
+						<div class="grid">
+							<article class="card chapter-card" id="ch1-1-traditional-vs-web">
+								<h3>1.1 Traditional vs Web-Based Systems</h3>
+								<p><strong>Traditional systems</strong> usually run within company-controlled hardware, software, LAN/WAN, and legacy environments. Internet features may exist, but they are often add-ons.</p>
+								<p><strong>Web-based systems</strong> treat the web as the platform. They are more scalable, less tied to one hardware environment, and often easier to deliver as services.</p>
+								<table>
+									<tr><th>Traditional</th><th>Web-based</th></tr>
+									<tr><td>Legacy integration strongly affects design.</td><td>Internet framework is central to the application.</td></tr>
+									<tr><td>Often depends on company networks and desktop resources.</td><td>Can operate across varied devices and environments.</td></tr>
+									<tr><td>Security is often inside a private network.</td><td>Security must handle internet exposure and service access.</td></tr>
+								</table>
+							</article>
+							<article class="card chapter-card" id="ch1-2-trends">
+								<h3>1.2 Evolving Trends</h3>
+								<p>Web 2.0, cloud computing, mobile devices, SaaS, and web-hosted software expanded the acquisition choices available to organizations. The analyst must understand how each trend changes cost, control, scalability, and maintenance.</p>
+								<ul>
+									<li><strong>Cloud computing:</strong> software and data are accessed over the internet using cloud infrastructure.</li>
+									<li><strong>SaaS:</strong> applications are provided as services, reducing installation and maintenance work for the customer.</li>
+									<li><strong>Mobile and web platforms:</strong> increase access needs and raise compatibility, security, and interface concerns.</li>
+								</ul>
+							</article>
+							<article class="card chapter-card" id="ch1-3-development-options">
+								<h3>1.3 Development Options</h3>
+								<p>Organizations can build internally, buy a package, customize existing software, outsource, offshore, or use SaaS. In-house development gives control and business fit but needs more internal resources. Packages can be faster and cheaper, but may require process change or customization.</p>
+								<div class="note">The systems analyst's role changes by option: deeper design and testing involvement for in-house work, more vendor evaluation and contract/support focus for packages and outsourcing.</div>
+							</article>
+							<article class="card chapter-card" id="ch1-4-acquisition">
+								<h3>1.4 Software Acquisition Process</h3>
+								<p>The acquisition process evaluates requirements, network and web issues, vendors, outsourcing choices, alternatives, cost-benefit results, recommendations, and implementation planning.</p>
+								<table>
+									<tr><th>Document</th><th>Use</th></tr>
+									<tr><td>RFP</td><td>Requests vendor proposals against business needs, required features, service levels, and support expectations.</td></tr>
+									<tr><td>RFQ</td><td>Requests pricing for a specific product or service once the requirement is clearer.</td></tr>
+									<tr><td>System requirements document</td><td>Outputs analysis work and supports the management decision to proceed, change direction, or stop.</td></tr>
+								</table>
+							</article>
+						</div>
+						<p><a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a></p>
+					</section>
+
+					<section class="chapter" id="chapter-2" data-nav-section>
+						<div class="chapter-heading">
+							<div>
+								<h2>Chapter 2: User Interface Design</h2>
+								<p>UI design covers how users interact with systems through screens, menus, functions, outputs, forms, controls, feedback, and error prevention.</p>
+							</div>
+							<span class="chapter-number">Chapter 2</span>
+						</div>
+						<div class="grid">
+							<article class="card chapter-card" id="ch2-1-ui-hci">
+								<h3>2.1 UI and HCI</h3>
+								<p>A user interface is the hardware, software, screens, menus, functions, outputs, and features that support communication between user and computer. HCI focuses on making that interaction productive, learnable, and user-friendly.</p>
+								<p>Modern UI design starts from user needs and business goals, not from printed outputs alone. The best interfaces often feel invisible because users can complete tasks naturally.</p>
+							</article>
+							<article class="card chapter-card" id="ch2-2-guidelines">
+								<h3>2.3-2.4 Design Guidelines</h3>
+								<ul>
+									<li>Understand the business and user tasks.</li>
+									<li>Think like a user and invite feedback.</li>
+									<li>Use models and prototypes to reduce misunderstandings.</li>
+									<li>Keep screens easy to learn, productive, flexible, and clear.</li>
+									<li>Use familiar terms, helpful feedback, and attractive but practical layout.</li>
+								</ul>
+							</article>
+							<article class="card chapter-card" id="ch2-3-validation">
+								<h3>2.4 Validation Rules</h3>
+								<p>Validation rules reduce incorrect or inconsistent data before it enters the system. The study guide highlights checks such as sequence, existence, range, reasonableness, and validity checks.</p>
+								<table>
+									<tr><th>Check</th><th>Purpose</th></tr>
+									<tr><td>Sequence</td><td>Ensures values are entered in the required order.</td></tr>
+									<tr><td>Existence</td><td>Prevents mandatory fields from being left blank.</td></tr>
+									<tr><td>Range</td><td>Rejects values outside allowed limits.</td></tr>
+									<tr><td>Reasonableness</td><td>Flags values that are possible but suspicious.</td></tr>
+									<tr><td>Validity</td><td>Checks values against accepted codes or records.</td></tr>
+								</table>
+							</article>
+							<article class="card chapter-card" id="ch2-4-reports-controls">
+								<h3>2.5-2.8 Forms, Reports and Controls</h3>
+								<p>Source documents can include heading, control, instruction, body, totals, and authorization zones. Reports may be detail, summary, or exception reports. Input and output controls protect accuracy, privacy, and access.</p>
+								<div class="note danger">Security is part of design: output control protects reports and data; input control uses audit trails, encryption, passwords, data security, and access levels.</div>
+							</article>
+							<article class="card chapter-card" id="ch2-5-prototyping">
+								<h3>2.9 Prototyping and Trends</h3>
+								<p>Responsive web design, modular design, and prototyping help designers test ideas and gain user approval. Throwaway design prototypes document and benchmark desired features but should not be mistaken for production-ready systems.</p>
+								<div class="note">Prototype risk: users may want to adopt a rough prototype too quickly, even when reliability, maintainability, and quality have not been fully tested.</div>
+							</article>
+						</div>
+						<p><a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a></p>
+					</section>
+
+					<section class="chapter" id="chapter-3" data-nav-section>
+						<div class="chapter-heading">
+							<div>
+								<h2>Chapter 3: Data Design</h2>
+								<p>Data design organizes data into structures that support storage, retrieval, integrity, security, and analysis.</p>
+							</div>
+							<span class="chapter-number">Chapter 3</span>
+						</div>
+						<div class="grid">
+							<article class="card chapter-card" id="ch3-1-dbms">
+								<h3>3.1-3.2 Data Structures and DBMS</h3>
+								<p>A data structure organizes, stores, and manages data. File-oriented systems store separate files, which can create redundancy and inconsistency. A database uses connected tables as an overall data structure.</p>
+								<p>A DBMS provides tools, features, and interfaces to add, update, manage, access, and analyze data. Components include user interfaces, DBA interfaces, DML, schemas, subschemas, and the physical data repository.</p>
+							</article>
+							<article class="card chapter-card" id="ch3-2-terms-integrity">
+								<h3>3.4 Data Terms and Integrity</h3>
+								<table>
+									<tr><th>Term</th><th>Meaning</th></tr>
+									<tr><td>Entity</td><td>A person, place, thing, or event about which data is stored.</td></tr>
+									<tr><td>Attribute/field</td><td>A characteristic of an entity.</td></tr>
+									<tr><td>Record/tuple</td><td>A set of fields describing one entity instance.</td></tr>
+									<tr><td>Primary key</td><td>Uniquely and minimally identifies a record.</td></tr>
+									<tr><td>Foreign key</td><td>Matches the primary key in another table.</td></tr>
+									<tr><td>Referential integrity</td><td>Prevents a foreign key value unless the matching primary key exists.</td></tr>
+								</table>
+							</article>
+							<article class="card chapter-card" id="ch3-3-erd">
+								<h3>3.5 Entity-Relationship Diagrams</h3>
+								<p>ERDs show entities and relationships. Basic relationships are one-to-one, one-to-many, and many-to-many. Cardinality describes how many instances of one entity can relate to instances of another.</p>
+								<div class="note">In relational design, an M:N relationship normally becomes two 1:M relationships through an associative entity.</div>
+							</article>
+							<article class="card chapter-card" id="ch3-4-normalization">
+								<h3>3.6 Normalization</h3>
+								<table>
+									<tr><th>Normal form</th><th>Rule</th></tr>
+									<tr><td>1NF</td><td>No repeating groups.</td></tr>
+									<tr><td>2NF</td><td>In 1NF and every non-key field depends on the whole primary key.</td></tr>
+									<tr><td>3NF</td><td>In 2NF and no non-key field depends on another non-key field.</td></tr>
+								</table>
+								<p>Normalization refines table design to reduce redundancy, update problems, and data inconsistency.</p>
+							</article>
+							<article class="card chapter-card" id="ch3-5-codes-controls">
+								<h3>3.7-3.9 Codes, Storage and Control</h3>
+								<p>Codes use letters or numbers to represent data. They can speed entry, reduce storage, cut transmission time, reveal information, or conceal information. Data controls include access privileges, encryption, backups, recovery procedures, audit logs, and audit fields.</p>
+							</article>
+						</div>
+						<p><a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a></p>
+					</section>
+
+					<section class="chapter" id="chapter-4" data-nav-section>
+						<div class="chapter-heading">
+							<div>
+								<h2>Chapter 4: System Architecture</h2>
+								<p>System architecture transforms logical design into the physical structure of hardware, software, networks, processing methods, data, procedures, people, and security.</p>
+							</div>
+							<span class="chapter-number">Chapter 4</span>
+						</div>
+						<div class="grid">
+							<article class="card chapter-card" id="ch4-1-checklist">
+								<h3>4.1 Architecture Checklist</h3>
+								<ul>
+									<li>Corporate organization and culture</li>
+									<li>ERP and SCM integration</li>
+									<li>Initial cost and total cost of ownership</li>
+									<li>Scalability and web integration</li>
+									<li>Legacy system interfaces</li>
+									<li>Processing options, security, and corporate portals</li>
+								</ul>
+							</article>
+							<article class="card chapter-card" id="ch4-2-client-server">
+								<h3>4.2-4.3 Client/Server Architecture</h3>
+								<p>Servers provide data and processing services to clients. In client/server architecture, processing is distributed between the client and a central server.</p>
+								<table>
+									<tr><th>Design</th><th>Meaning</th></tr>
+									<tr><td>Fat client</td><td>Most application processing happens on the client.</td></tr>
+									<tr><td>Thin client</td><td>Most processing shifts to the server.</td></tr>
+									<tr><td>Two-tier</td><td>Client handles UI; server stores data and may share logic.</td></tr>
+									<tr><td>Three-tier</td><td>Adds an application server/middle layer between client and data server.</td></tr>
+								</table>
+							</article>
+							<article class="card chapter-card" id="ch4-3-processing">
+								<h3>4.4-4.6 Internet, E-Commerce and Processing</h3>
+								<p>The internet changed architecture through e-commerce, packaged web solutions, service providers, cloud computing, and Web 2.0 collaboration. Processing methods also shape design.</p>
+								<table>
+									<tr><th>Method</th><th>Use</th></tr>
+									<tr><td>Online processing</td><td>Users interact with systems that process transactions in real time.</td></tr>
+									<tr><td>Batch processing</td><td>Transactions are collected and processed in scheduled groups.</td></tr>
+								</table>
+							</article>
+							<article class="card chapter-card" id="ch4-4-networks">
+								<h3>4.7-4.8 Networks and Wireless</h3>
+								<p>Networks share hardware, software, and data. The OSI model has seven layers: physical, data link, network, transport, session, presentation, and application. Topologies include hierarchical, bus, ring, star, and mesh designs.</p>
+								<p>Wireless LANs based on IEEE 802.11 standards improve flexibility, but they introduce interference and security concerns.</p>
+							</article>
+							<article class="card chapter-card" id="ch4-5-design-completion">
+								<h3>4.9 Systems Design Completion</h3>
+								<p>The system design specification documents the complete architecture and supports final presentations. After review, the project may move into development, require more design work, or be canceled.</p>
+							</article>
+						</div>
+						<p><a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a></p>
+					</section>
+
+					<section class="chapter" id="chapter-5" data-nav-section>
+						<div class="chapter-heading">
+							<div>
+								<h2>Chapter 5: Managing Systems Implementation</h2>
+								<p>Implementation turns design into a working system through development, testing, documentation, installation, training, and evaluation.</p>
+							</div>
+							<span class="chapter-number">Chapter 5</span>
+						</div>
+						<div class="grid">
+							<article class="card chapter-card" id="ch5-1-qa">
+								<h3>5.1 Quality Assurance</h3>
+								<p>QA aims to prevent defects or detect them early. Poor quality can come from unclear requirements, design flaws, coding mistakes, weak documentation, or ineffective testing.</p>
+								<p>Software engineering applies engineering principles to requirements, design, construction, testing, and maintenance. Systems engineering widens the view to hardware, networks, and interfaces.</p>
+							</article>
+							<article class="card chapter-card" id="ch5-2-development-methods">
+								<h3>5.3-5.5 Development Methods</h3>
+								<table>
+									<tr><th>Method</th><th>Tools and ideas</th></tr>
+									<tr><td>Structured</td><td>DFDs, structure charts, modules, data flows, control flows, loops, conditions.</td></tr>
+									<tr><td>Object-oriented</td><td>Use case diagrams, class diagrams, sequence diagrams, state transition diagrams.</td></tr>
+									<tr><td>Agile</td><td>User stories, priorities, iterations, releases, and customer testing.</td></tr>
+								</table>
+							</article>
+							<article class="card chapter-card" id="ch5-3-cohesion-coupling">
+								<h3>5.3 Cohesion and Coupling</h3>
+								<p><strong>Cohesion</strong> measures how focused a module is. High cohesion is desirable because a module performs one specific function.</p>
+								<p><strong>Coupling</strong> measures interdependence between modules. Loose coupling is desirable because modules can work with less reliance on each other.</p>
+							</article>
+							<article class="card chapter-card" id="ch5-4-testing-docs">
+								<h3>5.7-5.8 Testing and Documentation</h3>
+								<p>Programmers use desk checking, code reviews, and unit testing. Analysts prepare test plans for integration testing and system testing. Documentation includes program, system, operations, user, and online documentation.</p>
+								<div class="note success">A strong answer separates unit testing, integration testing, and system testing instead of calling everything "testing".</div>
+							</article>
+							<article class="card chapter-card" id="ch5-5-changeover">
+								<h3>5.9 Installation and Changeover</h3>
+								<table>
+									<tr><th>Method</th><th>Risk and cost profile</th></tr>
+									<tr><td>Direct cutover</td><td>Least expensive, but highest risk because the old system stops immediately.</td></tr>
+									<tr><td>Parallel operation</td><td>Safest, but most expensive because both systems run together.</td></tr>
+									<tr><td>Pilot operation</td><td>Tests the new system in one group before wider rollout.</td></tr>
+									<tr><td>Phased operation</td><td>Introduces the system one module or function at a time.</td></tr>
+								</table>
+								<p>Installation also includes data conversion, user training, post-implementation evaluation, and a final report to management.</p>
+							</article>
+						</div>
+						<p><a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a></p>
+					</section>
+
+					<section class="chapter" id="chapter-6" data-nav-section>
+						<div class="chapter-heading">
+							<div>
+								<h2>Chapter 6: Managing Systems Support and Security</h2>
+								<p>Support and security cover the operational life of a system: helping users, maintaining the system, managing performance, protecting assets, backing up data, and planning retirement.</p>
+							</div>
+							<span class="chapter-number">Chapter 6</span>
+						</div>
+						<div class="grid">
+							<article class="card chapter-card" id="ch6-1-support">
+								<h3>6.1 User Support</h3>
+								<p>Systems analysts often act as internal consultants. User support includes training, help desks, troubleshooting, technical guidance, knowledge bases, and support for new versions or changes.</p>
+								<p>A help desk is a centralized resource that helps users use system resources effectively, answers technical and operational questions, and improves productivity.</p>
+							</article>
+							<article class="card chapter-card" id="ch6-2-maintenance">
+								<h3>6.2 Maintenance Tasks</h3>
+								<table>
+									<tr><th>Type</th><th>Purpose</th></tr>
+									<tr><td>Corrective</td><td>Fix system errors.</td></tr>
+									<tr><td>Adaptive</td><td>Add capabilities or respond to new business/system requirements.</td></tr>
+									<tr><td>Perfective</td><td>Improve efficiency, performance, or maintainability.</td></tr>
+									<tr><td>Preventive</td><td>Reduce the likelihood of future failures.</td></tr>
+								</table>
+							</article>
+							<article class="card chapter-card" id="ch6-3-performance">
+								<h3>6.3-6.4 Maintenance and Performance Management</h3>
+								<p>Maintenance requests are evaluated, prioritized, scheduled, investigated, analyzed, designed, developed, tested, and implemented. Change management controls versions, documentation changes, and release timing.</p>
+								<p>Performance measures include response time, bandwidth, throughput, and turnaround time. Capacity management uses these measures to forecast future support needs.</p>
+							</article>
+							<article class="card chapter-card" id="ch6-4-security">
+								<h3>6.5-6.6 Security Levels</h3>
+								<p>A security policy defines how assets are protected and how attacks are managed. Risk management identifies, analyzes, anticipates, and reduces risks to an acceptable level.</p>
+								<table>
+									<tr><th>Level</th><th>Focus</th></tr>
+									<tr><td>Physical</td><td>Protect rooms, servers, desktops, and equipment.</td></tr>
+									<tr><td>Network</td><td>Protect communications, including wireless links.</td></tr>
+									<tr><td>Application</td><td>Use hardening, permissions, input validation, patches, and logs.</td></tr>
+									<tr><td>File</td><td>Control file permissions and encryption.</td></tr>
+									<tr><td>User</td><td>Manage identities, passwords, awareness, and social engineering risk.</td></tr>
+									<tr><td>Procedural</td><td>Use managerial controls and secure operating procedures.</td></tr>
+								</table>
+							</article>
+							<article class="card chapter-card" id="ch6-5-backup-retirement">
+								<h3>6.7-6.9 Backup, Recovery and Retirement</h3>
+								<p>Backup and recovery decisions include media, schedules, retention periods, RAID, cloud backup, and business continuity. Systems eventually reach the end of useful life when maintenance or operating costs rise, new technology becomes available, or the system cannot meet new requirements.</p>
+								<p>Future IT professionals need technical skill, critical thinking, credentials, and awareness of security, environmental, economic, political, and social pressures.</p>
+							</article>
+						</div>
+						<p><a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a></p>
+					</section>
+				</section>
+
+				<section class="section" id="final-cheat-sheets" data-nav-section>
+					<h2>Final Revision Tables</h2>
+					<div class="cheat-grid">
+						<article class="card">
+							<h3>Decision Comparisons</h3>
+							<table>
+								<tr><th>Question</th><th>Best comparison</th></tr>
+								<tr><td>Build or buy?</td><td>Fit, time, cost, internal skill, customization, vendor support, TCO.</td></tr>
+								<tr><td>Traditional or web?</td><td>Legacy fit, scalability, internet exposure, device access, maintenance responsibility.</td></tr>
+								<tr><td>Online or batch?</td><td>Real-time interaction versus scheduled group processing.</td></tr>
+								<tr><td>Direct or parallel?</td><td>Direct is cheaper and riskier; parallel is safer and more expensive.</td></tr>
+							</table>
+						</article>
+						<article class="card">
+							<h3>Fast Definitions</h3>
+							<table>
+								<tr><th>Term</th><th>Remember</th></tr>
+								<tr><td>TCO</td><td>Full ownership cost over time, not just purchase price.</td></tr>
+								<tr><td>Referential integrity</td><td>Foreign key must match an existing primary key.</td></tr>
+								<tr><td>Middleware</td><td>Connects applications and enables data sharing.</td></tr>
+								<tr><td>High cohesion</td><td>A module has one focused purpose.</td></tr>
+								<tr><td>Loose coupling</td><td>Modules are relatively independent.</td></tr>
+							</table>
+						</article>
+						<article class="card">
+							<h3>Security Layers</h3>
+							<ol>
+								<li>Physical security</li>
+								<li>Network security</li>
+								<li>Application security</li>
+								<li>File security</li>
+								<li>User security</li>
+								<li>Procedural security</li>
+							</ol>
+						</article>
+						<article class="card">
+							<h3>Normalize in Order</h3>
+							<ol>
+								<li>Remove repeating groups for 1NF.</li>
+								<li>Make non-key fields depend on the full primary key for 2NF.</li>
+								<li>Remove dependencies between non-key fields for 3NF.</li>
+							</ol>
+							<div class="note">Normalization questions are usually about spotting dependency problems, not memorizing table names.</div>
+						</article>
+					</div>
+				</section>
+
+				<footer class="footer">
+					<p>Built from the 2026 Information Systems 622 Study Guide and the local one-page study-site instructions.</p>
+				</footer>
+			</div>
+		</main>
+	</div>
+
+	<button class="back-top" type="button" aria-label="Back to top">↑</button>
+
+	<script>
+		(function () {
+			const body = document.body;
+			const menuToggle = document.querySelector(".menu-toggle");
+			const sidebar = document.querySelector(".sidebar");
+			const navLinks = Array.from(document.querySelectorAll(".nav-link"));
+			const sections = Array.from(document.querySelectorAll("[data-nav-section]"));
+			const backTop = document.querySelector(".back-top");
+
+			const navMap = new Map(navLinks.map((link) => [link.getAttribute("href").slice(1), link]));
+
+			function parentChapterId(element) {
+				const chapter = element.closest(".chapter");
+				return chapter ? chapter.id : null;
+			}
+
+			function navIdForElement(element) {
+				if (navMap.has(element.id)) {
+					return element.id;
+				}
+				return parentChapterId(element) || element.id;
+			}
+
+			function setActiveNav(id) {
+				navLinks.forEach((link) => {
+					const isActive = link.getAttribute("href") === "#" + id;
+					if (isActive) {
+						link.setAttribute("aria-current", "true");
+					} else {
+						link.removeAttribute("aria-current");
+					}
+				});
+			}
+
+			function updateActiveNav() {
+				const checkpoint = window.scrollY + 140;
+				let current = sections[0];
+				for (const section of sections) {
+					if (section.offsetTop <= checkpoint) {
+						current = section;
+					} else {
+						break;
+					}
+				}
+				if (current) {
+					setActiveNav(navIdForElement(current));
+				}
+			}
+
+			let ticking = false;
+			function requestActiveNavUpdate() {
+				if (!ticking) {
+					window.requestAnimationFrame(() => {
+						updateActiveNav();
+						ticking = false;
+					});
+					ticking = true;
+				}
+			}
+
+			menuToggle.addEventListener("click", () => {
+				const isOpen = body.classList.toggle("nav-open");
+				menuToggle.setAttribute("aria-expanded", String(isOpen));
+			});
+
+			sidebar.addEventListener("click", (event) => {
+				const link = event.target.closest("a");
+				if (!link) return;
+				const targetId = link.getAttribute("href").slice(1);
+				setActiveNav(targetId);
+				body.classList.remove("nav-open");
+				menuToggle.setAttribute("aria-expanded", "false");
+			});
+
+			backTop.addEventListener("click", () => {
+				window.scrollTo({ top: 0, behavior: "smooth" });
+				setActiveNav("exam-overview");
+			});
+
+			document.addEventListener("keydown", (event) => {
+				if (event.key === "Escape") {
+					body.classList.remove("nav-open");
+					menuToggle.setAttribute("aria-expanded", "false");
+				}
+			});
+
+			window.addEventListener("scroll", requestActiveNavUpdate, { passive: true });
+			window.addEventListener("resize", requestActiveNavUpdate);
+			updateActiveNav();
+		})();
+	</script>
+</body>
+</html>

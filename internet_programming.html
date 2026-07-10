@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Internet Programming 622 Study Hub</title>
+	<style>
+		:root {
+			--bg: #0d1117;
+			--panel: #161b22;
+			--border: #21262d;
+			--header: #1c2128;
+			--text: #e6edf3;
+			--muted: #8b949e;
+			--cyan: #58c4dd;
+			--green: #3fb950;
+			--amber: #d29922;
+			--red: #f85149;
+			--purple: #bc8cff;
+			--code-bg: #010409;
+			--code-text: #6cff87;
+			--nav-width: 296px;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		html {
+			scroll-behavior: smooth;
+		}
+
+		body {
+			margin: 0;
+			background: var(--bg);
+			color: var(--text);
+			font-family: Calibri, Arial, sans-serif;
+			font-size: 18px;
+			line-height: 1.65;
+		}
+
+		a {
+			color: var(--cyan);
+			text-decoration: none;
+		}
+
+		a:hover,
+		a:focus {
+			text-decoration: underline;
+		}
+
+		code,
+		kbd {
+			background: var(--code-bg);
+			color: var(--code-text);
+			border: 1px solid #17351c;
+			border-radius: 4px;
+			padding: 0.08rem 0.28rem;
+			font-size: 0.94em;
+		}
+
+		pre {
+			margin: 1rem 0 0;
+			padding: 1rem;
+			overflow-x: auto;
+			background: var(--code-bg);
+			color: var(--code-text);
+			border: 1px solid #17351c;
+			border-radius: 8px;
+			font-size: 0.95rem;
+			line-height: 1.5;
+			tab-size: 4;
+		}
+
+		pre code {
+			background: transparent;
+			border: 0;
+			padding: 0;
+			color: inherit;
+		}
+
+		.skip-link {
+			position: fixed;
+			top: 0.75rem;
+			left: 0.75rem;
+			z-index: 30;
+			transform: translateY(-150%);
+			background: var(--cyan);
+			color: #061018;
+			padding: 0.5rem 0.75rem;
+			border-radius: 6px;
+			font-weight: 700;
+		}
+
+		.skip-link:focus {
+			transform: translateY(0);
+		}
+
+		.progress {
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 25;
+			width: 100%;
+			height: 4px;
+			background: rgba(88, 196, 221, 0.16);
+		}
+
+		.progress span {
+			display: block;
+			width: 0;
+			height: 100%;
+			background: var(--cyan);
+		}
+
+		.menu-toggle {
+			display: none;
+			position: fixed;
+			top: 0.85rem;
+			right: 0.85rem;
+			z-index: 24;
+			border: 1px solid var(--border);
+			background: var(--header);
+			color: var(--text);
+			border-radius: 8px;
+			padding: 0.55rem 0.75rem;
+			font-weight: 700;
+			cursor: pointer;
+		}
+
+		.side-nav {
+			position: fixed;
+			inset: 0 auto 0 0;
+			z-index: 20;
+			width: var(--nav-width);
+			overflow-y: auto;
+			background: #0b1016;
+			border-right: 1px solid var(--border);
+			padding: 1.35rem 1rem;
+		}
+
+		.nav-brand {
+			padding: 0.2rem 0.35rem 1rem;
+			border-bottom: 1px solid var(--border);
+			margin-bottom: 1rem;
+		}
+
+		.nav-brand strong {
+			display: block;
+			font-size: 1.05rem;
+			color: var(--text);
+			line-height: 1.25;
+		}
+
+		.nav-brand span {
+			display: block;
+			margin-top: 0.25rem;
+			color: var(--muted);
+			font-size: 0.86rem;
+			line-height: 1.35;
+		}
+
+		.nav-group {
+			margin: 0 0 1.2rem;
+		}
+
+		.nav-group h2 {
+			margin: 0 0 0.4rem;
+			color: var(--muted);
+			font-size: 0.78rem;
+			text-transform: uppercase;
+			letter-spacing: 0.04em;
+		}
+
+		.nav-group a {
+			display: block;
+			padding: 0.45rem 0.55rem;
+			border: 1px solid transparent;
+			border-radius: 6px;
+			color: var(--text);
+			font-size: 0.94rem;
+			line-height: 1.25;
+		}
+
+		.nav-group a:hover,
+		.nav-group a:focus {
+			background: var(--panel);
+			text-decoration: none;
+		}
+
+		.nav-group a[aria-current="true"] {
+			border-color: rgba(88, 196, 221, 0.5);
+			background: rgba(88, 196, 221, 0.12);
+			color: var(--cyan);
+		}
+
+		.overlay {
+			display: none;
+		}
+
+		main {
+			margin-left: var(--nav-width);
+			min-height: 100vh;
+		}
+
+		.content {
+			width: min(1180px, calc(100% - 2rem));
+			margin: 0 auto;
+			padding: 2rem 0 4rem;
+		}
+
+		.hero {
+			background: var(--header);
+			border-bottom: 1px solid var(--border);
+		}
+
+		.hero-inner {
+			width: min(1180px, calc(100% - 2rem));
+			margin: 0 auto;
+			padding: 3rem 0 2.2rem;
+		}
+
+		.eyebrow {
+			margin: 0 0 0.55rem;
+			color: var(--cyan);
+			font-size: 0.9rem;
+			font-weight: 700;
+			text-transform: uppercase;
+			letter-spacing: 0.05em;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4 {
+			line-height: 1.2;
+		}
+
+		h1 {
+			margin: 0;
+			font-size: clamp(2.2rem, 3rem, 3.4rem);
+			letter-spacing: 0;
+		}
+
+		.hero p {
+			max-width: 780px;
+			margin: 1rem 0;
+			color: var(--muted);
+			font-size: 1.12rem;
+		}
+
+		.hero-actions,
+		.legend,
+		.related-chapters,
+		.chip-row {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.55rem;
+			align-items: center;
+		}
+
+		.button,
+		.back-link {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			min-height: 42px;
+			padding: 0.48rem 0.8rem;
+			border: 1px solid rgba(88, 196, 221, 0.45);
+			border-radius: 6px;
+			background: rgba(88, 196, 221, 0.1);
+			color: var(--cyan);
+			font-weight: 700;
+		}
+
+		.button.secondary {
+			border-color: rgba(63, 185, 80, 0.45);
+			background: rgba(63, 185, 80, 0.1);
+			color: var(--green);
+		}
+
+		.button:hover,
+		.back-link:hover {
+			text-decoration: none;
+			background: rgba(88, 196, 221, 0.18);
+		}
+
+		.legend {
+			margin-top: 1.2rem;
+			gap: 0.45rem;
+		}
+
+		.chip {
+			display: inline-flex;
+			align-items: center;
+			min-height: 28px;
+			border: 1px solid var(--border);
+			border-radius: 999px;
+			padding: 0.12rem 0.55rem;
+			background: rgba(255, 255, 255, 0.03);
+			color: var(--muted);
+			font-size: 0.84rem;
+			font-weight: 700;
+			white-space: nowrap;
+		}
+
+		.chip.cyan { color: var(--cyan); border-color: rgba(88, 196, 221, 0.45); }
+		.chip.green { color: var(--green); border-color: rgba(63, 185, 80, 0.45); }
+		.chip.amber { color: var(--amber); border-color: rgba(210, 153, 34, 0.5); }
+		.chip.red { color: var(--red); border-color: rgba(248, 81, 73, 0.5); }
+		.chip.purple { color: var(--purple); border-color: rgba(188, 140, 255, 0.5); }
+
+		section,
+		article {
+			scroll-margin-top: 1.25rem;
+		}
+
+		.section-heading {
+			margin: 0 0 1.1rem;
+			padding-top: 1.8rem;
+		}
+
+		.section-heading h2 {
+			margin: 0;
+			font-size: 2rem;
+		}
+
+		.section-heading p {
+			max-width: 820px;
+			margin: 0.6rem 0 0;
+			color: var(--muted);
+		}
+
+		.grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1rem;
+		}
+
+		.card {
+			background: var(--panel);
+			border: 1px solid var(--border);
+			border-radius: 8px;
+			padding: 1rem;
+		}
+
+		.card h3,
+		.card h4 {
+			margin: 0 0 0.6rem;
+		}
+
+		.card p,
+		.card ul,
+		.card ol {
+			margin-top: 0.45rem;
+			margin-bottom: 0;
+		}
+
+		.card ul,
+		.card ol {
+			padding-left: 1.25rem;
+		}
+
+		.card li + li {
+			margin-top: 0.25rem;
+		}
+
+		.exam-card {
+			border-top: 3px solid var(--cyan);
+		}
+
+		.exam-card.security { border-top-color: var(--red); }
+		.exam-card.state { border-top-color: var(--purple); }
+		.exam-card.files { border-top-color: var(--green); }
+		.exam-card.sql { border-top-color: var(--amber); }
+		.exam-card.setup { border-top-color: var(--cyan); }
+
+		.related-chapters {
+			margin-top: 0.8rem;
+			border-top: 1px solid var(--border);
+			padding-top: 0.75rem;
+			font-size: 0.92rem;
+		}
+
+		.related-chapters span {
+			color: var(--muted);
+			font-weight: 700;
+		}
+
+		.related-chapters a {
+			border: 1px solid var(--border);
+			border-radius: 999px;
+			padding: 0.16rem 0.55rem;
+			background: rgba(255, 255, 255, 0.03);
+		}
+
+		.table-wrap {
+			overflow-x: auto;
+			margin-top: 0.8rem;
+			border: 1px solid var(--border);
+			border-radius: 8px;
+		}
+
+		table {
+			width: 100%;
+			min-width: 620px;
+			border-collapse: collapse;
+			background: #111820;
+		}
+
+		th,
+		td {
+			padding: 0.7rem 0.8rem;
+			border-bottom: 1px solid var(--border);
+			text-align: left;
+			vertical-align: top;
+		}
+
+		th {
+			color: var(--cyan);
+			background: #10161d;
+			font-weight: 700;
+		}
+
+		tr:last-child td {
+			border-bottom: 0;
+		}
+
+		.callout {
+			margin-top: 0.9rem;
+			padding: 0.85rem;
+			border-left: 4px solid var(--cyan);
+			background: rgba(88, 196, 221, 0.08);
+			border-radius: 0 8px 8px 0;
+		}
+
+		.callout.warning {
+			border-left-color: var(--amber);
+			background: rgba(210, 153, 34, 0.09);
+		}
+
+		.callout.danger {
+			border-left-color: var(--red);
+			background: rgba(248, 81, 73, 0.09);
+		}
+
+		.callout.success {
+			border-left-color: var(--green);
+			background: rgba(63, 185, 80, 0.09);
+		}
+
+		.chapter {
+			margin-top: 1.6rem;
+			padding-top: 0.5rem;
+		}
+
+		.chapter > h2 {
+			margin-bottom: 0.35rem;
+			font-size: 1.75rem;
+		}
+
+		.chapter > p {
+			max-width: 900px;
+			margin: 0 0 1rem;
+			color: var(--muted);
+		}
+
+		.chapter-grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1rem;
+		}
+
+		.chapter-card {
+			border-top: 3px solid var(--border);
+		}
+
+		.chapter-card.definition { border-top-color: var(--cyan); }
+		.chapter-card.pattern { border-top-color: var(--green); }
+		.chapter-card.warning { border-top-color: var(--amber); }
+		.chapter-card.danger { border-top-color: var(--red); }
+		.chapter-card.architecture { border-top-color: var(--purple); }
+
+		.flow {
+			display: grid;
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+			gap: 0.6rem;
+			margin-top: 0.8rem;
+		}
+
+		.flow span {
+			min-height: 76px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			padding: 0.65rem;
+			border: 1px solid var(--border);
+			border-radius: 8px;
+			background: #111820;
+			color: var(--text);
+			font-weight: 700;
+		}
+
+		.function-list {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 0.65rem;
+			margin-top: 0.8rem;
+		}
+
+		.function-list div {
+			border: 1px solid var(--border);
+			border-radius: 8px;
+			padding: 0.7rem;
+			background: #111820;
+		}
+
+		.function-list strong {
+			color: var(--green);
+		}
+
+		.back-link {
+			margin-top: 1rem;
+		}
+
+		.cheat-sheet {
+			margin-top: 1.6rem;
+		}
+
+		.to-top {
+			position: fixed;
+			right: 1rem;
+			bottom: 1rem;
+			z-index: 22;
+			width: 48px;
+			height: 48px;
+			border: 1px solid rgba(88, 196, 221, 0.55);
+			border-radius: 50%;
+			background: var(--header);
+			color: var(--cyan);
+			font-size: 1.25rem;
+			font-weight: 700;
+			cursor: pointer;
+			opacity: 0;
+			pointer-events: none;
+			transition: opacity 160ms ease;
+		}
+
+		.to-top.visible {
+			opacity: 1;
+			pointer-events: auto;
+		}
+
+		footer {
+			border-top: 1px solid var(--border);
+			background: #0b1016;
+			color: var(--muted);
+			padding: 1.2rem 0;
+			font-size: 0.95rem;
+		}
+
+		footer div {
+			width: min(1180px, calc(100% - 2rem));
+			margin: 0 auto;
+		}
+
+		@media (max-width: 980px) {
+			body.menu-open {
+				overflow: hidden;
+			}
+
+			.menu-toggle {
+				display: inline-flex;
+			}
+
+			.side-nav {
+				transform: translateX(-105%);
+				transition: transform 180ms ease;
+				box-shadow: 0 0 0 transparent;
+			}
+
+			body.menu-open .side-nav {
+				transform: translateX(0);
+				box-shadow: 0 18px 36px rgba(0, 0, 0, 0.42);
+			}
+
+			.overlay {
+				display: block;
+				position: fixed;
+				inset: 0;
+				z-index: 18;
+				background: rgba(0, 0, 0, 0.56);
+				opacity: 0;
+				pointer-events: none;
+				transition: opacity 180ms ease;
+			}
+
+			body.menu-open .overlay {
+				opacity: 1;
+				pointer-events: auto;
+			}
+
+			main {
+				margin-left: 0;
+			}
+
+			.hero-inner {
+				padding-top: 4rem;
+			}
+		}
+
+		@media (max-width: 780px) {
+			body {
+				font-size: 16px;
+			}
+
+			.grid,
+			.chapter-grid,
+			.function-list,
+			.flow {
+				grid-template-columns: 1fr;
+			}
+
+			.hero-actions .button {
+				width: 100%;
+			}
+
+			.side-nav {
+				width: min(86vw, 318px);
+			}
+
+			h1 {
+				font-size: 2.2rem;
+			}
+		}
+	</style>
+</head>
+<body>
+	<a class="skip-link" href="#main-content">Skip to main content</a>
+	<div class="progress" aria-hidden="true"><span id="scroll-progress"></span></div>
+	<button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false">Menu</button>
+	<div class="overlay" data-close-menu></div>
+
+	<nav class="side-nav" id="site-nav" aria-label="Study navigation">
+		<div class="nav-brand">
+			<strong>Internet Programming 622</strong>
+			<span>PHP, forms, sessions, files, SQL, MySQL</span>
+		</div>
+
+		<div class="nav-group">
+			<h2>Exam Focus Areas</h2>
+			<a href="#exam-overview" data-nav-link="exam-overview">Exam Overview</a>
+			<a href="#focus-forms" data-nav-link="focus-forms">Forms and Request Data</a>
+			<a href="#focus-security-validation" data-nav-link="focus-security-validation">Security and Validation</a>
+			<a href="#focus-state" data-nav-link="focus-state">Cookies and Sessions</a>
+			<a href="#focus-files" data-nav-link="focus-files">Files and Directories</a>
+			<a href="#focus-sql" data-nav-link="focus-sql">SQL and MySQL</a>
+			<a href="#focus-setup" data-nav-link="focus-setup">XAMPP Setup</a>
+		</div>
+
+		<div class="nav-group">
+			<h2>General Module Content</h2>
+			<a href="#chapter-1" data-nav-link="chapter-1">Topic 1: PHP and HTML Forms</a>
+			<a href="#chapter-2" data-nav-link="chapter-2">Topic 2: Sessions and Cookies</a>
+			<a href="#chapter-3" data-nav-link="chapter-3">Topic 3: File System Management</a>
+			<a href="#chapter-4" data-nav-link="chapter-4">Topic 4: SQL and Databases</a>
+			<a href="#chapter-5" data-nav-link="chapter-5">Addendum: Running PHP</a>
+			<a href="#final-revision" data-nav-link="final-revision">Final Revision Tables</a>
+		</div>
+	</nav>
+
+	<main id="main-content">
+		<header class="hero">
+			<div class="hero-inner">
+				<p class="eyebrow">One-page revision site</p>
+				<h1>Internet Programming 622 Study Hub</h1>
+				<p>A dark, readable study page for the supplied guide: PHP forms, request handling, cookies, sessions, file operations, SQL, MySQL connections, and local XAMPP execution.</p>
+				<div class="hero-actions">
+					<a class="button" href="#exam-focus-areas">Start Exam Focus</a>
+					<a class="button secondary" href="#general-module-content">Browse General Content</a>
+				</div>
+				<div class="legend" aria-label="Colour legend">
+					<span class="chip cyan">Definitions</span>
+					<span class="chip green">Correct patterns</span>
+					<span class="chip amber">Exam traps</span>
+					<span class="chip red">Security risks</span>
+					<span class="chip purple">Architecture</span>
+				</div>
+			</div>
+		</header>
+
+		<div class="content">
+			<section id="exam-focus-areas">
+				<div class="section-heading">
+					<h2>Exam Focus Areas</h2>
+					<p>Use this first for high-yield revision. Each card points to the exact section where the idea is explained in the chapter content.</p>
+				</div>
+
+				<article class="card exam-card" id="exam-overview" data-nav-section>
+					<h3>Exam Overview</h3>
+					<p>The guide is built around four practical PHP areas: collecting user input, preserving state across stateless HTTP requests, storing or reading server-side files, and using relational databases through SQL and PHP database connections.</p>
+					<div class="table-wrap">
+						<table>
+							<thead>
+								<tr>
+									<th>Topic</th>
+									<th>What You Must Be Able To Do</th>
+									<th>Typical Question Style</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Forms</td>
+									<td>Create forms, choose GET or POST, read values through PHP superglobals, handle missing fields, validate input.</td>
+									<td>Write or fix a PHP form handler.</td>
+								</tr>
+								<tr>
+									<td>State</td>
+									<td>Explain why HTTP is stateless, use cookies and sessions, destroy sessions, compare persistence choices.</td>
+									<td>Build login, preference, or multi-step form logic.</td>
+								</tr>
+								<tr>
+									<td>Files</td>
+									<td>Check file information, open files, read/write content, move file pointers, manage directories.</td>
+									<td>Write a file script, hit counter, CSV reader, or directory listing.</td>
+								</tr>
+								<tr>
+									<td>SQL/MySQL</td>
+									<td>Define RDBMS concepts, create tables, insert/select/update/delete rows, connect PHP to MySQL.</td>
+									<td>Write SQL statements and PHP query code.</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</article>
+
+				<div class="grid">
+					<article class="card exam-card" id="focus-forms" data-nav-section>
+						<div class="chip-row">
+							<span class="chip cyan">Exam Focus</span>
+							<span class="chip green">Forms</span>
+						</div>
+						<h3>Forms and Request Data</h3>
+						<p>A form collects browser input, sends it to the URL in the <code>action</code> attribute, and uses <code>method="get"</code> or <code>method="post"</code> to decide how the values travel to PHP.</p>
+						<ul>
+							<li><code>GET</code> appends data to the URL and is better for small, bookmarkable requests.</li>
+							<li><code>POST</code> sends data in the request body and is better for larger or more sensitive submissions.</li>
+							<li>PHP reads submitted values through <code>$_GET</code>, <code>$_POST</code>, or the broader <code>$_REQUEST</code>.</li>
+						</ul>
+						<div class="callout warning"><strong>Exam trap:</strong> Know which controls send nothing when empty: unchecked checkboxes, unselected radio groups, list boxes with no selection, reset buttons, and ordinary push buttons.</div>
+						<nav class="related-chapters" aria-label="Related sections for forms">
+							<span>Study this in</span>
+							<a href="#ch1-1-form-basics">1.1 Form basics</a>
+							<a href="#ch1-2-get-post">1.2 GET vs POST</a>
+							<a href="#ch1-3-superglobals">1.3 Superglobals</a>
+						</nav>
+					</article>
+
+					<article class="card exam-card security" id="focus-security-validation" data-nav-section>
+						<div class="chip-row">
+							<span class="chip red">Security</span>
+							<span class="chip amber">Validation</span>
+						</div>
+						<h3>Security and Validation</h3>
+						<p>User input must never be trusted. The guide highlights XSS risk when raw submitted data is printed back into HTML, and it uses <code>htmlspecialchars()</code>, <code>filter_var()</code>, <code>isset()</code>, and <code>empty()</code> as core defensive tools.</p>
+						<ul>
+							<li>Escape output before displaying it in HTML.</li>
+							<li>Validate format, for example checking email with <code>FILTER_VALIDATE_EMAIL</code>.</li>
+							<li>Check whether optional controls exist before reading them.</li>
+						</ul>
+						<div class="callout danger"><strong>Security trap:</strong> Never display passwords back to the user, and do not echo raw <code>$_POST</code> or <code>$_GET</code> values into the page.</div>
+						<nav class="related-chapters" aria-label="Related sections for validation">
+							<span>Study this in</span>
+							<a href="#ch1-4-security">1.4 Security</a>
+							<a href="#ch1-5-empty-fields">1.5 Empty fields</a>
+							<a href="#ch1-6-validation-flow">1.6 Validation flow</a>
+						</nav>
+					</article>
+
+					<article class="card exam-card state" id="focus-state" data-nav-section>
+						<div class="chip-row">
+							<span class="chip purple">State</span>
+							<span class="chip cyan">HTTP</span>
+						</div>
+						<h3>Cookies and Sessions</h3>
+						<p>HTTP is stateless, so PHP needs a way to remember information across page views. Cookies store small data in the browser, while sessions store server-side data linked to a session ID, usually held in the <code>PHPSESSID</code> cookie.</p>
+						<ul>
+							<li><code>setcookie()</code> must run before page output because cookies are headers.</li>
+							<li><code>session_start()</code> loads session variables into <code>$_SESSION</code>.</li>
+							<li><code>session_destroy()</code> removes session data, useful for logout flows.</li>
+						</ul>
+						<div class="callout warning"><strong>Exam trap:</strong> Putting a session ID in the URL can expose it in the address bar. Prefer secure cookies and HTTPS where possible.</div>
+						<nav class="related-chapters" aria-label="Related sections for state">
+							<span>Study this in</span>
+							<a href="#ch2-1-stateless-http">2.1 Stateless HTTP</a>
+							<a href="#ch2-2-cookies">2.2 Cookies</a>
+							<a href="#ch2-3-sessions">2.3 Sessions</a>
+						</nav>
+					</article>
+
+					<article class="card exam-card files" id="focus-files" data-nav-section>
+						<div class="chip-row">
+							<span class="chip green">File I/O</span>
+							<span class="chip amber">Permissions</span>
+						</div>
+						<h3>Files and Directories</h3>
+						<p>PHP can store persistent data in server-side files and folders. The guide expects you to check whether files exist, inspect metadata, open handles, read/write safely, and close file or directory handles.</p>
+						<ul>
+							<li>Use <code>file_exists()</code>, <code>filesize()</code>, <code>filemtime()</code>, and <code>basename()</code> for file information.</li>
+							<li>Use <code>fopen()</code>, <code>fread()</code>, <code>fgets()</code>, <code>fwrite()</code>, and <code>fclose()</code> for handle-based work.</li>
+							<li>Use <code>opendir()</code>, <code>readdir()</code>, and <code>closedir()</code> for directories.</li>
+						</ul>
+						<div class="callout success"><strong>Correct pattern:</strong> Check before acting, handle failed opens, and close handles after reading or writing.</div>
+						<nav class="related-chapters" aria-label="Related sections for files">
+							<span>Study this in</span>
+							<a href="#ch3-1-file-info">3.1 File info</a>
+							<a href="#ch3-2-open-modes">3.2 Open modes</a>
+							<a href="#ch3-5-directories">3.5 Directories</a>
+						</nav>
+					</article>
+
+					<article class="card exam-card sql" id="focus-sql" data-nav-section>
+						<div class="chip-row">
+							<span class="chip amber">SQL</span>
+							<span class="chip purple">RDBMS</span>
+						</div>
+						<h3>SQL and MySQL</h3>
+						<p>Databases solve the limitations of large flat files by allowing efficient querying, filtering, relationships, and structured storage. You should know relational tables, rows, columns, primary keys, indexes, and CRUD SQL.</p>
+						<ul>
+							<li><code>CREATE</code> builds databases and tables.</li>
+							<li><code>INSERT</code>, <code>SELECT</code>, <code>UPDATE</code>, and <code>DELETE</code> manipulate table data.</li>
+							<li><code>DROP</code> removes a table or database permanently.</li>
+						</ul>
+						<div class="callout danger"><strong>Exam trap:</strong> <code>UPDATE</code> or <code>DELETE</code> without a <code>WHERE</code> clause affects every row in the table.</div>
+						<nav class="related-chapters" aria-label="Related sections for SQL">
+							<span>Study this in</span>
+							<a href="#ch4-1-rdbms">4.1 RDBMS</a>
+							<a href="#ch4-3-crud-sql">4.3 CRUD SQL</a>
+							<a href="#ch4-4-php-mysql">4.4 PHP and MySQL</a>
+						</nav>
+					</article>
+
+					<article class="card exam-card setup" id="focus-setup" data-nav-section>
+						<div class="chip-row">
+							<span class="chip cyan">Setup</span>
+							<span class="chip green">Local PHP</span>
+						</div>
+						<h3>XAMPP Setup</h3>
+						<p>XAMPP gives you Apache, MySQL, PHP, and Perl in a local package so you can run and test PHP web pages before publishing them. PHP files are placed under <code>htdocs</code> and accessed through <code>localhost</code>.</p>
+						<ul>
+							<li>Start Apache in the XAMPP control panel before opening PHP files in a browser.</li>
+							<li>Use a <code>.php</code> extension so the server sends the file through PHP.</li>
+							<li>Open pages through <code>localhost/folder/file.php</code>, not by double-clicking the PHP file.</li>
+						</ul>
+						<nav class="related-chapters" aria-label="Related sections for XAMPP setup">
+							<span>Study this in</span>
+							<a href="#ch5-1-xampp">5.1 What XAMPP provides</a>
+							<a href="#ch5-2-run-php">5.2 Run PHP</a>
+							<a href="#ch5-3-localhost">5.3 Localhost path</a>
+						</nav>
+					</article>
+				</div>
+			</section>
+
+			<section id="general-module-content">
+				<div class="section-heading">
+					<h2>General Module Content</h2>
+					<p>Chapter-by-chapter notes from the study guide, with all content visible for continuous revision.</p>
+				</div>
+
+				<section id="chapter-1" class="chapter" data-nav-section>
+					<h2>Topic 1: PHP and HTML Forms</h2>
+					<p>Forms are the bridge between browser input and PHP processing. The guide moves from basic form structure to request methods, superglobals, security, empty field handling, dynamic forms, and validation.</p>
+					<div class="chapter-grid">
+						<article class="card chapter-card definition" id="ch1-1-form-basics">
+							<h3>1.1 How HTML Forms Work</h3>
+							<p>A web form is a collection of controls inside a <code>&lt;form&gt;</code> element. Typical controls include text fields, passwords, checkboxes, radio buttons, file selectors, hidden fields, select lists, multi-select boxes, text areas, submit buttons, and reset buttons.</p>
+							<div class="flow" aria-label="Form request flow">
+								<span>Browser form</span>
+								<span>Submit button</span>
+								<span>HTTP request</span>
+								<span>PHP handler</span>
+							</div>
+							<pre><code>&lt;form action="form_handler.php" method="post"&gt;
+	&lt;label for="email"&gt;Email&lt;/label&gt;
+	&lt;input type="email" name="email" id="email"&gt;
+	&lt;button type="submit"&gt;Send&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+						</article>
+
+						<article class="card chapter-card pattern" id="ch1-2-get-post">
+							<h3>1.2 GET vs POST</h3>
+							<p>The form <code>action</code> says where the data goes. The form <code>method</code> says how it is sent. The guide presents <code>GET</code> as suitable for small amounts of data because values appear in the URL. <code>POST</code> sends data in the request body and is better when more data or more sensitive data is involved.</p>
+							<div class="table-wrap">
+								<table>
+									<thead>
+										<tr>
+											<th>Method</th>
+											<th>Where Data Appears</th>
+											<th>Best Fit</th>
+											<th>Watch Out</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><code>GET</code></td>
+											<td>URL query string</td>
+											<td>Small requests, links, searches, bookmarkable pages</td>
+											<td>Visible in the address bar and limited by URL length</td>
+										</tr>
+										<tr>
+											<td><code>POST</code></td>
+											<td>Request body</td>
+											<td>Larger submissions and sensitive form content</td>
+											<td>Refreshing may ask the user to resubmit form data</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</article>
+
+						<article class="card chapter-card definition" id="ch1-3-superglobals">
+							<h3>1.3 Capturing Form Data With PHP</h3>
+							<p>PHP uses superglobal arrays to expose request data in any scope. The field <code>name</code> becomes the array key, and the submitted value becomes the array value.</p>
+							<ul>
+								<li><code>$_GET</code> stores form values sent with <code>method="get"</code>.</li>
+								<li><code>$_POST</code> stores form values sent with <code>method="post"</code>.</li>
+								<li><code>$_REQUEST</code> combines GET, POST, and COOKIE values, so it can be ambiguous.</li>
+							</ul>
+							<pre><code>$email = $_POST["emailAddress"];
+echo htmlspecialchars($email);</code></pre>
+							<div class="callout success"><strong>Correct pattern:</strong> If you know the form uses POST, read from <code>$_POST</code> instead of <code>$_REQUEST</code>.</div>
+						</article>
+
+						<article class="card chapter-card danger" id="ch1-4-security">
+							<h3>1.4 PHP Form Data and Security</h3>
+							<p>The guide warns that submitted values can include malicious HTML or JavaScript. Printing raw input can cause cross-site scripting. Escape output with <code>htmlspecialchars()</code> and validate values before using them.</p>
+							<pre><code>$safeName = htmlspecialchars($_POST["firstName"]);
+
+if (filter_var($_POST["emailAddress"], FILTER_VALIDATE_EMAIL)) {
+	echo "Valid email";
+} else {
+	echo "Invalid email";
+}</code></pre>
+							<div class="callout danger"><strong>Never do this:</strong> Do not display a submitted password back to the page, and do not use raw request values in HTML output.</div>
+						</article>
+
+						<article class="card chapter-card warning" id="ch1-5-empty-fields">
+							<h3>1.5 Handling Empty Form Fields</h3>
+							<p>Some controls send an empty value when left blank, while others send no key at all. If the key does not exist, reading it directly can produce an undefined index notice.</p>
+							<div class="table-wrap">
+								<table>
+									<thead>
+										<tr>
+											<th>Control</th>
+											<th>If Empty or Unselected</th>
+											<th>PHP Check</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Text, password, hidden, textarea, file input</td>
+											<td>Field name is sent with an empty value</td>
+											<td><code>empty($_POST["field"])</code></td>
+										</tr>
+										<tr>
+											<td>Checkbox, radio, list box, multi-select</td>
+											<td>Nothing may be sent</td>
+											<td><code>isset($_POST["field"])</code></td>
+										</tr>
+										<tr>
+											<td>Reset and push buttons</td>
+											<td>Nothing is sent</td>
+											<td>Do not rely on them as submitted values</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<pre><code>if (isset($_POST["gender"])) {
+	echo htmlspecialchars($_POST["gender"]);
+}</code></pre>
+						</article>
+
+						<article class="card chapter-card pattern" id="ch1-6-validation-flow">
+							<h3>1.6 Dynamic Forms and Validation</h3>
+							<p>The guide describes a PHP-generated form that checks missing required fields, highlights errors, keeps previous values, and shows a thank-you message only after successful validation.</p>
+							<ul>
+								<li><code>processForm()</code> checks submitted required fields.</li>
+								<li><code>displayForm($missingFields)</code> redisplays the form with feedback.</li>
+								<li><code>setValue()</code>, <code>setChecked()</code>, and <code>setSelected()</code> preserve user input.</li>
+								<li><code>validateField()</code> marks missing fields for styling.</li>
+							</ul>
+							<pre><code>$missing = [];
+foreach (["name", "email", "age"] as $field) {
+	if (empty($_POST[$field])) {
+		$missing[] = $field;
+	}
+}</code></pre>
+							<div class="callout warning"><strong>Revision task:</strong> Practise validating name, email, and age, then extend the same idea to login forms, multi-select lists, and file uploads.</div>
+						</article>
+					</div>
+					<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
+				</section>
+
+				<section id="chapter-2" class="chapter" data-nav-section>
+					<h2>Topic 2: Session Controls and Cookies</h2>
+					<p>This topic explains how PHP remembers information between requests. The key idea is state: HTTP forgets, while query strings, cookies, and sessions help applications remember.</p>
+					<div class="chapter-grid">
+						<article class="card chapter-card architecture" id="ch2-1-stateless-http">
+							<h3>2.1 Stateless HTTP</h3>
+							<p>Each browser request is independent. PHP starts with a clean slate, runs the script, then removes variables from memory. Applications such as shopping carts, login systems, forums, and multi-page forms need continuity between requests.</p>
+							<div class="flow" aria-label="State options">
+								<span>Query string</span>
+								<span>Cookie</span>
+								<span>Session ID</span>
+								<span>Server state</span>
+							</div>
+							<div class="callout"><strong>Core idea:</strong> State means the application can connect a later request to earlier activity from the same user.</div>
+						</article>
+
+						<article class="card chapter-card definition" id="ch2-2-cookies">
+							<h3>2.2 Cookies</h3>
+							<p>A cookie is a small piece of data sent by the server and stored by the browser. On later requests, the browser sends it back, letting PHP identify preferences or repeat visits.</p>
+							<pre><code>setcookie("bg", "#000000", time() + 60 * 60 * 2);
+
+if (isset($_COOKIE["bg"])) {
+	echo htmlspecialchars($_COOKIE["bg"]);
+}</code></pre>
+							<ul>
+								<li><code>name</code> identifies the cookie.</li>
+								<li><code>value</code> stores the data.</li>
+								<li><code>expire</code> controls lifetime.</li>
+								<li><code>path</code>, <code>domain</code>, and <code>secure</code> control where and how it is sent.</li>
+							</ul>
+							<div class="callout warning"><strong>Headers first:</strong> Call <code>setcookie()</code> before any HTML output.</div>
+						</article>
+
+						<article class="card chapter-card pattern" id="ch2-3-sessions">
+							<h3>2.3 Sessions</h3>
+							<p>Sessions store persistent variables on the server and link them to a user through a session ID. PHP commonly stores that ID in a browser cookie called <code>PHPSESSID</code>.</p>
+							<pre><code>session_start();
+
+$_SESSION["hits"] = ($_SESSION["hits"] ?? 0) + 1;
+echo "This page has been viewed " . $_SESSION["hits"] . " times.";</code></pre>
+							<ul>
+								<li><code>session_start()</code> loads or creates the session.</li>
+								<li><code>$_SESSION</code> holds session values.</li>
+								<li><code>session_id()</code> gets the current session ID.</li>
+								<li><code>session_destroy()</code> destroys session data.</li>
+							</ul>
+						</article>
+
+						<article class="card chapter-card warning" id="ch2-4-cookie-session-comparison">
+							<h3>2.4 Cookies vs Sessions</h3>
+							<div class="table-wrap">
+								<table>
+									<thead>
+										<tr>
+											<th>Feature</th>
+											<th>Cookies</th>
+											<th>Sessions</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Storage location</td>
+											<td>Browser/client</td>
+											<td>Server, linked by session ID</td>
+										</tr>
+										<tr>
+											<td>Size</td>
+											<td>Small; guide notes about 4 KB as a practical limit</td>
+											<td>Better for larger temporary state</td>
+										</tr>
+										<tr>
+											<td>Persistence</td>
+											<td>Can last beyond browser close if expiration is set</td>
+											<td>Usually expires when the browser closes unless configured</td>
+										</tr>
+										<tr>
+											<td>Best use</td>
+											<td>Preferences and identifiers</td>
+											<td>Login state, carts, multi-step forms</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="callout danger"><strong>Do not expose session IDs:</strong> URL-based session IDs are convenient but can be copied, logged, or intercepted.</div>
+						</article>
+
+						<article class="card chapter-card pattern" id="ch2-5-combining-state">
+							<h3>2.5 Combining Cookies and Sessions</h3>
+							<p>The guide explains that temporary state can live in a PHP session, while longer-term identity or preference state can be stored in a cookie and then used to retrieve persistent data.</p>
+							<pre><code>if (isset($_POST["bgcolor"])) {
+	setcookie("bgcolor", $_POST["bgcolor"], time() + 60 * 60 * 24 * 7);
+}
+
+$background = $_COOKIE["bgcolor"] ?? $_POST["bgcolor"] ?? "gray";</code></pre>
+							<div class="callout success"><strong>Applied pattern:</strong> A login system can store the current username in <code>$_SESSION</code>, while a preference cookie remembers a color choice for the next visit.</div>
+						</article>
+
+						<article class="card chapter-card definition" id="ch2-6-review-tasks">
+							<h3>2.6 Review Tasks</h3>
+							<ul>
+								<li>Create a hardcoded login using sessions, a welcome page, and logout.</li>
+								<li>Set, read, display, and delete a <code>user_preference</code> cookie.</li>
+								<li>Create a three-step registration form that preserves values with sessions and destroys the session after final submission.</li>
+							</ul>
+						</article>
+					</div>
+					<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
+				</section>
+
+				<section id="chapter-3" class="chapter" data-nav-section>
+					<h2>Topic 3: File System Management</h2>
+					<p>PHP can work with files and directories on the server. This topic covers file metadata, paths, open modes, reading, writing, pointer movement, copying, deleting, directory traversal, and file-type checks.</p>
+					<div class="chapter-grid">
+						<article class="card chapter-card definition" id="ch3-1-file-info">
+							<h3>3.1 Files, Directories, and Metadata</h3>
+							<p>A file is an ordered sequence of bytes. A directory is a special file that stores file and subdirectory names plus pointers to their locations. PHP provides functions to inspect both.</p>
+							<div class="function-list">
+								<div><strong>file_exists()</strong><br>Checks whether a path exists.</div>
+								<div><strong>filesize()</strong><br>Returns size in bytes.</div>
+								<div><strong>fileatime()</strong><br>Last access timestamp.</div>
+								<div><strong>filectime()</strong><br>Last change timestamp.</div>
+								<div><strong>filemtime()</strong><br>Last modification timestamp.</div>
+								<div><strong>basename()</strong><br>Extracts the filename from a path.</div>
+							</div>
+							<pre><code>if (file_exists("example.txt")) {
+	echo filesize("example.txt");
+	echo date("Y-m-d", filemtime("example.txt"));
+}</code></pre>
+						</article>
+
+						<article class="card chapter-card warning" id="ch3-2-open-modes">
+							<h3>3.2 Opening Files With <code>fopen()</code></h3>
+							<p><code>fopen()</code> returns a file handle used by later read, write, and close functions. The mode matters because some modes erase existing content.</p>
+							<div class="table-wrap">
+								<table>
+									<thead>
+										<tr>
+											<th>Mode</th>
+											<th>Meaning</th>
+											<th>Main Risk</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><code>r</code></td>
+											<td>Read only; file must exist</td>
+											<td>Fails if missing</td>
+										</tr>
+										<tr>
+											<td><code>w</code></td>
+											<td>Write only; creates file or erases existing file</td>
+											<td>Destroys old content</td>
+										</tr>
+										<tr>
+											<td><code>a</code></td>
+											<td>Append only; writes at the end</td>
+											<td>Cannot read without another mode</td>
+										</tr>
+										<tr>
+											<td><code>r+</code>, <code>w+</code>, <code>a+</code></td>
+											<td>Read/write variants</td>
+											<td><code>w+</code> also erases old content</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="callout warning"><strong>Portability note:</strong> The guide recommends binary mode such as <code>rb</code> when you want to avoid operating-system line-ending conversions.</div>
+						</article>
+
+						<article class="card chapter-card pattern" id="ch3-3-read-write">
+							<h3>3.3 Reading and Writing</h3>
+							<p>Use the function that matches the job: whole-file reads for small files, line-by-line reads for logs or CSV data, and pointer-based reads when you need exact positions.</p>
+							<div class="function-list">
+								<div><strong>fread()</strong><br>Reads a specified number of bytes or characters.</div>
+								<div><strong>fgetc()</strong><br>Reads one character at a time.</div>
+								<div><strong>fgets()</strong><br>Reads one line at a time.</div>
+								<div><strong>fgetcsv()</strong><br>Reads CSV rows into arrays.</div>
+								<div><strong>file()</strong><br>Reads a file into an array of lines.</div>
+								<div><strong>file_get_contents()</strong><br>Reads the whole file into a string.</div>
+								<div><strong>fwrite()</strong><br>Writes through an open handle.</div>
+								<div><strong>file_put_contents()</strong><br>Writes a full string without manually opening a handle.</div>
+							</div>
+							<pre><code>$handle = fopen("data.txt", "a");
+if ($handle) {
+	fwrite($handle, "New line" . PHP_EOL);
+	fclose($handle);
+}</code></pre>
+						</article>
+
+						<article class="card chapter-card definition" id="ch3-4-file-pointers">
+							<h3>3.4 EOF and Random Access</h3>
+							<p>PHP maintains an internal pointer for open files. Some functions move it forward as they read. You can also move it manually.</p>
+							<ul>
+								<li><code>feof()</code> checks whether the end of the file has been reached.</li>
+								<li><code>fseek()</code> moves the pointer to a specific offset.</li>
+								<li><code>ftell()</code> returns the current pointer position.</li>
+								<li><code>rewind()</code> moves the pointer back to the start.</li>
+							</ul>
+							<pre><code>$handle = fopen("hello_world.txt", "r");
+fseek($handle, 7);
+echo fread($handle, 5); // world
+fclose($handle);</code></pre>
+						</article>
+
+						<article class="card chapter-card pattern" id="ch3-5-directories">
+							<h3>3.5 Working With Directories</h3>
+							<p>Directory handles work like file handles. Open the directory, read each entry, skip <code>.</code> and <code>..</code>, then close the handle.</p>
+							<pre><code>$handle = opendir("files_dir");
+if ($handle) {
+	while (($file = readdir($handle)) !== false) {
+		if ($file !== "." && $file !== "..") {
+			echo htmlspecialchars($file) . "&lt;br&gt;";
+		}
+	}
+	closedir($handle);
+}</code></pre>
+							<div class="function-list">
+								<div><strong>opendir()</strong><br>Opens a directory handle.</div>
+								<div><strong>readdir()</strong><br>Reads the next entry.</div>
+								<div><strong>closedir()</strong><br>Closes the directory handle.</div>
+								<div><strong>rewinddir()</strong><br>Moves the pointer back to the first entry.</div>
+								<div><strong>chdir()</strong><br>Changes the current working directory.</div>
+								<div><strong>getcwd()</strong><br>Returns the current working directory.</div>
+								<div><strong>mkdir()</strong><br>Creates a directory.</div>
+								<div><strong>rmdir()</strong><br>Removes an empty directory.</div>
+							</div>
+						</article>
+
+						<article class="card chapter-card warning" id="ch3-6-file-management">
+							<h3>3.6 Copy, Rename, Delete, and Test Types</h3>
+							<p>File management functions can change data permanently, so check paths before using them.</p>
+							<ul>
+								<li><code>copy($source, $destination)</code> copies a file.</li>
+								<li><code>rename($old, $new)</code> renames or moves a file.</li>
+								<li><code>unlink($path)</code> deletes a file.</li>
+								<li><code>is_dir($path)</code> checks for directories.</li>
+								<li><code>is_file($path)</code> checks for regular files.</li>
+							</ul>
+							<pre><code>if (file_exists("report.txt")) {
+	copy("report.txt", "report_backup.txt");
+}</code></pre>
+							<div class="callout danger"><strong>Destructive action:</strong> <code>unlink()</code> deletes the file. Make sure the target path is correct before calling it.</div>
+						</article>
+					</div>
+					<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
+				</section>
+
+				<section id="chapter-4" class="chapter" data-nav-section>
+					<h2>Topic 4: Databases and Structured Query Language</h2>
+					<p>This topic moves from file storage limitations to relational databases, SQL statements, and PHP-to-MySQL connection code.</p>
+					<div class="chapter-grid">
+						<article class="card chapter-card architecture" id="ch4-1-rdbms">
+							<h3>4.1 Database Architecture and RDBMS Concepts</h3>
+							<p>An embedded database runs inside the application and is usually local to one machine. A client-server database can serve multiple applications over a network and centralize administration and backups.</p>
+							<div class="table-wrap">
+								<table>
+									<thead>
+										<tr>
+											<th>Concept</th>
+											<th>Meaning</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Table</td>
+											<td>Structured storage made of rows and columns.</td>
+										</tr>
+										<tr>
+											<td>Row / record</td>
+											<td>One complete set of related values.</td>
+										</tr>
+										<tr>
+											<td>Column / field</td>
+											<td>One data attribute with the same meaning for every row.</td>
+										</tr>
+										<tr>
+											<td>Primary key</td>
+											<td>A unique identifier for each record.</td>
+										</tr>
+										<tr>
+											<td>Index</td>
+											<td>A sorted structure that speeds lookup but slows some writes.</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</article>
+
+						<article class="card chapter-card definition" id="ch4-2-create-table">
+							<h3>4.2 Creating Databases and Tables</h3>
+							<p>Use MySQL commands to create a database, select it, and define tables. End each SQL statement with a semicolon.</p>
+							<pre><code>CREATE DATABASE mydatabase;
+USE mydatabase;
+
+CREATE TABLE fruit (
+	id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+	name VARCHAR(30) NOT NULL,
+	color VARCHAR(30) NOT NULL,
+	PRIMARY KEY (id)
+);</code></pre>
+							<div class="callout success"><strong>Key detail:</strong> <code>AUTO_INCREMENT</code> lets MySQL generate the primary key value automatically.</div>
+						</article>
+
+						<article class="card chapter-card pattern" id="ch4-3-crud-sql">
+							<h3>4.3 CRUD SQL</h3>
+							<p>CRUD means create, read, update, and delete. In this guide, the fruit table is used to demonstrate the core SQL statements.</p>
+							<pre><code>INSERT INTO fruit (name, color) VALUES ('banana', 'yellow');
+
+SELECT * FROM fruit;
+SELECT name, color FROM fruit WHERE id &gt;= 2;
+
+UPDATE fruit
+SET name = 'grapefruit', color = 'yellow'
+WHERE id = 2;
+
+DELETE FROM fruit WHERE id = 2;</code></pre>
+							<div class="callout danger"><strong>High-risk statements:</strong> <code>DELETE FROM fruit;</code> removes all rows. <code>DROP TABLE fruit;</code> removes the table itself.</div>
+						</article>
+
+						<article class="card chapter-card pattern" id="ch4-4-php-mysql">
+							<h3>4.4 Connecting PHP to MySQL</h3>
+							<p>The guide explains <code>mysqli</code> and PDO, then shows procedural <code>mysqli</code> connection and query examples. Always check the connection and query result before processing rows.</p>
+							<pre><code>$conn = mysqli_connect("localhost", "root", "", "mydatabase");
+
+if (!$conn) {
+	die("Connection failed: " . mysqli_connect_error());
+}
+
+$result = mysqli_query($conn, "SELECT * FROM fruit");
+if (!$result) {
+	die("Query failed: " . mysqli_error($conn));
+}
+
+while ($row = mysqli_fetch_assoc($result)) {
+	echo "&lt;li&gt;A " . htmlspecialchars($row["name"]) .
+		" is " . htmlspecialchars($row["color"]) . "&lt;/li&gt;";
+}
+
+mysqli_close($conn);</code></pre>
+						</article>
+
+						<article class="card chapter-card warning" id="ch4-5-complex-query-review">
+							<h3>4.5 Review Query Patterns</h3>
+							<p>The review work asks you to use an e-commerce schema with <code>Customers</code> and <code>Orders</code>. Practise joins, aggregation, table alteration, and deletion order.</p>
+							<pre><code>SELECT c.Name, o.OrderID, o.TotalAmount
+FROM Customers c
+INNER JOIN Orders o ON c.CustomerID = o.CustomerID;
+
+SELECT c.Name, SUM(o.TotalAmount) AS TotalSpent
+FROM Customers c
+INNER JOIN Orders o ON c.CustomerID = o.CustomerID
+GROUP BY c.CustomerID, c.Name;</code></pre>
+							<div class="callout warning"><strong>Foreign-key thinking:</strong> Delete dependent orders before deleting the customer they reference.</div>
+						</article>
+
+						<article class="card chapter-card definition" id="ch4-6-sql-vocabulary">
+							<h3>4.6 SQL Vocabulary</h3>
+							<div class="function-list">
+								<div><strong>SELECT</strong><br>Retrieves rows and returns a result set.</div>
+								<div><strong>INSERT</strong><br>Adds rows to a table.</div>
+								<div><strong>UPDATE</strong><br>Modifies existing rows.</div>
+								<div><strong>DELETE</strong><br>Deletes rows but leaves the table.</div>
+								<div><strong>CREATE</strong><br>Creates databases, tables, or indexes.</div>
+								<div><strong>ALTER</strong><br>Changes table structure.</div>
+								<div><strong>DROP</strong><br>Deletes a database or table structure.</div>
+								<div><strong>WHERE</strong><br>Filters affected or returned rows.</div>
+							</div>
+						</article>
+					</div>
+					<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
+				</section>
+
+				<section id="chapter-5" class="chapter" data-nav-section>
+					<h2>Addendum: Installing and Running PHP With XAMPP</h2>
+					<p>The addendum explains XAMPP as the local development package used to run PHP and MySQL on your computer before publishing a site.</p>
+					<div class="chapter-grid">
+						<article class="card chapter-card definition" id="ch5-1-xampp">
+							<h3>5.1 What XAMPP Provides</h3>
+							<p>XAMPP stands for cross-platform, Apache, MySQL, PHP, and Perl. It gives you a local web server and database setup for development and testing.</p>
+							<ul>
+								<li>Apache serves web pages locally.</li>
+								<li>MySQL stores relational database data.</li>
+								<li>PHP executes server-side scripts.</li>
+								<li><code>htdocs</code> is the folder where local projects are usually placed.</li>
+							</ul>
+						</article>
+
+						<article class="card chapter-card pattern" id="ch5-2-run-php">
+							<h3>5.2 Run PHP</h3>
+							<p>Create a folder inside <code>htdocs</code>, open that folder in your editor, save files with a <code>.php</code> extension, start Apache in XAMPP, then access the page through the browser.</p>
+							<pre><code>&lt;?php
+echo "&lt;h1&gt;My Name is Derek&lt;/h1&gt;";
+?&gt;</code></pre>
+							<div class="callout warning"><strong>Syntax check:</strong> Make sure HTML tags are closed correctly inside echoed strings.</div>
+						</article>
+
+						<article class="card chapter-card definition" id="ch5-3-localhost">
+							<h3>5.3 Localhost Path</h3>
+							<p>If your folder is named <code>Demo</code> and your file is <code>test.php</code>, open it as:</p>
+							<pre><code>http://localhost/Demo/test.php</code></pre>
+							<div class="callout success"><strong>Correct pattern:</strong> PHP must be served by Apache or another PHP-capable server. Opening a PHP file directly from Finder or File Explorer will not execute the PHP code.</div>
+						</article>
+					</div>
+					<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
+				</section>
+			</section>
+
+			<section id="final-revision" class="cheat-sheet" data-nav-section>
+				<div class="section-heading">
+					<h2>Final Revision Tables</h2>
+					<p>Fast recall tables for the functions and statements most likely to matter in practical questions.</p>
+				</div>
+				<div class="grid">
+					<article class="card">
+						<h3>PHP Request and Security Functions</h3>
+						<div class="table-wrap">
+							<table>
+								<thead>
+									<tr>
+										<th>Item</th>
+										<th>Use</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr><td><code>$_GET</code></td><td>Read query string or GET form values.</td></tr>
+									<tr><td><code>$_POST</code></td><td>Read POST form values.</td></tr>
+									<tr><td><code>htmlspecialchars()</code></td><td>Escape output to reduce XSS risk.</td></tr>
+									<tr><td><code>filter_var()</code></td><td>Validate formatted data such as email addresses.</td></tr>
+									<tr><td><code>isset()</code></td><td>Check whether a submitted key exists.</td></tr>
+									<tr><td><code>empty()</code></td><td>Check whether a value is missing or empty.</td></tr>
+								</tbody>
+							</table>
+						</div>
+					</article>
+
+					<article class="card">
+						<h3>PHP State, File, and Directory Functions</h3>
+						<div class="table-wrap">
+							<table>
+								<thead>
+									<tr>
+										<th>Item</th>
+										<th>Use</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr><td><code>setcookie()</code></td><td>Create browser cookies before output.</td></tr>
+									<tr><td><code>session_start()</code></td><td>Begin or resume a session.</td></tr>
+									<tr><td><code>fopen()</code> / <code>fclose()</code></td><td>Open and close file handles.</td></tr>
+									<tr><td><code>fgets()</code> / <code>fwrite()</code></td><td>Read lines and write strings.</td></tr>
+									<tr><td><code>opendir()</code> / <code>readdir()</code></td><td>Open and iterate through directories.</td></tr>
+									<tr><td><code>is_file()</code> / <code>is_dir()</code></td><td>Test whether a path is a file or directory.</td></tr>
+								</tbody>
+							</table>
+						</div>
+					</article>
+
+					<article class="card">
+						<h3>SQL Statement Quick Table</h3>
+						<div class="table-wrap">
+							<table>
+								<thead>
+									<tr>
+										<th>Statement</th>
+										<th>Purpose</th>
+										<th>Example</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr><td><code>CREATE</code></td><td>Create a database or table.</td><td><code>CREATE DATABASE mydatabase;</code></td></tr>
+									<tr><td><code>INSERT</code></td><td>Add a row.</td><td><code>INSERT INTO fruit (name) VALUES ('plum');</code></td></tr>
+									<tr><td><code>SELECT</code></td><td>Retrieve rows.</td><td><code>SELECT * FROM fruit;</code></td></tr>
+									<tr><td><code>UPDATE</code></td><td>Modify rows.</td><td><code>UPDATE fruit SET color='yellow' WHERE id=1;</code></td></tr>
+									<tr><td><code>DELETE</code></td><td>Delete rows.</td><td><code>DELETE FROM fruit WHERE id=1;</code></td></tr>
+									<tr><td><code>DROP</code></td><td>Remove a table or database.</td><td><code>DROP TABLE fruit;</code></td></tr>
+								</tbody>
+							</table>
+						</div>
+					</article>
+
+					<article class="card">
+						<h3>Practical Coding Checklist</h3>
+						<ol>
+							<li>Choose the right request method and matching superglobal.</li>
+							<li>Use <code>isset()</code> or <code>empty()</code> before reading optional form values.</li>
+							<li>Validate input and escape output with <code>htmlspecialchars()</code>.</li>
+							<li>Start sessions before using <code>$_SESSION</code>.</li>
+							<li>Close files, directories, and database connections after use.</li>
+							<li>Use <code>WHERE</code> with <code>UPDATE</code> and <code>DELETE</code>.</li>
+							<li>Open PHP through <code>localhost</code> when using XAMPP.</li>
+						</ol>
+					</article>
+				</div>
+			</section>
+		</div>
+	</main>
+
+	<button class="to-top" type="button" aria-label="Back to top">↑</button>
+
+	<footer>
+		<div>
+			Internet Programming 622 Study Hub. Source material: supplied Richfield Internet Programming 622 study guide PDF. Built as a single local HTML file with inline CSS and JavaScript.
+		</div>
+	</footer>
+
+	<script>
+		const body = document.body;
+		const menuToggle = document.querySelector('.menu-toggle');
+		const closeMenuTargets = document.querySelectorAll('[data-close-menu]');
+		const topButton = document.querySelector('.to-top');
+		const progress = document.querySelector('#scroll-progress');
+		const navLinkMap = new Map(
+			Array.from(document.querySelectorAll('[data-nav-link]')).map((link) => [
+				link.dataset.navLink,
+				link,
+			]),
+		);
+		const trackedSections = Array.from(document.querySelectorAll('[data-nav-section]'));
+
+		function setMenu(open) {
+			body.classList.toggle('menu-open', open);
+			menuToggle.setAttribute('aria-expanded', String(open));
+		}
+
+		function navIdForElement(element) {
+			if (navLinkMap.has(element.id)) return element.id;
+			const chapter = element.closest('.chapter[data-nav-section]');
+			return chapter ? chapter.id : '';
+		}
+
+		function setActiveNav(id) {
+			if (!id || !navLinkMap.has(id)) return;
+			navLinkMap.forEach((link, key) => {
+				if (key === id) {
+					link.setAttribute('aria-current', 'true');
+				} else {
+					link.removeAttribute('aria-current');
+				}
+			});
+		}
+
+		function updateProgress() {
+			const max = document.documentElement.scrollHeight - window.innerHeight;
+			const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+			progress.style.width = `${Math.min(100, Math.max(0, pct))}%`;
+			topButton.classList.toggle('visible', window.scrollY > 500);
+		}
+
+		function updateActiveFromScroll() {
+			const offset = 140;
+			let current = trackedSections[0];
+
+			for (const section of trackedSections) {
+				const top = section.getBoundingClientRect().top;
+				if (top <= offset) {
+					current = section;
+				} else {
+					break;
+				}
+			}
+
+			if (current) {
+				setActiveNav(navIdForElement(current));
+			}
+		}
+
+		menuToggle.addEventListener('click', () => {
+			setMenu(!body.classList.contains('menu-open'));
+		});
+
+		closeMenuTargets.forEach((target) => {
+			target.addEventListener('click', () => setMenu(false));
+		});
+
+		document.querySelectorAll('a[href^="#"]').forEach((link) => {
+			link.addEventListener('click', () => {
+				const target = document.querySelector(link.getAttribute('href'));
+				if (target) {
+					const id = navIdForElement(target);
+					if (id) setActiveNav(id);
+				}
+				setMenu(false);
+			});
+		});
+
+		topButton.addEventListener('click', () => {
+			window.scrollTo({ top: 0, behavior: 'smooth' });
+			setActiveNav('exam-overview');
+		});
+
+		window.addEventListener('scroll', () => {
+			updateProgress();
+			updateActiveFromScroll();
+		}, { passive: true });
+
+		window.addEventListener('resize', updateActiveFromScroll);
+
+		updateProgress();
+		updateActiveFromScroll();
+	</script>
+</body>
+</html>
