@@ -94,7 +94,8 @@
 			font-weight: 700;
 		}
 
-		.nav-link {
+		.nav-link,
+		.home-link {
 			display: block;
 			padding: 8px 10px;
 			border-radius: 8px;
@@ -105,7 +106,9 @@
 		}
 
 		.nav-link:hover,
-		.nav-link:focus {
+		.nav-link:focus,
+		.home-link:hover,
+		.home-link:focus {
 			background: var(--header);
 			text-decoration: none;
 		}
@@ -499,6 +502,10 @@
 				<span>Study Hub</span>
 			</div>
 			<nav>
+				<div class="nav-group">
+					<h2>Site</h2>
+					<a class="home-link" href="index.html">Home</a>
+				</div>
 				<div class="nav-group">
 					<h2>Exam Focus Areas</h2>
 					<a class="nav-link" href="#exam-overview">Exam Overview</a>
@@ -1096,6 +1103,12 @@
 			sidebar.addEventListener("click", (event) => {
 				const link = event.target.closest("a");
 				if (!link) return;
+				const href = link.getAttribute("href");
+				if (!href || !href.startsWith("#")) {
+					body.classList.remove("nav-open");
+					menuToggle.setAttribute("aria-expanded", "false");
+					return;
+				}
 				const targetId = link.getAttribute("href").slice(1);
 				setActiveNav(targetId);
 				body.classList.remove("nav-open");
