@@ -528,6 +528,203 @@
 			margin-top: 1.6rem;
 		}
 
+		.quiz-section {
+			margin-top: 1.6rem;
+		}
+
+		.quiz-panel {
+			display: grid;
+			gap: 1rem;
+		}
+
+		.quiz-controls,
+		.quiz-summary,
+		.quiz-question,
+		.quiz-history {
+			background: var(--panel);
+			border: 1px solid var(--border);
+			border-radius: 8px;
+			padding: 1rem;
+		}
+
+		.quiz-counts {
+			display: grid;
+			grid-template-columns: repeat(5, minmax(0, 1fr));
+			gap: 0.75rem;
+			margin-top: 1rem;
+		}
+
+		.quiz-counts label {
+			display: grid;
+			gap: 0.35rem;
+			color: var(--muted);
+			font-size: 0.88rem;
+			font-weight: 700;
+		}
+
+		.quiz-counts input,
+		.quiz-controls select {
+			width: 100%;
+			min-height: 42px;
+			border: 1px solid var(--border);
+			border-radius: 6px;
+			background: var(--code-bg);
+			color: var(--text);
+			font: inherit;
+			padding: 0.45rem 0.6rem;
+		}
+
+		.quiz-actions,
+		.quiz-meta,
+		.quiz-score-row {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.55rem;
+			align-items: center;
+		}
+
+		.quiz-actions {
+			margin-top: 1rem;
+		}
+
+		.quiz-actions button,
+		.quiz-submit,
+		.quiz-option {
+			border: 1px solid rgba(88, 196, 221, 0.45);
+			border-radius: 6px;
+			background: rgba(88, 196, 221, 0.1);
+			color: var(--text);
+			font: inherit;
+			cursor: pointer;
+		}
+
+		.quiz-actions button,
+		.quiz-submit {
+			min-height: 42px;
+			padding: 0.5rem 0.8rem;
+			color: var(--cyan);
+			font-weight: 800;
+		}
+
+		.quiz-actions button.danger {
+			border-color: rgba(248, 81, 73, 0.5);
+			background: rgba(248, 81, 73, 0.1);
+			color: var(--red);
+		}
+
+		.quiz-actions button:disabled,
+		.quiz-submit:disabled {
+			opacity: 0.55;
+			cursor: not-allowed;
+		}
+
+		.quiz-summary {
+			border-left: 4px solid var(--cyan);
+		}
+
+		.quiz-meta {
+			color: var(--muted);
+			font-size: 0.92rem;
+		}
+
+		.quiz-meta span,
+		.quiz-score-row span {
+			border: 1px solid var(--border);
+			border-radius: 999px;
+			background: rgba(255, 255, 255, 0.03);
+			padding: 0.2rem 0.6rem;
+		}
+
+		.quiz-questions {
+			display: grid;
+			gap: 1rem;
+		}
+
+		.quiz-question {
+			border-top: 3px solid var(--cyan);
+		}
+
+		.quiz-question h3 {
+			margin: 0 0 0.45rem;
+			font-size: 1.05rem;
+		}
+
+		.quiz-question p {
+			margin: 0.45rem 0 0;
+		}
+
+		.quiz-question pre {
+			margin-top: 0.75rem;
+		}
+
+		.quiz-options {
+			display: grid;
+			gap: 0.55rem;
+			margin-top: 0.85rem;
+		}
+
+		.quiz-option {
+			display: grid;
+			grid-template-columns: 24px minmax(0, 1fr);
+			gap: 0.6rem;
+			align-items: start;
+			padding: 0.7rem;
+			text-align: left;
+		}
+
+		.quiz-option:hover,
+		.quiz-option:focus {
+			background: rgba(88, 196, 221, 0.18);
+		}
+
+		.quiz-option.is-selected {
+			border-color: rgba(88, 196, 221, 0.8);
+			background: rgba(88, 196, 221, 0.2);
+		}
+
+		.quiz-option.is-correct {
+			border-color: rgba(63, 185, 80, 0.8);
+			background: rgba(63, 185, 80, 0.15);
+		}
+
+		.quiz-option.is-wrong {
+			border-color: rgba(248, 81, 73, 0.75);
+			background: rgba(248, 81, 73, 0.13);
+		}
+
+		.quiz-letter {
+			display: grid;
+			place-items: center;
+			width: 24px;
+			height: 24px;
+			border-radius: 50%;
+			background: var(--code-bg);
+			color: var(--cyan);
+			font-weight: 900;
+		}
+
+		.quiz-feedback {
+			margin-top: 0.8rem;
+			padding: 0.75rem;
+			border-left: 4px solid var(--green);
+			border-radius: 0 8px 8px 0;
+			background: rgba(63, 185, 80, 0.09);
+		}
+
+		.quiz-feedback.is-wrong {
+			border-left-color: var(--red);
+			background: rgba(248, 81, 73, 0.09);
+		}
+
+		.quiz-submit {
+			width: fit-content;
+		}
+
+		.quiz-history ol {
+			margin: 0.75rem 0 0;
+			padding-left: 1.4rem;
+		}
+
 		.to-top {
 			position: fixed;
 			right: 1rem;
@@ -618,7 +815,8 @@
 			.grid,
 			.chapter-grid,
 			.function-list,
-			.flow {
+			.flow,
+			.quiz-counts {
 				grid-template-columns: 1fr;
 			}
 
@@ -672,6 +870,7 @@
 			<a href="#chapter-4" data-nav-link="chapter-4">Topic 4: SQL and Databases</a>
 			<a href="#chapter-5" data-nav-link="chapter-5">Addendum: Running PHP</a>
 			<a href="#final-revision" data-nav-link="final-revision">Final Revision Tables</a>
+			<a href="#practice-quiz" data-nav-link="practice-quiz">Quiz Builder</a>
 		</div>
 	</nav>
 
@@ -1502,6 +1701,31 @@ echo "&lt;h1&gt;My Name is Derek&lt;/h1&gt;";
 					</article>
 				</div>
 			</section>
+
+			<section id="practice-quiz" class="quiz-section" data-nav-section>
+				<div class="section-heading">
+					<h2>Quiz Builder</h2>
+					<p>Build a multiple-choice run from the local question bank. Your current quiz, submitted answers, marks, and attempt history are saved in this browser only.</p>
+				</div>
+
+				<div class="quiz-panel" id="quiz-app">
+					<div class="quiz-controls">
+						<h3>Choose Questions Per Topic</h3>
+						<p>Each topic has a bank of 40 questions. Set any topic to 0 if you want to skip it for this run.</p>
+						<div class="quiz-counts" id="quiz-counts"></div>
+						<div class="quiz-actions">
+							<button type="button" id="quiz-start">Start New Quiz</button>
+							<button type="button" id="quiz-restart">Restart Current Quiz</button>
+							<button type="button" class="danger" id="quiz-clear">Clear Progress</button>
+						</div>
+					</div>
+
+					<div class="quiz-summary" id="quiz-summary" aria-live="polite"></div>
+					<div class="quiz-questions" id="quiz-questions"></div>
+					<button type="button" class="quiz-submit" id="quiz-submit">Submit Quiz</button>
+					<div class="quiz-history" id="quiz-history"></div>
+				</div>
+			</section>
 		</div>
 	</main>
 
@@ -1526,6 +1750,500 @@ echo "&lt;h1&gt;My Name is Derek&lt;/h1&gt;";
 			]),
 		);
 		const trackedSections = Array.from(document.querySelectorAll('[data-nav-section]'));
+		const quizStorageKey = 'ip622.quiz.v1';
+		const quizCounts = document.querySelector('#quiz-counts');
+		const quizStart = document.querySelector('#quiz-start');
+		const quizRestart = document.querySelector('#quiz-restart');
+		const quizClear = document.querySelector('#quiz-clear');
+		const quizSummary = document.querySelector('#quiz-summary');
+		const quizQuestions = document.querySelector('#quiz-questions');
+		const quizSubmit = document.querySelector('#quiz-submit');
+		const quizHistory = document.querySelector('#quiz-history');
+
+		function q(prompt, options, answer, explanation, code = '') {
+			return { prompt, options, answer, explanation, code };
+		}
+
+		const quizChapters = [
+			{
+				id: 'chapter-1',
+				short: 'Topic 1',
+				title: 'PHP and HTML Forms',
+				questions: [
+					q('Which HTML element groups fields so they can be submitted to a PHP handler?', ['<form>', '<fieldset>', '<input>', '<button>'], 0, 'The form element defines the submission action and method.'),
+					q('In a form, what does the action attribute identify?', ['The URL or script that receives the submitted data', 'The HTTP method used to send data', 'The visible label for the submit button', 'The field that must be validated first'], 0, 'action points the browser to the processing script, such as process.php.'),
+					q('Which form method places submitted values in the URL query string?', ['POST', 'GET', 'REQUEST', 'COOKIE'], 1, 'GET sends values as query-string parameters in the address bar.'),
+					q('Which form method is better for larger or more sensitive submissions?', ['GET', 'POST', 'LINK', 'HEAD'], 1, 'POST sends data in the request body instead of exposing it in the URL.'),
+					q('Which PHP superglobal should normally read fields from a form using method="post"?', ['$_GET', '$_POST', '$_COOKIE', '$_FILESYSTEM'], 1, 'The method and matching superglobal should agree.'),
+					q('Which PHP superglobal should normally read fields from a form using method="get"?', ['$_POST', '$_SESSION', '$_GET', '$_SERVER'], 2, 'GET form values are available through $_GET.'),
+					q('What connects an HTML form field to a key inside $_POST or $_GET?', ['The id attribute', 'The class attribute', 'The name attribute', 'The placeholder attribute'], 2, 'PHP receives submitted form values by their name attributes.'),
+					q('What is the safest first step before echoing user-submitted text into HTML?', ['Convert it with htmlspecialchars()', 'Store it in a cookie', 'Hash it with md5()', 'Move it into $_REQUEST'], 0, 'htmlspecialchars() escapes markup characters and reduces XSS risk.'),
+					q('Which PHP function is best suited to validate whether a value is a real email format?', ['isset()', 'filter_var() with FILTER_VALIDATE_EMAIL', 'empty()', 'password_verify()'], 1, 'filter_var($email, FILTER_VALIDATE_EMAIL) checks email format.'),
+					q('What does empty($_POST["name"]) test in form validation?', ['Whether the key exists and has a non-empty value', 'Whether the form used GET', 'Whether the field is encrypted', 'Whether the browser supports cookies'], 0, 'empty() is useful for required text-like fields that must not be blank.'),
+					q('Why can directly reading an unchecked checkbox key cause a notice?', ['Unchecked checkboxes may send no key at all', 'Checkbox values are always arrays', 'Checkboxes can only use GET', 'PHP blocks checkboxes by default'], 0, 'Controls such as unchecked checkboxes and radio buttons may be absent from submitted data.'),
+					q('Which check is safest before reading an optional checkbox value?', ['isset($_POST["agree"])', 'strlen($_POST["agree"])', 'password_hash($_POST["agree"])', 'mysqli_query($_POST["agree"])'], 0, 'isset() confirms that the submitted key exists.'),
+					q('Which input type is designed for email addresses in HTML?', ['text', 'mailbox', 'email', 'address'], 2, 'type="email" gives the browser an email-aware input.'),
+					q('Which input type hides typed characters in a login form?', ['hidden', 'password', 'secret', 'masked'], 1, 'type="password" masks the characters in the browser.'),
+					q('Which form encoding is normally required for file uploads?', ['text/plain', 'multipart/form-data', 'application/json', 'application/sql'], 1, 'File uploads require enctype="multipart/form-data".'),
+					q('Which PHP superglobal stores uploaded file information?', ['$_POST', '$_GET', '$_FILES', '$_UPLOAD'], 2, 'Uploaded file metadata and temporary paths are found in $_FILES.'),
+					q('Which function moves an uploaded file from its temporary path to your chosen folder?', ['copy_uploaded_file()', 'move_uploaded_file()', 'rename_upload()', 'file_put_contents()'], 1, 'move_uploaded_file() is designed for handling uploaded files safely.'),
+					q('For the review task allowing only jpg, jpeg, and png uploads, what must the script check?', ['The extension and other upload constraints', 'Only the username', 'Only the submit button text', 'Only the page title'], 0, 'The review task requires extension, size, destination, preview, and error checks.'),
+					q('What is the maximum file size required in the review upload exercise?', ['200 KB', '2 MB', '20 MB', 'Unlimited'], 1, 'The supplied review exercise sets a 2 MB maximum.'),
+					q('Which PHP security measure stores passwords in a non-plain-text form?', ['htmlspecialchars()', 'password_hash()', 'filter_var()', 'isset()'], 1, 'password_hash() is used to store password hashes.'),
+					q('Which PHP function checks a typed password against a stored password hash?', ['password_verify()', 'password_read()', 'hash_equals_form()', 'filter_var()'], 0, 'password_verify() checks a plain password against a password_hash() result.'),
+					q('What is SQL injection prevention most closely associated with in the login review task?', ['Prepared statements', 'Reset buttons', 'GET query strings', 'CSS validation'], 0, 'Prepared statements separate SQL structure from user values.'),
+					q('What does XSS prevention focus on?', ['Preventing malicious script from being output as executable HTML', 'Preventing a file from being closed', 'Preventing SQL tables from joining', 'Preventing Apache from starting'], 0, 'Cross-site scripting happens when unsafe input is printed into HTML.'),
+					q('Why should $_REQUEST be used carefully?', ['It can mix GET, POST, and COOKIE values', 'It never contains submitted data', 'It only works with file uploads', 'It automatically validates passwords'], 0, '$_REQUEST can hide where the value came from, making logic less precise.'),
+					q('In a multi-select list, what field naming pattern commonly lets PHP receive multiple selected values?', ['name="languages[]"', 'name="#languages"', 'id="languages[]"', 'type="multi"'], 0, 'The [] name tells PHP to collect multiple selected values into an array.'),
+					q('Which PHP structure is most natural for looping over multiple selected languages?', ['foreach', 'switch only', 'goto', 'require'], 0, 'foreach iterates over each selected array value.'),
+					q('What should a form do after validation fails?', ['Show useful errors and preserve safe previous values', 'Destroy the browser cache', 'Always redirect to localhost', 'Delete the PHP file'], 0, 'The study page pattern redisplays the form with error feedback and retained values.'),
+					q('What should happen only after all required fields pass validation?', ['Display the success or thank-you result', 'Mark every field missing', 'Read from $_COOKIE instead of $_POST', 'Disable the submit button permanently'], 0, 'Success output belongs after validation has accepted the submitted data.'),
+					q('Which helper idea preserves a text field value when a PHP-generated form is redisplayed?', ['setValue()', 'dropValue()', 'resetForm()', 'sqlValue()'], 0, 'The guide pattern uses helpers such as setValue() to repopulate fields.'),
+					q('Which helper idea preserves a checkbox or radio selection?', ['setChecked()', 'setHidden()', 'setCookie()', 'setDirectory()'], 0, 'setChecked() is used to re-render selected checkbox or radio choices.'),
+					q('Which helper idea preserves a selected option in a select list?', ['setSelected()', 'setPosted()', 'setAction()', 'setQuery()'], 0, 'setSelected() marks an option as selected during redisplay.'),
+					q('What is wrong with echoing a submitted password back to the page?', ['It exposes sensitive data', 'It creates a table automatically', 'It starts a session twice', 'It makes POST act like GET'], 0, 'Passwords should never be displayed back to the user.'),
+					q('What does this code read?', ['The posted emailAddress field', 'A cookie called emailAddress', 'A session ID', 'A file called emailAddress'], 0, 'The code indexes into $_POST using the field name.', '$email = $_POST["emailAddress"];'),
+					q('What is the purpose of htmlspecialchars() in this code?', ['Escape unsafe output', 'Validate an SQL join', 'Create a password hash', 'Start a session'], 0, 'The value is escaped before being printed into HTML.', 'echo htmlspecialchars($_POST["firstName"]);'),
+					q('What will this validation branch print for bad email format?', ['Valid email', 'Invalid email', 'The password hash', 'Nothing because filter_var cannot run'], 1, 'The else branch handles values that fail FILTER_VALIDATE_EMAIL.', 'if (filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {\n\techo "Valid email";\n} else {\n\techo "Invalid email";\n}'),
+					q('What is the main problem this code avoids?', ['Undefined key notices for optional controls', 'SQL joins', 'Password hashing', 'File pointer movement'], 0, 'isset() checks that the key exists before reading it.', 'if (isset($_POST["gender"])) {\n\techo htmlspecialchars($_POST["gender"]);\n}'),
+					q('In the name-email-age review task, which age range is required?', ['13 to 18', '18 to 60', '21 to 65', 'Any number above 0'], 1, 'The review exercise requires age to be a number between 18 and 60.'),
+					q('Which field group is required in the secure login review task?', ['Username and password', 'File and directory', 'OrderID and TotalAmount', 'Apache and htdocs'], 0, 'The review task asks for a username/password login form.'),
+					q('What is the best reason to sanitize and validate input before use?', ['Users can submit unexpected or malicious data', 'PHP variables never expire', 'HTML cannot submit text', 'Only Apache can read forms'], 0, 'All browser input must be treated as untrusted.'),
+					q('Which answer best describes a practical form-processing flow?', ['Display form, submit, validate, redisplay errors or process success', 'Start MySQL, drop table, then ask for a name', 'Read a directory, delete cookies, then submit', 'Hash the username and ignore the password'], 0, 'That is the normal flow used by the topic and review exercises.'),
+				],
+			},
+			{
+				id: 'chapter-2',
+				short: 'Topic 2',
+				title: 'Session Controls and Cookies',
+				questions: [
+					q('Why do PHP applications need sessions, cookies, or another state mechanism?', ['HTTP requests are stateless', 'PHP cannot print HTML', 'Forms cannot use POST', 'SQL tables are always empty'], 0, 'Each request is independent unless state is stored somewhere.'),
+					q('Where is cookie data stored after the server sends it?', ['In the browser/client', 'Only inside mysqli', 'Only in htdocs', 'Inside the SQL primary key'], 0, 'Cookies are stored by the browser and sent back on later requests.'),
+					q('Where is session data normally stored?', ['On the server, linked to a session ID', 'Only in the URL title', 'Inside the HTML form action', 'In the CSS file'], 0, 'Sessions keep data server-side and identify it with a session ID.'),
+					q('Which function creates or updates a browser cookie in PHP?', ['setcookie()', 'session_start()', 'cookie_open()', 'fwrite()'], 0, 'setcookie() sends a Set-Cookie header.'),
+					q('When must setcookie() be called?', ['Before any normal HTML output', 'Only after the footer', 'Inside a SQL GROUP BY clause', 'After session_destroy() every time'], 0, 'Cookies are sent through HTTP headers, so output must not already be sent.'),
+					q('Which superglobal reads cookie values sent by the browser?', ['$_COOKIE', '$_POST', '$_FILES', '$_SESSION_ID'], 0, 'Cookie values are available in $_COOKIE.'),
+					q('Which function begins or resumes a PHP session?', ['session_start()', 'session_begin()', 'setcookie()', 'mysqli_connect()'], 0, 'session_start() must run before using $_SESSION.'),
+					q('Which superglobal stores session variables?', ['$_SESSION', '$_COOKIE', '$_REQUEST_FILE', '$_MYSQL'], 0, 'Session values are stored in $_SESSION.'),
+					q('Which function destroys session data?', ['session_destroy()', 'session_delete_cookie()', 'unset_file()', 'drop_session()'], 0, 'session_destroy() removes the current session data.'),
+					q('What is PHPSESSID commonly used for?', ['Holding the session ID in a browser cookie', 'Storing a SQL password', 'Naming every uploaded file', 'Starting Apache'], 0, 'PHP often uses a cookie named PHPSESSID to connect the browser to server session data.'),
+					q('Which is a better place for temporary login state?', ['Session', 'Plain text URL parameter', 'Static HTML comment', 'CSS class name'], 0, 'A session is appropriate for current login state.'),
+					q('Which is a reasonable cookie use case?', ['Remembering a color preference', 'Storing a plain password', 'Running a SQL join', 'Opening a directory handle'], 0, 'Cookies work well for small preference values.'),
+					q('Which review exercise asks for a hardcoded login, welcome page, and logout?', ['Saving State in PHP', 'Reading Binary Data', 'RDBMS', 'Creating a table'], 0, 'Topic 2 Exercise 1 is a session-based login system.'),
+					q('Which review exercise asks for user_preference with a favorite color?', ['Creating, Reading, and Deleting Cookies', 'PHP Form Validation', 'Complex SQL Queries', 'Working With CSV Files'], 0, 'Topic 2 Exercise 2 uses a user_preference cookie.'),
+					q('In the multi-step registration review task, what preserves data while moving between steps?', ['Sessions', 'DROP TABLE', 'basename()', 'filter_var() only'], 0, 'The task requires sessions to retain values across steps.'),
+					q('What should happen to the registration session after successful final submission?', ['It should be destroyed', 'It should be printed in the URL', 'It should be inserted into every table', 'It should be renamed to htdocs'], 0, 'The review task says the session is destroyed after successful submission.'),
+					q('Which cookie lifetime expression means roughly two hours from now?', ['time() + 60 * 60 * 2', 'time() - 1', '60 / time()', 'session_start() + 2'], 0, '60 seconds times 60 minutes times 2 hours is a two-hour offset.'),
+					q('How do you delete a cookie in PHP?', ['Set it again with an expiration time in the past', 'Call DROP COOKIE', 'Use fclose()', 'Set method="delete" on the form'], 0, 'Expiring the cookie in the past tells the browser to remove it.'),
+					q('Which is a security concern with putting a session ID in a URL?', ['It can be copied, logged, or shared', 'It automatically hashes passwords', 'It prevents forms from submitting', 'It closes Apache'], 0, 'URL session IDs are easier to leak than cookie-based IDs.'),
+					q('What is the practical size limitation commonly associated with cookies in the guide notes?', ['About 4 KB', 'About 4 GB', 'Unlimited', 'Exactly one character'], 0, 'Cookies are small; the page notes about 4 KB as a practical limit.'),
+					q('Which statement best compares cookies and sessions?', ['Cookies store small data client-side; sessions store state server-side', 'Cookies are SQL joins; sessions are upload folders', 'Cookies only work in MySQL; sessions only work in HTML', 'They are identical in every way'], 0, 'The storage location is the key distinction.'),
+					q('What does this code increment?', ['A session hit counter', 'A SQL primary key', 'A file pointer', 'A cookie expiration date'], 0, 'It reads and updates $_SESSION["hits"].', 'session_start();\n$_SESSION["hits"] = ($_SESSION["hits"] ?? 0) + 1;'),
+					q('What is missing before using $_SESSION in most PHP scripts?', ['session_start()', 'mysqli_close()', 'file_exists()', 'filter_var()'], 0, 'The session must be started before reading or writing $_SESSION.', '$_SESSION["username"] = "Riya";'),
+					q('What value is this code trying to remember?', ['A background color preference', 'A database table name', 'A file size', 'A password hash'], 0, 'The cookie name and value suggest a UI color preference.', 'setcookie("bgcolor", "#000000", time() + 60 * 60 * 24 * 7);'),
+					q('What does this code safely check?', ['Whether the bg cookie exists before reading it', 'Whether a table exists', 'Whether a file is binary', 'Whether a form used POST'], 0, 'isset($_COOKIE["bg"]) checks for the cookie key.', 'if (isset($_COOKIE["bg"])) {\n\techo htmlspecialchars($_COOKIE["bg"]);\n}'),
+					q('What should a logout script normally do?', ['Clear session data and redirect away from the protected page', 'Create a new database table', 'Echo the user password', 'Upload an image'], 0, 'Logout should end the current authenticated session.'),
+					q('Which data should not be stored directly in a cookie?', ['Plain-text passwords', 'A favorite color', 'A language preference', 'A small theme name'], 0, 'Cookie data is client-side and should not contain raw secrets.'),
+					q('Why can sessions be safer than cookies for sensitive state?', ['The actual state is kept server-side', 'They never use IDs', 'They do not require PHP', 'They automatically validate SQL'], 0, 'The browser usually only holds the session identifier.'),
+					q('What is an alternative state-passing approach mentioned with stateless requests?', ['Query strings', 'DROP statements', 'Binary mode', 'htdocs'], 0, 'Query strings can pass values between requests, though not ideal for secrets.'),
+					q('What is the most likely bug if setcookie() is called after echoing HTML?', ['Headers already sent warning or cookie not set correctly', 'The SQL table is dropped', 'The form changes to GET', 'The file pointer rewinds'], 0, 'setcookie() relies on HTTP headers.'),
+					q('Which option best fits a shopping cart during a visit?', ['Session', 'Hardcoded CSS', 'DROP DATABASE', 'File extension check only'], 0, 'A shopping cart is temporary per-user state.'),
+					q('What does session_id() return?', ['The current session identifier', 'The current SQL row count', 'The current file size', 'The current form method'], 0, 'session_id() gets or sets the session ID.'),
+					q('Which action preserves entered values across a three-step form?', ['Save step data in $_SESSION between pages', 'Use only reset buttons', 'Put all data in a CSS variable', 'Delete the session after step one'], 0, 'The review task requires navigation without losing entered data.'),
+					q('Which statement about deleting cookies is true?', ['The browser removes it after receiving an expired Set-Cookie header', 'PHP can erase it from the browser without sending a header', 'unlink() deletes all cookies', 'Cookies disappear only when MySQL closes'], 0, 'Cookie deletion is performed by sending a cookie with an expired time.'),
+					q('In a login system, where should the successful username commonly be stored for the visit?', ['$_SESSION["username"]', '$_FILES["username"]', '$_POST forever', 'A DROP statement'], 0, 'The review task asks for the username to be stored in a session variable.'),
+					q('What does the final page in the multi-step form review exercise show?', ['A summary of entered information', 'A list of SQL indexes only', 'Only the Apache port', 'A binary length count'], 0, 'The final step should display all entered data before submission.'),
+					q('What is a common first line in any PHP page that relies on sessions?', ['session_start();', 'DROP TABLE sessions;', 'setcookie(); with no arguments', 'echo before headers;'], 0, 'session_start() initializes session access.'),
+					q('Which state mechanism is best for remembering a preference across browser restarts?', ['A persistent cookie with an expiration date', 'A local PHP variable only', 'A temporary variable inside one request', 'An unselected radio button'], 0, 'Cookies can persist beyond the current browser session if an expiration is set.'),
+					q('What is the main reason to combine sessions and cookies?', ['Use sessions for temporary server state and cookies for small persistent identifiers or preferences', 'Make SQL statements shorter', 'Avoid writing any PHP', 'Make uploaded files larger'], 0, 'The study page describes combining them for practical state handling.'),
+					q('Which option best summarizes Topic 2?', ['Remembering user state with cookies, sessions, login, logout, and multi-step forms', 'Only validating email fields', 'Only creating SQL tables', 'Only using htdocs'], 0, 'Topic 2 is about state through sessions and cookies.'),
+				],
+			},
+			{
+				id: 'chapter-3',
+				short: 'Topic 3',
+				title: 'File System Management',
+				questions: [
+					q('In the guide, what is a file?', ['An ordered sequence of bytes', 'Only a SQL table', 'Only an HTML form', 'A session variable'], 0, 'The topic defines files as ordered byte sequences.'),
+					q('What is a directory?', ['A special file that stores file and subdirectory names', 'A password hash', 'A POST field', 'A MySQL row'], 0, 'Directories organize names and pointers to file locations.'),
+					q('Which function checks whether a path exists?', ['file_exists()', 'filesize()', 'fwrite()', 'fseek()'], 0, 'file_exists() tests for the existence of a file or directory path.'),
+					q('Which function returns a file size in bytes?', ['filesize()', 'filemtime()', 'basename()', 'fclose()'], 0, 'filesize() returns the number of bytes.'),
+					q('Which function returns a file last modification timestamp?', ['filemtime()', 'fileatime()', 'basename()', 'unlink()'], 0, 'filemtime() is the modification time function.'),
+					q('Which function extracts the filename from a full path?', ['basename()', 'dirname_only()', 'file_get_name()', 'pathfile()'], 0, 'basename() returns the trailing filename component.'),
+					q('Which function opens a file handle?', ['fopen()', 'openfile()', 'file()', 'opendir() only'], 0, 'fopen() opens a file and returns a handle.'),
+					q('Which function closes an open file handle?', ['fclose()', 'closedir()', 'closefile()', 'unlink()'], 0, 'fclose() closes file handles.'),
+					q('Which fopen mode reads only and requires the file to exist?', ['r', 'w', 'a', 'x+'], 0, 'Mode r is read-only and fails if the file is missing.'),
+					q('Which fopen mode can erase existing file content?', ['w', 'r', 'a', 'rb'], 0, 'Mode w truncates an existing file before writing.'),
+					q('Which fopen mode appends new data to the end of a file?', ['a', 'r', 'w', 'rb'], 0, 'Mode a writes at the end.'),
+					q('Why might the guide recommend binary mode such as rb?', ['To avoid operating-system line-ending conversions', 'To create SQL indexes', 'To validate email', 'To start Apache'], 0, 'Binary mode helps preserve bytes exactly.'),
+					q('Which function reads a specified number of bytes from an open file?', ['fread()', 'fgets()', 'fgetc()', 'filemtime()'], 0, 'fread($handle, $length) reads a given amount.'),
+					q('Which function reads one line from an open file?', ['fgets()', 'fgetc()', 'fwrite()', 'copy()'], 0, 'fgets() reads a line at a time.'),
+					q('Which function reads one character from an open file?', ['fgetc()', 'fgets()', 'file()', 'is_file()'], 0, 'fgetc() reads a single character.'),
+					q('Which function reads CSV data into arrays?', ['fgetcsv()', 'freadcsv()', 'csv_get()', 'filemtime()'], 0, 'fgetcsv() parses CSV rows from a handle.'),
+					q('Which function writes a string to an open file handle?', ['fwrite()', 'file_exists()', 'fseek()', 'readdir()'], 0, 'fwrite() writes to an open file.'),
+					q('Which function writes a complete string to a file without manually opening a handle?', ['file_put_contents()', 'fputfile()', 'put_file_line()', 'session_start()'], 0, 'file_put_contents() is a convenience write function.'),
+					q('Which function reads an entire file into a string?', ['file_get_contents()', 'file()', 'fgetc()', 'opendir()'], 0, 'file_get_contents() returns the whole file as one string.'),
+					q('Which function reads a file into an array of lines?', ['file()', 'fread()', 'copy()', 'is_dir()'], 0, 'file() returns an array containing the lines of the file.'),
+					q('Which function checks whether the file pointer is at the end?', ['feof()', 'fseek()', 'ftell()', 'rewind()'], 0, 'feof() tests for end-of-file.'),
+					q('Which function moves a file pointer to a specified position?', ['fseek()', 'ftell()', 'feof()', 'filesize()'], 0, 'fseek() changes the current pointer position.'),
+					q('Which function reports the current file pointer position?', ['ftell()', 'fseek()', 'rewind()', 'basename()'], 0, 'ftell() returns the current offset.'),
+					q('Which function moves a file pointer back to the beginning?', ['rewind()', 'restartfile()', 'fclose()', 'copy()'], 0, 'rewind() resets the pointer to the start.'),
+					q('Which function copies a file?', ['copy()', 'rename()', 'unlink()', 'mkdir()'], 0, 'copy($source, $destination) duplicates a file.'),
+					q('Which function renames or moves a file?', ['rename()', 'copy()', 'unlink()', 'rmdir()'], 0, 'rename() changes a file path/name and can move it.'),
+					q('Which function deletes a file?', ['unlink()', 'rmdir()', 'drop()', 'delete_file_table()'], 0, 'unlink() removes a file.'),
+					q('Which function checks whether a path is a regular file?', ['is_file()', 'is_dir()', 'file_exists_only_file()', 'opendir()'], 0, 'is_file() confirms that the path is a file.'),
+					q('Which function checks whether a path is a directory?', ['is_dir()', 'is_file()', 'filemtime()', 'fgetc()'], 0, 'is_dir() confirms that the path is a directory.'),
+					q('Which function creates a directory?', ['mkdir()', 'opendir()', 'chdir()', 'rmdir()'], 0, 'mkdir() creates directories.'),
+					q('Which function removes an empty directory?', ['rmdir()', 'unlink()', 'removefile()', 'closedir()'], 0, 'rmdir() removes empty directories.'),
+					q('Which function opens a directory handle?', ['opendir()', 'fopen()', 'file()', 'mkdir()'], 0, 'opendir() opens a directory for reading.'),
+					q('Which function reads the next entry from an open directory?', ['readdir()', 'fgets()', 'readfile()', 'dir_next()'], 0, 'readdir() retrieves directory entries one at a time.'),
+					q('Which function closes a directory handle?', ['closedir()', 'fclose()', 'closepath()', 'rmdir()'], 0, 'closedir() closes an open directory handle.'),
+					q('What should directory listing code usually skip?', ['"." and ".."', '"index.php" only', 'Every .txt file', 'Every hidden form field'], 0, '. and .. refer to current and parent directory entries.'),
+					q('What does this code display if example.txt exists?', ['Its size and modified date', 'A session ID', 'A SQL join result', 'An uploaded image preview'], 0, 'The code calls filesize() and filemtime().', 'if (file_exists("example.txt")) {\n\techo filesize("example.txt");\n\techo date("Y-m-d", filemtime("example.txt"));\n}'),
+					q('What is the safest interpretation of this code?', ['It appends a new line and then closes the file', 'It deletes data.txt', 'It starts a session', 'It creates an SQL table'], 0, 'Mode a appends, fwrite writes, and fclose closes.', '$handle = fopen("data.txt", "a");\nif ($handle) {\n\tfwrite($handle, "New line" . PHP_EOL);\n\tfclose($handle);\n}'),
+					q('In the hit counter review task, where is the count stored?', ['counter.txt', '$_GET only', 'Customers table', 'htdocs/index.html'], 0, 'The review task stores the number of visits in counter.txt.'),
+					q('In the CSV review task, how should rows be displayed?', ['In an HTML table', 'Only in the URL', 'As a password hash', 'As a session ID'], 0, 'The task asks to read CSV rows and display them in a table.'),
+					q('What is the main danger of unlink()?', ['It permanently deletes the target file', 'It validates email too strictly', 'It starts Apache twice', 'It exposes POST data'], 0, 'unlink() is destructive, so target paths must be checked carefully.'),
+				],
+			},
+			{
+				id: 'chapter-4',
+				short: 'Topic 4',
+				title: 'SQL and Databases',
+				questions: [
+					q('What does RDBMS stand for?', ['Relational Database Management System', 'Readable Data Browser Markup Syntax', 'Runtime Directory Backup Management Server', 'Relational Data Button Method Script'], 0, 'RDBMS means Relational Database Management System.'),
+					q('Which is an example of RDBMS software?', ['MySQL', 'HTML', 'CSS', 'Apache only'], 0, 'MySQL is a relational database system.'),
+					q('What is a database table made of?', ['Rows and columns', 'Only cookies', 'Only PHP sessions', 'Only file handles'], 0, 'Relational tables organize data by rows and columns.'),
+					q('What is a row also called?', ['Record', 'Style', 'Cookie', 'Handle'], 0, 'A row stores one complete record.'),
+					q('What is a column also called?', ['Field', 'Session', 'Folder', 'Request body'], 0, 'Columns represent fields or attributes.'),
+					q('What is a primary key?', ['A unique identifier for each record', 'A password for Apache', 'A file pointer', 'A CSS class'], 0, 'Primary keys uniquely identify table rows.'),
+					q('What does AUTO_INCREMENT do?', ['Lets MySQL generate increasing key values', 'Encrypts email fields', 'Deletes old rows automatically', 'Starts PHP'], 0, 'AUTO_INCREMENT generates numeric values for new rows.'),
+					q('What is a foreign key?', ['A field that references a key in another table', 'A PHP upload extension', 'A cookie expiration date', 'A local server folder'], 0, 'Foreign keys connect related tables.'),
+					q('Which SQL statement creates a database?', ['CREATE DATABASE', 'MAKE FORM', 'OPEN FILE', 'START SESSION'], 0, 'CREATE DATABASE creates a database.'),
+					q('Which SQL statement selects the active database?', ['USE database_name;', 'OPEN database_name;', 'SESSION database_name;', 'READ database_name;'], 0, 'USE tells MySQL which database to operate on.'),
+					q('Which SQL statement creates a table?', ['CREATE TABLE', 'INSERT TABLE', 'MAKE ROW', 'FORM TABLE'], 0, 'CREATE TABLE defines table structure.'),
+					q('Which SQL statement adds a new row?', ['INSERT', 'SELECT', 'UPDATE', 'DROP'], 0, 'INSERT adds rows.'),
+					q('Which SQL statement retrieves rows?', ['SELECT', 'INSERT', 'DELETE', 'ALTER'], 0, 'SELECT returns data.'),
+					q('Which SQL statement modifies existing rows?', ['UPDATE', 'CREATE', 'DROP', 'USE'], 0, 'UPDATE changes existing records.'),
+					q('Which SQL statement deletes rows but keeps the table?', ['DELETE', 'DROP', 'ALTER', 'CREATE'], 0, 'DELETE removes records while leaving the table structure.'),
+					q('Which SQL statement removes a table structure?', ['DROP TABLE', 'DELETE ROW', 'UNLINK TABLE', 'REMOVE FIELD'], 0, 'DROP TABLE deletes the table itself.'),
+					q('Which clause filters rows in SELECT, UPDATE, and DELETE statements?', ['WHERE', 'FORM', 'COOKIE', 'SESSION'], 0, 'WHERE limits which rows are returned or affected.'),
+					q('What is the risk of UPDATE without WHERE?', ['It can update every row', 'It can only update one row', 'It starts Apache', 'It hashes all passwords'], 0, 'Without WHERE, all rows may be changed.'),
+					q('What is the risk of DELETE without WHERE?', ['It can delete every row', 'It only deletes one column', 'It validates email', 'It closes the browser'], 0, 'DELETE without a filter can remove all records.'),
+					q('What does GROUP BY support?', ['Aggregation per group', 'Uploading files', 'Starting sessions', 'Escaping HTML'], 0, 'GROUP BY groups rows for aggregate functions such as SUM().'),
+					q('Which function connects PHP to MySQL in the procedural mysqli style shown?', ['mysqli_connect()', 'mysql_open_file()', 'session_connect()', 'fopen_mysql()'], 0, 'The page shows mysqli_connect() for database connections.'),
+					q('Which function reports a connection failure in mysqli?', ['mysqli_connect_error()', 'mysqli_fetch_assoc()', 'mysqli_close()', 'mysqli_group_by()'], 0, 'mysqli_connect_error() describes connection errors.'),
+					q('Which function runs an SQL query in mysqli?', ['mysqli_query()', 'mysqli_run_sql()', 'query_file()', 'sql_echo()'], 0, 'mysqli_query($conn, $sql) executes a query.'),
+					q('Which function fetches result rows as associative arrays?', ['mysqli_fetch_assoc()', 'mysqli_fetch_row_count()', 'mysqli_error_only()', 'mysqli_close_assoc()'], 0, 'mysqli_fetch_assoc() returns rows keyed by column name.'),
+					q('Which function closes a mysqli connection?', ['mysqli_close()', 'fclose()', 'session_destroy()', 'closedir()'], 0, 'mysqli_close() closes the database connection.'),
+					q('Which method is recommended to prevent SQL injection in login forms?', ['Prepared statements', 'String concatenation with raw POST values', 'Echoing SQL into HTML', 'Using GET for passwords'], 0, 'Prepared statements keep user data separate from SQL code.'),
+					q('What does this SQL do?', ['Creates a database named mydatabase', 'Creates a cookie', 'Deletes a table', 'Starts PHP'], 0, 'CREATE DATABASE defines a new database.', 'CREATE DATABASE mydatabase;'),
+					q('What does this SQL define?', ['A fruit table with an auto-incrementing primary key', 'A PHP session', 'An upload folder', 'A cookie named fruit'], 0, 'The id field is the primary key and auto-increments.', 'CREATE TABLE fruit (\n\tid SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,\n\tname VARCHAR(30) NOT NULL,\n\tPRIMARY KEY (id)\n);'),
+					q('What does this SQL add?', ['A banana row in the fruit table', 'A new database', 'A session cookie', 'A file handle'], 0, 'INSERT INTO adds a row with the supplied values.', "INSERT INTO fruit (name, color) VALUES ('banana', 'yellow');"),
+					q('What does this query return?', ['All columns from fruit', 'Only the table structure', 'Only deleted rows', 'The current PHP session'], 0, 'SELECT * returns every column for matching rows.', 'SELECT * FROM fruit;'),
+					q('What does this SQL change?', ['The row with id 2', 'Every row regardless of id', 'The database name', 'The Apache port'], 0, 'The WHERE clause limits the update to id = 2.', "UPDATE fruit\nSET name = 'grapefruit', color = 'yellow'\nWHERE id = 2;"),
+					q('What is the correct deletion order when Orders references Customers?', ['Delete the customer’s orders before deleting the customer', 'Delete the customer first always', 'Drop MySQL before deleting rows', 'Delete the primary key column only'], 0, 'Foreign-key dependencies mean child rows should be removed first.'),
+					q('Which join pattern lists orders with matching customer names?', ['INNER JOIN Orders ON Customers.CustomerID = Orders.CustomerID', 'GROUP BY without a table', 'DROP JOIN', 'COOKIE JOIN'], 0, 'The relationship is through CustomerID.'),
+					q('Which aggregate answers total amount spent by each customer?', ['SUM(TotalAmount) with GROUP BY customer', 'COUNT(*) without a table', 'DELETE with WHERE', 'AUTO_INCREMENT only'], 0, 'The review question asks for total spent per customer, which uses SUM and GROUP BY.'),
+					q('Which ALTER TABLE task appears in the review questions?', ['Add Phone Number and widen Country', 'Rename Apache to MySQL', 'Delete htdocs', 'Hash every table name'], 0, 'The review asks to add Phone Number and change Country length.'),
+					q('What does UNIQUE on Email mean?', ['Duplicate email values are not allowed', 'The column can store only numbers', 'The field is hidden from SELECT', 'The value is automatically hashed'], 0, 'UNIQUE enforces uniqueness for the column.'),
+					q('What does DECIMAL(10,2) best fit?', ['Money values such as TotalAmount', 'A password hash', 'A file path only', 'A cookie name'], 0, 'DECIMAL(10,2) stores fixed precision numbers with two decimal places.'),
+					q('What should code do after mysqli_query() fails?', ['Handle the error instead of processing rows blindly', 'Assume rows exist', 'Drop the table', 'Start a new session only'], 0, 'The page shows checking query success before reading rows.'),
+					q('What does htmlspecialchars() protect when printing database values into HTML?', ['HTML output from unsafe or unexpected text', 'The SQL parser itself', 'The Apache service', 'The table primary key'], 0, 'Escaping output matters for values retrieved from the database too.'),
+					q('Which option best summarizes Topic 4?', ['RDBMS concepts, SQL CRUD, joins, table changes, and PHP MySQL access', 'Only file upload extensions', 'Only GET and POST forms', 'Only XAMPP installation'], 0, 'Topic 4 covers relational databases, SQL, and PHP database connections.'),
+				],
+			},
+			{
+				id: 'chapter-5',
+				short: 'Addendum',
+				title: 'Installing and Running PHP With XAMPP',
+				questions: [
+					q('What does the X in XAMPP represent?', ['Cross-platform', 'XML only', 'Extra password', 'XSS attack'], 0, 'XAMPP is cross-platform.'),
+					q('What does the A in XAMPP represent?', ['Apache', 'Array', 'Access', 'Anchor'], 0, 'Apache is the web server component.'),
+					q('What does the M in XAMPP represent in the study page?', ['MySQL', 'Markup', 'Memory', 'Mail'], 0, 'The addendum describes MySQL as the database component.'),
+					q('What does the first P in XAMPP represent?', ['PHP', 'POST', 'Password', 'Path'], 0, 'PHP executes server-side scripts.'),
+					q('What does the second P in XAMPP represent?', ['Perl', 'POST', 'Primary key', 'Port'], 0, 'Perl is the final component in the acronym.'),
+					q('Which component serves local web pages?', ['Apache', 'MySQL', 'A form reset button', 'A cookie'], 0, 'Apache is the local web server.'),
+					q('Which component stores relational data?', ['MySQL', 'HTML', 'CSS', 'A submit button'], 0, 'MySQL is the database server.'),
+					q('Which component executes server-side PHP scripts?', ['PHP', 'CSS', 'HTML only', 'A browser bookmark'], 0, 'PHP code runs on the server.'),
+					q('Where are local XAMPP project folders commonly placed?', ['htdocs', 'Downloads only', 'Cookies', 'Customers table'], 0, 'The addendum points to htdocs as the local web root.'),
+					q('Which file extension should PHP scripts use?', ['.php', '.html only', '.sql only', '.cookie'], 0, 'PHP code must be in a PHP-enabled file such as .php.'),
+					q('What must be running in XAMPP to serve PHP pages locally?', ['Apache', 'Only a text editor', 'Only a browser history', 'Only CSS'], 0, 'Apache needs to serve the PHP file through localhost.'),
+					q('How should a PHP page in a XAMPP project usually be opened?', ['Through http://localhost/... in the browser', 'By double-clicking and using file:// only', 'Through DROP TABLE', 'Through $_POST directly'], 0, 'PHP must be processed by a server such as Apache.'),
+					q('If the folder is Demo and the file is test.php, which URL matches the page example?', ['http://localhost/Demo/test.php', 'file:///Demo/test.php', 'http://cookies/Demo/test.php', 'mysql://Demo/test.php'], 0, 'The addendum uses the localhost path.'),
+					q('What happens if you open a PHP file directly from the file system?', ['The PHP code may not execute', 'The database is created automatically', 'The session always starts', 'The code is converted to SQL'], 0, 'PHP needs a PHP-capable server to execute.'),
+					q('Which tool is used to edit PHP files in the addendum workflow?', ['A code editor', 'A cookie reader only', 'A SQL GROUP BY clause', 'A browser cache'], 0, 'You create or edit PHP files in an editor, then run them through localhost.'),
+					q('What should you do after creating a project folder inside htdocs?', ['Save PHP files there and open them through localhost', 'Delete Apache', 'Store passwords in cookies', 'Rename MySQL to PHP'], 0, 'The local project folder becomes part of the localhost URL path.'),
+					q('What does this PHP code output?', ['An h1 heading with the text My Name is Derek', 'A SQL table', 'A cookie named h1', 'A file upload form'], 0, 'echo prints the HTML string.', '<?php\necho "<h1>My Name is Derek<\\/h1>";\n?>'),
+					q('Which syntax issue is important when echoing HTML from PHP?', ['Close quoted strings and HTML tags correctly', 'Always use DROP TABLE first', 'Never use semicolons', 'Use only file extensions as variables'], 0, 'Broken quotes or tags can cause PHP or HTML output errors.'),
+					q('Why is XAMPP useful for learning PHP?', ['It gives a local Apache/PHP/MySQL environment', 'It replaces all validation', 'It prevents every SQL injection automatically', 'It makes HTML unnecessary'], 0, 'It packages the tools needed to run server-side examples locally.'),
+					q('Which XAMPP service is most relevant before testing MySQL database examples?', ['MySQL', 'Only Mercury Mail', 'Only FileZilla', 'Only the reset button'], 0, 'Database examples need the MySQL service.'),
+					q('Which XAMPP service is most relevant before testing ordinary PHP pages?', ['Apache', 'Only MySQL', 'Only cookies', 'Only phpMyAdmin'], 0, 'Apache serves PHP pages locally.'),
+					q('What does localhost refer to?', ['The local computer running the server', 'A remote Richfield server only', 'A database row', 'A cookie path'], 0, 'localhost points to the current machine.'),
+					q('Why is the URL path case and folder name important?', ['It must match the project folder and file location', 'It changes SQL syntax', 'It hashes passwords', 'It deletes cookies'], 0, 'The browser URL maps to the folder under htdocs.'),
+					q('What is the role of phpMyAdmin in a typical XAMPP workflow?', ['Managing MySQL databases through a browser interface', 'Editing CSS only', 'Replacing Apache', 'Encrypting every PHP file'], 0, 'phpMyAdmin is commonly used to manage MySQL in XAMPP.'),
+					q('Which page address would usually open XAMPP’s local web root?', ['http://localhost/', 'http://post-only/', 'file://mysql/', 'cookie://localhost/'], 0, 'localhost points to the local Apache web root.'),
+					q('What should you check if PHP code displays as plain text?', ['Whether the file is served through Apache and has a .php extension', 'Whether the table has a primary key', 'Whether a checkbox is selected', 'Whether a cookie is 4 KB'], 0, 'Plain PHP text usually means the server is not processing it.'),
+					q('What should you check if localhost does not load?', ['Whether Apache is started and the port is available', 'Whether htmlspecialcharacters exists', 'Whether UPDATE has a WHERE clause', 'Whether a file is binary'], 0, 'The local server must be running and reachable.'),
+					q('Which folder should not be confused with the browser URL itself?', ['htdocs', 'GET', 'POST', 'WHERE'], 0, 'htdocs is a disk folder; localhost is how the browser reaches it.'),
+					q('What is the basic run sequence for a PHP file in XAMPP?', ['Start Apache, save .php in htdocs, open localhost path', 'Open SQL first, delete cookies, then use file://', 'Write CSS, close Apache, open Downloads', 'Hash password, drop table, read CSV'], 0, 'That is the addendum’s practical flow.'),
+					q('What is the best reason to test PHP locally before publishing?', ['You can safely develop and debug server-side behavior on your machine', 'It removes the need for validation', 'It guarantees perfect security', 'It makes forms client-side only'], 0, 'Local testing lets you iterate before deployment.'),
+					q('Which component would process mysqli examples after Apache passes PHP execution to the script?', ['MySQL for database operations', 'CSS for database operations', 'Cookies for joins', 'The reset button for rows'], 0, 'PHP connects to MySQL when database examples run.'),
+					q('Which file path concept matters for include files and uploads in local projects?', ['The server-side project directory', 'Only the browser title', 'Only a SQL alias', 'Only the form label'], 0, 'Server-side scripts operate relative to project paths.'),
+					q('Which security habit still matters when running locally?', ['Validate input and escape output', 'Skip password hashing because it is localhost', 'Use raw SQL values because it is a class exercise', 'Disable all error checking'], 0, 'Local code should still practice production-safe patterns.'),
+					q('Why should PHP files be opened through Apache instead of Finder or File Explorer?', ['Apache invokes PHP so server-side code runs', 'Finder creates SQL indexes', 'File Explorer starts sessions', 'The browser cannot display HTML'], 0, 'The server processes PHP before sending HTML to the browser.'),
+					q('What is the output type ultimately sent to the browser after PHP executes?', ['HTML/text response', 'Raw PHP bytecode only', 'A MySQL service', 'A folder handle'], 0, 'PHP generates a response, commonly HTML.'),
+					q('Which addendum mistake would prevent code from running as PHP?', ['Saving the file as test.html instead of test.php', 'Using an h1 tag', 'Starting Apache', 'Opening localhost'], 0, 'A .php extension tells the server to process PHP code.'),
+					q('What should you do after changing a PHP file?', ['Refresh the localhost page to run the latest saved version', 'Reinstall XAMPP every time', 'Drop the database always', 'Delete htdocs'], 0, 'Save the file and refresh the served page.'),
+					q('Which browser address is most likely wrong for a file inside htdocs/Demo/test.php?', ['file:///Users/rix/htdocs/Demo/test.php', 'http://localhost/Demo/test.php', 'http://127.0.0.1/Demo/test.php', 'http://localhost:80/Demo/test.php'], 0, 'file:// opens the file directly instead of asking Apache/PHP to process it.'),
+					q('How does XAMPP relate to the rest of the module?', ['It provides the local environment to run forms, sessions, files, and database examples', 'It replaces PHP syntax', 'It is only for CSS colors', 'It is a SQL command'], 0, 'The addendum supports the practical execution of earlier topics.'),
+					q('Which option best summarizes the addendum?', ['Install/start XAMPP, place PHP in htdocs, and run it through localhost', 'Only write SQL joins', 'Only validate uploaded images', 'Only delete cookies'], 0, 'That is the addendum’s core workflow.'),
+				],
+			},
+		];
+
+		quizChapters.forEach((chapter) => {
+			chapter.questions.forEach((question, index) => {
+				question.id = `${chapter.id}-q${String(index + 1).padStart(2, '0')}`;
+				question.chapterId = chapter.id;
+			});
+		});
+
+		const quizQuestionMap = new Map(
+			quizChapters.flatMap((chapter) => chapter.questions.map((question) => [question.id, question])),
+		);
+		let quizState = loadQuizState();
+
+		function escapeHtml(value) {
+			return String(value)
+				.replace(/&/g, '&amp;')
+				.replace(/</g, '&lt;')
+				.replace(/>/g, '&gt;')
+				.replace(/"/g, '&quot;')
+				.replace(/'/g, '&#039;');
+		}
+
+		function loadQuizState() {
+			try {
+				const parsed = JSON.parse(localStorage.getItem(quizStorageKey));
+				if (parsed && typeof parsed === 'object') return parsed;
+			} catch (error) {
+				localStorage.removeItem(quizStorageKey);
+			}
+			return { current: null, attempts: [] };
+		}
+
+		function saveQuizState() {
+			localStorage.setItem(quizStorageKey, JSON.stringify(quizState));
+		}
+
+		function shuffle(items) {
+			const copy = [...items];
+			for (let index = copy.length - 1; index > 0; index -= 1) {
+				const swapIndex = Math.floor(Math.random() * (index + 1));
+				[copy[index], copy[swapIndex]] = [copy[swapIndex], copy[index]];
+			}
+			return copy;
+		}
+
+		function renderQuizControls() {
+			quizCounts.innerHTML = quizChapters.map((chapter) => `
+				<label>
+					<span>${escapeHtml(chapter.short)}</span>
+					<input type="number" min="0" max="40" value="5" data-quiz-count="${chapter.id}" aria-label="${escapeHtml(chapter.title)} question count">
+				</label>
+			`).join('');
+		}
+
+		function getRequestedCounts() {
+			return quizChapters.map((chapter) => {
+				const input = quizCounts.querySelector(`[data-quiz-count="${chapter.id}"]`);
+				const requested = Number.parseInt(input.value, 10);
+				const count = Number.isFinite(requested) ? Math.min(40, Math.max(0, requested)) : 0;
+				input.value = String(count);
+				return { chapter, count };
+			});
+		}
+
+		function buildQuiz() {
+			const selected = getRequestedCounts();
+			const questionRefs = selected.flatMap(({ chapter, count }) =>
+				shuffle(chapter.questions).slice(0, count).map((question) => question.id),
+			);
+
+			if (!questionRefs.length) {
+				quizSummary.innerHTML = '<strong>No questions selected.</strong> Set at least one topic count above 0 to start a quiz.';
+				return;
+			}
+
+			quizState.current = {
+				createdAt: new Date().toISOString(),
+				questionRefs: shuffle(questionRefs),
+				answers: {},
+				submitted: false,
+				score: null,
+			};
+			saveQuizState();
+			renderQuiz();
+		}
+
+		function restartQuiz() {
+			if (!quizState.current) return;
+			quizState.current.answers = {};
+			quizState.current.submitted = false;
+			quizState.current.score = null;
+			saveQuizState();
+			renderQuiz();
+		}
+
+		function clearQuizProgress() {
+			if (!window.confirm('Clear saved quiz progress and marks for this browser?')) return;
+			quizState = { current: null, attempts: [] };
+			localStorage.removeItem(quizStorageKey);
+			renderQuiz();
+		}
+
+		function scoreCurrentQuiz() {
+			const totals = new Map(quizChapters.map((chapter) => [chapter.id, {
+				title: chapter.short,
+				correct: 0,
+				total: 0,
+			}]));
+			let correct = 0;
+
+			quizState.current.questionRefs.forEach((id) => {
+				const question = quizQuestionMap.get(id);
+				const picked = quizState.current.answers[id];
+				const chapterScore = totals.get(question.chapterId);
+				chapterScore.total += 1;
+				if (picked === question.answer) {
+					correct += 1;
+					chapterScore.correct += 1;
+				}
+			});
+
+			return {
+				correct,
+				total: quizState.current.questionRefs.length,
+				byChapter: Array.from(totals.values()).filter((item) => item.total > 0),
+			};
+		}
+
+		function submitQuiz() {
+			if (!quizState.current || quizState.current.submitted) return;
+			const score = scoreCurrentQuiz();
+			quizState.current.submitted = true;
+			quizState.current.score = score;
+			quizState.attempts = [
+				{
+					completedAt: new Date().toISOString(),
+					score,
+				},
+				...(quizState.attempts || []),
+			].slice(0, 20);
+			saveQuizState();
+			renderQuiz();
+		}
+
+		function renderSummary() {
+			if (!quizState.current) {
+				quizSummary.innerHTML = `
+					<strong>No active quiz yet.</strong>
+					<div class="quiz-meta"><span>Bank size: 200 questions</span><span>40 per topic</span><span>Stored locally</span></div>
+				`;
+				return;
+			}
+
+			const answered = Object.keys(quizState.current.answers).length;
+			const total = quizState.current.questionRefs.length;
+			const score = quizState.current.score;
+			const created = new Date(quizState.current.createdAt).toLocaleString();
+			const scoreHtml = score ? `<div class="quiz-score-row">${score.byChapter.map((item) =>
+				`<span>${escapeHtml(item.title)}: ${item.correct}/${item.total}</span>`,
+			).join('')}</div>` : '';
+
+			quizSummary.innerHTML = `
+				<strong>${quizState.current.submitted ? 'Quiz submitted.' : 'Active quiz in progress.'}</strong>
+				<div class="quiz-meta">
+					<span>Started: ${escapeHtml(created)}</span>
+					<span>Answered: ${answered}/${total}</span>
+					${score ? `<span>Mark: ${score.correct}/${score.total} (${Math.round((score.correct / score.total) * 100)}%)</span>` : ''}
+				</div>
+				${scoreHtml}
+			`;
+		}
+
+		function renderQuestions() {
+			if (!quizState.current) {
+				quizQuestions.innerHTML = '';
+				quizSubmit.disabled = true;
+				return;
+			}
+
+			const submitted = quizState.current.submitted;
+			quizSubmit.disabled = submitted;
+			quizSubmit.textContent = submitted ? 'Quiz Submitted' : 'Submit Quiz';
+			quizQuestions.innerHTML = quizState.current.questionRefs.map((id, index) => {
+				const question = quizQuestionMap.get(id);
+				const chapter = quizChapters.find((item) => item.id === question.chapterId);
+				const picked = quizState.current.answers[id];
+				const isCorrect = picked === question.answer;
+				const feedback = submitted ? `
+					<div class="quiz-feedback ${isCorrect ? '' : 'is-wrong'}">
+						<strong>${isCorrect ? 'Correct.' : `Correct answer: ${String.fromCharCode(65 + question.answer)}.`}</strong>
+						${escapeHtml(question.explanation)}
+					</div>
+				` : '';
+				const code = question.code ? `<pre><code>${escapeHtml(question.code)}</code></pre>` : '';
+				const options = question.options.map((option, optionIndex) => {
+					const selected = picked === optionIndex;
+					const correctnessClass = submitted && optionIndex === question.answer ? ' is-correct'
+						: submitted && selected && optionIndex !== question.answer ? ' is-wrong'
+						: selected ? ' is-selected' : '';
+					return `
+						<button type="button" class="quiz-option${correctnessClass}" data-question="${question.id}" data-answer="${optionIndex}" ${submitted ? 'disabled' : ''}>
+							<span class="quiz-letter">${String.fromCharCode(65 + optionIndex)}</span>
+							<span>${escapeHtml(option)}</span>
+						</button>
+					`;
+				}).join('');
+
+				return `
+					<article class="quiz-question">
+						<h3>${index + 1}. ${escapeHtml(chapter.short)}: ${escapeHtml(question.prompt)}</h3>
+						${code}
+						<div class="quiz-options">${options}</div>
+						${feedback}
+					</article>
+				`;
+			}).join('');
+		}
+
+		function renderHistory() {
+			const attempts = quizState.attempts || [];
+			if (!attempts.length) {
+				quizHistory.innerHTML = '<h3>Saved Marks</h3><p>No submitted quiz attempts yet.</p>';
+				return;
+			}
+			quizHistory.innerHTML = `
+				<h3>Saved Marks</h3>
+				<ol>
+					${attempts.map((attempt) => {
+						const date = new Date(attempt.completedAt).toLocaleString();
+						const pct = Math.round((attempt.score.correct / attempt.score.total) * 100);
+						const chapters = attempt.score.byChapter.map((item) => `${item.title} ${item.correct}/${item.total}`).join(', ');
+						return `<li><strong>${attempt.score.correct}/${attempt.score.total} (${pct}%)</strong> - ${escapeHtml(date)}<br><span>${escapeHtml(chapters)}</span></li>`;
+					}).join('')}
+				</ol>
+			`;
+		}
+
+		function renderQuiz() {
+			renderSummary();
+			renderQuestions();
+			renderHistory();
+			quizRestart.disabled = !quizState.current;
+		}
 
 		function setMenu(open) {
 			body.classList.toggle('menu-open', open);
@@ -1582,6 +2300,19 @@ echo "&lt;h1&gt;My Name is Derek&lt;/h1&gt;";
 			target.addEventListener('click', () => setMenu(false));
 		});
 
+		quizStart.addEventListener('click', buildQuiz);
+		quizRestart.addEventListener('click', restartQuiz);
+		quizClear.addEventListener('click', clearQuizProgress);
+		quizSubmit.addEventListener('click', submitQuiz);
+
+		quizQuestions.addEventListener('click', (event) => {
+			const option = event.target.closest('[data-question][data-answer]');
+			if (!option || !quizState.current || quizState.current.submitted) return;
+			quizState.current.answers[option.dataset.question] = Number.parseInt(option.dataset.answer, 10);
+			saveQuizState();
+			renderQuiz();
+		});
+
 		document.querySelectorAll('a[href^="#"]').forEach((link) => {
 			link.addEventListener('click', () => {
 				const target = document.querySelector(link.getAttribute('href'));
@@ -1605,6 +2336,8 @@ echo "&lt;h1&gt;My Name is Derek&lt;/h1&gt;";
 
 		window.addEventListener('resize', updateActiveFromScroll);
 
+		renderQuizControls();
+		renderQuiz();
 		updateProgress();
 		updateActiveFromScroll();
 	</script>
