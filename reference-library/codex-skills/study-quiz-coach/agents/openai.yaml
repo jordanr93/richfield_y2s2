@@ -1,0 +1,4 @@
+interface:
+  display_name: "Study Quiz Coach"
+  short_description: "Run source-grounded study quizzes"
+  default_prompt: "Use $study-quiz-coach to quiz me one question at a time from my study-guide Markdown."

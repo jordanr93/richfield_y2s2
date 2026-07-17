@@ -7,6 +7,10 @@ This repository contains a searchable Markdown reference library generated from 
 - `AGENTS.md` - guidance for future Codex sessions.
 - `README.md` - this maintenance and usage guide.
 - `HOW_TO_USE_THIS_LIBRARY.md` - practical guide for studying, searching, tracing sources, and prompting Codex with this knowledge base.
+- `QUIZ_TOOL.md` - guide for using the `$study-quiz-coach` skill with this reference library.
+- `INSTALL_QUIZ_SKILL.md` - steps for installing the bundled quiz skill into another user's Codex setup.
+- `QUIZ_PROMPT_TEMPLATE.md` - copy-paste quiz prompt for users who do not have Codex skills available.
+- `codex-skills/study-quiz-coach/` - shareable source copy of the Codex quiz skill.
 - `originals/` - unchanged source PDFs.
 - `documents/<document-name>/metadata.yaml` - document-level metadata.
 - `documents/<document-name>/summary.md` - structural summary and limitations.
@@ -27,6 +31,12 @@ Section filenames are based on the original headings and prefixed with the sourc
 ## Search Recommendations
 
 Start with `indexes/topics.md` for concept lookup, then open the linked section and verify the PDF/printed page span in the front matter. Use `document-map.csv` for spreadsheet-style filtering by document, chapter, keyword, or page span.
+
+## Quiz Tool
+
+Use `$study-quiz-coach` when you want Codex to quiz you from this Markdown/PDF library. See `QUIZ_TOOL.md` for prompt templates, examples, source paths, and marking expectations.
+
+To share the quiz workflow with someone else, give them this repository and point them to `INSTALL_QUIZ_SKILL.md`. If they cannot install Codex skills, use `QUIZ_PROMPT_TEMPLATE.md` as the fallback.
 
 ## Maintenance
 

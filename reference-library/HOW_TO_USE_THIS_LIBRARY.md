@@ -26,6 +26,9 @@ The main folder is `reference-library/`.
 | `indexes/document-map.csv` | Spreadsheet-like map of every section, page span, keywords, and file path. |
 | `knowledge-graph.md` | Big-picture module and concept map. Good when you feel lost. |
 | `extraction-report.md` | Build report and consistency notes. |
+| `codex-skills/study-quiz-coach/` | Shareable Codex skill for source-grounded one-question-at-a-time quizzes. |
+| `INSTALL_QUIZ_SKILL.md` | Setup guide for installing the quiz skill on another machine. |
+| `QUIZ_PROMPT_TEMPLATE.md` | Copy-paste prompt for people who cannot use Codex skills. |
 
 There are five module folders:
 
@@ -44,7 +47,7 @@ There are five module folders:
 | Compare a concept across modules | `indexes/master-index.md` |
 | Pull definitions for revision cards | `indexes/definitions.md` |
 | Find standards, policies, frameworks, or legislation | `indexes/legislation-and-policies.md` |
-| Build a quiz or practice test | Review-question sections in `documents/<module>/sections/`, then nearby topic sections |
+| Build a quiz or practice test | `QUIZ_TOOL.md`, then review-question sections in `documents/<module>/sections/` |
 | Confirm a quoted answer | The section front matter, then the matching PDF page in `originals/` |
 | Ask Codex to build or update study pages | Give Codex the module folder, relevant sections, and expected output style |
 
@@ -179,10 +182,14 @@ Use the study guide as the source of truth, include examples, and mention the PD
 ### For A Quiz
 
 ```text
-Build 25 multiple-choice questions from Internet Programming Topic 2.
-Use the review questions and the related topic sections.
-Include code snippets where useful, mark the correct answer, and explain each answer.
+Use $study-quiz-coach to quiz me on Internet Programming 622 Topic 2.
+Ask 10 multiple-choice questions, one at a time.
+Make them progressively harder.
+Use the review questions and related topic sections.
+Include code snippets where useful and cite the source after marking.
 ```
+
+For more quiz templates, see `reference-library/QUIZ_TOOL.md`. To share the quiz setup with someone else, send them `reference-library/INSTALL_QUIZ_SKILL.md`. If they cannot install skills, send `reference-library/QUIZ_PROMPT_TEMPLATE.md`.
 
 ### For Exam Prep
 
@@ -215,6 +222,8 @@ Use the material in cycles:
 4. **Practise:** Use review questions and ask Codex to generate MCQs, short-answer prompts, or coding tasks.
 5. **Check:** Trace uncertain answers back to the PDF page span.
 6. **Repeat:** Convert wrong answers into a new mini-drill.
+
+For conversational practice, use `$study-quiz-coach`. For a fixed browser quiz with saved marks, use the embedded quiz inside the relevant module page when one exists. For people outside your Codex setup, install the bundled skill from `codex-skills/study-quiz-coach/` or use `QUIZ_PROMPT_TEMPLATE.md`.
 
 ## Recommended Study Patterns
 
