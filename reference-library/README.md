@@ -6,6 +6,7 @@ This repository contains a searchable Markdown reference library generated from 
 
 - `AGENTS.md` - guidance for future Codex sessions.
 - `README.md` - this maintenance and usage guide.
+- `HOW_TO_USE_THIS_LIBRARY.md` - practical guide for studying, searching, tracing sources, and prompting Codex with this knowledge base.
 - `originals/` - unchanged source PDFs.
 - `documents/<document-name>/metadata.yaml` - document-level metadata.
 - `documents/<document-name>/summary.md` - structural summary and limitations.
