@@ -520,6 +520,60 @@
 			color: var(--green);
 		}
 
+		.chapter-tools {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.45rem;
+			margin: 0 0 1rem;
+		}
+
+		.chapter-card.wide {
+			grid-column: 1 / -1;
+		}
+
+		.glossary-card summary {
+			cursor: pointer;
+			color: var(--cyan);
+			font-weight: 800;
+		}
+
+		.glossary-card summary::-webkit-details-marker {
+			display: none;
+		}
+
+		.glossary-card summary span {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.45rem;
+		}
+
+		.glossary-card summary::after {
+			content: "+";
+			float: right;
+			color: var(--muted);
+			font-weight: 900;
+		}
+
+		.glossary-card[open] summary::after {
+			content: "-";
+		}
+
+		.glossary-list {
+			display: grid;
+			grid-template-columns: minmax(160px, 0.7fr) minmax(0, 1.8fr);
+			gap: 0.45rem 0.9rem;
+			margin: 0.85rem 0 0;
+		}
+
+		.glossary-list dt,
+		.glossary-list dd {
+			margin: 0;
+		}
+
+		.glossary-list dd {
+			color: var(--muted);
+		}
+
 		.back-link {
 			margin-top: 1rem;
 		}
@@ -816,6 +870,7 @@
 			.chapter-grid,
 			.function-list,
 			.flow,
+			.glossary-list,
 			.quiz-counts {
 				grid-template-columns: 1fr;
 			}
@@ -833,8 +888,9 @@
 			}
 		}
 	</style>
+	<link rel="stylesheet" href="module-theme.css">
 </head>
-<body>
+<body class="module-page module-internet-programming" style="--module-accent: var(--red); --module-accent-soft: rgba(248, 81, 73, 0.14); --module-accent-border: rgba(248, 81, 73, 0.5);">
 	<a class="skip-link" href="#main-content">Skip to main content</a>
 	<div class="progress" aria-hidden="true"><span id="scroll-progress"></span></div>
 	<button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false">Menu</button>
@@ -849,6 +905,15 @@
 		<div class="nav-group">
 			<h2>Site</h2>
 			<a href="index.html">Home</a>
+		</div>
+
+		<div class="module-rail" aria-label="Module connector">
+			<h2>Modules</h2>
+			<a href="programming_guide.html" style="--module-color: var(--green);">PRG622 · Programming</a>
+			<a href="information_systems_guide.html" style="--module-color: var(--purple);">IS622 · Information Systems</a>
+			<a href="internet_programming_guide.html" aria-current="page" style="--module-color: var(--red);">IP622 · Internet Programming</a>
+			<a href="machine_learning_guide.html" style="--module-color: var(--cyan);">ML600 · Machine Learning</a>
+			<a href="big_data_IOT_guide.html" style="--module-color: var(--amber);">BDIOT600 · Big Data &amp; IoT</a>
 		</div>
 
 		<div class="nav-group">
@@ -877,6 +942,7 @@
 	<main id="main-content">
 		<header class="hero">
 			<div class="hero-inner">
+				<div class="module-identity">IP622 · Internet Programming 622</div>
 				<p class="eyebrow">One-page revision site</p>
 				<h1>Internet Programming 622 Study Hub</h1>
 				<p>A dark, readable study page for the supplied guide: PHP forms, request handling, cookies, sessions, file operations, SQL, MySQL connections, and local XAMPP execution.</p>
@@ -1076,6 +1142,14 @@
 				<section id="chapter-1" class="chapter" data-nav-section>
 					<h2>Topic 1: PHP and HTML Forms</h2>
 					<p>Forms are the bridge between browser input and PHP processing. The guide moves from basic form structure to request methods, superglobals, security, empty field handling, dynamic forms, and validation.</p>
+					<div class="chapter-tools">
+						<span class="chip">form action</span>
+						<span class="chip">GET and POST</span>
+						<span class="chip">superglobals</span>
+						<span class="chip">empty controls</span>
+						<span class="chip">XSS prevention</span>
+						<span class="chip">validation helpers</span>
+					</div>
 					<div class="chapter-grid">
 						<article class="card chapter-card definition" id="ch1-1-form-basics">
 							<h3>1.1 How HTML Forms Work</h3>
@@ -1204,12 +1278,205 @@ foreach (["name", "email", "age"] as $field) {
 							<div class="callout warning"><strong>Revision task:</strong> Practise validating name, email, and age, then extend the same idea to login forms, multi-select lists, and file uploads.</div>
 						</article>
 					</div>
+					<div class="chapter-grid">
+						<article class="card chapter-card wide pattern" id="ch1-code-registration-handler">
+							<h3>Topic 1 Extended Code Example: Widget Club Form Handler</h3>
+							<p>This example follows the guide's <code>registration.html</code> and <code>process_registration.php</code> idea, but it applies the later security and empty-field rules so the revision version is safer than the first teaching example.</p>
+							<pre><code>&lt;?php
+// process_registration.php
+// This script receives the Widget Club form through method="post".
+// Every key below must match a form control's name attribute.
+
+$requiredFields = ["firstName", "lastName", "password1", "password2", "gender"];
+$missingFields = [];
+
+foreach ($requiredFields as $fieldName) {
+	// empty() catches fields that exist but contain an empty string.
+	// It is useful for required text and password fields.
+	if (empty($_POST[$fieldName])) {
+		$missingFields[] = $fieldName;
+	}
+}
+
+// The newsletter checkbox is optional, so it may not exist in $_POST.
+// isset() avoids an undefined index notice when the box was not ticked.
+$newsletter = isset($_POST["newsletter"]) ? "yes" : "no";
+
+// Escape output before displaying submitted text in HTML.
+$firstName = htmlspecialchars($_POST["firstName"] ?? "");
+$lastName = htmlspecialchars($_POST["lastName"] ?? "");
+$favoriteWidget = htmlspecialchars($_POST["favoriteWidget"] ?? "");
+$comments = htmlspecialchars($_POST["comments"] ?? "");
+
+if ($missingFields) {
+	echo "&lt;h1&gt;Please complete the required fields&lt;/h1&gt;";
+	echo "&lt;p&gt;Missing: " . htmlspecialchars(implode(", ", $missingFields)) . "&lt;/p&gt;";
+	exit;
+}
+
+echo "&lt;h1&gt;Thank You&lt;/h1&gt;";
+echo "&lt;dl&gt;";
+echo "&lt;dt&gt;First name&lt;/dt&gt;&lt;dd&gt;$firstName&lt;/dd&gt;";
+echo "&lt;dt&gt;Last name&lt;/dt&gt;&lt;dd&gt;$lastName&lt;/dd&gt;";
+echo "&lt;dt&gt;Gender&lt;/dt&gt;&lt;dd&gt;" . htmlspecialchars($_POST["gender"]) . "&lt;/dd&gt;";
+echo "&lt;dt&gt;Favorite widget&lt;/dt&gt;&lt;dd&gt;$favoriteWidget&lt;/dd&gt;";
+echo "&lt;dt&gt;Newsletter&lt;/dt&gt;&lt;dd&gt;$newsletter&lt;/dd&gt;";
+echo "&lt;dt&gt;Comments&lt;/dt&gt;&lt;dd&gt;$comments&lt;/dd&gt;";
+echo "&lt;/dl&gt;";
+
+// Exam trap: the guide's first handler printed the submitted password.
+// A secure revision answer should never display password values back to the user.
+?&gt;</code></pre>
+						</article>
+
+						<article class="card chapter-card wide warning" id="ch1-code-validated-reusable-form">
+							<h3>Topic 1 Extended Code Example: Redisplay A Form With Validation</h3>
+							<p>The guide's generated-form section names helpers such as <code>processForm()</code>, <code>displayForm()</code>, <code>setValue()</code>, <code>setChecked()</code>, <code>setSelected()</code>, and <code>validateField()</code>. This compact version shows how those functions fit together.</p>
+							<pre><code>&lt;?php
+// Single-page PHP form: first display, failed redisplay, and success display.
+
+$requiredFields = ["name", "email", "age", "gender"];
+
+function safe($value) {
+	return htmlspecialchars($value ?? "", ENT_QUOTES);
+}
+
+function setValue($fieldName) {
+	// Keeps typed values when the form is redisplayed after an error.
+	echo safe($_POST[$fieldName] ?? "");
+}
+
+function setChecked($fieldName, $fieldValue) {
+	// Keeps radio buttons or checkboxes selected after redisplay.
+	if (isset($_POST[$fieldName]) &amp;&amp; $_POST[$fieldName] === $fieldValue) {
+		echo " checked";
+	}
+}
+
+function validateField($fieldName, $missingFields) {
+	// Adds an error class to a label when the field is missing.
+	echo in_array($fieldName, $missingFields, true) ? " class=\"error\"" : "";
+}
+
+function processForm($requiredFields) {
+	$missingFields = [];
+
+	foreach ($requiredFields as $fieldName) {
+		if (empty($_POST[$fieldName])) {
+			$missingFields[] = $fieldName;
+		}
+	}
+
+	if (!empty($_POST["email"]) &amp;&amp; !filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+		$missingFields[] = "email format";
+	}
+
+	if (!empty($_POST["age"]) &amp;&amp; ($_POST["age"] &lt; 18 || $_POST["age"] &gt; 60)) {
+		$missingFields[] = "age range";
+	}
+
+	return $missingFields;
+}
+
+$missingFields = $_SERVER["REQUEST_METHOD"] === "POST" ? processForm($requiredFields) : [];
+
+if ($_SERVER["REQUEST_METHOD"] === "POST" &amp;&amp; !$missingFields) {
+	echo "&lt;h1&gt;Thanks, " . safe($_POST["name"]) . "&lt;/h1&gt;";
+	echo "&lt;p&gt;Your submitted details passed validation.&lt;/p&gt;";
+} else {
+?&gt;
+&lt;form action="&lt;?= safe($_SERVER["PHP_SELF"]) ?&gt;" method="post"&gt;
+	&lt;label&lt;?php validateField("name", $missingFields); ?&gt;&gt;Name&lt;/label&gt;
+	&lt;input type="text" name="name" value="&lt;?php setValue("name"); ?&gt;"&gt;
+
+	&lt;label&lt;?php validateField("email", $missingFields); ?&gt;&gt;Email&lt;/label&gt;
+	&lt;input type="email" name="email" value="&lt;?php setValue("email"); ?&gt;"&gt;
+
+	&lt;label&lt;?php validateField("age", $missingFields); ?&gt;&gt;Age&lt;/label&gt;
+	&lt;input type="number" name="age" min="18" max="60" value="&lt;?php setValue("age"); ?&gt;"&gt;
+
+	&lt;label&gt;&lt;input type="radio" name="gender" value="F"&lt;?php setChecked("gender", "F"); ?&gt;&gt; Female&lt;/label&gt;
+	&lt;label&gt;&lt;input type="radio" name="gender" value="M"&lt;?php setChecked("gender", "M"); ?&gt;&gt; Male&lt;/label&gt;
+
+	&lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+&lt;?php } ?&gt;</code></pre>
+						</article>
+
+						<details class="card chapter-card wide architecture glossary-card" id="ch1-glossary">
+							<summary><span>Topic 1 Glossary: Forms, Request Data And Validation</span></summary>
+							<dl class="glossary-list">
+								<dt><code>&lt;form&gt;</code></dt>
+								<dd>The HTML element that groups form controls and defines how submitted data is sent.</dd>
+								<dt><code>action</code></dt>
+								<dd>The form attribute that names the page or script that receives the submitted data.</dd>
+								<dt><code>method</code></dt>
+								<dd>The form attribute that chooses the HTTP submission method, usually <code>get</code> or <code>post</code>.</dd>
+								<dt><code>GET</code></dt>
+								<dd>A request method that sends field names and values in the URL query string.</dd>
+								<dt><code>POST</code></dt>
+								<dd>A request method that sends form data in the request body and supports larger submissions.</dd>
+								<dt><code>name</code></dt>
+								<dd>The form-control attribute PHP uses as the key in <code>$_GET</code> or <code>$_POST</code>.</dd>
+								<dt><code>value</code></dt>
+								<dd>The submitted value paired with a form control's <code>name</code>.</dd>
+								<dt><code>$_GET</code></dt>
+								<dd>The PHP superglobal array containing values submitted with the GET method.</dd>
+								<dt><code>$_POST</code></dt>
+								<dd>The PHP superglobal array containing values submitted with the POST method.</dd>
+								<dt><code>$_REQUEST</code></dt>
+								<dd>A combined request array that can include <code>$_GET</code>, <code>$_POST</code>, and <code>$_COOKIE</code>; useful but less precise.</dd>
+								<dt><code>superglobal</code></dt>
+								<dd>A built-in PHP variable available in any scope, including inside functions.</dd>
+								<dt><code>htmlspecialchars()</code></dt>
+								<dd>Converts special HTML characters to entities so submitted text is safer to display.</dd>
+								<dt><code>filter_var()</code></dt>
+								<dd>A PHP validation/filtering function used in the guide with <code>FILTER_VALIDATE_EMAIL</code>.</dd>
+								<dt><code>isset()</code></dt>
+								<dd>Checks whether a submitted key exists before the script reads it.</dd>
+								<dt><code>empty()</code></dt>
+								<dd>Checks whether a submitted value is absent, blank, or otherwise empty.</dd>
+								<dt><code>array_key_exists()</code></dt>
+								<dd>Alternative key-existence check mentioned for avoiding undefined index notices.</dd>
+								<dt><code>Undefined index</code></dt>
+								<dd>A PHP notice caused by trying to read a field that was not submitted.</dd>
+								<dt><code>XSS</code></dt>
+								<dd>Cross-site scripting; a risk when user-submitted HTML or JavaScript is displayed as executable page content.</dd>
+								<dt><code>setValue()</code></dt>
+								<dd>A helper pattern that repopulates a text field after validation fails.</dd>
+								<dt><code>setChecked()</code></dt>
+								<dd>A helper pattern that keeps a checkbox or radio option selected after form redisplay.</dd>
+								<dt><code>setSelected()</code></dt>
+								<dd>A helper pattern that keeps the correct <code>&lt;option&gt;</code> selected in a dropdown.</dd>
+								<dt><code>validateField()</code></dt>
+								<dd>A helper pattern that marks missing fields with an error style.</dd>
+								<dt><code>password_hash()</code></dt>
+								<dd>Review-question function for storing passwords as hashes instead of plain text.</dd>
+								<dt><code>password_verify()</code></dt>
+								<dd>Review-question function for checking a typed password against a stored hash.</dd>
+								<dt><code>prepared statements</code></dt>
+								<dd>Review-question security technique for reducing SQL injection risk in login code.</dd>
+								<dt><code>$_FILES</code></dt>
+								<dd>The PHP superglobal used for uploaded file information in the file-upload exercise.</dd>
+								<dt><code>move_uploaded_file()</code></dt>
+								<dd>The PHP function used to move an uploaded file into a chosen folder such as <code>uploads/</code>.</dd>
+							</dl>
+						</details>
+					</div>
 					<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
 				</section>
 
 				<section id="chapter-2" class="chapter" data-nav-section>
 					<h2>Topic 2: Session Controls and Cookies</h2>
 					<p>This topic explains how PHP remembers information between requests. The key idea is state: HTTP forgets, while query strings, cookies, and sessions help applications remember.</p>
+					<div class="chapter-tools">
+						<span class="chip">stateless HTTP</span>
+						<span class="chip">query strings</span>
+						<span class="chip">setcookie()</span>
+						<span class="chip">PHPSESSID</span>
+						<span class="chip">session_start()</span>
+						<span class="chip">logout flow</span>
+					</div>
 					<div class="chapter-grid">
 						<article class="card chapter-card architecture" id="ch2-1-stateless-http">
 							<h3>2.1 Stateless HTTP</h3>
@@ -1313,12 +1580,172 @@ $background = $_COOKIE["bgcolor"] ?? $_POST["bgcolor"] ?? "gray";</code></pre>
 							</ul>
 						</article>
 					</div>
+					<div class="chapter-grid">
+						<article class="card chapter-card wide pattern" id="ch2-code-cookie-preferences">
+							<h3>Topic 2 Extended Code Example: Cookie-Based Colour Preferences</h3>
+							<p>This example follows the guide's <code>prefs.php</code>, <code>prefs_demo.php</code>, and <code>save_state.php</code> colour-preference pattern. The important revision point is that <code>setcookie()</code> sends an HTTP header, so it must run before normal page output.</p>
+							<pre><code>&lt;?php
+// save_state.php
+// Cookies preserve small browser-side values between visits.
+// The guide uses background colour as a simple preference example.
+
+$validColours = [
+	"gray" =&gt; "#808080",
+	"white" =&gt; "#ffffff",
+	"black" =&gt; "#000000",
+	"blue" =&gt; "#0000ff",
+	"green" =&gt; "#008000",
+];
+
+if (isset($_POST["bgcolor"]) &amp;&amp; array_key_exists($_POST["bgcolor"], $validColours)) {
+	// Store the chosen colour for one week.
+	// time() returns the current UNIX timestamp.
+	setcookie("bgcolor", $_POST["bgcolor"], time() + (60 * 60 * 24 * 7));
+	$backgroundName = $_POST["bgcolor"];
+} elseif (isset($_COOKIE["bgcolor"]) &amp;&amp; array_key_exists($_COOKIE["bgcolor"], $validColours)) {
+	// On a later visit, the browser sends the cookie back to PHP.
+	$backgroundName = $_COOKIE["bgcolor"];
+} else {
+	$backgroundName = "gray";
+}
+
+$backgroundHex = $validColours[$backgroundName];
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+	&lt;title&gt;Save It&lt;/title&gt;
+&lt;/head&gt;
+&lt;body style="background: &lt;?= htmlspecialchars($backgroundHex) ?&gt;;"&gt;
+	&lt;form action="&lt;?= htmlspecialchars($_SERVER["PHP_SELF"]) ?&gt;" method="post"&gt;
+		&lt;label&gt;Background colour&lt;/label&gt;
+		&lt;select name="bgcolor"&gt;
+			&lt;option value="gray"&gt;Gray&lt;/option&gt;
+			&lt;option value="white"&gt;White&lt;/option&gt;
+			&lt;option value="black"&gt;Black&lt;/option&gt;
+			&lt;option value="blue"&gt;Blue&lt;/option&gt;
+			&lt;option value="green"&gt;Green&lt;/option&gt;
+		&lt;/select&gt;
+		&lt;button type="submit"&gt;Save preference&lt;/button&gt;
+	&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+						</article>
+
+						<article class="card chapter-card wide architecture" id="ch2-code-session-login">
+							<h3>Topic 2 Extended Code Example: Session Login, Welcome And Logout</h3>
+							<p>The review section asks for a hardcoded login, a welcome page, and logout. These three files show the session lifecycle: start the session, store the username, read it on another page, then destroy the session.</p>
+							<pre><code>&lt;?php
+// login.php
+session_start();
+
+$validUsername = "student";
+$validPassword = "richfield";
+$error = "";
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+	if ($_POST["username"] === $validUsername &amp;&amp; $_POST["password"] === $validPassword) {
+		// Session data is stored on the server and linked to the browser by PHPSESSID.
+		$_SESSION["username"] = $_POST["username"];
+		header("Location: welcome.php");
+		exit;
+	}
+
+	$error = "Invalid username or password.";
+}
+?&gt;
+&lt;form action="login.php" method="post"&gt;
+	&lt;p&gt;&lt;?= htmlspecialchars($error) ?&gt;&lt;/p&gt;
+	&lt;input type="text" name="username" placeholder="Username"&gt;
+	&lt;input type="password" name="password" placeholder="Password"&gt;
+	&lt;button type="submit"&gt;Log in&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;?php
+// welcome.php
+session_start();
+
+if (!isset($_SESSION["username"])) {
+	header("Location: login.php");
+	exit;
+}
+
+echo "&lt;h1&gt;Welcome, " . htmlspecialchars($_SESSION["username"]) . "&lt;/h1&gt;";
+echo "&lt;p&gt;&lt;a href=\"logout.php\"&gt;Log out&lt;/a&gt;&lt;/p&gt;";
+
+// logout.php
+session_start();
+$_SESSION = [];
+session_destroy();
+header("Location: login.php");
+exit;
+?&gt;</code></pre>
+						</article>
+
+						<details class="card chapter-card wide architecture glossary-card" id="ch2-glossary">
+							<summary><span>Topic 2 Glossary: State, Cookies And Sessions</span></summary>
+							<dl class="glossary-list">
+								<dt><code>state</code></dt>
+								<dd>Stored information that connects one browser request to another.</dd>
+								<dt><code>stateless protocol</code></dt>
+								<dd>A protocol where each request is independent; the guide identifies HTTP this way.</dd>
+								<dt><code>query string</code></dt>
+								<dd>Small state data placed in the URL after the question mark.</dd>
+								<dt><code>cookie</code></dt>
+								<dd>A small string of data sent by the server, stored by the browser, and returned on later requests.</dd>
+								<dt><code>setcookie()</code></dt>
+								<dd>The PHP function that sends a cookie header to the browser.</dd>
+								<dt><code>$_COOKIE</code></dt>
+								<dd>The PHP superglobal containing cookies sent back by the browser.</dd>
+								<dt><code>expire</code></dt>
+								<dd>The cookie parameter that controls when a cookie should stop being stored.</dd>
+								<dt><code>time()</code></dt>
+								<dd>Returns the current UNIX timestamp; used in cookie expiry calculations such as <code>time() + 60 * 60 * 2</code>.</dd>
+								<dt><code>path</code></dt>
+								<dd>The cookie parameter that limits which URLs on the server receive the cookie.</dd>
+								<dt><code>domain</code></dt>
+								<dd>The cookie parameter that limits which hostnames receive the cookie.</dd>
+								<dt><code>secure</code></dt>
+								<dd>The cookie parameter that tells the browser to send the cookie only over HTTPS.</dd>
+								<dt><code>4 KB</code></dt>
+								<dd>The guide's practical cookie-size limit from the original Netscape specification.</dd>
+								<dt><code>session</code></dt>
+								<dd>Server-side persistent variables linked to a user's browser by a session ID.</dd>
+								<dt><code>session_start()</code></dt>
+								<dd>Begins or resumes a PHP session and loads values into <code>$_SESSION</code>.</dd>
+								<dt><code>$_SESSION</code></dt>
+								<dd>The PHP superglobal array used to store session variables.</dd>
+								<dt><code>session_id()</code></dt>
+								<dd>Returns the current session identifier.</dd>
+								<dt><code>session_destroy()</code></dt>
+								<dd>Destroys the session data store; useful during logout or after final form submission.</dd>
+								<dt><code>PHPSESSID</code></dt>
+								<dd>The default cookie name PHP commonly uses to carry the session ID.</dd>
+								<dt><code>--enable-trans-id</code></dt>
+								<dd>The PHP compile option mentioned for automatically rewriting links with session IDs.</dd>
+								<dt><code>URL session ID</code></dt>
+								<dd>An alternative to cookie-based session IDs, but it can expose the ID in links and logs.</dd>
+								<dt><code>user_preference</code></dt>
+								<dd>The review-question cookie name used to store a user's favourite colour.</dd>
+								<dt><code>header()</code></dt>
+								<dd>A PHP function often used in login examples to redirect after state changes.</dd>
+							</dl>
+						</details>
+					</div>
 					<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
 				</section>
 
 				<section id="chapter-3" class="chapter" data-nav-section>
 					<h2>Topic 3: File System Management</h2>
 					<p>PHP can work with files and directories on the server. This topic covers file metadata, paths, open modes, reading, writing, pointer movement, copying, deleting, directory traversal, and file-type checks.</p>
+					<div class="chapter-tools">
+						<span class="chip">file metadata</span>
+						<span class="chip">fopen modes</span>
+						<span class="chip">file handles</span>
+						<span class="chip">EOF and pointers</span>
+						<span class="chip">directory handles</span>
+						<span class="chip">CSV and counters</span>
+					</div>
 					<div class="chapter-grid">
 						<article class="card chapter-card definition" id="ch3-1-file-info">
 							<h3>3.1 Files, Directories, and Metadata</h3>
@@ -1451,12 +1878,237 @@ if ($handle) {
 							<div class="callout danger"><strong>Destructive action:</strong> <code>unlink()</code> deletes the file. Make sure the target path is correct before calling it.</div>
 						</article>
 					</div>
+					<div class="chapter-grid">
+						<article class="card chapter-card wide pattern" id="ch3-code-file-metadata-counter">
+							<h3>Topic 3 Extended Code Example: Metadata Check And Hit Counter</h3>
+							<p>This combines the guide's practical tasks for <code>example.txt</code> and the hit-counter example using <code>count.dat</code>. Notice how the script checks existence before reading and closes each file handle after use.</p>
+							<pre><code>&lt;?php
+// file_status_and_counter.php
+// Demonstrates file_exists(), filesize(), filemtime(), fopen(), fread(), fwrite(), and fclose().
+
+$exampleFile = "example.txt";
+
+if (file_exists($exampleFile)) {
+	echo "&lt;p&gt;File size: " . filesize($exampleFile) . " bytes&lt;/p&gt;";
+	echo "&lt;p&gt;Last modified: " . date("Y-m-d H:i:s", filemtime($exampleFile)) . "&lt;/p&gt;";
+} else {
+	// file_put_contents() creates or overwrites the whole file in one call.
+	file_put_contents($exampleFile, "Hello, this is a new file!");
+	echo "&lt;p&gt;example.txt was created.&lt;/p&gt;";
+}
+
+$counterFile = "counter.txt";
+
+if (!file_exists($counterFile)) {
+	// Create the counter file with an initial zero.
+	file_put_contents($counterFile, "0", LOCK_EX);
+}
+
+$handle = fopen($counterFile, "r");
+if (!$handle) {
+	die("Cannot read the counter file.");
+}
+
+// Read up to 20 characters and cast the result to an integer.
+$counter = (int) fread($handle, 20);
+fclose($handle);
+
+$counter++;
+
+$handle = fopen($counterFile, "w");
+if (!$handle) {
+	die("Cannot open the counter file for writing.");
+}
+
+// Opening with "w" erases old content, then writes the new visit count.
+fwrite($handle, (string) $counter);
+fclose($handle);
+
+echo "&lt;p&gt;You are visitor #$counter.&lt;/p&gt;";
+?&gt;</code></pre>
+						</article>
+
+						<article class="card chapter-card wide architecture" id="ch3-code-directory-and-csv">
+							<h3>Topic 3 Extended Code Example: Directory Listing And CSV Table</h3>
+							<p>The guide treats directories like file-like structures with handles, then asks for a CSV table in the review. This example shows both: create/list <code>files_dir</code>, skip <code>.</code> and <code>..</code>, then read CSV rows with <code>fgetcsv()</code>.</p>
+							<pre><code>&lt;?php
+// directory_and_csv.php
+
+$dirPath = "files_dir";
+
+if (!is_dir($dirPath)) {
+	mkdir($dirPath);
+	file_put_contents($dirPath . "/file1.txt", "First sample file");
+	file_put_contents($dirPath . "/file2.txt", "Second sample file");
+}
+
+$handle = opendir($dirPath);
+if (!$handle) {
+	die("Cannot open the directory.");
+}
+
+echo "&lt;h2&gt;Directory contents&lt;/h2&gt;&lt;ul&gt;";
+$foundEntries = false;
+
+while (($entry = readdir($handle)) !== false) {
+	if ($entry === "." || $entry === "..") {
+		continue;
+	}
+
+	$foundEntries = true;
+	$fullPath = $dirPath . "/" . $entry;
+	$type = is_dir($fullPath) ? "directory" : (is_file($fullPath) ? "file" : "other");
+
+	echo "&lt;li&gt;" . htmlspecialchars($entry) . " (" . $type . ")&lt;/li&gt;";
+}
+
+closedir($handle);
+echo $foundEntries ? "&lt;/ul&gt;" : "&lt;li&gt;Directory is empty&lt;/li&gt;&lt;/ul&gt;";
+
+$csvFile = "data.csv";
+
+if (!file_exists($csvFile)) {
+	file_put_contents($csvFile, "name,age,city\nAsha,20,Durban\nChris,24,Cape Town\n");
+}
+
+$csvHandle = fopen($csvFile, "r");
+if (!$csvHandle) {
+	die("Cannot open CSV file.");
+}
+
+echo "&lt;h2&gt;CSV data&lt;/h2&gt;&lt;table&gt;";
+
+while (($row = fgetcsv($csvHandle)) !== false) {
+	echo "&lt;tr&gt;";
+	foreach ($row as $cell) {
+		echo "&lt;td&gt;" . htmlspecialchars($cell) . "&lt;/td&gt;";
+	}
+	echo "&lt;/tr&gt;";
+}
+
+echo "&lt;/table&gt;";
+fclose($csvHandle);
+?&gt;</code></pre>
+						</article>
+
+						<details class="card chapter-card wide architecture glossary-card" id="ch3-glossary">
+							<summary><span>Topic 3 Glossary: Files, Pointers And Directories</span></summary>
+							<dl class="glossary-list">
+								<dt><code>file</code></dt>
+								<dd>An ordered sequence of stored data; the guide focuses mainly on text files.</dd>
+								<dt><code>directory</code></dt>
+								<dd>A special file that stores entries for files and subdirectories; also called a folder.</dd>
+								<dt><code>file_exists()</code></dt>
+								<dd>Returns <code>true</code> when a path exists and <code>false</code> otherwise.</dd>
+								<dt><code>filesize()</code></dt>
+								<dd>Returns the size of a file in bytes, or <code>false</code> if an error occurs.</dd>
+								<dt><code>fileatime()</code></dt>
+								<dd>Returns the last access time of a file as a UNIX timestamp.</dd>
+								<dt><code>filectime()</code></dt>
+								<dd>Returns the last changed time of a file, including creation, write, or permission changes.</dd>
+								<dt><code>filemtime()</code></dt>
+								<dd>Returns the last modified time of a file's contents.</dd>
+								<dt><code>UNIX timestamp</code></dt>
+								<dd>An integer count of seconds since midnight on January 1, 1970.</dd>
+								<dt><code>basename()</code></dt>
+								<dd>Returns the final filename or directory segment from a path; can remove a suffix.</dd>
+								<dt><code>dirname()</code></dt>
+								<dd>Returns the directory part of a full path.</dd>
+								<dt><code>fopen()</code></dt>
+								<dd>Opens a file and returns a file handle used for reading, writing, or closing.</dd>
+								<dt><code>file handle</code></dt>
+								<dd>A pointer-like value representing an open file.</dd>
+								<dt><code>r</code></dt>
+								<dd><code>fopen()</code> mode for reading an existing file from the beginning.</dd>
+								<dt><code>w</code></dt>
+								<dd><code>fopen()</code> mode for writing; creates a file or erases existing content.</dd>
+								<dt><code>a</code></dt>
+								<dd><code>fopen()</code> mode for appending new data at the end of a file.</dd>
+								<dt><code>b</code></dt>
+								<dd>Binary mode suffix that avoids operating-system line-ending conversions.</dd>
+								<dt><code>fread()</code></dt>
+								<dd>Reads a specified number of characters or bytes from an open file.</dd>
+								<dt><code>fgetc()</code></dt>
+								<dd>Reads one character at a time; useful but slow for large files.</dd>
+								<dt><code>fgets()</code></dt>
+								<dd>Reads one line from the current file pointer.</dd>
+								<dt><code>fgetcsv()</code></dt>
+								<dd>Reads one CSV row and returns its values as an array.</dd>
+								<dt><code>fwrite()</code></dt>
+								<dd>Writes a string through an open file handle and returns the number of characters written.</dd>
+								<dt><code>feof()</code></dt>
+								<dd>Returns <code>true</code> after the script has tried to read past the end of a file.</dd>
+								<dt><code>file()</code></dt>
+								<dd>Reads a whole file into an array of lines.</dd>
+								<dt><code>file_get_contents()</code></dt>
+								<dd>Reads a whole file into one string; best for smaller files.</dd>
+								<dt><code>file_put_contents()</code></dt>
+								<dd>Writes a whole string to a file without manually opening a handle.</dd>
+								<dt><code>FILE_APPEND</code></dt>
+								<dd>Flag that appends instead of overwriting in <code>file_put_contents()</code>.</dd>
+								<dt><code>LOCK_EX</code></dt>
+								<dd>Flag that locks the file during writing to reduce simultaneous write conflicts.</dd>
+								<dt><code>fpassthru()</code></dt>
+								<dd>Outputs the remaining contents of an open file directly to the browser.</dd>
+								<dt><code>readfile()</code></dt>
+								<dd>Outputs a file directly without needing a manual <code>fopen()</code>.</dd>
+								<dt><code>fseek()</code></dt>
+								<dd>Moves the file pointer to a new position.</dd>
+								<dt><code>SEEK_SET</code></dt>
+								<dd>Positions a file pointer relative to the start of the file.</dd>
+								<dt><code>SEEK_CUR</code></dt>
+								<dd>Positions a file pointer relative to the current pointer location.</dd>
+								<dt><code>SEEK_END</code></dt>
+								<dd>Positions a file pointer relative to the end of the file.</dd>
+								<dt><code>ftell()</code></dt>
+								<dd>Returns the current file pointer position.</dd>
+								<dt><code>rewind()</code></dt>
+								<dd>Moves the file pointer back to the beginning.</dd>
+								<dt><code>copy()</code></dt>
+								<dd>Copies a file from one path to another.</dd>
+								<dt><code>rename()</code></dt>
+								<dd>Renames or moves a file.</dd>
+								<dt><code>unlink()</code></dt>
+								<dd>Deletes a file from the server.</dd>
+								<dt><code>opendir()</code></dt>
+								<dd>Opens a directory and returns a directory handle.</dd>
+								<dt><code>readdir()</code></dt>
+								<dd>Reads the next entry in a directory handle.</dd>
+								<dt><code>closedir()</code></dt>
+								<dd>Closes a directory handle.</dd>
+								<dt><code>rewinddir()</code></dt>
+								<dd>Resets a directory handle to its first entry.</dd>
+								<dt><code>chdir()</code></dt>
+								<dd>Changes PHP's current working directory.</dd>
+								<dt><code>getcwd()</code></dt>
+								<dd>Returns PHP's current working directory.</dd>
+								<dt><code>mkdir()</code></dt>
+								<dd>Creates a directory.</dd>
+								<dt><code>rmdir()</code></dt>
+								<dd>Deletes an empty directory.</dd>
+								<dt><code>dir()</code></dt>
+								<dd>Creates a <code>Directory</code> object with <code>read()</code>, <code>rewind()</code>, and <code>close()</code> methods.</dd>
+								<dt><code>is_dir()</code></dt>
+								<dd>Checks whether a path is a directory.</dd>
+								<dt><code>is_file()</code></dt>
+								<dd>Checks whether a path is a regular file.</dd>
+							</dl>
+						</details>
+					</div>
 					<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
 				</section>
 
 				<section id="chapter-4" class="chapter" data-nav-section>
 					<h2>Topic 4: Databases and Structured Query Language</h2>
 					<p>This topic moves from file storage limitations to relational databases, SQL statements, and PHP-to-MySQL connection code.</p>
+					<div class="chapter-tools">
+						<span class="chip">RDBMS</span>
+						<span class="chip">embedded vs client-server</span>
+						<span class="chip">fruit table</span>
+						<span class="chip">CRUD SQL</span>
+						<span class="chip">WHERE clause</span>
+						<span class="chip">mysqli</span>
+					</div>
 					<div class="chapter-grid">
 						<article class="card chapter-card architecture" id="ch4-1-rdbms">
 							<h3>4.1 Database Architecture and RDBMS Concepts</h3>
@@ -1576,12 +2228,264 @@ GROUP BY c.CustomerID, c.Name;</code></pre>
 							</div>
 						</article>
 					</div>
+					<div class="chapter-grid">
+						<article class="card chapter-card wide pattern" id="ch4-code-fruit-database-script">
+							<h3>Topic 4 Extended Code Example: Build And Query The Fruit Database</h3>
+							<p>This complete SQL script follows the guide's <code>mydatabase</code> and <code>fruit</code> example. It shows the exam sequence: create the database, select it, create a table, insert rows, read rows, update one row, delete one row, and verify the result.</p>
+							<pre><code>-- Run these statements at the mysql &gt; prompt after logging in with:
+-- mysql -u root -p
+
+CREATE DATABASE mydatabase;
+USE mydatabase;
+
+-- The id column is the primary key.
+-- AUTO_INCREMENT lets MySQL generate id values automatically.
+CREATE TABLE fruit (
+	id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+	name VARCHAR(30) NOT NULL,
+	color VARCHAR(30) NOT NULL,
+	PRIMARY KEY (id),
+	KEY (name)
+);
+
+-- Because id is AUTO_INCREMENT, only name and color are supplied.
+INSERT INTO fruit (name, color) VALUES ('banana', 'yellow');
+INSERT INTO fruit (name, color) VALUES ('tangerine', 'orange');
+INSERT INTO fruit (name, color) VALUES ('plum', 'purple');
+
+-- SELECT * retrieves every column from every row.
+SELECT * FROM fruit;
+
+-- Selecting named columns is clearer when you do not need the whole row.
+SELECT name, color FROM fruit;
+
+-- WHERE filters the rows returned by the query.
+SELECT * FROM fruit WHERE name = 'banana';
+SELECT * FROM fruit WHERE id &gt;= 2;
+
+-- Exam trap: always use WHERE when only one row should change.
+UPDATE fruit
+SET name = 'grapefruit', color = 'yellow'
+WHERE id = 2;
+
+-- DELETE removes rows but leaves the table structure in place.
+DELETE FROM fruit WHERE id = 2;
+
+-- DROP TABLE removes the whole table and all its data permanently.
+-- DROP TABLE fruit;</code></pre>
+						</article>
+
+						<article class="card chapter-card wide architecture" id="ch4-code-mysqli-read-fruit">
+							<h3>Topic 4 Extended Code Example: Read Fruit Data From PHP</h3>
+							<p>This follows the guide's <code>get_fruit.php</code> pattern. The PHP script connects with procedural <code>mysqli</code>, checks the connection, runs <code>SELECT * FROM fruit</code>, checks the query result, escapes output, and closes the connection.</p>
+							<pre><code>&lt;?php
+// get_fruit.php
+// Assumes mydatabase and fruit were already created in MySQL.
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "mydatabase";
+
+// Create the connection to the MySQL server and selected database.
+$conn = mysqli_connect($servername, $username, $password, $database);
+
+// Connection errors should stop the script because queries cannot work without a connection.
+if (!$conn) {
+	die("Connection failed: " . mysqli_connect_error());
+}
+
+$sql = "SELECT * FROM fruit";
+$result = mysqli_query($conn, $sql);
+
+// Query errors are different from connection errors.
+// mysqli_error($conn) reports what went wrong with the SQL query.
+if (!$result) {
+	die("Query failed: " . mysqli_error($conn));
+}
+
+echo "&lt;h1&gt;Fruit&lt;/h1&gt;";
+echo "&lt;ul&gt;";
+
+while ($row = mysqli_fetch_assoc($result)) {
+	// The guide escapes name and color before putting them into HTML output.
+	echo "&lt;li&gt;A "
+		. htmlspecialchars($row["name"])
+		. " is "
+		. htmlspecialchars($row["color"])
+		. "&lt;/li&gt;";
+}
+
+echo "&lt;/ul&gt;";
+
+mysqli_close($conn);
+?&gt;</code></pre>
+						</article>
+
+						<article class="card chapter-card wide warning" id="ch4-code-ecommerce-review">
+							<h3>Topic 4 Exam-Style SQL Example: Customers And Orders</h3>
+							<p>The review questions introduce <code>Customers</code> and <code>Orders</code>. Use this as a compact worked answer for joins, grouping, table alteration, and delete order.</p>
+							<pre><code>CREATE TABLE Customers (
+	CustomerID INT PRIMARY KEY AUTO_INCREMENT,
+	Name VARCHAR(100),
+	Email VARCHAR(100) UNIQUE,
+	Country VARCHAR(50)
+);
+
+CREATE TABLE Orders (
+	OrderID INT PRIMARY KEY AUTO_INCREMENT,
+	CustomerID INT,
+	OrderDate DATE,
+	TotalAmount DECIMAL(10,2),
+	FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
+
+-- Customers who have placed at least one order.
+SELECT DISTINCT c.*
+FROM Customers c
+INNER JOIN Orders o ON c.CustomerID = o.CustomerID;
+
+-- Orders with the customer's name.
+SELECT o.OrderID, o.OrderDate, o.TotalAmount, c.Name
+FROM Orders o
+INNER JOIN Customers c ON o.CustomerID = c.CustomerID;
+
+-- Total amount spent by each customer.
+SELECT c.CustomerID, c.Name, SUM(o.TotalAmount) AS TotalSpent
+FROM Customers c
+INNER JOIN Orders o ON c.CustomerID = o.CustomerID
+GROUP BY c.CustomerID, c.Name;
+
+-- Manipulating the Customers table.
+ALTER TABLE Customers ADD PhoneNumber VARCHAR(15);
+ALTER TABLE Customers MODIFY Country VARCHAR(100);
+
+-- Insert, update, and delete John Doe.
+INSERT INTO Customers (Name, Email, Country)
+VALUES ('John Doe', 'johndoe@example.com', 'USA');
+
+UPDATE Customers
+SET Email = 'john.doe@newmail.com'
+WHERE Name = 'John Doe';
+
+-- Delete dependent orders before deleting the referenced customer.
+DELETE FROM Orders
+WHERE CustomerID = (SELECT CustomerID FROM Customers WHERE Name = 'John Doe');
+
+DELETE FROM Customers
+WHERE Name = 'John Doe';</code></pre>
+						</article>
+
+						<details class="card chapter-card wide architecture glossary-card" id="ch4-glossary">
+							<summary><span>Topic 4 Glossary: Databases, SQL And MySQL From PHP</span></summary>
+							<dl class="glossary-list">
+								<dt><code>database</code></dt>
+								<dd>Structured storage designed to organize, search, filter, update, and manage large amounts of data efficiently.</dd>
+								<dt><code>embedded database</code></dt>
+								<dd>A database engine that runs inside the application and stores data on the same machine.</dd>
+								<dt><code>client-server database</code></dt>
+								<dd>A database architecture where a database server responds to client applications, often over a network.</dd>
+								<dt><code>database model</code></dt>
+								<dd>The way data is stored, organized, and accessed.</dd>
+								<dt><code>simple database</code></dt>
+								<dd>A key-based database model similar to an associative array, with no relationships between items.</dd>
+								<dt><code>relational database</code></dt>
+								<dd>A database that organizes data in tables and connects related data through common attributes.</dd>
+								<dt><code>RDBMS</code></dt>
+								<dd>Relational Database Management System; examples in the guide include Oracle, DB2, SQL Server, and MySQL.</dd>
+								<dt><code>table</code></dt>
+								<dd>A relational structure made of rows and columns.</dd>
+								<dt><code>row</code></dt>
+								<dd>One record in a table.</dd>
+								<dt><code>record</code></dt>
+								<dd>A complete set of related values in one row.</dd>
+								<dt><code>column</code></dt>
+								<dd>A field with the same meaning for every record in a table.</dd>
+								<dt><code>field</code></dt>
+								<dd>A named item of data such as <code>name</code>, <code>color</code>, or <code>Email</code>.</dd>
+								<dt><code>primary key</code></dt>
+								<dd>A unique identifier for each row, such as <code>id</code> or <code>CustomerID</code>.</dd>
+								<dt><code>index</code></dt>
+								<dd>A separate sorted list of column values that can make searches faster.</dd>
+								<dt><code>KEY</code></dt>
+								<dd>MySQL keyword for creating an index, used in the guide as <code>KEY (name)</code>.</dd>
+								<dt><code>SQL</code></dt>
+								<dd>Structured Query Language, used to create, read, update, and delete database data and structures.</dd>
+								<dt><code>query</code></dt>
+								<dd>An SQL operation, especially one that retrieves records.</dd>
+								<dt><code>SELECT</code></dt>
+								<dd>Retrieves rows from one or more tables.</dd>
+								<dt><code>*</code></dt>
+								<dd>Wildcard in <code>SELECT *</code> meaning all columns.</dd>
+								<dt><code>FROM</code></dt>
+								<dd>The clause that names the table used by a query.</dd>
+								<dt><code>WHERE</code></dt>
+								<dd>The clause that filters rows returned, updated, or deleted.</dd>
+								<dt><code>INSERT</code></dt>
+								<dd>Adds a new row to a table.</dd>
+								<dt><code>REPLACE</code></dt>
+								<dd>Replaces a row when the same record already exists.</dd>
+								<dt><code>UPDATE</code></dt>
+								<dd>Changes existing row values; dangerous without <code>WHERE</code>.</dd>
+								<dt><code>DELETE</code></dt>
+								<dd>Removes rows from a table while leaving the table structure intact.</dd>
+								<dt><code>CREATE DATABASE</code></dt>
+								<dd>Creates a new MySQL database such as <code>mydatabase</code>.</dd>
+								<dt><code>CREATE TABLE</code></dt>
+								<dd>Creates a table and defines its fields, data types, keys, and constraints.</dd>
+								<dt><code>ALTER TABLE</code></dt>
+								<dd>Changes the structure of an existing table.</dd>
+								<dt><code>DROP TABLE</code></dt>
+								<dd>Permanently removes a table and all data inside it.</dd>
+								<dt><code>DROP DATABASE</code></dt>
+								<dd>Permanently removes a database and all its tables.</dd>
+								<dt><code>AUTO_INCREMENT</code></dt>
+								<dd>MySQL property that automatically generates the next numeric value for a key field.</dd>
+								<dt><code>NOT NULL</code></dt>
+								<dd>Constraint that prevents a field from being left empty at database level.</dd>
+								<dt><code>UNIQUE</code></dt>
+								<dd>Constraint that prevents duplicate values in a field such as <code>Email</code>.</dd>
+								<dt><code>FOREIGN KEY</code></dt>
+								<dd>A field that references a key in another table, such as <code>Orders.CustomerID</code> referencing <code>Customers.CustomerID</code>.</dd>
+								<dt><code>INNER JOIN</code></dt>
+								<dd>Combines matching rows from related tables.</dd>
+								<dt><code>GROUP BY</code></dt>
+								<dd>Groups rows for aggregate calculations such as total spending per customer.</dd>
+								<dt><code>SUM()</code></dt>
+								<dd>SQL aggregate function used to add numeric values such as <code>TotalAmount</code>.</dd>
+								<dt><code>mysqli</code></dt>
+								<dd>PHP's MySQL improved extension, available in procedural and object-oriented styles.</dd>
+								<dt><code>PDO</code></dt>
+								<dd>A PHP database option mentioned as another way to connect to databases.</dd>
+								<dt><code>mysqli_connect()</code></dt>
+								<dd>Creates a procedural MySQL connection from PHP.</dd>
+								<dt><code>mysqli_connect_error()</code></dt>
+								<dd>Returns the connection error message when <code>mysqli_connect()</code> fails.</dd>
+								<dt><code>mysqli_query()</code></dt>
+								<dd>Sends an SQL statement to MySQL through an open connection.</dd>
+								<dt><code>mysqli_error()</code></dt>
+								<dd>Returns the latest MySQL query error for a connection.</dd>
+								<dt><code>mysqli_fetch_assoc()</code></dt>
+								<dd>Fetches a result row as an associative array keyed by column name.</dd>
+								<dt><code>mysqli_close()</code></dt>
+								<dd>Closes an open MySQL connection.</dd>
+							</dl>
+						</details>
+					</div>
 					<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
 				</section>
 
 				<section id="chapter-5" class="chapter" data-nav-section>
 					<h2>Addendum: Installing and Running PHP With XAMPP</h2>
 					<p>The addendum explains XAMPP as the local development package used to run PHP and MySQL on your computer before publishing a site.</p>
+					<div class="chapter-tools">
+						<span class="chip">Apache</span>
+						<span class="chip">MySQL</span>
+						<span class="chip">PHP</span>
+						<span class="chip">htdocs</span>
+						<span class="chip">localhost</span>
+						<span class="chip">.php files</span>
+					</div>
 					<div class="chapter-grid">
 						<article class="card chapter-card definition" id="ch5-1-xampp">
 							<h3>5.1 What XAMPP Provides</h3>
@@ -1609,6 +2513,105 @@ echo "&lt;h1&gt;My Name is Derek&lt;/h1&gt;";
 							<pre><code>http://localhost/Demo/test.php</code></pre>
 							<div class="callout success"><strong>Correct pattern:</strong> PHP must be served by Apache or another PHP-capable server. Opening a PHP file directly from Finder or File Explorer will not execute the PHP code.</div>
 						</article>
+					</div>
+					<div class="chapter-grid">
+						<article class="card chapter-card wide pattern" id="ch5-code-local-test-page">
+							<h3>Addendum Extended Code Example: First Local PHP Test Page</h3>
+							<p>This example cleans up the addendum's first <code>test.php</code> idea. Save it inside your XAMPP project folder, start Apache, then open it through <code>localhost</code>.</p>
+							<pre><code>&lt;?php
+// htdocs/Demo/test.php
+// The file extension must be .php so Apache sends the page through PHP.
+
+$studentName = "Derek";
+$today = date("Y-m-d");
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+	&lt;meta charset="UTF-8"&gt;
+	&lt;title&gt;PHP Test Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;h1&gt;My Name is &lt;?= htmlspecialchars($studentName) ?&gt;&lt;/h1&gt;
+	&lt;p&gt;This page was processed by PHP on &lt;?= htmlspecialchars($today) ?&gt;.&lt;/p&gt;
+	&lt;p&gt;If you can see today's date, Apache and PHP are working through XAMPP.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+						</article>
+
+						<article class="card chapter-card wide warning" id="ch5-code-xampp-debug-checks">
+							<h3>Addendum Extended Code Example: XAMPP Run Checks</h3>
+							<p>Use this as a short troubleshooting script when a practical example behaves oddly. It reinforces the addendum's main rule: PHP should be run through the local server, not opened directly as a file.</p>
+							<pre><code>&lt;?php
+// diagnostics.php
+// Place this in htdocs/Demo and open http://localhost/Demo/diagnostics.php
+
+echo "&lt;h1&gt;XAMPP Diagnostics&lt;/h1&gt;";
+
+// Shows which PHP version Apache is using.
+echo "&lt;p&gt;PHP version: " . htmlspecialchars(PHP_VERSION) . "&lt;/p&gt;";
+
+// Confirms the server-side folder PHP is running from.
+echo "&lt;p&gt;Current folder: " . htmlspecialchars(getcwd()) . "&lt;/p&gt;";
+
+// Checks whether the request really came through localhost.
+echo "&lt;p&gt;Server name: " . htmlspecialchars($_SERVER["SERVER_NAME"] ?? "unknown") . "&lt;/p&gt;";
+
+// A tiny write test for file-system examples.
+$testFile = "xampp_write_test.txt";
+if (file_put_contents($testFile, "Apache and PHP can write here.", LOCK_EX) !== false) {
+	echo "&lt;p&gt;Write test passed: $testFile was created or updated.&lt;/p&gt;";
+} else {
+	echo "&lt;p&gt;Write test failed. Check folder permissions.&lt;/p&gt;";
+}
+
+echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not file://...&lt;/p&gt;";
+?&gt;</code></pre>
+						</article>
+
+						<details class="card chapter-card wide architecture glossary-card" id="ch5-glossary">
+							<summary><span>Addendum Glossary: XAMPP, Localhost And Running PHP</span></summary>
+							<dl class="glossary-list">
+								<dt><code>XAMPP</code></dt>
+								<dd>A free local development package for running web-server and database tools on a personal computer.</dd>
+								<dt><code>X</code></dt>
+								<dd>Cross-platform; the guide notes XAMPP is available for systems such as Windows, Linux, and OS X.</dd>
+								<dt><code>Apache</code></dt>
+								<dd>The web server component that serves local PHP pages through a browser.</dd>
+								<dt><code>MySQL</code></dt>
+								<dd>The database component used for relational database examples in the module.</dd>
+								<dt><code>PHP</code></dt>
+								<dd>The server-side scripting language used throughout the forms, sessions, files, and database topics.</dd>
+								<dt><code>Perl</code></dt>
+								<dd>The final component represented by the second P in XAMPP.</dd>
+								<dt><code>htdocs</code></dt>
+								<dd>The local web root folder where XAMPP projects are commonly placed.</dd>
+								<dt><code>Demo</code></dt>
+								<dd>The guide's example project folder created inside <code>htdocs</code>.</dd>
+								<dt><code>.php</code></dt>
+								<dd>The file extension that tells the server the file may contain PHP code.</dd>
+								<dt><code>&lt;?php ?&gt;</code></dt>
+								<dd>The opening and closing PHP tags used to place PHP code inside a file.</dd>
+								<dt><code>echo</code></dt>
+								<dd>The PHP keyword used in the addendum example to output HTML text to the browser.</dd>
+								<dt><code>localhost</code></dt>
+								<dd>The browser address that points to the local computer running Apache.</dd>
+								<dt><code>http://localhost/Demo/test.php</code></dt>
+								<dd>The guide's example URL for running <code>test.php</code> inside the <code>Demo</code> folder.</dd>
+								<dt><code>file://</code></dt>
+								<dd>A direct file-opening path; it should not be used to execute PHP because it bypasses Apache/PHP processing.</dd>
+								<dt><code>XAMPP Control Panel</code></dt>
+								<dd>The tool used to start Apache and MySQL modules for local testing.</dd>
+								<dt><code>phpMyAdmin</code></dt>
+								<dd>A browser-based tool commonly used with XAMPP to manage MySQL databases.</dd>
+								<dt><code>PHP_VERSION</code></dt>
+								<dd>A PHP constant that displays the PHP version being used by the local server.</dd>
+								<dt><code>getcwd()</code></dt>
+								<dd>Useful local diagnostic function that shows the server-side current working directory.</dd>
+								<dt><code>$_SERVER</code></dt>
+								<dd>A PHP superglobal containing server and request information such as <code>SERVER_NAME</code>.</dd>
+							</dl>
+						</details>
 					</div>
 					<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
 				</section>

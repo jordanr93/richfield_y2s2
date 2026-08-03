@@ -288,6 +288,10 @@
 			grid-template-columns: repeat(3, minmax(0, 1fr));
 		}
 
+		.grid .wide {
+			grid-column: 1 / -1;
+		}
+
 		.card {
 			background: var(--panel);
 			border: 1px solid var(--border);
@@ -400,6 +404,56 @@
 			font-size: 0.92em;
 		}
 
+		.glossary-card summary {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 14px;
+			cursor: pointer;
+			list-style: none;
+		}
+
+		.glossary-card summary::-webkit-details-marker {
+			display: none;
+		}
+
+		.glossary-card summary span {
+			font-size: 1.17em;
+			font-weight: 700;
+			line-height: 1.25;
+		}
+
+		.glossary-card summary::after {
+			content: "Show";
+			flex: 0 0 auto;
+			padding: 0.18em 0.55em;
+			border: 1px solid var(--border);
+			border-radius: 999px;
+			color: var(--muted);
+			font-size: 0.78rem;
+			font-weight: 700;
+		}
+
+		.glossary-card[open] summary::after {
+			content: "Hide";
+		}
+
+		.glossary-list {
+			display: grid;
+			grid-template-columns: minmax(150px, 0.35fr) 1fr;
+			gap: 10px 16px;
+			margin: 14px 0 0;
+		}
+
+		.glossary-list dt,
+		.glossary-list dd {
+			margin: 0;
+		}
+
+		.glossary-list dd {
+			color: var(--muted);
+		}
+
 		.related-chapters {
 			margin-top: 16px;
 			font-size: 0.9rem;
@@ -492,8 +546,9 @@
 			}
 		}
 	</style>
+	<link rel="stylesheet" href="module-theme.css">
 </head>
-<body>
+<body class="module-page module-information-systems" style="--module-accent: var(--purple); --module-accent-soft: rgba(188, 140, 255, 0.14); --module-accent-border: rgba(188, 140, 255, 0.5);">
 	<button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
 	<div class="layout" id="top">
 		<aside class="sidebar" aria-label="Study navigation">
@@ -505,6 +560,14 @@
 				<div class="nav-group">
 					<h2>Site</h2>
 					<a class="home-link" href="index.html">Home</a>
+				</div>
+				<div class="module-rail" aria-label="Module connector">
+					<h2>Modules</h2>
+					<a href="programming_guide.html" style="--module-color: var(--green);">PRG622 · Programming</a>
+					<a href="information_systems_guide.html" aria-current="page" style="--module-color: var(--purple);">IS622 · Information Systems</a>
+					<a href="internet_programming_guide.html" style="--module-color: var(--red);">IP622 · Internet Programming</a>
+					<a href="machine_learning_guide.html" style="--module-color: var(--cyan);">ML600 · Machine Learning</a>
+					<a href="big_data_IOT_guide.html" style="--module-color: var(--amber);">BDIOT600 · Big Data &amp; IoT</a>
 				</div>
 				<div class="nav-group">
 					<h2>Exam Focus Areas</h2>
@@ -535,6 +598,7 @@
 		<main class="main">
 			<div class="content">
 				<header class="hero">
+					<div class="module-identity">IS622 · Information Systems 622</div>
 					<div class="eyebrow">2026 Study Guide Revision</div>
 					<h1>Information Systems 622 Study Hub</h1>
 					<p>A dark, readable one-page guide covering the major development, design, implementation, support, and security ideas from the Information Systems 622 study guide.</p>
@@ -723,6 +787,73 @@
 									<tr><td>System requirements document</td><td>Outputs analysis work and supports the management decision to proceed, change direction, or stop.</td></tr>
 								</table>
 							</article>
+							<article class="card chapter-card wide" id="ch1-5-build-buy-customize">
+								<h3>1.3 Make, Buy, Customize or Empower Users</h3>
+								<p>The guide treats software acquisition as a practical decision, not a slogan. A company can develop software in-house, purchase a package, customize a package, create user applications from tools such as Microsoft Office, outsource, offshore, use SaaS, or combine several of these. The analyst must explain what the organization gains and what it gives up.</p>
+								<table>
+									<thead>
+										<tr>
+											<th>Option</th>
+											<th>Best fit</th>
+											<th>Main caution</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr><td>Develop in-house</td><td>Unique requirements, minimal change to business procedures, special legacy or technology constraints, or a desire to build internal IT capability.</td><td>Usually needs more analyst, programmer, testing, documentation, and long-term support effort.</td></tr>
+										<tr><td>Purchase a package</td><td>Common horizontal needs such as payroll, accounting, or inventory where vendors already provide tested software.</td><td>Lower purchase cost can be offset by retraining, process disruption, integration, and support costs.</td></tr>
+										<tr><td>Customize a package</td><td>The standard package is close, but not close enough for the business process.</td><td>Vendor upgrades may not support custom changes, and internal modifications can remove the time and cost advantages of buying.</td></tr>
+										<tr><td>Create user applications</td><td>Small user or departmental needs that can be solved with productivity software and careful controls.</td><td>Corporate data still needs security, integrity, training, and support.</td></tr>
+									</tbody>
+								</table>
+								<div class="note">Exam trap: <code>horizontal application</code> means a package can serve many industries; <code>vertical application</code> means it targets one industry with specialized requirements.</div>
+							</article>
+							<article class="card chapter-card wide" id="ch1-6-outsourcing-saas-offshoring">
+								<h3>1.4-1.6 Outsourcing, Offshoring and SaaS</h3>
+								<p><strong>Outsourcing</strong> transfers development, operation, or maintenance work to an external service provider for a fee. It can range from a small programming task to a full IT function, business process outsourcing, application service provider support, or managed hosting through internet business services.</p>
+								<p><strong>Offshoring</strong> is global outsourcing: IT development, support, or operations move to another country. The main attraction is cost saving, but the guide stresses project control, security, culture, language, and time-zone communication risk.</p>
+								<p><strong>SaaS</strong> changes software from a product purchase into a hosted internet service. The customer receives the function of the software without carrying the same burden of installation, infrastructure, maintenance, and updates.</p>
+								<table>
+									<tr><th>Fee model</th><th>How it works</th><th>Revision clue</th></tr>
+									<tr><td>Fixed fee</td><td>One agreed fee for a defined service level.</td><td>Best when service needs are predictable.</td></tr>
+									<tr><td>Subscription</td><td>Cost varies by users or workstations.</td><td>Count users carefully before comparing options.</td></tr>
+									<tr><td>Usage or transaction</td><td>Cost rises with volume of transactions or operations.</td><td>Volume forecasts become part of the TCO calculation.</td></tr>
+								</table>
+							</article>
+							<article class="card chapter-card wide" id="ch1-worked-acquisition-case">
+								<h3>Worked Example: Choosing Software for an Order System</h3>
+								<p><strong>Scenario:</strong> a company wants a new order processing system. A website is expected to increase orders by almost 80%, but the company also has legacy accounting software and limited internal programmers.</p>
+								<ol>
+									<li><strong>Evaluate requirements:</strong> list required features, web access, network/intranet needs, data exchanged with customers or vendors, expected growth, and hardware/software/personnel constraints.</li>
+									<li><strong>Prepare an RFP or RFQ:</strong> use an <code>RFP</code> if vendors must propose how they will satisfy the requirement; use an <code>RFQ</code> if the exact product/service is already known and pricing is needed.</li>
+									<li><strong>Identify vendors or outsourcing options:</strong> use vendor sites, industry trade sources, consultants, forums, and references from existing users.</li>
+									<li><strong>Evaluate alternatives:</strong> compare package features against the RFP, ask existing users, run application tests, and use benchmarks for volume-sensitive performance.</li>
+									<li><strong>Perform cost-benefit analysis:</strong> include licenses, support, maintenance, training, volume-based fees, staffing, customization, and what-if scenarios.</li>
+									<li><strong>Recommend:</strong> present costs, benefits, advantages, disadvantages, and the option that best fits strategy and risk.</li>
+								</ol>
+								<div class="note success">Strong exam answer: mention the analyst's role, the selection team, user ownership, TCO, and management approval. That shows you understand the whole decision path.</div>
+							</article>
+							<details class="card chapter-card wide glossary-card" id="ch1-glossary">
+								<summary><span>Chapter 1 Glossary: Development Strategy Terms</span></summary>
+								<dl class="glossary-list">
+									<dt><code>build or buy</code></dt><dd>The decision to develop software internally or acquire it from a vendor or service provider.</dd>
+									<dt><code>TCO</code></dt><dd>Total cost of ownership; includes purchase, maintenance, support, upgrades, retraining, disruption, staffing, and long-term operating costs.</dd>
+									<dt><code>horizontal application</code></dt><dd>Software usable across many industries, such as accounting or payroll.</dd>
+									<dt><code>vertical application</code></dt><dd>Software designed for one industry, such as banking, hospitals, airlines, or colleges.</dd>
+									<dt><code>VAR</code></dt><dd>Value-added reseller; a firm that enhances and customizes commercial software for a specific market.</dd>
+									<dt><code>outsourcing</code></dt><dd>Transferring development, operation, support, or maintenance work to an external provider.</dd>
+									<dt><code>ASP</code></dt><dd>Application service provider; rents access to an operational software application for a fee.</dd>
+									<dt><code>IBS</code></dt><dd>Internet business services; managed hosting and web-based support for transactions such as billing, CRM, and order processing.</dd>
+									<dt><code>BPO</code></dt><dd>Business process outsourcing; outsourcing an entire business process, not only a software task.</dd>
+									<dt><code>offshoring</code></dt><dd>Moving IT development, support, or operations to another country.</dd>
+									<dt><code>SaaS</code></dt><dd>Software as a Service; hosted software delivered over the internet through subscription or usage-based access.</dd>
+									<dt><code>RFP</code></dt><dd>Request for Proposal; describes business needs, required features, service levels, support expectations, and pricing terms.</dd>
+									<dt><code>RFQ</code></dt><dd>Request for Quotation; used when the product or service is known and comparable price quotations are required.</dd>
+									<dt><code>payback analysis</code></dt><dd>Financial tool that estimates how long a system takes to pay for itself through benefits or savings.</dd>
+									<dt><code>ROI</code></dt><dd>Return on investment; compares net benefits to total project costs as a percentage.</dd>
+									<dt><code>NPV</code></dt><dd>Net present value; benefits minus costs adjusted for when they occur.</dd>
+									<dt><code>system requirements document</code></dt><dd>The analysis-phase document that summarizes requirements, alternatives, and recommendations for management approval.</dd>
+								</dl>
+							</details>
 						</div>
 						<p><a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a></p>
 					</section>
@@ -773,6 +904,84 @@
 								<p>Responsive web design, modular design, and prototyping help designers test ideas and gain user approval. Throwaway design prototypes document and benchmark desired features but should not be mistaken for production-ready systems.</p>
 								<div class="note">Prototype risk: users may want to adopt a rough prototype too quickly, even when reliability, maintainability, and quality have not been fully tested.</div>
 							</article>
+							<article class="card chapter-card wide" id="ch2-6-seven-habits">
+								<h3>2.3 Seven Habits of Successful Interface Designers</h3>
+								<p>The guide's user interface chapter keeps returning to one idea: a good interface supports real work so smoothly that users can focus on the task instead of the system. That is why the analyst must understand business functions, user skill levels, user language, and feedback from actual use.</p>
+								<table>
+									<tr><th>Habit</th><th>What it means in revision language</th><th>Example exam wording</th></tr>
+									<tr><td>Understand the business</td><td>Start from business functions and goals; an FDD can act as a checklist of tasks.</td><td>"Explain why the screen must reflect order tracking work."</td></tr>
+									<tr><td>Maximize graphical effectiveness</td><td>Use visual layout, windows, icons, and clear screen organization to help users learn quickly.</td><td>"Evaluate whether this screen supports visual learning."</td></tr>
+									<tr><td>Think like a user</td><td>Design for user experience, knowledge, terminology, errors, and real-world expectations.</td><td>"Why should novice and expert users both be considered?"</td></tr>
+									<tr><td>Use models and prototypes</td><td>Use storyboards, sketches, interviews, questionnaires, observation, and usability metrics.</td><td>"Explain how feedback reduces misunderstanding."</td></tr>
+									<tr><td>Focus on usability</td><td>Give users all required tasks and commands without overwhelming them with too many options.</td><td>"Identify why a menu with too many choices is weak."</td></tr>
+									<tr><td>Invite feedback</td><td>Monitor use after implementation because real operations reveal issues missed in prototype tests.</td><td>"Why should help screens be revised after rollout?"</td></tr>
+									<tr><td>Document everything</td><td>Save approved screens, storyboards, menu trees, and CASE/screen-generator designs for programmers.</td><td>"State why numbering screens matters."</td></tr>
+								</table>
+							</article>
+							<article class="card chapter-card wide" id="ch2-7-ten-guidelines">
+								<h3>2.4 Ten UI Design Guidelines</h3>
+								<p>The second guideline group is more operational: it turns the design habits into concrete checks for screens, menus, feedback, data entry, and volume reduction.</p>
+								<table>
+									<tr><th>Guideline</th><th>Quick application</th></tr>
+									<tr><td>Easy to learn and use</td><td>Keep controls clear, commands visible, unavailable options dimmed, navigation predictable, and error correction easy.</td></tr>
+									<tr><td>Enhance productivity</td><td>Organize tasks and commands in the same way users do the work; prototype menu order and get feedback.</td></tr>
+									<tr><td>Provide flexibility</td><td>Support novices and experts with defaults, shortcuts, multiple input methods, and alternate paths.</td></tr>
+									<tr><td>Provide help and feedback</td><td>Give status messages, confirmations, meaningful error messages, and help that matches the current task.</td></tr>
+									<tr><td>Create an attractive layout</td><td>Use consistent placement, spacing, captions, fonts, colors, and a clean look and feel.</td></tr>
+									<tr><td>Enhance the interface</td><td>Use features such as hypertext, toolbars, natural language, speech, touch, and input/output aids only when they improve use.</td></tr>
+									<tr><td>Focus on data entry screens</td><td>Restrict access to inappropriate fields, provide descriptive captions, show default values, and keep tab order natural.</td></tr>
+									<tr><td>Use validation rules</td><td>Catch input errors early through sequence, existence, data type, range, reasonableness, validity, combination, and batch controls.</td></tr>
+									<tr><td>Manage data effectively</td><td>Help users locate, filter, sort, view, print, and save the data they need without threatening integrity.</td></tr>
+									<tr><td>Reduce input volume</td><td>Avoid unnecessary typing through defaults, codes, lookups, checkboxes, and automated capture where appropriate.</td></tr>
+								</table>
+								<div class="note">Exam trap: "attractive" does not mean decorative. In this chapter it means readable, consistent, predictable, and task-focused.</div>
+							</article>
+							<article class="card chapter-card wide" id="ch2-8-forms-reports-worked-example">
+								<h3>Worked Example: Redesigning a Sales Return Form and Report</h3>
+								<p><strong>Scenario:</strong> users complain that returned goods are recorded incorrectly and managers receive a confusing monthly report.</p>
+								<table>
+									<tr><th>Design object</th><th>Apply the guide</th><th>Revision answer</th></tr>
+									<tr><td>Source document</td><td>Use zones: heading, control, instruction, body, totals, and authorization.</td><td>Add company logo/title, return number/date, short instructions, item rows, refund totals, and manager signature.</td></tr>
+									<tr><td>Input screen</td><td>Use validation and reduce volume.</td><td>Make return number required, use product lookups, range-check quantity, validate customer number, and provide default dates.</td></tr>
+									<tr><td>Output report</td><td>Ask why printed output is needed, who uses it, what it includes, when it updates, and whether it is confidential.</td><td>Create a summary report for managers and an exception report for unusually high return rates.</td></tr>
+									<tr><td>Control break report</td><td>Sort by the control field before producing subtotals.</td><td>Sort by store number, print each store subtotal, then print a grand total in the report footer.</td></tr>
+								</table>
+								<div class="note danger">Exam trap: <code>GIGO</code> links form design to output quality. Bad source documents and weak validation produce bad reports even if the report layout looks professional.</div>
+							</article>
+							<article class="card chapter-card wide" id="ch2-9-technology-security">
+								<h3>2.7-2.9 Technology, Controls and Emerging Trends</h3>
+								<p>Technology choices affect both input and output. Screen output, printed output, source documents, RFID, automated data capture, responsive layouts, and modular design must still be judged by user needs and control requirements. The guide also keeps security inside interface design: reports can expose confidential information, and input screens can let unauthorized or inaccurate data enter the system.</p>
+								<table>
+									<tr><th>Control area</th><th>What to check</th></tr>
+									<tr><td>Output security</td><td>Who receives the report, whether it is confidential, where it is stored, whether it is printed, and whether access is logged.</td></tr>
+									<tr><td>Input security</td><td>Audit trails, encryption, passwords, access levels, validation, data security, and controlled source documents.</td></tr>
+									<tr><td>Responsive design</td><td>Whether the interface adapts to different devices without losing important tasks or clarity.</td></tr>
+									<tr><td>Prototyping</td><td>Whether the prototype is throwaway for learning or is being mistaken for a finished production system.</td></tr>
+								</table>
+							</article>
+							<details class="card chapter-card wide glossary-card" id="ch2-glossary">
+								<summary><span>Chapter 2 Glossary: UI, Forms and Reports</span></summary>
+								<dl class="glossary-list">
+									<dt><code>UI</code></dt><dd>User interface; the screens, menus, functions, outputs, hardware, software, and features that support two-way user-system communication.</dd>
+									<dt><code>HCI</code></dt><dd>Human-computer interaction; the study and design of how people communicate with computers while performing tasks.</dd>
+									<dt><code>GUI</code></dt><dd>Graphical user interface; uses icons, graphical objects, windows, and pointing devices.</dd>
+									<dt><code>usability</code></dt><dd>How effectively and comfortably users can learn, use, and complete tasks with the system.</dd>
+									<dt><code>FDD</code></dt><dd>Functional decomposition diagram; breaks business functions into levels and can guide interface task coverage.</dd>
+									<dt><code>storyboard</code></dt><dd>A sketch or model showing screen layout before full development.</dd>
+									<dt><code>usability metrics</code></dt><dd>Measures gathered from user interaction, often through software tracking, to evaluate interface effectiveness.</dd>
+									<dt><code>GIGO</code></dt><dd>Garbage in, garbage out; output quality depends on input quality.</dd>
+									<dt><code>source document</code></dt><dd>A form that collects input data, authorizes or triggers action, and records the original transaction.</dd>
+									<dt><code>heading zone</code></dt><dd>Form area for company name/logo, form title, and form number.</dd>
+									<dt><code>control zone</code></dt><dd>Form area for codes, identification numbers, and dates used for tracking.</dd>
+									<dt><code>authorization zone</code></dt><dd>Form area for signatures or approvals.</dd>
+									<dt><code>detail report</code></dt><dd>A report listing detailed records or transactions.</dd>
+									<dt><code>summary report</code></dt><dd>A report that groups and totals information for review.</dd>
+									<dt><code>exception report</code></dt><dd>A report showing only items outside normal limits or requiring attention.</dd>
+									<dt><code>control break</code></dt><dd>A report point where a control field changes and subtotals or group actions are triggered.</dd>
+									<dt><code>responsive web design</code></dt><dd>Design approach where screens adapt to different device sizes and contexts.</dd>
+									<dt><code>prototype</code></dt><dd>A working model or mock-up used to test design ideas and gather feedback.</dd>
+								</dl>
+							</details>
 						</div>
 						<p><a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a></p>
 					</section>
@@ -822,6 +1031,90 @@
 								<h3>3.7-3.9 Codes, Storage and Control</h3>
 								<p>Codes use letters or numbers to represent data. They can speed entry, reduce storage, cut transmission time, reveal information, or conceal information. Data controls include access privileges, encryption, backups, recovery procedures, audit logs, and audit fields.</p>
 							</article>
+							<article class="card chapter-card wide" id="ch3-6-file-vs-dbms-case">
+								<h3>3.1 Mario and Danica: File-Oriented vs Relational Design</h3>
+								<p>The guide's auto shop example is a clean way to remember why relational databases matter. Mario stores mechanic and job data in two separate file-oriented systems. Because <code>Mechanic No</code>, <code>Name</code>, and <code>Pay Rate</code> are duplicated, one file can show Jim Jones at one rate and another file can show a different rate. The issue is not just storage waste; it is data quality and integrity.</p>
+								<p>Danica uses a DBMS with two related tables joined by a common field, <code>Mechanic ID</code>. The pay rate appears in only one place, while the common field connects the mechanic table to the job table. This is the basic idea of the relational model: tables are separate, but meaningful relationships allow them to work together.</p>
+								<table>
+									<tr><th>Design</th><th>What happens</th><th>Main revision point</th></tr>
+									<tr><td>File-oriented system</td><td>Separate unlinked files store overlapping data.</td><td>Redundancy can create inconsistency.</td></tr>
+									<tr><td>Relational database</td><td>Tables are connected through common fields.</td><td>Data is stored once where possible and reused through relationships.</td></tr>
+									<tr><td>DBMS</td><td>Provides tools, interfaces, schemas, DML, and physical repositories.</td><td>Users get timely, flexible access while the DBA manages enterprise-wide structure.</td></tr>
+								</table>
+							</article>
+							<article class="card chapter-card wide" id="ch3-7-dbms-components-web-design">
+								<h3>3.2-3.3 DBMS Components and Web-Based Data Design</h3>
+								<p>A DBMS sits between the database and the users, DBAs, applications, and related systems that need access. The guide highlights user interfaces, DBA interfaces, related-system interfaces, a <code>data manipulation language</code>, a <code>schema</code>, <code>subschemas</code>, and a <code>physical data repository</code>.</p>
+								<table>
+									<tr><th>Component</th><th>What it does</th></tr>
+									<tr><td>User interface</td><td>Lets users query, add, update, and view data in a business-friendly way.</td></tr>
+									<tr><td>DBA interface</td><td>Supports database administration, security, performance, and structure management.</td></tr>
+									<tr><td>Related-system interface</td><td>Allows applications and other systems to exchange database information.</td></tr>
+									<tr><td>DML</td><td>Lets users or programs query, update, delete, and manipulate stored data.</td></tr>
+									<tr><td>Schema</td><td>Defines the overall database structure.</td></tr>
+									<tr><td>Subschema</td><td>Defines a user or application view of part of the database.</td></tr>
+									<tr><td>Physical repository</td><td>Stores the actual data and metadata used by the DBMS.</td></tr>
+								</table>
+								<p>In web-based design, the database must support many users and applications over internet-style access. That makes scalability, security, and flexible access central design concerns.</p>
+							</article>
+							<article class="card chapter-card wide" id="ch3-8-erd-normalization-worked-example">
+								<h3>Worked Example: From Order Form to Normalized Tables</h3>
+								<p><strong>Unnormalized source:</strong> <code>ORDER (ORDER_NO, DATE, CUSTOMER_NO, CUSTOMER_NAME, (PRODUCT_NO, DESCRIPTION, QTY_ORDERED, SUPPLIER_NO, SUPPLIER_NAME))</code>. The repeating product group means one order record can contain many product lines.</p>
+								<ol>
+									<li><strong>1NF:</strong> remove repeating groups. Put each product line into its own row or separate child table so every field stores one value per record.</li>
+									<li><strong>2NF:</strong> if a table has a combined key such as <code>ORDER_NO + PRODUCT_NO</code>, every non-key field must depend on the whole key. Product description depends only on product, not on the whole order line key, so it belongs in <code>PRODUCT</code>.</li>
+									<li><strong>3NF:</strong> remove dependencies between non-key fields. If <code>SUPPLIER_NAME</code> depends on <code>SUPPLIER_NO</code>, store supplier details in <code>SUPPLIER</code> rather than repeating them in order lines.</li>
+								</ol>
+								<table>
+									<tr><th>Result table</th><th>Purpose</th><th>Key idea</th></tr>
+									<tr><td><code>ORDER</code></td><td>Order header: order number, date, customer number.</td><td>One row per order.</td></tr>
+									<tr><td><code>ORDER_LINE</code></td><td>Products listed on an order, including quantity.</td><td>Associative entity between order and product.</td></tr>
+									<tr><td><code>PRODUCT</code></td><td>Product description and supplier reference.</td><td>Product facts stored once.</td></tr>
+									<tr><td><code>SUPPLIER</code></td><td>Supplier name and details.</td><td>Supplier facts stored once.</td></tr>
+								</table>
+								<div class="note">Exam trap: do not jump straight to 3NF language. Say what problem is removed at each stage: repeating groups, partial dependencies, then transitive dependencies.</div>
+							</article>
+							<article class="card chapter-card wide" id="ch3-9-codes-storage-controls">
+								<h3>3.7-3.9 Codes, Storage, Access and Controls</h3>
+								<p>Codes simplify input, output, and storage by representing data with letters or numbers. The guide identifies seven code types and warns that code design should be concise, expandable, stable, unique, sortable, simple, non-confusing, and meaningful.</p>
+								<table>
+									<tr><th>Code type</th><th>Meaning</th><th>Example pattern from the guide</th></tr>
+									<tr><td>Sequence</td><td>Assigned in order and carries no extra meaning.</td><td>Employee numbers issued consecutively.</td></tr>
+									<tr><td>Block sequence</td><td>Blocks of numbers represent classes or categories.</td><td>100-level and 200-level course numbers.</td></tr>
+									<tr><td>Alphabetic/category</td><td>Letters identify related items.</td><td><code>GN</code> for gardening, <code>HW</code> for hardware.</td></tr>
+									<tr><td>Mnemonic</td><td>Letters chosen to be easy to remember.</td><td><code>ATL</code> for Atlanta or <code>MIA</code> for Miami.</td></tr>
+									<tr><td>Significant digit</td><td>Digit groups each carry meaning.</td><td>Warehouse, floor, section, aisle, and bin in one location code.</td></tr>
+									<tr><td>Derivation</td><td>Built from attributes of the item/person.</td><td>Postal code, letters from surname, house number, and street name.</td></tr>
+									<tr><td>Cipher/action</td><td>Encodes values or tells the system what action to take.</td><td><code>D</code> display, <code>A</code> add, <code>X</code> exit.</td></tr>
+								</table>
+								<p>Data control protects stored data with access privileges, encryption, backup/recovery procedures, audit logs, and audit fields. Storage and access decisions must distinguish logical design from physical storage.</p>
+							</article>
+							<details class="card chapter-card wide glossary-card" id="ch3-glossary">
+								<summary><span>Chapter 3 Glossary: Data Design Terms</span></summary>
+								<dl class="glossary-list">
+									<dt><code>data structure</code></dt><dd>A system for organizing, storing, and managing data in files or tables.</dd>
+									<dt><code>file-oriented system</code></dt><dd>A design where separate files are not linked, often causing redundancy and inconsistency.</dd>
+									<dt><code>relational database</code></dt><dd>A database model where tables are connected by common fields.</dd>
+									<dt><code>DBMS</code></dt><dd>Database management system; tools, features, and interfaces for adding, updating, managing, accessing, and analyzing data.</dd>
+									<dt><code>DBA</code></dt><dd>Database administrator; manages the database for enterprise-wide needs.</dd>
+									<dt><code>DML</code></dt><dd>Data manipulation language; supports querying, updating, deleting, and manipulating database data.</dd>
+									<dt><code>schema</code></dt><dd>The definition of the database structure.</dd>
+									<dt><code>subschema</code></dt><dd>A view of the database for a particular user, application, or need.</dd>
+									<dt><code>entity</code></dt><dd>A person, place, thing, or event about which data is stored.</dd>
+									<dt><code>attribute</code></dt><dd>A characteristic or field describing an entity.</dd>
+									<dt><code>record</code></dt><dd>A set of fields for one entity instance; also called a tuple in relational language.</dd>
+									<dt><code>primary key</code></dt><dd>A field or field combination that uniquely and minimally identifies a record.</dd>
+									<dt><code>foreign key</code></dt><dd>A field that matches a primary key in another table.</dd>
+									<dt><code>referential integrity</code></dt><dd>A rule requiring a foreign key value to match an existing primary key value.</dd>
+									<dt><code>ERD</code></dt><dd>Entity-relationship diagram; a model of logical relationships among system entities.</dd>
+									<dt><code>cardinality</code></dt><dd>The detailed number relationship between entity instances.</dd>
+									<dt><code>associative entity</code></dt><dd>A third entity used to implement an M:N relationship, such as registration between student and class.</dd>
+									<dt><code>1NF</code></dt><dd>First normal form; removes repeating groups.</dd>
+									<dt><code>2NF</code></dt><dd>Second normal form; every non-key field depends on the whole primary key.</dd>
+									<dt><code>3NF</code></dt><dd>Third normal form; removes dependencies between non-key fields.</dd>
+									<dt><code>audit log</code></dt><dd>A record of database activity used to trace changes and support control.</dd>
+								</dl>
+							</details>
 						</div>
 						<p><a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a></p>
 					</section>
@@ -875,6 +1168,87 @@
 								<h3>4.9 Systems Design Completion</h3>
 								<p>The system design specification documents the complete architecture and supports final presentations. After review, the project may move into development, require more design work, or be canceled.</p>
 							</article>
+							<article class="card chapter-card wide" id="ch4-6-architecture-checklist-expanded">
+								<h3>4.1 Architecture Checklist in Exam Form</h3>
+								<p>System architecture is the physical design of the information system. The guide's checklist asks whether the design fits corporate culture, enterprise systems, costs, growth, web integration, legacy systems, processing options, security, and portals.</p>
+								<table>
+									<tr><th>Checklist item</th><th>Question to ask</th><th>Why it matters</th></tr>
+									<tr><td>Corporate organization and culture</td><td>Will the architecture match how the company actually works?</td><td>A technically strong system can fail if it conflicts with business structure.</td></tr>
+									<tr><td>ERP and SCM</td><td>Does the design need to integrate enterprise resource planning or supply chain management?</td><td>Enterprise integration changes data, process, and interface requirements.</td></tr>
+									<tr><td>Initial cost and <code>TCO</code></td><td>Have assumptions changed since the build/buy decision?</td><td>Hard costs and soft costs continue across the system's life.</td></tr>
+									<tr><td>Scalability</td><td>Can the system expand, shrink, or change as business volumes change?</td><td>Architecture decisions are expensive to reverse later.</td></tr>
+									<tr><td>Web integration</td><td>Does the system use the internet, intranet, customer/vendor access, or web services?</td><td>Web access adds compatibility, availability, and security demands.</td></tr>
+									<tr><td>Legacy interfaces</td><td>What existing systems must still exchange data?</td><td>Old systems often constrain new architecture.</td></tr>
+									<tr><td>Security</td><td>What must be protected at the system, network, data, and user levels?</td><td>Security belongs in design, not only after installation.</td></tr>
+								</table>
+							</article>
+							<article class="card chapter-card wide" id="ch4-7-evolution-client-server">
+								<h3>4.2-4.3 Architecture Evolution and Client/Server Design</h3>
+								<p>The guide traces architecture from centralized mainframes, through personal computers, toward networked and distributed systems. In client/server architecture, clients request services and servers provide data, logic, storage, or processing.</p>
+								<table>
+									<tr><th>Architecture idea</th><th>Meaning</th><th>Exam clue</th></tr>
+									<tr><td>Mainframe</td><td>Central computer performs most processing for connected users.</td><td>Central control, but less distributed flexibility.</td></tr>
+									<tr><td>Personal computer impact</td><td>Processing power moves closer to the user.</td><td>Users gain local tools, but data sharing and support become harder.</td></tr>
+									<tr><td>Network evolution</td><td>Computers share hardware, software, data, and communication resources.</td><td>Architecture becomes a blend of local and central resources.</td></tr>
+									<tr><td>Fat client</td><td>Client handles much of the application processing.</td><td>Needs more capable client devices.</td></tr>
+									<tr><td>Thin client</td><td>Server handles most processing; client mainly presents the interface.</td><td>Useful when control, updates, and central management matter.</td></tr>
+									<tr><td>Two-tier</td><td>Client communicates directly with server/database layer.</td><td>Simpler, but can become harder to scale.</td></tr>
+									<tr><td>Three-tier</td><td>Client, application/middleware layer, and data layer are separated.</td><td>Improves flexibility and separates interface, logic, and data.</td></tr>
+								</table>
+								<div class="note">Exam trap: <code>middleware</code> is not the same as hardware. It is software that connects applications, manages communication, and supports data sharing between tiers or systems.</div>
+							</article>
+							<article class="card chapter-card wide" id="ch4-8-internet-processing-network-example">
+								<h3>Worked Example: Architecture for a Retail Chain</h3>
+								<p><strong>Scenario:</strong> a retail chain has local stores, a head office, an online shop, and shared inventory data.</p>
+								<table>
+									<tr><th>Need</th><th>Architecture decision</th><th>Reason</th></tr>
+									<tr><td>Sales must update inventory immediately.</td><td>Use <code>online processing</code> for store and website transactions.</td><td>Users need real-time interaction and current stock levels.</td></tr>
+									<tr><td>Monthly statements and large payroll runs.</td><td>Use <code>batch processing</code>.</td><td>Transactions can be collected and processed together on a schedule.</td></tr>
+									<tr><td>Website order, billing, and CRM support.</td><td>Compare in-house e-commerce, packaged solutions, and service providers.</td><td>Choice depends on control, cost, implementation speed, support, and TCO.</td></tr>
+									<tr><td>Store-to-head-office communication.</td><td>Use routers, gateways if different network environments must connect, and proxy servers for controlled internet access.</td><td>Network devices extend and protect communication paths.</td></tr>
+									<tr><td>Reliable store network layout.</td><td>Prefer star for manageability or mesh for high redundancy where justified.</td><td>Topology affects cost, performance, fault tolerance, and expandability.</td></tr>
+								</table>
+								<div class="note success">Strong answer: connect architecture choices to business timing. Immediate stock lookup points to online processing; scheduled totals point to batch processing.</div>
+							</article>
+							<article class="card chapter-card wide" id="ch4-9-networks-wireless-design-completion">
+								<h3>4.7-4.9 Network Models, Wireless and Design Completion</h3>
+								<p>The guide uses the OSI model to organize network communication into seven layers: physical, data link, network, transport, session, presentation, and application. It also compares topologies such as hierarchical, bus, ring, star, and mesh.</p>
+								<table>
+									<tr><th>Topology</th><th>Strength</th><th>Weakness</th></tr>
+									<tr><td>Hierarchical</td><td>Clear levels of control and processing.</td><td>Upper-level failure can affect many lower-level nodes.</td></tr>
+									<tr><td>Bus</td><td>Lower cabling and flexible additions.</td><td>Central bus failure can stop the network; performance drops as devices grow.</td></tr>
+									<tr><td>Ring</td><td>Structured one-direction data flow.</td><td>One device failure can disrupt the ring unless bypass mechanisms exist.</td></tr>
+									<tr><td>Star</td><td>Easy to expand and manage through a central switch.</td><td>Switch failure can bring the network down.</td></tr>
+									<tr><td>Mesh</td><td>Redundant paths and strong reliability.</td><td>Expensive and complex because of many connections.</td></tr>
+								</table>
+								<p>Wireless networks add flexibility through IEEE 802.11 standards such as <code>802.11b</code>, <code>802.11g</code>, <code>802.11n</code>, and <code>802.11ac</code>, but the guide warns about interference and security exposure.</p>
+								<p>At completion, the <code>system design specification</code> should include a management summary, system components, system environment, implementation requirements, time/cost estimates, and additional material from earlier phases. Presentations usually move from technical team, to users/managers, to final management approval.</p>
+							</article>
+							<details class="card chapter-card wide glossary-card" id="ch4-glossary">
+								<summary><span>Chapter 4 Glossary: Architecture and Network Terms</span></summary>
+								<dl class="glossary-list">
+									<dt><code>system architecture</code></dt><dd>The physical design covering hardware, software, networks, data, procedures, people, processing, and security.</dd>
+									<dt><code>hard costs</code></dt><dd>Tangible costs such as hardware, software, and equipment.</dd>
+									<dt><code>soft costs</code></dt><dd>Less visible costs such as training, downtime, support, and productivity disruption.</dd>
+									<dt><code>scalability</code></dt><dd>The ability of a system to expand, shrink, or change as business needs change.</dd>
+									<dt><code>ERP</code></dt><dd>Enterprise resource planning; integrated enterprise-wide system support for business functions.</dd>
+									<dt><code>SCM</code></dt><dd>Supply chain management; systems and processes for managing suppliers, materials, and product flow.</dd>
+									<dt><code>legacy system</code></dt><dd>An older system that remains important and may constrain new design choices.</dd>
+									<dt><code>client/server</code></dt><dd>Architecture where client devices request services and servers provide data or processing.</dd>
+									<dt><code>fat client</code></dt><dd>A client that performs much of the application processing locally.</dd>
+									<dt><code>thin client</code></dt><dd>A client that relies heavily on server-side processing.</dd>
+									<dt><code>middleware</code></dt><dd>Software connecting applications, tiers, or systems so they can communicate and share data.</dd>
+									<dt><code>online processing</code></dt><dd>Real-time transaction processing where users interact with the system immediately.</dd>
+									<dt><code>batch processing</code></dt><dd>Processing collected transactions together at scheduled times.</dd>
+									<dt><code>OSI model</code></dt><dd>Seven-layer network model: physical, data link, network, transport, session, presentation, application.</dd>
+									<dt><code>router</code></dt><dd>A network device that connects networks and forwards traffic.</dd>
+									<dt><code>gateway</code></dt><dd>A device or software component that connects different network environments or protocols.</dd>
+									<dt><code>proxy server</code></dt><dd>A server that provides controlled internet connectivity for internal users.</dd>
+									<dt><code>802.11</code></dt><dd>IEEE wireless LAN standards family.</dd>
+									<dt><code>MIMO</code></dt><dd>Multiple Input Multiple Output; wireless technique used in newer standards to increase throughput.</dd>
+									<dt><code>system design specification</code></dt><dd>The final design document used to communicate architecture and implementation requirements.</dd>
+								</dl>
+							</details>
 						</div>
 						<p><a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a></p>
 					</section>
@@ -923,6 +1297,88 @@
 								</table>
 								<p>Installation also includes data conversion, user training, post-implementation evaluation, and a final report to management.</p>
 							</article>
+							<article class="card chapter-card wide" id="ch5-6-quality-engineering">
+								<h3>5.1 Quality Assurance, Software Engineering and ISO</h3>
+								<p>The implementation phase includes application development, testing, documentation, training, and changeover, but quality assurance starts before code is written. The guide states that testing can find problems during implementation, but preventing or detecting mistakes earlier is cheaper and better.</p>
+								<table>
+									<tr><th>Quality source</th><th>What can go wrong</th><th>How QA responds</th></tr>
+									<tr><td>Requirements</td><td>Users and developers misunderstand what the system must do.</td><td>Review requirements and design documents before building.</td></tr>
+									<tr><td>Design</td><td>Architecture, interface, database, or process models contain flaws.</td><td>Use structured reviews, diagrams, prototypes, and traceability.</td></tr>
+									<tr><td>Coding</td><td>Program logic is incorrect or inconsistent with design.</td><td>Use desk checking, code reviews, standards, and unit tests.</td></tr>
+									<tr><td>Documentation</td><td>Program, system, operations, or user information is incomplete.</td><td>Prepare documentation during development, not after users are already confused.</td></tr>
+									<tr><td>Testing</td><td>Tests are too narrow or unrealistic.</td><td>Plan unit, integration, system, and user-involved tests with real data patterns.</td></tr>
+								</table>
+								<p><code>Software engineering</code> applies engineering principles to requirements, design, construction, testing, and maintenance/evolution. <code>Systems engineering</code> widens the view to hardware, networks, people, procedures, and interfaces. The guide also names ISO as an international quality standards body; ISO-style work emphasizes documented testing, records, procedures, and quality evidence.</p>
+							</article>
+							<article class="card chapter-card wide" id="ch5-7-development-methods-expanded">
+								<h3>5.2-5.5 Structured, Object-Oriented and Agile Development</h3>
+								<p>Implementation method affects how the design turns into working software. Traditional structured or object-oriented approaches usually begin after design is complete; agile approaches begin with prioritized user stories and iterative releases.</p>
+								<table>
+									<tr><th>Approach</th><th>Guide details to remember</th><th>Exam contrast</th></tr>
+									<tr><td>Structured development</td><td>Uses DFDs, structure charts, modules, data couples, control couples, conditions, loops, and pseudocode.</td><td>Focuses on processes, modules, and flow from top-level logic to lower-level functions.</td></tr>
+									<tr><td>Object-oriented development</td><td>Uses use case diagrams, class diagrams, sequence diagrams, state transition diagrams, object interaction, cohesion, and coupling.</td><td>Focuses on objects/classes and their responsibilities/interactions.</td></tr>
+									<tr><td>Agile development</td><td>Uses customer-created user stories, priorities, iterations, releases, and careful customer testing.</td><td>Focuses on increments and user feedback rather than waiting for one final delivery.</td></tr>
+									<tr><td>Extreme programming</td><td>Emphasizes small releases, constant testing, user involvement, and adaptable design.</td><td>Often appears in questions about rapid change and close customer participation.</td></tr>
+								</table>
+								<div class="note">Exam trap: <code>cohesion</code> and <code>coupling</code> are not opposites. You want high cohesion inside a module and loose coupling between modules.</div>
+							</article>
+							<article class="card chapter-card wide" id="ch5-8-testing-docs-expanded">
+								<h3>5.6-5.8 Coding, Testing and Documentation</h3>
+								<p>After coding, testing proves whether programs and the whole system operate correctly. The guide separates programmer-level checks from analyst-planned integration and system testing.</p>
+								<table>
+									<tr><th>Testing/documentation type</th><th>Purpose</th><th>Who needs it</th></tr>
+									<tr><td>Desk checking</td><td>Manually trace logic before running the program.</td><td>Programmers and reviewers.</td></tr>
+									<tr><td>Code review</td><td>Inspect code for logic, style, standards, and maintainability.</td><td>Development team.</td></tr>
+									<tr><td>Unit testing</td><td>Test one program or module by itself.</td><td>Programmers, then analysts reviewing results.</td></tr>
+									<tr><td>Integration testing</td><td>Test programs that interact with one another.</td><td>Analysts and developers.</td></tr>
+									<tr><td>System testing</td><td>Test the complete system, including user participation.</td><td>Users, analysts, IT team, management reviewers.</td></tr>
+									<tr><td>Program documentation</td><td>Explains program logic and internal details.</td><td>Programmers and maintainers.</td></tr>
+									<tr><td>System documentation</td><td>Explains system functions, data, design, and controls.</td><td>Analysts and maintenance teams.</td></tr>
+									<tr><td>Operations documentation</td><td>Explains how IT operations staff run, monitor, back up, and recover the system.</td><td>IT operations.</td></tr>
+									<tr><td>User documentation</td><td>Manuals, help screens, procedures, tutorials, and examples for daily use.</td><td>End users and managers.</td></tr>
+									<tr><td>Online documentation</td><td>Searchable, updateable help that can include hypertext, FAQs, webinars, and multimedia.</td><td>Users needing task-level assistance.</td></tr>
+								</table>
+							</article>
+							<article class="card chapter-card wide" id="ch5-9-installation-worked-example">
+								<h3>Worked Example: Planning a Payroll System Changeover</h3>
+								<p><strong>Scenario:</strong> a payroll replacement passed system testing. Management must decide how to install it, convert data, train staff, and evaluate success.</p>
+								<ol>
+									<li><strong>Separate environments:</strong> keep the operational environment for live data separate from the test environment used for testing and training practice.</li>
+									<li><strong>Choose changeover:</strong> direct cutover is cheapest but riskiest; parallel operation is safest but expensive; pilot tests in one location/group; phased introduces one module or function at a time.</li>
+									<li><strong>Convert data:</strong> move existing employee, payroll, tax, and benefits data into the new format, then validate accuracy before live use.</li>
+									<li><strong>Train people:</strong> identify users, managers, and IT staff; choose vendor, outside, or in-house training; use group sessions, hands-on practice, manuals, tutorials, webinars, podcasts, and previous trainees.</li>
+									<li><strong>Evaluate after implementation:</strong> review output accuracy, user satisfaction, reliability, maintainability, controls, security, platform performance, database implementation, IT team performance, documentation, training, cost-benefit estimates, and schedules.</li>
+									<li><strong>Report to management:</strong> include final documentation, evaluation results, unresolved issues, planned maintenance, and recommendations.</li>
+								</ol>
+								<div class="note danger">Exam trap: training is not a one-line afterthought. The guide says the right people need the right training at the right time, and training plans should be considered early while documentation is created.</div>
+							</article>
+							<details class="card chapter-card wide glossary-card" id="ch5-glossary">
+								<summary><span>Chapter 5 Glossary: Implementation Terms</span></summary>
+								<dl class="glossary-list">
+									<dt><code>QA</code></dt><dd>Quality assurance; preventing defects or detecting them as early as possible.</dd>
+									<dt><code>software engineering</code></dt><dd>Engineering discipline for requirements, design, construction, testing, and maintenance/evolution of software.</dd>
+									<dt><code>systems engineering</code></dt><dd>Broader engineering view that includes hardware, software, networks, people, procedures, and interfaces.</dd>
+									<dt><code>ISO</code></dt><dd>International Organization for Standardization; creates international standards for quality products and services, including software.</dd>
+									<dt><code>structure chart</code></dt><dd>A structured development tool showing modules and the relationships between them.</dd>
+									<dt><code>module</code></dt><dd>A program component that performs a specific function.</dd>
+									<dt><code>data couple</code></dt><dd>Data passed between modules in a structure chart.</dd>
+									<dt><code>control couple</code></dt><dd>A message or flag passed between modules to control processing.</dd>
+									<dt><code>cohesion</code></dt><dd>How closely a module's internal tasks belong together; high cohesion is preferred.</dd>
+									<dt><code>coupling</code></dt><dd>How dependent modules are on each other; loose coupling is preferred.</dd>
+									<dt><code>user story</code></dt><dd>A customer-created agile statement of a needed feature and its priority.</dd>
+									<dt><code>iteration</code></dt><dd>A short agile development cycle that produces tested work.</dd>
+									<dt><code>release</code></dt><dd>A delivered version or increment of the system.</dd>
+									<dt><code>desk checking</code></dt><dd>Manual tracing of program logic to find errors before execution.</dd>
+									<dt><code>unit testing</code></dt><dd>Testing a single module or program independently.</dd>
+									<dt><code>integration testing</code></dt><dd>Testing interacting modules or programs together.</dd>
+									<dt><code>system testing</code></dt><dd>Testing the complete system, often with user participation.</dd>
+									<dt><code>direct cutover</code></dt><dd>Immediate switch from old system to new system; cheap but risky.</dd>
+									<dt><code>parallel operation</code></dt><dd>Old and new systems run together; safer but more expensive.</dd>
+									<dt><code>pilot operation</code></dt><dd>New system is tried in one location or group before wider rollout.</dd>
+									<dt><code>phased operation</code></dt><dd>New system is introduced module by module or function by function.</dd>
+									<dt><code>post-implementation evaluation</code></dt><dd>Review of the completed system's quality, performance, user satisfaction, controls, costs, and documentation.</dd>
+								</dl>
+							</details>
 						</div>
 						<p><a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a></p>
 					</section>
@@ -974,6 +1430,115 @@
 								<p>Backup and recovery decisions include media, schedules, retention periods, RAID, cloud backup, and business continuity. Systems eventually reach the end of useful life when maintenance or operating costs rise, new technology becomes available, or the system cannot meet new requirements.</p>
 								<p>Future IT professionals need technical skill, critical thinking, credentials, and awareness of security, environmental, economic, political, and social pressures.</p>
 							</article>
+							<article class="card chapter-card wide" id="ch6-6-user-support-help-desk">
+								<h3>6.1 User Support and Help Desks</h3>
+								<p>After implementation, a systems analyst often acts as an internal consultant. The guide notes that well-designed systems can require even more support because users discover features, ask for improvements, and need help applying the system to real work. Support can be in-house or outsourced, but quality must be actively monitored.</p>
+								<table>
+									<tr><th>Help desk objective</th><th>Practical meaning</th></tr>
+									<tr><td>Show users how to use resources effectively.</td><td>Help with queries, reports, advanced features, intranet/internet access, and everyday operation.</td></tr>
+									<tr><td>Answer technical or operational questions.</td><td>Resolve network issues, passwords, licensing, upgrades, hardware costs, and software behavior.</td></tr>
+									<tr><td>Improve productivity.</td><td>Build a knowledge base, identify repeated problems, support training, and guide users toward better system use.</td></tr>
+								</table>
+								<div class="note">Exam trap: outsourced support still belongs to management. Saving money does not help if long waits, weak online tools, or poor staff performance reduce customer satisfaction.</div>
+							</article>
+							<article class="card chapter-card wide" id="ch6-7-maintenance-management-expanded">
+								<h3>6.2-6.3 Maintenance Types and Management</h3>
+								<p>Maintenance is a mini-version of the SDLC. A maintenance request is submitted, evaluated, prioritized, scheduled, investigated, analyzed, designed, developed, tested, documented, and implemented. The maintenance team often includes analysts and programmers; in larger IT departments, maintenance and new development can be separate teams.</p>
+								<table>
+									<tr><th>Maintenance term</th><th>Meaning</th><th>Example</th></tr>
+									<tr><td>Corrective</td><td>Fixes errors.</td><td>Correcting a payroll calculation bug.</td></tr>
+									<tr><td>Adaptive</td><td>Adds capabilities or responds to new requirements.</td><td>Adding a new tax field after legislation changes.</td></tr>
+									<tr><td>Perfective</td><td>Improves efficiency, performance, or maintainability.</td><td>Optimizing a slow report or simplifying support procedures.</td></tr>
+									<tr><td>Preventive</td><td>Reduces the chance of future problems.</td><td>Refactoring fragile code, archiving old data, or updating security controls before failure.</td></tr>
+								</table>
+								<table>
+									<tr><th>Management technique</th><th>Purpose</th></tr>
+									<tr><td>Maintenance requests</td><td>Capture the need, source, affected system, urgency, and expected benefit.</td></tr>
+									<tr><td>Priorities</td><td>Decide what gets handled first based on urgency, value, risk, and resources.</td></tr>
+									<tr><td>Configuration management</td><td>Controls maintenance requests, system versions, and documentation changes.</td></tr>
+									<tr><td>Maintenance releases</td><td>Group approved changes into planned releases.</td></tr>
+									<tr><td>Version control</td><td>Tracks system versions and changes so teams know what is current.</td></tr>
+									<tr><td>Baselines</td><td>Formal reference points used to measure and control system evolution.</td></tr>
+								</table>
+							</article>
+							<article class="card chapter-card wide" id="ch6-8-performance-security-expanded">
+								<h3>6.4-6.6 Performance and Security</h3>
+								<p>System performance management covers fault management, workload measurement, and capacity planning. The guide's performance terms are useful in short questions because they look similar but measure different things.</p>
+								<table>
+									<tr><th>Measure</th><th>Meaning</th></tr>
+									<tr><td>Fault management</td><td>Detect, isolate, diagnose, and correct system problems.</td></tr>
+									<tr><td>Response time</td><td>How long the system takes to respond to a user request.</td></tr>
+									<tr><td>Bandwidth</td><td>Network capacity for transmitting data.</td></tr>
+									<tr><td>Throughput</td><td>Amount of work processed in a given time.</td></tr>
+									<tr><td>Turnaround time</td><td>Total time from submitting work to receiving the result.</td></tr>
+									<tr><td>Capacity planning</td><td>Forecasting future processing, storage, network, and support needs.</td></tr>
+								</table>
+								<p>Security begins with policy and risk management. The guide frames risk management as identifying, analyzing, anticipating, and reducing risks to an acceptable level. Security should be evaluated across physical, network, application, file, user, and procedural levels.</p>
+								<table>
+									<tr><th>Security level</th><th>Examples of controls</th></tr>
+									<tr><td>Physical</td><td>Locks, secure rooms, access cards, fire protection, climate control, and equipment protection.</td></tr>
+									<tr><td>Network</td><td>Firewalls, monitoring, wireless protection, secure protocols, and intrusion prevention.</td></tr>
+									<tr><td>Application</td><td>Input validation, patches, hardening, permissions, and logging.</td></tr>
+									<tr><td>File</td><td>Permissions, encryption, backup, and access logs.</td></tr>
+									<tr><td>User</td><td>Authentication, password discipline, awareness, and social engineering prevention.</td></tr>
+									<tr><td>Procedural</td><td>Management policies, operating procedures, audits, and separation of duties.</td></tr>
+								</table>
+							</article>
+							<article class="card chapter-card wide" id="ch6-9-backup-retirement-worked-example">
+								<h3>Worked Example: Recovering and Retiring an Ageing System</h3>
+								<p><strong>Scenario:</strong> an old inventory system has rising corrective maintenance, slow reports, repeated outages, and users asking for web access. A power failure damages a server during peak trading.</p>
+								<ol>
+									<li><strong>Business continuity:</strong> use the disaster recovery plan to identify roles, emergency actions, damaged equipment, recovery sequence, and communication responsibilities.</li>
+									<li><strong>Backup and recovery:</strong> restore data from approved backups, follow retention rules, verify the latest clean copy, and test restored data before normal operations resume.</li>
+									<li><strong>Performance review:</strong> measure response time, throughput, turnaround time, workload, and capacity to see whether the system can still support business needs.</li>
+									<li><strong>Maintenance classification:</strong> fix the outage as corrective maintenance, improve slow reports as perfective maintenance, add web access as adaptive maintenance, and reduce future failure through preventive work.</li>
+									<li><strong>Retirement decision:</strong> rising maintenance, expensive changes, user demands, new technology, poor support for new requirements, and declining value indicate that replacement planning should begin.</li>
+								</ol>
+								<div class="note success">Strong exam answer: keep recovery and retirement separate. Recovery restores operations after disruption; retirement is the planned end of a system's useful life.</div>
+							</article>
+							<article class="card chapter-card wide" id="ch6-10-future-professional-issues">
+								<h3>6.9 Future Challenges, IT Careers and Cyberethics</h3>
+								<p>The closing section looks beyond day-to-day maintenance. IT professionals need technical knowledge, strategic planning ability, credentials or certifications where useful, and critical thinking. The guide also emphasizes cyberethics: security, privacy, fair use of systems, and responsible professional judgment become more important as systems connect more people, suppliers, and data.</p>
+								<table>
+									<tr><th>Future-facing area</th><th>Revision meaning</th></tr>
+									<tr><td>Trends and predictions</td><td>IT work changes with security, operations, outsourcing, new technologies, and supplier expectations.</td></tr>
+									<tr><td>Strategic planning</td><td>IT professionals must connect technology decisions to business goals and long-term direction.</td></tr>
+									<tr><td>Credentials and certification</td><td>Certifications can demonstrate current technical knowledge in a changing field.</td></tr>
+									<tr><td>Critical thinking</td><td>Professionals must analyze problems, evidence, risks, alternatives, and consequences.</td></tr>
+									<tr><td>Cyberethics</td><td>Responsible behavior around access, privacy, security, information ownership, and professional conduct.</td></tr>
+								</table>
+							</article>
+							<details class="card chapter-card wide glossary-card" id="ch6-glossary">
+								<summary><span>Chapter 6 Glossary: Support, Security and Maintenance</span></summary>
+								<dl class="glossary-list">
+									<dt><code>user support</code></dt><dd>Training, guidance, troubleshooting, and operational help provided after a system is implemented.</dd>
+									<dt><code>help desk</code></dt><dd>Central support point where users ask questions, report issues, request maintenance, and receive technical guidance.</dd>
+									<dt><code>knowledge base</code></dt><dd>Stored support information built from recurring problems, solutions, and user questions.</dd>
+									<dt><code>corrective maintenance</code></dt><dd>Maintenance that fixes errors.</dd>
+									<dt><code>adaptive maintenance</code></dt><dd>Maintenance that adds capability or responds to new requirements.</dd>
+									<dt><code>perfective maintenance</code></dt><dd>Maintenance that improves efficiency, performance, or maintainability.</dd>
+									<dt><code>preventive maintenance</code></dt><dd>Maintenance that reduces the likelihood of future failure.</dd>
+									<dt><code>configuration management</code></dt><dd>Control of maintenance requests, system versions, releases, and documentation changes.</dd>
+									<dt><code>version control</code></dt><dd>Tracking and managing different versions of software or system components.</dd>
+									<dt><code>baseline</code></dt><dd>A formal reference point for measuring and controlling system changes.</dd>
+									<dt><code>response time</code></dt><dd>Time between a user request and the system's response.</dd>
+									<dt><code>bandwidth</code></dt><dd>Data transmission capacity of a communication channel.</dd>
+									<dt><code>throughput</code></dt><dd>Amount of processing completed in a given time.</dd>
+									<dt><code>turnaround time</code></dt><dd>Total time from submitting a job/request to receiving the completed result.</dd>
+									<dt><code>capacity planning</code></dt><dd>Forecasting resources needed for future workload, storage, network, and support demands.</dd>
+									<dt><code>security policy</code></dt><dd>Management statement defining how information assets are protected.</dd>
+									<dt><code>risk management</code></dt><dd>Identifying, analyzing, anticipating, and reducing risks to acceptable levels.</dd>
+									<dt><code>authentication</code></dt><dd>Confirming a user's identity before allowing access.</dd>
+									<dt><code>authorization</code></dt><dd>Controlling what an authenticated user is allowed to access or do.</dd>
+									<dt><code>backup policy</code></dt><dd>Rules for what is backed up, how often, where it is stored, and how long it is retained.</dd>
+									<dt><code>retention period</code></dt><dd>The required length of time backup copies or records must be kept.</dd>
+									<dt><code>RAID</code></dt><dd>Redundant array of independent disks; combines disks for improved capacity, performance, or reliability.</dd>
+									<dt><code>disaster recovery plan</code></dt><dd>Plan for restoring operations after a disaster, including roles, actions, equipment, data recovery, and testing.</dd>
+									<dt><code>business continuity</code></dt><dd>Planning that keeps essential business functions operating during and after disruption.</dd>
+									<dt><code>system retirement</code></dt><dd>The planned removal or replacement of a system that no longer supports user or business needs effectively.</dd>
+									<dt><code>cyberethics</code></dt><dd>Responsible and ethical behavior in the use, protection, access, and management of information systems.</dd>
+								</dl>
+							</details>
 						</div>
 						<p><a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a></p>
 					</section>

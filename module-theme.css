@@ -1,0 +1,310 @@
+/* Shared page treatment for all module study hubs.
+   The module accent is supplied by each page's body element and matches index.html. */
+
+body.module-page {
+	--module-sidebar-width: var(--nav-width, var(--sidebar, 310px));
+	--module-accent-soft: rgba(88, 196, 221, 0.14);
+	--module-accent-border: rgba(88, 196, 221, 0.48);
+	--module-accent-ink: var(--module-accent);
+}
+
+body.module-page a {
+	color: var(--module-accent-ink, var(--cyan));
+}
+
+body.module-page .progress,
+body.module-page .progress-bar {
+	background: color-mix(in srgb, var(--module-accent) 18%, transparent);
+}
+
+body.module-page .progress span,
+body.module-page .progress-bar span,
+body.module-page > .progress-bar > span {
+	background: var(--module-accent);
+}
+
+body.module-page .sidebar,
+body.module-page .side-nav {
+	border-right-color: var(--module-accent-border);
+}
+
+body.module-page .brand,
+body.module-page .nav-brand,
+body.module-page .sidebar-header {
+	border-bottom-color: var(--module-accent-border);
+}
+
+body.module-page .brand strong,
+body.module-page .nav-title,
+body.module-page .nav-brand strong,
+body.module-page .sidebar-title {
+	color: var(--module-accent);
+}
+
+body.module-page .nav-group a[aria-current="true"],
+body.module-page .nav-link[aria-current="true"] {
+	border-color: var(--module-accent-border);
+	background: var(--module-accent-soft);
+	color: var(--module-accent);
+}
+
+body.module-page .module-identity {
+	display: inline-flex;
+	align-items: center;
+	gap: 9px;
+	margin: 0 0 12px;
+	padding: 5px 10px;
+	border: 1px solid var(--module-accent-border);
+	border-radius: 999px;
+	background: var(--module-accent-soft);
+	color: var(--module-accent);
+	font-size: 0.8rem;
+	font-weight: 800;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+
+body.module-page .module-identity::before {
+	content: "";
+	width: 9px;
+	height: 9px;
+	border-radius: 50%;
+	background: var(--module-accent);
+	box-shadow: 0 0 0 4px color-mix(in srgb, var(--module-accent) 16%, transparent);
+}
+
+body.module-page .module-rail {
+	margin: 0 0 24px;
+	padding: 12px 0 16px;
+	border-top: 1px solid var(--border);
+	border-bottom: 1px solid var(--border);
+}
+
+body.module-page .module-rail h2 {
+	margin: 0 0 8px;
+	color: var(--muted);
+	font-size: 0.76rem;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+
+body.module-page .module-rail a {
+	position: relative;
+	display: block;
+	margin: 3px 0;
+	padding: 7px 9px 7px 17px;
+	border: 1px solid transparent;
+	border-radius: var(--radius, 8px);
+	color: var(--muted);
+	font-size: 0.88rem;
+	line-height: 1.25;
+}
+
+body.module-page .module-rail a::before {
+	content: "";
+	position: absolute;
+	left: 7px;
+	top: 50%;
+	width: 5px;
+	height: 5px;
+	border-radius: 50%;
+	background: var(--module-color, var(--cyan));
+	transform: translateY(-50%);
+}
+
+body.module-page .module-rail a:hover,
+body.module-page .module-rail a:focus,
+body.module-page .module-rail a[aria-current="page"] {
+	border-color: color-mix(in srgb, var(--module-color, var(--module-accent)) 52%, transparent);
+	background: color-mix(in srgb, var(--module-color, var(--module-accent)) 12%, transparent);
+	color: var(--module-color, var(--module-accent));
+	text-decoration: none;
+}
+
+body.module-page main,
+body.module-page .main,
+body.module-page .page {
+	min-height: 100vh;
+}
+
+body.module-page .page {
+	margin-left: var(--module-sidebar-width);
+}
+
+body.module-page > main,
+body.module-page .main {
+	margin-left: var(--module-sidebar-width);
+}
+
+body.module-page .main {
+	padding: 38px clamp(22px, 5vw, 70px) 72px;
+}
+
+body.module-page .hero {
+	background: radial-gradient(circle at 12% 0%, color-mix(in srgb, var(--module-accent) 18%, transparent), transparent 32%), var(--header);
+	border-bottom-color: var(--module-accent-border);
+}
+
+body.module-page .hero,
+body.module-page .content-section,
+body.module-page .section-band,
+body.module-page .footer {
+	padding-left: clamp(22px, 5vw, 70px);
+	padding-right: clamp(22px, 5vw, 70px);
+}
+
+body.module-page .hero-inner,
+body.module-page .section-inner,
+body.module-page .footer-inner,
+body.module-page .content {
+	max-width: 1180px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+body.module-page .hero h1,
+body.module-page .hero .kicker,
+body.module-page .hero .eyebrow {
+	color: var(--module-accent);
+}
+
+body.module-page .button.primary,
+body.module-page .button.secondary,
+body.module-page .button:hover,
+body.module-page .back-link:hover,
+body.module-page .actions a:first-child {
+	border-color: var(--module-accent-border);
+	background: var(--module-accent-soft);
+	color: var(--module-accent);
+}
+
+body.module-page .legend,
+body.module-page .chip-row,
+body.module-page .chapter-tools,
+body.module-page .actions,
+body.module-page .hero-actions {
+	gap: 9px;
+}
+
+body.module-page .card {
+	border-color: var(--border);
+	border-radius: var(--radius, 8px);
+	background: var(--panel);
+}
+
+body.module-page .card:hover {
+	border-color: color-mix(in srgb, var(--module-accent) 35%, var(--border));
+}
+
+body.module-page .table-wrap,
+body.module-page .callout,
+body.module-page pre {
+	border-radius: var(--radius, 8px);
+}
+
+body.module-page th {
+	color: var(--module-accent);
+}
+
+body.module-page .related-chapters a,
+body.module-page .back-link {
+	color: var(--module-accent);
+	border-color: var(--module-accent-border);
+}
+
+body.module-page .chapter,
+body.module-page .section,
+body.module-page .section-band,
+body.module-page .content-section {
+	border-color: var(--border);
+}
+
+body.module-page .back-to-top,
+body.module-page .back-top,
+body.module-page .to-top {
+	border-color: var(--module-accent-border);
+	color: var(--module-accent);
+}
+
+@media (max-width: 980px) {
+	body.module-page .main {
+	margin-left: 0;
+	padding-top: 72px;
+	}
+
+	body.module-page > main,
+	body.module-page .page {
+	margin-left: 0;
+	}
+
+	body.module-page .hero {
+	padding-top: 42px;
+	}
+
+	body.module-page .sidebar,
+	body.module-page .side-nav {
+	transform: translateX(-105%);
+	transition: transform 220ms ease;
+	}
+
+	body.module-page body.menu-open .sidebar,
+	body.module-page.menu-open .sidebar,
+	body.module-page.menu-open .side-nav,
+	body.module-page .sidebar.open,
+	body.module-page .side-nav.is-open {
+	transform: translateX(0);
+	}
+
+	body.module-page .overlay,
+	body.module-page .nav-overlay {
+	background: rgba(0, 0, 0, 0.58);
+	}
+
+	body.module-page.menu-open .overlay,
+	body.module-page .overlay.open,
+	body.module-page .nav-overlay.is-open {
+		display: block;
+		position: fixed;
+		inset: 0;
+		z-index: 140;
+	}
+
+	body.module-page .menu-toggle,
+	body.module-page .menu-button,
+	body.module-page .mobile-menu-button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	body.module-page .grid,
+	body.module-page .grid.three,
+	body.module-page .chapter-grid,
+	body.module-page .cheat-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (max-width: 620px) {
+	body.module-page {
+		font-size: 16px;
+	}
+
+	body.module-page .hero,
+	body.module-page .content-section,
+	body.module-page .section-band,
+	body.module-page .footer {
+		padding-left: 18px;
+		padding-right: 18px;
+	}
+
+	body.module-page .hero-actions .button,
+	body.module-page .actions a {
+		width: 100%;
+	}
+
+	body.module-page .sidebar,
+	body.module-page .side-nav {
+		width: min(88vw, 310px);
+	}
+}

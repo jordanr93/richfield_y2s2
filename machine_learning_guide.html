@@ -348,6 +348,10 @@
 			scroll-margin-top: 1rem;
 		}
 
+		.card.wide {
+			grid-column: 1 / -1;
+		}
+
 		.card h3,
 		.card h4 {
 			margin: 0 0 0.65rem;
@@ -543,6 +547,67 @@
 			font-size: 1.55rem;
 		}
 
+		.chapter-tools {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.5rem;
+			margin: 0 0 1rem;
+		}
+
+		.glossary-list {
+			display: grid;
+			grid-template-columns: minmax(150px, 0.34fr) 1fr;
+			gap: 0.65rem 1rem;
+			margin: 0.95rem 0 0;
+		}
+
+		.glossary-card summary {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 1rem;
+			cursor: pointer;
+			list-style: none;
+		}
+
+		.glossary-card summary::-webkit-details-marker {
+			display: none;
+		}
+
+		.glossary-card summary span {
+			font-size: 1.1rem;
+			font-weight: 900;
+			line-height: 1.25;
+		}
+
+		.glossary-card summary::after {
+			content: "Show";
+			flex: 0 0 auto;
+			padding: 0.18rem 0.55rem;
+			border: 1px solid var(--border);
+			border-radius: 999px;
+			color: var(--muted);
+			font-size: 0.78rem;
+			font-weight: 800;
+		}
+
+		.glossary-card[open] summary::after {
+			content: "Hide";
+		}
+
+		.glossary-list dt,
+		.glossary-list dd {
+			margin: 0;
+		}
+
+		.glossary-list dd {
+			color: #d6dde6;
+		}
+
+		.glossary-list code {
+			white-space: nowrap;
+		}
+
 		.back-row {
 			margin-top: 1rem;
 		}
@@ -619,6 +684,10 @@
 			.diagram.compare {
 				grid-template-columns: 1fr;
 			}
+
+			.glossary-list {
+				grid-template-columns: 1fr;
+			}
 		}
 
 		@media (max-width: 620px) {
@@ -642,8 +711,9 @@
 			}
 		}
 	</style>
+	<link rel="stylesheet" href="module-theme.css">
 </head>
-<body>
+<body class="module-page module-machine-learning" style="--module-accent: var(--cyan); --module-accent-soft: rgba(88, 196, 221, 0.14); --module-accent-border: rgba(88, 196, 221, 0.48);">
 	<a class="skip-link" href="#main-content">Skip to content</a>
 	<div class="progress" aria-hidden="true"><span id="scroll-progress"></span></div>
 	<button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false">Menu</button>
@@ -661,11 +731,20 @@
 				<a href="index.html">Home</a>
 			</div>
 
+			<div class="module-rail" aria-label="Module connector">
+				<h2>Modules</h2>
+				<a href="programming_guide.html" style="--module-color: var(--green);">PRG622 · Programming</a>
+				<a href="information_systems_guide.html" style="--module-color: var(--purple);">IS622 · Information Systems</a>
+				<a href="internet_programming_guide.html" style="--module-color: var(--red);">IP622 · Internet Programming</a>
+				<a href="machine_learning_guide.html" aria-current="page" style="--module-color: var(--cyan);">ML600 · Machine Learning</a>
+				<a href="big_data_IOT_guide.html" style="--module-color: var(--amber);">BDIOT600 · Big Data &amp; IoT</a>
+			</div>
+
 			<div class="nav-group">
 				<h2>Exam Focus Areas</h2>
 				<a href="#exam-overview" data-nav-link="exam-overview">Exam Overview</a>
 				<a href="#focus-ml-foundations" data-nav-link="focus-ml-foundations">ML Foundations</a>
-				<a href="#focus-model-fit" data-nav-link="focus-model-fit">Model Fit & Metrics</a>
+				<a href="#focus-model-fit" data-nav-link="focus-model-fit">Model Fit &amp; Metrics</a>
 				<a href="#focus-preprocessing" data-nav-link="focus-preprocessing">Preprocessing</a>
 				<a href="#focus-pca" data-nav-link="focus-pca">PCA</a>
 				<a href="#focus-regression" data-nav-link="focus-regression">Regression</a>
@@ -692,6 +771,7 @@
 	<main id="main-content">
 		<header class="hero">
 			<div class="hero-inner">
+				<div class="module-identity">ML600 · Machine Learning 600</div>
 				<p class="kicker">Richfield Faculty of Information Technology</p>
 				<h1>Machine Learning 600 Study Hub</h1>
 				<p>A dark, readable one-page revision site built from the Machine Learning 600 study guide, covering exam focus areas first and the full chapter flow after that.</p>
@@ -704,7 +784,7 @@
 					<span class="success">Correct patterns</span>
 					<span class="warning">Exam traps</span>
 					<span class="risk">Model risks</span>
-					<span class="structure">Algorithms & structure</span>
+					<span class="structure">Algorithms &amp; structure</span>
 				</div>
 			</div>
 		</header>
@@ -995,6 +1075,14 @@
 
 				<section id="chapter-1" class="chapter" data-nav-section>
 					<h3>Chapter 1: Introduction to Machine Learning</h3>
+					<div class="chapter-tools">
+						<span class="chip definition">ML and AI</span>
+						<span class="chip structure">Modeling</span>
+						<span class="chip success">Learning types</span>
+						<span class="chip risk">Overfitting</span>
+						<span class="chip warning">Correctness</span>
+						<span class="chip structure">Python libraries</span>
+					</div>
 					<div class="grid">
 						<article class="card chapter-card" id="ch1-1-overview">
 							<h4>1.1 Overview of Machine Learning</h4>
@@ -1110,12 +1198,173 @@ model = LogisticRegression()
 model.fit(X_train, y_train)
 print(model.score(X_test, y_test))</code></pre>
 						</article>
+
+						<article class="card chapter-card wide success" id="ch1-guide-workflow">
+							<h4>Chapter 1 Study Workflow: From Problem to Evaluation</h4>
+							<p>The chapter's foundation is that machine learning is not a single algorithm. It is a workflow: collect and understand data, clean and transform it, train a model to minimize error, then evaluate whether the model generalizes to unseen cases.</p>
+							<div class="diagram flow" aria-label="Chapter 1 machine learning workflow">
+								<div class="node">Problem<small>What prediction or pattern is needed?</small></div>
+								<div class="node">Data<small>Inputs, outputs, labels, or no labels</small></div>
+								<div class="node">Model<small>Mathematical relationship learned from data</small></div>
+								<div class="node">Training<small>Minimize error and optimize performance</small></div>
+								<div class="node">Evaluation<small>Check correctness and generalization</small></div>
+							</div>
+							<div class="callout warning"><strong>Exam trap:</strong> Do not describe ML as "the computer magically learns". Say what it learns: a mathematical or probabilistic relationship between variables from training data.</div>
+						</article>
+
+						<article class="card chapter-card wide definition" id="ch1-applications-map">
+							<h4>1.8 Application Map: What the Guide Wants You to Recognize</h4>
+							<p>The application section is useful for scenario questions because it links the same ML idea to different industries. When revising, identify the data, the pattern being learned, and the decision being supported.</p>
+							<div class="table-wrap">
+								<table>
+									<thead>
+										<tr>
+											<th>Area</th>
+											<th>Guide application</th>
+											<th>What the model is learning</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Healthcare</td>
+											<td>Medical images, genomics, wearable health monitoring.</td>
+											<td>Patterns that support early diagnosis, personalized treatment, or abnormality detection.</td>
+										</tr>
+										<tr>
+											<td>Finance</td>
+											<td>Fraud detection, credit scoring, trading, customer assistants.</td>
+											<td>Risk, anomaly, trend, and default-probability patterns in transaction or market data.</td>
+										</tr>
+										<tr>
+											<td>Retail</td>
+											<td>Recommendations, dynamic pricing, inventory and demand forecasting.</td>
+											<td>Customer preference and seasonal demand patterns.</td>
+										</tr>
+										<tr>
+											<td>Cybersecurity</td>
+											<td>Threat detection, phishing flags, intrusion detection, spam filtering.</td>
+											<td>Unusual network or message patterns that indicate attacks or misuse.</td>
+										</tr>
+										<tr>
+											<td>Agriculture</td>
+											<td>Crop monitoring, plant disease detection, smart irrigation.</td>
+											<td>Soil, weather, image, and sensor patterns linked to crop health and yield.</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</article>
+
+						<article class="card chapter-card wide structure" id="ch1-python-worked-example">
+							<h4>Chapter 1 Extended Code Example: Iris Classification Starter Pipeline</h4>
+							<p>This commented example follows the guide's Python-library exercise: load the Iris data with Pandas, split it with Scikit-learn, train Logistic Regression, and evaluate the result.</p>
+							<pre><code>import pandas as pd
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+
+# Step 1: Load the guide's sample Iris dataset.
+# Each row is one flower observation; the species column is the known label.
+df = pd.read_csv(
+    "https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv"
+)
+
+# Step 2: Explore before modelling.
+# describe() gives count, mean, standard deviation, and range for numeric features.
+print(df.head())
+print(df.describe())
+
+# Step 3: Separate input features X from output label y.
+# Supervised learning needs both known inputs and known outputs during training.
+X = df.drop(columns=["species"])
+y = df["species"]
+
+# Step 4: Split the data so the model is tested on unseen observations.
+# random_state makes the split repeatable when revising or debugging.
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# Step 5: Train a classification model.
+# LogisticRegression is used here as a simple, interpretable baseline.
+model = LogisticRegression(max_iter=200)
+model.fit(X_train, y_train)
+
+# Step 6: Evaluate correctness.
+# Accuracy is useful here because Iris classes are fairly balanced, but the confusion
+# matrix still shows which classes were mixed up.
+y_pred = model.predict(X_test)
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("Confusion matrix:\n", confusion_matrix(y_test, y_pred))
+print(classification_report(y_test, y_pred))</code></pre>
+							<div class="callout warning"><strong>Common error:</strong> Scikit-learn expects a two-dimensional feature table for <code>X</code>. A single new flower must still be shaped like one row with four feature columns.</div>
+						</article>
+
+						<details class="card chapter-card wide structure glossary-card" id="ch1-glossary">
+							<summary><span>Chapter 1 Glossary: Foundations, Metrics, and Python Terms</span></summary>
+							<dl class="glossary-list">
+								<dt><code>machine learning</code></dt>
+								<dd>A subfield of <code>AI</code> where models learn patterns from data to make predictions without explicit rule-by-rule programming.</dd>
+								<dt><code>model</code></dt>
+								<dd>A mathematical or probabilistic representation of relationships between variables.</dd>
+								<dt><code>training dataset</code></dt>
+								<dd>The data used by a supervised algorithm to learn the mapping from inputs to outputs.</dd>
+								<dt><code>supervised learning</code></dt>
+								<dd>Learning from labelled input-output pairs; includes <code>classification</code> and <code>regression</code>.</dd>
+								<dt><code>classification</code></dt>
+								<dd>Supervised prediction of a discrete class, such as spam or not spam.</dd>
+								<dt><code>regression</code></dt>
+								<dd>Supervised prediction of a continuous numeric value, such as income or house price.</dd>
+								<dt><code>unsupervised learning</code></dt>
+								<dd>Learning hidden patterns from data without predefined labels; common tasks include <code>clustering</code> and <code>anomaly detection</code>.</dd>
+								<dt><code>reinforcement learning</code></dt>
+								<dd>Learning through actions, rewards, and penalties while interacting with an environment.</dd>
+								<dt><code>overfitting</code></dt>
+								<dd>When a model learns noise and performs well on training data but poorly on new data.</dd>
+								<dt><code>underfitting</code></dt>
+								<dd>When a model is too simple to capture the underlying pattern and performs poorly even on training data.</dd>
+								<dt><code>bias</code></dt>
+								<dd>Error from a model being too simplistic; high bias usually links to underfitting.</dd>
+								<dt><code>variance</code></dt>
+								<dd>Error from sensitivity to small training-data changes; high variance usually links to overfitting.</dd>
+								<dt><code>TP</code>, <code>FP</code>, <code>FN</code>, <code>TN</code></dt>
+								<dd>The four confusion-matrix outcomes: true positive, false positive, false negative, and true negative.</dd>
+								<dt><code>accuracy</code></dt>
+								<dd>The proportion of all predictions that are correct; weak on imbalanced data when used alone.</dd>
+								<dt><code>precision</code></dt>
+								<dd>Of the predicted positives, the fraction that were actually positive: <code>TP / (TP + FP)</code>.</dd>
+								<dt><code>recall</code></dt>
+								<dd>Of the actual positives, the fraction the model found: <code>TP / (TP + FN)</code>.</dd>
+								<dt><code>F1 score</code></dt>
+								<dd>The harmonic mean of <code>precision</code> and <code>recall</code>.</dd>
+								<dt><code>feature extraction</code></dt>
+								<dd>Transforming raw data such as text or images into numerical features.</dd>
+								<dt><code>feature selection</code></dt>
+								<dd>Choosing relevant features and removing irrelevant or redundant ones.</dd>
+								<dt><code>NumPy</code></dt>
+								<dd>Python library for arrays, numerical computing, linear algebra, and random-number generation.</dd>
+								<dt><code>Pandas</code></dt>
+								<dd>Python library for dataset handling through structures such as the <code>DataFrame</code>.</dd>
+								<dt><code>Scikit-learn</code></dt>
+								<dd>Python ML library that provides estimators, preprocessing tools, training/test splitting, and metrics.</dd>
+								<dt><code>Matplotlib</code></dt>
+								<dd>Python library used to visualize data, model lines, clusters, and evaluation output.</dd>
+							</dl>
+						</details>
 					</div>
 					<div class="back-row"><a class="button" href="#exam-focus-areas">Back to Exam Focus Areas</a></div>
 				</section>
 
 				<section id="chapter-2" class="chapter" data-nav-section>
 					<h3>Chapter 2: Data Preprocessing and Feature Engineering</h3>
+					<div class="chapter-tools">
+						<span class="chip definition">Structured data</span>
+						<span class="chip definition">Unstructured data</span>
+						<span class="chip warning">Missing values</span>
+						<span class="chip risk">Outliers</span>
+						<span class="chip success">Scaling</span>
+						<span class="chip structure">PCA</span>
+					</div>
 					<div class="grid">
 						<article class="card chapter-card" id="ch2-1-datasets">
 							<h4>2.1 Understanding Datasets</h4>
@@ -1165,7 +1414,7 @@ df.iloc[:, :] = imputer.fit_transform(df)</code></pre>
 							<pre><code>import numpy as np
 
 data = np.array([10, 12, 13, 15, 1000])
-filtered_data = data[data < np.percentile(data, 95)]
+filtered_data = data[data &lt; np.percentile(data, 95)]
 
 df.drop_duplicates(inplace=True)</code></pre>
 						</article>
@@ -1226,12 +1475,219 @@ standardized = StandardScaler().fit_transform(data)</code></pre>
 							<p>The guide applies PCA to visualizing high-dimensional data such as the breast cancer dataset and to image feature extraction through eigenfaces. PCA can produce a better representation than raw pixel distances for some analysis tasks.</p>
 							<div class="callout structure"><strong>Important interpretation:</strong> PCA components are not original columns. They are weighted combinations of original features, so meaning must be explained carefully.</div>
 						</article>
+
+						<article class="card chapter-card wide warning" id="ch2-missing-values-guide">
+							<h4>2.2.1 Missing Values: Choose the Method That Fits the Cause</h4>
+							<p>The guide separates missing data by why the gap exists. This matters because a missing value caused by random sensor failure is not the same as a missing value caused by the missing value itself.</p>
+							<div class="table-wrap">
+								<table>
+									<thead>
+										<tr>
+											<th>Missing-data type</th>
+											<th>Meaning</th>
+											<th>Revision decision</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>MCAR</td>
+											<td>Missing Completely at Random: the missingness is independent of observed and missing data.</td>
+											<td>Dropping rows may be acceptable if the dataset is still large enough and bias is not introduced.</td>
+										</tr>
+										<tr>
+											<td>MAR</td>
+											<td>Missing at Random: the missingness depends on observed data, not the hidden missing value itself.</td>
+											<td>Imputation using related observed variables can be reasonable.</td>
+										</tr>
+										<tr>
+											<td>MNAR</td>
+											<td>Missing Not at Random: the missingness depends on the missing value itself.</td>
+											<td>Be careful: simple imputation may hide a meaningful pattern in the missingness.</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="callout risk"><strong>Exam trap:</strong> Never write "just delete missing rows" as a universal answer. The guide says removal is suitable when only a small percentage is missing and removal does not introduce bias.</div>
+						</article>
+
+						<article class="card chapter-card wide success" id="ch2-preprocessing-selector">
+							<h4>Preprocessing Selector: What to Do Before Modelling</h4>
+							<p>This chapter is very practical. Most questions ask you to choose the right preprocessing step before an algorithm sees the data.</p>
+							<div class="table-wrap">
+								<table>
+									<thead>
+										<tr>
+											<th>Problem in the data</th>
+											<th>Guide technique</th>
+											<th>Why it helps</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Small number of random missing rows</td>
+											<td><code>dropna()</code></td>
+											<td>Prevents contaminated records from entering the model.</td>
+										</tr>
+										<tr>
+											<td>Numerical missing values</td>
+											<td>Mean, median, or <code>SimpleImputer</code></td>
+											<td>Prevents data loss while keeping numeric columns usable.</td>
+										</tr>
+										<tr>
+											<td>Categorical missing values</td>
+											<td>Mode imputation</td>
+											<td>Fills with the most frequent category where appropriate.</td>
+										</tr>
+										<tr>
+											<td>Complex missing patterns</td>
+											<td><code>KNNImputer</code> or regression-based prediction</td>
+											<td>Uses other features to estimate missing values.</td>
+										</tr>
+										<tr>
+											<td>Extreme values</td>
+											<td>Remove, transform, cap, or robust-scale</td>
+											<td>Reduces distortion from errors or very unusual observations.</td>
+										</tr>
+										<tr>
+											<td>Different feature ranges</td>
+											<td><code>MinMaxScaler</code> or <code>StandardScaler</code></td>
+											<td>Prevents large-scale features from dominating distance-based models.</td>
+										</tr>
+										<tr>
+											<td>Too many correlated features</td>
+											<td><code>PCA</code></td>
+											<td>Creates fewer principal components while preserving variance.</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</article>
+
+						<article class="card chapter-card wide structure" id="ch2-pca-deeper">
+							<h4>2.4 PCA: What Actually Happens to the Features?</h4>
+							<p>PCA is dimensionality reduction, but the guide is clear that it is not simple column deletion. PCA standardizes the feature space, finds directions of maximum variance, rotates the data onto those directions, and then keeps the strongest components.</p>
+							<ul>
+								<li><strong>Why reduce dimensions:</strong> high-dimensional data increases computation, raises overfitting risk, and makes relationships harder to interpret.</li>
+								<li><strong>What components are:</strong> principal components are new axes and are linear combinations of the original features.</li>
+								<li><strong>Why scaling matters:</strong> PCA is variance-based, so unscaled features with large ranges can dominate the components.</li>
+								<li><strong>How to choose components:</strong> use the scree plot elbow, a 90-95% cumulative explained-variance threshold, or cross-validation.</li>
+							</ul>
+							<div class="callout definition"><strong>Worked interpretation:</strong> In the guide's correlated-feature example, <code>PC1</code> captured almost all the variance while <code>PC2</code> contributed very little. That means one new axis represented most of the useful variation.</div>
+						</article>
+
+						<article class="card chapter-card wide structure" id="ch2-preprocessing-code-example">
+							<h4>Chapter 2 Extended Code Example: Cleaning, Scaling, and PCA</h4>
+							<p>This example joins the guide's missing-value, scaling, and PCA sections into one practical preprocessing workflow.</p>
+							<pre><code>import numpy as np
+import pandas as pd
+from sklearn.decomposition import PCA
+from sklearn.impute import SimpleImputer
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+
+# Step 1: Create a small structured dataset.
+# Each row is an observation and each column is a feature.
+data = {
+    "Age": [25, 30, np.nan, 45, 50, 38],
+    "Salary": [50000, np.nan, 60000, 80000, 90000, 72000],
+    "SpendingScore": [62, 70, 65, 40, 35, 50],
+    "OnlineVisits": [12, 15, 13, 4, 3, 8],
+}
+df = pd.DataFrame(data)
+
+# Step 2: Split before fitting preprocessing objects.
+# This avoids test-data leakage: the test set must not influence imputation or scaling.
+X_train, X_test = train_test_split(df, test_size=0.33, random_state=42)
+
+# Step 3: Build a preprocessing pipeline.
+# SimpleImputer fills missing values with training-column means.
+# StandardScaler gives each feature comparable mean and variance.
+# PCA then rotates the scaled features into principal components.
+preprocess = make_pipeline(
+    SimpleImputer(strategy="mean"),
+    StandardScaler(),
+    PCA(n_components=2)
+)
+
+# Step 4: Fit only on training data, then transform both sets in the same way.
+X_train_pca = preprocess.fit_transform(X_train)
+X_test_pca = preprocess.transform(X_test)
+
+# Step 5: Inspect explained variance to decide whether enough information remains.
+pca = preprocess.named_steps["pca"]
+print("Training data after PCA:\n", X_train_pca)
+print("Test data after PCA:\n", X_test_pca)
+print("Explained variance ratio:", pca.explained_variance_ratio_)
+print("Total retained variance:", pca.explained_variance_ratio_.sum())</code></pre>
+							<div class="callout warning"><strong>Common error:</strong> Do not call <code>fit_transform()</code> separately on training and test sets. Fit preprocessing on training data, then call <code>transform()</code> on test data using the same fitted rules.</div>
+						</article>
+
+						<details class="card chapter-card wide structure glossary-card" id="ch2-glossary">
+							<summary><span>Chapter 2 Glossary: Data Cleaning, Scaling, and PCA</span></summary>
+							<dl class="glossary-list">
+								<dt><code>structured data</code></dt>
+								<dd>Organized data stored in rows and columns, such as databases, spreadsheets, CSV, JSON, or XML.</dd>
+								<dt><code>unstructured data</code></dt>
+								<dd>Data without a predefined tabular schema, such as text, images, audio, and video.</dd>
+								<dt><code>observation</code></dt>
+								<dd>One row or data instance in a dataset.</dd>
+								<dt><code>attribute</code> / <code>feature</code></dt>
+								<dd>A column describing one measurable property of an observation.</dd>
+								<dt><code>data cleaning</code></dt>
+								<dd>Handling missing values, inconsistencies, errors, outliers, and duplicates before model training.</dd>
+								<dt><code>MCAR</code></dt>
+								<dd>Missing Completely at Random; missingness is independent of observed and missing values.</dd>
+								<dt><code>MAR</code></dt>
+								<dd>Missing at Random; missingness depends on observed data.</dd>
+								<dt><code>MNAR</code></dt>
+								<dd>Missing Not at Random; missingness depends on the missing value itself.</dd>
+								<dt><code>imputation</code></dt>
+								<dd>Filling missing values instead of removing the whole row or column.</dd>
+								<dt><code>mean</code>, <code>median</code>, <code>mode</code></dt>
+								<dd>Common statistical imputation choices for numerical or categorical data.</dd>
+								<dt><code>SimpleImputer</code></dt>
+								<dd>Scikit-learn class for filling missing values using strategies such as mean, median, or most frequent.</dd>
+								<dt><code>KNNImputer</code></dt>
+								<dd>Imputation method that estimates missing values from nearby observations.</dd>
+								<dt><code>outlier</code></dt>
+								<dd>A data point significantly different from the rest; it may be an error or a genuine extreme case.</dd>
+								<dt><code>feature scaling</code></dt>
+								<dd>Putting features on comparable ranges so algorithms do not become biased toward large-scale columns.</dd>
+								<dt><code>MinMaxScaler</code></dt>
+								<dd>Scales features into a chosen range, commonly 0 to 1.</dd>
+								<dt><code>StandardScaler</code></dt>
+								<dd>Standardizes features by centering around mean 0 and scaling to unit variance.</dd>
+								<dt><code>RobustScaler</code></dt>
+								<dd>Scaler based on median and quartiles, making it less sensitive to outliers.</dd>
+								<dt><code>Normalizer</code></dt>
+								<dd>Scales each observation vector to length 1, useful when direction matters more than magnitude.</dd>
+								<dt><code>dimensionality reduction</code></dt>
+								<dd>Reducing the number of input features while retaining important information.</dd>
+								<dt><code>PCA</code></dt>
+								<dd>Principal Component Analysis; transforms data into principal components that capture maximum variance.</dd>
+								<dt><code>principal component</code></dt>
+								<dd>A new axis made from a linear combination of original features.</dd>
+								<dt><code>explained_variance_ratio_</code></dt>
+								<dd>Scikit-learn PCA attribute showing how much variance each component captures.</dd>
+								<dt><code>inverse_transform()</code></dt>
+								<dd>Returns transformed PCA data back toward the original feature space for reconstruction or interpretation.</dd>
+							</dl>
+						</details>
 					</div>
 					<div class="back-row"><a class="button" href="#exam-focus-areas">Back to Exam Focus Areas</a></div>
 				</section>
 
 				<section id="chapter-3" class="chapter" data-nav-section>
 					<h3>Chapter 3: Supervised Learning - Regression Algorithms</h3>
+					<div class="chapter-tools">
+						<span class="chip definition">Labeled data</span>
+						<span class="chip success">Continuous output</span>
+						<span class="chip structure">Linear regression</span>
+						<span class="chip warning">Polynomial degree</span>
+						<span class="chip risk">Decision trees</span>
+						<span class="chip structure">R2 and MAE</span>
+					</div>
 					<div class="grid">
 						<article class="card chapter-card" id="ch3-1-supervised-learning">
 							<h4>3.1 What Is Supervised Learning?</h4>
@@ -1300,12 +1756,234 @@ poly_model.fit(X, y)</code></pre>
 								<div class="node">Visualize<small>Predicted vs actual</small></div>
 							</div>
 						</article>
+
+						<article class="card chapter-card wide definition" id="ch3-regression-math">
+							<h4>Regression Math and Interpretation</h4>
+							<p>The guide introduces regression as learning a function <code>f: X -> Y</code> where <code>Y</code> is continuous. For simple linear regression, the relationship is written as <code>Y = mX + b</code>.</p>
+							<div class="table-wrap">
+								<table>
+									<thead>
+										<tr>
+											<th>Term</th>
+											<th>Meaning in an answer</th>
+											<th>House-price interpretation</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><code>X</code></td>
+											<td>Input feature or features.</td>
+											<td>Square footage, bedrooms, location, or age of property.</td>
+										</tr>
+										<tr>
+											<td><code>Y</code></td>
+											<td>Continuous target value.</td>
+											<td>Selling price of the house.</td>
+										</tr>
+										<tr>
+											<td><code>m</code></td>
+											<td>Slope or coefficient: how much <code>Y</code> changes for a unit change in <code>X</code>.</td>
+											<td>Estimated price increase for extra square footage.</td>
+										</tr>
+										<tr>
+											<td><code>b</code></td>
+											<td>Intercept: predicted <code>Y</code> when <code>X = 0</code>.</td>
+											<td>A baseline model value, not always meaningful in the real-world domain.</td>
+										</tr>
+										<tr>
+											<td><code>least squares</code></td>
+											<td>Chooses parameters that minimize squared prediction errors.</td>
+											<td>Fits the line that keeps predicted prices close to actual prices.</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="callout warning"><strong>Exam trap:</strong> Interpret coefficients only within the model context. A coefficient explains association in the fitted data; it is not automatically proof of real-world causation.</div>
+						</article>
+
+						<article class="card chapter-card wide success" id="ch3-model-comparison">
+							<h4>Regression Model Comparison</h4>
+							<p>The chapter asks you to compare linear regression, polynomial regression, and decision tree regression on the same prediction task. A strong answer says how the model learns, when it helps, and where it fails.</p>
+							<div class="table-wrap">
+								<table>
+									<thead>
+										<tr>
+											<th>Model</th>
+											<th>How it learns</th>
+											<th>Strength</th>
+											<th>Weakness</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Linear Regression</td>
+											<td>Fits a straight-line relationship using coefficients and an intercept.</td>
+											<td>Fast, interpretable, useful when the relationship is roughly linear.</td>
+											<td>Underfits curved or highly complex relationships.</td>
+										</tr>
+										<tr>
+											<td>Polynomial Regression</td>
+											<td>Adds powers of features, then fits a linear model on those expanded features.</td>
+											<td>Captures non-linear trends while staying equation-based.</td>
+											<td>High-degree models can fit noise and generalize badly.</td>
+										</tr>
+										<tr>
+											<td>Decision Tree Regression</td>
+											<td>Splits the feature space into branches; leaves predict an average target value.</td>
+											<td>Handles non-linear rules and is easy to explain for shallow trees.</td>
+											<td>Can overfit, is sensitive to small data changes, and cannot extrapolate beyond training range.</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</article>
+
+						<article class="card chapter-card wide risk" id="ch3-tree-depth-warning">
+							<h4>Decision Trees: Pruning, Feature Importance, and Extrapolation</h4>
+							<p>The guide explains trees using if/else questions. In regression, those questions split numeric space into regions, and each leaf predicts a value. If a tree is allowed to grow until every leaf is pure, it can memorize the training set.</p>
+							<ul>
+								<li><strong>Pre-pruning:</strong> stop growth early using limits such as <code>max_depth</code>, <code>max_leaf_nodes</code>, or <code>min_samples_leaf</code>.</li>
+								<li><strong>Post-pruning:</strong> build a full tree, then remove weak branches; the guide notes scikit-learn focuses on pre-pruning.</li>
+								<li><strong>Feature importance:</strong> summarizes which features the tree relied on, but it does not show whether a feature pushes the prediction up or down.</li>
+								<li><strong>Extrapolation limit:</strong> tree regressors cannot predict beyond the range learned from training data; they usually repeat a known leaf value.</li>
+							</ul>
+							<div class="callout risk"><strong>Exam trap:</strong> A tree that has 100% training accuracy is not automatically excellent. It may simply be deep enough to memorize the training data.</div>
+						</article>
+
+						<article class="card chapter-card wide structure" id="ch3-regression-code-example">
+							<h4>Chapter 3 Extended Code Example: Compare Regression Models</h4>
+							<p>This example follows the guide's house-price exercise: preprocess a dataset, train linear, polynomial, and decision tree regressors, then compare <code>R2</code> and <code>MAE</code>.</p>
+							<pre><code>import numpy as np
+import pandas as pd
+from sklearn.impute import SimpleImputer
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error, r2_score
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import PolynomialFeatures, StandardScaler
+from sklearn.tree import DecisionTreeRegressor
+
+# Step 1: Small house-price dataset based on the guide's square-footage example.
+# Price is measured in thousands, so 320 means $320 000.
+df = pd.DataFrame({
+    "SquareFootage": [1200, 1500, 1800, 2100, 2500, 2800, 3200, np.nan],
+    "Bedrooms": [2, 3, 3, 4, 4, 4, 5, 3],
+    "Age": [18, 12, 10, 8, 5, 4, 2, 15],
+    "Price": [220, 270, 320, 370, 420, 455, 510, 300],
+})
+
+# Step 2: Separate features and continuous target.
+X = df.drop(columns=["Price"])
+y = df["Price"]
+
+# Step 3: Split before fitting imputers, scalers, or models.
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, random_state=42
+)
+
+# Step 4: Define three models from the chapter.
+# Linear regression: interpretable straight-line baseline.
+linear_model = make_pipeline(
+    SimpleImputer(strategy="mean"),
+    StandardScaler(),
+    LinearRegression()
+)
+
+# Polynomial regression: adds curved feature terms before fitting LinearRegression.
+poly_model = make_pipeline(
+    SimpleImputer(strategy="mean"),
+    StandardScaler(),
+    PolynomialFeatures(degree=2, include_bias=False),
+    LinearRegression()
+)
+
+# Decision tree regression: rule-based non-linear model.
+# max_depth is pre-pruning; it limits complexity to reduce overfitting.
+tree_model = make_pipeline(
+    SimpleImputer(strategy="mean"),
+    DecisionTreeRegressor(max_depth=3, random_state=42)
+)
+
+models = {
+    "Linear": linear_model,
+    "Polynomial degree 2": poly_model,
+    "Decision tree": tree_model,
+}
+
+# Step 5: Train, predict, and compare the same metrics for each model.
+for name, model in models.items():
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+    print(name)
+    print("  R2:", round(r2_score(y_test, y_pred), 3))
+    print("  MAE:", round(mean_absolute_error(y_test, y_pred), 3))
+
+# Step 6: Predict a new house.
+# The same fitted preprocessing steps are applied automatically by each pipeline.
+new_house = pd.DataFrame({
+    "SquareFootage": [2000],
+    "Bedrooms": [3],
+    "Age": [9],
+})
+print("Linear prediction:", linear_model.predict(new_house)[0])</code></pre>
+							<div class="callout warning"><strong>Common error:</strong> Polynomial regression is still based on linear regression after feature expansion. The "polynomial" part is the transformed input features, not a totally unrelated algorithm.</div>
+						</article>
+
+						<details class="card chapter-card wide structure glossary-card" id="ch3-glossary">
+							<summary><span>Chapter 3 Glossary: Regression Algorithms and Evaluation</span></summary>
+							<dl class="glossary-list">
+								<dt><code>supervised learning</code></dt>
+								<dd>Learning from labelled examples where each input has a known output.</dd>
+								<dt><code>f: X -> Y</code></dt>
+								<dd>The supervised-learning mapping from input features <code>X</code> to target output <code>Y</code>.</dd>
+								<dt><code>regression</code></dt>
+								<dd>Supervised learning for continuous numerical targets.</dd>
+								<dt><code>continuous value</code></dt>
+								<dd>A numeric output that can vary across a range, such as price, income, or sales revenue.</dd>
+								<dt><code>linear regression</code></dt>
+								<dd>Regression model that fits a linear relationship between independent variables and the target.</dd>
+								<dt><code>Y = mX + b</code></dt>
+								<dd>Simple linear-regression equation with slope <code>m</code> and intercept <code>b</code>.</dd>
+								<dt><code>slope</code></dt>
+								<dd>How much the predicted output changes for a one-unit change in the input.</dd>
+								<dt><code>intercept</code></dt>
+								<dd>The predicted output when the input value is zero.</dd>
+								<dt><code>least squares</code></dt>
+								<dd>Parameter-fitting method that minimizes squared differences between actual and predicted values.</dd>
+								<dt><code>polynomial regression</code></dt>
+								<dd>Regression that adds higher-degree feature terms to model non-linear relationships.</dd>
+								<dt><code>degree</code></dt>
+								<dd>The highest power used in polynomial features; higher degree means more flexibility and more overfitting risk.</dd>
+								<dt><code>DecisionTreeRegressor</code></dt>
+								<dd>Scikit-learn tree model for continuous targets.</dd>
+								<dt><code>leaf</code></dt>
+								<dd>A terminal tree node that stores the final prediction, often an average of training targets in that region.</dd>
+								<dt><code>pre-pruning</code></dt>
+								<dd>Stopping a tree early using constraints such as <code>max_depth</code> or <code>min_samples_leaf</code>.</dd>
+								<dt><code>feature_importances_</code></dt>
+								<dd>Tree attribute showing how much each feature contributed to splits; values are positive and sum to 1.</dd>
+								<dt><code>extrapolation</code></dt>
+								<dd>Predicting beyond the observed training range; decision trees generally cannot do this well.</dd>
+								<dt><code>R2 score</code></dt>
+								<dd>Regression score describing how much target variation the model explains.</dd>
+								<dt><code>MAE</code></dt>
+								<dd>Mean Absolute Error; the average absolute difference between predicted and actual values.</dd>
+							</dl>
+						</details>
 					</div>
 					<div class="back-row"><a class="button" href="#exam-focus-areas">Back to Exam Focus Areas</a></div>
 				</section>
 
 				<section id="chapter-4" class="chapter" data-nav-section>
 					<h3>Chapter 4: Supervised Learning - Classification Algorithms</h3>
+					<div class="chapter-tools">
+						<span class="chip definition">Categorical labels</span>
+						<span class="chip structure">Decision boundary</span>
+						<span class="chip success">Logistic regression</span>
+						<span class="chip warning">k-NN distance</span>
+						<span class="chip structure">SVM margin</span>
+						<span class="chip risk">Imbalanced metrics</span>
+					</div>
 					<div class="grid">
 						<article class="card chapter-card" id="ch4-1-classification">
 							<h4>4.1 Classification</h4>
@@ -1397,12 +2075,267 @@ print(knn.score(X_test, y_test))</code></pre>
 								</table>
 							</div>
 						</article>
+
+						<article class="card chapter-card wide definition" id="ch4-classification-map">
+							<h4>Classification Map: What Changes from Regression?</h4>
+							<p>The guide defines classification as supervised learning for categorical outcomes. The model learns <code>f: X -> Y</code>, but now <code>Y</code> is a label such as spam/non-spam, fraud/not fraud, disease/no disease, or an iris species.</p>
+							<div class="table-wrap">
+								<table>
+									<thead>
+										<tr>
+											<th>Idea</th>
+											<th>Classification answer</th>
+											<th>Regression contrast</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Target</td>
+											<td>Discrete class label.</td>
+											<td>Continuous numeric value.</td>
+										</tr>
+										<tr>
+											<td>Output wording</td>
+											<td>"Classify", "detect", "identify", "diagnose".</td>
+											<td>"Predict price", "estimate sales", "forecast value".</td>
+										</tr>
+										<tr>
+											<td>Boundary</td>
+											<td>A decision boundary separates categories in feature space.</td>
+											<td>A fitted line, curve, or tree leaf predicts numeric values.</td>
+										</tr>
+										<tr>
+											<td>Evaluation</td>
+											<td>Accuracy, precision, recall, F1, ROC curve.</td>
+											<td>R2, MAE, residuals, prediction-vs-actual plots.</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="callout warning"><strong>Exam trap:</strong> Logistic Regression is a classification algorithm even though its name contains "Regression". It predicts class probability through the logistic/sigmoid function.</div>
+						</article>
+
+						<article class="card chapter-card wide structure" id="ch4-algorithm-selector">
+							<h4>Classification Algorithm Selector</h4>
+							<p>The chapter groups several common classifiers. For exam answers, name what the algorithm uses to classify and what problem can weaken it.</p>
+							<div class="table-wrap">
+								<table>
+									<thead>
+										<tr>
+											<th>Algorithm</th>
+											<th>Main idea from the guide</th>
+											<th>Good fit</th>
+											<th>Watch out for</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Logistic Regression</td>
+											<td>Uses a linear model and sigmoid probability for binary classification.</td>
+											<td>Medical or financial tasks where interpretability matters.</td>
+											<td>Linear decision boundaries can underfit complex patterns.</td>
+										</tr>
+										<tr>
+											<td>k-NN</td>
+											<td>Stores the training set and uses majority vote among nearest neighbors.</td>
+											<td>Simple, well-distributed datasets such as Iris measurements.</td>
+											<td>Scaling and high dimensionality strongly affect distance.</td>
+										</tr>
+										<tr>
+											<td>SVM</td>
+											<td>Finds a margin-maximizing hyperplane using support vectors.</td>
+											<td>High-dimensional spaces such as text classification or image recognition.</td>
+											<td>Kernel and regularization choices affect flexibility and overfitting.</td>
+										</tr>
+										<tr>
+											<td>LinearSVC</td>
+											<td>Linear margin-based classifier controlled by <code>C</code>.</td>
+											<td>Large sparse feature spaces.</td>
+											<td>Coefficient interpretation can be unclear when features are correlated.</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</article>
+
+						<article class="card chapter-card wide warning" id="ch4-regularization-multiclass">
+							<h4>Regularization, <code>C</code>, and Multiclass Logic</h4>
+							<p>The guide spends extra time on linear classifiers because they are fast, scalable, and interpretable, but their parameters need careful reading.</p>
+							<ul>
+								<li><strong><code>C</code> in LogisticRegression and LinearSVC:</strong> larger <code>C</code> means less regularization and a more flexible model; smaller <code>C</code> means stronger regularization and a simpler model.</li>
+								<li><strong><code>L2</code> regularization:</strong> default-style penalty that shrinks coefficients but usually keeps many features active.</li>
+								<li><strong><code>L1</code> regularization:</strong> can push some coefficients to zero, which helps when only a few features are expected to matter.</li>
+								<li><strong>One-vs-rest:</strong> trains one binary classifier per class; the class with the highest score wins.</li>
+								<li><strong>Coefficient caution:</strong> a coefficient sign can change when regularization changes or features are correlated, so interpret it carefully.</li>
+							</ul>
+						</article>
+
+						<article class="card chapter-card wide risk" id="ch4-metric-traps">
+							<h4>Metric Traps: Match the Metric to the Error Cost</h4>
+							<p>The classification metrics section builds directly on the confusion matrix. A strong exam answer names the metric and explains which type of error it controls.</p>
+							<div class="table-wrap">
+								<table>
+									<thead>
+										<tr>
+											<th>Metric</th>
+											<th>Formula or idea</th>
+											<th>Best exam wording</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><code>accuracy</code></td>
+											<td><code>(TP + TN) / total</code></td>
+											<td>Use when classes are balanced and error costs are similar.</td>
+										</tr>
+										<tr>
+											<td><code>precision</code></td>
+											<td><code>TP / (TP + FP)</code></td>
+											<td>Use when false positives are costly.</td>
+										</tr>
+										<tr>
+											<td><code>recall</code></td>
+											<td><code>TP / (TP + FN)</code></td>
+											<td>Use when false negatives are costly.</td>
+										</tr>
+										<tr>
+											<td><code>F1-score</code></td>
+											<td>Harmonic mean of precision and recall.</td>
+											<td>Use when you need a balanced precision-recall summary.</td>
+										</tr>
+										<tr>
+											<td><code>ROC curve</code></td>
+											<td>Tradeoff between sensitivity and specificity across thresholds.</td>
+											<td>Use when comparing threshold behavior matters.</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</article>
+
+						<article class="card chapter-card wide structure" id="ch4-classification-code-example">
+							<h4>Chapter 4 Extended Code Example: Logistic Regression, k-NN, and SVM</h4>
+							<p>This example uses a labelled dataset and compares the chapter's main classifiers with shared metrics.</p>
+							<pre><code>from sklearn.datasets import load_iris
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.svm import SVC
+
+# Step 1: Load the Iris dataset.
+# It has four input measurements and three known species labels.
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Step 2: Split into training and testing sets.
+# The test set estimates how well each model generalizes.
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42, stratify=y
+)
+
+# Step 3: Build classifiers from the chapter.
+# Logistic Regression: interpretable linear baseline.
+# k-NN: distance-based majority vote, so scaling is important.
+# SVM: margin-based classifier; RBF kernel can handle non-linear boundaries.
+models = {
+    "Logistic Regression": make_pipeline(
+        StandardScaler(),
+        LogisticRegression(max_iter=300, C=1.0)
+    ),
+    "k-NN": make_pipeline(
+        StandardScaler(),
+        KNeighborsClassifier(n_neighbors=5)
+    ),
+    "SVM RBF": make_pipeline(
+        StandardScaler(),
+        SVC(kernel="rbf", C=1.0, gamma="scale")
+    ),
+}
+
+# Step 4: Train and evaluate using the same test set.
+for name, model in models.items():
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+    print("\n", name)
+    print("Accuracy:", round(accuracy_score(y_test, y_pred), 3))
+    print("Confusion matrix:\n", confusion_matrix(y_test, y_pred))
+    print(classification_report(y_test, y_pred, target_names=iris.target_names))
+
+# Step 5: Predict one new flower.
+# The nested list is one row with four feature values.
+new_iris = [[5.0, 2.9, 1.0, 0.2]]
+predicted_class = models["k-NN"].predict(new_iris)[0]
+print("Predicted iris species:", iris.target_names[predicted_class])</code></pre>
+							<div class="callout warning"><strong>Common error:</strong> k-NN and SVM are scale-sensitive. Without scaling, a feature with a larger numeric range can dominate distance or margin calculations.</div>
+						</article>
+
+						<details class="card chapter-card wide structure glossary-card" id="ch4-glossary">
+							<summary><span>Chapter 4 Glossary: Classification Algorithms and Metrics</span></summary>
+							<dl class="glossary-list">
+								<dt><code>classification</code></dt>
+								<dd>Supervised learning task where the target is a categorical label.</dd>
+								<dt><code>categorical outcome</code></dt>
+								<dd>A discrete class such as spam/non-spam, fraud/not fraud, or setosa/versicolor/virginica.</dd>
+								<dt><code>decision boundary</code></dt>
+								<dd>The line, plane, or surface that separates classes in feature space.</dd>
+								<dt><code>logistic regression</code></dt>
+								<dd>Linear classifier that predicts class probability and is commonly used for binary classification.</dd>
+								<dt><code>sigmoid</code></dt>
+								<dd>The logistic function that maps a model score into a probability-like value between 0 and 1.</dd>
+								<dt><code>binary classification</code></dt>
+								<dd>Classification between two classes.</dd>
+								<dt><code>multiclass classification</code></dt>
+								<dd>Classification among more than two classes.</dd>
+								<dt><code>k-NN</code></dt>
+								<dd>k-Nearest Neighbors; predicts from the majority class among the <code>k</code> nearest training points.</dd>
+								<dt><code>Euclidean distance</code></dt>
+								<dd>Distance measure commonly used by k-NN to find nearby points.</dd>
+								<dt><code>lazy learning</code></dt>
+								<dd>Model style where little training happens upfront; k-NN mainly stores the training set and computes during prediction.</dd>
+								<dt><code>curse of dimensionality</code></dt>
+								<dd>The problem that distance-based methods can weaken when many features make points harder to compare meaningfully.</dd>
+								<dt><code>SVM</code></dt>
+								<dd>Support Vector Machine; classifier that seeks a margin-maximizing hyperplane.</dd>
+								<dt><code>support vectors</code></dt>
+								<dd>Training points closest to the decision boundary that define the SVM margin.</dd>
+								<dt><code>hyperplane</code></dt>
+								<dd>The separating boundary used by a linear SVM, written in the guide as <code>wX + b = 0</code>.</dd>
+								<dt><code>kernel trick</code></dt>
+								<dd>Technique that lets SVM separate non-linear data by working in a transformed feature space.</dd>
+								<dt><code>RBF kernel</code></dt>
+								<dd>Common SVM kernel for non-linear decision boundaries.</dd>
+								<dt><code>C</code></dt>
+								<dd>Regularization parameter in LogisticRegression and LinearSVC; higher means less regularization.</dd>
+								<dt><code>L1</code></dt>
+								<dd>Regularization that can reduce some coefficients to zero, helping with feature selection.</dd>
+								<dt><code>L2</code></dt>
+								<dd>Regularization that shrinks coefficients while usually keeping many features active.</dd>
+								<dt><code>one-vs-rest</code></dt>
+								<dd>Multiclass strategy that trains one binary classifier for each class against all other classes.</dd>
+								<dt><code>accuracy_score</code></dt>
+								<dd>Scikit-learn metric for overall correct predictions.</dd>
+								<dt><code>classification_report</code></dt>
+								<dd>Scikit-learn report showing precision, recall, F1-score, and support per class.</dd>
+							</dl>
+						</details>
 					</div>
 					<div class="back-row"><a class="button" href="#exam-focus-areas">Back to Exam Focus Areas</a></div>
 				</section>
 
 				<section id="chapter-5" class="chapter" data-nav-section>
 					<h3>Chapter 5: Unsupervised Learning - Clustering Algorithms</h3>
+					<div class="chapter-tools">
+						<span class="chip structure">Unlabeled data</span>
+						<span class="chip success">Clustering</span>
+						<span class="chip warning">k-Means k</span>
+						<span class="chip structure">Dendrograms</span>
+						<span class="chip risk">DBSCAN noise</span>
+						<span class="chip definition">Silhouette</span>
+					</div>
 					<div class="grid">
 						<article class="card chapter-card" id="ch5-1-introduction">
 							<h4>5.1 Introduction</h4>
@@ -1491,6 +2424,262 @@ df["DBSCAN_Cluster"] = dbscan.fit_predict(df_scaled)</code></pre>
 							<p>k-Means can fail even when the correct number of clusters is known because it assumes clusters are represented well by centers, have simple convex shapes, and have similar diameter.</p>
 							<div class="callout risk"><strong>Weakness:</strong> k-Means struggles with stretched, uneven-density, or complex-shaped clusters because it only considers distance to the nearest center.</div>
 						</article>
+
+						<article class="card chapter-card wide definition" id="ch5-clustering-labels">
+							<h4>Clustering Labels Are Assignments, Not Meanings</h4>
+							<p>The guide compares clustering to classification because both assign a number or label to each data point. The crucial difference is that clustering has no ground-truth label by default. A cluster number only means "these points were grouped together". It does not automatically mean "premium customers", "fraud", or "disease group".</p>
+							<div class="table-wrap">
+								<table>
+									<thead>
+										<tr>
+											<th>Clustering output</th>
+											<th>What you can say safely</th>
+											<th>What needs manual analysis</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><code>Cluster = 0</code></td>
+											<td>All points with label 0 are similar according to the algorithm and feature representation.</td>
+											<td>Whether those points represent high-value customers, anomalies, or a business segment.</td>
+										</tr>
+										<tr>
+											<td><code>Cluster = 1</code></td>
+											<td>The number is arbitrary and may change if initialization changes.</td>
+											<td>The semantic name and business meaning of the group.</td>
+										</tr>
+										<tr>
+											<td><code>-1</code> in DBSCAN</td>
+											<td>The point was treated as noise or an outlier.</td>
+											<td>Whether the point is an error, a rare but valid case, or a valuable anomaly.</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="callout warning"><strong>Exam trap:</strong> Do not use ordinary classification accuracy for clustering labels unless the task specifically gives ground truth and you use a clustering-aware metric such as ARI or NMI.</div>
+						</article>
+
+						<article class="card chapter-card wide risk" id="ch5-kmeans-deeper">
+							<h4>k-Means: Centroids, Failure Cases, and Vector Quantization</h4>
+							<p>k-Means represents each cluster by a center. It alternates between assigning points to the closest center and recomputing each center as the mean of assigned points until assignments stop changing.</p>
+							<ul>
+								<li><strong>Needs <code>k</code>:</strong> the number of clusters must be chosen before fitting.</li>
+								<li><strong>Random initialization:</strong> results can vary; scikit-learn runs multiple initializations and keeps the best outcome.</li>
+								<li><strong>Simple cluster shapes:</strong> k-means assumes clusters are well described by centers, roughly convex, and not wildly different in diameter.</li>
+								<li><strong>Vector quantization:</strong> the guide notes that k-means can be viewed as representing each point by a single component: its cluster center.</li>
+								<li><strong>Expressive representation:</strong> using many cluster centers can create new features, such as one-hot cluster assignments or distances to each center.</li>
+							</ul>
+							<div class="callout risk"><strong>Weakness:</strong> k-Means struggles on stretched, uneven-density, or two-moons-style clusters because nearest-center distance does not capture complex shape.</div>
+						</article>
+
+						<article class="card chapter-card wide structure" id="ch5-hierarchical-dbscan-deeper">
+							<h4>Hierarchical Clustering and DBSCAN: Two Different Ways to Control Granularity</h4>
+							<p>Agglomerative clustering starts with every point as its own cluster and repeatedly merges the two most similar clusters. DBSCAN starts from density: enough nearby points create a core region, sparse points become boundaries or noise.</p>
+							<div class="table-wrap">
+								<table>
+									<thead>
+										<tr>
+											<th>Method</th>
+											<th>Control parameter</th>
+											<th>What it changes</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>k-Means</td>
+											<td><code>n_clusters</code></td>
+											<td>Directly chooses how many centroid-based clusters to form.</td>
+										</tr>
+										<tr>
+											<td>Agglomerative</td>
+											<td><code>n_clusters</code> and linkage</td>
+											<td>Chooses the final number of clusters and how similarity between clusters is measured.</td>
+										</tr>
+										<tr>
+											<td>DBSCAN</td>
+											<td><code>eps</code> and <code>min_samples</code></td>
+											<td>Controls how dense a region must be; the number of clusters emerges from the data.</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<ul>
+								<li><strong>Ward linkage:</strong> minimizes the increase in within-cluster variance and often gives similar-sized clusters.</li>
+								<li><strong>Average linkage:</strong> merges clusters with the smallest average distance between their points.</li>
+								<li><strong>Complete linkage:</strong> merges based on the smallest maximum distance between any two points in the clusters.</li>
+								<li><strong>Dendrogram:</strong> shows the merge history and helps inspect possible cut points.</li>
+								<li><strong>DBSCAN <code>eps</code>:</strong> too small can mark everything as noise; too large can merge everything into one cluster.</li>
+							</ul>
+						</article>
+
+						<article class="card chapter-card wide success" id="ch5-evaluation-guide">
+							<h4>Evaluating Clusters: Quantitative Scores Plus Human Interpretation</h4>
+							<p>The guide warns that clustering is often qualitative and exploratory. Internal metrics help, but a high score does not prove that clusters match the real-world concept you care about.</p>
+							<div class="table-wrap">
+								<table>
+									<thead>
+										<tr>
+											<th>Evaluation idea</th>
+											<th>Use when</th>
+											<th>Limitation</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><code>silhouette score</code></td>
+											<td>No ground truth; you want compact, separated clusters.</td>
+											<td>Can prefer compact shapes even when DBSCAN captures complex structure better.</td>
+										</tr>
+										<tr>
+											<td><code>Davies-Bouldin Index</code></td>
+											<td>No ground truth; you want a lower-is-better separation score.</td>
+											<td>Still does not prove semantic meaning.</td>
+										</tr>
+										<tr>
+											<td><code>elbow method</code></td>
+											<td>Choosing <code>k</code> for k-means.</td>
+											<td>The elbow may be unclear.</td>
+										</tr>
+										<tr>
+											<td><code>ARI</code> or <code>NMI</code></td>
+											<td>You have ground-truth grouping for comparison.</td>
+											<td>Rare in real unsupervised applications.</td>
+										</tr>
+										<tr>
+											<td>Manual cluster analysis</td>
+											<td>You need business or domain meaning.</td>
+											<td>Requires inspection of examples, summaries, or visualizations.</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</article>
+
+						<article class="card chapter-card wide structure" id="ch5-clustering-code-example">
+							<h4>Chapter 5 Extended Code Example: Customer Segmentation With Three Clustering Methods</h4>
+							<p>This example follows the guide's customer-segmentation scenario: scale customer features, apply k-means, agglomerative clustering, and DBSCAN, then compare internal metrics.</p>
+							<pre><code>import numpy as np
+import pandas as pd
+from sklearn.cluster import AgglomerativeClustering, DBSCAN, KMeans
+from sklearn.metrics import davies_bouldin_score, silhouette_score
+from sklearn.preprocessing import StandardScaler
+
+# Step 1: Generate guide-style customer data.
+# Features: age, annual income, and spending score.
+np.random.seed(42)
+data = np.random.rand(200, 3) * [50, 100000, 100]
+df = pd.DataFrame(data, columns=["Age", "Annual_Income", "Spending_Score"])
+
+# Step 2: Scale features before distance-based clustering.
+# Without scaling, Annual_Income would dominate Age and Spending_Score.
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(df)
+
+# Step 3: Fit the three clustering algorithms from the chapter.
+kmeans = KMeans(n_clusters=3, random_state=42, n_init=10)
+hierarchical = AgglomerativeClustering(n_clusters=3, linkage="ward")
+dbscan = DBSCAN(eps=0.5, min_samples=5)
+
+df["KMeans_Cluster"] = kmeans.fit_predict(X_scaled)
+df["Hierarchical_Cluster"] = hierarchical.fit_predict(X_scaled)
+df["DBSCAN_Cluster"] = dbscan.fit_predict(X_scaled)
+
+# Step 4: Evaluate when possible.
+# Silhouette and Davies-Bouldin require at least two non-noise clusters.
+def evaluate_clusters(name, labels):
+    unique_labels = set(labels)
+    non_noise_labels = unique_labels - {-1}
+
+    print("\n", name)
+    print("Cluster labels:", sorted(unique_labels))
+    print("Cluster sizes:", pd.Series(labels).value_counts().sort_index().to_dict())
+
+    if len(non_noise_labels) &gt;= 2:
+        print("Silhouette:", round(silhouette_score(X_scaled, labels), 3))
+        print("Davies-Bouldin:", round(davies_bouldin_score(X_scaled, labels), 3))
+    else:
+        print("Not enough non-noise clusters for internal scores.")
+
+evaluate_clusters("k-Means", df["KMeans_Cluster"])
+evaluate_clusters("Hierarchical", df["Hierarchical_Cluster"])
+evaluate_clusters("DBSCAN", df["DBSCAN_Cluster"])
+
+# Step 5: Inspect cluster profiles instead of trusting numeric labels.
+# This is where the arbitrary labels become meaningful business descriptions.
+profile = df.groupby("KMeans_Cluster")[["Age", "Annual_Income", "Spending_Score"]].mean()
+print("\nk-Means customer profiles:\n", profile)
+
+# Step 6: Remember that DBSCAN label -1 means noise/outlier.
+noise_customers = df[df["DBSCAN_Cluster"] == -1]
+print("DBSCAN noise count:", len(noise_customers))</code></pre>
+							<div class="callout warning"><strong>Common error:</strong> Cluster labels are arbitrary. Interpret clusters by inspecting profiles, examples, centers, dendrograms, or visualizations.</div>
+						</article>
+
+						<details class="card chapter-card wide structure glossary-card" id="ch5-glossary">
+							<summary><span>Chapter 5 Glossary: Clustering Algorithms and Evaluation</span></summary>
+							<dl class="glossary-list">
+								<dt><code>unsupervised learning</code></dt>
+								<dd>Learning hidden patterns from input data without predefined output labels.</dd>
+								<dt><code>clustering</code></dt>
+								<dd>Grouping similar data points so intra-cluster similarity is high and inter-cluster similarity is low.</dd>
+								<dt><code>cluster</code></dt>
+								<dd>A group of observations considered similar by the algorithm.</dd>
+								<dt><code>intra-cluster similarity</code></dt>
+								<dd>Similarity among points within the same cluster.</dd>
+								<dt><code>inter-cluster similarity</code></dt>
+								<dd>Similarity between points from different clusters; good clustering aims to keep this low.</dd>
+								<dt><code>k-Means</code></dt>
+								<dd>Centroid-based algorithm that assigns points to the nearest cluster center and updates centers repeatedly.</dd>
+								<dt><code>k</code></dt>
+								<dd>The number of clusters chosen before running k-means.</dd>
+								<dt><code>centroid</code></dt>
+								<dd>The center of a cluster, usually the mean of assigned points.</dd>
+								<dt><code>cluster_centers_</code></dt>
+								<dd>Scikit-learn k-means attribute storing the learned centroids.</dd>
+								<dt><code>labels_</code></dt>
+								<dd>Attribute storing the cluster assignment for each training point.</dd>
+								<dt><code>vector quantization</code></dt>
+								<dd>Viewing k-means as representing each point with a single component: its nearest cluster center.</dd>
+								<dt><code>MiniBatchKMeans</code></dt>
+								<dd>More scalable version of k-means for very large datasets.</dd>
+								<dt><code>hierarchical clustering</code></dt>
+								<dd>Clustering that builds nested groups, often visualized with a dendrogram.</dd>
+								<dt><code>agglomerative clustering</code></dt>
+								<dd>Bottom-up hierarchical clustering that starts with each point alone and merges clusters.</dd>
+								<dt><code>divisive clustering</code></dt>
+								<dd>Top-down hierarchical clustering that starts with one cluster and splits it.</dd>
+								<dt><code>dendrogram</code></dt>
+								<dd>Tree-like plot showing the order and distance of hierarchical cluster merges.</dd>
+								<dt><code>ward</code></dt>
+								<dd>Linkage method that merges clusters while minimizing increased within-cluster variance.</dd>
+								<dt><code>average linkage</code></dt>
+								<dd>Linkage method based on average distance between all points in two clusters.</dd>
+								<dt><code>complete linkage</code></dt>
+								<dd>Linkage method based on the maximum distance between points in two clusters.</dd>
+								<dt><code>DBSCAN</code></dt>
+								<dd>Density-Based Spatial Clustering of Applications with Noise; finds dense regions and marks noise points.</dd>
+								<dt><code>eps</code></dt>
+								<dd>DBSCAN neighborhood radius used to decide which points are close enough.</dd>
+								<dt><code>min_samples</code></dt>
+								<dd>Minimum number of nearby points required for a DBSCAN core sample.</dd>
+								<dt><code>core point</code></dt>
+								<dd>A point with at least <code>min_samples</code> points within distance <code>eps</code>.</dd>
+								<dt><code>boundary point</code></dt>
+								<dd>A point near a core point but not itself dense enough to be a core point.</dd>
+								<dt><code>noise</code> / <code>-1</code></dt>
+								<dd>DBSCAN label for points not assigned to a dense cluster.</dd>
+								<dt><code>silhouette score</code></dt>
+								<dd>Internal metric measuring compactness and separation; higher is better.</dd>
+								<dt><code>Davies-Bouldin Index</code></dt>
+								<dd>Internal clustering metric where lower values indicate better separation.</dd>
+								<dt><code>elbow method</code></dt>
+								<dd>Method for selecting k by finding where extra clusters give diminishing improvement.</dd>
+								<dt><code>ARI</code></dt>
+								<dd>Adjusted Rand Index; compares clustering to ground truth while ignoring arbitrary label names.</dd>
+								<dt><code>NMI</code></dt>
+								<dd>Normalized Mutual Information; another clustering-aware comparison metric when ground truth exists.</dd>
+							</dl>
+						</details>
 					</div>
 					<div class="back-row"><a class="button" href="#exam-focus-areas">Back to Exam Focus Areas</a></div>
 				</section>
