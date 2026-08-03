@@ -781,6 +781,39 @@
 			padding-left: 1.4rem;
 		}
 
+		.learning-lab { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1.25rem; }
+		.learning-tool { background: var(--panel); border: 1px solid var(--border); border-top: 3px solid var(--purple); border-radius: 8px; padding: 1rem; }
+		.learning-tool.wide { grid-column: 1 / -1; }
+		#quiz-builder, .learning-tool { scroll-margin-top: 1rem; }
+		.learning-tool h3, .learning-tool h4 { margin-top: 0; }
+		.tool-controls, .tool-actions, .tool-status, .simulator-grid { display: flex; flex-wrap: wrap; align-items: end; gap: 0.65rem; }
+		.tool-controls, .simulator-grid { margin: 0.85rem 0; }
+		.tool-controls label, .simulator-grid label { display: grid; gap: 0.3rem; flex: 1 1 160px; color: var(--muted); font-size: 0.9rem; font-weight: 700; }
+		.learning-tool input, .learning-tool select, .learning-tool textarea { width: 100%; min-height: 42px; border: 1px solid var(--border); border-radius: 6px; background: var(--code-bg); color: var(--text); font: inherit; padding: 0.5rem 0.6rem; }
+		.learning-tool textarea { min-height: 108px; font-family: Consolas, Monaco, monospace; font-size: 0.9rem; line-height: 1.45; resize: vertical; }
+		.tool-button, .choice-button { min-height: 42px; border: 1px solid rgba(88, 196, 221, 0.45); border-radius: 6px; background: rgba(88, 196, 221, 0.1); color: var(--cyan); font: inherit; font-weight: 800; padding: 0.5rem 0.8rem; cursor: pointer; }
+		.tool-button:hover, .tool-button:focus, .choice-button:hover, .choice-button:focus { background: rgba(88, 196, 221, 0.2); }
+		.tool-button.secondary { border-color: rgba(188, 140, 255, 0.55); background: rgba(188, 140, 255, 0.1); color: var(--purple); }
+		.tool-button.danger { border-color: rgba(248, 81, 73, 0.5); background: rgba(248, 81, 73, 0.1); color: var(--red); }
+		.flashcard { min-height: 190px; margin: 1rem 0; padding: 1.1rem; border: 1px solid rgba(188, 140, 255, 0.5); border-radius: 8px; background: linear-gradient(135deg, rgba(188, 140, 255, 0.12), rgba(88, 196, 221, 0.06)); cursor: pointer; }
+		.flashcard .card-label { color: var(--purple); font-size: 0.8rem; font-weight: 900; letter-spacing: 0.07em; text-transform: uppercase; }
+		.flashcard .card-text { margin-top: 1.1rem; font-size: 1.1rem; font-weight: 700; }
+		.tool-feedback { margin-top: 0.85rem; padding: 0.7rem 0.8rem; border-left: 4px solid var(--cyan); border-radius: 0 7px 7px 0; background: rgba(88, 196, 221, 0.09); }
+		.tool-feedback.success { border-left-color: var(--green); background: rgba(63, 185, 80, 0.09); }
+		.tool-feedback.error { border-left-color: var(--red); background: rgba(248, 81, 73, 0.09); }
+		.trace-steps, .state-lanes, .sql-result, .debug-options { display: grid; gap: 0.6rem; margin-top: 0.9rem; }
+		.trace-step, .state-lane, .sql-result { padding: 0.7rem; border: 1px solid var(--border); border-radius: 6px; background: #111820; }
+		.trace-step.is-current { border-color: var(--cyan); background: rgba(88, 196, 221, 0.1); }
+		.trace-step.is-complete { border-color: rgba(63, 185, 80, 0.55); }
+		.state-lanes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+		.state-lane strong { display: block; color: var(--cyan); margin-bottom: 0.35rem; }
+		.sql-table { width: 100%; border-collapse: collapse; margin-top: 0.7rem; font-size: 0.9rem; }
+		.sql-table th, .sql-table td { padding: 0.45rem; border: 1px solid var(--border); text-align: left; }
+		.sql-table th { color: var(--cyan); background: rgba(88, 196, 221, 0.08); }
+		.choice-button { width: 100%; text-align: left; color: var(--text); }
+		.choice-button.is-correct { border-color: var(--green); background: rgba(63, 185, 80, 0.16); }
+		.choice-button.is-wrong { border-color: var(--red); background: rgba(248, 81, 73, 0.14); }
+
 		.to-top {
 			position: fixed;
 			right: 1rem;
@@ -873,7 +906,9 @@
 			.function-list,
 			.flow,
 			.glossary-list,
-			.quiz-counts {
+			.quiz-counts,
+			.learning-lab,
+			.state-lanes {
 				grid-template-columns: 1fr;
 			}
 
@@ -930,10 +965,17 @@
 			<a href="#final-revision" data-nav-link="final-revision">Final Revision Tables</a>
 		</div>
 
-		<div class="nav-group">
-			<h2>Preparation Station</h2>
-			<a href="#preparation-station" data-nav-link="preparation-station">Quiz Builder</a>
-		</div>
+		<details class="nav-group nav-collapsible">
+			<summary>Learning Lab</summary>
+			<a href="#quiz-builder" data-nav-link="preparation-station">Quiz Builder</a>
+			<a href="#flashcards">Flashcards</a>
+			<a href="#code-practice">Code Practice</a>
+			<a href="#code-tracer">Code Tracer</a>
+			<a href="#form-simulator">Form Simulator</a>
+			<a href="#state-visualizer">Sessions and Cookies</a>
+			<a href="#sql-sandbox">SQL Sandbox</a>
+			<a href="#debugging">Debugging</a>
+		</details>
 	</nav>
 
 	<main id="main-content">
@@ -2704,11 +2746,12 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 
 		<section id="preparation-station" class="quiz-section" data-nav-section>
 			<div class="section-heading">
-				<h2>Preparation Station</h2>
-				<p>Use interactive learning tools to test your understanding and prepare for assessment. The Quiz Builder is the first station, with room to add more study tools later.</p>
+				<h2>Learning Lab</h2>
+				<p>Use these interactive study tools to prepare for assessment. They run entirely in this page and do not change real files, sessions, or databases.</p>
 			</div>
 
-			<div class="quiz-panel" id="quiz-app">
+			<div class="learning-lab" id="learning-lab">
+			<div class="quiz-panel" id="quiz-builder">
 				<div class="quiz-controls">
 					<h3>Quiz Builder</h3>
 					<p>Build a multiple-choice run from the local question bank. Your current quiz, submitted answers, marks, and attempt history are saved in this browser only.</p>
@@ -2726,6 +2769,138 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 				<div class="quiz-questions" id="quiz-questions"></div>
 				<button type="button" class="quiz-submit" id="quiz-submit">Submit Quiz</button>
 				<div class="quiz-history" id="quiz-history"></div>
+			</div>
+
+				<article class="learning-tool" id="flashcards">
+					<h3>Flashcards</h3>
+					<p>Review key terms, then rate how confidently you recalled the answer.</p>
+					<div class="tool-controls">
+						<label>Topic
+							<select id="flashcard-topic" aria-label="Flashcard topic"></select>
+						</label>
+					</div>
+					<div class="flashcard" id="flashcard" role="button" tabindex="0" aria-label="Flashcard. Press Enter or Space to flip it."></div>
+					<div class="tool-actions">
+						<button class="tool-button secondary" type="button" id="flashcard-previous">Previous</button>
+						<button class="tool-button" type="button" id="flashcard-flip">Flip card</button>
+						<button class="tool-button secondary" type="button" id="flashcard-next">Next</button>
+					</div>
+					<div class="tool-actions" style="margin-top: 0.65rem;">
+						<button class="tool-button danger" type="button" data-flashcard-rating="review">Needs review</button>
+						<button class="tool-button" type="button" data-flashcard-rating="good">I knew it</button>
+					</div>
+					<div class="tool-feedback" id="flashcard-status" aria-live="polite"></div>
+				</article>
+
+				<article class="learning-tool" id="code-practice">
+					<h3>Fill in the Code</h3>
+					<p>Complete the missing line, then check your answer. Whitespace and optional semicolons are ignored.</p>
+					<div class="tool-controls">
+						<label>Exercise
+							<select id="code-exercise" aria-label="Code exercise"></select>
+						</label>
+					</div>
+					<pre><code id="code-exercise-prompt"></code></pre>
+					<label>Missing line
+						<textarea id="code-answer" spellcheck="false" placeholder="Type the missing code here"></textarea>
+					</label>
+					<div class="tool-actions" style="margin-top: 0.7rem;">
+						<button class="tool-button" type="button" id="check-code-answer">Check answer</button>
+						<button class="tool-button secondary" type="button" id="reveal-code-answer">Reveal answer</button>
+					</div>
+					<div class="tool-feedback" id="code-feedback" aria-live="polite"></div>
+				</article>
+
+				<article class="learning-tool" id="code-tracer">
+					<h3>Code Tracer</h3>
+					<p>Follow a small PHP program one line at a time and watch the values change.</p>
+					<div class="tool-controls">
+						<label>Example
+							<select id="trace-example" aria-label="Code tracing example"></select>
+						</label>
+					</div>
+					<pre><code id="trace-code"></code></pre>
+					<div class="tool-actions">
+						<button class="tool-button" type="button" id="trace-next">Run next line</button>
+						<button class="tool-button secondary" type="button" id="trace-reset">Reset trace</button>
+					</div>
+					<div class="trace-steps" id="trace-steps" aria-live="polite"></div>
+				</article>
+
+				<article class="learning-tool" id="debugging">
+					<h3>Debugging Challenge</h3>
+					<p>Find the mistake before revealing the explanation.</p>
+					<div class="tool-controls">
+						<label>Challenge
+							<select id="debug-challenge" aria-label="Debugging challenge"></select>
+						</label>
+					</div>
+					<pre><code id="debug-code"></code></pre>
+					<div class="debug-options" id="debug-options"></div>
+					<div class="tool-feedback" id="debug-feedback" aria-live="polite"></div>
+				</article>
+
+				<article class="learning-tool wide" id="form-simulator">
+					<h3>HTML Form and PHP Request Simulator</h3>
+					<p>Enter values and compare the data a PHP script would receive through <code>$_GET</code> or <code>$_POST</code>.</p>
+					<form id="request-simulator">
+						<div class="simulator-grid">
+							<label>Request method
+								<select id="request-method" name="method"><option value="GET">GET</option><option value="POST" selected>POST</option></select>
+							</label>
+							<label>First name
+								<input id="request-name" name="firstName" type="text" value="Amina">
+							</label>
+							<label>Email
+								<input id="request-email" name="email" type="email" value="amina@example.com">
+							</label>
+							<label>Course
+								<select id="request-course" name="course"><option value="Internet Programming 622">Internet Programming 622</option><option value="Machine Learning 600">Machine Learning 600</option></select>
+							</label>
+						</div>
+						<label style="display: inline-flex; align-items: center; gap: 0.45rem; color: var(--text); font-weight: 700;"><input id="request-newsletter" name="newsletter" type="checkbox" checked style="width: auto; min-height: auto;"> Receive study updates</label>
+						<div class="tool-actions" style="margin-top: 0.75rem;"><button class="tool-button" type="submit">Simulate request</button></div>
+					</form>
+					<div class="sql-result" id="request-result" aria-live="polite"></div>
+				</article>
+
+				<article class="learning-tool wide" id="state-visualizer">
+					<h3>Cookies and Sessions Visualizer</h3>
+					<p>See why a cookie is browser-side, while session values stay server-side for the current visit.</p>
+					<div class="tool-actions">
+						<button class="tool-button" type="button" id="state-start-session">Start session</button>
+						<button class="tool-button" type="button" id="state-login">Log in as Amina</button>
+						<button class="tool-button secondary" type="button" id="state-set-cookie">Remember dark theme</button>
+						<button class="tool-button danger" type="button" id="state-logout">Log out</button>
+					</div>
+					<div class="state-lanes" id="state-lanes" aria-live="polite"></div>
+					<div class="tool-feedback" id="state-feedback">Start a session to begin the simulation.</div>
+				</article>
+
+				<article class="learning-tool wide" id="sql-sandbox">
+					<h3>SQL Query Builder and Sandbox</h3>
+					<p>Build a CRUD statement and safely run it against a small pretend <code>fruit</code> table.</p>
+					<div class="simulator-grid">
+						<label>Operation
+							<select id="sql-operation"><option value="SELECT">SELECT</option><option value="INSERT">INSERT</option><option value="UPDATE">UPDATE</option><option value="DELETE">DELETE</option></select>
+						</label>
+						<label>Row ID (for UPDATE / DELETE)
+							<input id="sql-id" type="number" min="1" value="2">
+						</label>
+						<label>Fruit name (for INSERT / UPDATE)
+							<input id="sql-name" type="text" value="grapefruit">
+						</label>
+						<label>Colour (for INSERT / UPDATE)
+							<input id="sql-color" type="text" value="yellow">
+						</label>
+					</div>
+					<pre><code id="sql-preview"></code></pre>
+					<div class="tool-actions">
+						<button class="tool-button" type="button" id="sql-run">Run in sandbox</button>
+						<button class="tool-button secondary" type="button" id="sql-reset">Reset table</button>
+					</div>
+					<div class="sql-result" id="sql-result" aria-live="polite"></div>
+				</article>
 			</div>
 		</section>
 		</div>
@@ -3247,6 +3422,240 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 			quizRestart.disabled = !quizState.current;
 		}
 
+		const learningStorageKey = 'ip622.learning-lab.v1';
+		const flashcardTopic = document.querySelector('#flashcard-topic');
+		const flashcard = document.querySelector('#flashcard');
+		const flashcardStatus = document.querySelector('#flashcard-status');
+		const codeExercise = document.querySelector('#code-exercise');
+		const codePrompt = document.querySelector('#code-exercise-prompt');
+		const codeAnswer = document.querySelector('#code-answer');
+		const codeFeedback = document.querySelector('#code-feedback');
+		const traceExample = document.querySelector('#trace-example');
+		const traceCode = document.querySelector('#trace-code');
+		const traceSteps = document.querySelector('#trace-steps');
+		const debugChallenge = document.querySelector('#debug-challenge');
+		const debugCode = document.querySelector('#debug-code');
+		const debugOptions = document.querySelector('#debug-options');
+		const debugFeedback = document.querySelector('#debug-feedback');
+		const requestSimulator = document.querySelector('#request-simulator');
+		const requestResult = document.querySelector('#request-result');
+		const stateLanes = document.querySelector('#state-lanes');
+		const stateFeedback = document.querySelector('#state-feedback');
+		const sqlOperation = document.querySelector('#sql-operation');
+		const sqlId = document.querySelector('#sql-id');
+		const sqlName = document.querySelector('#sql-name');
+		const sqlColor = document.querySelector('#sql-color');
+		const sqlPreview = document.querySelector('#sql-preview');
+		const sqlResult = document.querySelector('#sql-result');
+
+		const flashcards = [
+			{ id: 'form', topic: 'Forms', front: 'Which attribute sends a form value to PHP?', back: 'The name attribute. PHP uses it as the key in $_GET or $_POST.' },
+			{ id: 'post', topic: 'Forms', front: 'When is POST preferable to GET?', back: 'For larger or sensitive submissions, because values are sent in the request body rather than the URL.' },
+			{ id: 'xss', topic: 'Forms', front: 'What does htmlspecialchars() help prevent?', back: 'It escapes HTML characters before output, reducing cross-site scripting (XSS) risk.' },
+			{ id: 'session', topic: 'Sessions', front: 'Where is session data normally stored?', back: 'On the server. The browser normally holds only a session identifier.' },
+			{ id: 'cookie', topic: 'Sessions', front: 'Where are cookies stored?', back: 'In the browser (client-side), then sent back with later matching requests.' },
+			{ id: 'append', topic: 'Files', front: 'Which fopen() mode adds to the end of a file?', back: 'a — append mode. It keeps existing content and writes new data at the end.' },
+			{ id: 'fclose', topic: 'Files', front: 'Why call fclose()?', back: 'It closes an open file handle after reading or writing is finished.' },
+			{ id: 'where', topic: 'SQL', front: 'Why is WHERE important in UPDATE and DELETE?', back: 'It limits which rows change. Without it, every row can be affected.' },
+			{ id: 'prepared', topic: 'SQL', front: 'What protects SQL queries from injected values?', back: 'Prepared statements, which keep SQL instructions separate from user data.' },
+			{ id: 'xampp', topic: 'XAMPP', front: 'How should a PHP file be opened while learning with XAMPP?', back: 'Through an http://localhost/... address so Apache can run the PHP code.' },
+		];
+
+		const codeExercises = [
+			{ title: 'Optional checkbox', prompt: 'if (__________) {\n\techo htmlspecialchars($_POST["newsletter"]);\n}', answers: ['isset($_POST["newsletter"])'], explanation: 'An unchecked checkbox may not send a key at all, so isset() is the safe first check.' },
+			{ title: 'Start a session', prompt: '<?php\n__________\n$_SESSION["username"] = "Amina";\n?>', answers: ['session_start();', 'session_start()'], explanation: 'session_start() must run before reading or writing $_SESSION.' },
+			{ title: 'Read a file', prompt: '$handle = fopen("notes.txt", "r");\n$content = __________;\nfclose($handle);', answers: ['fread($handle, filesize("notes.txt"));'], explanation: 'fread() reads bytes from an open handle; filesize() provides the number of bytes here.' },
+			{ title: 'Safe SQL update', prompt: 'UPDATE fruit\nSET color = \'yellow\'\n__________;', answers: ['WHERE id = 2', 'WHERE id=2'], explanation: 'WHERE makes the update target a specific row instead of every row.' },
+		];
+
+		const traceExamples = [
+			{ title: 'Session hit counter', code: 'session_start();\n$hits = ($_SESSION["hits"] ?? 0) + 1;\n$_SESSION["hits"] = $hits;\necho $hits;', steps: [
+				{ line: 1, effect: 'The session begins. Assume it currently contains no hits value.' },
+				{ line: 2, effect: 'Missing hits becomes 0, then 1 is added. $hits is now 1.' },
+				{ line: 3, effect: 'The session now stores hits = 1 for the next request.' },
+				{ line: 4, effect: 'The page displays: 1' },
+			] },
+			{ title: 'Validate an email', code: '$email = "amina@example.com";\nif (filter_var($email, FILTER_VALIDATE_EMAIL)) {\n\techo "Valid email";\n}', steps: [
+				{ line: 1, effect: '$email now contains amina@example.com.' },
+				{ line: 2, effect: 'filter_var() confirms this is a valid email format, so the condition is true.' },
+				{ line: 3, effect: 'The page displays: Valid email' },
+			] },
+		];
+
+		const debugChallenges = [
+			{ title: 'Session page', code: '$_SESSION["username"] = "Amina";\necho $_SESSION["username"];', options: ['Add session_start() before using $_SESSION.', 'Replace $_SESSION with $_POST.', 'Use fopen() before the first line.'], answer: 0, explanation: 'PHP must start or resume the session before accessing $_SESSION.' },
+			{ title: 'Unsafe output', code: 'echo $_POST["firstName"];', options: ['Use htmlspecialchars() around the submitted value.', 'Change the field to GET.', 'Store the first name in a cookie first.'], answer: 0, explanation: 'Submitted data is untrusted. Escape it before placing it in HTML output.' },
+			{ title: 'Risky update', code: 'UPDATE fruit\nSET color = \'yellow\';', options: ['Add a WHERE clause to select the intended row.', 'Use SELECT instead of UPDATE.', 'Add AUTO_INCREMENT to color.'], answer: 0, explanation: 'Without WHERE, the query updates every fruit row.' },
+			{ title: 'File overwrite', code: '$handle = fopen("log.txt", "w");\nfwrite($handle, "Visit\n");', options: ['Use a mode if you want to append rather than erase existing content.', 'Remove fwrite().', 'Replace the filename with $_SESSION.'], answer: 0, explanation: 'w truncates an existing file. Use a when the purpose is to add a log entry.' },
+		];
+
+		function loadLearningState() {
+			try {
+				const saved = JSON.parse(localStorage.getItem(learningStorageKey));
+				if (saved && typeof saved === 'object') return saved;
+			} catch (error) {
+				localStorage.removeItem(learningStorageKey);
+			}
+			return { flashRatings: {} };
+		}
+
+		let learningState = loadLearningState();
+		let flashState = { topic: 'All topics', index: 0, flipped: false };
+		let tracePosition = -1;
+		let stateSimulation = { started: false, session: {}, cookies: {} };
+		const defaultSqlRows = [
+			{ id: 1, name: 'banana', color: 'yellow' },
+			{ id: 2, name: 'apple', color: 'red' },
+			{ id: 3, name: 'plum', color: 'purple' },
+		];
+		let sqlRows = defaultSqlRows.map((row) => ({ ...row }));
+
+		function saveLearningState() {
+			localStorage.setItem(learningStorageKey, JSON.stringify(learningState));
+		}
+
+		function activeFlashcards() {
+			const matching = flashState.topic === 'All topics' ? flashcards : flashcards.filter((card) => card.topic === flashState.topic);
+			return [...matching].sort((first, second) => {
+				const firstRecord = learningState.flashRatings?.[first.id];
+				const secondRecord = learningState.flashRatings?.[second.id];
+				const firstDue = firstRecord && typeof firstRecord === 'object' ? firstRecord.dueAt : 0;
+				const secondDue = secondRecord && typeof secondRecord === 'object' ? secondRecord.dueAt : 0;
+				return firstDue - secondDue;
+			});
+		}
+
+		function renderFlashcards() {
+			const topics = ['All topics', ...new Set(flashcards.map((card) => card.topic))];
+			if (!flashcardTopic.options.length) flashcardTopic.innerHTML = topics.map((topic) => `<option value="${escapeHtml(topic)}">${escapeHtml(topic)}</option>`).join('');
+			flashcardTopic.value = flashState.topic;
+			const cards = activeFlashcards();
+			flashState.index = ((flashState.index % cards.length) + cards.length) % cards.length;
+			const card = cards[flashState.index];
+			const face = flashState.flipped ? card.back : card.front;
+			flashcard.innerHTML = `<div class="card-label">${flashState.flipped ? 'Answer' : 'Question'} · ${escapeHtml(card.topic)}</div><div class="card-text">${escapeHtml(face)}</div>`;
+			const ratings = Object.values(learningState.flashRatings || {});
+			const ratingValue = (record) => typeof record === 'string' ? record : record.rating;
+			const known = ratings.filter((rating) => ratingValue(rating) === 'good').length;
+			const review = ratings.filter((rating) => ratingValue(rating) === 'review').length;
+			const record = learningState.flashRatings?.[card.id];
+			const due = record && typeof record === 'object' && record.dueAt ? new Date(record.dueAt).toLocaleString() : 'now';
+			flashcardStatus.innerHTML = `Card ${flashState.index + 1}/${cards.length}. Next review: <strong>${escapeHtml(due)}</strong>. Rated: <strong>${known} known</strong>, <strong>${review} to review</strong>.`;
+		}
+
+		function setFlashcardRating(rating) {
+			const card = activeFlashcards()[flashState.index];
+			const dueAt = rating === 'good' ? Date.now() + 24 * 60 * 60 * 1000 : Date.now();
+			learningState.flashRatings = { ...(learningState.flashRatings || {}), [card.id]: { rating, dueAt } };
+			saveLearningState();
+			flashState.flipped = false;
+			flashState.index += 1;
+			renderFlashcards();
+		}
+
+		function normaliseCode(value) {
+			return String(value).replace(/\s+/g, '').replace(/;$/, '').toLowerCase();
+		}
+
+		function renderCodeExercise() {
+			if (!codeExercise.options.length) codeExercise.innerHTML = codeExercises.map((exercise, index) => `<option value="${index}">${escapeHtml(exercise.title)}</option>`).join('');
+			const exercise = codeExercises[Number(codeExercise.value) || 0];
+			codePrompt.textContent = exercise.prompt;
+			codeAnswer.value = '';
+			codeFeedback.className = 'tool-feedback';
+			codeFeedback.textContent = 'Type the missing line, then check it.';
+		}
+
+		function checkCodeAnswer(reveal = false) {
+			const exercise = codeExercises[Number(codeExercise.value) || 0];
+			const correct = exercise.answers.some((answer) => normaliseCode(answer) === normaliseCode(codeAnswer.value));
+			if (correct) {
+				codeFeedback.className = 'tool-feedback success';
+				codeFeedback.textContent = `Correct. ${exercise.explanation}`;
+			} else if (reveal) {
+				codeAnswer.value = exercise.answers[0];
+				codeFeedback.className = 'tool-feedback';
+				codeFeedback.textContent = `Answer: ${exercise.answers[0]} — ${exercise.explanation}`;
+			} else {
+				codeFeedback.className = 'tool-feedback error';
+				codeFeedback.textContent = 'Not quite. Check the function name, variables, and punctuation, then try again.';
+			}
+		}
+
+		function renderTrace() {
+			if (!traceExample.options.length) traceExample.innerHTML = traceExamples.map((example, index) => `<option value="${index}">${escapeHtml(example.title)}</option>`).join('');
+			const example = traceExamples[Number(traceExample.value) || 0];
+			traceCode.textContent = example.code;
+			traceSteps.innerHTML = example.steps.map((step, index) => `<div class="trace-step ${index < tracePosition ? 'is-complete' : ''} ${index === tracePosition ? 'is-current' : ''}"><strong>Line ${step.line}</strong>${index <= tracePosition ? `<br>${escapeHtml(step.effect)}` : ''}</div>`).join('');
+		}
+
+		function renderDebugChallenge() {
+			if (!debugChallenge.options.length) debugChallenge.innerHTML = debugChallenges.map((challenge, index) => `<option value="${index}">${escapeHtml(challenge.title)}</option>`).join('');
+			const challenge = debugChallenges[Number(debugChallenge.value) || 0];
+			debugCode.textContent = challenge.code;
+			debugOptions.innerHTML = challenge.options.map((option, index) => `<button class="choice-button" type="button" data-debug-option="${index}">${String.fromCharCode(65 + index)}. ${escapeHtml(option)}</button>`).join('');
+			debugFeedback.className = 'tool-feedback';
+			debugFeedback.textContent = 'Choose the best correction.';
+		}
+
+		function renderStateSimulation() {
+			const sessionEntries = Object.entries(stateSimulation.session);
+			const cookieEntries = Object.entries(stateSimulation.cookies);
+			stateLanes.innerHTML = `
+				<div class="state-lane"><strong>Browser cookie jar</strong>${cookieEntries.length ? cookieEntries.map(([key, value]) => `<code>${escapeHtml(key)}=${escapeHtml(value)}</code>`).join('<br>') : '<span>No cookies set.</span>'}</div>
+				<div class="state-lane"><strong>Server session ${stateSimulation.started ? '(active)' : '(not started)'}</strong>${sessionEntries.length ? sessionEntries.map(([key, value]) => `<code>${escapeHtml(key)}=${escapeHtml(value)}</code>`).join('<br>') : '<span>No session values stored.</span>'}</div>
+			`;
+		}
+
+		function sqlValue(value) {
+			return String(value).trim().replace(/'/g, "''");
+		}
+
+		function currentSql() {
+			const operation = sqlOperation.value;
+			const id = Number(sqlId.value);
+			const name = sqlValue(sqlName.value || 'fruit');
+			const color = sqlValue(sqlColor.value || 'colour');
+			if (operation === 'INSERT') return `INSERT INTO fruit (name, color) VALUES ('${name}', '${color}');`;
+			if (operation === 'UPDATE') return `UPDATE fruit\nSET name = '${name}', color = '${color}'\nWHERE id = ${id};`;
+			if (operation === 'DELETE') return `DELETE FROM fruit\nWHERE id = ${id};`;
+			return 'SELECT * FROM fruit;';
+		}
+
+		function renderSqlTable(rows) {
+			return `<table class="sql-table"><thead><tr><th>ID</th><th>Name</th><th>Colour</th></tr></thead><tbody>${rows.map((row) => `<tr><td>${row.id}</td><td>${escapeHtml(row.name)}</td><td>${escapeHtml(row.color)}</td></tr>`).join('') || '<tr><td colspan="3">No rows returned.</td></tr>'}</tbody></table>`;
+		}
+
+		function renderSqlPreview() {
+			sqlPreview.textContent = currentSql();
+		}
+
+		function runSqlSandbox() {
+			const operation = sqlOperation.value;
+			const id = Number(sqlId.value);
+			const name = sqlName.value.trim();
+			const color = sqlColor.value.trim();
+			let message = '';
+			if (operation === 'INSERT') {
+				if (!name || !color) { sqlResult.innerHTML = '<strong>Enter a fruit name and colour before inserting.</strong>'; return; }
+				const nextId = Math.max(0, ...sqlRows.map((row) => row.id)) + 1;
+				sqlRows.push({ id: nextId, name, color });
+				message = `Inserted 1 row with id ${nextId}.`;
+			} else if (operation === 'UPDATE') {
+				const row = sqlRows.find((item) => item.id === id);
+				if (!row) { sqlResult.innerHTML = `<strong>No row found with id ${escapeHtml(id)}.</strong>${renderSqlTable(sqlRows)}`; return; }
+				if (!name || !color) { sqlResult.innerHTML = '<strong>Enter a fruit name and colour before updating.</strong>'; return; }
+				row.name = name; row.color = color; message = 'Updated 1 row.';
+			} else if (operation === 'DELETE') {
+				const before = sqlRows.length;
+				sqlRows = sqlRows.filter((row) => row.id !== id);
+				message = `Deleted ${before - sqlRows.length} row(s).`;
+			} else {
+				message = `Selected ${sqlRows.length} row(s).`;
+			}
+			sqlResult.innerHTML = `<strong>${escapeHtml(message)}</strong>${renderSqlTable(sqlRows)}`;
+		}
+
 		function setMenu(open) {
 			body.classList.toggle('menu-open', open);
 			menuToggle.setAttribute('aria-expanded', String(open));
@@ -3315,6 +3724,117 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 			renderQuiz();
 		});
 
+		flashcardTopic.addEventListener('change', () => {
+			flashState = { topic: flashcardTopic.value, index: 0, flipped: false };
+			renderFlashcards();
+		});
+
+		function flipFlashcard() {
+			flashState.flipped = !flashState.flipped;
+			renderFlashcards();
+		}
+
+		document.querySelector('#flashcard-flip').addEventListener('click', flipFlashcard);
+		flashcard.addEventListener('click', flipFlashcard);
+		flashcard.addEventListener('keydown', (event) => {
+			if (event.key === 'Enter' || event.key === ' ') {
+				event.preventDefault();
+				flipFlashcard();
+			}
+		});
+		document.querySelector('#flashcard-next').addEventListener('click', () => {
+			flashState.index += 1;
+			flashState.flipped = false;
+			renderFlashcards();
+		});
+		document.querySelector('#flashcard-previous').addEventListener('click', () => {
+			flashState.index -= 1;
+			flashState.flipped = false;
+			renderFlashcards();
+		});
+		document.querySelectorAll('[data-flashcard-rating]').forEach((button) => {
+			button.addEventListener('click', () => setFlashcardRating(button.dataset.flashcardRating));
+		});
+
+		codeExercise.addEventListener('change', renderCodeExercise);
+		document.querySelector('#check-code-answer').addEventListener('click', () => checkCodeAnswer(false));
+		document.querySelector('#reveal-code-answer').addEventListener('click', () => checkCodeAnswer(true));
+
+		traceExample.addEventListener('change', () => {
+			tracePosition = -1;
+			renderTrace();
+		});
+		document.querySelector('#trace-next').addEventListener('click', () => {
+			const example = traceExamples[Number(traceExample.value) || 0];
+			tracePosition = Math.min(example.steps.length - 1, tracePosition + 1);
+			renderTrace();
+		});
+		document.querySelector('#trace-reset').addEventListener('click', () => {
+			tracePosition = -1;
+			renderTrace();
+		});
+
+		debugChallenge.addEventListener('change', renderDebugChallenge);
+		debugOptions.addEventListener('click', (event) => {
+			const button = event.target.closest('[data-debug-option]');
+			if (!button) return;
+			const challenge = debugChallenges[Number(debugChallenge.value) || 0];
+			const picked = Number(button.dataset.debugOption);
+			debugOptions.querySelectorAll('[data-debug-option]').forEach((option) => {
+				const index = Number(option.dataset.debugOption);
+				option.classList.toggle('is-correct', index === challenge.answer);
+				option.classList.toggle('is-wrong', index === picked && index !== challenge.answer);
+			});
+			debugFeedback.className = `tool-feedback ${picked === challenge.answer ? 'success' : 'error'}`;
+			debugFeedback.textContent = picked === challenge.answer ? `Correct. ${challenge.explanation}` : `Not quite. ${challenge.explanation}`;
+		});
+
+		requestSimulator.addEventListener('submit', (event) => {
+			event.preventDefault();
+			const method = document.querySelector('#request-method').value;
+			const values = {
+				firstName: document.querySelector('#request-name').value,
+				email: document.querySelector('#request-email').value,
+				course: document.querySelector('#request-course').value,
+			};
+			if (document.querySelector('#request-newsletter').checked) values.newsletter = 'on';
+			const encoded = new URLSearchParams(values).toString();
+			const superglobal = method === 'GET' ? '$_GET' : '$_POST';
+			const transport = method === 'GET' ? `URL query string: ?${encoded}` : `Request body: ${encoded}`;
+			requestResult.innerHTML = `<strong>PHP would read these values from ${superglobal}:</strong><pre><code>${escapeHtml(JSON.stringify(values, null, 2))}</code></pre><p>${escapeHtml(transport)}</p><p>Notice: if the checkbox is not selected, <code>newsletter</code> is not sent at all. Use <code>isset(${superglobal}["newsletter"])</code> before reading it.</p>`;
+		});
+
+		document.querySelector('#state-start-session').addEventListener('click', () => {
+			stateSimulation.started = true;
+			stateFeedback.textContent = 'session_start() runs. The server can now store values for this visit.';
+			renderStateSimulation();
+		});
+		document.querySelector('#state-login').addEventListener('click', () => {
+			stateSimulation.started = true;
+			stateSimulation.session.username = 'Amina';
+			stateSimulation.session.loggedIn = 'true';
+			stateFeedback.textContent = 'Login state is stored in the server session; the browser does not receive the username as a cookie.';
+			renderStateSimulation();
+		});
+		document.querySelector('#state-set-cookie').addEventListener('click', () => {
+			stateSimulation.cookies.theme = 'dark';
+			stateFeedback.textContent = 'setcookie("theme", "dark", ...) sends a browser cookie that can persist beyond this session.';
+			renderStateSimulation();
+		});
+		document.querySelector('#state-logout').addEventListener('click', () => {
+			stateSimulation.session = {};
+			stateSimulation.started = false;
+			stateFeedback.textContent = 'session_destroy() clears the simulated server session. The theme cookie remains because logout does not automatically delete cookies.';
+			renderStateSimulation();
+		});
+
+		[sqlOperation, sqlId, sqlName, sqlColor].forEach((control) => control.addEventListener('input', renderSqlPreview));
+		document.querySelector('#sql-run').addEventListener('click', runSqlSandbox);
+		document.querySelector('#sql-reset').addEventListener('click', () => {
+			sqlRows = defaultSqlRows.map((row) => ({ ...row }));
+			sqlResult.innerHTML = `<strong>Sandbox table restored.</strong>${renderSqlTable(sqlRows)}`;
+		});
+
 		document.querySelectorAll('a[href^="#"]').forEach((link) => {
 			link.addEventListener('click', () => {
 				const target = document.querySelector(link.getAttribute('href'));
@@ -3340,6 +3860,13 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 
 		renderQuizControls();
 		renderQuiz();
+		renderFlashcards();
+		renderCodeExercise();
+		renderTrace();
+		renderDebugChallenge();
+		renderStateSimulation();
+		renderSqlPreview();
+		sqlResult.innerHTML = `<strong>Starting sandbox data.</strong>${renderSqlTable(sqlRows)}`;
 		updateProgress();
 		updateActiveFromScroll();
 	</script>
