@@ -731,17 +731,20 @@
 				<a href="index.html">View All</a>
 			</div>
 
+<details class="nav-group nav-collapsible">
+	<summary>Assignment Helper</summary>
+	<a class="nav-link" href="#assignment-helper" data-nav-link="assignment-helper">Coming Soon</a>
+</details>
+
+<details class="nav-group nav-collapsible">
+	<summary>Test Focus Areas</summary>
+	<a class="nav-link" href="#test-focus-areas" data-nav-link="test-focus-areas">Coming Soon</a>
+</details>
+
 			<details class="nav-group nav-collapsible">
-				<summary>Exam Focus Areas</summary>
-				<a href="#exam-overview" data-nav-link="exam-overview">Exam Overview</a>
-				<a href="#focus-ml-foundations" data-nav-link="focus-ml-foundations">ML Foundations</a>
-				<a href="#focus-model-fit" data-nav-link="focus-model-fit">Model Fit &amp; Metrics</a>
-				<a href="#focus-preprocessing" data-nav-link="focus-preprocessing">Preprocessing</a>
-				<a href="#focus-pca" data-nav-link="focus-pca">PCA</a>
-				<a href="#focus-regression" data-nav-link="focus-regression">Regression</a>
-				<a href="#focus-classification" data-nav-link="focus-classification">Classification</a>
-				<a href="#focus-clustering" data-nav-link="focus-clustering">Clustering</a>
-			</details>
+	<summary>Exam Focus Areas</summary>
+	<a class="nav-link" href="#exam-focus-areas" data-nav-link="exam-focus-areas">Coming Soon</a>
+</details>
 
 			<div class="nav-group">
 				<h2>General Module Content</h2>
@@ -757,10 +760,6 @@
 				<a href="#preparation-station" data-nav-link="preparation-station">Coming Soon</a>
 			</div>
 
-			<div class="nav-group">
-				<h2>Revision Tables</h2>
-				<a href="#final-revision" data-nav-link="final-revision">Final Cheat Sheets</a>
-			</div>
 		</nav>
 	</aside>
 
@@ -785,290 +784,47 @@
 			</div>
 		</header>
 
-		<section id="exam-focus-areas" class="section-band">
+		<section id="assignment-helper" class="section-band" data-nav-section>
 			<div class="section-inner">
 				<div class="section-heading">
-					<h2>Exam Focus Areas</h2>
-					<p>Start here when you need the high-yield distinctions: learning type, data preparation choice, model family, evaluation metric, and the common traps that make an answer weak.</p>
+					<h2>Assignment Helper</h2>
+					<p>A future home for assignment guidance, worked examples, and practical support.</p>
 				</div>
-
-				<article class="card exam-card definition" id="exam-overview" data-nav-section>
-					<div class="chip-row">
-						<span class="chip definition">Exam Focus</span>
-						<span class="chip structure">Guide Chapters 1-5</span>
-					</div>
-					<h3>Exam Overview</h3>
-					<p>The module moves through the full machine learning pipeline: understand the problem, prepare the data, select a learning type, train a model, evaluate it, and explain the result.</p>
-					<div class="table-wrap">
-						<table>
-							<thead>
-								<tr>
-									<th>Focus</th>
-									<th>What to know</th>
-									<th>Typical exam angle</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>ML foundations</td>
-									<td>Models, supervised learning, unsupervised learning, reinforcement learning, feature engineering.</td>
-									<td>Choose the correct learning type for a scenario.</td>
-								</tr>
-								<tr>
-									<td>Model fit</td>
-									<td>Overfitting, underfitting, bias, variance, precision, recall, F1 score.</td>
-									<td>Diagnose why a model performs badly on training or unseen data.</td>
-								</tr>
-								<tr>
-									<td>Preprocessing</td>
-									<td>Structured vs unstructured data, missing values, outliers, duplicates, scaling.</td>
-									<td>Select the cleaning or scaling method before modelling.</td>
-								</tr>
-								<tr>
-									<td>Algorithms</td>
-									<td>Linear, polynomial, decision tree regression, logistic regression, k-NN, SVM, k-means, hierarchical clustering, DBSCAN.</td>
-									<td>Compare how algorithms work, what they predict, and where they fail.</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</article>
-
-				<div class="grid">
-					<article class="card exam-card definition" id="focus-ml-foundations" data-nav-section>
-						<div class="chip-row">
-							<span class="chip definition">Definitions</span>
-							<span class="chip structure">Learning types</span>
-						</div>
-						<h3>ML Foundations: What Kind of Problem Is It?</h3>
-						<p>Machine learning builds models that learn relationships from data rather than being explicitly programmed for every rule. The learning type depends mainly on whether the training data has labels and what kind of output is expected.</p>
-						<div class="table-wrap">
-							<table>
-								<thead>
-									<tr>
-										<th>Learning type</th>
-										<th>Input situation</th>
-										<th>Output</th>
-										<th>Guide example</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Supervised</td>
-										<td>Labeled input-output pairs.</td>
-										<td>Prediction or class.</td>
-										<td>House prices, spam detection, iris species.</td>
-									</tr>
-									<tr>
-										<td>Unsupervised</td>
-										<td>No predefined labels.</td>
-										<td>Hidden patterns or groups.</td>
-										<td>Customer segmentation, anomaly detection.</td>
-									</tr>
-									<tr>
-										<td>Reinforcement</td>
-										<td>Agent interacts with an environment.</td>
-										<td>Actions improved by rewards or penalties.</td>
-										<td>Game playing and robotics.</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-						<div class="callout warning"><strong>Exam trap:</strong> Regression and classification are both supervised. The difference is the output: continuous number for regression, discrete label for classification.</div>
-						<nav class="related-chapters" aria-label="Related sections for machine learning foundations">
-							<span>Study this in</span>
-							<a href="#ch1-1-overview">1.1 ML Overview</a>
-							<a href="#ch1-3-learning-types">1.3 Learning Types</a>
-							<a href="#ch1-9-python-libraries">1.9 Python Libraries</a>
-						</nav>
-					</article>
-
-					<article class="card exam-card risk" id="focus-model-fit" data-nav-section>
-						<div class="chip-row">
-							<span class="chip risk">Model risks</span>
-							<span class="chip warning">Metrics</span>
-						</div>
-						<h3>Model Fit, Correctness, and Bias-Variance</h3>
-						<p>A useful answer goes beyond "accuracy is high". The guide stresses generalization, confusion-matrix thinking, and the balance between model complexity and error.</p>
-						<ul>
-							<li><strong>Underfitting:</strong> model is too simple and performs badly even on training data.</li>
-							<li><strong>Overfitting:</strong> model learns noise and performs well on training data but poorly on unseen data.</li>
-							<li><strong>High bias:</strong> systematic error from a too-simple model.</li>
-							<li><strong>High variance:</strong> sensitivity to small fluctuations in the training data.</li>
-						</ul>
-						<div class="callout success"><strong>Correct pattern:</strong> Use precision when false positives matter, recall when false negatives matter, and F1 score when both need a balanced view.</div>
-						<nav class="related-chapters" aria-label="Related sections for model fit">
-							<span>Study this in</span>
-							<a href="#ch1-4-over-under-fitting">1.4 Over/Underfitting</a>
-							<a href="#ch1-5-correctness">1.5 Correctness</a>
-							<a href="#ch1-6-bias-variance">1.6 Bias-Variance</a>
-						</nav>
-					</article>
-
-					<article class="card exam-card success" id="focus-preprocessing" data-nav-section>
-						<div class="chip-row">
-							<span class="chip success">Correct patterns</span>
-							<span class="chip structure">Pipeline</span>
-						</div>
-						<h3>Preprocessing: Clean Before You Train</h3>
-						<p>Real datasets contain missing values, outliers, duplicates, inconsistent scales, and mixed data types. Preprocessing improves reliability before algorithms try to learn patterns.</p>
-						<ol>
-							<li>Understand whether the data is structured or unstructured.</li>
-							<li>Handle missing values with removal, statistical imputation, or predictive imputation.</li>
-							<li>Deal with outliers by removal, transformation, robust scaling, or capping.</li>
-							<li>Remove duplicates so repeated records do not bias the model.</li>
-							<li>Scale features for distance-based and margin-based models.</li>
-						</ol>
-						<div class="callout warning"><strong>Exam trap:</strong> Decision trees are generally not affected by feature scaling, but k-NN and SVM can be strongly affected because they use distance or margins.</div>
-						<nav class="related-chapters" aria-label="Related sections for preprocessing">
-							<span>Study this in</span>
-							<a href="#ch2-1-datasets">2.1 Datasets</a>
-							<a href="#ch2-2-data-cleaning">2.2 Data Cleaning</a>
-							<a href="#ch2-3-scaling">2.3 Scaling</a>
-						</nav>
-					</article>
-
-					<article class="card exam-card structure" id="focus-pca" data-nav-section>
-						<div class="chip-row">
-							<span class="chip structure">Dimensionality</span>
-							<span class="chip definition">PCA</span>
-						</div>
-						<h3>PCA: Reduce Dimensions Without Just Deleting Columns</h3>
-						<p>Principal Component Analysis transforms the original features into new axes called principal components. These components are linear combinations of the original features and capture directions of maximum variance.</p>
-						<div class="diagram flow" aria-label="PCA process diagram">
-							<div class="node">Scale data<small>Features contribute equally</small></div>
-							<div class="node">Find variance<small>Directions with most information</small></div>
-							<div class="node">Rotate axes<small>Principal components</small></div>
-							<div class="node">Choose components<small>90-95% variance target</small></div>
-							<div class="node">Transform data<small>Lower-dimensional representation</small></div>
-						</div>
-						<div class="callout success"><strong>Correct pattern:</strong> Use scree plots, cumulative explained variance, or cross-validation to choose how many components to keep.</div>
-						<nav class="related-chapters" aria-label="Related sections for PCA">
-							<span>Study this in</span>
-							<a href="#ch2-4-pca">2.4 PCA</a>
-							<a href="#ch2-4-choosing-components">2.4.3 Components</a>
-							<a href="#ch2-5-pca-applications">2.5 Applications</a>
-						</nav>
-					</article>
-
-					<article class="card exam-card definition" id="focus-regression" data-nav-section>
-						<div class="chip-row">
-							<span class="chip definition">Supervised</span>
-							<span class="chip success">Continuous output</span>
-						</div>
-						<h3>Regression: Predict a Number</h3>
-						<p>Regression predicts continuous numerical outcomes. The guide uses house price prediction to compare linear regression, polynomial regression, and decision tree regression.</p>
-						<div class="table-wrap">
-							<table>
-								<thead>
-									<tr>
-										<th>Algorithm</th>
-										<th>Best when</th>
-										<th>Risk</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Linear Regression</td>
-										<td>The relationship is roughly linear and interpretability matters.</td>
-										<td>Underfits non-linear patterns.</td>
-									</tr>
-									<tr>
-										<td>Polynomial Regression</td>
-										<td>The relationship is curved but still modelled with feature powers.</td>
-										<td>High-degree polynomials can overfit.</td>
-									</tr>
-									<tr>
-										<td>Decision Tree Regression</td>
-										<td>You need interpretable rules and non-linear splits.</td>
-										<td>Can overfit and cannot extrapolate beyond the training range.</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-						<nav class="related-chapters" aria-label="Related sections for regression">
-							<span>Study this in</span>
-							<a href="#ch3-2-regression">3.2 Regression</a>
-							<a href="#ch3-3-linear-regression">3.3 Linear</a>
-							<a href="#ch3-5-decision-tree-regression">3.5 Trees</a>
-						</nav>
-					</article>
-
-					<article class="card exam-card definition" id="focus-classification" data-nav-section>
-						<div class="chip-row">
-							<span class="chip definition">Supervised</span>
-							<span class="chip warning">Discrete labels</span>
-						</div>
-						<h3>Classification: Predict a Category</h3>
-						<p>Classification assigns inputs to discrete labels. The guide covers logistic regression, k-NN, SVM, multiclass classification, regularization, and metrics.</p>
-						<ul>
-							<li><strong>Logistic regression:</strong> strong interpretable baseline for binary classification.</li>
-							<li><strong>k-NN:</strong> predicts by majority vote among nearby training points.</li>
-							<li><strong>SVM:</strong> finds a margin-maximizing hyperplane; kernels handle non-linear patterns.</li>
-							<li><strong>Metrics:</strong> accuracy, precision, recall, F1 score, and ROC curve.</li>
-						</ul>
-						<div class="callout warning"><strong>Exam trap:</strong> Accuracy alone can hide weak performance on imbalanced data. Always connect the metric to the cost of false positives or false negatives.</div>
-						<nav class="related-chapters" aria-label="Related sections for classification">
-							<span>Study this in</span>
-							<a href="#ch4-1-classification">4.1 Classification</a>
-							<a href="#ch4-3-knn">4.3 k-NN</a>
-							<a href="#ch4-4-svm">4.4 SVM</a>
-						</nav>
-					</article>
-
-					<article class="card exam-card structure" id="focus-clustering" data-nav-section>
-						<div class="chip-row">
-							<span class="chip structure">Unsupervised</span>
-							<span class="chip success">Pattern discovery</span>
-						</div>
-						<h3>Clustering: Find Groups Without Labels</h3>
-						<p>Clustering groups similar observations when there is no ground-truth label. It is useful for segmentation, anomaly detection, image segmentation, and document categorization.</p>
-						<div class="table-wrap">
-							<table>
-								<thead>
-									<tr>
-										<th>Algorithm</th>
-										<th>Main idea</th>
-										<th>Important limitation</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>k-Means</td>
-										<td>Assign points to nearest centroid and update centroids until stable.</td>
-										<td>Requires k and assumes fairly simple cluster shapes.</td>
-									</tr>
-									<tr>
-										<td>Hierarchical</td>
-										<td>Builds nested clusters, often shown with a dendrogram.</td>
-										<td>Linkage choice affects cluster structure.</td>
-									</tr>
-									<tr>
-										<td>DBSCAN</td>
-										<td>Finds dense regions and marks noise points.</td>
-										<td>Depends heavily on eps and min_samples.</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-						<nav class="related-chapters" aria-label="Related sections for clustering">
-							<span>Study this in</span>
-							<a href="#ch5-3-kmeans">5.3 k-Means</a>
-							<a href="#ch5-4-hierarchical">5.4 Hierarchical</a>
-							<a href="#ch5-5-dbscan">5.5 DBSCAN</a>
-						</nav>
-					</article>
+				<div class="card coming-soon-card">
+					<span class="coming-soon-label">Coming soon</span>
+					<h3>Assignment Helper is coming soon</h3>
+					<p>This section will be updated when the relevant guidance is available.</p>
 				</div>
 			</div>
 		</section>
 
-		<section id="general-module-content" class="section-band alt">
+		<section id="test-focus-areas" class="section-band" data-nav-section>
 			<div class="section-inner">
 				<div class="section-heading">
-					<h2>General Module Content</h2>
-					<p>Chapter-by-chapter notes from the study guide. All content is visible by default so you can scroll, scan, and jump directly from the menu or exam focus cards.</p>
+					<h2>Test Focus Areas</h2>
+					<p>A future home for confirmed test coverage and targeted revision guidance.</p>
 				</div>
+				<div class="card coming-soon-card">
+					<span class="coming-soon-label">Coming soon</span>
+					<h3>Test Focus Areas are coming soon</h3>
+					<p>This section will be updated when the relevant guidance is available.</p>
+				</div>
+			</div>
+		</section>
 
+		<section id="exam-focus-areas" class="section-band" data-nav-section>
+			<div class="section-inner">
+				<div class="section-heading">
+					<h2>Exam Focus Areas</h2>
+					<p>Confirmed exam focus areas will be added here once the assessment coverage is available.</p>
+				</div>
+				<div class="card coming-soon-card">
+					<span class="coming-soon-label">Coming soon</span>
+					<h3>Exam focus areas are coming soon</h3>
+					<p>The current exam-focus content has been cleared and will be updated when the confirmed focus areas are provided.</p>
+				</div>
+			</div>
+		</section>
 				<section id="chapter-1" class="chapter" data-nav-section>
 					<h3>Chapter 1: Introduction to Machine Learning</h3>
 					<div class="chapter-tools">
@@ -2696,124 +2452,6 @@ print("DBSCAN noise count:", len(noise_customers))</code></pre>
 			</div>
 		</section>
 
-		<section id="final-revision" class="section-band" data-nav-section>
-			<div class="section-inner">
-				<div class="section-heading">
-					<h2>Final Revision Tables</h2>
-					<p>Use these to check your answer framing quickly before an assessment.</p>
-				</div>
-
-				<div class="grid">
-					<article class="card">
-						<h3>Algorithm Selector</h3>
-						<div class="table-wrap">
-							<table>
-								<thead>
-									<tr>
-										<th>Need</th>
-										<th>Use</th>
-										<th>Reason</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Predict a continuous number</td>
-										<td>Regression</td>
-										<td>Output is numeric and continuous.</td>
-									</tr>
-									<tr>
-										<td>Predict a label</td>
-										<td>Classification</td>
-										<td>Output is a discrete class.</td>
-									</tr>
-									<tr>
-										<td>Find groups with no labels</td>
-										<td>Clustering</td>
-										<td>Output is hidden structure.</td>
-									</tr>
-									<tr>
-										<td>Reduce many features</td>
-										<td>PCA</td>
-										<td>Captures variance with fewer components.</td>
-									</tr>
-									<tr>
-										<td>Classify by nearby examples</td>
-										<td>k-NN</td>
-										<td>Uses majority vote among nearest neighbors.</td>
-									</tr>
-									<tr>
-										<td>Detect dense clusters and outliers</td>
-										<td>DBSCAN</td>
-										<td>Works by density and labels noise points.</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</article>
-
-					<article class="card">
-						<h3>Common Exam Traps</h3>
-						<ul>
-							<li>Calling classification "regression" because logistic regression has regression in the name.</li>
-							<li>Using accuracy only when the dataset is imbalanced.</li>
-							<li>Forgetting that k-NN and SVM are scale-sensitive.</li>
-							<li>Assuming PCA keeps original features instead of creating new components.</li>
-							<li>Assuming cluster numbers have semantic meaning by themselves.</li>
-							<li>Expecting decision tree regression to extrapolate beyond training data.</li>
-							<li>Choosing k-means when clusters are complex-shaped or uneven in density.</li>
-						</ul>
-					</article>
-
-					<article class="card">
-						<h3>Mini Pipeline Cheat Sheet</h3>
-						<div class="diagram flow" aria-label="Machine learning pipeline">
-							<div class="node">Problem<small>What output is needed?</small></div>
-							<div class="node">Data<small>Structured or unstructured?</small></div>
-							<div class="node">Preprocess<small>Clean, scale, engineer</small></div>
-							<div class="node">Model<small>Train and tune</small></div>
-							<div class="node">Evaluate<small>Metric matched to risk</small></div>
-						</div>
-					</article>
-
-					<article class="card">
-						<h3>Metric Memory Hook</h3>
-						<div class="table-wrap">
-							<table>
-								<thead>
-									<tr>
-										<th>Question</th>
-										<th>Metric</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>How many predictions were correct overall?</td>
-										<td>Accuracy</td>
-									</tr>
-									<tr>
-										<td>When the model says positive, how often is it right?</td>
-										<td>Precision</td>
-									</tr>
-									<tr>
-										<td>Of all real positives, how many did it catch?</td>
-										<td>Recall</td>
-									</tr>
-									<tr>
-										<td>How do I balance precision and recall?</td>
-										<td>F1 score</td>
-									</tr>
-									<tr>
-										<td>How well are clusters separated?</td>
-										<td>Silhouette Score</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</article>
-				</div>
-			</div>
-		</section>
-
 		<footer class="footer">
 			<div class="footer-inner">
 				<p>Machine Learning 600 Study Hub. Built as a self-contained local HTML revision page from the supplied study guide.</p>
@@ -2871,7 +2509,7 @@ print("DBSCAN noise count:", len(noise_customers))</code></pre>
 				}
 			}
 
-			const navId = current ? navIdForElement(current) : "exam-overview";
+			const navId = current ? navIdForElement(current) : "exam-focus-areas";
 			if (navId) setActiveNav(navId);
 		}
 
@@ -2907,7 +2545,7 @@ print("DBSCAN noise count:", len(noise_customers))</code></pre>
 
 		backTop.addEventListener("click", () => {
 			window.scrollTo({ top: 0, behavior: "smooth" });
-			setActiveNav("exam-overview");
+			setActiveNav("exam-focus-areas");
 		});
 
 		window.addEventListener("scroll", requestScrollUpdate, { passive: true });

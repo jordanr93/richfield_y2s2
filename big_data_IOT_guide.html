@@ -639,15 +639,20 @@
 			<a href="index.html">View All</a>
 		</div>
 
+<details class="nav-group nav-collapsible">
+	<summary>Assignment Helper</summary>
+	<a class="nav-link" href="#assignment-helper" data-nav-link="assignment-helper">Coming Soon</a>
+</details>
+
+<details class="nav-group nav-collapsible">
+	<summary>Test Focus Areas</summary>
+	<a class="nav-link" href="#test-focus-areas" data-nav-link="test-focus-areas">Coming Soon</a>
+</details>
+
 		<details class="nav-group nav-collapsible">
-			<summary>Exam Focus Areas</summary>
-			<a href="#exam-overview" data-nav-link="exam-overview">Exam Overview</a>
-			<a href="#focus-big-data-foundations" data-nav-link="focus-big-data-foundations">Big Data Foundations</a>
-			<a href="#focus-iot-architecture" data-nav-link="focus-iot-architecture">IoT Architecture &amp; Security</a>
-			<a href="#focus-protocols-standards" data-nav-link="focus-protocols-standards">Protocols &amp; Standards</a>
-			<a href="#focus-storage-security" data-nav-link="focus-storage-security">Storage &amp; Security</a>
-			<a href="#focus-strategy-analytics" data-nav-link="focus-strategy-analytics">Strategy &amp; Analytics</a>
-		</details>
+	<summary>Exam Focus Areas</summary>
+	<a class="nav-link" href="#exam-focus-areas" data-nav-link="exam-focus-areas">Coming Soon</a>
+</details>
 
 		<div class="nav-group">
 			<h2>General Module Content</h2>
@@ -685,164 +690,41 @@
 				</div>
 			</header>
 
-			<section id="exam-focus-areas" aria-labelledby="exam-focus-title">
+			<section id="assignment-helper" data-nav-section>
 				<div class="section-heading">
-					<h2 id="exam-focus-title">Exam Focus Areas</h2>
-					<p>These cards are built from the learner guide outcomes, review questions, and repeated chapter themes. Start here when revising under time pressure.</p>
+					<h2>Assignment Helper</h2>
+					<p>A future home for assignment guidance, worked examples, and practical support.</p>
 				</div>
-
-				<article class="card exam-card" id="exam-overview" data-nav-section>
-					<h3>Exam Overview</h3>
-					<p>The guide is organized around five connected capabilities: explaining big data, designing IoT systems, selecting IoT technologies and standards, securing storage, and using analytics for strategy.</p>
-					<div class="table-wrap">
-						<table>
-							<thead>
-								<tr>
-									<th>Focus</th>
-									<th>What to know</th>
-									<th>Typical answer pattern</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Big Data foundations</td>
-									<td>Definition, 5Vs, sources, tools, analysis techniques, cleaning, normalization, transformation.</td>
-									<td>Define the term, classify the data/problem, then recommend a tool or preprocessing step.</td>
-								</tr>
-								<tr>
-									<td>IoT systems</td>
-									<td>Devices, sensors, gateways, edge/cloud processing, layered architecture, applications, security concerns.</td>
-									<td>Describe the data flow from sensing to action and identify the security weakness.</td>
-								</tr>
-								<tr>
-									<td>Standards and protocols</td>
-									<td>MQTT, CoAP, HTTP, DDS, 6LoWPAN, BLE, LoRaWAN, NB-IoT, Zigbee, Wi-Fi, 5G, security and privacy standards.</td>
-									<td>Match the protocol to power, range, latency, bandwidth, and reliability needs.</td>
-								</tr>
-								<tr>
-									<td>Storage and security</td>
-									<td>HDFS, Hadoop, NoSQL, cloud storage, data lakes, replication, governance, encryption, IAM, monitoring.</td>
-									<td>Explain why traditional storage is insufficient, then propose scalable and secure architecture.</td>
-								</tr>
-								<tr>
-									<td>Strategy and analytics</td>
-									<td>Big data strategy, descriptive/diagnostic/predictive/prescriptive analytics, visualization, ethics, monitoring.</td>
-									<td>Connect analytics outputs to business decisions, risks, KPIs, and continuous improvement.</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</article>
-
-				<div class="grid">
-					<article class="card exam-card" id="focus-big-data-foundations" data-nav-section>
-						<div class="chips"><span class="chip">Exam Focus</span><span class="chip">Definitions</span></div>
-						<h3>Big Data Foundations and Preprocessing</h3>
-						<p>Big Data means datasets too large, complex, fast, or varied for traditional tools. The guide frames it through the 5Vs: volume, variety, velocity, veracity, and value.</p>
-						<ul>
-							<li>Sources include business transactions, social media, IoT devices, healthcare systems, scientific research, and government/public services.</li>
-							<li>Common tools include Hadoop, Spark, Kafka, MongoDB, Tableau, AWS, Flink, and Power BI.</li>
-							<li>Preprocessing prepares raw data through cleaning, normalization, and transformation.</li>
-						</ul>
-						<div class="callout">
-							<strong>Exam trap:</strong> do not treat cleaning, normalization, and transformation as the same step. Cleaning fixes errors, normalization standardizes scale or structure, and transformation reshapes data for analysis.
-						</div>
-						<nav class="related-chapters" aria-label="Related sections for big data foundations">
-							<span>Study this in</span>
-							<a href="#ch1-1-big-data">1.1 Big Data</a>
-							<a href="#ch1-2-five-vs">1.2 Five Vs</a>
-							<a href="#ch1-5-preprocessing">1.5 Preprocessing</a>
-						</nav>
-					</article>
-
-					<article class="card exam-card architecture" id="focus-iot-architecture" data-nav-section>
-						<div class="chips"><span class="chip">Exam Focus</span><span class="chip">Architecture</span></div>
-						<h3>IoT Architecture, Applications, and Security</h3>
-						<p>IoT connects physical objects, sensors, software, networks, and platforms so devices can collect, exchange, analyse, and act on data in real time.</p>
-						<ul>
-							<li>The ecosystem includes devices/sensors, connectivity, processing, platforms, applications, and security frameworks.</li>
-							<li>The five-layer model moves from perception to network, middleware, application, and business layers.</li>
-							<li>Security challenges cluster around encryption, authentication, and privacy protection.</li>
-						</ul>
-						<div class="callout danger">
-							<strong>Security warning:</strong> default credentials, weak key management, and poor privacy controls are recurring IoT failure points.
-						</div>
-						<nav class="related-chapters" aria-label="Related sections for IoT architecture">
-							<span>Study this in</span>
-							<a href="#ch2-1-iot-concepts">2.1 IoT Concepts</a>
-							<a href="#ch2-3-layer-architecture">2.3 Layer Architecture</a>
-							<a href="#ch2-5-iot-security">2.5 IoT Security</a>
-						</nav>
-					</article>
-
-					<article class="card exam-card success" id="focus-protocols-standards" data-nav-section>
-						<div class="chips"><span class="chip">Exam Focus</span><span class="chip">Protocols</span></div>
-						<h3>IoT Protocols, Technologies, and Standards</h3>
-						<p>Chapter 3 asks you to compare technologies, communication protocols, data formats, and standards that make IoT systems interoperable and secure.</p>
-						<ul>
-							<li>Use MQTT for lightweight publish/subscribe messaging where bandwidth and power are limited.</li>
-							<li>Use CoAP for constrained devices that need REST-like interactions over low overhead networks.</li>
-							<li>Use LoRaWAN or NB-IoT for long-range, low-power applications; use Wi-Fi or 5G where higher bandwidth or low latency matters.</li>
-						</ul>
-						<div class="callout success">
-							<strong>Correct pattern:</strong> protocol choice should always mention the use case, power budget, range, bandwidth, latency, and security needs.
-						</div>
-						<nav class="related-chapters" aria-label="Related sections for protocols and standards">
-							<span>Study this in</span>
-							<a href="#ch3-1-iot-technologies">3.1 Technologies</a>
-							<a href="#ch3-2-protocols">3.2 Protocols</a>
-							<a href="#ch3-3-standards">3.3 Standards</a>
-						</nav>
-					</article>
-
-					<article class="card exam-card danger" id="focus-storage-security" data-nav-section>
-						<div class="chips"><span class="chip">Exam Focus</span><span class="chip">Security</span></div>
-						<h3>Big Data Storage and Security</h3>
-						<p>Big data storage must support scale, flexibility, fault tolerance, high throughput, distributed processing, and secure access to sensitive data.</p>
-						<ul>
-							<li>Hadoop combines HDFS for distributed storage with MapReduce for distributed processing, plus YARN and Hadoop Common.</li>
-							<li>Storage options include distributed file systems, NoSQL databases, cloud storage, data lakes, and hybrid/multi-cloud architectures.</li>
-							<li>Security techniques include encryption, access control, masking, MFA, anomaly detection, segmentation, backup, audits, and monitoring.</li>
-						</ul>
-						<div class="callout">
-							<strong>Exam trap:</strong> scalability alone is not enough. A strong answer also explains fault tolerance, governance, regulatory compliance, and data integrity.
-						</div>
-						<nav class="related-chapters" aria-label="Related sections for storage and security">
-							<span>Study this in</span>
-							<a href="#ch4-3-hadoop-architecture">4.3 Hadoop</a>
-							<a href="#ch4-5-storage-architectures">4.5 Architectures</a>
-							<a href="#ch4-7-big-data-security">4.7 Security</a>
-						</nav>
-					</article>
-
-					<article class="card exam-card warning" id="focus-strategy-analytics" data-nav-section>
-						<div class="chips"><span class="chip">Exam Focus</span><span class="chip">Strategy</span></div>
-						<h3>Strategy Development and Big Data Analytics</h3>
-						<p>Big Data supports strategic decisions by revealing patterns, forecasting changes, improving efficiency, and grounding decisions in evidence.</p>
-						<ul>
-							<li>A strategy needs collection, integration, storage, processing, analytics, governance, security, talent, tools, scalability, and business alignment.</li>
-							<li>The four analytics types answer: what happened, why it happened, what could happen, and what should be done.</li>
-							<li>Ethical strategy requires privacy, transparency, fairness, ownership clarity, security, and limits on unintended data use.</li>
-						</ul>
-						<div class="callout success">
-							<strong>Memory hook:</strong> descriptive = happened, diagnostic = why, predictive = next, prescriptive = action.
-						</div>
-						<nav class="related-chapters" aria-label="Related sections for strategy and analytics">
-							<span>Study this in</span>
-							<a href="#ch5-2-strategy-components">5.2 Strategy Components</a>
-							<a href="#ch5-4-analytics-types">5.4 Analytics Types</a>
-							<a href="#ch5-7-ethics-legal">5.7 Ethics</a>
-						</nav>
-					</article>
+				<div class="card coming-soon-card">
+					<span class="coming-soon-label">Coming soon</span>
+					<h3>Assignment Helper is coming soon</h3>
+					<p>This section will be updated when the relevant guidance is available.</p>
 				</div>
 			</section>
 
-			<section id="general-module-content" aria-labelledby="general-title">
+			<section id="test-focus-areas" data-nav-section>
 				<div class="section-heading">
-					<h2 id="general-title">General Module Content</h2>
-					<p>All chapter content is visible by default. Use the cards as a compact map of the learner guide, then return to the exam focus cards when testing yourself.</p>
+					<h2>Test Focus Areas</h2>
+					<p>A future home for confirmed test coverage and targeted revision guidance.</p>
 				</div>
+				<div class="card coming-soon-card">
+					<span class="coming-soon-label">Coming soon</span>
+					<h3>Test Focus Areas are coming soon</h3>
+					<p>This section will be updated when the relevant guidance is available.</p>
+				</div>
+			</section>
 
+			<section id="exam-focus-areas" aria-labelledby="exam-focus-title" data-nav-section>
+				<div class="section-heading">
+					<h2>Exam Focus Areas</h2>
+					<p>Confirmed exam focus areas will be added here once the assessment coverage is available.</p>
+				</div>
+				<div class="card coming-soon-card">
+					<span class="coming-soon-label">Coming soon</span>
+					<h3>Exam focus areas are coming soon</h3>
+					<p>The current exam-focus content has been cleared and will be updated when the confirmed focus areas are provided.</p>
+				</div>
+			</section>
 				<section id="chapter-1" class="chapter" data-nav-section>
 					<h2>Chapter 1: Big Data Analysis and Extraction Techniques</h2>
 					<p class="chapter-intro">This chapter introduces Big Data, its sources, analysis tools, analytics techniques, and the preprocessing steps needed before modelling or decision-making.</p>
@@ -2096,59 +1978,6 @@
 					<p>Quizzes, flashcards, guided practice, and other active-recall tools will be added here.</p>
 				</div>
 			</section>
-
-			<section id="revision-tables" aria-labelledby="revision-title">
-					<div class="section-heading">
-						<h2 id="revision-title">Final Revision Tables</h2>
-						<p>Use these for quick last-pass comparisons before answering scenario or discussion questions.</p>
-					</div>
-
-					<div class="grid">
-						<article class="card">
-							<h3>Architecture Quick Match</h3>
-							<div class="table-wrap">
-								<table>
-									<thead>
-										<tr>
-											<th>Need</th>
-											<th>Likely choice</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr><td>Raw mixed-format data for future analytics</td><td>Data lake</td></tr>
-										<tr><td>Fast structured reporting</td><td>Data warehouse</td></tr>
-										<tr><td>Massive distributed file storage</td><td>HDFS</td></tr>
-										<tr><td>Flexible semi-structured documents</td><td>MongoDB / NoSQL</td></tr>
-										<tr><td>Low-latency IoT decisions</td><td>Edge computing</td></tr>
-										<tr><td>Long-range low-power sensing</td><td>LoRaWAN or NB-IoT</td></tr>
-									</tbody>
-								</table>
-							</div>
-						</article>
-
-						<article class="card">
-							<h3>Security Quick Match</h3>
-							<div class="table-wrap">
-								<table>
-									<thead>
-										<tr>
-											<th>Risk</th>
-											<th>Control</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr><td>Data intercepted in transit</td><td>TLS/SSL, DTLS, IPsec</td></tr>
-										<tr><td>Unauthorized user access</td><td>IAM, RBAC, MFA, strong passwords</td></tr>
-										<tr><td>Device impersonation</td><td>Certificates, PKI, secure boot</td></tr>
-										<tr><td>Exposure of personal data</td><td>Masking, tokenization, anonymisation, privacy-by-design</td></tr>
-										<tr><td>Data alteration</td><td>Hashing, digital signatures, audits</td></tr>
-										<tr><td>Suspicious activity</td><td>Anomaly detection, IDS, SIEM monitoring</td></tr>
-									</tbody>
-								</table>
-							</div>
-						</article>
-					</div>
-				</section>
 
 				<footer class="footer">
 					<p>Source: <em>2026 Big Data &amp; IoT 600 Study Guide</em>, Richfield Faculty of Information Technology. Content has been condensed and reorganized for revision use.</p>

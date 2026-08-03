@@ -705,16 +705,20 @@
 			<a href="index.html">View All</a>
 		</div>
 
+<details class="nav-group nav-collapsible">
+	<summary>Assignment Helper</summary>
+	<a class="nav-link" href="#assignment-helper" data-nav-link="assignment-helper">Coming Soon</a>
+</details>
+
+<details class="nav-group nav-collapsible">
+	<summary>Test Focus Areas</summary>
+	<a class="nav-link" href="#test-focus-areas" data-nav-link="test-focus-areas">Coming Soon</a>
+</details>
+
 		<details class="nav-group nav-collapsible">
-			<summary>Exam Focus Areas</summary>
-			<a href="#exam-overview" data-nav-link="exam-overview">Exam Overview</a>
-			<a href="#focus-complexity" data-nav-link="focus-complexity">Big-O and analysis</a>
-			<a href="#focus-adts" data-nav-link="focus-adts">Classes and ADTs</a>
-			<a href="#focus-linear-structures" data-nav-link="focus-linear-structures">Linear structures</a>
-			<a href="#focus-recursion" data-nav-link="focus-recursion">Recursion patterns</a>
-			<a href="#focus-search-sort" data-nav-link="focus-search-sort">Search, hashing and sorting</a>
-			<a href="#focus-trees-graphs" data-nav-link="focus-trees-graphs">Trees and graphs</a>
-		</details>
+	<summary>Exam Focus Areas</summary>
+	<a class="nav-link" href="#exam-focus-areas" data-nav-link="exam-focus-areas">Coming Soon</a>
+</details>
 
 		<div class="nav-group">
 			<h2>General Module Content</h2>
@@ -754,174 +758,41 @@
 			</ul>
 		</header>
 
-		<section class="content-section" id="exam-focus-areas">
+		<section class="content-section" id="assignment-helper" data-nav-section>
 			<div class="section-heading">
-				<h2>Exam Focus Areas</h2>
-				<p>These focus areas are built from the guide's topic structure and learning outcomes. Use them as a high-yield revision route before reading the full chapter notes below.</p>
+				<h2>Assignment Helper</h2>
+				<p>A future home for assignment guidance, worked examples, and practical support.</p>
 			</div>
-
-			<article class="card definition" id="exam-overview" data-nav-section>
-				<h3>Exam Overview</h3>
-				<p>Programming 622 builds on Programming 621 by moving deeper into C++ data structures and algorithms. The guide covers the software development process, classes, ADTs, STL containers, linked lists, recursion, stacks, queues, searching, hashing, sorting, binary trees, B-trees and graphs.</p>
-				<div class="table-wrap">
-					<table>
-						<thead>
-							<tr>
-								<th>Revision Area</th>
-								<th>What To Know</th>
-								<th>Typical Question Shape</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Design and ADTs</td>
-								<td>Life cycle, analysis, design, classes, data abstraction, constructors and destructors.</td>
-								<td>Explain, identify class members, write or complete a class interface.</td>
-							</tr>
-							<tr>
-								<td>Linear structures</td>
-								<td>Arrays, vectors, linked lists, stacks and queues.</td>
-								<td>Trace insert/delete operations, compare array and linked implementations.</td>
-							</tr>
-							<tr>
-								<td>Algorithms</td>
-								<td>Big-O, sequential search, binary search, hashing, sorting and recursion.</td>
-								<td>Trace an algorithm, state a condition, compare efficiency.</td>
-							</tr>
-							<tr>
-								<td>Nonlinear structures</td>
-								<td>Binary trees, BSTs, AVL rotations, B-trees, graph representation and traversal.</td>
-								<td>Perform traversal, update a structure, explain shortest path or MST logic.</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</article>
-
-			<div class="grid">
-				<article class="card exam-card definition" id="focus-complexity" data-nav-section>
-					<span class="chip">Exam Focus</span>
-					<h3>Big-O And Algorithm Analysis</h3>
-					<p>The guide introduces algorithm analysis by counting operations rather than machine time. For large inputs, the dominant term matters most: a process that grows like <code>n2 + n</code> is treated as quadratic because <code>n2</code> dominates.</p>
-					<div class="callout warning"><strong>Exam trap:</strong> Do not compare algorithms by how fast they felt on one computer. Compare how operation counts grow as <code>n</code> grows.</div>
-					<nav class="related-chapters" aria-label="Related sections for Big-O and analysis">
-						<span>Study this in</span>
-						<a href="#ch1-3-big-o">1.3 Big-O</a>
-						<a href="#ch7-2-sequential-search">7.2 Sequential Search</a>
-						<a href="#ch8-1-sorting-overview">8.1 Sorting</a>
-					</nav>
-				</article>
-
-				<article class="card exam-card structure" id="focus-adts" data-nav-section>
-					<span class="chip">Exam Focus</span>
-					<h3>Classes, Encapsulation And ADTs</h3>
-					<p>Object-oriented design identifies objects, their data and their operations. C++ classes support encapsulation, while ADTs describe what operations a structure provides without making the user depend on the implementation details.</p>
-					<div class="callout success"><strong>Correct pattern:</strong> Separate interface from implementation. A stack user needs <code>push</code>, <code>pop</code> and <code>top</code>; they should not need to know whether the stack uses an array or linked nodes.</div>
-					<nav class="related-chapters" aria-label="Related sections for classes and ADTs">
-						<span>Study this in</span>
-						<a href="#ch1-4-classes">1.4 Classes</a>
-						<a href="#ch1-6-adts">1.6 ADTs</a>
-						<a href="#ch3-3-linked-list-adt">3.3 Linked List ADT</a>
-					</nav>
-				</article>
-
-				<article class="card exam-card success" id="focus-linear-structures" data-nav-section>
-					<span class="chip">Exam Focus</span>
-					<h3>Linear Structures: Vector, List, Stack, Queue</h3>
-					<p>Linear structures store items in a sequence, but the access rules differ. Vectors support random access, linked lists adjust links, stacks use Last In First Out, and queues use First In First Out.</p>
-					<div class="table-wrap">
-						<table>
-							<thead>
-								<tr>
-									<th>Structure</th>
-									<th>Main Rule</th>
-									<th>Core Operations</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Vector</td>
-									<td>Dynamic array with random access.</td>
-									<td><code>push_back</code>, indexing, iterators.</td>
-								</tr>
-								<tr>
-									<td>Linked list</td>
-									<td>Nodes are connected by links.</td>
-									<td>Insert node, delete node, traverse.</td>
-								</tr>
-								<tr>
-									<td>Stack</td>
-									<td>Last In First Out.</td>
-									<td><code>push</code>, <code>top</code>, <code>pop</code>.</td>
-								</tr>
-								<tr>
-									<td>Queue</td>
-									<td>First In First Out.</td>
-									<td><code>addQueue</code>, <code>front</code>, <code>deleteQueue</code>.</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<nav class="related-chapters" aria-label="Related sections for linear structures">
-						<span>Study this in</span>
-						<a href="#ch2-3-vector">2.3 Vector</a>
-						<a href="#ch5-1-stack">5.1 Stack</a>
-						<a href="#ch6-1-queue">6.1 Queue</a>
-					</nav>
-				</article>
-
-				<article class="card exam-card warning" id="focus-recursion" data-nav-section>
-					<span class="chip">Exam Focus</span>
-					<h3>Recursion: Base Case And General Case</h3>
-					<p>Recursion solves a problem by reducing it to smaller versions of itself. The guide stresses two essentials: every recursive definition needs one or more base cases, and the general case must eventually reach a base case.</p>
-					<pre><code>int fact(int num) {
-	if (num == 0)
-		return 1;          // base case
-	return num * fact(num - 1); // general case
-}</code></pre>
-					<div class="callout danger"><strong>Common failure:</strong> A recursive function with no reachable base case does not solve the problem - it keeps calling itself until the program fails.</div>
-					<nav class="related-chapters" aria-label="Related sections for recursion">
-						<span>Study this in</span>
-						<a href="#ch4-1-recursive-definitions">4.1 Recursive Definitions</a>
-						<a href="#ch4-3-recursion-vs-iteration">4.3 Recursion Or Iteration</a>
-						<a href="#ch5-6-remove-recursion">5.6 Remove Recursion</a>
-					</nav>
-				</article>
-
-				<article class="card exam-card definition" id="focus-search-sort" data-nav-section>
-					<span class="chip">Exam Focus</span>
-					<h3>Searching, Hashing And Sorting</h3>
-					<p>Sequential search checks items from the start until the target is found or the list ends. Binary search is faster but requires an ordered array-based list. Hashing uses a hash function to compute a table address, and sorting prepares data for efficient search.</p>
-					<div class="callout warning"><strong>Exam trap:</strong> Binary search is not a drop-in replacement for sequential search. It assumes the data is ordered and works naturally with direct index access.</div>
-					<nav class="related-chapters" aria-label="Related sections for searching hashing and sorting">
-						<span>Study this in</span>
-						<a href="#ch7-4-binary-search">7.4 Binary Search</a>
-						<a href="#ch7-6-hashing">7.6 Hashing</a>
-						<a href="#ch8-2-insertion-sort">8.2 Insertion Sort</a>
-					</nav>
-				</article>
-
-				<article class="card exam-card structure" id="focus-trees-graphs" data-nav-section>
-					<span class="chip">Exam Focus</span>
-					<h3>Trees And Graphs</h3>
-					<p>Binary trees organize data hierarchically with a root, left subtree and right subtree. Graphs use vertices and edges to model relationships, routes and networks. Both require careful traversal rules.</p>
-					<div class="callout success"><strong>Correct pattern:</strong> For tree traversal, remember the root/left/right order. For graph traversal, track visited vertices because graphs can contain cycles and disconnected parts.</div>
-					<nav class="related-chapters" aria-label="Related sections for trees and graphs">
-						<span>Study this in</span>
-						<a href="#ch9-1-binary-trees">9.1 Binary Trees</a>
-						<a href="#ch10-2-graph-definitions">10.2 Graph Definitions</a>
-						<a href="#ch10-5-traversals">10.5 Traversals</a>
-					</nav>
-				</article>
+			<div class="card coming-soon-card">
+				<span class="coming-soon-label">Coming soon</span>
+				<h3>Assignment Helper is coming soon</h3>
+				<p>This section will be updated when the relevant guidance is available.</p>
 			</div>
 		</section>
 
-		<section class="content-section" id="general-module-content">
+		<section class="content-section" id="test-focus-areas" data-nav-section>
 			<div class="section-heading">
-				<h2>General Module Content</h2>
-				<p>Chapter-by-chapter notes from the Programming 622 guide. Everything is visible for continuous revision.</p>
+				<h2>Test Focus Areas</h2>
+				<p>A future home for confirmed test coverage and targeted revision guidance.</p>
 			</div>
+			<div class="card coming-soon-card">
+				<span class="coming-soon-label">Coming soon</span>
+				<h3>Test Focus Areas are coming soon</h3>
+				<p>This section will be updated when the relevant guidance is available.</p>
+			</div>
+		</section>
 
+		<section class="content-section" id="exam-focus-areas" data-nav-section>
+			<div class="section-heading">
+				<h2>Exam Focus Areas</h2>
+				<p>Confirmed exam focus areas will be added here once the assessment coverage is available.</p>
+			</div>
+			<div class="card coming-soon-card">
+				<span class="coming-soon-label">Coming soon</span>
+				<h3>Exam focus areas are coming soon</h3>
+				<p>The current exam-focus content has been cleared and will be updated when the confirmed focus areas are provided.</p>
+			</div>
+		</section>
 			<section class="chapter" id="chapter-1" data-nav-section>
 				<h2>1. Software Engineering Principles And C++ Classes</h2>
 				<p>The guide starts by connecting software engineering practice to C++ program design: understand the problem, design algorithms and objects, implement with documented functions and classes, then test before the program enters long-term maintenance.</p>
@@ -3029,72 +2900,6 @@ int main() {
 				<span class="coming-soon-label">Coming soon</span>
 				<h3>More learning tools are on the way</h3>
 				<p>Quizzes, flashcards, guided practice, and other active-recall tools will be added here.</p>
-			</div>
-		</section>
-
-		<section class="content-section" id="cheat-sheets">
-			<div class="section-heading">
-				<h2>Final Revision Tables</h2>
-				<p>Quick comparisons for last-pass revision.</p>
-			</div>
-			<div class="grid">
-				<article class="card definition" id="cheat-structures">
-					<h3>Data Structure Cheat Sheet</h3>
-					<div class="table-wrap">
-						<table>
-							<thead>
-								<tr>
-									<th>Structure</th>
-									<th>Access Rule</th>
-									<th>Best Reminder</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Vector</td>
-									<td>Indexed dynamic array.</td>
-									<td>Fast random access; insertion in the middle can move data.</td>
-								</tr>
-								<tr>
-									<td>Linked list</td>
-									<td>Follow links from node to node.</td>
-									<td>Good for link-based insertion/deletion; sequential traversal.</td>
-								</tr>
-								<tr>
-									<td>Stack</td>
-									<td>Top only.</td>
-									<td>LIFO: last in, first out.</td>
-								</tr>
-								<tr>
-									<td>Queue</td>
-									<td>Front and rear.</td>
-									<td>FIFO: first in, first out.</td>
-								</tr>
-								<tr>
-									<td>Tree</td>
-									<td>Root and subtrees.</td>
-									<td>Traversal order is a common exam task.</td>
-								</tr>
-								<tr>
-									<td>Graph</td>
-									<td>Vertices and edges.</td>
-									<td>Track visited vertices during traversal.</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</article>
-				<article class="card warning" id="cheat-traps">
-					<h3>Common Exam Traps</h3>
-					<ul>
-						<li>Calling a recursive function without a reachable base case.</li>
-						<li>Using binary search on data that is not ordered.</li>
-						<li>Confusing stack LIFO with queue FIFO.</li>
-						<li>Losing linked-list nodes by changing a pointer too early.</li>
-						<li>Forgetting that graph traversal needs a visited structure.</li>
-						<li>Explaining hashing as comparison based instead of address computation by a hash function.</li>
-					</ul>
-				</article>
 			</div>
 		</section>
 

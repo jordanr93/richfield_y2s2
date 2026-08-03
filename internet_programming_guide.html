@@ -909,16 +909,20 @@
 			<a href="index.html">View All</a>
 		</div>
 
+<details class="nav-group nav-collapsible">
+	<summary>Assignment Helper</summary>
+	<a class="nav-link" href="#assignment-helper" data-nav-link="assignment-helper">Coming Soon</a>
+</details>
+
+<details class="nav-group nav-collapsible">
+	<summary>Test Focus Areas</summary>
+	<a class="nav-link" href="#test-focus-areas" data-nav-link="test-focus-areas">Coming Soon</a>
+</details>
+
 		<details class="nav-group nav-collapsible">
-			<summary>Exam Focus Areas</summary>
-			<a href="#exam-overview" data-nav-link="exam-overview">Exam Overview</a>
-			<a href="#focus-forms" data-nav-link="focus-forms">Forms and Request Data</a>
-			<a href="#focus-security-validation" data-nav-link="focus-security-validation">Security and Validation</a>
-			<a href="#focus-state" data-nav-link="focus-state">Cookies and Sessions</a>
-			<a href="#focus-files" data-nav-link="focus-files">Files and Directories</a>
-			<a href="#focus-sql" data-nav-link="focus-sql">SQL and MySQL</a>
-			<a href="#focus-setup" data-nav-link="focus-setup">XAMPP Setup</a>
-		</details>
+	<summary>Exam Focus Areas</summary>
+	<a class="nav-link" href="#exam-focus-areas" data-nav-link="exam-focus-areas">Coming Soon</a>
+</details>
 
 		<div class="nav-group">
 			<h2>General Module Content</h2>
@@ -927,7 +931,6 @@
 			<a href="#chapter-3" data-nav-link="chapter-3">Topic 3: File System Management</a>
 			<a href="#chapter-4" data-nav-link="chapter-4">Topic 4: SQL and Databases</a>
 			<a href="#chapter-5" data-nav-link="chapter-5">Addendum: Running PHP</a>
-			<a href="#final-revision" data-nav-link="final-revision">Final Revision Tables</a>
 		</div>
 
 		<div class="nav-group">
@@ -958,184 +961,41 @@
 		</header>
 
 		<div class="content">
-			<section id="exam-focus-areas">
+		<section id="assignment-helper" class="quiz-section" data-nav-section>
+			<div class="section-heading">
+				<h2>Assignment Helper</h2>
+				<p>A future home for assignment guidance, worked examples, and practical support.</p>
+			</div>
+			<div class="card coming-soon-card">
+				<span class="coming-soon-label">Coming soon</span>
+				<h3>Assignment Helper is coming soon</h3>
+				<p>This section will be updated when the relevant guidance is available.</p>
+			</div>
+		</section>
+
+		<section id="test-focus-areas" class="quiz-section" data-nav-section>
+			<div class="section-heading">
+				<h2>Test Focus Areas</h2>
+				<p>A future home for confirmed test coverage and targeted revision guidance.</p>
+			</div>
+			<div class="card coming-soon-card">
+				<span class="coming-soon-label">Coming soon</span>
+				<h3>Test Focus Areas are coming soon</h3>
+				<p>This section will be updated when the relevant guidance is available.</p>
+			</div>
+		</section>
+
+			<section id="exam-focus-areas" data-nav-section>
 				<div class="section-heading">
 					<h2>Exam Focus Areas</h2>
-					<p>Use this first for high-yield revision. Each card points to the exact section where the idea is explained in the chapter content.</p>
+					<p>Confirmed exam focus areas will be added here once the assessment coverage is available.</p>
 				</div>
-
-				<article class="card exam-card" id="exam-overview" data-nav-section>
-					<h3>Exam Overview</h3>
-					<p>The guide is built around four practical PHP areas: collecting user input, preserving state across stateless HTTP requests, storing or reading server-side files, and using relational databases through SQL and PHP database connections.</p>
-					<div class="table-wrap">
-						<table>
-							<thead>
-								<tr>
-									<th>Topic</th>
-									<th>What You Must Be Able To Do</th>
-									<th>Typical Question Style</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Forms</td>
-									<td>Create forms, choose GET or POST, read values through PHP superglobals, handle missing fields, validate input.</td>
-									<td>Write or fix a PHP form handler.</td>
-								</tr>
-								<tr>
-									<td>State</td>
-									<td>Explain why HTTP is stateless, use cookies and sessions, destroy sessions, compare persistence choices.</td>
-									<td>Build login, preference, or multi-step form logic.</td>
-								</tr>
-								<tr>
-									<td>Files</td>
-									<td>Check file information, open files, read/write content, move file pointers, manage directories.</td>
-									<td>Write a file script, hit counter, CSV reader, or directory listing.</td>
-								</tr>
-								<tr>
-									<td>SQL/MySQL</td>
-									<td>Define RDBMS concepts, create tables, insert/select/update/delete rows, connect PHP to MySQL.</td>
-									<td>Write SQL statements and PHP query code.</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</article>
-
-				<div class="grid">
-					<article class="card exam-card" id="focus-forms" data-nav-section>
-						<div class="chip-row">
-							<span class="chip cyan">Exam Focus</span>
-							<span class="chip green">Forms</span>
-						</div>
-						<h3>Forms and Request Data</h3>
-						<p>A form collects browser input, sends it to the URL in the <code>action</code> attribute, and uses <code>method="get"</code> or <code>method="post"</code> to decide how the values travel to PHP.</p>
-						<ul>
-							<li><code>GET</code> appends data to the URL and is better for small, bookmarkable requests.</li>
-							<li><code>POST</code> sends data in the request body and is better for larger or more sensitive submissions.</li>
-							<li>PHP reads submitted values through <code>$_GET</code>, <code>$_POST</code>, or the broader <code>$_REQUEST</code>.</li>
-						</ul>
-						<div class="callout warning"><strong>Exam trap:</strong> Know which controls send nothing when empty: unchecked checkboxes, unselected radio groups, list boxes with no selection, reset buttons, and ordinary push buttons.</div>
-						<nav class="related-chapters" aria-label="Related sections for forms">
-							<span>Study this in</span>
-							<a href="#ch1-1-form-basics">1.1 Form basics</a>
-							<a href="#ch1-2-get-post">1.2 GET vs POST</a>
-							<a href="#ch1-3-superglobals">1.3 Superglobals</a>
-						</nav>
-					</article>
-
-					<article class="card exam-card security" id="focus-security-validation" data-nav-section>
-						<div class="chip-row">
-							<span class="chip red">Security</span>
-							<span class="chip amber">Validation</span>
-						</div>
-						<h3>Security and Validation</h3>
-						<p>User input must never be trusted. The guide highlights XSS risk when raw submitted data is printed back into HTML, and it uses <code>htmlspecialchars()</code>, <code>filter_var()</code>, <code>isset()</code>, and <code>empty()</code> as core defensive tools.</p>
-						<ul>
-							<li>Escape output before displaying it in HTML.</li>
-							<li>Validate format, for example checking email with <code>FILTER_VALIDATE_EMAIL</code>.</li>
-							<li>Check whether optional controls exist before reading them.</li>
-						</ul>
-						<div class="callout danger"><strong>Security trap:</strong> Never display passwords back to the user, and do not echo raw <code>$_POST</code> or <code>$_GET</code> values into the page.</div>
-						<nav class="related-chapters" aria-label="Related sections for validation">
-							<span>Study this in</span>
-							<a href="#ch1-4-security">1.4 Security</a>
-							<a href="#ch1-5-empty-fields">1.5 Empty fields</a>
-							<a href="#ch1-6-validation-flow">1.6 Validation flow</a>
-						</nav>
-					</article>
-
-					<article class="card exam-card state" id="focus-state" data-nav-section>
-						<div class="chip-row">
-							<span class="chip purple">State</span>
-							<span class="chip cyan">HTTP</span>
-						</div>
-						<h3>Cookies and Sessions</h3>
-						<p>HTTP is stateless, so PHP needs a way to remember information across page views. Cookies store small data in the browser, while sessions store server-side data linked to a session ID, usually held in the <code>PHPSESSID</code> cookie.</p>
-						<ul>
-							<li><code>setcookie()</code> must run before page output because cookies are headers.</li>
-							<li><code>session_start()</code> loads session variables into <code>$_SESSION</code>.</li>
-							<li><code>session_destroy()</code> removes session data, useful for logout flows.</li>
-						</ul>
-						<div class="callout warning"><strong>Exam trap:</strong> Putting a session ID in the URL can expose it in the address bar. Prefer secure cookies and HTTPS where possible.</div>
-						<nav class="related-chapters" aria-label="Related sections for state">
-							<span>Study this in</span>
-							<a href="#ch2-1-stateless-http">2.1 Stateless HTTP</a>
-							<a href="#ch2-2-cookies">2.2 Cookies</a>
-							<a href="#ch2-3-sessions">2.3 Sessions</a>
-						</nav>
-					</article>
-
-					<article class="card exam-card files" id="focus-files" data-nav-section>
-						<div class="chip-row">
-							<span class="chip green">File I/O</span>
-							<span class="chip amber">Permissions</span>
-						</div>
-						<h3>Files and Directories</h3>
-						<p>PHP can store persistent data in server-side files and folders. The guide expects you to check whether files exist, inspect metadata, open handles, read/write safely, and close file or directory handles.</p>
-						<ul>
-							<li>Use <code>file_exists()</code>, <code>filesize()</code>, <code>filemtime()</code>, and <code>basename()</code> for file information.</li>
-							<li>Use <code>fopen()</code>, <code>fread()</code>, <code>fgets()</code>, <code>fwrite()</code>, and <code>fclose()</code> for handle-based work.</li>
-							<li>Use <code>opendir()</code>, <code>readdir()</code>, and <code>closedir()</code> for directories.</li>
-						</ul>
-						<div class="callout success"><strong>Correct pattern:</strong> Check before acting, handle failed opens, and close handles after reading or writing.</div>
-						<nav class="related-chapters" aria-label="Related sections for files">
-							<span>Study this in</span>
-							<a href="#ch3-1-file-info">3.1 File info</a>
-							<a href="#ch3-2-open-modes">3.2 Open modes</a>
-							<a href="#ch3-5-directories">3.5 Directories</a>
-						</nav>
-					</article>
-
-					<article class="card exam-card sql" id="focus-sql" data-nav-section>
-						<div class="chip-row">
-							<span class="chip amber">SQL</span>
-							<span class="chip purple">RDBMS</span>
-						</div>
-						<h3>SQL and MySQL</h3>
-						<p>Databases solve the limitations of large flat files by allowing efficient querying, filtering, relationships, and structured storage. You should know relational tables, rows, columns, primary keys, indexes, and CRUD SQL.</p>
-						<ul>
-							<li><code>CREATE</code> builds databases and tables.</li>
-							<li><code>INSERT</code>, <code>SELECT</code>, <code>UPDATE</code>, and <code>DELETE</code> manipulate table data.</li>
-							<li><code>DROP</code> removes a table or database permanently.</li>
-						</ul>
-						<div class="callout danger"><strong>Exam trap:</strong> <code>UPDATE</code> or <code>DELETE</code> without a <code>WHERE</code> clause affects every row in the table.</div>
-						<nav class="related-chapters" aria-label="Related sections for SQL">
-							<span>Study this in</span>
-							<a href="#ch4-1-rdbms">4.1 RDBMS</a>
-							<a href="#ch4-3-crud-sql">4.3 CRUD SQL</a>
-							<a href="#ch4-4-php-mysql">4.4 PHP and MySQL</a>
-						</nav>
-					</article>
-
-					<article class="card exam-card setup" id="focus-setup" data-nav-section>
-						<div class="chip-row">
-							<span class="chip cyan">Setup</span>
-							<span class="chip green">Local PHP</span>
-						</div>
-						<h3>XAMPP Setup</h3>
-						<p>XAMPP gives you Apache, MySQL, PHP, and Perl in a local package so you can run and test PHP web pages before publishing them. PHP files are placed under <code>htdocs</code> and accessed through <code>localhost</code>.</p>
-						<ul>
-							<li>Start Apache in the XAMPP control panel before opening PHP files in a browser.</li>
-							<li>Use a <code>.php</code> extension so the server sends the file through PHP.</li>
-							<li>Open pages through <code>localhost/folder/file.php</code>, not by double-clicking the PHP file.</li>
-						</ul>
-						<nav class="related-chapters" aria-label="Related sections for XAMPP setup">
-							<span>Study this in</span>
-							<a href="#ch5-1-xampp">5.1 What XAMPP provides</a>
-							<a href="#ch5-2-run-php">5.2 Run PHP</a>
-							<a href="#ch5-3-localhost">5.3 Localhost path</a>
-						</nav>
-					</article>
+				<div class="card coming-soon-card">
+					<span class="coming-soon-label">Coming soon</span>
+					<h3>Exam focus areas are coming soon</h3>
+					<p>The current exam-focus content has been cleared and will be updated when the confirmed focus areas are provided.</p>
 				</div>
 			</section>
-
-			<section id="general-module-content">
-				<div class="section-heading">
-					<h2>General Module Content</h2>
-					<p>Chapter-by-chapter notes from the study guide, with all content visible for continuous revision.</p>
-				</div>
-
 				<section id="chapter-1" class="chapter" data-nav-section>
 					<h2>Topic 1: PHP and HTML Forms</h2>
 					<p>Forms are the bridge between browser input and PHP processing. The guide moves from basic form structure to request methods, superglobals, security, empty field handling, dynamic forms, and validation.</p>
@@ -2614,94 +2474,6 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 				</section>
 			</section>
 
-			<section id="final-revision" class="cheat-sheet" data-nav-section>
-				<div class="section-heading">
-					<h2>Final Revision Tables</h2>
-					<p>Fast recall tables for the functions and statements most likely to matter in practical questions.</p>
-				</div>
-				<div class="grid">
-					<article class="card">
-						<h3>PHP Request and Security Functions</h3>
-						<div class="table-wrap">
-							<table>
-								<thead>
-									<tr>
-										<th>Item</th>
-										<th>Use</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr><td><code>$_GET</code></td><td>Read query string or GET form values.</td></tr>
-									<tr><td><code>$_POST</code></td><td>Read POST form values.</td></tr>
-									<tr><td><code>htmlspecialchars()</code></td><td>Escape output to reduce XSS risk.</td></tr>
-									<tr><td><code>filter_var()</code></td><td>Validate formatted data such as email addresses.</td></tr>
-									<tr><td><code>isset()</code></td><td>Check whether a submitted key exists.</td></tr>
-									<tr><td><code>empty()</code></td><td>Check whether a value is missing or empty.</td></tr>
-								</tbody>
-							</table>
-						</div>
-					</article>
-
-					<article class="card">
-						<h3>PHP State, File, and Directory Functions</h3>
-						<div class="table-wrap">
-							<table>
-								<thead>
-									<tr>
-										<th>Item</th>
-										<th>Use</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr><td><code>setcookie()</code></td><td>Create browser cookies before output.</td></tr>
-									<tr><td><code>session_start()</code></td><td>Begin or resume a session.</td></tr>
-									<tr><td><code>fopen()</code> / <code>fclose()</code></td><td>Open and close file handles.</td></tr>
-									<tr><td><code>fgets()</code> / <code>fwrite()</code></td><td>Read lines and write strings.</td></tr>
-									<tr><td><code>opendir()</code> / <code>readdir()</code></td><td>Open and iterate through directories.</td></tr>
-									<tr><td><code>is_file()</code> / <code>is_dir()</code></td><td>Test whether a path is a file or directory.</td></tr>
-								</tbody>
-							</table>
-						</div>
-					</article>
-
-					<article class="card">
-						<h3>SQL Statement Quick Table</h3>
-						<div class="table-wrap">
-							<table>
-								<thead>
-									<tr>
-										<th>Statement</th>
-										<th>Purpose</th>
-										<th>Example</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr><td><code>CREATE</code></td><td>Create a database or table.</td><td><code>CREATE DATABASE mydatabase;</code></td></tr>
-									<tr><td><code>INSERT</code></td><td>Add a row.</td><td><code>INSERT INTO fruit (name) VALUES ('plum');</code></td></tr>
-									<tr><td><code>SELECT</code></td><td>Retrieve rows.</td><td><code>SELECT * FROM fruit;</code></td></tr>
-									<tr><td><code>UPDATE</code></td><td>Modify rows.</td><td><code>UPDATE fruit SET color='yellow' WHERE id=1;</code></td></tr>
-									<tr><td><code>DELETE</code></td><td>Delete rows.</td><td><code>DELETE FROM fruit WHERE id=1;</code></td></tr>
-									<tr><td><code>DROP</code></td><td>Remove a table or database.</td><td><code>DROP TABLE fruit;</code></td></tr>
-								</tbody>
-							</table>
-						</div>
-					</article>
-
-					<article class="card">
-						<h3>Practical Coding Checklist</h3>
-						<ol>
-							<li>Choose the right request method and matching superglobal.</li>
-							<li>Use <code>isset()</code> or <code>empty()</code> before reading optional form values.</li>
-							<li>Validate input and escape output with <code>htmlspecialchars()</code>.</li>
-							<li>Start sessions before using <code>$_SESSION</code>.</li>
-							<li>Close files, directories, and database connections after use.</li>
-							<li>Use <code>WHERE</code> with <code>UPDATE</code> and <code>DELETE</code>.</li>
-							<li>Open PHP through <code>localhost</code> when using XAMPP.</li>
-						</ol>
-					</article>
-				</div>
-			</section>
-
 		<section id="preparation-station" class="quiz-section" data-nav-section>
 			<div class="section-heading">
 				<h2>Preparation Station</h2>
@@ -3328,7 +3100,7 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 
 		topButton.addEventListener('click', () => {
 			window.scrollTo({ top: 0, behavior: 'smooth' });
-			setActiveNav('exam-overview');
+			setActiveNav('exam-focus-areas');
 		});
 
 		window.addEventListener('scroll', () => {

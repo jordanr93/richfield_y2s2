@@ -211,6 +211,7 @@ body.module-page .content {
 body.module-page main > section,
 body.module-page .content > section {
 	padding: 38px clamp(22px, 5vw, 70px);
+	border-top: 0;
 	border-bottom: 1px solid var(--border);
 }
 
@@ -333,6 +334,10 @@ body.module-page .section,
 body.module-page .section-band,
 body.module-page .content-section {
 	border-color: var(--border);
+}
+
+body.module-page .chapter {
+	border-top: 0;
 }
 
 body.module-page .back-to-top,
