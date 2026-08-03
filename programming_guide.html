@@ -314,6 +314,10 @@
 			grid-template-columns: repeat(3, minmax(0, 1fr));
 		}
 
+		.wide {
+			grid-column: 1 / -1;
+		}
+
 		.card {
 			scroll-margin-top: 20px;
 			padding: 20px;
@@ -855,68 +859,91 @@
 
 			<section class="chapter" id="chapter-1" data-nav-section>
 				<h2>1. Software Engineering Principles And C++ Classes</h2>
-				<p>The guide starts with the software life cycle, software development phases, Big-O, classes, data abstraction and ADTs.</p>
+				<p>The guide starts by connecting software engineering practice to C++ program design: understand the problem, design algorithms and objects, implement with documented functions and classes, then test before the program enters long-term maintenance.</p>
 				<div class="chapter-tools">
 					<span class="chip">Software life cycle</span>
+					<span class="chip">Analysis and design</span>
 					<span class="chip">Big-O</span>
 					<span class="chip">Classes</span>
 					<span class="chip">ADT</span>
+					<span class="chip">Preconditions</span>
 				</div>
 				<div class="grid">
 					<article class="card chapter-card definition" id="ch1-1-software-life-cycle">
 						<h3>1.1 Software Life Cycle</h3>
-						<p>A program moves through development, use and maintenance. Maintenance modifies a program to fix problems or improve it; if changes become too expensive, the program may be retired.</p>
+						<p>A program has a life cycle from the moment it is first conceived until it is retired. The guide names three fundamental stages: development, use and maintenance.</p>
+						<ul>
+							<li><strong>Development:</strong> the new program is created to solve a customer's problem.</li>
+							<li><strong>Use:</strong> the completed program is released and users begin applying it to real work.</li>
+							<li><strong>Maintenance:</strong> problems, corrections and improvement ideas are sent back to the developer.</li>
+						</ul>
+						<div class="callout warning"><strong>Exam angle:</strong> Maintenance is not an afterthought. A well-developed program is easier and less expensive to maintain.</div>
 					</article>
 					<article class="card chapter-card success" id="ch1-2-development-phase">
 						<h3>1.2 Development Phase</h3>
-						<p>The development process is broken into analysis, design, implementation, testing and debugging. Analysis comes first because the programmer must understand the problem, requirements, data and expected output.</p>
+						<p>Software engineers break development into four main phases: analysis, design, implementation, and testing/debugging. Each phase answers a different question.</p>
 						<div class="diagram flow" aria-label="Software development flow">
 							<div>Analysis</div>
 							<div>Design</div>
 							<div>Implementation</div>
 							<div>Testing and debugging</div>
 						</div>
+						<ul>
+							<li><strong>Analysis:</strong> understand the problem, required user interaction, data, output format and any complex subproblems.</li>
+							<li><strong>Design:</strong> create algorithms for the full problem and for each subproblem.</li>
+							<li><strong>Implementation:</strong> write and compile the C++ code for the classes and functions discovered in design.</li>
+							<li><strong>Testing and debugging:</strong> run test cases, compare actual output to expected output, then find and fix faults.</li>
+						</ul>
 					</article>
 					<article class="card chapter-card warning" id="ch1-3-big-o">
 						<h3>1.3 Algorithm Analysis: Big-O</h3>
-						<p>Algorithm analysis counts operations as a function of input size. A fixed number of operations is constant time; a loop over <code>n</code> items is linear; nested repeated work can become quadratic.</p>
+						<p>After designing an algorithm, the guide says it should also be analysed. The focus is normally the number of basic operations as a function of input size <code>n</code>, not the raw time on one computer.</p>
+						<p>Big-O describes the dominant growth term when <code>n</code> becomes large. Constants and smaller terms become less important. For example, <code>n2 + n</code> is treated as <code>O(n2)</code> because the quadratic term dominates.</p>
 						<div class="table-wrap">
 							<table>
 								<thead>
 									<tr>
 										<th>Growth</th>
 										<th>Meaning</th>
-										<th>Study Guide Link</th>
+										<th>Typical Guide Connection</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
 										<td><code>O(1)</code></td>
-										<td>Fixed amount of work.</td>
-										<td>Simple statements or direct access.</td>
+										<td>Fixed amount of work, independent of input size.</td>
+										<td>Simple statements and direct vector access.</td>
 									</tr>
 									<tr>
 										<td><code>O(n)</code></td>
-										<td>Work grows with list size.</td>
+										<td>Work grows in direct proportion to the number of items.</td>
 										<td>Sequential search and traversal.</td>
 									</tr>
 									<tr>
 										<td><code>O(log n)</code></td>
-										<td>Problem is repeatedly divided.</td>
+										<td>The problem is repeatedly divided into smaller parts.</td>
 										<td>Binary search.</td>
 									</tr>
 									<tr>
 										<td><code>O(n2)</code></td>
-										<td>Repeated scans over the data.</td>
-										<td>Simple comparison sorting patterns.</td>
+										<td>Repeated work over the same growing data set.</td>
+										<td>Nested loops and simple comparison sorting patterns.</td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
+						<div class="callout info"><strong>How to analyse:</strong> identify the dominant operation first. In searching, count comparisons; in matrix multiplication, multiplication may be the expensive operation.</div>
 					</article>
 					<article class="card chapter-card structure" id="ch1-4-classes">
 						<h3>1.4 Classes</h3>
-						<p>A class groups data members and functions into one type. The guide connects this to encapsulation: object data and operations are kept together, and access is controlled with private, protected and public members.</p>
+						<p>A C++ class is the mechanism used to combine data and operations in one unit. It defines a type; memory is allocated only when objects of that type are declared.</p>
+						<ul>
+							<li>Class components are called members.</li>
+							<li>Members can be data members or member functions.</li>
+							<li>Member functions can directly access other members of the same class.</li>
+							<li>Members are usually grouped under <code>private</code>, <code>protected</code> or <code>public</code> access specifiers.</li>
+							<li>The semicolon after the closing brace is part of the class syntax.</li>
+						</ul>
 						<pre><code>class Rectangle {
 private:
 	double length;
@@ -927,14 +954,169 @@ public:
 	double area() const;
 };</code></pre>
 					</article>
+					<article class="card chapter-card warning" id="ch1-5-contracts">
+						<h3>1.5 Function Contracts</h3>
+						<p>The guide uses preconditions and postconditions to document how a function should be called and what will be true after it finishes.</p>
+						<ul>
+							<li><strong>Precondition:</strong> what must be true before the call, such as "the value must be nonnegative".</li>
+							<li><strong>Postcondition:</strong> what the function guarantees after the call, such as "returns centimetres" or "returns -1.0 for invalid input".</li>
+							<li><code>assert</code> can enforce a condition, but a failed assertion terminates the program.</li>
+						</ul>
+						<div class="callout danger"><strong>Design decision:</strong> Returning an error value lets the caller recover; using <code>assert</code> is stricter and is better when continuing would make the program invalid.</div>
+					</article>
 					<article class="card chapter-card definition" id="ch1-6-adts">
 						<h3>1.6 Data Abstraction, Classes And ADTs</h3>
-						<p>An abstract data type describes the logical behavior of data and operations. C++ classes can implement ADTs by exposing operations while hiding storage details.</p>
+						<p>Abstraction separates logical properties from implementation details. The guide's car example makes the idea simple: the driver needs to know how to start and drive the car, not how the engine is built.</p>
+						<p>Data abstraction applies the same idea to data types. An abstract data type has a type name, a domain of possible values, and a set of operations. A C++ class is a convenient way to implement an ADT because it can expose operations while hiding storage details.</p>
+						<div class="table-wrap">
+							<table>
+								<thead>
+									<tr>
+										<th>ADT Part</th>
+										<th>Meaning</th>
+										<th>Example From The Guide</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Type name</td>
+										<td>The name of the abstract data type.</td>
+										<td><code>clockType</code> or <code>listType</code></td>
+									</tr>
+									<tr>
+										<td>Domain</td>
+										<td>The valid values belonging to the type.</td>
+										<td>A time of day, or a list of up to 1000 integers.</td>
+									</tr>
+									<tr>
+										<td>Operations</td>
+										<td>The actions users can perform on the type.</td>
+										<td>Set, return, print, increment, compare, insert, delete, search.</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</article>
 					<article class="card chapter-card success" id="ch1-7-identifying-classes">
 						<h3>1.7 Identifying Classes, Objects And Operations</h3>
-						<p>In object-oriented design, identify the objects in the problem, list the data each object must store, then list the operations that act on that data.</p>
-						<div class="callout info"><strong>Memory hook:</strong> Nouns often suggest objects; verbs often suggest operations.</div>
+						<p>The guide gives a practical OOD technique: start with the problem description, list nouns and verbs, then choose candidate classes and operations.</p>
+						<ul>
+							<li>Nouns often suggest possible classes or data values.</li>
+							<li>Verbs often suggest operations.</li>
+							<li>After choosing a class, identify operations objects can perform, operations performed on the object, and information the object must maintain.</li>
+						</ul>
+						<div class="callout info"><strong>Guide example:</strong> In a cylinder problem, <code>cylinderType</code> is a natural class; radius and height are data; volume, surface area, input and print are operations.</div>
+					</article>
+					<article class="card chapter-card wide structure" id="ch1-code-example">
+						<h3>Topic 1 Extended Code Example: ADT-Style Class With Contracts</h3>
+						<p>This example combines the guide's software-design ideas: analyse the problem, model the correct object, protect its data, document preconditions/postconditions, and expose clear operations.</p>
+						<pre><code>#include &lt;cassert&gt;
+#include &lt;cmath&gt;
+#include &lt;iomanip&gt;
+#include &lt;iostream&gt;
+using namespace std;
+
+class cylinderType {
+private:
+	double radius;
+	double height;
+
+public:
+	// Default constructor.
+	// Postcondition: the object exists with safe starting dimensions.
+	cylinderType() {
+		radius = 1.0;
+		height = 1.0;
+	}
+
+	// Constructor with parameters.
+	// Precondition: r and h must be positive measurements.
+	// Postcondition: radius = r and height = h.
+	cylinderType(double r, double h) {
+		setDimensions(r, h);
+	}
+
+	// Member function used to change the object's data safely.
+	// Encapsulation means outside code cannot assign radius/height directly.
+	void setDimensions(double r, double h) {
+		assert(r &gt; 0 &amp;&amp; h &gt; 0);
+		radius = r;
+		height = h;
+	}
+
+	// Logical operation of the ADT.
+	// The caller needs the result, not the internal formula details.
+	double volume() const {
+		const double pi = 3.141592653589793;
+		return pi * radius * radius * height;
+	}
+
+	// Another logical operation of the ADT.
+	double surfaceArea() const {
+		const double pi = 3.141592653589793;
+		return 2 * pi * radius * (radius + height);
+	}
+
+	void print() const {
+		cout &lt;&lt; fixed &lt;&lt; setprecision(2);
+		cout &lt;&lt; "Radius: " &lt;&lt; radius &lt;&lt; endl;
+		cout &lt;&lt; "Height: " &lt;&lt; height &lt;&lt; endl;
+		cout &lt;&lt; "Volume: " &lt;&lt; volume() &lt;&lt; endl;
+		cout &lt;&lt; "Surface area: " &lt;&lt; surfaceArea() &lt;&lt; endl;
+	}
+};
+
+int main() {
+	// Analysis: the problem needs radius and height as input data.
+	// Design: cylinderType stores dimensions and provides operations.
+	cylinderType waterTank(3.5, 8.0);
+
+	// Implementation: use the public interface instead of touching private data.
+	waterTank.print();
+
+	return 0;
+}</code></pre>
+					</article>
+					<article class="card chapter-card wide warning" id="ch1-code-analysis-example">
+						<h3>Topic 1 Extended Code Example: Reading Code For Big-O</h3>
+						<p>This small program shows how to connect code structure to operation growth, which is exactly what the Big-O section expects you to practise.</p>
+						<pre><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+bool sequentialSearch(const vector&lt;int&gt;&amp; values, int target) {
+	// In the worst case, the loop checks every element once.
+	// If values has n elements, the dominant operation is n comparisons.
+	// Worst-case complexity: O(n).
+	for (int item : values) {
+		if (item == target) {
+			return true;
+		}
+	}
+	return false;
+}
+
+void printPairs(const vector&lt;int&gt;&amp; values) {
+	// This nested loop compares every element with every other element.
+	// For n elements, the inner statement can run n * n times.
+	// Dominant term: n2, so complexity is O(n2).
+	for (int i = 0; i &lt; static_cast&lt;int&gt;(values.size()); i++) {
+		for (int j = 0; j &lt; static_cast&lt;int&gt;(values.size()); j++) {
+			cout &lt;&lt; values[i] &lt;&lt; "," &lt;&lt; values[j] &lt;&lt; " ";
+		}
+		cout &lt;&lt; endl;
+	}
+}
+
+int main() {
+	vector&lt;int&gt; marks = {72, 85, 91, 60};
+
+	cout &lt;&lt; boolalpha;
+	cout &lt;&lt; "Found 91? " &lt;&lt; sequentialSearch(marks, 91) &lt;&lt; endl;
+	printPairs(marks);
+
+	return 0;
+}</code></pre>
 					</article>
 				</div>
 				<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
@@ -942,25 +1124,69 @@ public:
 
 			<section class="chapter" id="chapter-2" data-nav-section>
 				<h2>2. Standard Template Library (STL)</h2>
-				<p>The STL provides reusable class templates and algorithms for processing containers such as vectors, deques, lists, stacks and queues.</p>
+				<p>The STL provides professionally written class templates and generic algorithms for storing, accessing and manipulating data. This topic introduces containers, iterators and algorithms, then uses vector and deque to show the common patterns.</p>
 				<div class="chapter-tools">
 					<span class="chip">Containers</span>
+					<span class="chip">Sequence containers</span>
 					<span class="chip">Iterators</span>
 					<span class="chip">Algorithms</span>
 					<span class="chip">Vector</span>
+					<span class="chip">Deque</span>
+					<span class="chip">copy</span>
 				</div>
 				<div class="grid">
 					<article class="card chapter-card definition" id="ch2-1-stl-components">
 						<h3>2.1 Components Of The STL</h3>
-						<p>The STL has three main components: containers store data, iterators move through containers, and algorithms manipulate the data.</p>
+						<p>The guide frames the STL around the central goal of a program: store data, access data and manipulate data to produce results.</p>
+						<div class="table-wrap">
+							<table>
+								<thead>
+									<tr>
+										<th>Component</th>
+										<th>Role</th>
+										<th>Typical Examples</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Containers</td>
+										<td>Class templates that manage objects of a given type.</td>
+										<td><code>vector</code>, <code>deque</code>, <code>list</code>, stacks and queues.</td>
+									</tr>
+									<tr>
+										<td>Iterators</td>
+										<td>Pointer-like objects used to step through container elements.</td>
+										<td><code>begin()</code>, <code>end()</code>, <code>++it</code>, <code>*it</code>.</td>
+									</tr>
+									<tr>
+										<td>Algorithms</td>
+										<td>Reusable functions that manipulate ranges of data.</td>
+										<td><code>copy</code>, searching, sorting and transformation-style operations.</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</article>
 					<article class="card chapter-card structure" id="ch2-2-sequence-containers">
 						<h3>2.2 Sequence Containers</h3>
-						<p>Sequence containers keep each object in a specific position. The guide names <code>vector</code>, <code>deque</code> and <code>list</code> as predefined sequence containers.</p>
+						<p>STL containers are classified into sequence containers, associative containers and container adapters. In a sequence container, every object has a specific position.</p>
+						<ul>
+							<li><code>vector</code>: dynamic array, random access, fast insertion at the end.</li>
+							<li><code>deque</code>: double-ended queue, can expand at the front and back.</li>
+							<li><code>list</code>: linked sequence container, covered later in the linked-list topic.</li>
+							<li>Container adapters are revisited with stacks and queues.</li>
+						</ul>
 					</article>
 					<article class="card chapter-card success" id="ch2-3-vector">
 						<h3>2.3 Sequence Container: vector</h3>
-						<p>A vector manages objects in a dynamic array. It supports random access like an array, makes end insertion fast, and uses the <code>&lt;vector&gt;</code> header.</p>
+						<p>A vector stores and manages its objects in a dynamic array. Because arrays are random-access structures, vector elements can be accessed with indexes just like array elements.</p>
+						<ul>
+							<li>Use <code>#include &lt;vector&gt;</code>.</li>
+							<li>Declare the component type, for example <code>vector&lt;int&gt; intList;</code>.</li>
+							<li><code>vector&lt;int&gt; intList(10);</code> creates ten integer elements initialized to zero.</li>
+							<li><code>push_back</code> adds a new element at the end when you do not already know the final size.</li>
+							<li>Do not write past the current vector size with the subscript operator.</li>
+						</ul>
 						<pre><code>#include &lt;vector&gt;
 #include &lt;iostream&gt;
 using namespace std;
@@ -971,10 +1197,181 @@ marks.push_back(84);
 
 cout &lt;&lt; marks[0] &lt;&lt; endl;</code></pre>
 					</article>
+					<article class="card chapter-card definition" id="ch2-4-begin-end">
+						<h3>2.4 begin, end, insert And erase</h3>
+						<p>Every container provides <code>begin()</code> and <code>end()</code>. The guide uses them to initialise iterator loops and to mark the range processed by algorithms.</p>
+						<ul>
+							<li><code>begin()</code> returns an iterator positioned at the first element.</li>
+							<li><code>end()</code> returns the stopping position just past the final element.</li>
+							<li><code>insert</code> and <code>erase</code> often need an iterator to specify the exact position.</li>
+							<li>Inserting in the middle of a vector is expensive because later elements must shift.</li>
+						</ul>
+						<pre><code>vector&lt;int&gt;::iterator it = marks.begin();
+++it;                 // Move to the second element.
+marks.insert(it, 90); // Insert 90 before that position.</code></pre>
+					</article>
+					<article class="card chapter-card success" id="ch2-5-copy">
+						<h3>2.5 The copy Algorithm</h3>
+						<p>The STL <code>copy</code> algorithm copies a range of elements from a source to a destination. The source range is written as <code>first...last - 1</code>, which means <code>last</code> is the stopping position, not the final copied element.</p>
+						<ul>
+							<li>Include <code>&lt;algorithm&gt;</code> for <code>copy</code>.</li>
+							<li>The first two parameters describe the source range.</li>
+							<li>The third parameter describes the destination start.</li>
+							<li>The destination must have enough space unless an insert/output iterator is used.</li>
+						</ul>
+						<pre><code>int intArray[] = {5, 6, 8, 3, 40, 36, 98, 29, 75};
+vector&lt;int&gt; vecList(9);
+
+copy(intArray, intArray + 9, vecList.begin());</code></pre>
+					</article>
+					<article class="card chapter-card structure" id="ch2-6-ostream-iterator">
+						<h3>2.6 ostream Iterator And copy</h3>
+						<p>An <code>ostream_iterator</code> lets <code>copy</code> send each value to an output stream such as <code>cout</code>. The delimiter argument controls what is printed after each value.</p>
+						<pre><code>#include &lt;algorithm&gt;
+#include &lt;iterator&gt;
+
+ostream_iterator&lt;int&gt; screen(cout, " ");
+copy(vecList.begin(), vecList.end(), screen);</code></pre>
+						<div class="callout info"><strong>Shortcut:</strong> You can create the output iterator directly inside the <code>copy</code> call: <code>copy(vecList.begin(), vecList.end(), ostream_iterator&lt;int&gt;(cout, ", "));</code></div>
+					</article>
 					<article class="card chapter-card warning" id="ch2-7-iterators">
 						<h3>2.7 Iterators</h3>
-						<p>Iterators provide a general way to step through container elements. This matters because the same algorithmic idea can work across multiple container types.</p>
+						<p>Iterators work like pointers into containers. The two core operations are incrementing the iterator with <code>++</code> and dereferencing it with <code>*</code> to access the current value.</p>
+						<div class="table-wrap">
+							<table>
+								<thead>
+									<tr>
+										<th>Iterator Type</th>
+										<th>Capability</th>
+										<th>Where It Matters</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Input</td>
+										<td>Read values while moving forward.</td>
+										<td>Reading from streams.</td>
+									</tr>
+									<tr>
+										<td>Output</td>
+										<td>Write values while moving forward.</td>
+										<td>Writing to streams.</td>
+									</tr>
+									<tr>
+										<td>Forward</td>
+										<td>Read/write while moving forward and revisiting elements.</td>
+										<td>General one-way traversal.</td>
+									</tr>
+									<tr>
+										<td>Bidirectional</td>
+										<td>Move forward and backward.</td>
+										<td><code>list</code>, <code>set</code>, <code>map</code>.</td>
+									</tr>
+									<tr>
+										<td>Random access</td>
+										<td>Jump directly using arithmetic and indexing-like movement.</td>
+										<td><code>vector</code>, <code>deque</code>, arrays and strings.</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 						<div class="callout warning"><strong>Exam trap:</strong> Do not assume every container behaves like an array. Some containers are better traversed through iterators than direct indexes.</div>
+					</article>
+					<article class="card chapter-card wide success" id="ch2-code-vector-example">
+						<h3>Topic 2 Extended Code Example: vector, Iterators, insert And copy</h3>
+						<p>This example follows the guide's vector sequence: declare a vector, add elements, process by index, process by iterator, insert at an iterator position, and output with <code>copy</code>.</p>
+						<pre><code>#include &lt;algorithm&gt;
+#include &lt;iostream&gt;
+#include &lt;iterator&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int main() {
+	vector&lt;int&gt; marks;
+
+	// push_back is used when the vector starts empty or the final size is unknown.
+	marks.push_back(13);
+	marks.push_back(75);
+	marks.push_back(28);
+	marks.push_back(35);
+
+	cout &lt;&lt; "Original values: ";
+	for (int i = 0; i &lt; static_cast&lt;int&gt;(marks.size()); i++) {
+		// vector supports random access, so index-based processing is valid.
+		cout &lt;&lt; marks[i] &lt;&lt; " ";
+	}
+	cout &lt;&lt; endl;
+
+	for (int i = 0; i &lt; static_cast&lt;int&gt;(marks.size()); i++) {
+		marks[i] *= 2; // Same position, updated value.
+	}
+
+	cout &lt;&lt; "Doubled values: ";
+	vector&lt;int&gt;::iterator it;
+	for (it = marks.begin(); it != marks.end(); ++it) {
+		// *it dereferences the iterator and returns the element it points to.
+		cout &lt;&lt; *it &lt;&lt; " ";
+	}
+	cout &lt;&lt; endl;
+
+	it = marks.begin();
+	++it;
+	++it; // Move to the third element.
+	marks.insert(it, 88); // Insert before the current iterator position.
+
+	cout &lt;&lt; "After inserting 88: ";
+	copy(marks.begin(), marks.end(), ostream_iterator&lt;int&gt;(cout, " "));
+	cout &lt;&lt; endl;
+
+	return 0;
+}</code></pre>
+					</article>
+					<article class="card chapter-card wide structure" id="ch2-code-deque-example">
+						<h3>Topic 2 Extended Code Example: deque And Double-Ended Access</h3>
+						<p>The guide introduces <code>deque</code> after <code>vector</code>. Use it when insertions/removals at both the front and the back are part of the problem.</p>
+						<pre><code>#include &lt;algorithm&gt;
+#include &lt;deque&gt;
+#include &lt;iostream&gt;
+#include &lt;iterator&gt;
+using namespace std;
+
+int main() {
+	deque&lt;int&gt; queueLikeData;
+	ostream_iterator&lt;int&gt; screen(cout, " ");
+
+	// push_back adds at the rear, similar to the vector examples.
+	queueLikeData.push_back(13);
+	queueLikeData.push_back(75);
+	queueLikeData.push_back(28);
+	queueLikeData.push_back(35);
+
+	cout &lt;&lt; "Initial deque: ";
+	copy(queueLikeData.begin(), queueLikeData.end(), screen);
+	cout &lt;&lt; endl;
+
+	// deque can grow efficiently at both ends.
+	queueLikeData.push_front(0);
+	queueLikeData.push_back(100);
+
+	cout &lt;&lt; "After front and back insertion: ";
+	copy(queueLikeData.begin(), queueLikeData.end(), screen);
+	cout &lt;&lt; endl;
+
+	// Remove from both ends.
+	queueLikeData.pop_front();
+	queueLikeData.pop_back();
+
+	// Insert in the middle using an iterator position.
+	deque&lt;int&gt;::iterator middle = queueLikeData.begin();
+	++middle;
+	queueLikeData.insert(middle, 444);
+
+	cout &lt;&lt; "After removals and middle insert: ";
+	copy(queueLikeData.begin(), queueLikeData.end(), screen);
+	cout &lt;&lt; endl;
+
+	return 0;
+}</code></pre>
 					</article>
 				</div>
 				<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
@@ -982,36 +1379,156 @@ cout &lt;&lt; marks[0] &lt;&lt; endl;</code></pre>
 
 			<section class="chapter" id="chapter-3" data-nav-section>
 				<h2>3. Linked Lists</h2>
-				<p>Linked lists use nodes connected by pointers. They avoid the fixed-size and data-movement limits of arrays, but they must be traversed through links.</p>
+				<p>Linked lists use dynamically allocated nodes connected by pointer links. They solve some array limitations because nodes do not need contiguous memory and insert/delete operations can often be done by changing links instead of shifting data.</p>
 				<div class="chapter-tools">
 					<span class="chip">Nodes</span>
 					<span class="chip">Pointers</span>
+					<span class="chip">Traversal</span>
 					<span class="chip">Insertion</span>
 					<span class="chip">Deletion</span>
+					<span class="chip">Ordered lists</span>
+					<span class="chip">Doubly linked lists</span>
 				</div>
 				<div class="grid">
 					<article class="card chapter-card definition" id="ch3-1-linked-lists">
 						<h3>3.1 Linked Lists</h3>
-						<p>A linked list is a collection of nodes. Each node stores data and a link to the next node; the first node is accessed through a separate pointer such as <code>head</code> or <code>first</code>.</p>
+						<p>A linked list is a collection of nodes. Each node stores the data and the address of the next node. The order of the list is therefore determined by links, not by neighbouring memory positions.</p>
+						<ul>
+							<li>The first node is reached through a separate pointer such as <code>head</code> or <code>first</code>.</li>
+							<li>The last node's link is <code>NULL</code> or <code>nullptr</code>.</li>
+							<li>Nodes can be anywhere in memory; they do not need to sit next to one another.</li>
+							<li>Because links move in one direction, losing the first pointer means losing access to the list.</li>
+						</ul>
 						<pre><code>struct nodeType {
-	int info;
-	nodeType *link;
+	int info;          // Data stored in the node.
+	nodeType *link;   // Address of the next node.
 };
 
 nodeType *head = nullptr;</code></pre>
 					</article>
+					<article class="card chapter-card warning" id="ch3-2-traversal">
+						<h3>3.1.2 Traversal Discipline</h3>
+						<p>To traverse a linked list, the guide stresses that you should not move <code>head</code>. Instead, copy <code>head</code> into another pointer such as <code>current</code> and advance that pointer.</p>
+						<div class="callout danger"><strong>Common failure:</strong> If you write <code>head = head-&gt;link;</code> just to move through the list, the original first node becomes unreachable unless you saved it somewhere else.</div>
+						<pre><code>nodeType *current = head;
+
+while (current != nullptr) {
+	cout &lt;&lt; current-&gt;info &lt;&lt; " ";
+	current = current-&gt;link;
+}</code></pre>
+					</article>
 					<article class="card chapter-card success" id="ch3-2-insertion-deletion">
 						<h3>3.2 Item Insertion And Deletion</h3>
-						<p>Insertion and deletion are done by changing links. The core discipline is to preserve access to the rest of the list before rerouting pointers.</p>
-						<div class="callout danger"><strong>Common failure:</strong> If you overwrite the only pointer to the next node before saving it, the remaining nodes are lost.</div>
+						<p>Insertion and deletion are link-management operations. The guide's key rule is to preserve the rest of the list before rerouting pointers.</p>
+						<ul>
+							<li>To insert after <code>p</code>, first make the new node point to <code>p-&gt;link</code>.</li>
+							<li>Only after that should <code>p-&gt;link</code> point to the new node.</li>
+							<li>To delete a node after <code>p</code>, save it in <code>q</code>, bypass it, then <code>delete q</code>.</li>
+							<li>Bypassing without deleting leaves inaccessible memory behind.</li>
+						</ul>
+						<div class="callout warning"><strong>Pointer order matters:</strong> <code>newNode-&gt;link = p-&gt;link;</code> must happen before <code>p-&gt;link = newNode;</code> when only one pointer marks the insertion position.</div>
 					</article>
 					<article class="card chapter-card structure" id="ch3-3-linked-list-adt">
 						<h3>3.3 Linked List As An ADT</h3>
-						<p>The linked list ADT exposes operations such as checking whether the list is empty, traversal, insertion and deletion. The user should not have to manage each pointer manually.</p>
+						<p>The guide moves from individual pointer statements to a reusable linked-list ADT. The user of the ADT should ask for operations, not manually manipulate every node.</p>
+						<div class="table-wrap">
+							<table>
+								<thead>
+									<tr>
+										<th>ADT Operation</th>
+										<th>Purpose</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr><td><code>initializeList</code></td><td>Set up an empty list.</td></tr>
+									<tr><td><code>isEmptyList</code></td><td>Check whether the list has no nodes.</td></tr>
+									<tr><td><code>print</code> / <code>length</code></td><td>Traverse nodes without exposing pointer details.</td></tr>
+									<tr><td><code>front</code> / <code>back</code></td><td>Retrieve first or last information.</td></tr>
+									<tr><td><code>search</code>, <code>insert</code>, <code>deleteNode</code></td><td>Core list manipulation operations.</td></tr>
+									<tr><td><code>destroyList</code> / copy</td><td>Manage dynamic memory safely.</td></tr>
+								</tbody>
+							</table>
+						</div>
+					</article>
+					<article class="card chapter-card definition" id="ch3-5-ordered-unordered">
+						<h3>3.5-3.6 Unordered And Ordered Lists</h3>
+						<p>The guide separates linked lists into unordered lists and ordered lists because search, insert and delete behave differently.</p>
+						<ul>
+							<li><strong>Unordered list:</strong> elements have no particular order; insertion can happen at the front or end.</li>
+							<li><strong>Ordered list:</strong> elements are kept according to a comparison rule, usually ascending order.</li>
+							<li>After inserting or deleting from an ordered list, the resulting list must still be ordered.</li>
+							<li>For efficiency, the generic list keeps both <code>first</code> and <code>last</code> pointers plus a node count.</li>
+						</ul>
 					</article>
 					<article class="card chapter-card definition" id="ch3-7-doubly-linked-lists">
-						<h3>3.7 Doubly Linked Lists</h3>
+						<h3>3.7-3.9 List Variations</h3>
 						<p>A doubly linked list stores links in both directions. This supports backward movement, but every insert or delete must maintain both the forward and backward links.</p>
+						<ul>
+							<li><code>list</code> is the STL sequence container version of a linked list.</li>
+							<li>Header and trailer nodes can simplify edge cases at the beginning and end of a list.</li>
+							<li>Circular linked lists connect the final node back into the list rather than ending with <code>NULL</code>.</li>
+						</ul>
+					</article>
+					<article class="card chapter-card wide structure" id="ch3-code-example">
+						<h3>Topic 3 Extended Code Example: Build, Traverse, Insert And Delete A Linked List</h3>
+						<p>This example demonstrates the guide's essential linked-list pointer rules: keep <code>head</code> stable during traversal, connect the new node before changing the previous node, and delete removed nodes.</p>
+						<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+struct nodeType {
+	int info;
+	nodeType *link;
+};
+
+void printList(nodeType *head) {
+	// Use current for traversal so head still points to the first node.
+	nodeType *current = head;
+	while (current != nullptr) {
+		cout &lt;&lt; current-&gt;info &lt;&lt; " ";
+		current = current-&gt;link;
+	}
+	cout &lt;&lt; endl;
+}
+
+void insertAfter(nodeType *p, int value) {
+	if (p == nullptr) return;
+
+	nodeType *newNode = new nodeType;
+	newNode-&gt;info = value;
+
+	// Correct order: first preserve the rest of the list.
+	newNode-&gt;link = p-&gt;link;
+	p-&gt;link = newNode;
+}
+
+void deleteAfter(nodeType *p) {
+	if (p == nullptr || p-&gt;link == nullptr) return;
+
+	// q saves the node being removed so its memory can be released.
+	nodeType *q = p-&gt;link;
+	p-&gt;link = q-&gt;link;
+	delete q;
+}
+
+int main() {
+	nodeType *head = new nodeType{10, nullptr};
+	head-&gt;link = new nodeType{20, nullptr};
+	head-&gt;link-&gt;link = new nodeType{40, nullptr};
+
+	printList(head);          // 10 20 40
+	insertAfter(head-&gt;link, 30);
+	printList(head);          // 10 20 30 40
+	deleteAfter(head);        // Delete node 20.
+	printList(head);          // 10 30 40
+
+	while (head != nullptr) {
+		nodeType *old = head;
+		head = head-&gt;link;
+		delete old;
+	}
+
+	return 0;
+}</code></pre>
 					</article>
 				</div>
 				<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
@@ -1019,29 +1536,121 @@ nodeType *head = nullptr;</code></pre>
 
 			<section class="chapter" id="chapter-4" data-nav-section>
 				<h2>4. Recursion</h2>
-				<p>Recursion is a problem-solving technique that reduces a problem to smaller versions of itself.</p>
+				<p>Recursion solves a problem by reducing it to smaller versions of itself. The guide uses factorial, largest-in-array, reverse linked-list printing, Fibonacci-style thinking and backtracking to show when recursive thinking is natural.</p>
 				<div class="chapter-tools">
 					<span class="chip">Base case</span>
 					<span class="chip">General case</span>
 					<span class="chip">Recursive function</span>
+					<span class="chip">Call stack</span>
+					<span class="chip">Backtracking</span>
+					<span class="chip">Iteration tradeoffs</span>
 				</div>
 				<div class="grid">
 					<article class="card chapter-card definition" id="ch4-1-recursive-definitions">
 						<h3>4.1 Recursive Definitions</h3>
-						<p>A recursive definition has a base case that gives a direct answer and a general case that expresses the answer in terms of a smaller version of the problem.</p>
+						<p>A recursive definition contains a direct answer for the simplest case and a rule that expresses a larger case in terms of a smaller case.</p>
+						<ul>
+							<li>The base case gives the answer directly and stops recursion.</li>
+							<li>The general case reduces the problem toward the base case.</li>
+							<li>A recursive function is a function that calls itself.</li>
+							<li>Direct recursion happens when a function calls itself; indirect recursion happens when functions call one another in a cycle.</li>
+						</ul>
+						<div class="callout warning"><strong>Exam trap:</strong> A recursive solution without a reachable base case is not a solution; it keeps calling until the program fails.</div>
 					</article>
 					<article class="card chapter-card success" id="ch4-2-problem-solving-recursion">
 						<h3>4.2 Problem Solving Using Recursion</h3>
-						<p>Recursive algorithms work well when the problem naturally breaks into smaller copies, such as factorial, recursive list processing and tree traversal.</p>
-						<pre><code>int sumTo(int n) {
-	if (n == 0)
-		return 0;
-	return n + sumTo(n - 1);
-}</code></pre>
+						<p>The guide's pattern is to identify how the problem shrinks. For factorial, <code>n!</code> becomes <code>n * (n - 1)!</code>. For largest-in-array, the largest of a list is the maximum of the first item and the largest item in the rest of the list.</p>
+						<div class="table-wrap">
+							<table>
+								<thead>
+									<tr>
+										<th>Problem</th>
+										<th>Base Case</th>
+										<th>General Case</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr><td>Factorial</td><td><code>0! = 1</code></td><td><code>n * fact(n - 1)</code></td></tr>
+									<tr><td>Largest in array</td><td>Sublist length is 1.</td><td>Compare first value with largest of the rest.</td></tr>
+									<tr><td>Reverse print list</td><td>Pointer is <code>NULL</code>.</td><td>Print tail first, then current node.</td></tr>
+								</tbody>
+							</table>
+						</div>
 					</article>
 					<article class="card chapter-card warning" id="ch4-3-recursion-vs-iteration">
 						<h3>4.3 Recursion Or Iteration?</h3>
-						<p>Iteration repeats with loops; recursion repeats by function calls. The guide points out that some problems are easier recursively, while others can be more efficient or clearer with loops.</p>
+						<p>Iteration repeats with loops; recursion repeats through function calls. The guide notes that recursion uses extra memory and execution time because every recursive call has its own parameters and local variables.</p>
+						<ul>
+							<li>Choose iteration when it is at least as obvious and easier to construct.</li>
+							<li>Choose recursion when the recursive solution maps more naturally to the problem.</li>
+							<li>Any recursive program can be written iteratively, but the iterative version may be much harder to design.</li>
+							<li>When execution time or memory is critical, compare the recursive and iterative costs carefully.</li>
+						</ul>
+					</article>
+					<article class="card chapter-card structure" id="ch4-4-backtracking">
+						<h3>4.3 Backtracking</h3>
+						<p>Backtracking constructs partial solutions and abandons a path when it cannot lead to a valid solution. The guide uses the n-queens puzzle: place queens row by row, and back up when a row has no legal column.</p>
+						<ul>
+							<li>Build a partial solution.</li>
+							<li>Reject it as soon as it violates a rule.</li>
+							<li>Try the next choice at the most recent decision point.</li>
+							<li>Continue until a complete valid solution is found or all choices fail.</li>
+						</ul>
+					</article>
+					<article class="card chapter-card wide success" id="ch4-code-example">
+						<h3>Topic 4 Extended Code Example: Recursive Largest And Reverse Print</h3>
+						<p>This example shows two guide patterns: a recursive array problem that reduces the index range, and a linked-list problem where the action happens after the recursive call.</p>
+						<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+struct nodeType {
+	int info;
+	nodeType *link;
+};
+
+int largest(const int list[], int lowerIndex, int upperIndex) {
+	// Base case: one element remains, so it is the largest in this sublist.
+	if (lowerIndex == upperIndex) {
+		return list[lowerIndex];
+	}
+
+	// General case: find the largest in the smaller sublist first.
+	int maxOfRest = largest(list, lowerIndex + 1, upperIndex);
+
+	if (list[lowerIndex] &gt;= maxOfRest) {
+		return list[lowerIndex];
+	}
+	return maxOfRest;
+}
+
+void reversePrint(nodeType *current) {
+	// Hidden base case: if current is nullptr, the if body does not run.
+	if (current != nullptr) {
+		// First print the tail of the list.
+		reversePrint(current-&gt;link);
+
+		// Then print the current node while the recursive calls unwind.
+		cout &lt;&lt; current-&gt;info &lt;&lt; " ";
+	}
+}
+
+int main() {
+	int values[] = {23, 43, 35, 38, 67, 12, 76, 10};
+	cout &lt;&lt; "Largest: " &lt;&lt; largest(values, 0, 7) &lt;&lt; endl;
+
+	nodeType *head = new nodeType{5, new nodeType{10, new nodeType{15, nullptr}}};
+	cout &lt;&lt; "Reverse list: ";
+	reversePrint(head); // Prints 15 10 5
+	cout &lt;&lt; endl;
+
+	while (head != nullptr) {
+		nodeType *old = head;
+		head = head-&gt;link;
+		delete old;
+	}
+	return 0;
+}</code></pre>
+						<div class="callout warning"><strong>Note:</strong> The recursive call must move toward the base case. In <code>largest</code>, <code>lowerIndex</code> increases; in <code>reversePrint</code>, <code>current</code> moves along the link chain.</div>
 					</article>
 				</div>
 				<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
@@ -1049,37 +1658,139 @@ nodeType *head = nullptr;</code></pre>
 
 			<section class="chapter" id="chapter-5" data-nav-section>
 				<h2>5. Stacks</h2>
-				<p>A stack is a Last In First Out structure. The guide connects stacks to function calls, recursive calls, postfix expression evaluation and removing recursion.</p>
+				<p>A stack is a Last In First Out structure. The guide connects stacks to function calls, recursive calls, array and linked implementations, postfix expression evaluation, and replacing some recursive algorithms with nonrecursive stack-based algorithms.</p>
 				<div class="chapter-tools">
 					<span class="chip">LIFO</span>
 					<span class="chip">push</span>
 					<span class="chip">top</span>
 					<span class="chip">pop</span>
+					<span class="chip">Array stack</span>
+					<span class="chip">Linked stack</span>
+					<span class="chip">Postfix</span>
 				</div>
 				<div class="grid">
 					<article class="card chapter-card definition" id="ch5-1-stack">
-						<h3>5.1 Stacks</h3>
-						<p>A stack adds and removes elements only at the top. The last element pushed is the first one popped.</p>
+						<h3>5.1 Stack ADT</h3>
+						<p>A stack adds and removes elements only at the top. The last element pushed is the first one popped, which is why a stack is a LIFO data structure.</p>
 						<div class="stack-demo" aria-label="Stack diagram">
 							<div class="stack-pile">
 								<div class="stack-box">top: C</div>
 								<div class="stack-box">B</div>
 								<div class="stack-box">bottom: A</div>
 							</div>
-							<p><code>push(D)</code> places D above C. <code>pop()</code> removes the current top item only.</p>
+							<p><code>push(D)</code> places D above C. <code>top()</code> reads the current top. <code>pop()</code> removes the current top item only.</p>
 						</div>
+					</article>
+					<article class="card chapter-card success" id="ch5-2-array-stack">
+						<h3>5.1 Array Implementation</h3>
+						<p>In an array stack, elements are stored in an array and <code>stackTop</code> tracks how many elements are in the stack. The top item is at <code>stackTop - 1</code>.</p>
+						<ul>
+							<li><code>initializeStack</code> sets the stack to empty.</li>
+							<li><code>isEmptyStack</code> checks whether there are no elements.</li>
+							<li><code>isFullStack</code> checks whether the fixed array has space.</li>
+							<li><code>push</code> stores at the top and advances <code>stackTop</code>.</li>
+							<li><code>pop</code> decreases <code>stackTop</code> after checking the stack is not empty.</li>
+						</ul>
 					</article>
 					<article class="card chapter-card success" id="ch5-2-linked-stack">
 						<h3>5.2 Linked Implementation Of Stacks</h3>
-						<p>A linked stack stores stack elements in nodes. The top pointer identifies the node that will be read or removed next.</p>
+						<p>A linked stack avoids the fixed-size limit of an array stack by allocating nodes dynamically. In the linked representation, <code>stackTop</code> stores the address of the top node, not an array index.</p>
+						<ul>
+							<li>The stack is empty when <code>stackTop == NULL</code>.</li>
+							<li>A linked stack is full only if the program runs out of memory.</li>
+							<li><code>push</code> creates a new node and links it before the old top.</li>
+							<li><code>pop</code> saves the top node, moves <code>stackTop</code> down, and deletes the old top.</li>
+						</ul>
 					</article>
 					<article class="card chapter-card structure" id="ch5-4-postfix">
 						<h3>5.4 Application: Postfix Expressions</h3>
-						<p>Stacks are useful for expression processing because operands can be pushed and operators can pop the most recent operands in the required order.</p>
+						<p>In postfix notation, operators appear after operands, so the operators appear in the order required for computation. Stacks fit this perfectly.</p>
+						<ol>
+							<li>Scan the expression left to right.</li>
+							<li>Push each operand.</li>
+							<li>When an operator appears, pop the needed operands.</li>
+							<li>Apply the operator and push the result.</li>
+							<li>At <code>=</code>, exactly one value should remain: the answer.</li>
+						</ol>
+						<div class="callout warning"><strong>Error cases:</strong> Too few operands, illegal operators and too many final operands all indicate invalid postfix expressions.</div>
 					</article>
 					<article class="card chapter-card warning" id="ch5-6-remove-recursion">
-						<h3>5.6 Removing Recursion</h3>
-						<p>The guide uses stacks as a way to replace some recursive processes with nonrecursive algorithms, especially when calls need to be remembered and processed later.</p>
+						<h3>5.6 Removing Recursion And STL stack</h3>
+						<p>The guide uses stacks to replace some recursive processes because a stack can remember items that still need to be processed. C++ also provides the STL <code>stack</code> class adapter for stack-style work.</p>
+						<ul>
+							<li>Recursive calls are naturally managed by the computer's call stack.</li>
+							<li>A manual stack can store nodes, states or pending operations.</li>
+							<li>Use this when you need a nonrecursive version of a naturally recursive algorithm.</li>
+						</ul>
+					</article>
+					<article class="card chapter-card wide structure" id="ch5-code-example">
+						<h3>Topic 5 Extended Code Example: Postfix Calculator With stack</h3>
+						<p>This program implements the guide's postfix rule: operands are pushed, operators pop two operands, and the final stack must contain exactly one answer.</p>
+						<pre><code>#include &lt;iostream&gt;
+#include &lt;sstream&gt;
+#include &lt;stack&gt;
+#include &lt;string&gt;
+using namespace std;
+
+bool applyOperator(stack&lt;double&gt;&amp; values, char op) {
+	if (values.size() &lt; 2) {
+		return false; // Not enough operands for a binary operator.
+	}
+
+	double right = values.top();
+	values.pop();
+	double left = values.top();
+	values.pop();
+
+	switch (op) {
+		case '+': values.push(left + right); break;
+		case '-': values.push(left - right); break;
+		case '*': values.push(left * right); break;
+		case '/': values.push(left / right); break;
+		default: return false; // Illegal operator.
+	}
+
+	return true;
+}
+
+bool evaluatePostfix(const string&amp; expression, double&amp; answer) {
+	stack&lt;double&gt; values;
+	istringstream input(expression);
+	string token;
+
+	while (input &gt;&gt; token) {
+		if (token == "=") {
+			break; // End of expression, as in the guide examples.
+		}
+
+		if (token == "+" || token == "-" || token == "*" || token == "/") {
+			if (!applyOperator(values, token[0])) {
+				return false;
+			}
+		} else {
+			values.push(stod(token)); // Token is an operand.
+		}
+	}
+
+	if (values.size() != 1) {
+		return false; // Too many operands remain, or no answer exists.
+	}
+
+	answer = values.top();
+	return true;
+}
+
+int main() {
+	double result = 0;
+
+	if (evaluatePostfix("6 3 + 2 * =", result)) {
+		cout &lt;&lt; result &lt;&lt; endl; // (6 + 3) * 2 = 18
+	} else {
+		cout &lt;&lt; "Invalid postfix expression" &lt;&lt; endl;
+	}
+
+	return 0;
+}</code></pre>
 					</article>
 				</div>
 				<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
@@ -1087,35 +1798,144 @@ nodeType *head = nullptr;</code></pre>
 
 			<section class="chapter" id="chapter-6" data-nav-section>
 				<h2>6. Queues</h2>
-				<p>A queue is a First In First Out structure. Items are added at the rear and deleted from the front.</p>
+				<p>A queue is a First In First Out structure. Items are added at the rear and deleted from the front, making queues useful for real systems where arrival order matters, such as bank lines, printers and simulations.</p>
 				<div class="chapter-tools">
 					<span class="chip">FIFO</span>
 					<span class="chip">front</span>
 					<span class="chip">rear</span>
-					<span class="chip">simulation</span>
+					<span class="chip">Circular array</span>
+					<span class="chip">Linked queue</span>
+					<span class="chip">Priority queue</span>
+					<span class="chip">Simulation</span>
 				</div>
 				<div class="grid">
 					<article class="card chapter-card definition" id="ch6-1-queue">
 						<h3>6.1 Queue Operations</h3>
-						<p>The queue operations in the guide include <code>initializeQueue</code>, <code>isEmptyQueue</code>, <code>isFullQueue</code>, <code>front</code>, <code>back</code>, <code>addQueue</code> and <code>deleteQueue</code>.</p>
+						<p>A queue adds at the rear and deletes from the front. Like stacks, queues need guard operations so you do not delete from an empty queue or add to a full queue.</p>
 						<div class="queue-line" aria-label="Queue diagram">
 							<div class="queue-box">front: A</div>
 							<div class="queue-box">B</div>
 							<div class="queue-box">C</div>
 							<div class="queue-box">rear: D</div>
 						</div>
+						<ul>
+							<li><code>initializeQueue</code> resets the queue.</li>
+							<li><code>front</code> returns the first element; <code>back</code> returns the last element.</li>
+							<li><code>addQueue</code> adds at the rear.</li>
+							<li><code>deleteQueue</code> removes at the front.</li>
+						</ul>
 					</article>
 					<article class="card chapter-card success" id="ch6-2-array-queue">
 						<h3>6.2 Implementation Of Queues As Arrays</h3>
-						<p>An array-based queue needs indexes for the front and rear. Because insertion and deletion happen at different ends, careful index movement is essential.</p>
+						<p>An array queue needs <code>queueFront</code>, <code>queueRear</code>, storage for the elements and a maximum size. A simple one-way movement wastes freed array space, so the guide uses a circular array.</p>
+						<ul>
+							<li>Advance an index with <code>(index + 1) % maxQueueSize</code>.</li>
+							<li>A circular array wraps from the last slot back to slot 0.</li>
+							<li>A <code>count</code> variable can distinguish a full queue from an empty queue.</li>
+							<li><code>queueFront</code> changes after deletion; <code>queueRear</code> changes after insertion.</li>
+						</ul>
 					</article>
 					<article class="card chapter-card structure" id="ch6-3-linked-queue">
 						<h3>6.3 Linked Implementation Of Queues</h3>
-						<p>A linked queue uses nodes and maintains pointers to both the first and last nodes so that deletion from the front and insertion at the rear can be handled cleanly.</p>
+						<p>A linked queue stores items in nodes and keeps pointers to the first and last nodes. This supports clean deletion from the front and insertion at the rear without shifting array elements.</p>
+						<ul>
+							<li><code>queueFront</code> points to the node that will be removed next.</li>
+							<li><code>queueRear</code> points to the node where the next item will be linked.</li>
+							<li>When the final node is deleted, both pointers must represent an empty queue.</li>
+						</ul>
 					</article>
 					<article class="card chapter-card warning" id="ch6-4-priority-queues">
 						<h3>6.4 Priority Queues</h3>
-						<p>A priority queue processes items according to priority rather than plain arrival order. This connects later to heaps and sorting discussions.</p>
+						<p>A priority queue relaxes pure FIFO order. Higher-priority customers or jobs move ahead of lower-priority ones, such as emergency patients or urgent print jobs.</p>
+						<ul>
+							<li>A linked list can keep items ordered by priority.</li>
+							<li>A tree-like structure is often more efficient.</li>
+							<li>The STL <code>priority_queue</code> uses a priority rule, often based on <code>&lt;</code>.</li>
+							<li>Priority queues connect directly to heapsort and heap-based priority queues later in the guide.</li>
+						</ul>
+					</article>
+					<article class="card chapter-card definition" id="ch6-5-simulation">
+						<h3>6.5 Queue Applications: Simulation</h3>
+						<p>The guide uses queues to model systems such as banks, theatres, grocery stores and printers. A server provides service, customers wait in a queue, and the simulation measures behaviour such as average waiting time.</p>
+						<ul>
+							<li>A time-driven simulation uses a clock counter.</li>
+							<li>Customer objects store arrival time, waiting time and transaction time.</li>
+							<li>Server objects track whether they are free and how much service time remains.</li>
+							<li>Queues are the natural structure for customers waiting to be served in arrival order.</li>
+						</ul>
+					</article>
+					<article class="card chapter-card wide success" id="ch6-code-example">
+						<h3>Topic 6 Extended Code Example: Circular Array Queue</h3>
+						<p>This example uses the guide's circular-array idea: the front and rear wrap around with modulo arithmetic, and <code>count</code> tells whether the queue is empty or full.</p>
+						<pre><code>#include &lt;iostream&gt;
+#include &lt;stdexcept&gt;
+using namespace std;
+
+class intQueue {
+private:
+	static const int maxQueueSize = 5;
+	int list[maxQueueSize];
+	int queueFront;
+	int queueRear;
+	int count;
+
+public:
+	intQueue() {
+		queueFront = 0;
+		queueRear = maxQueueSize - 1;
+		count = 0;
+	}
+
+	bool isEmptyQueue() const {
+		return count == 0;
+	}
+
+	bool isFullQueue() const {
+		return count == maxQueueSize;
+	}
+
+	void addQueue(int item) {
+		if (isFullQueue()) {
+			throw runtime_error("Queue is full");
+		}
+
+		queueRear = (queueRear + 1) % maxQueueSize;
+		list[queueRear] = item;
+		count++;
+	}
+
+	int front() const {
+		if (isEmptyQueue()) {
+			throw runtime_error("Queue is empty");
+		}
+		return list[queueFront];
+	}
+
+	void deleteQueue() {
+		if (isEmptyQueue()) {
+			throw runtime_error("Queue is empty");
+		}
+
+		queueFront = (queueFront + 1) % maxQueueSize;
+		count--;
+	}
+};
+
+int main() {
+	intQueue tickets;
+
+	tickets.addQueue(101);
+	tickets.addQueue(102);
+	tickets.addQueue(103);
+
+	cout &lt;&lt; "Serving customer " &lt;&lt; tickets.front() &lt;&lt; endl;
+	tickets.deleteQueue();
+
+	tickets.addQueue(104);
+	cout &lt;&lt; "Next customer " &lt;&lt; tickets.front() &lt;&lt; endl;
+
+	return 0;
+}</code></pre>
 					</article>
 				</div>
 				<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
@@ -1123,17 +1943,35 @@ nodeType *head = nullptr;</code></pre>
 
 			<section class="chapter" id="chapter-7" data-nav-section>
 				<h2>7. Searching And Hashing Algorithms</h2>
-				<p>Searching determines whether an item exists, where it is located, or where it should be inserted or deleted.</p>
+				<p>Searching determines whether an item exists, where it is located, or where it should be inserted or deleted. The guide compares comparison-based searching with hashing, where an address is computed rather than found by repeated key comparison.</p>
 				<div class="chapter-tools">
+					<span class="chip">Keys</span>
 					<span class="chip">Sequential search</span>
+					<span class="chip">Ordered lists</span>
 					<span class="chip">Binary search</span>
 					<span class="chip">Hashing</span>
+					<span class="chip">Collisions</span>
 					<span class="chip">Chaining</span>
 				</div>
 				<div class="grid">
+					<article class="card chapter-card definition" id="ch7-1-search-keys">
+						<h3>7.1 Search Algorithms And Keys</h3>
+						<p>A key is the part of a record that uniquely identifies the item, such as a student ID in a student record. Searching, sorting, insertion and deletion often compare or use these keys.</p>
+						<ul>
+							<li>A search can simply answer whether an item exists.</li>
+							<li>It can return the item's position.</li>
+							<li>In ordered data, it can also help find where a new item should be inserted.</li>
+							<li>Algorithm analysis counts key comparisons for comparison-based searches.</li>
+						</ul>
+					</article>
 					<article class="card chapter-card definition" id="ch7-2-sequential-search">
 						<h3>7.2 Sequential Search</h3>
-						<p>Sequential search starts at the first element and continues until the item is found or the entire list has been searched. It does not require the list to be ordered.</p>
+						<p>Sequential search starts at the first element and continues until the item is found or the entire list has been searched. It does not require the list to be ordered, so it is flexible but slow for large lists.</p>
+						<ul>
+							<li>Best case: the item is first.</li>
+							<li>Average case: about half the list is searched.</li>
+							<li>Worst case: the item is last or absent, so every item is checked.</li>
+						</ul>
 						<pre><code>for (int i = 0; i &lt; length; i++) {
 	if (list[i] == item)
 		return i;
@@ -1142,28 +1980,118 @@ return -1;</code></pre>
 					</article>
 					<article class="card chapter-card success" id="ch7-4-binary-search">
 						<h3>7.4 Binary Search</h3>
-						<p>Binary search uses divide and conquer on an ordered list. It compares the search item with the middle element, then continues in the half where the item could exist.</p>
-						<pre><code>int first = 0;
-int last = length - 1;
-
-while (first &lt;= last) {
-	int mid = (first + last) / 2;
-	if (list[mid] == item)
-		return mid;
-	if (item &lt; list[mid])
-		last = mid - 1;
-	else
-		first = mid + 1;
-}</code></pre>
+						<p>Binary search uses divide and conquer on an ordered array-based list. Each iteration compares the search item with the middle element, then discards the half where the item cannot be.</p>
+						<ul>
+							<li>The list must be ordered before binary search is valid.</li>
+							<li><code>first</code> and <code>last</code> mark the active search range.</li>
+							<li><code>mid = (first + last) / 2</code> selects the middle index.</li>
+							<li>The search range shrinks by about half each iteration.</li>
+						</ul>
+						<div class="callout info"><strong>Guide comparison:</strong> For 1024 sorted items, binary search needs at most about 11 loop iterations, while sequential search averages about 512 comparisons.</div>
 					</article>
 					<article class="card chapter-card warning" id="ch7-6-hashing">
 						<h3>7.6 Hashing</h3>
-						<p>Hashing uses a hash function to compute an address in a hash table. The guide describes hashing as an average-order-one search approach when data is organized with a hash table.</p>
+						<p>Hashing uses a hash function to compute the likely address of an item in a hash table. This is not comparison based, which is why hashing can average order 1 search when the table is well designed.</p>
+						<ul>
+							<li>The hash table is usually stored in an array.</li>
+							<li>The hash function maps a key to an index: <code>0 &lt;= h(key) &lt; tableSize</code>.</li>
+							<li>Good hash functions are easy to compute and reduce collisions.</li>
+							<li>The division method uses <code>key % tableSize</code>.</li>
+						</ul>
 						<div class="callout warning"><strong>Exam trap:</strong> Hashing is not comparison based. You must explain the role of the hash function and how collisions are handled.</div>
 					</article>
-					<article class="card chapter-card structure" id="ch7-8-chaining">
-						<h3>7.8 Chaining</h3>
-						<p>Chaining is one way to organize data when multiple keys map to the same hash location. The table can store pointers to linked lists of matching bucket entries.</p>
+					<article class="card chapter-card structure" id="ch7-8-collisions">
+						<h3>7.7-7.8 Collision Resolution</h3>
+						<p>A collision occurs when different keys hash to the same location. Because collisions are unavoidable in realistic tables, the guide covers open addressing and chaining.</p>
+						<div class="table-wrap">
+							<table>
+								<thead>
+									<tr>
+										<th>Technique</th>
+										<th>Idea</th>
+										<th>Tradeoff</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr><td>Linear probing</td><td>Search the next slots circularly until a free one appears.</td><td>No pointers, but clustering can occur.</td></tr>
+									<tr><td>Rehashing</td><td>Use a different probe function after collision.</td><td>Can spread probes better.</td></tr>
+									<tr><td>Chaining</td><td>Each table slot points to a linked list of colliding keys.</td><td>Handles many collisions, but uses linked-list overhead.</td></tr>
+								</tbody>
+							</table>
+						</div>
+					</article>
+					<article class="card chapter-card wide success" id="ch7-code-example">
+						<h3>Topic 7 Extended Code Example: Binary Search And Hashing</h3>
+						<p>This example contrasts comparison-based binary search with hash-table addressing and linear probing for collisions.</p>
+						<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int binarySearch(const vector&lt;int&gt;&amp; list, int item) {
+	int first = 0;
+	int last = static_cast&lt;int&gt;(list.size()) - 1;
+
+	while (first &lt;= last) {
+		int mid = (first + last) / 2;
+
+		if (list[mid] == item) {
+			return mid;
+		} else if (list[mid] &gt; item) {
+			last = mid - 1;
+		} else {
+			first = mid + 1;
+		}
+	}
+
+	return -1;
+}
+
+int hashFunction(int key, int tableSize) {
+	// Division method from the guide.
+	return key % tableSize;
+}
+
+bool insertLinearProbe(vector&lt;int&gt;&amp; table, int key, int emptyKey) {
+	int tableSize = static_cast&lt;int&gt;(table.size());
+	int index = hashFunction(key, tableSize);
+	int probes = 0;
+
+	while (table[index] != emptyKey &amp;&amp; probes &lt; tableSize) {
+		if (table[index] == key) {
+			return true; // Key is already present.
+		}
+		index = (index + 1) % tableSize; // Circular probe sequence.
+		probes++;
+	}
+
+	if (probes == tableSize) {
+		return false; // No empty slot.
+	}
+
+	table[index] = key;
+	return true;
+}
+
+int main() {
+	vector&lt;int&gt; ordered = {12, 18, 22, 34, 39, 58, 75, 89};
+	cout &lt;&lt; "75 found at index " &lt;&lt; binarySearch(ordered, 75) &lt;&lt; endl;
+
+	const int emptyKey = -1;
+	vector&lt;int&gt; hashTable(9, emptyKey);
+
+	for (int key : {5, 28, 19, 15, 20, 33, 12, 17, 10}) {
+		insertLinearProbe(hashTable, key, emptyKey);
+	}
+
+	cout &lt;&lt; "Hash table: ";
+	for (int value : hashTable) {
+		cout &lt;&lt; value &lt;&lt; " ";
+	}
+	cout &lt;&lt; endl;
+
+	return 0;
+}</code></pre>
 					</article>
 				</div>
 				<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
@@ -1171,43 +2099,145 @@ while (first &lt;= last) {
 
 			<section class="chapter" id="chapter-8" data-nav-section>
 				<h2>8. Sorting Algorithms</h2>
-				<p>Sorting places data in order so later operations, especially searching, can be more efficient.</p>
+				<p>Sorting places data in order so later operations, especially binary search, can be more efficient. The guide compares selection sort, insertion sort, Shellsort, quicksort, mergesort, heapsort and priority queues.</p>
 				<div class="chapter-tools">
 					<span class="chip">Selection sort</span>
 					<span class="chip">Insertion sort</span>
 					<span class="chip">Shellsort</span>
+					<span class="chip">Quicksort</span>
 					<span class="chip">Mergesort</span>
 					<span class="chip">Heapsort</span>
 				</div>
 				<div class="grid">
 					<article class="card chapter-card definition" id="ch8-1-sorting-overview">
 						<h3>8.1 Sorting Algorithms</h3>
-						<p>The guide compares common sorting algorithms and studies their performance. Sorting may apply to array-based lists or linked lists depending on the algorithm.</p>
+						<p>The guide studies sorting algorithms as public operations of list classes. This gives the sorting functions direct access to the stored elements and lets the class decide the most appropriate algorithm for its representation.</p>
+						<ul>
+							<li>Array-based lists support direct indexing.</li>
+							<li>Linked-list sorts must work through links.</li>
+							<li>Comparison-based sorts are limited by a lower bound of about <code>O(n log2 n)</code> in the worst case.</li>
+							<li>Selection and insertion sort are simpler but usually <code>O(n2)</code>.</li>
+						</ul>
+					</article>
+					<article class="card chapter-card warning" id="ch8-1-selection-sort">
+						<h3>8.1 Selection Sort</h3>
+						<p>Selection sort repeatedly finds the smallest element in the unsorted portion and swaps it into the first unsorted position.</p>
+						<ol>
+							<li>Initially, the entire list is unsorted.</li>
+							<li>Find the smallest element in <code>list[index]...list[length - 1]</code>.</li>
+							<li>Swap it with <code>list[index]</code>.</li>
+							<li>Move <code>index</code> forward and repeat.</li>
+						</ol>
+						<div class="callout info"><strong>Performance idea:</strong> Selection sort makes many comparisons but relatively few item movements because each pass mainly swaps once.</div>
 					</article>
 					<article class="card chapter-card success" id="ch8-2-insertion-sort">
 						<h3>8.2 Insertion Sort</h3>
 						<p>Insertion sort divides the array into a sorted upper portion and an unsorted lower portion. The first unsorted element is moved into its correct place in the sorted portion.</p>
-						<pre><code>for (int firstOutOfOrder = 1; firstOutOfOrder &lt; length; firstOutOfOrder++) {
-	if (list[firstOutOfOrder] &lt; list[firstOutOfOrder - 1]) {
-		elemType temp = list[firstOutOfOrder];
-		int location = firstOutOfOrder;
+						<ul>
+							<li><code>firstOutOfOrder</code> points to the first item in the unsorted part.</li>
+							<li>If it is already greater than the previous item, it stays where it is.</li>
+							<li>If it is smaller, it is saved in <code>temp</code> while larger sorted items shift down.</li>
+							<li>Finally, <code>temp</code> is inserted into the gap.</li>
+						</ul>
+					</article>
+					<article class="card chapter-card structure" id="ch8-3-shellsort">
+						<h3>8.3 Shellsort</h3>
+						<p>Shellsort is a modified insertion sort that reduces item movement by first sorting elements far apart, then reducing the gap until the final gap is 1.</p>
+						<ul>
+							<li>Also called diminishing-increment sort.</li>
+							<li>Moves far-away elements closer to their final positions earlier.</li>
+							<li>The guide uses Knuth-style increments such as 1, 4, 13, 40 and so on.</li>
+							<li>Avoid weak increment patterns that delay comparing important positions until the final pass.</li>
+						</ul>
+					</article>
+					<article class="card chapter-card definition" id="ch8-4-advanced-sorts">
+						<h3>8.4-8.5 Quicksort, Mergesort And Heapsort</h3>
+						<p>The later sorting sections focus on algorithms that improve on the usual quadratic behaviour of simple sorts.</p>
+						<div class="table-wrap">
+							<table>
+								<thead>
+									<tr>
+										<th>Algorithm</th>
+										<th>Core Idea</th>
+										<th>Guide Emphasis</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr><td>Quicksort</td><td>Partition around a pivot, then recursively sort sublists.</td><td>Average <code>O(n log2 n)</code>, worst case <code>O(n2)</code>.</td></tr>
+									<tr><td>Mergesort</td><td>Divide and merge sorted parts.</td><td>Useful with linked list-based lists.</td></tr>
+									<tr><td>Heapsort</td><td>Build a heap, repeatedly move the largest item into place.</td><td>Worst-case <code>O(n log2 n)</code>.</td></tr>
+								</tbody>
+							</table>
+						</div>
+					</article>
+					<article class="card chapter-card structure" id="ch8-6-priority-queues">
+						<h3>8.6 Priority Queues Revisited</h3>
+						<p>Heaps connect sorting to priority queues. A heap keeps the highest-priority item available at the root, making it a natural structure for repeated priority removal.</p>
+					</article>
+					<article class="card chapter-card wide success" id="ch8-code-example">
+						<h3>Topic 8 Extended Code Example: Selection Sort And Insertion Sort</h3>
+						<p>This example shows the two early array-based sorts from the guide: selection sort chooses the smallest remaining item, while insertion sort shifts a value into the sorted part.</p>
+						<pre><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
 
-		do {
-			list[location] = list[location - 1];
-			location--;
-		} while (location &gt; 0 &amp;&amp; list[location - 1] &gt; temp);
+void selectionSort(vector&lt;int&gt;&amp; list) {
+	for (int index = 0; index &lt; static_cast&lt;int&gt;(list.size()) - 1; index++) {
+		int smallestIndex = index;
 
-		list[location] = temp;
+		// Find the smallest item in the unsorted portion.
+		for (int loc = index + 1; loc &lt; static_cast&lt;int&gt;(list.size()); loc++) {
+			if (list[loc] &lt; list[smallestIndex]) {
+				smallestIndex = loc;
+			}
+		}
+
+		// Move the smallest item to the start of the unsorted portion.
+		int temp = list[index];
+		list[index] = list[smallestIndex];
+		list[smallestIndex] = temp;
 	}
+}
+
+void insertionSort(vector&lt;int&gt;&amp; list) {
+	for (int firstOutOfOrder = 1;
+	     firstOutOfOrder &lt; static_cast&lt;int&gt;(list.size());
+	     firstOutOfOrder++) {
+		if (list[firstOutOfOrder] &lt; list[firstOutOfOrder - 1]) {
+			int temp = list[firstOutOfOrder];
+			int location = firstOutOfOrder;
+
+			// Shift larger sorted items one position down.
+			do {
+				list[location] = list[location - 1];
+				location--;
+			} while (location &gt; 0 &amp;&amp; list[location - 1] &gt; temp);
+
+			// Insert the saved value into its correct location.
+			list[location] = temp;
+		}
+	}
+}
+
+void print(const vector&lt;int&gt;&amp; list) {
+	for (int value : list) {
+		cout &lt;&lt; value &lt;&lt; " ";
+	}
+	cout &lt;&lt; endl;
+}
+
+int main() {
+	vector&lt;int&gt; a = {16, 30, 24, 7, 62, 45, 5, 55};
+	vector&lt;int&gt; b = a;
+
+	selectionSort(a);
+	insertionSort(b);
+
+	print(a);
+	print(b);
+
+	return 0;
 }</code></pre>
-					</article>
-					<article class="card chapter-card warning" id="ch8-4-mergesort">
-						<h3>8.4 Mergesort</h3>
-						<p>Mergesort is included for linked list-based lists. The key idea is to divide the list and merge sorted parts back together.</p>
-					</article>
-					<article class="card chapter-card structure" id="ch8-5-heapsort">
-						<h3>8.5 Heapsort And Priority Queues</h3>
-						<p>Heapsort connects sorting to heap-based structure. The chapter also revisits priority queues, where the next item is chosen by priority rather than simple position.</p>
 					</article>
 				</div>
 				<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
@@ -1215,18 +2245,26 @@ while (first &lt;= last) {
 
 			<section class="chapter" id="chapter-9" data-nav-section>
 				<h2>9. Binary Trees And B-Trees</h2>
-				<p>Trees organize data dynamically so insertion, deletion and lookup can be more efficient than plain sequential structures.</p>
+				<p>Trees organize data dynamically so insertion, deletion and lookup can be more efficient than plain sequential structures. This chapter moves from general binary trees to binary search trees, AVL balancing and B-trees.</p>
 				<div class="chapter-tools">
 					<span class="chip">Binary tree</span>
 					<span class="chip">Traversal</span>
 					<span class="chip">BST</span>
+					<span class="chip">Height</span>
 					<span class="chip">AVL</span>
+					<span class="chip">Rotations</span>
 					<span class="chip">B-tree</span>
 				</div>
 				<div class="grid">
 					<article class="card chapter-card definition" id="ch9-1-binary-trees">
 						<h3>9.1 Binary Trees</h3>
-						<p>A binary tree is either empty or has a root node and two binary subtrees called the left subtree and right subtree.</p>
+						<p>A binary tree is either empty or has a root node plus two binary subtrees called the left subtree and right subtree. Every node has at most two children.</p>
+						<ul>
+							<li>The root pointer is stored outside the tree.</li>
+							<li>Each node stores data, a left link and a right link.</li>
+							<li>A leaf has no left or right child.</li>
+							<li>Empty subtrees are part of the definition and matter in algorithms.</li>
+						</ul>
 						<div class="tree-mini" aria-label="Binary tree diagram">
 							<div class="tree-node">Root</div>
 							<div class="tree-node">Left subtree</div>
@@ -1235,39 +2273,133 @@ while (first &lt;= last) {
 					</article>
 					<article class="card chapter-card success" id="ch9-2-tree-traversal">
 						<h3>9.2 Binary Tree Traversal</h3>
-						<p>Traversal visits every node. The order matters: preorder, inorder and postorder place the root visit at different points in the left-root-right sequence.</p>
+						<p>Traversal visits every node. Since child links do not point back to the parent, recursive traversal is natural: after a subtree call completes, control returns to the parent.</p>
 						<div class="table-wrap">
 							<table>
 								<thead>
 									<tr>
 										<th>Traversal</th>
 										<th>Order</th>
+										<th>Root Visit</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>Preorder</td>
-										<td>Root, left, right.</td>
-									</tr>
-									<tr>
-										<td>Inorder</td>
-										<td>Left, root, right.</td>
-									</tr>
-									<tr>
-										<td>Postorder</td>
-										<td>Left, right, root.</td>
-									</tr>
+									<tr><td>Preorder</td><td>Root, left, right.</td><td>Before subtrees.</td></tr>
+									<tr><td>Inorder</td><td>Left, root, right.</td><td>Between left and right.</td></tr>
+									<tr><td>Postorder</td><td>Left, right, root.</td><td>After subtrees.</td></tr>
 								</tbody>
 							</table>
 						</div>
 					</article>
 					<article class="card chapter-card structure" id="ch9-3-binary-search-trees">
 						<h3>9.3 Binary Search Trees</h3>
-						<p>A binary search tree stores values so that smaller values are reached through the left subtree and larger values through the right subtree, supporting efficient search when balanced.</p>
+						<p>A binary search tree gives search direction. At every node, smaller keys are in the left subtree and larger keys are in the right subtree.</p>
+						<ul>
+							<li>Search starts at the root.</li>
+							<li>If the item equals the node, the search succeeds.</li>
+							<li>If the item is smaller, follow the left link.</li>
+							<li>If the item is larger, follow the right link.</li>
+							<li>If the search reaches an empty subtree, the item is absent.</li>
+						</ul>
+					</article>
+					<article class="card chapter-card warning" id="ch9-4-bst-analysis">
+						<h3>9.4-9.6 BST Analysis And Nonrecursive Traversal</h3>
+						<p>The performance of a BST depends on its shape. A nicely built tree behaves like repeated halving; a tree built from sorted data can become linear and behave like a linked list.</p>
+						<ul>
+							<li>Search is faster when tree height is small.</li>
+							<li>Nonrecursive traversal uses an explicit stack to remember parent nodes.</li>
+							<li>Traversal functions can accept function parameters so the user controls what happens when a node is visited.</li>
+						</ul>
 					</article>
 					<article class="card chapter-card warning" id="ch9-7-avl-trees">
-						<h3>9.7 AVL Trees And Rotations</h3>
-						<p>AVL trees are height-balanced trees. Rotations repair imbalance after insertion or deletion so the tree does not degrade into a long chain.</p>
+						<h3>9.7-9.8 AVL Trees And Rotations</h3>
+						<p>AVL trees are height-balanced binary search trees. For each node, the heights of the left and right subtrees differ by at most 1.</p>
+						<ul>
+							<li>The balance factor is based on right height minus left height.</li>
+							<li>Valid AVL balance factors are -1, 0 and 1.</li>
+							<li>Insertion and deletion may require rotations.</li>
+							<li>Rotations reconstruct a small part of the tree so the BST order remains valid and height balance is restored.</li>
+						</ul>
+					</article>
+					<article class="card chapter-card definition" id="ch9-9-b-trees">
+						<h3>9.9 B-Trees</h3>
+						<p>B-trees generalize search trees so a node can hold multiple keys and multiple children. They are useful when minimizing tree height matters, especially for storage systems where each node access is expensive.</p>
+					</article>
+					<article class="card chapter-card wide structure" id="ch9-code-example">
+						<h3>Topic 9 Extended Code Example: Binary Search Tree Insert, Search And Traversal</h3>
+						<p>This example uses the guide's BST rule: compare at the current node, then move left for smaller values and right for larger values. Inorder traversal prints values in sorted order.</p>
+						<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+struct treeNode {
+	int info;
+	treeNode *llink;
+	treeNode *rlink;
+};
+
+void insert(treeNode *&amp;root, int item) {
+	if (root == nullptr) {
+		root = new treeNode{item, nullptr, nullptr};
+		return;
+	}
+
+	if (item &lt; root-&gt;info) {
+		insert(root-&gt;llink, item);
+	} else if (item &gt; root-&gt;info) {
+		insert(root-&gt;rlink, item);
+	}
+	// Duplicate values are ignored in this simple example.
+}
+
+bool search(treeNode *root, int item) {
+	treeNode *current = root;
+
+	while (current != nullptr) {
+		if (current-&gt;info == item) {
+			return true;
+		} else if (item &lt; current-&gt;info) {
+			current = current-&gt;llink;
+		} else {
+			current = current-&gt;rlink;
+		}
+	}
+
+	return false;
+}
+
+void inorder(treeNode *root) {
+	if (root != nullptr) {
+		inorder(root-&gt;llink);
+		cout &lt;&lt; root-&gt;info &lt;&lt; " ";
+		inorder(root-&gt;rlink);
+	}
+}
+
+void destroy(treeNode *&amp;root) {
+	if (root != nullptr) {
+		destroy(root-&gt;llink);
+		destroy(root-&gt;rlink);
+		delete root;
+		root = nullptr;
+	}
+}
+
+int main() {
+	treeNode *root = nullptr;
+
+	for (int value : {60, 50, 70, 58, 80, 65}) {
+		insert(root, value);
+	}
+
+	cout &lt;&lt; "Inorder sequence: ";
+	inorder(root);
+	cout &lt;&lt; endl;
+
+	cout &lt;&lt; boolalpha &lt;&lt; "Search 58: " &lt;&lt; search(root, 58) &lt;&lt; endl;
+
+	destroy(root);
+	return 0;
+}</code></pre>
 					</article>
 				</div>
 				<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
@@ -1275,18 +2407,27 @@ while (first &lt;= last) {
 
 			<section class="chapter" id="chapter-10" data-nav-section>
 				<h2>10. Graphs</h2>
-				<p>Graphs model relationships using vertices and edges. The guide introduces graph terminology, representation, traversal, shortest path, minimum spanning trees and topological order.</p>
+				<p>Graphs model relationships using vertices and edges. The guide introduces graph terminology, memory representation, graph ADTs, depth-first and breadth-first traversal, shortest paths, minimum spanning trees and topological ordering.</p>
 				<div class="chapter-tools">
 					<span class="chip">Vertices</span>
 					<span class="chip">Edges</span>
+					<span class="chip">Adjacency list</span>
 					<span class="chip">DFS</span>
 					<span class="chip">BFS</span>
 					<span class="chip">Dijkstra</span>
+					<span class="chip">Prim</span>
 				</div>
 				<div class="grid">
 					<article class="card chapter-card definition" id="ch10-2-graph-definitions">
 						<h3>10.2 Graph Definitions And Notations</h3>
 						<p>A graph <code>G = (V, E)</code> has a finite nonempty set of vertices and a set of edges. If the edges are ordered pairs, the graph is directed; otherwise, it is undirected.</p>
+						<ul>
+							<li>Adjacent vertices are connected by an edge.</li>
+							<li>A loop is an edge incident on a single vertex.</li>
+							<li>A simple graph has no loops and no parallel edges.</li>
+							<li>A path is a sequence of vertices connected by edges.</li>
+							<li>A connected graph has a path from any vertex to any other vertex.</li>
+						</ul>
 						<div class="graph-mini" aria-label="Graph diagram">
 							<div class="graph-node">A</div>
 							<div class="graph-node">B</div>
@@ -1294,22 +2435,162 @@ while (first &lt;= last) {
 							<span>A-B, B-C, A-C</span>
 						</div>
 					</article>
+					<article class="card chapter-card structure" id="ch10-3-representation">
+						<h3>10.1 Graph Representation</h3>
+						<p>Programs must store graphs in memory before processing them. The guide focuses on two common representations.</p>
+						<div class="table-wrap">
+							<table>
+								<thead>
+									<tr>
+										<th>Representation</th>
+										<th>How It Works</th>
+										<th>Useful Reminder</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr><td>Adjacency matrix</td><td>An <code>n x n</code> matrix stores 1 or 0 depending on whether an edge exists.</td><td>Undirected graphs produce symmetric matrices.</td></tr>
+									<tr><td>Adjacency list</td><td>An array stores one linked list per vertex, listing adjacent vertices.</td><td>Good when many possible edges are absent.</td></tr>
+								</tbody>
+							</table>
+						</div>
+					</article>
 					<article class="card chapter-card structure" id="ch10-4-graph-adts">
 						<h3>10.4 Graphs As ADTs</h3>
-						<p>A graph ADT can hide the storage representation while exposing operations such as creating a graph, printing it and traversing it.</p>
+						<p>A graph ADT hides the representation and exposes graph operations. In the guide, <code>graphType</code> stores an array of linked lists, plus <code>maxSize</code> and <code>gSize</code>.</p>
+						<ul>
+							<li><code>isEmpty</code> checks whether the graph has no vertices.</li>
+							<li><code>createGraph</code> builds the adjacency-list representation.</li>
+							<li><code>clearGraph</code> deallocates graph storage.</li>
+							<li><code>printGraph</code>, DFS and BFS expose useful graph operations.</li>
+						</ul>
 					</article>
 					<article class="card chapter-card success" id="ch10-5-traversals">
 						<h3>10.5 Graph Traversals</h3>
-						<p>Graph traversal is more complex than tree traversal because graphs may contain cycles and may not be connected. The guide uses a visited array to prevent repeated visits.</p>
-						<pre><code>visited[v] = true;
-for each vertex u adjacent to v
-	if (!visited[u])
-		traverse from u;</code></pre>
+						<p>Graph traversal is more complex than tree traversal because graphs may contain cycles and may not be connected. The guide uses a <code>visited</code> array to prevent repeated visits and restarts traversal at unvisited vertices.</p>
+						<div class="table-wrap">
+							<table>
+								<thead>
+									<tr>
+										<th>Traversal</th>
+										<th>Structure Used</th>
+										<th>Behaviour</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr><td>Depth-first traversal</td><td>Recursion or stack</td><td>Go as deep as possible before backing up.</td></tr>
+									<tr><td>Breadth-first traversal</td><td>Queue</td><td>Visit neighbours first, then their neighbours.</td></tr>
+								</tbody>
+							</table>
+						</div>
 					</article>
 					<article class="card chapter-card warning" id="ch10-6-shortest-path">
-						<h3>10.6 Shortest Path Algorithm</h3>
+						<h3>10.7 Shortest Path</h3>
 						<p>For weighted graphs, the guide introduces Dijkstra's shortest path algorithm. Starting from a source vertex, it repeatedly chooses the closest unsettled vertex and updates distances through that vertex.</p>
+						<ol>
+							<li>Initialize the smallest known weights from the source.</li>
+							<li>Mark the source weight as 0.</li>
+							<li>Choose the unprocessed vertex with the smallest known weight.</li>
+							<li>Relax outgoing edges by checking whether going through that vertex improves a path.</li>
+							<li>Repeat until shortest distances are found.</li>
+						</ol>
 						<div class="callout warning"><strong>Exam trap:</strong> Shortest path uses edge weights; ordinary graph traversal order alone does not prove a weighted shortest path.</div>
+					</article>
+					<article class="card chapter-card definition" id="ch10-8-mst">
+						<h3>10.8-10.10 Minimum Spanning Trees And Topological Order</h3>
+						<p>A spanning tree connects all vertices of a connected graph without cycles. A minimum spanning tree has the smallest total edge weight. The guide covers Prim's algorithm, then topological order for directed acyclic dependency-style graphs.</p>
+						<ul>
+							<li>Prim's algorithm starts with a source vertex and repeatedly adds the cheapest edge that connects a new vertex.</li>
+							<li>A graph has a spanning tree only if it is connected.</li>
+							<li>Topological ordering places vertices before the vertices that depend on them.</li>
+							<li>Breadth-first topological ordering uses indegrees and a queue.</li>
+						</ul>
+					</article>
+					<article class="card chapter-card wide success" id="ch10-code-example">
+						<h3>Topic 10 Extended Code Example: Adjacency List With DFS And BFS</h3>
+						<p>This example stores a graph as adjacency lists, then traverses it with depth-first recursion and breadth-first queue processing.</p>
+						<pre><code>#include &lt;iostream&gt;
+#include &lt;queue&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+class graphType {
+private:
+	vector&lt;vector&lt;int&gt;&gt; graph;
+
+	void dft(int vertex, vector&lt;bool&gt;&amp; visited) const {
+		visited[vertex] = true;
+		cout &lt;&lt; vertex &lt;&lt; " ";
+
+		// Visit each adjacent vertex that has not already been reached.
+		for (int adjacent : graph[vertex]) {
+			if (!visited[adjacent]) {
+				dft(adjacent, visited);
+			}
+		}
+	}
+
+public:
+	graphType(int vertices) : graph(vertices) {}
+
+	void addEdge(int from, int to) {
+		graph[from].push_back(to);
+	}
+
+	void depthFirstTraversal() const {
+		vector&lt;bool&gt; visited(graph.size(), false);
+
+		for (int v = 0; v &lt; static_cast&lt;int&gt;(graph.size()); v++) {
+			if (!visited[v]) {
+				dft(v, visited);
+			}
+		}
+		cout &lt;&lt; endl;
+	}
+
+	void breadthFirstTraversal() const {
+		vector&lt;bool&gt; visited(graph.size(), false);
+		queue&lt;int&gt; q;
+
+		for (int start = 0; start &lt; static_cast&lt;int&gt;(graph.size()); start++) {
+			if (visited[start]) continue;
+
+			visited[start] = true;
+			q.push(start);
+
+			while (!q.empty()) {
+				int current = q.front();
+				q.pop();
+				cout &lt;&lt; current &lt;&lt; " ";
+
+				for (int adjacent : graph[current]) {
+					if (!visited[adjacent]) {
+						visited[adjacent] = true;
+						q.push(adjacent);
+					}
+				}
+			}
+		}
+		cout &lt;&lt; endl;
+	}
+};
+
+int main() {
+	graphType g(6);
+
+	g.addEdge(0, 1);
+	g.addEdge(0, 5);
+	g.addEdge(1, 2);
+	g.addEdge(1, 3);
+	g.addEdge(5, 4);
+
+	cout &lt;&lt; "DFS: ";
+	g.depthFirstTraversal();
+
+	cout &lt;&lt; "BFS: ";
+	g.breadthFirstTraversal();
+
+	return 0;
+}</code></pre>
 					</article>
 				</div>
 				<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
