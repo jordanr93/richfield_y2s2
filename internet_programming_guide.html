@@ -584,6 +584,8 @@
 
 		.quiz-section {
 			margin-top: 1.6rem;
+			padding-top: 2.2rem;
+			border-top: 1px solid var(--border);
 		}
 
 		.quiz-panel {
@@ -903,21 +905,12 @@
 		</div>
 
 		<div class="nav-group">
-			<h2>Site</h2>
-			<a href="index.html">Home</a>
-		</div>
-
-		<div class="module-rail" aria-label="Module connector">
 			<h2>Modules</h2>
-			<a href="programming_guide.html" style="--module-color: var(--green);">PRG622 · Programming</a>
-			<a href="information_systems_guide.html" style="--module-color: var(--purple);">IS622 · Information Systems</a>
-			<a href="internet_programming_guide.html" aria-current="page" style="--module-color: var(--red);">IP622 · Internet Programming</a>
-			<a href="machine_learning_guide.html" style="--module-color: var(--cyan);">ML600 · Machine Learning</a>
-			<a href="big_data_IOT_guide.html" style="--module-color: var(--amber);">BDIOT600 · Big Data &amp; IoT</a>
+			<a href="index.html">View All</a>
 		</div>
 
-		<div class="nav-group">
-			<h2>Exam Focus Areas</h2>
+		<details class="nav-group nav-collapsible">
+			<summary>Exam Focus Areas</summary>
 			<a href="#exam-overview" data-nav-link="exam-overview">Exam Overview</a>
 			<a href="#focus-forms" data-nav-link="focus-forms">Forms and Request Data</a>
 			<a href="#focus-security-validation" data-nav-link="focus-security-validation">Security and Validation</a>
@@ -925,7 +918,7 @@
 			<a href="#focus-files" data-nav-link="focus-files">Files and Directories</a>
 			<a href="#focus-sql" data-nav-link="focus-sql">SQL and MySQL</a>
 			<a href="#focus-setup" data-nav-link="focus-setup">XAMPP Setup</a>
-		</div>
+		</details>
 
 		<div class="nav-group">
 			<h2>General Module Content</h2>
@@ -935,7 +928,11 @@
 			<a href="#chapter-4" data-nav-link="chapter-4">Topic 4: SQL and Databases</a>
 			<a href="#chapter-5" data-nav-link="chapter-5">Addendum: Running PHP</a>
 			<a href="#final-revision" data-nav-link="final-revision">Final Revision Tables</a>
-			<a href="#practice-quiz" data-nav-link="practice-quiz">Quiz Builder</a>
+		</div>
+
+		<div class="nav-group">
+			<h2>Preparation Station</h2>
+			<a href="#preparation-station" data-nav-link="preparation-station">Quiz Builder</a>
 		</div>
 	</nav>
 
@@ -2705,30 +2702,32 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 				</div>
 			</section>
 
-			<section id="practice-quiz" class="quiz-section" data-nav-section>
-				<div class="section-heading">
-					<h2>Quiz Builder</h2>
+		<section id="preparation-station" class="quiz-section" data-nav-section>
+			<div class="section-heading">
+				<h2>Preparation Station</h2>
+				<p>Use interactive learning tools to test your understanding and prepare for assessment. The Quiz Builder is the first station, with room to add more study tools later.</p>
+			</div>
+
+			<div class="quiz-panel" id="quiz-app">
+				<div class="quiz-controls">
+					<h3>Quiz Builder</h3>
 					<p>Build a multiple-choice run from the local question bank. Your current quiz, submitted answers, marks, and attempt history are saved in this browser only.</p>
-				</div>
-
-				<div class="quiz-panel" id="quiz-app">
-					<div class="quiz-controls">
-						<h3>Choose Questions Per Topic</h3>
-						<p>Each topic has a bank of 40 questions. Set any topic to 0 if you want to skip it for this run.</p>
-						<div class="quiz-counts" id="quiz-counts"></div>
-						<div class="quiz-actions">
-							<button type="button" id="quiz-start">Start New Quiz</button>
-							<button type="button" id="quiz-restart">Restart Current Quiz</button>
-							<button type="button" class="danger" id="quiz-clear">Clear Progress</button>
-						</div>
+					<h4>Choose Questions Per Topic</h4>
+					<p>Each topic has a bank of 40 questions. Set any topic to 0 if you want to skip it for this run.</p>
+					<div class="quiz-counts" id="quiz-counts"></div>
+					<div class="quiz-actions">
+						<button type="button" id="quiz-start">Start New Quiz</button>
+						<button type="button" id="quiz-restart">Restart Current Quiz</button>
+						<button type="button" class="danger" id="quiz-clear">Clear Progress</button>
 					</div>
-
-					<div class="quiz-summary" id="quiz-summary" aria-live="polite"></div>
-					<div class="quiz-questions" id="quiz-questions"></div>
-					<button type="button" class="quiz-submit" id="quiz-submit">Submit Quiz</button>
-					<div class="quiz-history" id="quiz-history"></div>
 				</div>
-			</section>
+
+				<div class="quiz-summary" id="quiz-summary" aria-live="polite"></div>
+				<div class="quiz-questions" id="quiz-questions"></div>
+				<button type="button" class="quiz-submit" id="quiz-submit">Submit Quiz</button>
+				<div class="quiz-history" id="quiz-history"></div>
+			</div>
+		</section>
 		</div>
 	</main>
 

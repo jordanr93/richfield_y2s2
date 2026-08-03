@@ -686,8 +686,9 @@
 				}
 			}
 	</style>
+	<link rel="stylesheet" href="module-theme.css">
 </head>
-<body>
+<body class="module-page module-programming" style="--module-accent: var(--green); --module-accent-soft: rgba(63, 185, 80, 0.14); --module-accent-border: rgba(63, 185, 80, 0.5);">
 	<a class="skip-link" href="#main">Skip to main content</a>
 	<div class="progress" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
 	<button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false"><span class="menu-icon" aria-hidden="true"></span></button>
@@ -700,12 +701,12 @@
 		</div>
 
 		<div class="nav-group">
-			<h2>Site</h2>
-			<a href="index.html">Home</a>
+			<h2>Modules</h2>
+			<a href="index.html">View All</a>
 		</div>
 
-		<div class="nav-group">
-			<h2>Exam Focus Areas</h2>
+		<details class="nav-group nav-collapsible">
+			<summary>Exam Focus Areas</summary>
 			<a href="#exam-overview" data-nav-link="exam-overview">Exam Overview</a>
 			<a href="#focus-complexity" data-nav-link="focus-complexity">Big-O and analysis</a>
 			<a href="#focus-adts" data-nav-link="focus-adts">Classes and ADTs</a>
@@ -713,7 +714,7 @@
 			<a href="#focus-recursion" data-nav-link="focus-recursion">Recursion patterns</a>
 			<a href="#focus-search-sort" data-nav-link="focus-search-sort">Search, hashing and sorting</a>
 			<a href="#focus-trees-graphs" data-nav-link="focus-trees-graphs">Trees and graphs</a>
-		</div>
+		</details>
 
 		<div class="nav-group">
 			<h2>General Module Content</h2>
@@ -728,10 +729,16 @@
 			<a href="#chapter-9" data-nav-link="chapter-9">9. Binary trees and B-trees</a>
 			<a href="#chapter-10" data-nav-link="chapter-10">10. Graphs</a>
 		</div>
+
+		<div class="nav-group">
+			<h2>Preparation Station</h2>
+			<a href="#preparation-station" data-nav-link="preparation-station">Coming Soon</a>
+		</div>
 	</nav>
 
 	<main id="main">
 		<header class="hero">
+			<div class="module-identity">PRG622 · Programming 622</div>
 			<h1>Programming 622 Study Hub</h1>
 			<p>A dark, readable revision page for the Programming 622 study guide, focused on C++ software design, STL containers, data structures, searching, sorting, trees and graphs.</p>
 			<div class="hero-actions">
@@ -3011,6 +3018,18 @@ int main() {
 					</div>
 					<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
 				</section>
+		</section>
+
+		<section class="content-section" id="preparation-station" data-nav-section>
+			<div class="section-heading">
+				<h2>Preparation Station</h2>
+				<p>A future home for interactive learning tools that support your Programming 622 revision.</p>
+			</div>
+			<div class="card coming-soon-card">
+				<span class="coming-soon-label">Coming soon</span>
+				<h3>More learning tools are on the way</h3>
+				<p>Quizzes, flashcards, guided practice, and other active-recall tools will be added here.</p>
+			</div>
 		</section>
 
 		<section class="content-section" id="cheat-sheets">
