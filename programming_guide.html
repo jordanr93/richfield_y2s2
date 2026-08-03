@@ -446,10 +446,64 @@
 			font-size: 0.95rem;
 		}
 
-		pre code {
-			padding: 0;
-			background: transparent;
-		}
+			pre code {
+				padding: 0;
+				background: transparent;
+			}
+
+			.glossary-list {
+				display: grid;
+				grid-template-columns: minmax(130px, 0.35fr) 1fr;
+				gap: 10px 16px;
+				margin: 14px 0 0;
+			}
+
+			.glossary-card summary {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 14px;
+				cursor: pointer;
+				list-style: none;
+			}
+
+			.glossary-card summary::-webkit-details-marker {
+				display: none;
+			}
+
+			.glossary-card summary span {
+				font-size: 1.17em;
+				font-weight: 700;
+				line-height: 1.25;
+			}
+
+			.glossary-card summary::after {
+				content: "Show";
+				flex: 0 0 auto;
+				padding: 0.18em 0.55em;
+				border: 1px solid var(--border);
+				border-radius: 999px;
+				color: var(--muted);
+				font-size: 0.78rem;
+				font-weight: 700;
+			}
+
+			.glossary-card[open] summary::after {
+				content: "Hide";
+			}
+
+			.glossary-list dt,
+			.glossary-list dd {
+				margin: 0;
+			}
+
+			.glossary-list dd {
+				color: var(--muted);
+			}
+
+			.glossary-list code {
+				white-space: nowrap;
+			}
 
 		.diagram {
 			display: grid;
@@ -621,12 +675,16 @@
 				width: 100%;
 			}
 
-			.flow,
-			.stack-demo,
-			.queue-line {
-				grid-template-columns: 1fr;
+				.flow,
+				.stack-demo,
+				.queue-line {
+					grid-template-columns: 1fr;
+				}
+
+				.glossary-list {
+					grid-template-columns: 1fr;
+				}
 			}
-		}
 	</style>
 </head>
 <body>
@@ -1077,9 +1135,9 @@ int main() {
 	return 0;
 }</code></pre>
 					</article>
-					<article class="card chapter-card wide warning" id="ch1-code-analysis-example">
-						<h3>Topic 1 Extended Code Example: Reading Code For Big-O</h3>
-						<p>This small program shows how to connect code structure to operation growth, which is exactly what the Big-O section expects you to practise.</p>
+						<article class="card chapter-card wide warning" id="ch1-code-analysis-example">
+							<h3>Topic 1 Extended Code Example: Reading Code For Big-O</h3>
+							<p>This small program shows how to connect code structure to operation growth, which is exactly what the Big-O section expects you to practise.</p>
 						<pre><code>#include &lt;iostream&gt;
 #include &lt;vector&gt;
 using namespace std;
@@ -1117,10 +1175,51 @@ int main() {
 
 	return 0;
 }</code></pre>
-					</article>
-				</div>
-				<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
-			</section>
+						</article>
+						<details class="card chapter-card wide structure glossary-card" id="ch1-glossary">
+							<summary><span>Topic 1 Glossary: Key Words And Code Terms</span></summary>
+							<dl class="glossary-list">
+								<dt><code>analysis</code></dt>
+								<dd>The phase where the problem, inputs, outputs, user needs and constraints are understood before coding begins.</dd>
+								<dt><code>design</code></dt>
+								<dd>The phase where algorithms, classes and operations are planned.</dd>
+								<dt><code>implementation</code></dt>
+								<dd>The phase where the planned solution is translated into C++ code.</dd>
+								<dt><code>testing</code></dt>
+								<dd>Running test cases to compare expected output with actual output.</dd>
+								<dt><code>debugging</code></dt>
+								<dd>Finding and correcting faults discovered during testing.</dd>
+								<dt><code>O(n)</code></dt>
+								<dd>Linear growth; the work grows in proportion to the number of items.</dd>
+								<dt><code>O(log n)</code></dt>
+								<dd>Logarithmic growth; the problem is repeatedly divided into smaller parts.</dd>
+								<dt><code>O(n2)</code></dt>
+								<dd>Quadratic growth; commonly caused by nested loops over the same data set.</dd>
+								<dt><code>class</code></dt>
+								<dd>A programmer-defined C++ type that groups data members and member functions.</dd>
+								<dt><code>object</code></dt>
+								<dd>A variable or instance created from a class type.</dd>
+								<dt><code>private</code></dt>
+								<dd>An access specifier that hides members from outside code.</dd>
+								<dt><code>public</code></dt>
+								<dd>An access specifier for the interface clients are allowed to call.</dd>
+								<dt><code>const</code></dt>
+								<dd>Used on member functions to promise that the object will not be changed by that function.</dd>
+								<dt><code>assert</code></dt>
+								<dd>A debugging check that terminates the program if a required condition is false.</dd>
+								<dt><code>precondition</code></dt>
+								<dd>What must be true before a function is called.</dd>
+								<dt><code>postcondition</code></dt>
+								<dd>What a function guarantees after it completes.</dd>
+								<dt><code>ADT</code></dt>
+								<dd>Abstract data type; a logical type described by values and operations, separate from implementation details.</dd>
+								<dt><code>constructor</code></dt>
+								<dd>A member function that initializes an object when it is created.</dd>
+							</dl>
+						</details>
+					</div>
+					<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
+				</section>
 
 			<section class="chapter" id="chapter-2" data-nav-section>
 				<h2>2. Standard Template Library (STL)</h2>
@@ -1326,9 +1425,9 @@ int main() {
 	return 0;
 }</code></pre>
 					</article>
-					<article class="card chapter-card wide structure" id="ch2-code-deque-example">
-						<h3>Topic 2 Extended Code Example: deque And Double-Ended Access</h3>
-						<p>The guide introduces <code>deque</code> after <code>vector</code>. Use it when insertions/removals at both the front and the back are part of the problem.</p>
+						<article class="card chapter-card wide structure" id="ch2-code-deque-example">
+							<h3>Topic 2 Extended Code Example: deque And Double-Ended Access</h3>
+							<p>The guide introduces <code>deque</code> after <code>vector</code>. Use it when insertions/removals at both the front and the back are part of the problem.</p>
 						<pre><code>#include &lt;algorithm&gt;
 #include &lt;deque&gt;
 #include &lt;iostream&gt;
@@ -1372,10 +1471,47 @@ int main() {
 
 	return 0;
 }</code></pre>
-					</article>
-				</div>
-				<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
-			</section>
+						</article>
+						<details class="card chapter-card wide structure glossary-card" id="ch2-glossary">
+							<summary><span>Topic 2 Glossary: Key Words And Code Terms</span></summary>
+							<dl class="glossary-list">
+								<dt><code>STL</code></dt>
+								<dd>The Standard Template Library; reusable C++ containers, iterators and algorithms.</dd>
+								<dt><code>container</code></dt>
+								<dd>An object that stores and manages a collection of values.</dd>
+								<dt><code>sequence container</code></dt>
+								<dd>A container where elements are kept in a specific linear order.</dd>
+								<dt><code>vector</code></dt>
+								<dd>A dynamic array with fast indexed access and efficient insertion at the end.</dd>
+								<dt><code>deque</code></dt>
+								<dd>A double-ended sequence container that supports insertion and removal at both ends.</dd>
+								<dt><code>iterator</code></dt>
+								<dd>A pointer-like object used to move through a container.</dd>
+								<dt><code>begin()</code></dt>
+								<dd>Returns an iterator positioned at the first element.</dd>
+								<dt><code>end()</code></dt>
+								<dd>Returns the stopping iterator just past the final element.</dd>
+								<dt><code>push_back()</code></dt>
+								<dd>Adds a new element to the end of a vector, deque or list.</dd>
+								<dt><code>push_front()</code></dt>
+								<dd>Adds a new element to the front of a deque or list.</dd>
+								<dt><code>insert()</code></dt>
+								<dd>Adds an element at a position identified by an iterator.</dd>
+								<dt><code>erase()</code></dt>
+								<dd>Removes an element or range from a container.</dd>
+								<dt><code>copy()</code></dt>
+								<dd>An STL algorithm that copies a range from one place to another.</dd>
+								<dt><code>ostream_iterator</code></dt>
+								<dd>An output iterator that writes each copied value to a stream such as <code>cout</code>.</dd>
+								<dt><code>*it</code></dt>
+								<dd>Dereferences an iterator to access the element it currently points to.</dd>
+								<dt><code>++it</code></dt>
+								<dd>Moves an iterator to the next element.</dd>
+							</dl>
+						</details>
+					</div>
+					<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
+				</section>
 
 			<section class="chapter" id="chapter-3" data-nav-section>
 				<h2>3. Linked Lists</h2>
@@ -1529,10 +1665,45 @@ int main() {
 
 	return 0;
 }</code></pre>
-					</article>
-				</div>
-				<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
-			</section>
+						</article>
+						<details class="card chapter-card wide structure glossary-card" id="ch3-glossary">
+							<summary><span>Topic 3 Glossary: Key Words And Code Terms</span></summary>
+							<dl class="glossary-list">
+								<dt><code>linked list</code></dt>
+								<dd>A collection of nodes connected by pointer links instead of contiguous array positions.</dd>
+								<dt><code>node</code></dt>
+								<dd>A record that stores one data item and one or more links to other nodes.</dd>
+								<dt><code>info</code></dt>
+								<dd>The data field inside a node in the guide's linked-list examples.</dd>
+								<dt><code>link</code></dt>
+								<dd>The pointer field that stores the address of the next node.</dd>
+								<dt><code>head</code></dt>
+								<dd>The pointer that gives access to the first node in the list.</dd>
+								<dt><code>current</code></dt>
+								<dd>A traversal pointer used to move through the list without losing the first node.</dd>
+								<dt><code>nullptr</code></dt>
+								<dd>The modern C++ null pointer value used when a pointer does not address a node.</dd>
+								<dt><code>-&gt;</code></dt>
+								<dd>The pointer member access operator; used for fields such as <code>current-&gt;info</code>.</dd>
+								<dt><code>new</code></dt>
+								<dd>Allocates dynamic memory for a node or object.</dd>
+								<dt><code>delete</code></dt>
+								<dd>Releases dynamic memory that was allocated with <code>new</code>.</dd>
+								<dt><code>insert</code></dt>
+								<dd>An ADT operation that adds a new item by adjusting links.</dd>
+								<dt><code>deleteNode</code></dt>
+								<dd>An ADT operation that removes a node and releases its memory.</dd>
+								<dt><code>ordered list</code></dt>
+								<dd>A list where items are stored according to key order.</dd>
+								<dt><code>unordered list</code></dt>
+								<dd>A list where insertion does not maintain sorted order.</dd>
+								<dt><code>doubly linked list</code></dt>
+								<dd>A linked list where each node stores links to both the next and previous nodes.</dd>
+							</dl>
+						</details>
+					</div>
+					<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
+				</section>
 
 			<section class="chapter" id="chapter-4" data-nav-section>
 				<h2>4. Recursion</h2>
@@ -1650,11 +1821,42 @@ int main() {
 	}
 	return 0;
 }</code></pre>
-						<div class="callout warning"><strong>Note:</strong> The recursive call must move toward the base case. In <code>largest</code>, <code>lowerIndex</code> increases; in <code>reversePrint</code>, <code>current</code> moves along the link chain.</div>
-					</article>
-				</div>
-				<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
-			</section>
+							<div class="callout warning"><strong>Note:</strong> The recursive call must move toward the base case. In <code>largest</code>, <code>lowerIndex</code> increases; in <code>reversePrint</code>, <code>current</code> moves along the link chain.</div>
+						</article>
+						<details class="card chapter-card wide structure glossary-card" id="ch4-glossary">
+							<summary><span>Topic 4 Glossary: Key Words And Code Terms</span></summary>
+							<dl class="glossary-list">
+								<dt><code>recursion</code></dt>
+								<dd>A technique where a function solves a problem by calling itself on a smaller version of the problem.</dd>
+								<dt><code>recursive function</code></dt>
+								<dd>A function that directly or indirectly calls itself.</dd>
+								<dt><code>base case</code></dt>
+								<dd>The stopping case that gives an answer without another recursive call.</dd>
+								<dt><code>general case</code></dt>
+								<dd>The part of the definition that reduces the problem toward the base case.</dd>
+								<dt><code>call stack</code></dt>
+								<dd>The runtime structure that stores active function calls and their local data.</dd>
+								<dt><code>direct recursion</code></dt>
+								<dd>A function calls itself inside its own body.</dd>
+								<dt><code>indirect recursion</code></dt>
+								<dd>Two or more functions call one another in a cycle.</dd>
+								<dt><code>iteration</code></dt>
+								<dd>Repetition using loops such as <code>for</code>, <code>while</code> or <code>do...while</code>.</dd>
+								<dt><code>backtracking</code></dt>
+								<dd>A recursive search method that tries a choice, backs up if it fails, and tries another choice.</dd>
+								<dt><code>factorial</code></dt>
+								<dd>The product <code>n * (n - 1) * ... * 1</code>, often used to introduce recursive definitions.</dd>
+								<dt><code>return</code></dt>
+								<dd>Ends a function call and sends a value back to the caller.</dd>
+								<dt><code>largest()</code></dt>
+								<dd>A common guide example that finds the largest array value by comparing one value with the largest of the rest.</dd>
+								<dt><code>reversePrint()</code></dt>
+								<dd>A linked-list recursion example that prints the tail before the current node.</dd>
+							</dl>
+						</details>
+					</div>
+					<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
+				</section>
 
 			<section class="chapter" id="chapter-5" data-nav-section>
 				<h2>5. Stacks</h2>
@@ -1791,10 +1993,45 @@ int main() {
 
 	return 0;
 }</code></pre>
-					</article>
-				</div>
-				<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
-			</section>
+						</article>
+						<details class="card chapter-card wide structure glossary-card" id="ch5-glossary">
+							<summary><span>Topic 5 Glossary: Key Words And Code Terms</span></summary>
+							<dl class="glossary-list">
+								<dt><code>stack</code></dt>
+								<dd>A data structure where insertion and deletion happen at one end called the top.</dd>
+								<dt><code>LIFO</code></dt>
+								<dd>Last In First Out; the most recently pushed item is removed first.</dd>
+								<dt><code>top</code></dt>
+								<dd>The end of the stack where all stack operations occur.</dd>
+								<dt><code>push()</code></dt>
+								<dd>Adds a new item to the top of the stack.</dd>
+								<dt><code>pop()</code></dt>
+								<dd>Removes the top item from the stack.</dd>
+								<dt><code>top()</code></dt>
+								<dd>Returns the current top item without removing it.</dd>
+								<dt><code>isEmptyStack()</code></dt>
+								<dd>Checks whether the stack contains no elements.</dd>
+								<dt><code>isFullStack()</code></dt>
+								<dd>Checks whether a fixed array stack has reached capacity.</dd>
+								<dt><code>stackTop</code></dt>
+								<dd>The variable that tracks the current top position or top node.</dd>
+								<dt><code>postfix</code></dt>
+								<dd>An expression format where operators appear after operands, such as <code>6 3 +</code>.</dd>
+								<dt><code>operand</code></dt>
+								<dd>A value used by an operator.</dd>
+								<dt><code>operator</code></dt>
+								<dd>A symbol such as <code>+</code>, <code>-</code>, <code>*</code> or <code>/</code> that performs an operation.</dd>
+								<dt><code>std::stack</code></dt>
+								<dd>The STL container adapter that provides stack operations.</dd>
+								<dt><code>empty()</code></dt>
+								<dd>An STL stack function that returns true when the stack has no elements.</dd>
+								<dt><code>size()</code></dt>
+								<dd>Returns how many elements are currently stored.</dd>
+							</dl>
+						</details>
+					</div>
+					<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
+				</section>
 
 			<section class="chapter" id="chapter-6" data-nav-section>
 				<h2>6. Queues</h2>
@@ -1936,10 +2173,43 @@ int main() {
 
 	return 0;
 }</code></pre>
-					</article>
-				</div>
-				<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
-			</section>
+						</article>
+						<details class="card chapter-card wide structure glossary-card" id="ch6-glossary">
+							<summary><span>Topic 6 Glossary: Key Words And Code Terms</span></summary>
+							<dl class="glossary-list">
+								<dt><code>queue</code></dt>
+								<dd>A data structure where items are added at the rear and removed from the front.</dd>
+								<dt><code>FIFO</code></dt>
+								<dd>First In First Out; the earliest item inserted is removed first.</dd>
+								<dt><code>front</code></dt>
+								<dd>The end of the queue where deletion occurs.</dd>
+								<dt><code>rear</code></dt>
+								<dd>The end of the queue where insertion occurs.</dd>
+								<dt><code>addQueue()</code></dt>
+								<dd>Adds a new item at the rear of the queue.</dd>
+								<dt><code>deleteQueue()</code></dt>
+								<dd>Removes the item at the front of the queue.</dd>
+								<dt><code>front()</code></dt>
+								<dd>Returns the first item, the next item that would be deleted.</dd>
+								<dt><code>back()</code></dt>
+								<dd>Returns the last item, the most recently added item.</dd>
+								<dt><code>queueFront</code></dt>
+								<dd>The index or pointer that identifies the front item.</dd>
+								<dt><code>queueRear</code></dt>
+								<dd>The index or pointer that identifies the rear item or next rear position.</dd>
+								<dt><code>circular array</code></dt>
+								<dd>An array representation where indexes wrap around using modulo arithmetic.</dd>
+								<dt><code>%</code></dt>
+								<dd>The modulo operator used to wrap queue indexes back to the beginning.</dd>
+								<dt><code>priority_queue</code></dt>
+								<dd>An STL adapter where deletion is based on priority rather than pure arrival order.</dd>
+								<dt><code>simulation</code></dt>
+								<dd>A model of a real system, often using queues to represent waiting customers or jobs.</dd>
+							</dl>
+						</details>
+					</div>
+					<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
+				</section>
 
 			<section class="chapter" id="chapter-7" data-nav-section>
 				<h2>7. Searching And Hashing Algorithms</h2>
@@ -2092,10 +2362,45 @@ int main() {
 
 	return 0;
 }</code></pre>
-					</article>
-				</div>
-				<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
-			</section>
+						</article>
+						<details class="card chapter-card wide structure glossary-card" id="ch7-glossary">
+							<summary><span>Topic 7 Glossary: Key Words And Code Terms</span></summary>
+							<dl class="glossary-list">
+								<dt><code>search key</code></dt>
+								<dd>The value used to identify and compare records during searching.</dd>
+								<dt><code>sequential search</code></dt>
+								<dd>A search that checks items one by one from the start of the list.</dd>
+								<dt><code>binary search</code></dt>
+								<dd>A search that repeatedly halves an ordered array-based list.</dd>
+								<dt><code>ordered list</code></dt>
+								<dd>A list where items are arranged by key order.</dd>
+								<dt><code>first</code></dt>
+								<dd>The lower boundary of the current binary search range.</dd>
+								<dt><code>last</code></dt>
+								<dd>The upper boundary of the current binary search range.</dd>
+								<dt><code>mid</code></dt>
+								<dd>The middle index tested during binary search.</dd>
+								<dt><code>binarySearch()</code></dt>
+								<dd>A function that returns the target position or <code>-1</code> when the target is absent.</dd>
+								<dt><code>hashing</code></dt>
+								<dd>Computing a storage address from a key instead of searching through comparisons.</dd>
+								<dt><code>hash function</code></dt>
+								<dd>The rule that maps a key to a hash table index.</dd>
+								<dt><code>hash table</code></dt>
+								<dd>The array-like structure that stores items at computed positions.</dd>
+								<dt><code>collision</code></dt>
+								<dd>Occurs when two keys map to the same hash table index.</dd>
+								<dt><code>linear probing</code></dt>
+								<dd>A collision strategy that checks the next table slot until an empty one is found.</dd>
+								<dt><code>chaining</code></dt>
+								<dd>A collision strategy that stores multiple keys at one hash location using a linked list.</dd>
+								<dt><code>load factor</code></dt>
+								<dd>A measure of how full the hash table is.</dd>
+							</dl>
+						</details>
+					</div>
+					<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
+				</section>
 
 			<section class="chapter" id="chapter-8" data-nav-section>
 				<h2>8. Sorting Algorithms</h2>
@@ -2238,10 +2543,45 @@ int main() {
 
 	return 0;
 }</code></pre>
-					</article>
-				</div>
-				<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
-			</section>
+						</article>
+						<details class="card chapter-card wide structure glossary-card" id="ch8-glossary">
+							<summary><span>Topic 8 Glossary: Key Words And Code Terms</span></summary>
+							<dl class="glossary-list">
+								<dt><code>sorting</code></dt>
+								<dd>Arranging data into a chosen order, usually ascending or descending by key.</dd>
+								<dt><code>selection sort</code></dt>
+								<dd>Repeatedly selects the smallest item from the unsorted part and swaps it into position.</dd>
+								<dt><code>insertion sort</code></dt>
+								<dd>Builds a sorted section by inserting each new item into its correct place.</dd>
+								<dt><code>Shellsort</code></dt>
+								<dd>A diminishing-increment version of insertion sort that compares items far apart first.</dd>
+								<dt><code>quicksort</code></dt>
+								<dd>A divide-and-conquer sort that partitions values around a pivot.</dd>
+								<dt><code>mergesort</code></dt>
+								<dd>A divide-and-conquer sort that divides data and merges sorted parts.</dd>
+								<dt><code>heapsort</code></dt>
+								<dd>A sort that uses a heap structure to repeatedly place the largest item.</dd>
+								<dt><code>pivot</code></dt>
+								<dd>The reference value used to partition data during quicksort.</dd>
+								<dt><code>swap</code></dt>
+								<dd>Exchanges two values, often after finding the smallest or largest item.</dd>
+								<dt><code>firstOutOfOrder</code></dt>
+								<dd>The guide's insertion-sort index for the first item not yet in the sorted portion.</dd>
+								<dt><code>temp</code></dt>
+								<dd>A temporary variable used to hold a value while other items shift or swap.</dd>
+								<dt><code>location</code></dt>
+								<dd>The insertion-sort index that moves backward to find the correct insertion point.</dd>
+								<dt><code>gap</code></dt>
+								<dd>The distance between compared items in Shellsort.</dd>
+								<dt><code>O(n log2 n)</code></dt>
+								<dd>A common efficient comparison-sort growth rate.</dd>
+								<dt><code>O(n2)</code></dt>
+								<dd>Quadratic growth seen in simple sorts such as selection and insertion sort.</dd>
+							</dl>
+						</details>
+					</div>
+					<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
+				</section>
 
 			<section class="chapter" id="chapter-9" data-nav-section>
 				<h2>9. Binary Trees And B-Trees</h2>
@@ -2400,10 +2740,47 @@ int main() {
 	destroy(root);
 	return 0;
 }</code></pre>
-					</article>
-				</div>
-				<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
-			</section>
+						</article>
+						<details class="card chapter-card wide structure glossary-card" id="ch9-glossary">
+							<summary><span>Topic 9 Glossary: Key Words And Code Terms</span></summary>
+							<dl class="glossary-list">
+								<dt><code>binary tree</code></dt>
+								<dd>A tree where each node has at most two children.</dd>
+								<dt><code>root</code></dt>
+								<dd>The top node of a tree, or the pointer that gives access to the whole tree.</dd>
+								<dt><code>leaf</code></dt>
+								<dd>A node with no children.</dd>
+								<dt><code>subtree</code></dt>
+								<dd>A smaller tree rooted at a child node.</dd>
+								<dt><code>llink</code></dt>
+								<dd>The guide's left-child pointer in a binary tree node.</dd>
+								<dt><code>rlink</code></dt>
+								<dd>The guide's right-child pointer in a binary tree node.</dd>
+								<dt><code>preorder</code></dt>
+								<dd>Traversal order: root, left subtree, right subtree.</dd>
+								<dt><code>inorder</code></dt>
+								<dd>Traversal order: left subtree, root, right subtree.</dd>
+								<dt><code>postorder</code></dt>
+								<dd>Traversal order: left subtree, right subtree, root.</dd>
+								<dt><code>BST</code></dt>
+								<dd>Binary search tree; left values are smaller and right values are larger at each node.</dd>
+								<dt><code>insert()</code></dt>
+								<dd>Adds a new node while preserving binary search tree order.</dd>
+								<dt><code>search()</code></dt>
+								<dd>Follows left or right links until an item is found or an empty subtree is reached.</dd>
+								<dt><code>destroy()</code></dt>
+								<dd>Deletes tree nodes, usually with postorder-style recursion.</dd>
+								<dt><code>AVL tree</code></dt>
+								<dd>A height-balanced binary search tree.</dd>
+								<dt><code>rotation</code></dt>
+								<dd>A restructuring step used to restore AVL balance.</dd>
+								<dt><code>B-tree</code></dt>
+								<dd>A multiway search tree designed for efficient disk/file-system style access.</dd>
+							</dl>
+						</details>
+					</div>
+					<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
+				</section>
 
 			<section class="chapter" id="chapter-10" data-nav-section>
 				<h2>10. Graphs</h2>
@@ -2591,10 +2968,49 @@ int main() {
 
 	return 0;
 }</code></pre>
-					</article>
-				</div>
-				<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
-			</section>
+						</article>
+						<details class="card chapter-card wide structure glossary-card" id="ch10-glossary">
+							<summary><span>Topic 10 Glossary: Key Words And Code Terms</span></summary>
+							<dl class="glossary-list">
+								<dt><code>graph</code></dt>
+								<dd>A structure made of vertices and edges, written as <code>G = (V, E)</code>.</dd>
+								<dt><code>vertex</code></dt>
+								<dd>A node or point in a graph.</dd>
+								<dt><code>edge</code></dt>
+								<dd>A connection between vertices.</dd>
+								<dt><code>directed graph</code></dt>
+								<dd>A graph where edges have direction.</dd>
+								<dt><code>undirected graph</code></dt>
+								<dd>A graph where edges do not have direction.</dd>
+								<dt><code>adjacent</code></dt>
+								<dd>Describes two vertices connected by an edge.</dd>
+								<dt><code>path</code></dt>
+								<dd>A sequence of vertices connected by edges.</dd>
+								<dt><code>connected graph</code></dt>
+								<dd>A graph where a path exists between every pair of vertices.</dd>
+								<dt><code>adjacency matrix</code></dt>
+								<dd>A two-dimensional representation marking whether each edge exists.</dd>
+								<dt><code>adjacency list</code></dt>
+								<dd>A representation where each vertex stores a list of its neighbours.</dd>
+								<dt><code>visited</code></dt>
+								<dd>A Boolean tracking structure used to avoid revisiting vertices.</dd>
+								<dt><code>DFS</code></dt>
+								<dd>Depth-first search; explores deeply before backing up.</dd>
+								<dt><code>BFS</code></dt>
+								<dd>Breadth-first search; visits neighbours before moving to the next level.</dd>
+								<dt><code>dft()</code></dt>
+								<dd>The recursive helper used in the example for depth-first traversal.</dd>
+								<dt><code>breadthFirstTraversal()</code></dt>
+								<dd>A queue-based traversal that processes vertices in breadth-first order.</dd>
+								<dt><code>Dijkstra</code></dt>
+								<dd>A shortest-path algorithm for weighted graphs with nonnegative edge weights.</dd>
+								<dt><code>Prim</code></dt>
+								<dd>An algorithm for finding a minimum spanning tree in a connected weighted graph.</dd>
+							</dl>
+						</details>
+					</div>
+					<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
+				</section>
 		</section>
 
 		<section class="content-section" id="cheat-sheets">
