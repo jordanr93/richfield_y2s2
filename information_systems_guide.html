@@ -300,6 +300,54 @@
 			scroll-margin-top: 24px;
 		}
 
+		.assignment-card {
+			border-top: 4px solid var(--purple);
+		}
+
+		.assignment-card > p:last-child,
+		.assignment-part > p:last-child {
+			margin-bottom: 0;
+		}
+
+		.assignment-part {
+			padding-top: 18px;
+			margin-top: 18px;
+			border-top: 1px solid var(--border);
+		}
+
+		.assignment-part:first-of-type {
+			padding-top: 0;
+			margin-top: 0;
+			border-top: 0;
+		}
+
+		.assignment-part h4 {
+			color: var(--purple);
+		}
+
+		.assignment-card .muted {
+			color: var(--muted);
+			font-size: 0.78em;
+			font-weight: 600;
+		}
+
+		.assignment-links {
+			margin-top: 12px;
+			padding: 12px 14px;
+			border-left: 4px solid var(--purple);
+			background: var(--header);
+			border-radius: 0 8px 8px 0;
+		}
+
+		.assignment-links strong {
+			color: var(--purple);
+		}
+
+		.assignment-links a + a::before {
+			content: " · ";
+			color: var(--muted);
+		}
+
 		.exam-card {
 			border-top: 4px solid var(--cyan);
 		}
@@ -563,7 +611,7 @@
 				</div>
 <details class="nav-group nav-collapsible">
 	<summary>Assignment Helper</summary>
-	<a class="nav-link" href="#assignment-helper" data-nav-link="assignment-helper">Coming Soon</a>
+	<a class="nav-link" href="#assignment-helper" data-nav-link="assignment-helper">Questions 1-3</a>
 </details>
 
 <details class="nav-group nav-collapsible">
@@ -614,12 +662,99 @@
 				<section class="section" id="assignment-helper" data-nav-section>
 					<div class="section-heading">
 						<h2>Assignment Helper</h2>
-						<p>A future home for assignment guidance, worked examples, and practical support.</p>
+						<p>Use this as a question-by-question reading map for the 2026 Information Systems 622 assignment. It highlights the study-guide ideas that apply to each question and links directly to the fuller explanations in General Module Content.</p>
 					</div>
-					<div class="card coming-soon-card">
-						<span class="coming-soon-label">Coming soon</span>
-						<h3>Assignment Helper is coming soon</h3>
-						<p>This section will be updated when the relevant guidance is available.</p>
+					<div class="note success"><strong>How to use this section:</strong> Start with the question prompt, revise the linked concepts, then build your answer around definition, application to the scenario, comparison or evaluation, and a justified conclusion. The notes are study prompts rather than a model answer.</div>
+					<div class="grid">
+						<article class="card assignment-card wide" id="assignment-question-1">
+							<h3>Question 1 · Development strategies <span class="muted">(25 marks)</span></h3>
+							<p><strong>Question focus:</strong> Critically discuss the strategies available when organizations acquire information systems, compare traditional and web-based development, assess emerging trends, evaluate acquisition options, and explain the systems analyst's role.</p>
+							<div class="assignment-part">
+								<h4>1.1 Compare the development environments</h4>
+								<ul>
+									<li>Contrast traditional development, where the organization and its legacy environment remain central, with web-based development, where the web is part of the application platform.</li>
+									<li>Compare scalability, device dependence, integration, security exposure, implementation speed, and ongoing support.</li>
+								</ul>
+								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch1-1-traditional-vs-web">Traditional vs Web-Based Systems</a> <a href="#ch4-7-evolution-client-server">Architecture Evolution and Client/Server Design</a></div>
+							</div>
+							<div class="assignment-part">
+								<h4>1.2 Explain how trends change the choice</h4>
+								<ul>
+									<li>Web 2.0 increases collaboration, interaction, user-generated information, and information sharing.</li>
+									<li>Cloud computing and SaaS shift infrastructure, updates, and maintenance toward a service provider.</li>
+									<li>Mobile devices expand access requirements and make responsive interfaces, compatibility, availability, and security important design considerations.</li>
+								</ul>
+								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch1-2-trends">Evolving Trends</a> <a href="#ch4-3-processing">Internet, E-Commerce and Processing</a> <a href="#ch2-5-prototyping">Prototyping and Trends</a></div>
+							</div>
+							<div class="assignment-part">
+								<h4>1.3 Evaluate the acquisition strategies</h4>
+								<ul>
+									<li><strong>In-house:</strong> stronger control, business fit, and internal capability, but higher staffing, development, testing, and support demands.</li>
+									<li><strong>Outsourcing:</strong> access to specialist skills and potentially faster delivery, but introduces vendor dependency, contract, quality, security, and control risks.</li>
+									<li><strong>Offshoring:</strong> can reduce cost, but requires careful treatment of time zones, language, culture, communication, security, and project control.</li>
+									<li><strong>SaaS:</strong> hosted access with less installation and maintenance, but ongoing fees, data control, service availability, integration, and exit risks must be considered.</li>
+								</ul>
+								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch1-3-development-options">Development Options</a> <a href="#ch1-5-build-buy-customize">Make, Buy, Customize or Empower Users</a> <a href="#ch1-6-outsourcing-saas-offshoring">Outsourcing, Offshoring and SaaS</a></div>
+							</div>
+							<div class="assignment-part">
+								<h4>1.4 Show the systems analyst's decision process</h4>
+								<ul>
+									<li>Start with business and system requirements, web/network needs, expected growth, existing systems, resources, cost-benefit results, total cost of ownership, risk, and support needs.</li>
+									<li>Compare alternatives, involve users and management, use an RFP or RFQ where appropriate, and recommend the option that best fits the organization's strategy and constraints.</li>
+								</ul>
+								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch1-4-acquisition">Software Acquisition Process</a> <a href="#ch1-worked-acquisition-case">Worked Acquisition Example</a></div>
+							</div>
+						</article>
+
+						<article class="card assignment-card wide" id="assignment-question-2">
+							<h3>Question 2 · TravelGo and digital tourism <span class="muted">(35 marks)</span></h3>
+							<p><strong>Scenario reminder:</strong> TravelGo must explain how digital platforms changed travel and tourism, then use information systems to improve customer service and regain competitiveness.</p>
+							<div class="assignment-part">
+								<h4>2.1 Analyse three digital disruptions <span class="muted">(20 marks)</span></h4>
+								<ul>
+									<li>Choose three distinct disruptions and use the same comparison pattern for each: how the traditional agency worked, how the digital approach works, which IS concepts enable it, and what changed for competition, decision-making, pricing, and industry roles.</li>
+									<li>Useful disruption choices include user-generated reviews and discovery; mobile self-service booking and real-time online processing; and platform-based price comparison, dynamic pricing, integration, and personalised recommendations.</li>
+									<li>Link the scenario to cloud computing, Web 2.0, mobile access, data analytics, system integration, online processing, and three-tier/web architecture. Explain the technology-to-business effect rather than only naming the technology.</li>
+								</ul>
+								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch1-2-trends">Evolving Trends</a> <a href="#ch3-7-dbms-components-web-design">DBMS Components and Web-Based Data Design</a> <a href="#ch4-3-processing">Internet, E-Commerce and Processing</a> <a href="#ch4-7-evolution-client-server">Architecture Evolution and Client/Server Design</a> <a href="#ch4-8-internet-processing-network-example">Worked Architecture Example</a></div>
+								<div class="note">The guide provides the IS concepts; examples such as Airbnb's dynamic pricing, Uber's surge pricing, and platform-specific market data should be supported with current external sources in the assignment.</div>
+							</div>
+							<div class="assignment-part">
+								<h4>2.2 Apply BSS and KMS to customer service <span class="muted">(15 marks)</span></h4>
+								<ul>
+									<li>Use <strong>Business Support Systems (BSS)</strong> as the operational layer for customer profiles, bookings, service interactions, dashboards, and decision support.</li>
+									<li>Use <strong>Knowledge Management Systems (KMS)</strong> as the organizational learning layer for FAQs, policies, destination knowledge, resolved support cases, and chatbot content.</li>
+									<li>Evaluate predictive analytics, customer profiling, chatbots, and knowledge databases for service quality, response speed, personalisation, consistency, and better decisions. Also discuss privacy, data quality, bias, and human escalation.</li>
+									<li>End with two immediate, practical recommendations for TravelGo, such as an integrated mobile/web booking and customer-profile platform, plus a searchable knowledge base with chatbot and human hand-off.</li>
+								</ul>
+								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch6-1-support">User Support</a> <a href="#ch6-6-user-support-help-desk">User Support and Help Desks</a> <a href="#ch4-3-processing">Internet, E-Commerce and Processing</a> <a href="#ch4-6-architecture-checklist-expanded">Architecture Checklist</a> <a href="#ch6-8-performance-security-expanded">Performance and Security</a></div>
+							</div>
+						</article>
+
+						<article class="card assignment-card wide" id="assignment-question-3">
+							<h3>Question 3 · EduTech analysis and modelling <span class="muted">(30 marks)</span></h3>
+							<p><strong>Scenario reminder:</strong> EduTech needs one integrated student system that connects registration, academic records, fees, and learning material instead of leaving each department with separate manual or spreadsheet-based processes.</p>
+							<div class="assignment-part">
+								<h4>3.1 Compare the modelling tools <span class="muted">(15 marks)</span></h4>
+								<ul>
+									<li><strong>DFD:</strong> shows where data comes from, how processes transform it, where it is stored, and where it goes. Example: student registration data flows through validation into a student/course data store.</li>
+									<li><strong>UML use case diagram:</strong> shows who interacts with the system and what goals or functions they need. Example: Student, Finance Officer, and Lecturer interact with “Manage Student Account” or “View Academic Record.”</li>
+									<li><strong>Class diagram:</strong> shows the objects/classes, their attributes, methods, and relationships. Example: Student enrols in Course, Course is taught by Lecturer, and Student has Fee Account.</li>
+									<li>Explain when each is most useful and its limitation: DFDs can simplify object behaviour, use cases do not show detailed data structure, and class diagrams can be too technical or static to explain the full business process.</li>
+								</ul>
+								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch5-2-development-methods">Development Methods</a> <a href="#ch5-7-development-methods-expanded">Structured and Object-Oriented Development</a> <a href="#ch3-3-erd">Entity-Relationship Diagrams</a> <a href="#ch3-7-dbms-components-web-design">DBMS Components and Web-Based Data Design</a></div>
+							</div>
+							<div class="assignment-part">
+								<h4>3.2 Show how requirements gathering prevents failure <span class="muted">(15 marks)</span></h4>
+								<ul>
+									<li><strong>Interviews and JAD sessions:</strong> bring students, lecturers, finance, registration, and IT together to surface conflicting definitions, hand-off problems, and shared priorities.</li>
+									<li><strong>Surveys:</strong> collect broad feedback from many students and staff; <strong>observation:</strong> reveals workarounds and the difference between documented and actual processes; <strong>document analysis:</strong> exposes duplicate spreadsheets, inconsistent forms, and missing controls.</li>
+									<li>Use DFDs to clarify process and data movement, a data dictionary to define fields consistently, UML to clarify actors and responsibilities, and data-design techniques to reduce duplication and improve integrity.</li>
+									<li>Close with two concrete benefits, such as automated and consistent fee statements, real-time academic progress tracking, fewer duplicate records, and fewer manual administrative errors.</li>
+								</ul>
+								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch2-5-prototyping">Prototyping and User Feedback</a> <a href="#ch3-1-dbms">Data Structures and DBMS</a> <a href="#ch3-2-terms-integrity">Data Terms and Integrity</a> <a href="#ch3-4-normalization">Normalization</a> <a href="#ch5-8-testing-docs-expanded">Testing and Documentation</a> <a href="#ch2-4-reports-controls">Forms, Reports and Controls</a></div>
+							</div>
+						</article>
 					</div>
 				</section>
 
@@ -646,6 +781,10 @@
 						<p>The current exam-focus content has been cleared and will be updated when the confirmed focus areas are provided.</p>
 					</div>
 				</section>
+					<div class="section-heading" id="general-module-content">
+						<h2>General Module Content</h2>
+						<p>Use the chapters below for fuller explanations, examples, comparisons, and glossary terms related to the assignment.</p>
+					</div>
 					<section class="chapter" id="chapter-1" data-nav-section>
 						<div class="chapter-heading">
 							<div>

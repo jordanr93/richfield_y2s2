@@ -304,6 +304,64 @@
 			color: var(--muted);
 		}
 
+		.assignment-grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 18px;
+		}
+
+		.assignment-card {
+			scroll-margin-top: 20px;
+		}
+
+		.assignment-card.wide {
+			grid-column: 1 / -1;
+		}
+
+		.question-meta {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			gap: 8px;
+			margin-bottom: 14px;
+		}
+
+		.question-number {
+			color: var(--module-accent, var(--green));
+			font-size: 0.82rem;
+			font-weight: 800;
+			letter-spacing: 0.06em;
+			text-transform: uppercase;
+		}
+
+		.assignment-card h3 {
+			margin-bottom: 8px;
+		}
+
+		.assignment-card h4 {
+			margin-top: 20px;
+			margin-bottom: 8px;
+			color: var(--cyan);
+			font-size: 1rem;
+		}
+
+		.assignment-card .study-links {
+			margin-top: 8px;
+		}
+
+		.assignment-card .study-links li + li {
+			margin-top: 8px;
+		}
+
+		.assignment-card .callout {
+			margin-top: 18px;
+		}
+
+		.assignment-intro {
+			max-width: 920px;
+		}
+
 		.grid {
 			display: grid;
 			grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -622,9 +680,14 @@
 		}
 
 		@media (max-width: 1100px) {
+			.assignment-grid,
 			.grid,
 			.grid.three {
 				grid-template-columns: 1fr;
+			}
+
+			.assignment-card.wide {
+				grid-column: auto;
 			}
 
 			.flow {
@@ -707,7 +770,14 @@
 
 <details class="nav-group nav-collapsible">
 	<summary>Assignment Helper</summary>
-	<a class="nav-link" href="#assignment-helper" data-nav-link="assignment-helper">Coming Soon</a>
+	<a class="nav-link" href="#assignment-helper" data-nav-link="assignment-helper">Overview</a>
+	<a class="nav-link" href="#assignment-q1" data-nav-link="assignment-q1">1. Authentication</a>
+	<a class="nav-link" href="#assignment-q2" data-nav-link="assignment-q2">2. City data</a>
+	<a class="nav-link" href="#assignment-q3" data-nav-link="assignment-q3">3. Event processing</a>
+	<a class="nav-link" href="#assignment-q4" data-nav-link="assignment-q4">4. OOP architecture</a>
+	<a class="nav-link" href="#assignment-q5" data-nav-link="assignment-q5">5. Algorithms</a>
+	<a class="nav-link" href="#assignment-q6" data-nav-link="assignment-q6">6. Reports</a>
+	<a class="nav-link" href="#assignment-q7" data-nav-link="assignment-q7">7. Persistence</a>
 </details>
 
 <details class="nav-group nav-collapsible">
@@ -722,6 +792,7 @@
 
 		<div class="nav-group">
 			<h2>General Module Content</h2>
+			<a href="#general-module-content" data-nav-link="general-module-content">Overview</a>
 			<a href="#chapter-1" data-nav-link="chapter-1">1. Software engineering and classes</a>
 			<a href="#chapter-2" data-nav-link="chapter-2">2. STL</a>
 			<a href="#chapter-3" data-nav-link="chapter-3">3. Linked lists</a>
@@ -761,12 +832,132 @@
 		<section class="content-section" id="assignment-helper" data-nav-section>
 			<div class="section-heading">
 				<h2>Assignment Helper</h2>
-				<p>A future home for assignment guidance, worked examples, and practical support.</p>
+				<p class="assignment-intro">A question-by-question map from the Programming 622 assignment brief to the most relevant content in this study hub. Start with the topics listed for each question, then use the links to open the fuller explanations, examples, and complexity notes in the general module content.</p>
 			</div>
-			<div class="card coming-soon-card">
-				<span class="coming-soon-label">Coming soon</span>
-				<h3>Assignment Helper is coming soon</h3>
-				<p>This section will be updated when the relevant guidance is available.</p>
+			<div class="callout warning">
+				<strong>Use the assignment brief as the requirement source.</strong> The cards below identify study-guide content to revise; they do not replace the brief's implementation, testing, README, file-submission, or academic-integrity requirements. The subsection marks printed in the brief add to 105, although Question One is labelled 100 marks, so confirm the weighting with your lecturer if needed.
+			</div>
+
+			<div class="assignment-grid">
+				<article class="card assignment-card assignment-question definition" id="assignment-q1" data-nav-section>
+					<div class="question-meta">
+						<span class="question-number">Question 1.1</span>
+						<span class="chip">15 marks</span>
+					</div>
+					<h3>AI Agent Authentication &amp; Access Control</h3>
+					<p>Build the <code>Engineer</code> class, protect its state through a clear interface, store engineers in a vector, and search for valid credentials.</p>
+					<h4>Study-guide content to apply</h4>
+					<ul class="study-links">
+						<li><a href="#ch1-4-classes">Classes</a> and <a href="#ch1-6-adts">ADTs</a> for encapsulated engineer data, accessors, and operations.</li>
+						<li><a href="#ch2-3-vector">STL vector</a> for the engineer collection and <a href="#ch2-7-iterators">iterators</a> for traversal.</li>
+						<li><a href="#ch7-2-sequential-search">Sequential search</a> and <a href="#ch7-4-binary-search">binary search</a> for the linear-versus-binary login comparison.</li>
+						<li><a href="#ch1-3-big-o">Big-O analysis</a> to justify the chosen search strategy and its assumptions, such as sorted data for binary search.</li>
+					</ul>
+					<div class="callout info"><strong>Implementation focus:</strong> Do not store or display a plain-text password. Explain the password representation and make the clearance level explicit, for example with an enum or validated value.</div>
+				</article>
+
+				<article class="card assignment-card assignment-question structure" id="assignment-q2" data-nav-section>
+					<div class="question-meta">
+						<span class="question-number">Question 2.1-2.2</span>
+						<span class="chip">20 marks</span>
+					</div>
+					<h3>City Data Management: Dynamic Containers</h3>
+					<p>Use a vector for daily sensor readings and a linked list for historical logs, then implement insertion, removal, traversal, display, and a complexity comparison.</p>
+					<h4>Study-guide content to apply</h4>
+					<ul class="study-links">
+						<li><a href="#ch2-3-vector">Vector</a>, <a href="#ch2-4-begin-end"><code>begin()</code>/<code>end()</code></a>, and <a href="#ch2-7-iterators">iterators</a> for indexed sensor data and traversal.</li>
+						<li><a href="#ch3-1-linked-lists">Linked lists</a> and <a href="#ch3-2-insertion-deletion">insertion and deletion</a> for the growing log.</li>
+						<li><a href="#ch3-3-linked-list-adt">Linked-list ADTs</a> and <a href="#ch3-7-doubly-linked-lists">list variations</a> when deciding how the log should expose operations.</li>
+						<li><a href="#ch1-3-big-o">Big-O analysis</a> for access, insertion, removal, and traversal; distinguish finding a position from changing links once a node is known.</li>
+					</ul>
+					<div class="callout info"><strong>Comparison to explain:</strong> A vector provides fast indexed access but may move elements during insertion or reallocation. A linked list grows node by node and supports link changes, but traversal and locating an item are sequential.</div>
+				</article>
+
+				<article class="card assignment-card assignment-question success" id="assignment-q3" data-nav-section>
+					<div class="question-meta">
+						<span class="question-number">Question 3.1-3.2</span>
+						<span class="chip">25 marks</span>
+					</div>
+					<h3>Event Processing: FIFO Queue and LIFO Override Stack</h3>
+					<p>Model normal city events with a queue and emergency overrides with a stack, then show how each processing order fits the real-world requirement.</p>
+					<h4>Study-guide content to apply</h4>
+					<ul class="study-links">
+						<li><a href="#ch6-1-queue">Queue operations</a> for arrival order, enqueue, dequeue, front, and empty checks.</li>
+						<li><a href="#ch6-3-linked-queue">Queue implementations</a> and <a href="#ch6-5-simulation">simulation</a> for a real-time event-processing loop.</li>
+						<li><a href="#ch5-1-stack">Stack ADT</a> and <a href="#ch5-code-example">STL <code>stack</code></a> for most-recent-emergency-first processing.</li>
+						<li><a href="#ch6-4-priority-queues">Priority queues</a> as useful context when the system later needs severity-based ordering rather than pure FIFO.</li>
+						<li><a href="#ch2-1-stl-components">STL components</a> and <a href="#ch2-7-iterators">iterators</a> for filtering or prioritising event records with standard-library algorithms.</li>
+					</ul>
+					<div class="callout info"><strong>Design distinction:</strong> A queue answers “which event arrived first?”; a stack answers “which override was added most recently?” Keep the two policies separate even if both are processed in the same simulation.</div>
+				</article>
+
+				<article class="card assignment-card assignment-question structure" id="assignment-q4" data-nav-section>
+					<div class="question-meta">
+						<span class="question-number">Question 4.1</span>
+						<span class="chip">15 marks</span>
+					</div>
+					<h3>Object-Oriented City Architecture</h3>
+					<p>Translate the supplied <code>CityComponent</code> hierarchy and its <code>PowerSystem</code>, <code>TransportSystem</code>, <code>HealthSystem</code>, and <code>SecuritySystem</code> classes into a maintainable C++ design. Demonstrate encapsulation, inheritance, polymorphism, constructors, and destructors through <code>processEvent()</code>.</p>
+					<h4>Study-guide content to apply</h4>
+					<ul class="study-links">
+						<li><a href="#ch1-4-classes">Classes</a> for private state, public behaviour, constructors, and object lifetime.</li>
+						<li><a href="#ch1-6-adts">Data abstraction and ADTs</a> for separating what a city component does from how it does it.</li>
+						<li><a href="#ch1-7-identifying-classes">Identifying classes, objects, and operations</a> when converting the hierarchy diagram into responsibilities.</li>
+						<li><a href="#ch1-5-contracts">Function contracts</a> for documenting preconditions and postconditions around <code>processEvent()</code>.</li>
+					</ul>
+					<div class="callout info"><strong>Implementation focus:</strong> Give the base class a virtual interface and use base-class references or pointers to call the derived overrides. Ensure cleanup is safe when objects are handled polymorphically.</div>
+				</article>
+
+				<article class="card assignment-card assignment-question warning" id="assignment-q5" data-nav-section>
+					<div class="question-meta">
+						<span class="question-number">Question 5.1-5.2</span>
+						<span class="chip">15 marks</span>
+					</div>
+					<h3>STL Algorithms and Performance Optimisation</h3>
+					<p>Apply the required algorithms to sensor data and events, then justify each choice with a time-complexity explanation.</p>
+					<h4>Study-guide content to apply</h4>
+					<ul class="study-links">
+						<li><a href="#ch2-1-stl-components">STL components</a> and <a href="#ch2-7-iterators">iterators</a> for algorithm ranges and container-independent code.</li>
+						<li><a href="#ch8-1-sorting-overview">Sorting algorithms</a> for <code>sort</code> and the reason ordering can improve later searches.</li>
+						<li><a href="#ch7-1-search-keys">Search algorithms</a> and <a href="#ch7-2-sequential-search">sequential search</a> for <code>find</code> and event lookup.</li>
+						<li><a href="#ch1-3-big-o">Big-O analysis</a> for <code>sort</code>, <code>find</code>, <code>min_element</code>, <code>max_element</code>, and <code>count_if</code>; state whether the operation makes one pass, sorts the range, or depends on an ordered input.</li>
+					</ul>
+					<div class="callout warning"><strong>Be precise:</strong> The assignment names standard algorithms that are not all demonstrated individually in the general content. Use the STL and iterator material for the pattern, then document the complexity of the exact algorithm call you use.</div>
+				</article>
+
+				<article class="card assignment-card assignment-question definition" id="assignment-q6" data-nav-section>
+					<div class="question-meta">
+						<span class="question-number">Question 6.1</span>
+						<span class="chip">5 marks</span>
+					</div>
+					<h3>System Reports and Analytics</h3>
+					<p>Turn the stored events and response measurements into readable reports: totals, most-common emergency type, averages, and a load summary.</p>
+					<h4>Study-guide content to apply</h4>
+					<ul class="study-links">
+						<li><a href="#ch2-7-iterators">Iterators</a> for scanning containers without coupling the report code to one concrete container.</li>
+						<li><a href="#ch2-1-stl-components">STL containers and algorithms</a> for counting, accumulating, filtering, and formatting report data.</li>
+						<li><a href="#ch7-1-search-keys">Search keys</a> and <a href="#ch7-6-hashing">hashing</a> as optional approaches for grouping emergency types efficiently.</li>
+						<li><a href="#ch1-3-big-o">Big-O analysis</a> to explain the cost of generating each report and whether repeated scans could be improved.</li>
+					</ul>
+					<div class="callout info"><strong>Report checklist:</strong> Define what counts as processed, how averages handle an empty dataset, and how ties are handled for the most-common emergency type.</div>
+				</article>
+
+				<article class="card assignment-card assignment-question danger wide" id="assignment-q7" data-nav-section>
+					<div class="question-meta">
+						<span class="question-number">Question 7.1</span>
+						<span class="chip">10 marks</span>
+					</div>
+					<h3>File Handling and Persistence</h3>
+					<p>Save and restore the system state through the requested <code>.dat</code> and <code>.txt</code> files, and export logs in text or CSV form.</p>
+					<h4>Study-guide content to apply</h4>
+					<ul class="study-links">
+						<li><a href="#chapter-1">Chapter 1: software design and classes</a> for giving persistence a clear responsibility and defining what state belongs to each class.</li>
+						<li><a href="#ch2-7-iterators">Iterators</a> and <a href="#ch3-3-linked-list-adt">container ADTs</a> for serialising records consistently during save and load.</li>
+						<li><a href="#ch2-3-vector">Vector</a> and <a href="#chapter-3">linked-list containers</a> for rebuilding in-memory collections after reading files.</li>
+						<li><a href="#ch1-5-contracts">Function contracts</a> for documenting file-open failures, malformed records, missing files, and post-load invariants.</li>
+					</ul>
+					<div class="callout danger"><strong>Scope note:</strong> File streams are an assignment extension rather than a standalone chapter in this study-guide-derived page. Keep the persistence layer separate from the data structures, validate every open/read operation, and explain the chosen text or binary format in the README.</div>
+				</article>
 			</div>
 		</section>
 
@@ -792,7 +983,13 @@
 				<h3>Exam focus areas are coming soon</h3>
 				<p>The current exam-focus content has been cleared and will be updated when the confirmed focus areas are provided.</p>
 			</div>
-		</section>
+			</section>
+
+		<section class="content-section" id="general-module-content" data-nav-section>
+			<div class="section-heading">
+				<h2>General Module Content</h2>
+				<p>Use the chapter links below for the full study-guide-derived explanations and examples referenced by the Assignment Helper.</p>
+			</div>
 			<section class="chapter" id="chapter-1" data-nav-section>
 				<h2>1. Software Engineering Principles And C++ Classes</h2>
 				<p>The guide starts by connecting software engineering practice to C++ program design: understand the problem, design algorithms and objects, implement with documented functions and classes, then test before the program enters long-term maintenance.</p>
