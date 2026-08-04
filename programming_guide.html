@@ -406,6 +406,21 @@
 			margin-top: 6px;
 		}
 
+		.resource-grid {
+			display: grid;
+			grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
+			gap: 18px;
+		}
+
+		.video-embed {
+			width: 100%;
+			aspect-ratio: 16 / 9;
+			margin-top: 14px;
+			border: 0;
+			border-radius: var(--radius);
+			background: var(--code-bg);
+		}
+
 		.definition { border-top: 3px solid var(--cyan); }
 		.success { border-top: 3px solid var(--green); }
 		.warning { border-top: 3px solid var(--amber); }
@@ -682,7 +697,8 @@
 		@media (max-width: 1100px) {
 			.assignment-grid,
 			.grid,
-			.grid.three {
+			.grid.three,
+			.resource-grid {
 				grid-template-columns: 1fr;
 			}
 
@@ -808,6 +824,13 @@
 		<div class="nav-group">
 			<h2>Preparation Station</h2>
 			<a href="#preparation-station" data-nav-link="preparation-station">Coming Soon</a>
+		</div>
+
+		<div class="nav-group">
+			<h2>Resources</h2>
+			<a href="#resources" data-nav-link="resources">Overview</a>
+			<a href="#resource-videos" data-nav-link="resource-videos">Videos</a>
+			<a href="#resource-articles" data-nav-link="resource-articles">Articles</a>
 		</div>
 	</nav>
 
@@ -3097,6 +3120,34 @@ int main() {
 				<span class="coming-soon-label">Coming soon</span>
 				<h3>More learning tools are on the way</h3>
 				<p>Quizzes, flashcards, guided practice, and other active-recall tools will be added here.</p>
+			</div>
+		</section>
+
+		<section class="content-section" id="resources" data-nav-section>
+			<div class="section-heading">
+				<h2>Resources</h2>
+				<p>Helpful videos and articles to support your Programming 622 revision.</p>
+			</div>
+
+			<div class="resource-grid">
+				<article class="card resource-card definition" id="resource-videos" data-nav-section>
+					<h3>Videos</h3>
+					<p>C++ STL containers explained for beginners, including vectors, lists, maps, and more.</p>
+					<iframe
+						class="video-embed"
+						src="https://www.youtube.com/embed/nx3Mpy1X-kk"
+						title="C++ STL Containers Explained for Beginners | Vector, List, Map &amp; More!"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+						referrerpolicy="strict-origin-when-cross-origin"
+						allowfullscreen>
+					</iframe>
+				</article>
+
+				<article class="card resource-card structure" id="resource-articles" data-nav-section>
+					<h3>Articles</h3>
+					<span class="coming-soon-label">Coming soon</span>
+					<p>Articles and written resources will be added here.</p>
+				</article>
 			</div>
 		</section>
 
