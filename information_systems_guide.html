@@ -611,7 +611,10 @@
 				</div>
 <details class="nav-group nav-collapsible">
 	<summary>Assignment Helper</summary>
-	<a class="nav-link" href="#assignment-helper" data-nav-link="assignment-helper">Questions 1-3</a>
+	<a class="nav-link" href="#assignment-helper" data-nav-link="assignment-helper">Overview</a>
+	<a class="nav-link" href="#assignment-question-1" data-nav-link="assignment-question-1">Question 1: Object-oriented analysis</a>
+	<a class="nav-link" href="#assignment-question-2" data-nav-link="assignment-question-2">Question 2: Sequence diagrams and BPM</a>
+	<a class="nav-link" href="#assignment-question-3" data-nav-link="assignment-question-3">Question 3: Support and security</a>
 </details>
 
 <details class="nav-group nav-collapsible">
@@ -662,98 +665,113 @@
 				<section class="section" id="assignment-helper" data-nav-section>
 					<div class="section-heading">
 						<h2>Assignment Helper</h2>
-						<p>Use this as a question-by-question reading map for the 2026 Information Systems 622 assignment. It highlights the study-guide ideas that apply to each question and links directly to the fuller explanations in General Module Content.</p>
+						<p>This reading map follows the corrected 2026 Information Systems 622 assignment. It summarises the study-guide concepts that apply to each question and links directly to the fuller explanations in General Module Content.</p>
 					</div>
-					<div class="note success"><strong>How to use this section:</strong> Start with the question prompt, revise the linked concepts, then build your answer around definition, application to the scenario, comparison or evaluation, and a justified conclusion. The notes are study prompts rather than a model answer.</div>
+					<div class="note success"><strong>How to use this section:</strong> Build each answer from accurate definitions, application to the scenario, comparison or evaluation, and a justified conclusion. These notes are revision prompts, not a model answer. The assignment includes 10 marks for presentation and compliance, plus 30 marks for each question.</div>
 					<div class="grid">
-						<article class="card assignment-card wide" id="assignment-question-1">
-							<h3>Question 1 · Development strategies <span class="muted">(25 marks)</span></h3>
-							<p><strong>Question focus:</strong> Critically discuss the strategies available when organizations acquire information systems, compare traditional and web-based development, assess emerging trends, evaluate acquisition options, and explain the systems analyst's role.</p>
+						<article class="card assignment-card wide" id="assignment-question-1" data-nav-section>
+							<h3>Question 1 · Object-oriented analysis <span class="muted">(30 marks)</span></h3>
+							<p><strong>Question focus:</strong> Compare object-oriented analysis (OOA) with structured analysis, explain encapsulation, inheritance and polymorphism, then distinguish classes, subclasses and superclasses and apply object relationships to a business scenario.</p>
 							<div class="assignment-part">
-								<h4>1.1 Compare the development environments</h4>
+								<h4>1.1 OOA versus structured analysis <span class="muted">(10 marks)</span></h4>
 								<ul>
-									<li>Contrast traditional development, where the organization and its legacy environment remain central, with web-based development, where the web is part of the application platform.</li>
-									<li>Compare scalability, device dependence, integration, security exposure, implementation speed, and ongoing support.</li>
+									<li><strong>Structured analysis</strong> decomposes a system into processes, modules, data flows and control flows. Connect it to DFDs, structure charts, conditions, loops and pseudocode.</li>
+									<li><strong>OOA</strong> models the system as interacting objects that combine data and behaviour. Connect it to classes, attributes, methods, messages, class diagrams and object relationships.</li>
+									<li>Choose a business problem with interacting entities and changing behaviour, such as an online retail order system, banking system or hospital booking system, and explain why the object view makes the relationships easier to represent.</li>
 								</ul>
-								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch1-1-traditional-vs-web">Traditional vs Web-Based Systems</a> <a href="#ch4-7-evolution-client-server">Architecture Evolution and Client/Server Design</a></div>
+								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch5-2-development-methods">Development Methods</a> <a href="#ch5-7-development-methods-expanded">Structured, Object-Oriented and Agile Development</a> <a href="#ch5-ooa-object-concepts">OOA Essentials</a></div>
 							</div>
 							<div class="assignment-part">
-								<h4>1.2 Explain how trends change the choice</h4>
+								<h4>1.2 Explain the three OOA concepts <span class="muted">(10 marks)</span></h4>
 								<ul>
-									<li>Web 2.0 increases collaboration, interaction, user-generated information, and information sharing.</li>
-									<li>Cloud computing and SaaS shift infrastructure, updates, and maintenance toward a service provider.</li>
-									<li>Mobile devices expand access requirements and make responsive interfaces, compatibility, availability, and security important design considerations.</li>
+									<li><strong>Encapsulation:</strong> keep an object's data and the methods that manage it together, while controlling direct access to its internal state. Example: an Account exposes deposit and withdraw operations instead of allowing any process to change the balance freely.</li>
+									<li><strong>Inheritance:</strong> allow a subclass to reuse and extend attributes or methods from a superclass. Example: SavingsAccount and BusinessAccount inherit common features from Account.</li>
+									<li><strong>Polymorphism:</strong> allow related objects to respond to the same operation in different ways. Example: different Payment subclasses implement processPayment according to card, EFT or mobile-wallet rules.</li>
 								</ul>
-								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch1-2-trends">Evolving Trends</a> <a href="#ch4-3-processing">Internet, E-Commerce and Processing</a> <a href="#ch2-5-prototyping">Prototyping and Trends</a></div>
+								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch5-ooa-object-concepts">OOA Essentials</a> <a href="#ch5-7-development-methods-expanded">Object-Oriented Development</a></div>
 							</div>
 							<div class="assignment-part">
-								<h4>1.3 Evaluate the acquisition strategies</h4>
+								<h4>1.3 Classes and object relationships <span class="muted">(10 marks)</span></h4>
 								<ul>
-									<li><strong>In-house:</strong> stronger control, business fit, and internal capability, but higher staffing, development, testing, and support demands.</li>
-									<li><strong>Outsourcing:</strong> access to specialist skills and potentially faster delivery, but introduces vendor dependency, contract, quality, security, and control risks.</li>
-									<li><strong>Offshoring:</strong> can reduce cost, but requires careful treatment of time zones, language, culture, communication, security, and project control.</li>
-									<li><strong>SaaS:</strong> hosted access with less installation and maintenance, but ongoing fees, data control, service availability, integration, and exit risks must be considered.</li>
+									<li>A <strong>class</strong> is a blueprint that defines attributes and methods; an <strong>object</strong> is a concrete instance of that class.</li>
+									<li>A <strong>superclass</strong> holds common features; a <strong>subclass</strong> inherits them and may add or override behaviour. Use a clear hierarchy such as Customer -> PremiumCustomer.</li>
+									<li>Explain relationships such as association, aggregation or composition as the links that let objects collaborate to complete business functions. In an online shop, Customer places Order, Order contains OrderLine items, and Order is paid through Payment.</li>
 								</ul>
-								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch1-3-development-options">Development Options</a> <a href="#ch1-5-build-buy-customize">Make, Buy, Customize or Empower Users</a> <a href="#ch1-6-outsourcing-saas-offshoring">Outsourcing, Offshoring and SaaS</a></div>
-							</div>
-							<div class="assignment-part">
-								<h4>1.4 Show the systems analyst's decision process</h4>
-								<ul>
-									<li>Start with business and system requirements, web/network needs, expected growth, existing systems, resources, cost-benefit results, total cost of ownership, risk, and support needs.</li>
-									<li>Compare alternatives, involve users and management, use an RFP or RFQ where appropriate, and recommend the option that best fits the organization's strategy and constraints.</li>
-								</ul>
-								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch1-4-acquisition">Software Acquisition Process</a> <a href="#ch1-worked-acquisition-case">Worked Acquisition Example</a></div>
+								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch5-ooa-object-concepts">OOA Essentials</a> <a href="#ch3-3-erd">Entity-Relationship Diagrams</a> <a href="#ch5-7-development-methods-expanded">Object Relationships and Implementation</a></div>
 							</div>
 						</article>
 
-						<article class="card assignment-card wide" id="assignment-question-2">
-							<h3>Question 2 · TravelGo and digital tourism <span class="muted">(35 marks)</span></h3>
-							<p><strong>Scenario reminder:</strong> TravelGo must explain how digital platforms changed travel and tourism, then use information systems to improve customer service and regain competitiveness.</p>
+						<article class="card assignment-card wide" id="assignment-question-2" data-nav-section>
+							<h3>Question 2 · Sequence diagrams and BPM <span class="muted">(30 marks)</span></h3>
+							<p><strong>Question focus:</strong> Explain how sequence diagrams visualise system interactions, develop an e-commerce checkout sequence, and distinguish Business Process Modelling (BPM) from object modelling.</p>
 							<div class="assignment-part">
-								<h4>2.1 Analyse three digital disruptions <span class="muted">(20 marks)</span></h4>
+								<h4>2.1 Sequence diagram for an e-commerce checkout <span class="muted">(15 marks)</span></h4>
 								<ul>
-									<li>Choose three distinct disruptions and use the same comparison pattern for each: how the traditional agency worked, how the digital approach works, which IS concepts enable it, and what changed for competition, decision-making, pricing, and industry roles.</li>
-									<li>Useful disruption choices include user-generated reviews and discovery; mobile self-service booking and real-time online processing; and platform-based price comparison, dynamic pricing, integration, and personalised recommendations.</li>
-									<li>Link the scenario to cloud computing, Web 2.0, mobile access, data analytics, system integration, online processing, and three-tier/web architecture. Explain the technology-to-business effect rather than only naming the technology.</li>
+									<li>Explain that a sequence diagram shows the time-ordered messages exchanged between actors or objects. Use lifelines, activation periods, messages, return messages and the top-to-bottom flow of time.</li>
+									<li>Include at least Customer, Checkout or Order Service, Payment Gateway and Inventory System. A strong sequence is: customer submits order; checkout validates the cart; inventory is checked or reserved; payment is authorised; inventory is updated; the order is confirmed or an error is returned.</li>
+									<li>Show alternative outcomes such as payment failure or unavailable stock. Label the messages with meaningful operations rather than drawing unexplained arrows.</li>
 								</ul>
-								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch1-2-trends">Evolving Trends</a> <a href="#ch3-7-dbms-components-web-design">DBMS Components and Web-Based Data Design</a> <a href="#ch4-3-processing">Internet, E-Commerce and Processing</a> <a href="#ch4-7-evolution-client-server">Architecture Evolution and Client/Server Design</a> <a href="#ch4-8-internet-processing-network-example">Worked Architecture Example</a></div>
-								<div class="note">The guide provides the IS concepts; examples such as Airbnb's dynamic pricing, Uber's surge pricing, and platform-specific market data should be supported with current external sources in the assignment.</div>
+								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch5-sequence-diagrams-bpm">Sequence Diagrams and BPM</a> <a href="#ch5-ooa-object-concepts">OOA Essentials</a> <a href="#ch4-3-processing">Internet, E-Commerce and Processing</a></div>
 							</div>
 							<div class="assignment-part">
-								<h4>2.2 Apply BSS and KMS to customer service <span class="muted">(15 marks)</span></h4>
+								<h4>2.2 BPM versus object modelling <span class="muted">(15 marks)</span></h4>
 								<ul>
-									<li>Use <strong>Business Support Systems (BSS)</strong> as the operational layer for customer profiles, bookings, service interactions, dashboards, and decision support.</li>
-									<li>Use <strong>Knowledge Management Systems (KMS)</strong> as the organizational learning layer for FAQs, policies, destination knowledge, resolved support cases, and chatbot content.</li>
-									<li>Evaluate predictive analytics, customer profiling, chatbots, and knowledge databases for service quality, response speed, personalisation, consistency, and better decisions. Also discuss privacy, data quality, bias, and human escalation.</li>
-									<li>End with two immediate, practical recommendations for TravelGo, such as an integrated mobile/web booking and customer-profile platform, plus a searchable knowledge base with chatbot and human hand-off.</li>
+									<li><strong>BPM</strong> focuses on an end-to-end business process: activities, events, decisions, roles, hand-offs and the outcome. It helps people understand how work moves through an organisation.</li>
+									<li><strong>Object modelling</strong> focuses on the system's objects or classes, their data, behaviour and relationships. It helps designers translate business concepts into software structure.</li>
+									<li>Explain two realistic BPM uses, such as order fulfilment from purchase to delivery, and employee onboarding from recruitment to account setup. For each, identify the process problem BPM would clarify.</li>
 								</ul>
-								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch6-1-support">User Support</a> <a href="#ch6-6-user-support-help-desk">User Support and Help Desks</a> <a href="#ch4-3-processing">Internet, E-Commerce and Processing</a> <a href="#ch4-6-architecture-checklist-expanded">Architecture Checklist</a> <a href="#ch6-8-performance-security-expanded">Performance and Security</a></div>
+								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch5-sequence-diagrams-bpm">Sequence Diagrams and BPM</a> <a href="#ch5-7-development-methods-expanded">Object-Oriented Development</a> <a href="#ch4-6-architecture-checklist-expanded">Business Processes and Architecture</a></div>
 							</div>
 						</article>
 
-						<article class="card assignment-card wide" id="assignment-question-3">
-							<h3>Question 3 · EduTech analysis and modelling <span class="muted">(30 marks)</span></h3>
-							<p><strong>Scenario reminder:</strong> EduTech needs one integrated student system that connects registration, academic records, fees, and learning material instead of leaving each department with separate manual or spreadsheet-based processes.</p>
+						<article class="card assignment-card wide" id="assignment-question-3" data-nav-section>
+							<h3>Question 3 · Systems support and security essay <span class="muted">(30 marks)</span></h3>
+							<p><strong>Scenario reminder:</strong> A large retailer has downtime, slow response times, user complaints and attempted cyberattacks while management considers whether to maintain or replace the current integrated system.</p>
 							<div class="assignment-part">
-								<h4>3.1 Compare the modelling tools <span class="muted">(15 marks)</span></h4>
+								<h4>Essay structure and user support <span class="muted">(6 marks)</span></h4>
 								<ul>
-									<li><strong>DFD:</strong> shows where data comes from, how processes transform it, where it is stored, and where it goes. Example: student registration data flows through validation into a student/course data store.</li>
-									<li><strong>UML use case diagram:</strong> shows who interacts with the system and what goals or functions they need. Example: Student, Finance Officer, and Lecturer interact with “Manage Student Account” or “View Academic Record.”</li>
-									<li><strong>Class diagram:</strong> shows the objects/classes, their attributes, methods, and relationships. Example: Student enrols in Course, Course is taught by Lecturer, and Student has Fee Account.</li>
-									<li>Explain when each is most useful and its limitation: DFDs can simplify object behaviour, use cases do not show detailed data structure, and class diagrams can be too technical or static to explain the full business process.</li>
+									<li>Open by diagnosing the linked problems: performance, reliability, user capability, support workload and security risk. Then use a subheading for each rubric requirement and finish with a recommendation.</li>
+									<li>Improve training through role-specific onboarding, refresher sessions after changes, updated manuals or online support, and hands-on practice.</li>
+									<li>Improve the help desk as a central first point of contact that logs incidents, answers technical and operational questions, identifies recurring problems, maintains a knowledge base and measures response and resolution times.</li>
 								</ul>
-								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch5-2-development-methods">Development Methods</a> <a href="#ch5-7-development-methods-expanded">Structured and Object-Oriented Development</a> <a href="#ch3-3-erd">Entity-Relationship Diagrams</a> <a href="#ch3-7-dbms-components-web-design">DBMS Components and Web-Based Data Design</a></div>
+								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch6-1-support">User Support</a> <a href="#ch6-6-user-support-help-desk">User Training and Help Desks</a> <a href="#ch5-8-testing-docs-expanded">Documentation and Evaluation</a></div>
 							</div>
 							<div class="assignment-part">
-								<h4>3.2 Show how requirements gathering prevents failure <span class="muted">(15 marks)</span></h4>
+								<h4>Maintenance types and management <span class="muted">(14 marks)</span></h4>
 								<ul>
-									<li><strong>Interviews and JAD sessions:</strong> bring students, lecturers, finance, registration, and IT together to surface conflicting definitions, hand-off problems, and shared priorities.</li>
-									<li><strong>Surveys:</strong> collect broad feedback from many students and staff; <strong>observation:</strong> reveals workarounds and the difference between documented and actual processes; <strong>document analysis:</strong> exposes duplicate spreadsheets, inconsistent forms, and missing controls.</li>
-									<li>Use DFDs to clarify process and data movement, a data dictionary to define fields consistently, UML to clarify actors and responsibilities, and data-design techniques to reduce duplication and improve integrity.</li>
-									<li>Close with two concrete benefits, such as automated and consistent fee statements, real-time academic progress tracking, fewer duplicate records, and fewer manual administrative errors.</li>
+									<li><strong>Corrective:</strong> fix defects causing crashes, incorrect transactions or outages.</li>
+									<li><strong>Adaptive:</strong> change the system for new regulations, hardware, operating systems, interfaces or business requirements.</li>
+									<li><strong>Perfective:</strong> improve slow reports, response times, usability or maintainability.</li>
+									<li><strong>Preventive:</strong> reduce future failure through refactoring, patching, monitoring, backups and security hardening.</li>
+									<li>For management, discuss a maintenance team, logged maintenance requests, prioritisation by urgency/risk/value, quality assurance, configuration management, version control, baselines and planned maintenance releases. Include performance measures such as response time, throughput, workload and capacity planning to address cost and reliability.</li>
 								</ul>
-								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch2-5-prototyping">Prototyping and User Feedback</a> <a href="#ch3-1-dbms">Data Structures and DBMS</a> <a href="#ch3-2-terms-integrity">Data Terms and Integrity</a> <a href="#ch3-4-normalization">Normalization</a> <a href="#ch5-8-testing-docs-expanded">Testing and Documentation</a> <a href="#ch2-4-reports-controls">Forms, Reports and Controls</a></div>
+								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch6-2-maintenance">Maintenance Tasks</a> <a href="#ch6-7-maintenance-management-expanded">Maintenance Types and Management</a> <a href="#ch6-3-performance">Maintenance and Performance Management</a> <a href="#ch6-8-performance-security-expanded">Performance and Security</a></div>
 							</div>
+							<div class="assignment-part">
+								<h4>Security across four levels <span class="muted">(6 marks)</span></h4>
+								<ul>
+									<li>Discuss any four levels, but make each control specific to the attempted cyberattacks: <strong>network</strong> firewalls and intrusion monitoring; <strong>application</strong> patches, secure configuration, validation and logging; <strong>file</strong> permissions, encryption and backups; <strong>user</strong> authentication, least privilege, strong passwords and awareness; plus physical or procedural controls if useful.</li>
+									<li>Do not simply list controls. Explain the asset or risk each level protects and how the control reduces likelihood or impact.</li>
+								</ul>
+								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch6-4-security">Security Levels</a> <a href="#ch6-8-performance-security-expanded">Performance and Security Controls</a> <a href="#ch6-5-backup-retirement">Backup, Recovery and Retirement</a></div>
+							</div>
+							<div class="assignment-part">
+								<h4>End-of-life indicators and recommendation <span class="muted">(4 marks)</span></h4>
+								<ul>
+									<li>Look for rising corrective or adaptive maintenance, increasing operating costs or execution times, expensive changes, a better replacement package, emerging technology, unmet user demands and declining user satisfaction.</li>
+									<li>Recommend a reasoned course of action: continue with controlled maintenance if the system remains viable, or begin replacement/modernisation planning if performance, cost, security and business fit are deteriorating. Mention migration, continuity and changeover risks.</li>
+								</ul>
+								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch6-5-backup-retirement">Backup, Recovery and Retirement</a> <a href="#ch6-9-backup-retirement-worked-example">Worked Retirement Example</a> <a href="#ch5-5-changeover">Installation and Changeover</a></div>
+							</div>
+						</article>
+
+						<article class="card assignment-card wide" id="assignment-compliance">
+							<h3>Presentation and compliance <span class="muted">(10 marks)</span></h3>
+							<ul>
+								<li>Use the required cover page, Times New Roman 12-point font and 1.5 line spacing.</li>
+								<li>Include a table of contents, introduction, main body with relevant subheadings, conclusion and references.</li>
+								<li>Apply Harvard referencing consistently, sign the declaration of originality and submit the final document as a PDF on Moodle.</li>
+							</ul>
 						</article>
 					</div>
 				</section>
@@ -1363,6 +1381,29 @@
 									<tr><td>Extreme programming</td><td>Emphasizes small releases, constant testing, user involvement, and adaptable design.</td><td>Often appears in questions about rapid change and close customer participation.</td></tr>
 								</table>
 								<div class="note">Exam trap: <code>cohesion</code> and <code>coupling</code> are not opposites. You want high cohesion inside a module and loose coupling between modules.</div>
+							</article>
+							<article class="card chapter-card wide" id="ch5-ooa-object-concepts">
+								<h3>OOA Essentials: Classes and Object Relationships</h3>
+								<p>Object-oriented analysis organises a system around objects that combine data and behaviour. A class defines attributes and methods; an object is an instance of a class; and relationships show how objects collaborate to carry out business functions.</p>
+								<table>
+									<tr><th>Concept</th><th>Meaning</th><th>Simple example</th></tr>
+									<tr><td>Encapsulation</td><td>Keep data and the methods that manage it together, with controlled access to internal state.</td><td>An Account exposes deposit and withdraw operations.</td></tr>
+									<tr><td>Inheritance</td><td>A subclass reuses and extends attributes or methods from a superclass.</td><td>SavingsAccount inherits common features from Account.</td></tr>
+									<tr><td>Polymorphism</td><td>Related objects respond to the same operation in different ways.</td><td>CardPayment and EFTPayment each implement processPayment differently.</td></tr>
+									<tr><td>Object relationship</td><td>An association, aggregation or composition that connects collaborating objects.</td><td>Customer places Order; Order contains OrderLine items.</td></tr>
+								</table>
+								<div class="note success">The study guide links OOA to classes, attributes, methods, messages, class diagrams and object relationship diagrams. Use the assignment examples to show how those structures support real business behaviour.</div>
+							</article>
+							<article class="card chapter-card wide" id="ch5-sequence-diagrams-bpm">
+								<h3>Sequence Diagrams and Business Process Modelling</h3>
+								<p>A sequence diagram visualises event-driven interaction in time order. Lifelines represent actors or objects, and messages show the requests and responses passed between them. The guide identifies sequence diagrams alongside class, state transition and activity diagrams as key object-oriented design documents.</p>
+								<table>
+									<tr><th>Assignment idea</th><th>What to show</th></tr>
+									<tr><td>E-commerce checkout</td><td>Customer submits an order; checkout validates it; inventory is checked; the payment gateway authorises payment; inventory is updated; confirmation or an error is returned.</td></tr>
+									<tr><td>BPM</td><td>Model the end-to-end business process with activities, events, decisions, roles, hand-offs and outcomes.</td></tr>
+									<tr><td>Object modelling</td><td>Model the classes or objects, their attributes, methods, messages and relationships that implement the process.</td></tr>
+								</table>
+								<p>Use BPM for scenarios such as order fulfilment or employee onboarding when the main question is how work moves through the organisation. Use object modelling when the main question is how software objects represent and perform that work.</p>
 							</article>
 							<article class="card chapter-card wide" id="ch5-8-testing-docs-expanded">
 								<h3>5.6-5.8 Coding, Testing and Documentation</h3>
