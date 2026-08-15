@@ -926,8 +926,9 @@
 		}
 	</style>
 	<link rel="stylesheet" href="module-theme.css">
+	<link rel="stylesheet" href="module-learning-lab.css">
 </head>
-<body class="module-page module-internet-programming" style="--module-accent: var(--red); --module-accent-soft: rgba(248, 81, 73, 0.14); --module-accent-border: rgba(248, 81, 73, 0.5);">
+<body class="module-page module-internet-programming" data-learning-lab="internet-programming" style="--module-accent: var(--red); --module-accent-soft: rgba(248, 81, 73, 0.14); --module-accent-border: rgba(248, 81, 73, 0.5);">
 	<a class="skip-link" href="#main-content">Skip to main content</a>
 	<div class="progress" aria-hidden="true"><span id="scroll-progress"></span></div>
 	<button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false">Menu</button>
@@ -970,14 +971,11 @@
 
 		<details class="nav-group nav-collapsible">
 			<summary>Learning Lab</summary>
-			<a href="#quiz-builder" data-nav-link="preparation-station">Quiz Builder</a>
-			<a href="#flashcards">Flashcards</a>
-			<a href="#code-practice">Code Practice</a>
-			<a href="#code-tracer">Code Tracer</a>
-			<a href="#form-simulator">Form Simulator</a>
-			<a href="#state-visualizer">Sessions and Cookies</a>
-			<a href="#sql-sandbox">SQL Sandbox</a>
-			<a href="#debugging">Concept Checker</a>
+			<a href="#ip-quiz-builder" data-nav-link="preparation-station">Quiz Builder</a>
+			<a href="#ip-flashcards">Flashcards</a>
+			<a href="#ip-concept-checker">Concept Checker</a>
+			<a href="#ip-code-practice">Fill in the Code</a>
+			<a href="#ip-code-tracer">Code Tracer</a>
 		</details>
 	</nav>
 
@@ -2516,13 +2514,13 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 				</section>
 			</section>
 
-		<section id="preparation-station" class="quiz-section" data-nav-section>
+		<section id="legacy-preparation-station" class="quiz-section" data-nav-section hidden>
 			<div class="section-heading">
 				<h2>Learning Lab</h2>
 				<p>Use these interactive study tools to prepare for assessment. They run entirely in this page and do not change real files, sessions, or databases.</p>
 			</div>
 
-			<div class="learning-lab" id="learning-lab">
+			<div class="learning-lab" id="legacy-learning-lab">
 			<div class="quiz-panel" id="quiz-builder">
 				<div class="quiz-controls">
 					<h3>Quiz Builder</h3>
@@ -2673,6 +2671,16 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 					</div>
 					<div class="sql-result" id="sql-result" aria-live="polite"></div>
 				</article>
+			</div>
+		</section>
+
+		<section class="content-section module-learning-lab" id="preparation-station" data-nav-section data-lab-prefix="ip">
+			<div class="section-heading"><h2>Learning Lab</h2><p>Use these interactive tools to practise each Internet Programming topic. Your quiz attempts are saved only in this browser.</p></div>
+			<div class="learning-lab-grid">
+				<div class="learning-lab-panel learning-lab-quiz" id="ip-quiz-builder"><h3>Quiz Builder</h3><p>Choose how many questions to draw from each topic, then answer and submit when ready.</p><div class="lab-counts"></div><div class="lab-actions"><button class="lab-button" type="button" data-lab-action="new-quiz">Start New Quiz</button><button class="lab-button secondary" type="button" data-lab-action="restart-quiz">Restart Current Quiz</button><button class="lab-button danger" type="button" data-lab-action="clear-progress">Clear Progress</button></div></div>
+				<div class="lab-summary" aria-live="polite"></div><div class="lab-questions"></div><button class="lab-button learning-lab-quiz lab-submit" type="button" data-lab-action="submit-quiz">Submit Quiz</button><div class="lab-history learning-lab-quiz"></div>
+				<article class="learning-lab-panel lab-flashcards-panel" id="ip-flashcards"><h3>Flashcards</h3><p>Recall the definition before flipping the card.</p><div class="lab-flashcard" tabindex="0" role="button"></div><div class="lab-actions"><button class="lab-button secondary" type="button" data-lab-action="previous-card">Previous</button><button class="lab-button" type="button" data-lab-action="flip">Flip card</button><button class="lab-button secondary" type="button" data-lab-action="next-card">Next</button></div><div class="lab-feedback lab-flashcard-status" aria-live="polite"></div></article>
+				<article class="learning-lab-panel lab-challenge-panel" id="ip-concept-checker"><h3>Concept Checker</h3><p class="lab-challenge-prompt"></p><div class="lab-options lab-challenge-options"></div><div class="lab-feedback lab-challenge-feedback" aria-live="polite"></div><div class="lab-actions"><button class="lab-button secondary" type="button" data-lab-action="next-challenge">Next challenge</button></div></article>
 			</div>
 		</section>
 		</div>
@@ -3683,5 +3691,6 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 		updateProgress();
 		updateActiveFromScroll();
 	</script>
+	<script src="module-learning-lab.js"></script>
 </body>
 </html>
