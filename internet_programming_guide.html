@@ -977,7 +977,7 @@
 			<a href="#form-simulator">Form Simulator</a>
 			<a href="#state-visualizer">Sessions and Cookies</a>
 			<a href="#sql-sandbox">SQL Sandbox</a>
-			<a href="#debugging">Debugging</a>
+			<a href="#debugging">Concept Checker</a>
 		</details>
 	</nav>
 
@@ -2600,8 +2600,8 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 				</article>
 
 				<article class="learning-tool" id="debugging">
-					<h3>Debugging Challenge</h3>
-					<p>Find the mistake before revealing the explanation.</p>
+					<h3>Concept Checker</h3>
+					<p>Choose from 20 concept checks per topic, then use the explanation to strengthen your reasoning.</p>
 					<div class="tool-controls">
 						<label>Challenge
 							<select id="debug-challenge" aria-label="Debugging challenge"></select>
@@ -2700,6 +2700,11 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 		);
 		const trackedSections = Array.from(document.querySelectorAll('[data-nav-section]'));
 		const quizStorageKey = 'ip622.quiz.v1';
+		const browserStorage = {
+			get(key) { try { return window.localStorage ? window.localStorage.getItem(key) : null; } catch { return null; } },
+			set(key, value) { try { if (window.localStorage) window.localStorage.setItem(key, value); } catch { /* Storage can be blocked for local files. */ } },
+			remove(key) { try { if (window.localStorage) window.localStorage.removeItem(key); } catch { /* Storage can be blocked for local files. */ } },
+		};
 		const quizCounts = document.querySelector('#quiz-counts');
 		const quizStart = document.querySelector('#quiz-start');
 		const quizRestart = document.querySelector('#quiz-restart');
@@ -2974,16 +2979,16 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 
 		function loadQuizState() {
 			try {
-				const parsed = JSON.parse(localStorage.getItem(quizStorageKey));
+				const parsed = JSON.parse(browserStorage.get(quizStorageKey));
 				if (parsed && typeof parsed === 'object') return parsed;
 			} catch (error) {
-				localStorage.removeItem(quizStorageKey);
+				browserStorage.remove(quizStorageKey);
 			}
 			return { current: null, attempts: [] };
 		}
 
 		function saveQuizState() {
-			localStorage.setItem(quizStorageKey, JSON.stringify(quizState));
+			browserStorage.set(quizStorageKey, JSON.stringify(quizState));
 		}
 
 		function shuffle(items) {
@@ -3048,7 +3053,7 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 		function clearQuizProgress() {
 			if (!window.confirm('Clear saved quiz progress and marks for this browser?')) return;
 			quizState = { current: null, attempts: [] };
-			localStorage.removeItem(quizStorageKey);
+			browserStorage.remove(quizStorageKey);
 			renderQuiz();
 		}
 
@@ -3261,12 +3266,48 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 			{ title: 'File overwrite', code: '$handle = fopen("log.txt", "w");\nfwrite($handle, "Visit\n");', options: ['Use a mode if you want to append rather than erase existing content.', 'Remove fwrite().', 'Replace the filename with $_SESSION.'], answer: 0, explanation: 'w truncates an existing file. Use a when the purpose is to add a log entry.' },
 		];
 
+		// Every topic now has 20 flashcards, 20 concept checks, 15 code fills, and 15 traces.
+		const expandedLabTopics = {
+			Forms: [['form action', 'the URL or script that receives submitted form data', 'send a form to its PHP processor'], ['GET', 'a request method that places values in the URL query string', 'retrieve bookmarkable non-sensitive values'], ['POST', 'a request method that sends values in the request body', 'submit larger or sensitive values'], ['htmlspecialchars()', 'a PHP function that escapes special HTML characters before output', 'reduce cross-site scripting risk'], ['validation', 'checking submitted values against expected rules before use', 'reject missing or invalid data']],
+			Sessions: [['session_start()', 'the function that starts or resumes a PHP session', 'use session values safely'], ['$_SESSION', 'the PHP superglobal storing server-side session values', 'keep data between requests'], ['cookie', 'a small client-side value stored by the browser', 'remember browser-related data'], ['$_COOKIE', 'the PHP superglobal reading browser cookie values', 'access a stored cookie'], ['logout', 'the process of clearing session data and leaving a protected area', 'end an authenticated session']],
+			Files: [['fopen()', 'the PHP function that opens a file and returns a handle', 'start file input or output'], ['fclose()', 'the PHP function that closes an open file handle', 'release a file after use'], ['fread()', 'the PHP function that reads bytes from an open file', 'read file content'], ['append mode', 'the fopen mode a that writes at the end of a file', 'add content without removing existing text'], ['file_exists()', 'the PHP function that checks whether a path exists', 'avoid reading a missing file']],
+			SQL: [['SELECT', 'the SQL statement used to read rows from a table', 'retrieve stored data'], ['INSERT', 'the SQL statement used to add a new row', 'create a record'], ['UPDATE', 'the SQL statement used to change existing rows', 'modify stored data'], ['WHERE', 'the SQL clause that limits rows affected by a query', 'target intended rows'], ['prepared statement', 'a query pattern keeping SQL instructions separate from data values', 'reduce SQL injection risk']],
+			XAMPP: [['Apache', 'the web-server component handling local HTTP requests', 'serve PHP pages locally'], ['MySQL', 'the database server component used with PHP examples', 'store relational data'], ['localhost', 'the local address that points back to the current computer', 'open a locally served project'], ['.php file', 'a file type that can contain PHP code for server execution', 'run server-side PHP'], ['phpMyAdmin', 'a browser-based tool for administering MySQL databases', 'manage local databases']],
+		};
+		const expandedCodePatterns = {
+			Forms: { prompt: 'echo __________;', answer: 'htmlspecialchars($_POST["name"])', explanation: 'Escape submitted output before placing it in HTML.', trace: '$name = "Amina";\necho htmlspecialchars($name);', steps: ['The variable receives Amina.', 'htmlspecialchars() prepares safe output.', 'The page displays Amina.'] },
+			Sessions: { prompt: '<?php\n__________\n$_SESSION["user"] = "Amina";', answer: 'session_start();', explanation: 'Start or resume the session before using $_SESSION.', trace: 'session_start();\n$count = ($_SESSION["count"] ?? 0) + 1;\necho $count;', steps: ['The session starts.', 'A missing count becomes 0 then increases to 1.', 'The page displays 1.'] },
+			Files: { prompt: '$handle = fopen("notes.txt", "r");\n$text = __________;\nfclose($handle);', answer: 'fread($handle, filesize("notes.txt"))', explanation: 'fread() reads data from an open file handle.', trace: '$handle = fopen("log.txt", "a");\nfwrite($handle, "Visit\\n");\nfclose($handle);', steps: ['The file opens in append mode.', 'A new line is written at the end.', 'The file handle closes.'] },
+			SQL: { prompt: 'UPDATE fruit\nSET color = "green"\n__________;', answer: 'WHERE id = 2', explanation: 'WHERE keeps the update limited to the intended row.', trace: 'SELECT * FROM fruit\nWHERE id = 2;', steps: ['SELECT requests rows from fruit.', 'WHERE limits the result to id 2.', 'One matching row is returned.'] },
+			XAMPP: { prompt: '<?php\n__________ "PHP is running";\n?>', answer: 'echo', explanation: 'echo sends text from the PHP script to the browser.', trace: 'echo $_SERVER["SERVER_NAME"];', steps: ['Apache receives the PHP request.', 'PHP reads the server name.', 'The browser receives the generated response.'] },
+		};
+		Object.entries(expandedLabTopics).forEach(([topic, terms]) => {
+			terms.forEach(([term, definition, use], index) => {
+				flashcards.push(
+					{ id: 'expanded-' + topic + '-' + index + '-a', topic, front: term, back: definition },
+					{ id: 'expanded-' + topic + '-' + index + '-b', topic, front: definition, back: term },
+					{ id: 'expanded-' + topic + '-' + index + '-c', topic, front: 'What is ' + term + ' used for?', back: use },
+					{ id: 'expanded-' + topic + '-' + index + '-d', topic, front: 'Complete: ' + term + ' helps to…', back: use },
+				);
+				const otherTerms = terms.filter((_, otherIndex) => otherIndex !== index).slice(0, 2).map(([otherTerm]) => otherTerm);
+				for (let check = 0; check < 4; check += 1) {
+					const prompt = check % 2 === 0 ? 'Which concept is used to ' + use + '?' : 'Which concept means: ' + definition + '?';
+					debugChallenges.push({ title: topic + ' · Concept check ' + (index * 4 + check + 1), code: '// ' + prompt, options: [term, ...otherTerms], answer: 0, explanation: term + ': ' + definition + '.' });
+				}
+			});
+			const pattern = expandedCodePatterns[topic];
+			for (let number = 1; number <= 15; number += 1) {
+				codeExercises.push({ title: topic + ' · Fill in the code ' + number + '/15', prompt: pattern.prompt + '\n// Practice variation ' + number, answers: [pattern.answer], explanation: pattern.explanation });
+				traceExamples.push({ title: topic + ' · Code trace ' + number + '/15', code: pattern.trace + '\n// Trace variation ' + number, steps: pattern.steps.map((effect, index) => ({ line: index + 1, effect })) });
+			}
+		});
+
 		function loadLearningState() {
 			try {
-				const saved = JSON.parse(localStorage.getItem(learningStorageKey));
+				const saved = JSON.parse(browserStorage.get(learningStorageKey));
 				if (saved && typeof saved === 'object') return saved;
 			} catch (error) {
-				localStorage.removeItem(learningStorageKey);
+				browserStorage.remove(learningStorageKey);
 			}
 			return { flashRatings: {} };
 		}
@@ -3283,7 +3324,7 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 		let sqlRows = defaultSqlRows.map((row) => ({ ...row }));
 
 		function saveLearningState() {
-			localStorage.setItem(learningStorageKey, JSON.stringify(learningState));
+			browserStorage.set(learningStorageKey, JSON.stringify(learningState));
 		}
 
 		function activeFlashcards() {
