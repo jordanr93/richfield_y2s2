@@ -612,9 +612,10 @@
 <details class="nav-group nav-collapsible">
 	<summary>Assignment Helper</summary>
 	<a class="nav-link" href="#assignment-helper" data-nav-link="assignment-helper">Overview</a>
-	<a class="nav-link" href="#assignment-question-1" data-nav-link="assignment-question-1">Question 1: Object-oriented analysis</a>
-	<a class="nav-link" href="#assignment-question-2" data-nav-link="assignment-question-2">Question 2: Sequence diagrams and BPM</a>
-	<a class="nav-link" href="#assignment-question-3" data-nav-link="assignment-question-3">Question 3: Support and security</a>
+	<a class="nav-link" href="#assignment-question-1" data-nav-link="assignment-question-1">Question 1: UI and clinic data design</a>
+	<a class="nav-link" href="#assignment-question-2" data-nav-link="assignment-question-2">Question 2: Support and maintenance</a>
+	<a class="nav-link" href="#assignment-question-3" data-nav-link="assignment-question-3">Question 3: Horizon Logistics changeover</a>
+	<a class="nav-link" href="#assignment-question-4" data-nav-link="assignment-question-4">Question 4: Strategic systems choices</a>
 </details>
 
 <details class="nav-group nav-collapsible">
@@ -665,112 +666,101 @@
 				<section class="section" id="assignment-helper" data-nav-section>
 					<div class="section-heading">
 						<h2>Assignment Helper</h2>
-						<p>This reading map follows the corrected 2026 Information Systems 622 assignment. It summarises the study-guide concepts that apply to each question and links directly to the fuller explanations in General Module Content.</p>
+						<p>This reading map follows the 3rd version of the 2026 Information Systems 622 assignment. It summarises the applicable study-guide content for each question and links directly to the fuller explanations in General Module Content.</p>
 					</div>
-					<div class="note success"><strong>How to use this section:</strong> Build each answer from accurate definitions, application to the scenario, comparison or evaluation, and a justified conclusion. These notes are revision prompts, not a model answer. The assignment includes 10 marks for presentation and compliance, plus 30 marks for each question.</div>
+					<div class="note success"><strong>How to use this section:</strong> Use the linked chapter material to build an integrated answer, then apply the concepts to the named case study. The assignment totals 100 marks: Question 1 is 40, Question 2 is 20, Question 3 is 30 and Question 4 is 10.</div>
 					<div class="grid">
 						<article class="card assignment-card wide" id="assignment-question-1" data-nav-section>
-							<h3>Question 1 · Object-oriented analysis <span class="muted">(30 marks)</span></h3>
-							<p><strong>Question focus:</strong> Compare object-oriented analysis (OOA) with structured analysis, explain encapsulation, inheritance and polymorphism, then distinguish classes, subclasses and superclasses and apply object relationships to a business scenario.</p>
+							<h3>Question 1 · User interface design and Sunrise Medical Clinic <span class="muted">(40 marks)</span></h3>
 							<div class="assignment-part">
-								<h4>1.1 OOA versus structured analysis <span class="muted">(10 marks)</span></h4>
+								<h4>1.1 Integrated user-interface design essay <span class="muted">(20 marks)</span></h4>
+								<p>Write an integrated discussion rather than a disconnected list. Explain how a systems analyst designs interfaces that are easy to learn, easy to use and productive, then connect those principles to forms, printed reports, security, controls and an emerging interface trend.</p>
 								<ul>
-									<li><strong>Structured analysis</strong> decomposes a system into processes, modules, data flows and control flows. Connect it to DFDs, structure charts, conditions, loops and pseudocode.</li>
-									<li><strong>OOA</strong> models the system as interacting objects that combine data and behaviour. Connect it to classes, attributes, methods, messages, class diagrams and object relationships.</li>
-									<li>Choose a business problem with interacting entities and changing behaviour, such as an online retail order system, banking system or hospital booking system, and explain why the object view makes the relationships easier to represent.</li>
+									<li><strong>General principles:</strong> understand the business and the user, think like the user, reduce unnecessary input, provide feedback and help, support flexibility, and design for usability and productivity.</li>
+									<li><strong>Source documents and forms:</strong> explain how clear labels, logical grouping, sensible defaults, validation and appropriate input controls reduce data-entry errors.</li>
+									<li><strong>Printed output and reports:</strong> discuss report purpose, readability, accurate content, useful ordering and control of sensitive information.</li>
+									<li><strong>Security and control:</strong> cover input validation, authorisation, access control and protection of confidential information in both input screens and output reports.</li>
+									<li><strong>Emerging trend:</strong> choose responsive web design or prototyping and explain how it improves compatibility, feedback, usability and modern device access.</li>
 								</ul>
-								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch5-2-development-methods">Development Methods</a> <a href="#ch5-7-development-methods-expanded">Structured, Object-Oriented and Agile Development</a> <a href="#ch5-ooa-object-concepts">OOA Essentials</a></div>
+								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch2-1-ui-hci">UI and HCI</a> <a href="#ch2-2-guidelines">Interface Design Guidelines</a> <a href="#ch2-6-seven-habits">Seven Habits of Successful Interface Designers</a> <a href="#ch2-7-ten-guidelines">Ten UI Design Guidelines</a> <a href="#ch2-4-reports-controls">Forms, Reports and Controls</a> <a href="#ch2-8-forms-reports-worked-example">Forms and Reports Worked Example</a> <a href="#ch2-9-technology-security">Technology, Controls and Emerging Trends</a></div>
 							</div>
 							<div class="assignment-part">
-								<h4>1.2 Explain the three OOA concepts <span class="muted">(10 marks)</span></h4>
+								<h4>1.2 Sunrise Medical Clinic data-design case study <span class="muted">(20 marks)</span></h4>
+								<p>Start by identifying the spreadsheet's data-design problems and connect each one to the clinic's symptoms:</p>
 								<ul>
-									<li><strong>Encapsulation:</strong> keep an object's data and the methods that manage it together, while controlling direct access to its internal state. Example: an Account exposes deposit and withdraw operations instead of allowing any process to change the balance freely.</li>
-									<li><strong>Inheritance:</strong> allow a subclass to reuse and extend attributes or methods from a superclass. Example: SavingsAccount and BusinessAccount inherit common features from Account.</li>
-									<li><strong>Polymorphism:</strong> allow related objects to respond to the same operation in different ways. Example: different Payment subclasses implement processPayment according to card, EFT or mobile-wallet rules.</li>
+									<li>Repeated patient and doctor details create redundancy and update anomalies. A changed contact number can remain incorrect in some rows.</li>
+									<li>Free-text Notes, inconsistent surnames and unrestricted Doctor IDs create inconsistent, invalid and difficult-to-search data.</li>
+									<li>Missing Amount Paid values make unpaid appointments and lost revenue difficult to identify.</li>
+									<li>The design must support one patient having many appointments, one doctor having many appointments, multiple billable procedures per appointment, doctor cover/reassignment, medical-aid details and future medication dispensing.</li>
 								</ul>
-								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch5-ooa-object-concepts">OOA Essentials</a> <a href="#ch5-7-development-methods-expanded">Object-Oriented Development</a></div>
+								<p>Describe or draw an ERD with at least four entities. A strong design could include Patient, Doctor, Appointment, Procedure or BillingLine, MedicalAidMembership and MedicationDispensing. Explain cardinalities such as Patient 1-to-many Appointment, Doctor 1-to-many Appointment, Appointment 1-to-many BillingLine and Appointment 0-to-many MedicationDispensing. State assumptions clearly.</p>
+								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch3-1-dbms">Data Structures and DBMS</a> <a href="#ch3-2-terms-integrity">Data Terms and Integrity</a> <a href="#ch3-3-erd">Entity-Relationship Diagrams</a> <a href="#ch3-4-normalization">Normalization</a> <a href="#ch3-8-erd-normalization-worked-example">ERD and Normalization Worked Example</a> <a href="#ch3-9-codes-storage-controls">Codes, Storage and Controls</a></div>
 							</div>
-							<div class="assignment-part">
-								<h4>1.3 Classes and object relationships <span class="muted">(10 marks)</span></h4>
-								<ul>
-									<li>A <strong>class</strong> is a blueprint that defines attributes and methods; an <strong>object</strong> is a concrete instance of that class.</li>
-									<li>A <strong>superclass</strong> holds common features; a <strong>subclass</strong> inherits them and may add or override behaviour. Use a clear hierarchy such as Customer -> PremiumCustomer.</li>
-									<li>Explain relationships such as association, aggregation or composition as the links that let objects collaborate to complete business functions. In an online shop, Customer places Order, Order contains OrderLine items, and Order is paid through Payment.</li>
-								</ul>
-								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch5-ooa-object-concepts">OOA Essentials</a> <a href="#ch3-3-erd">Entity-Relationship Diagrams</a> <a href="#ch5-7-development-methods-expanded">Object Relationships and Implementation</a></div>
-							</div>
-						</article>
+					</article>
 
 						<article class="card assignment-card wide" id="assignment-question-2" data-nav-section>
-							<h3>Question 2 · Sequence diagrams and BPM <span class="muted">(30 marks)</span></h3>
-							<p><strong>Question focus:</strong> Explain how sequence diagrams visualise system interactions, develop an e-commerce checkout sequence, and distinguish Business Process Modelling (BPM) from object modelling.</p>
-							<div class="assignment-part">
-								<h4>2.1 Sequence diagram for an e-commerce checkout <span class="muted">(15 marks)</span></h4>
-								<ul>
-									<li>Explain that a sequence diagram shows the time-ordered messages exchanged between actors or objects. Use lifelines, activation periods, messages, return messages and the top-to-bottom flow of time.</li>
-									<li>Include at least Customer, Checkout or Order Service, Payment Gateway and Inventory System. A strong sequence is: customer submits order; checkout validates the cart; inventory is checked or reserved; payment is authorised; inventory is updated; the order is confirmed or an error is returned.</li>
-									<li>Show alternative outcomes such as payment failure or unavailable stock. Label the messages with meaningful operations rather than drawing unexplained arrows.</li>
-								</ul>
-								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch5-sequence-diagrams-bpm">Sequence Diagrams and BPM</a> <a href="#ch5-ooa-object-concepts">OOA Essentials</a> <a href="#ch4-3-processing">Internet, E-Commerce and Processing</a></div>
-							</div>
-							<div class="assignment-part">
-								<h4>2.2 BPM versus object modelling <span class="muted">(15 marks)</span></h4>
-								<ul>
-									<li><strong>BPM</strong> focuses on an end-to-end business process: activities, events, decisions, roles, hand-offs and the outcome. It helps people understand how work moves through an organisation.</li>
-									<li><strong>Object modelling</strong> focuses on the system's objects or classes, their data, behaviour and relationships. It helps designers translate business concepts into software structure.</li>
-									<li>Explain two realistic BPM uses, such as order fulfilment from purchase to delivery, and employee onboarding from recruitment to account setup. For each, identify the process problem BPM would clarify.</li>
-								</ul>
-								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch5-sequence-diagrams-bpm">Sequence Diagrams and BPM</a> <a href="#ch5-7-development-methods-expanded">Object-Oriented Development</a> <a href="#ch4-6-architecture-checklist-expanded">Business Processes and Architecture</a></div>
-							</div>
+							<h3>Question 2 · Systems support and maintenance essay <span class="muted">(20 marks)</span></h3>
+							<p>Discuss how support and maintenance management contribute to the long-term reliability and security of an information system. Keep the essay integrated and use examples rather than listing definitions.</p>
+							<ul>
+								<li><strong>Four maintenance types:</strong> corrective fixes faults; adaptive responds to new requirements or environments; perfective improves efficiency, performance or maintainability; preventive reduces the chance of future failure. Give one relevant example for each.</li>
+								<li><strong>Maintenance management:</strong> explain the maintenance team, maintenance requests, priorities, configuration management, version control, baselines and planned maintenance releases. Link these to cost control, change control and reliability.</li>
+								<li><strong>Physical and network security:</strong> explain how physical controls protect rooms, equipment and servers, while network controls protect communications through firewalls, monitoring, secure protocols and related measures.</li>
+								<li><strong>Backup, recovery and continuity:</strong> distinguish restoring systems after failure from keeping essential business functions operating during disruption. Discuss backup schedules, retention, recovery procedures, testing and business continuity planning.</li>
+							</ul>
+							<div class="assignment-links"><strong>General module content:</strong> <a href="#ch6-1-support">User Support</a> <a href="#ch6-6-user-support-help-desk">User Training and Help Desks</a> <a href="#ch6-2-maintenance">Maintenance Tasks</a> <a href="#ch6-7-maintenance-management-expanded">Maintenance Types and Management</a> <a href="#ch6-4-security">Security Levels</a> <a href="#ch6-8-performance-security-expanded">Performance and Security</a> <a href="#ch6-5-backup-retirement">Backup, Recovery and Retirement</a></div>
 						</article>
 
 						<article class="card assignment-card wide" id="assignment-question-3" data-nav-section>
-							<h3>Question 3 · Systems support and security essay <span class="muted">(30 marks)</span></h3>
-							<p><strong>Scenario reminder:</strong> A large retailer has downtime, slow response times, user complaints and attempted cyberattacks while management considers whether to maintain or replace the current integrated system.</p>
+							<h3>Question 3 · Horizon Logistics changeover case study <span class="muted">(30 marks)</span></h3>
+							<p><strong>Scenario:</strong> Horizon Logistics is replacing the ageing FleetTrack Classic with a web-integrated Fleet Management System. The company has three depots, strict delivery penalties, external integrations and a previous failed tablet rollout.</p>
 							<div class="assignment-part">
-								<h4>Essay structure and user support <span class="muted">(6 marks)</span></h4>
+								<h4>3.1 Recommend the changeover strategy</h4>
 								<ul>
-									<li>Open by diagnosing the linked problems: performance, reliability, user capability, support workload and security risk. Then use a subheading for each rubric requirement and finish with a recommendation.</li>
-									<li>Improve training through role-specific onboarding, refresher sessions after changes, updated manuals or online support, and hands-on practice.</li>
-									<li>Improve the help desk as a central first point of contact that logs incidents, answers technical and operational questions, identifies recurring problems, maintains a knowledge base and measures response and resolution times.</li>
+									<li>Recommend <strong>parallel operation</strong> as the primary changeover strategy because delivery operations have very low tolerance for disruption. Run the old and new systems together long enough to reconcile vehicle assignments, schedules and delivery status.</li>
+									<li>Explain the safeguards: controlled data conversion, reconciliation rules, clear rollback criteria, a support team and a planned switch-off only after the FMS is reliable.</li>
+									<li>Compare alternatives: direct cutover is cheaper but exposes the company to the greatest operational risk; pilot operation is useful for rehearsing in one depot but does not by itself protect the remaining depots; phased operation can prolong hybrid processes and manual re-entry between modules.</li>
 								</ul>
-								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch6-1-support">User Support</a> <a href="#ch6-6-user-support-help-desk">User Training and Help Desks</a> <a href="#ch5-8-testing-docs-expanded">Documentation and Evaluation</a></div>
+								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch5-5-changeover">Installation and Changeover</a> <a href="#ch5-9-installation-worked-example">Changeover Worked Example</a> <a href="#ch5-6-quality-engineering">Quality Assurance and Changeover Planning</a></div>
 							</div>
 							<div class="assignment-part">
-								<h4>Maintenance types and management <span class="muted">(14 marks)</span></h4>
+								<h4>3.2 Plan three types of testing</h4>
 								<ul>
-									<li><strong>Corrective:</strong> fix defects causing crashes, incorrect transactions or outages.</li>
-									<li><strong>Adaptive:</strong> change the system for new regulations, hardware, operating systems, interfaces or business requirements.</li>
-									<li><strong>Perfective:</strong> improve slow reports, response times, usability or maintainability.</li>
-									<li><strong>Preventive:</strong> reduce future failure through refactoring, patching, monitoring, backups and security hardening.</li>
-									<li>For management, discuss a maintenance team, logged maintenance requests, prioritisation by urgency/risk/value, quality assurance, configuration management, version control, baselines and planned maintenance releases. Include performance measures such as response time, throughput, workload and capacity planning to address cost and reliability.</li>
+									<li><strong>Integration testing:</strong> verify that the FMS exchanges correct data with the customer portal, fuel-card provider and GPS tracking service.</li>
+									<li><strong>System testing:</strong> verify the complete FMS end to end, including vehicle assignment, route scheduling, driver management, portal updates, error handling and performance under realistic workloads.</li>
+									<li><strong>User acceptance or usability testing:</strong> involve dispatchers, depot managers and representative drivers to verify day-to-day workflows, data-entry clarity, route information and practical usability.</li>
 								</ul>
-								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch6-2-maintenance">Maintenance Tasks</a> <a href="#ch6-7-maintenance-management-expanded">Maintenance Types and Management</a> <a href="#ch6-3-performance">Maintenance and Performance Management</a> <a href="#ch6-8-performance-security-expanded">Performance and Security</a></div>
+								<p>Link each test to evidence: expected messages and status updates, correct calculations and assignments, response times, and user sign-off against operational requirements.</p>
+								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch5-4-testing-docs">Testing and Documentation</a> <a href="#ch5-8-testing-docs-expanded">Coding, Testing and Documentation</a> <a href="#ch5-1-qa">Quality Assurance</a> <a href="#ch4-3-processing">Internet, E-Commerce and Processing</a></div>
 							</div>
 							<div class="assignment-part">
-								<h4>Security across four levels <span class="muted">(6 marks)</span></h4>
+								<h4>3.3 Training, documentation and post-implementation review</h4>
 								<ul>
-									<li>Discuss any four levels, but make each control specific to the attempted cyberattacks: <strong>network</strong> firewalls and intrusion monitoring; <strong>application</strong> patches, secure configuration, validation and logging; <strong>file</strong> permissions, encryption and backups; <strong>user</strong> authentication, least privilege, strong passwords and awareness; plus physical or procedural controls if useful.</li>
-									<li>Do not simply list controls. Explain the asset or risk each level protects and how the control reduces likelihood or impact.</li>
+									<li>Use role-based training, a train-the-trainer approach, hands-on practice, a pilot or rehearsal, feedback loops and floor support. This directly addresses the previous one-page-instruction failure.</li>
+									<li>Provide user documentation with task procedures, screenshots, field definitions, troubleshooting, escalation routes and quick-reference guidance. Operations and system documentation should cover integrations, monitoring, backup and recovery.</li>
+									<li>After go-live, evaluate operational KPIs and financial benefits, review user feedback and support logs, compare actual costs and performance against the business case, and report findings to the board. The question asks for three post-implementation tasks; cover at least three even though the rubric wording refers to two.</li>
 								</ul>
-								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch6-4-security">Security Levels</a> <a href="#ch6-8-performance-security-expanded">Performance and Security Controls</a> <a href="#ch6-5-backup-retirement">Backup, Recovery and Retirement</a></div>
-							</div>
-							<div class="assignment-part">
-								<h4>End-of-life indicators and recommendation <span class="muted">(4 marks)</span></h4>
-								<ul>
-									<li>Look for rising corrective or adaptive maintenance, increasing operating costs or execution times, expensive changes, a better replacement package, emerging technology, unmet user demands and declining user satisfaction.</li>
-									<li>Recommend a reasoned course of action: continue with controlled maintenance if the system remains viable, or begin replacement/modernisation planning if performance, cost, security and business fit are deteriorating. Mention migration, continuity and changeover risks.</li>
-								</ul>
-								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch6-5-backup-retirement">Backup, Recovery and Retirement</a> <a href="#ch6-9-backup-retirement-worked-example">Worked Retirement Example</a> <a href="#ch5-5-changeover">Installation and Changeover</a></div>
+								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch5-8-testing-docs-expanded">Documentation</a> <a href="#ch5-5-changeover">Training and Changeover</a> <a href="#ch5-9-installation-worked-example">Post-Implementation Evaluation</a> <a href="#ch6-1-support">User Support</a></div>
 							</div>
 						</article>
 
-						<article class="card assignment-card wide" id="assignment-compliance">
-							<h3>Presentation and compliance <span class="muted">(10 marks)</span></h3>
+						<article class="card assignment-card wide" id="assignment-question-4" data-nav-section>
+							<h3>Question 4 · Strategic choices in systems development <span class="muted">(10 marks)</span></h3>
 							<ul>
-								<li>Use the required cover page, Times New Roman 12-point font and 1.5 line spacing.</li>
+								<li><strong>Traditional versus web-based development:</strong> compare legacy and organisation-controlled environments with web-based systems where the web is central to access, scalability and service delivery.</li>
+								<li><strong>In-house options:</strong> discuss build versus buy, packages, customisation, user applications, outsourcing, offshoring and SaaS. Compare control, fit, cost, skills, integration, maintenance and vendor dependency.</li>
+								<li><strong>Evolving trends:</strong> explain how Web 2.0, cloud computing and mobile devices influence access, collaboration, scalability, deployment, security and maintenance.</li>
+								<li><strong>Architecture selection:</strong> apply organisational culture, ERP/SCM and integration needs, initial cost and TCO, scalability, web and legacy interfaces, processing needs and security as selection criteria.</li>
+								<li><strong>Online versus batch processing:</strong> online processing handles transactions in real time, while batch processing collects transactions and processes them together on a schedule. Match the choice to urgency, volume, availability and business need.</li>
+							</ul>
+							<div class="assignment-links"><strong>General module content:</strong> <a href="#ch1-1-traditional-vs-web">Traditional vs Web-Based Systems</a> <a href="#ch1-2-trends">Evolving Trends</a> <a href="#ch1-3-development-options">Development Options</a> <a href="#ch1-5-build-buy-customize">Make, Buy and Customize</a> <a href="#ch1-6-outsourcing-saas-offshoring">Outsourcing, Offshoring and SaaS</a> <a href="#ch4-1-checklist">Architecture Checklist</a> <a href="#ch4-3-processing">Internet, E-Commerce and Processing</a> <a href="#ch4-8-internet-processing-network-example">Processing and Architecture Example</a></div>
+						</article>
+
+						<article class="card assignment-card wide" id="assignment-compliance">
+							<h3>Submission checklist</h3>
+							<ul>
+								<li>Use the specified cover page, Times New Roman 12-point font and 1.5-line spacing.</li>
 								<li>Include a table of contents, introduction, main body with relevant subheadings, conclusion and references.</li>
-								<li>Apply Harvard referencing consistently, sign the declaration of originality and submit the final document as a PDF on Moodle.</li>
+								<li>Apply Harvard referencing, sign the declaration of originality and submit the final document as a PDF on Moodle.</li>
 							</ul>
 						</article>
 					</div>
