@@ -766,8 +766,9 @@
 			}
 	</style>
 	<link rel="stylesheet" href="module-theme.css">
+	<link rel="stylesheet" href="module-learning-lab.css">
 </head>
-<body class="module-page module-programming" style="--module-accent: var(--green); --module-accent-soft: rgba(63, 185, 80, 0.14); --module-accent-border: rgba(63, 185, 80, 0.5);">
+<body class="module-page module-programming" data-learning-lab="programming" style="--module-accent: var(--green); --module-accent-soft: rgba(63, 185, 80, 0.14); --module-accent-border: rgba(63, 185, 80, 0.5);">
 	<a class="skip-link" href="#main">Skip to main content</a>
 	<div class="progress" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
 	<button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false"><span class="menu-icon" aria-hidden="true"></span></button>
@@ -822,8 +823,8 @@
 		</div>
 
 		<div class="nav-group">
-			<h2>Preparation Station</h2>
-			<a href="#preparation-station" data-nav-link="preparation-station">Coming Soon</a>
+			<h2>Learning Lab</h2>
+			<a href="#preparation-station" data-nav-link="preparation-station">Quiz Builder &amp; Practice</a>
 		</div>
 
 		<div class="nav-group">
@@ -3111,15 +3112,14 @@ int main() {
 				</section>
 		</section>
 
-		<section class="content-section" id="preparation-station" data-nav-section>
-			<div class="section-heading">
-				<h2>Preparation Station</h2>
-				<p>A future home for interactive learning tools that support your Programming 622 revision.</p>
-			</div>
-			<div class="card coming-soon-card">
-				<span class="coming-soon-label">Coming soon</span>
-				<h3>More learning tools are on the way</h3>
-				<p>Quizzes, flashcards, guided practice, and other active-recall tools will be added here.</p>
+		<section class="content-section module-learning-lab" id="preparation-station" data-nav-section>
+			<div class="section-heading"><h2>Learning Lab</h2><p>Use these interactive tools to practise Programming 622 concepts. Your quiz attempts are saved only in this browser.</p></div>
+			<div class="learning-lab-grid">
+				<div class="learning-lab-panel learning-lab-quiz"><h3>Quiz Builder</h3><p>Choose how many questions to draw from each topic, then answer and submit when ready.</p><div class="lab-counts"></div><div class="lab-actions"><button class="lab-button" type="button" data-lab-action="new-quiz">Start New Quiz</button><button class="lab-button secondary" type="button" data-lab-action="restart-quiz">Restart Current Quiz</button><button class="lab-button danger" type="button" data-lab-action="clear-progress">Clear Progress</button></div></div>
+				<div class="lab-summary" aria-live="polite"></div><div class="lab-questions"></div><button class="lab-button learning-lab-quiz lab-submit" type="button" data-lab-action="submit-quiz">Submit Quiz</button><div class="lab-history learning-lab-quiz"></div>
+				<article class="learning-lab-panel" id="lab-flashcards"><h3>Flashcards</h3><p>Recall the definition before flipping the card.</p><div class="lab-flashcard" tabindex="0" role="button"></div><div class="lab-actions"><button class="lab-button secondary" type="button" data-lab-action="previous-card">Previous</button><button class="lab-button" type="button" data-lab-action="flip">Flip card</button><button class="lab-button secondary" type="button" data-lab-action="next-card">Next</button></div><div class="lab-feedback lab-flashcard-status" aria-live="polite"></div></article>
+				<article class="learning-lab-panel" id="lab-challenge"><h3>Concept Challenge</h3><p class="lab-challenge-prompt"></p><div class="lab-options lab-challenge-options"></div><div class="lab-feedback lab-challenge-feedback" aria-live="polite"></div><div class="lab-actions"><button class="lab-button secondary" type="button" data-lab-action="next-challenge">Next challenge</button></div></article>
+				<article class="learning-lab-panel wide" id="lab-explain"><h3>Explain It</h3><p class="lab-explain-prompt"></p><textarea class="lab-explain-input" placeholder="Write your explanation before revealing the model answer."></textarea><div class="lab-actions"><button class="lab-button" type="button" data-lab-action="show-explain">Reveal model answer</button></div><div class="lab-feedback lab-explain-answer"></div></article>
 			</div>
 		</section>
 
@@ -3158,6 +3158,7 @@ int main() {
 
 	<button class="back-to-top" id="backToTop" aria-label="Back to top">^</button>
 
+	<script src="module-learning-lab.js"></script>
 	<script>
 		const sidebar = document.getElementById("sidebar");
 		const menuToggle = document.getElementById("menuToggle");
