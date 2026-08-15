@@ -335,6 +335,25 @@
 			border-top-color: var(--red);
 		}
 
+		.assignment-question {
+			border-top: 4px solid var(--amber);
+		}
+
+		.assignment-question h3 {
+			color: var(--amber);
+		}
+
+		.assignment-question h4 {
+			margin-top: 16px;
+		}
+
+		.assignment-question .question-marks {
+			margin: -4px 0 14px;
+			color: var(--muted);
+			font-size: 0.92rem;
+			font-weight: 700;
+		}
+
 		.related-chapters {
 			margin-top: 16px;
 			padding-top: 14px;
@@ -642,7 +661,7 @@
 
 <details class="nav-group nav-collapsible">
 	<summary>Assignment Helper</summary>
-	<a class="nav-link" href="#assignment-helper" data-nav-link="assignment-helper">Coming Soon</a>
+	<a class="nav-link" href="#assignment-helper" data-nav-link="assignment-helper">Questions 1-4</a>
 </details>
 
 <details class="nav-group nav-collapsible">
@@ -696,12 +715,107 @@
 			<section id="assignment-helper" data-nav-section>
 				<div class="section-heading">
 					<h2>Assignment Helper</h2>
-					<p>A future home for assignment guidance, worked examples, and practical support.</p>
+					<p>Use the question-by-question map below to locate the relevant study-guide content before developing your own answer. The assignment instructions require an essay structure, Harvard referencing, and submission as a PDF; this helper is a study map, not a replacement for the assignment brief.</p>
 				</div>
-				<div class="card coming-soon-card">
-					<span class="coming-soon-label">Coming soon</span>
-					<h3>Assignment Helper is coming soon</h3>
-					<p>This section will be updated when the relevant guidance is available.</p>
+				<div class="callout success">
+					<strong>How to use this section:</strong> Start with the question card, follow the linked general-module content, then build your own examples and Harvard-referenced discussion. Pay attention to the marks: explanation and application matter as much as naming a concept.
+				</div>
+				<div class="grid">
+					<article class="card assignment-question" id="assignment-question-1">
+						<h3>Question 1: Big Data and analysis techniques</h3>
+						<p class="question-marks">20 marks: definition, characteristics/examples, and three techniques with business use cases.</p>
+						<h4>1.1 Define Big Data with examples</h4>
+						<p>Build the definition around scale, complexity, speed, and the need for specialised storage, processing, and analysis. Use the Five Vs to strengthen the explanation, then select examples from RPM Tech such as transactions, web activity, social media, and warehouse sensors.</p>
+						<div class="related-chapters">
+							<span>Study-guide content:</span>
+							<a href="#ch1-1-big-data">1.1 Big Data</a>
+							<a href="#ch1-2-five-vs">Five Vs</a>
+							<a href="#ch1-1-data-types">Data forms</a>
+							<a href="#ch1-2-sources">Sources of Big Data</a>
+						</div>
+
+						<h4>1.2 Explain three analysis techniques and apply them</h4>
+						<p>For each selected technique, give: the question it answers, a short explanation of how it works, and one RPM Tech use case. Suitable routes from the guide include descriptive analysis for historical sales, predictive analytics for demand forecasting, machine learning for customer or product patterns, real-time analytics for warehouse alerts, and sentiment analysis for social-media feedback.</p>
+						<div class="callout"><strong>Answer check:</strong> do not only list techniques. Make the business link explicit, for example “the technique analyses X so RPM Tech can make Y decision.”</div>
+						<div class="related-chapters">
+							<span>Study-guide content:</span>
+							<a href="#ch1-4-analysis-techniques">1.4 Analysis Techniques</a>
+							<a href="#ch1-4-analysis-detail">Technique questions and applications</a>
+							<a href="#ch1-3-tool-selection">Tools pipeline</a>
+							<a href="#ch5-4-analytics-types">Four analytics types</a>
+						</div>
+					</article>
+
+					<article class="card assignment-question" id="assignment-question-2">
+						<h3>Question 2: Retail challenges and IoT devices</h3>
+						<p class="question-marks">25 marks: five operational challenges and five devices explained in detail.</p>
+						<h4>Identify the challenge before proposing the device</h4>
+						<p>Frame five SmartShop problems such as poor inventory visibility, stock-outs or misplaced goods, unsuitable storage conditions, inefficient customer-flow or checkout monitoring, delivery and supply-chain uncertainty, and equipment downtime. Then pair each challenge with one device and explain the full chain: what it senses or does, how it connects, what happens to the data, and how the response improves operations.</p>
+						<h4>Device ideas to investigate</h4>
+						<ul>
+							<li><strong>RFID tags and readers:</strong> identify and track products through receiving, shelves, and dispatch.</li>
+							<li><strong>Smart shelves or weight sensors:</strong> detect stock levels and support replenishment alerts.</li>
+							<li><strong>Temperature and humidity sensors:</strong> monitor warehouses or sensitive product areas and trigger corrective action.</li>
+							<li><strong>People-counting cameras, beacons, or connected checkout devices:</strong> reveal customer flow, queue pressure, or shopping behaviour.</li>
+							<li><strong>GPS/telematics trackers or equipment-condition sensors:</strong> improve delivery visibility or enable predictive maintenance.</li>
+						</ul>
+						<div class="callout"><strong>Answer check:</strong> a device name alone earns little. Explain the operational challenge, the data captured, the connectivity or gateway, the processing/alert, and the measurable benefit to SmartShop.</div>
+						<div class="related-chapters">
+							<span>Study-guide content:</span>
+							<a href="#ch2-6-iot-applications">IoT Applications: retail</a>
+							<a href="#ch2-6-applications-detail">Application map</a>
+							<a href="#ch2-2-how-iot-works">How IoT works</a>
+							<a href="#ch2-4-iot-architecture-blocks">Building blocks</a>
+							<a href="#ch3-1-iot-technologies">IoT technologies</a>
+						</div>
+					</article>
+
+					<article class="card assignment-question" id="assignment-question-3">
+						<h3>Question 3: How the parts of an IoT system work together</h3>
+						<p class="question-marks">25 marks: main parts, connections, and the importance of each part.</p>
+						<h4>Use both the data-flow and layer views</h4>
+						<p>A clear answer can describe the system as <strong>sense → connect → process → decide → act</strong>, then relate that flow to the layers: perception, network, middleware, application, and business. Explain devices/sensors and actuators, connectivity and gateways, storage and processing, analytics and applications, and the business value created. Show that data can travel back as a command to an actuator, not only outward as a reading.</p>
+						<div class="related-chapters">
+							<span>Study-guide content:</span>
+							<a href="#ch2-1-iot-concepts">Core IoT components</a>
+							<a href="#ch2-2-how-iot-works">IoT data flow</a>
+							<a href="#ch2-3-layer-architecture">Layer architecture</a>
+							<a href="#ch2-2-data-loop">Data-to-action loop</a>
+							<a href="#ch2-4-building-blocks-detail">Gateway to application</a>
+							<a href="#ch3-2-protocols">Communication protocols</a>
+						</div>
+					</article>
+
+					<article class="card assignment-question" id="assignment-question-4">
+						<h3>Question 4: Ten components of a Big Data strategy</h3>
+						<p class="question-marks">20 marks: ten components, each explained in the AfriHealth patient-care context.</p>
+						<h4>Build ten distinct components from the strategy chapter</h4>
+						<p>The general module card gives eight broad components. Because the assignment asks for ten, use the strategy chapter together with its supporting sections and keep the components distinct. A strong ten-part structure is:</p>
+						<ol>
+							<li>Clear patient-care goals and measurable KPIs.</li>
+							<li>Data collection from EHRs, imaging, laboratories, appointments, billing, and wearables.</li>
+							<li>Data integration across the unconnected hospital and clinic systems.</li>
+							<li>Scalable storage for structured, semi-structured, and unstructured healthcare data.</li>
+							<li>Data processing, cleaning, standardisation, and transformation.</li>
+							<li>Analytics and insights for diagnosis support, risk, service demand, and outcomes.</li>
+							<li>Governance, privacy, ethics, and regulatory compliance.</li>
+							<li>Security and controlled access for sensitive patient information.</li>
+							<li>People, skills, tools, and business alignment.</li>
+							<li>Monitoring, feedback, scalability, and continuous improvement.</li>
+						</ol>
+						<p>For every component, connect the concept to AfriHealth: explain what the organization should do and how it could improve patient care, coordination, decision-making, efficiency, or patient safety.</p>
+						<div class="callout"><strong>Answer check:</strong> Question 4 is not asking for ten isolated buzzwords. Each component needs a brief explanation in the healthcare scenario, and the final answer should show how the components work together as one strategy.</div>
+						<div class="related-chapters">
+							<span>Study-guide content:</span>
+							<a href="#ch5-2-strategy-components">Strategy components</a>
+							<a href="#ch5-3-data-driven-formulation">Strategy formulation</a>
+							<a href="#ch4-6-data-management">Data management</a>
+							<a href="#ch4-7-big-data-security">Big Data security</a>
+							<a href="#ch5-6-integration-challenges">Integration challenges</a>
+							<a href="#ch5-7-ethics-legal">Ethics and legal issues</a>
+							<a href="#ch5-8-monitor-adjust">Monitoring and adjustment</a>
+						</div>
+					</article>
 				</div>
 			</section>
 

@@ -352,6 +352,123 @@
 			grid-column: 1 / -1;
 		}
 
+		.assignment-grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1rem;
+		}
+
+		.assignment-card {
+			border-top: 3px solid var(--cyan);
+		}
+
+		.assignment-card.data {
+			border-top-color: var(--green);
+		}
+
+		.assignment-card.pca {
+			border-top-color: var(--purple);
+		}
+
+		.assignment-card.models {
+			border-top-color: var(--amber);
+		}
+
+		.assignment-card.optimisation {
+			border-top-color: var(--red);
+		}
+
+		.assignment-card.presentation {
+			border-top-color: var(--green);
+		}
+
+		.assignment-card.wide {
+			grid-column: 1 / -1;
+		}
+
+		.question-meta {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.55rem;
+			align-items: center;
+			margin-bottom: 0.65rem;
+		}
+
+		.question-number {
+			color: var(--muted);
+			font-size: 0.82rem;
+			font-weight: 900;
+			letter-spacing: 0.06em;
+			text-transform: uppercase;
+		}
+
+		.assignment-card h3 {
+			color: var(--text);
+		}
+
+		.assignment-card h4 {
+			margin-top: 1rem;
+			color: var(--cyan);
+		}
+
+		.assignment-card.data h4 {
+			color: var(--green);
+		}
+
+		.assignment-card.pca h4 {
+			color: var(--purple);
+		}
+
+		.assignment-card.models h4 {
+			color: var(--amber);
+		}
+
+		.assignment-card.optimisation h4 {
+			color: var(--red);
+		}
+
+		.study-links {
+			margin-bottom: 0;
+		}
+
+		.assignment-links {
+			margin-top: 1rem;
+			padding: 0.75rem 0.9rem;
+			border-left: 4px solid var(--cyan);
+			border-radius: 0 var(--radius) var(--radius) 0;
+			background: rgba(88, 196, 221, 0.07);
+			font-size: 0.92rem;
+		}
+
+		.assignment-card.data .assignment-links {
+			border-left-color: var(--green);
+			background: rgba(63, 185, 80, 0.07);
+		}
+
+		.assignment-card.pca .assignment-links {
+			border-left-color: var(--purple);
+			background: rgba(188, 140, 255, 0.07);
+		}
+
+		.assignment-card.models .assignment-links {
+			border-left-color: var(--amber);
+			background: rgba(210, 153, 34, 0.07);
+		}
+
+		.assignment-card.optimisation .assignment-links {
+			border-left-color: var(--red);
+			background: rgba(248, 81, 73, 0.07);
+		}
+
+		.assignment-links strong {
+			color: var(--text);
+		}
+
+		.assignment-links a + a::before {
+			content: " · ";
+			color: var(--muted);
+		}
+
 		.card h3,
 		.card h4 {
 			margin: 0 0 0.65rem;
@@ -676,7 +793,8 @@
 			}
 
 			.grid,
-			.grid.three {
+			.grid.three,
+			.assignment-grid {
 				grid-template-columns: 1fr;
 			}
 
@@ -734,7 +852,14 @@
 
 <details class="nav-group nav-collapsible">
 	<summary>Assignment Helper</summary>
-	<a class="nav-link" href="#assignment-helper" data-nav-link="assignment-helper">Coming Soon</a>
+	<a class="nav-link" href="#assignment-helper" data-nav-link="assignment-helper">Overview</a>
+	<a class="nav-link" href="#assignment-part-a" data-nav-link="assignment-part-a">A. Data understanding</a>
+	<a class="nav-link" href="#assignment-part-b" data-nav-link="assignment-part-b">B. EDA</a>
+	<a class="nav-link" href="#assignment-part-c" data-nav-link="assignment-part-c">C. Preprocessing</a>
+	<a class="nav-link" href="#assignment-part-d" data-nav-link="assignment-part-d">D. PCA</a>
+	<a class="nav-link" href="#assignment-part-e" data-nav-link="assignment-part-e">E. Model development</a>
+	<a class="nav-link" href="#assignment-part-f" data-nav-link="assignment-part-f">F. Optimisation</a>
+	<a class="nav-link" href="#assignment-deliverables" data-nav-link="assignment-deliverables">Presentation &amp; submission</a>
 </details>
 
 <details class="nav-group nav-collapsible">
@@ -793,12 +918,114 @@
 			<div class="section-inner">
 				<div class="section-heading">
 					<h2>Assignment Helper</h2>
-					<p>A future home for assignment guidance, worked examples, and practical support.</p>
+					<p>A question-by-question reading map for the Credit Risk Prediction System assignment. The brief is organised into Parts A-F, so each card identifies the study-guide concepts to apply and links to fuller explanations in General Module Content.</p>
 				</div>
-				<div class="card coming-soon-card">
-					<span class="coming-soon-label">Coming soon</span>
-					<h3>Assignment Helper is coming soon</h3>
-					<p>This section will be updated when the relevant guidance is available.</p>
+				<div class="callout definition">
+					<strong>Assignment scenario:</strong> Build a supervised credit-risk classifier that predicts high-risk or low-risk loan applicants from a real Kaggle dataset. The workflow covers data acquisition, EDA, cleaning, feature engineering, scaling, PCA, three classification models, evaluation, hyperparameter tuning, and business interpretation.
+				</div>
+				<div class="callout warning">
+					<strong>Use the assignment brief as the requirement source.</strong> This section is a study map, not a replacement for the required Python/notebook, visible outputs, structured code comments, presentation PDF, dataset, Harvard references, or zipped-folder submission.
+				</div>
+				<div class="assignment-grid">
+					<article class="card assignment-card" id="assignment-part-a" data-nav-section>
+						<div class="question-meta"><span class="question-number">Part A</span><span class="chip definition">10 marks</span></div>
+						<h3>Data Acquisition and Understanding</h3>
+						<p>Load one permitted Kaggle credit dataset with Pandas and make its structure visible before modelling.</p>
+						<h4>Study-guide content to apply</h4>
+						<ul class="study-links">
+							<li>Describe the CSV as structured data and identify rows, columns, features, labels, data types, and the target variable.</li>
+							<li>Follow the ML workflow: understand the business problem, inspect the data, identify the prediction target, and record data-quality risks before training.</li>
+							<li>Use Pandas for <code>read_csv()</code>, <code>shape</code>, <code>columns</code>, <code>info()</code>, and <code>describe()</code>, and report missing values explicitly.</li>
+						</ul>
+						<div class="assignment-links"><strong>General module content:</strong> <a href="#ch2-1-datasets">Understanding Datasets</a> <a href="#ch1-guide-workflow">ML Workflow</a> <a href="#ch1-9-python-libraries">Python ML Libraries</a></div>
+					</article>
+
+					<article class="card assignment-card data" id="assignment-part-b" data-nav-section>
+						<div class="question-meta"><span class="question-number">Part B</span><span class="chip success">15 marks</span></div>
+						<h3>Exploratory Data Analysis</h3>
+						<p>Create at least four visualisations and interpret what each reveals about the target, relationships, feature distributions, and possible outliers.</p>
+						<h4>Study-guide content to apply</h4>
+						<ul class="study-links">
+							<li>Distinguish numerical and categorical features and explain why that distinction affects later preprocessing.</li>
+							<li>Use histograms and boxplots to inspect distribution, spread, skew, and unusual values; connect observations to the decision to treat outliers.</li>
+							<li>Use a correlation heatmap to identify relationships and possible redundancy, while noting that correlation is not proof of causation.</li>
+							<li>Interpret the target distribution in a credit-risk context and consider whether class imbalance could make accuracy misleading.</li>
+						</ul>
+						<div class="assignment-links"><strong>General module content:</strong> <a href="#ch2-1-datasets">Understanding Datasets</a> <a href="#ch2-2-outliers-duplicates">Outliers and Duplicates</a> <a href="#ch1-5-correctness">Correctness and Metrics</a> <a href="#ch1-9-python-libraries">Python ML Libraries</a></div>
+					</article>
+
+					<article class="card assignment-card data" id="assignment-part-c" data-nav-section>
+						<div class="question-meta"><span class="question-number">Part C</span><span class="chip success">20 marks</span></div>
+						<h3>Data Cleaning and Preprocessing</h3>
+						<p>Prepare reliable model inputs by justifying how missing values, duplicates, outliers, categorical variables, feature scales, and the train-test split are handled.</p>
+						<h4>Study-guide content to apply</h4>
+						<ul class="study-links">
+							<li>Choose deletion or imputation for missing values based on how much data is missing and whether removal could introduce bias.</li>
+							<li>Remove duplicates only after checking whether repeated rows are errors; investigate outliers before deleting or transforming them.</li>
+							<li>Explain encoding as converting categorical values into numerical features, and feature engineering as transforming raw inputs into useful representations.</li>
+							<li>Scale numeric features where magnitude affects distance or optimisation, especially for k-NN, Logistic Regression, and PCA. Fit preprocessing on training data and apply the same fitted transformation to test data.</li>
+							<li>Use the required 80/20 split to evaluate on unseen data and avoid test-set leakage.</li>
+						</ul>
+						<div class="assignment-links"><strong>General module content:</strong> <a href="#ch2-2-data-cleaning">Data Cleaning</a> <a href="#ch2-2-outliers-duplicates">Outliers and Duplicates</a> <a href="#ch2-3-scaling">Scaling and Normalisation</a> <a href="#ch1-7-feature-engineering">Feature Engineering</a> <a href="#ch2-preprocessing-selector">Preprocessing Selector</a> <a href="#ch2-preprocessing-code-example">Preprocessing Code Example</a></div>
+					</article>
+
+					<article class="card assignment-card pca" id="assignment-part-d" data-nav-section>
+						<div class="question-meta"><span class="question-number">Part D</span><span class="chip structure">15 marks</span></div>
+						<h3>Principal Component Analysis</h3>
+						<p>Apply PCA after scaling, show explained variance, select components retaining about 90-95% of variance, and create a transformed dataset.</p>
+						<h4>Study-guide content to apply</h4>
+						<ul class="study-links">
+							<li>Explain PCA as dimensionality reduction that replaces correlated original features with new components capturing directions of variation.</li>
+							<li>Show the explained-variance ratio and cumulative-variance plot, then justify the chosen number of components rather than selecting an arbitrary value.</li>
+							<li>Interpret components carefully: a component is a weighted combination of original features, not an original column with a new name.</li>
+							<li>Compare model performance after PCA with performance on the original features; PCA can reduce redundancy and computation but may reduce interpretability or predictive information.</li>
+						</ul>
+						<div class="assignment-links"><strong>General module content:</strong> <a href="#ch2-4-pca">Principal Component Analysis</a> <a href="#ch2-4-choosing-components">Choosing Components</a> <a href="#ch2-5-pca-applications">PCA Applications</a> <a href="#ch2-pca-deeper">PCA Interpretation</a> <a href="#ch2-preprocessing-code-example">Scaling and PCA Code Example</a></div>
+					</article>
+
+					<article class="card assignment-card models wide" id="assignment-part-e" data-nav-section>
+						<div class="question-meta"><span class="question-number">Part E</span><span class="chip warning">25 marks</span></div>
+						<h3>Model Development: Before and After PCA</h3>
+						<p>Train Logistic Regression, k-Nearest Neighbours, and Decision Tree Classifier models using original and PCA-transformed features. Report the same evidence for every model and compare the results.</p>
+						<h4>Study-guide content to apply</h4>
+						<ul class="study-links">
+							<li>Frame credit risk as supervised classification: the target is a discrete high-risk or low-risk class, not a continuous numeric outcome.</li>
+							<li>Use Logistic Regression as a probability-based baseline, k-NN as a scale-sensitive distance-based method, and decision-tree concepts to explain rule-like splits and model complexity.</li>
+							<li>Display accuracy, precision, recall, F1-score, confusion matrix, and classification report for each before/after PCA experiment.</li>
+							<li>Interpret false approvals and false rejections in the credit-risk context. Accuracy alone is not enough when the costs of false positives and false negatives differ.</li>
+							<li>The guide explains Decision Tree Regression rather than a standalone Decision Tree Classifier section; apply the shared ideas about recursive splits, leaf predictions, depth, and overfitting, then verify classifier-specific implementation details.</li>
+						</ul>
+						<div class="assignment-links"><strong>General module content:</strong> <a href="#ch3-1-supervised-learning">Supervised Learning</a> <a href="#ch4-1-classification">Classification</a> <a href="#ch4-2-logistic-regression">Logistic Regression</a> <a href="#ch4-3-knn">k-NN</a> <a href="#ch3-5-decision-tree-regression">Decision-Tree Concepts</a> <a href="#ch4-4-evaluation-metrics">Classification Metrics</a> <a href="#ch4-metric-traps">Metric Traps</a> <a href="#ch4-classification-code-example">Classification Code Example</a></div>
+					</article>
+
+					<article class="card assignment-card optimisation" id="assignment-part-f" data-nav-section>
+						<div class="question-meta"><span class="question-number">Part F</span><span class="chip risk">10 marks</span></div>
+						<h3>Model Optimisation</h3>
+						<p>Select the best-performing model, tune its hyperparameters with GridSearchCV or RandomizedSearchCV, compare results before and after tuning, and explain the bias-variance effect.</p>
+						<h4>Study-guide content to apply</h4>
+						<ul class="study-links">
+							<li>Define hyperparameters as settings chosen around training, such as k in k-NN, regularisation strength in Logistic Regression, or depth and leaf-size controls in a tree.</li>
+							<li>Use cross-validation or a search procedure to compare settings systematically, while keeping the final test set for an honest final estimate.</li>
+							<li>Explain improvement through bias-variance: stronger constraints can reduce variance and overfitting, while excessive simplicity can increase bias and underfitting.</li>
+							<li>Report the selected model, search space, scoring metric, best parameters, before/after metrics, and the business reason for preferring the final model.</li>
+							<li>GridSearchCV and RandomizedSearchCV are implementation extensions rather than named sections in the supplied guide; connect them to model selection, generalisation, regularisation, pruning, and bias-variance concepts.</li>
+						</ul>
+						<div class="assignment-links"><strong>General module content:</strong> <a href="#ch1-4-over-under-fitting">Overfitting and Underfitting</a> <a href="#ch1-6-bias-variance">Bias-Variance Tradeoff</a> <a href="#ch4-4-strengths-weaknesses">Model Parameters and Strengths</a> <a href="#ch3-tree-depth-warning">Tree Depth and Pruning</a> <a href="#ch4-regularization-multiclass">Regularisation and Complexity</a> <a href="#ch3-model-comparison">Model Comparison</a></div>
+					</article>
+
+					<article class="card assignment-card presentation wide" id="assignment-deliverables" data-nav-section>
+						<div class="question-meta"><span class="question-number">Across the assignment</span><span class="chip success">Presentation &amp; submission</span></div>
+						<h3>Business Interpretation, Presentation, and Submission</h3>
+						<p>Use the technical results to make a defensible credit-risk recommendation, then communicate the work in the required presentation and zipped submission.</p>
+						<h4>What to include</h4>
+						<ul class="study-links">
+							<li>Explain which model is preferred, which errors matter most to the financial institution, and whether the recommendation prioritises reducing false approvals, false rejections, or a balanced trade-off.</li>
+							<li>Build the minimum 10-slide PDF around the problem, dataset, data issues, preprocessing, PCA, model comparisons before and after PCA, tuning, and final insights.</li>
+							<li>Submit one zipped folder containing one Python file or notebook, the presentation PDF, and the selected CSV dataset. Keep all outputs visible and write theoretical justifications as structured code comments as well as in the slides.</li>
+							<li>Follow the brief's Times New Roman 12-point, 1.5-line-spacing, Harvard-referencing, PDF, originality declaration, and maximum 50MB requirements.</li>
+						</ul>
+						<div class="assignment-links"><strong>General module content:</strong> <a href="#ch1-applications-map">ML Application Map</a> <a href="#ch1-guide-workflow">ML Workflow</a> <a href="#ch1-5-correctness">Correctness and Error Costs</a> <a href="#ch4-metric-traps">Metric Traps</a> <a href="#ch5-evaluation-guide">Evaluation Guide</a></div>
+					</article>
 				</div>
 			</div>
 		</section>

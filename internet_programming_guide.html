@@ -947,7 +947,7 @@
 
 <details class="nav-group nav-collapsible">
 	<summary>Assignment Helper</summary>
-	<a class="nav-link" href="#assignment-helper" data-nav-link="assignment-helper">Coming Soon</a>
+	<a class="nav-link" href="#assignment-helper" data-nav-link="assignment-helper">Question 1: Event System</a>
 </details>
 
 <details class="nav-group nav-collapsible">
@@ -1004,12 +1004,136 @@
 		<section id="assignment-helper" class="quiz-section" data-nav-section>
 			<div class="section-heading">
 				<h2>Assignment Helper</h2>
-				<p>A future home for assignment guidance, worked examples, and practical support.</p>
+				<p>Question-by-question guidance for the supplied assignment brief, linked to the relevant study-guide material below.</p>
 			</div>
-			<div class="card coming-soon-card">
-				<span class="coming-soon-label">Coming soon</span>
-				<h3>Assignment Helper is coming soon</h3>
-				<p>This section will be updated when the relevant guidance is available.</p>
+			<div class="card chapter-card architecture" id="assignment-question-1">
+				<h3>Question 1: Practical Project - Online Event Management System <span class="chip">100 marks</span></h3>
+				<p>Design and develop a fully functional online event management system using PHP and MySQL for the backend, with HTML5, CSS3, JavaScript, or jQuery for the frontend.</p>
+				<div class="chapter-tools">
+					<span class="chip">PHP</span>
+					<span class="chip">MySQL</span>
+					<span class="chip">HTML5</span>
+					<span class="chip">CSS3</span>
+					<span class="chip">JavaScript / jQuery</span>
+					<span class="chip amber">Build from scratch</span>
+				</div>
+				<div class="callout warning">
+					<strong>Assignment restrictions:</strong> Do not use CSS frameworks such as Bootstrap, Tailwind CSS, or Materialize, and do not use a content management system such as WordPress. All components must be developed manually.
+				</div>
+			</div>
+
+			<div class="chapter-grid">
+				<article class="card chapter-card pattern" id="assignment-q1-authentication">
+					<h3>1. User Registration &amp; Authentication <span class="chip">15 marks</span></h3>
+					<p>Implement registration with full name, email, password, and profile picture; enforce unique email validation; hash passwords with <code>password_hash()</code>; provide secure login, logout, forgot-password functionality, and session handling with <code>$_SESSION</code>.</p>
+					<h4>Applicable study-guide content</h4>
+					<ul>
+						<li><a href="#ch1-1-form-basics">HTML form structure and controls</a> for registration and login fields.</li>
+						<li><a href="#ch1-3-superglobals">Capturing POST data with PHP</a> and <a href="#ch1-6-validation-flow">server-side validation and redisplay</a>.</li>
+						<li><a href="#ch1-4-security">Safe output and form-data security</a>, plus password hashing and prepared-statement patterns in the <a href="#ch1-glossary">Topic 1 glossary</a>.</li>
+						<li><a href="#ch2-3-sessions">Sessions and login state</a> for protected pages and logout.</li>
+					</ul>
+				</article>
+
+				<article class="card chapter-card architecture" id="assignment-q1-events">
+					<h3>2. Dashboard &amp; Event Management <span class="chip">20 marks</span></h3>
+					<p>Display upcoming events and support creating, editing, and deleting events. Include timestamps and order events correctly.</p>
+					<h4>Applicable study-guide content</h4>
+					<ul>
+						<li><a href="#ch4-2-create-table">Database and table design</a> for event records and timestamps.</li>
+						<li><a href="#ch4-3-crud-sql">INSERT, SELECT, UPDATE, and DELETE</a> for the event-management lifecycle.</li>
+						<li><a href="#ch4-4-php-mysql">Connecting PHP to MySQL</a> and <a href="#ch4-5-complex-query-review">query patterns</a> for upcoming-event filtering and ordering.</li>
+					</ul>
+				</article>
+
+				<article class="card chapter-card definition" id="assignment-q1-profile-search">
+					<h3>3. User Profile &amp; Search <span class="chip">15 marks</span></h3>
+					<p>Display profiles, allow users to update their profile image and name, search users and events, and provide view-only access to another user's profile.</p>
+					<h4>Applicable study-guide content</h4>
+					<ul>
+						<li><a href="#ch1-1-form-basics">Form controls</a>, <a href="#ch1-3-superglobals">request data</a>, and <a href="#ch1-6-validation-flow">validation</a> for profile updates and search forms.</li>
+						<li><a href="#ch1-4-security">Escaping user-supplied output</a> before displaying profile or search results.</li>
+						<li><a href="#ch4-5-complex-query-review">SELECT, JOIN, filtering, and ordering</a> for user and event search results.</li>
+						<li><a href="#ch2-3-sessions">Session state</a> for distinguishing the signed-in user's editable profile from view-only profiles.</li>
+					</ul>
+				</article>
+
+				<article class="card chapter-card architecture" id="assignment-q1-messaging">
+					<h3>4. Private Messaging System <span class="chip">15 marks</span></h3>
+					<p>Allow users to send messages, store messages in a separate table, show a conversation view, and enforce access control.</p>
+					<h4>Applicable study-guide content</h4>
+					<ul>
+						<li><a href="#ch4-2-create-table">Relational table design</a> for users, conversations, and messages.</li>
+						<li><a href="#ch4-3-crud-sql">CRUD SQL</a> for inserting messages and retrieving conversation history.</li>
+						<li><a href="#ch4-5-complex-query-review">Related-table query patterns</a> for joining sender and recipient data and ordering messages.</li>
+						<li><a href="#ch2-3-sessions">Sessions</a> and <a href="#ch1-4-security">input/output security</a> for restricting conversations to authorised users.</li>
+					</ul>
+				</article>
+
+				<article class="card chapter-card danger" id="assignment-q1-security">
+					<h3>5. Security Implementation <span class="chip">15 marks</span></h3>
+					<p>Use prepared statements with PDO or MySQLi, protect against XSS, validate and sanitise input, secure file uploads, and protect restricted pages.</p>
+					<h4>Applicable study-guide content</h4>
+					<ul>
+						<li><a href="#ch1-4-security">PHP form-data security</a> for validation and <code>htmlspecialchars()</code> output escaping.</li>
+						<li><a href="#ch1-glossary">Topic 1 security glossary</a> for prepared statements, <code>$_FILES</code>, and <code>move_uploaded_file()</code>.</li>
+						<li><a href="#ch4-4-php-mysql">PHP-to-MySQL connection patterns</a> as the place to apply prepared queries.</li>
+						<li><a href="#ch2-3-sessions">Session checks</a> for protecting authenticated and restricted pages.</li>
+					</ul>
+				</article>
+
+				<article class="card chapter-card pattern" id="assignment-q1-frontend">
+					<h3>6. Front-End Interactivity <span class="chip">10 marks</span></h3>
+					<p>Add JavaScript validation, an image preview before upload, live search, and a clean user interface.</p>
+					<h4>Applicable study-guide content</h4>
+					<ul>
+						<li><a href="#ch1-1-form-basics">HTML form controls</a> and <a href="#ch1-6-validation-flow">validation flow</a> provide the server-side foundation for the frontend.</li>
+						<li><a href="#ch1-4-security">Security guidance</a> still applies when displaying values returned by JavaScript or search requests.</li>
+						<li>The study guide does not directly teach JavaScript validation, image previews, live search, or CSS UI design; investigate those implementation details separately while keeping the PHP validation and security rules.</li>
+					</ul>
+				</article>
+
+				<article class="card chapter-card definition" id="assignment-q1-structure">
+					<h3>7. Code Quality &amp; Structure <span class="chip">10 marks</span></h3>
+					<p>Organise folders such as <code>includes</code>, <code>css</code>, <code>js</code>, and <code>uploads</code>. Include clean, commented code, a SQL file, and a README or user guide.</p>
+					<h4>Applicable study-guide content</h4>
+					<ul>
+						<li><a href="#chapter-5">Running PHP with XAMPP</a> for the local project environment and document root.</li>
+						<li><a href="#chapter-3">File system management</a> for understanding the <code>uploads</code> directory and file operations.</li>
+						<li><a href="#chapter-4">Databases and SQL</a> for the database script and <a href="#ch4-4-php-mysql">PHP/MySQL integration</a>.</li>
+					</ul>
+				</article>
+			</div>
+
+			<div class="chapter-grid">
+				<article class="card chapter-card warning" id="assignment-q1-submission">
+					<h3>Project Structure, Submission &amp; Evidence</h3>
+					<ul>
+						<li>Submit a ZIP containing all source code, the database SQL file, and a README or user guide.</li>
+						<li>Keep the ZIP at or below 50 MB.</li>
+						<li>Include clearly labelled screenshots demonstrating registration, login, dashboard/events, profile/search, messaging, security-related behaviour, frontend interaction, and system functionality.</li>
+						<li>Test every required workflow locally. The brief states that code that does not run or function correctly receives zero for that section.</li>
+					</ul>
+					<div class="related-chapters">
+						<span>Study-guide links:</span>
+						<a href="#chapter-1">Topic 1</a>
+						<a href="#chapter-2">Topic 2</a>
+						<a href="#chapter-3">Topic 3</a>
+						<a href="#chapter-4">Topic 4</a>
+						<a href="#chapter-5">XAMPP addendum</a>
+					</div>
+				</article>
+
+				<article class="card chapter-card architecture" id="assignment-q1-academic">
+					<h3>Assignment Format and Academic Requirements</h3>
+					<ul>
+						<li>Use Times New Roman, 12 pt, with 1.5 line spacing throughout the written assignment.</li>
+						<li>Use Harvard referencing for citations and references.</li>
+						<li>For the essay-style documentation, include a table of contents, introduction, main body with relevant subheadings, conclusion, and references.</li>
+						<li>Submit the assignment in PDF format on Moodle using the specified cover page and include a signed declaration of originality.</li>
+					</ul>
+					<div class="callout warning"><strong>Check the weighting:</strong> The brief labels Question 1 as 100 marks, while the rubric also shows a separate system-functionality/screenshots row. Confirm the final weighting with the lecturer if the rubric totals appear inconsistent.</div>
+				</article>
 			</div>
 		</section>
 
