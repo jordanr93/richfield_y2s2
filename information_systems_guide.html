@@ -119,6 +119,98 @@
 			border-color: rgba(88, 196, 221, 0.55);
 		}
 
+		.nav-submenu {
+			margin: 5px 0 5px 10px;
+			padding-left: 9px;
+			border-left: 1px solid var(--border);
+		}
+
+		.nav-submenu > summary {
+			padding: 7px 8px;
+			font-size: 0.88rem;
+			text-transform: none;
+			letter-spacing: 0;
+		}
+
+		.nav-submenu .nav-link {
+			padding-left: 13px;
+			font-size: 0.84rem;
+		}
+
+		.nav-always-open > summary {
+			cursor: default;
+		}
+
+		.ca-visual {
+			margin: 16px 0 20px;
+			padding: 12px;
+			background: #0b1016;
+			border: 1px solid var(--border);
+			border-radius: 12px;
+		}
+
+		.ca-visual img {
+			display: block;
+			width: 100%;
+			height: auto;
+			border-radius: 8px;
+		}
+
+		.ca-visual figcaption {
+			margin-top: 10px;
+			color: var(--muted);
+			font-size: 0.88rem;
+			line-height: 1.45;
+		}
+
+		.glossary-table-wrap {
+			overflow-x: auto;
+			margin: 12px 0;
+			border-radius: 8px;
+		}
+
+		.glossary-table {
+			min-width: 1080px;
+			margin: 0;
+			font-size: 0.84rem;
+		}
+
+		.glossary-table th,
+		.glossary-table td {
+			padding: 9px 10px;
+		}
+
+		.glossary-table td:first-child {
+			min-width: 130px;
+			color: var(--cyan);
+			font-weight: 700;
+		}
+
+		/* Give the dense CA reference chapters a clear internal reading hierarchy. */
+		#test-focus-areas details[id^="ca-chapter-"] > h4,
+		#ca-combined-case-table > h4 {
+			margin: 30px 0 14px;
+			padding: 14px 16px;
+			font-size: 1.18rem;
+			line-height: 1.35;
+			color: var(--cyan);
+			background: linear-gradient(90deg, rgba(69, 205, 255, 0.12), rgba(188, 140, 255, 0.06));
+			border: 1px solid rgba(69, 205, 255, 0.2);
+			border-left: 4px solid var(--cyan);
+			border-radius: 8px;
+			scroll-margin-top: 22px;
+		}
+
+		#test-focus-areas details[id^="ca-chapter-"] > h4 + .assignment-links {
+			margin: -4px 0 16px;
+			padding: 10px 14px;
+			border-left-width: 3px;
+		}
+
+		#test-focus-areas details[id^="ca-chapter-"] > .ca-term-glossary {
+			margin-top: 30px;
+		}
+
 		.menu-toggle {
 			display: none;
 			position: fixed;
@@ -471,7 +563,7 @@
 			line-height: 1.25;
 		}
 
-		.glossary-card summary::after {
+		.glossary-card > summary::after {
 			content: "Show";
 			flex: 0 0 auto;
 			padding: 0.18em 0.55em;
@@ -482,7 +574,7 @@
 			font-weight: 700;
 		}
 
-		.glossary-card[open] summary::after {
+		.glossary-card[open] > summary::after {
 			content: "Hide";
 		}
 
@@ -610,18 +702,40 @@
 					<h2>Modules</h2>
 					<a class="home-link" href="index.html">View All</a>
 				</div>
-<details class="nav-group nav-collapsible">
-	<summary>Assignment Helper</summary>
-	<a class="nav-link" href="#assignment-helper" data-nav-link="assignment-helper">Overview</a>
-	<a class="nav-link" href="#assignment-question-1" data-nav-link="assignment-question-1">Question 1: UI and clinic data design</a>
-	<a class="nav-link" href="#assignment-question-2" data-nav-link="assignment-question-2">Question 2: Support and maintenance</a>
-	<a class="nav-link" href="#assignment-question-3" data-nav-link="assignment-question-3">Question 3: Horizon Logistics changeover</a>
-	<a class="nav-link" href="#assignment-question-4" data-nav-link="assignment-question-4">Question 4: Strategic systems choices</a>
-</details>
-
-<details class="nav-group nav-collapsible">
+<details class="nav-group nav-collapsible nav-always-open" open>
 	<summary>Test Focus Areas</summary>
-	<a class="nav-link" href="#test-focus-areas" data-nav-link="test-focus-areas">Coming Soon</a>
+	<details class="nav-collapsible nav-submenu">
+		<summary>CA Test</summary>
+		<a class="nav-link" href="#test-focus-areas" data-nav-link="test-focus-areas">CA Overview</a>
+		<a class="nav-link" href="#ca-at-a-glance">At-a-Glance Index</a>
+		<details class="nav-collapsible nav-submenu">
+			<summary>Chapter 1</summary>
+			<a class="nav-link" href="#ca-ch1-1">1.1 Traditional vs Web</a>
+			<a class="nav-link" href="#ca-ch1-2">1.2 Evolving Trends</a>
+			<a class="nav-link" href="#ca-ch1-3">1.3-1.6 Development Options</a>
+			<a class="nav-link" href="#ca-ch1-7">1.7 Strategy Selection</a>
+			<a class="nav-link" href="#ca-ch1-8">1.8 Acquisition Process</a>
+			<a class="nav-link" href="#ca-ch1-9">1.9 Analysis Completion</a>
+			<a class="nav-link" href="#ca-ch1-worked-example">Worked Example</a>
+		</details>
+		<details class="nav-collapsible nav-submenu">
+			<summary>Chapter 2</summary>
+			<a class="nav-link" href="#ca-ch2-1">2.1-2.3 UI, HCI and Habits</a>
+			<a class="nav-link" href="#ca-ch2-4">2.4-2.5 Input and Forms</a>
+			<a class="nav-link" href="#ca-ch2-6">2.6 Printed Output</a>
+			<a class="nav-link" href="#ca-ch2-7">2.7-2.9 Technology and Control</a>
+			<a class="nav-link" href="#ca-ch2-worked-example">Worked Example</a>
+		</details>
+		<details class="nav-collapsible nav-submenu">
+			<summary>Chapter 3</summary>
+			<a class="nav-link" href="#ca-ch3-1">3.1-3.3 Data and DBMS</a>
+			<a class="nav-link" href="#ca-ch3-4">3.4-3.5 Terms and ERDs</a>
+			<a class="nav-link" href="#ca-ch3-6">3.6 Normalization</a>
+			<a class="nav-link" href="#ca-ch3-7">3.7-3.9 Codes and Control</a>
+			<a class="nav-link" href="#ca-ch3-worked-example">Worked Example</a>
+		</details>
+		<a class="nav-link" href="#ca-combined-case-table">Combined Chapters 1-3</a>
+	</details>
 </details>
 
 				<details class="nav-group nav-collapsible">
@@ -643,6 +757,14 @@
 					<a class="nav-link" href="#lab-flashcards">Flashcards</a>
 					<a class="nav-link" href="#lab-challenge">Concept Checker</a>
 				</details>
+				<details class="nav-group nav-collapsible">
+					<summary>Assignment Helper</summary>
+					<a class="nav-link" href="#assignment-helper" data-nav-link="assignment-helper">Overview</a>
+					<a class="nav-link" href="#assignment-question-1" data-nav-link="assignment-question-1">Question 1: UI and clinic data design</a>
+					<a class="nav-link" href="#assignment-question-2" data-nav-link="assignment-question-2">Question 2: Support and maintenance</a>
+					<a class="nav-link" href="#assignment-question-3" data-nav-link="assignment-question-3">Question 3: Horizon Logistics changeover</a>
+					<a class="nav-link" href="#assignment-question-4" data-nav-link="assignment-question-4">Question 4: Strategic systems choices</a>
+				</details>
 			</nav>
 		</aside>
 
@@ -654,7 +776,7 @@
 					<h1>Information Systems 622 Study Hub</h1>
 					<p>A dark, readable one-page guide covering the major development, design, implementation, support, and security ideas from the Information Systems 622 study guide.</p>
 					<div class="actions">
-						<a class="button primary" href="#exam-focus-areas">Start Exam Focus</a>
+						<a class="button primary" href="#test-focus-areas">Start CA Revision</a>
 						<a class="button" href="#general-module-content">Browse General Content</a>
 					</div>
 					<div class="legend" aria-label="Colour legend">
@@ -771,13 +893,408 @@
 
 				<section class="section" id="test-focus-areas" data-nav-section>
 					<div class="section-heading">
-						<h2>Test Focus Areas</h2>
-						<p>A future home for confirmed test coverage and targeted revision guidance.</p>
+						<h2>CA References</h2>
+						<p>A focused open-book reference for Chapters 1-3. Use the diagnostic index to identify the problem, then open the relevant chapter for solutions, trade-offs and limitations.</p>
 					</div>
-					<div class="card coming-soon-card">
-						<span class="coming-soon-label">Coming soon</span>
-						<h3>Test Focus Areas are coming soon</h3>
-						<p>This section will be updated when the relevant guidance is available.</p>
+					<div class="note success"><strong>Reference pattern:</strong> <code>Symptom -> Diagnosis -> Suitable response -> Benefit -> Limitation/risk -> Control</code>.</div>
+					<div class="grid">
+						<article class="card wide" id="ca-at-a-glance">
+							<h3>At-a-Glance Diagnostic Index</h3>
+							<table>
+								<tr><th>Visible symptom</th><th>Likely diagnosis</th><th>Primary reference</th><th>Typical response</th></tr>
+								<tr><td>Package does not fit; legacy integration is difficult; internal skills are limited.</td><td>Software acquisition/development-strategy problem.</td><td><a href="#ca-ch1-3">Ch. 1.3-1.6</a></td><td>Compare in-house, package, customisation, outsourcing and SaaS using fit, TCO, control and risk.</td></tr>
+								<tr><td>Costs look low initially but support, training or upgrades are unclear.</td><td>Incomplete TCO and vendor evaluation.</td><td><a href="#ca-ch1-7">Ch. 1.7</a></td><td>Include lifetime costs, benefits, vendor viability, service levels and exit risk.</td></tr>
+								<tr><td>Users make errors, abandon tasks or need excessive training.</td><td>HCI, usability or input-design weakness.</td><td><a href="#ca-ch2-4">Ch. 2.4-2.5</a></td><td>Redesign workflow, layout, feedback, help, defaults and validation around real users.</td></tr>
+								<tr><td>Managers receive too much data or miss urgent exceptions.</td><td>Wrong report type or poor output design.</td><td><a href="#ca-ch2-6">Ch. 2.6</a></td><td>Select detail, summary or exception output and apply headers, grouping and control breaks.</td></tr>
+								<tr><td>Names, addresses or prices conflict across files.</td><td>Redundancy and update anomalies.</td><td><a href="#ca-ch3-1">Ch. 3.1-3.3</a></td><td>Move to related tables, define keys and normalize to 3NF.</td></tr>
+								<tr><td>One field contains many values or one table mixes several subjects.</td><td>Repeating groups, partial or transitive dependencies.</td><td><a href="#ca-ch3-6">Ch. 3.6</a></td><td>Apply 1NF, 2NF and 3NF in sequence; preserve relationships with foreign keys.</td></tr>
+								<tr><td>Orphan records, unauthorised access or untraceable changes occur.</td><td>Referential-integrity and data-control failure.</td><td><a href="#ca-ch3-7">Ch. 3.7-3.9</a></td><td>Add PK/FK constraints, subschemas, privileges, encryption, audit trails and recovery controls.</td></tr>
+							</table>
+						</article>
+
+						<details class="card wide glossary-card" id="ca-chapter-1">
+							<summary><span>Chapter 1 CA Reference: Development Strategies</span></summary>
+							<div class="note"><strong>Central question:</strong> How should an organisation obtain software that fits its requirements, constraints, risk tolerance and long-term strategy?</div>
+							<div class="assignment-links"><strong>Source map:</strong> Study Guide PDF pages 8-36. <a href="#chapter-1">Open fuller Chapter 1 notes</a> <a href="#ch1-worked-acquisition-case">Open acquisition worked example</a></div>
+							<h4 id="ca-ch1-1">1.1 Traditional versus Web-Based Systems Development</h4>
+							<p class="assignment-links"><a href="#ch1-1-traditional-vs-web">View Traditional vs Web-Based Systems in General Module Content ↓</a></p>
+							<table>
+								<tr><th>Criterion</th><th>Traditional environment</th><th>Web-based environment</th></tr>
+								<tr><td>Platform</td><td>Often tied to internal hardware, operating systems, LAN/WAN and legacy applications.</td><td>The web is the application platform; access is commonly browser or service based.</td></tr>
+								<tr><td>Reach and scaling</td><td>Usually centred on employees and controlled locations.</td><td>Supports broad access, diverse devices and rapid scaling, but depends on network availability.</td></tr>
+								<tr><td>Control</td><td>Greater direct control over infrastructure and internal integration.</td><td>May depend on cloud, hosting or service providers and their service levels.</td></tr>
+								<tr><td>Security</td><td>Strong perimeter and internal access controls remain important.</td><td>Internet exposure adds authentication, encryption, privacy and availability risks.</td></tr>
+							</table>
+							<h4 id="ca-ch1-2">1.2 Evolving Trends</h4>
+							<p class="assignment-links"><a href="#ch1-2-trends">View Evolving Trends in General Module Content ↓</a></p>
+							<table>
+								<tr><th>Trend</th><th>Meaning and benefit</th><th>Diagnosis / suitable use</th><th>Limitation</th><th>Example</th></tr>
+								<tr><td>Cloud computing</td><td>On-demand shared computing resources improve scalability and reduce local infrastructure work.</td><td>Demand varies or rapid capacity is needed.</td><td>Connectivity, privacy, provider control and recurring cost.</td><td>Add server capacity during seasonal online enrolment.</td></tr>
+								<tr><td>Mobile/web platforms</td><td>Provide broad access across devices and locations.</td><td>Users need remote or field access.</td><td>Device diversity, responsive design and greater internet exposure.</td><td>Sales staff update orders from phones.</td></tr>
+								<tr><td>SaaS</td><td>Delivers hosted software as a subscription service.</td><td>Standard functionality is needed quickly.</td><td>Lock-in, customisation, availability and data-portability risk.</td><td>Hosted customer relationship management.</td></tr>
+							</table>
+
+							<h4 id="ca-ch1-3">1.3-1.6 Development Options, Outsourcing, Offshoring and SaaS</h4>
+							<p class="assignment-links"><a href="#ch1-3-development-options">View Development Options</a> <a href="#ch1-5-build-buy-customize">View Make, Buy, Customise or Empower Users ↓</a></p>
+							<table>
+								<tr><th>Option</th><th>Choose it when...</th><th>Main benefit</th><th>Main risk or cost</th></tr>
+								<tr><td>Develop in-house</td><td>Requirements are unique; existing systems or technology impose constraints; internal capability is strategic.</td><td>Close business fit, control and internal knowledge.</td><td>Longer delivery, scarce skills, development risk and continuing support cost.</td></tr>
+								<tr><td>Buy a package</td><td>The need is common and reputable horizontal or vertical packages exist.</td><td>Faster implementation, tested product and vendor upgrades.</td><td>Process change, integration, training, licensing and imperfect fit.</td></tr>
+								<tr><td>Customise a package</td><td>A package meets most requirements but needs limited changes.</td><td>Better fit without building everything.</td><td>Custom work may break upgrades or vendor support and increase TCO.</td></tr>
+								<tr><td>User application</td><td>A small group needs a controlled solution using productivity tools.</td><td>Fast and inexpensive response to a local need.</td><td>Weak governance can threaten security, integrity, documentation and support.</td></tr>
+								<tr><td>Outsource</td><td>External expertise, capacity or service reliability is stronger than internal provision.</td><td>Access to specialists and flexible capacity.</td><td>Less control, provider dependence, confidentiality, ownership and continuity risks.</td></tr>
+								<tr><td>Offshore</td><td>Suitable work can be moved internationally with adequate governance.</td><td>Potential labour savings and access to global skills.</td><td>Culture, language, time zone, quality, legal and data-security complications.</td></tr>
+								<tr><td>SaaS</td><td>A standard service can be accessed online and subscription economics are suitable.</td><td>Provider handles infrastructure, maintenance and upgrades.</td><td>Recurring fees, internet/provider dependence, data portability and customisation limits.</td></tr>
+							</table>
+							<p><strong>High-value distinctions:</strong> a <code>horizontal application</code> serves many industries; a <code>vertical application</code> serves one specialised industry; a <code>VAR</code> adapts a commercial product; an <code>ASP</code> supplies application access; <code>BPO</code> transfers a whole business process; <code>IBS</code> provides managed internet-based business services.</p>
+
+							<h4 id="ca-ch1-7">1.7 Selecting a Development Strategy</h4>
+							<p class="assignment-links"><a href="#ch1-worked-acquisition-case">View the Full Acquisition Worked Example ↓</a></p>
+							<ul>
+								<li><strong>TCO:</strong> include acquisition, licences, hardware, conversion, integration, customisation, training, disruption, maintenance, upgrades, support, staffing and exit costs.</li>
+								<li><strong>Payback period:</strong> how long benefits or savings take to recover the investment.</li>
+								<li><strong>ROI:</strong> compares net benefits with investment cost; useful for relative return but dependent on forecast quality.</li>
+								<li><strong>NPV:</strong> adjusts future costs and benefits to present value because timing affects value.</li>
+								<li><strong>Vendor checks:</strong> financial stability, experience, references, product maturity, support, warranties, licensing, ownership, security, recovery plans and upgrade path.</li>
+								<li><strong>Product checks:</strong> requirements fit, usability, compatibility, performance benchmarks, scalability, integration and test results.</li>
+							</ul>
+
+							<h4 id="ca-ch1-8">1.8 Software Acquisition Process</h4>
+							<p class="assignment-links"><a href="#ch1-4-acquisition">View Software Acquisition Process in General Module Content ↓</a></p>
+							<figure class="ca-visual">
+								<img src="assets/information-systems/development-strategy-map.svg" alt="Development strategy decision map from business diagnosis through option comparison, cost and risk evaluation, evidence gathering, recommendation and management approval." loading="lazy">
+								<figcaption>Follow the decision from business need to management approval. The system requirements document carries the evidence, alternatives and recommendation into the decision.</figcaption>
+							</figure>
+							<div class="note"><code>Requirements -> Web/network constraints -> Build/buy/service options -> RFP or RFQ -> Vendor and product evaluation -> Cost-benefit/TCO -> Recommendation -> Management decision -> Systems design</code></div>
+							<table>
+								<tr><th>Tool/document</th><th>When to use it</th><th>Essential content</th></tr>
+								<tr><td>RFP</td><td>The business describes a need and asks vendors to propose a solution.</td><td>Requirements, features, service levels, support, timetable, pricing and evaluation criteria.</td></tr>
+								<tr><td>RFQ</td><td>The product or service is already clearly specified and comparable prices are needed.</td><td>Precise specification, quantities, terms and quotation comparison.</td></tr>
+								<tr><td>System requirements document</td><td>Systems analysis is complete and management must decide what happens next.</td><td>Requirements, alternatives, costs, benefits and recommendations.</td></tr>
+							</table>
+
+							<h4 id="ca-ch1-9">1.9 Completion of Systems Analysis Tasks</h4>
+							<p class="assignment-links"><a href="#ch1-4-acquisition">View Acquisition and Analysis Completion in General Module Content ↓</a></p>
+							<table>
+								<tr><th>Output/stage</th><th>Purpose</th><th>Benefit</th><th>Limitation/risk</th><th>Example</th></tr>
+								<tr><td>System requirements document</td><td>Consolidates requirements, alternatives, costs, benefits and recommendation.</td><td>Creates a traceable basis for management decision.</td><td>Weak or outdated requirements can misdirect design.</td><td>Recommends SaaS subject to integration and SLA conditions.</td></tr>
+								<tr><td>Management presentation</td><td>Explains evidence, trade-offs and recommendation to decision-makers.</td><td>Allows questions, clarification and ownership.</td><td>Technical detail without business meaning can obscure risk.</td><td>Present TCO scenarios and vendor-risk controls.</td></tr>
+								<tr><td>Transition to systems design</td><td>Moves approved logical requirements into detailed design.</td><td>Maintains continuity and traceability.</td><td>Unresolved assumptions become expensive design changes.</td><td>Approved web access and security needs become UI, database and architecture specifications.</td></tr>
+							</table>
+
+							<details class="card glossary-card ca-term-glossary">
+								<summary><span>Chapter 1 Definitions, Benefits, Limits and Examples</span></summary>
+								<div class="glossary-table-wrap">
+									<table class="glossary-table">
+										<tr><th>Term</th><th>Plain-language definition</th><th>Diagnosis / when relevant</th><th>Benefit</th><th>Limitation or risk</th><th>Example</th></tr>
+										<tr><td>TCO<br><span class="muted">Total Cost of Ownership</span></td><td>The full lifetime cost of acquiring, operating, supporting and eventually replacing a system.</td><td>The purchase price looks cheap, but training, conversion, support or upgrades are unclear.</td><td>Prevents decisions based only on initial price.</td><td>Depends on forecasts; hidden and future costs can be estimated incorrectly.</td><td>A R200 000 package may cost far more after licences, migration, training and five years of support.</td></tr>
+										<tr><td>ROI<br><span class="muted">Return on Investment</span></td><td>A percentage comparing net benefits with the amount invested.</td><td>Management must compare the financial return of alternative projects.</td><td>Provides a simple relative measure of value.</td><td>Can ignore timing and relies on credible benefit estimates.</td><td>A system costing R500 000 that produces R650 000 net benefit has a positive return.</td></tr>
+										<tr><td>NPV<br><span class="muted">Net Present Value</span></td><td>Future benefits and costs converted into today's value, then netted against one another.</td><td>Costs and benefits occur over several years.</td><td>Recognises that money received sooner is worth more than money received later.</td><td>The result changes with the discount rate and cash-flow assumptions.</td><td>Compare a large benefit in year five with implementation costs paid today.</td></tr>
+										<tr><td>Payback period</td><td>The time required for accumulated benefits or savings to recover the investment.</td><td>Liquidity and speed of cost recovery are important.</td><td>Easy to understand and useful for risk screening.</td><td>Ignores benefits after payback and may ignore the time value of money.</td><td>A R300 000 system saving R100 000 annually has a simple three-year payback.</td></tr>
+										<tr><td>RFP<br><span class="muted">Request for Proposal</span></td><td>A document describing a business need and asking vendors to propose how they would solve it.</td><td>The organisation knows the outcome it needs but wants vendors to design competing solutions.</td><td>Allows comparison of approach, capability, service and price.</td><td>Vague requirements produce proposals that are difficult to compare.</td><td>A college asks vendors to propose an integrated registration platform.</td></tr>
+										<tr><td>RFQ<br><span class="muted">Request for Quotation</span></td><td>A request for prices and commercial terms for a clearly specified product or service.</td><td>The required item is known and price comparison is the main need.</td><td>Produces relatively comparable bids.</td><td>Not suitable when the solution itself still needs to be designed.</td><td>Request prices for 200 named SaaS user licences with defined support.</td></tr>
+										<tr><td>VAR<br><span class="muted">Value-Added Reseller</span></td><td>A firm that adds services or custom features to another vendor's commercial product.</td><td>A standard package is close to the requirement but needs industry-specific adaptation.</td><td>Combines an established product with specialised implementation knowledge.</td><td>Custom changes can complicate upgrades and create dependence on the reseller.</td><td>A VAR adapts an accounting package for medical-practice billing.</td></tr>
+										<tr><td>ASP<br><span class="muted">Application Service Provider</span></td><td>A provider that hosts and supplies access to an application for a fee.</td><td>The company wants application use without operating the full platform itself.</td><td>Reduces internal installation and maintenance work.</td><td>Creates provider, connectivity, security and availability dependence.</td><td>A business rents access to hosted payroll software.</td></tr>
+										<tr><td>BPO<br><span class="muted">Business Process Outsourcing</span></td><td>Transferring an entire business process, not merely its software, to an outside provider.</td><td>The organisation wants an external specialist to run a complete function.</td><td>Can provide expertise, scale and predictable service.</td><td>Reduces direct control and can expose sensitive processes and data.</td><td>A provider operates payroll calculation, payment and employee queries.</td></tr>
+										<tr><td>IBS<br><span class="muted">Internet Business Services</span></td><td>Managed internet-based services for transactions and business operations.</td><td>Online processing, hosting or customer-facing functions require external operational support.</td><td>Provides managed infrastructure and broad internet access.</td><td>Service quality, integration and provider continuity must be governed.</td><td>A managed host operates online ordering, billing and customer relationship services.</td></tr>
+										<tr><td>SaaS<br><span class="muted">Software as a Service</span></td><td>Software hosted by a provider and accessed online through subscription or usage-based fees.</td><td>The requirement is fairly standard and the organisation wants rapid access without local deployment.</td><td>Provider handles infrastructure, maintenance and upgrades.</td><td>Recurring cost, limited customisation, lock-in and data portability concerns.</td><td>Microsoft 365 delivers office applications through a subscription.</td></tr>
+										<tr><td>SLA<br><span class="muted">Service-Level Agreement</span></td><td>A contract measure defining expected service quality, availability, response and remedies.</td><td>A critical service is provided by an outsourcer, ASP or SaaS vendor.</td><td>Makes performance expectations measurable and enforceable.</td><td>A weak SLA may exclude important failures or offer inadequate remedies.</td><td>99.9% uptime, four-hour critical-response time and service credits.</td></tr>
+										<tr><td>Horizontal application</td><td>Software that supports a common function across many industries.</td><td>The business need is standard rather than industry-specific.</td><td>Large customer base can reduce cost and improve product maturity.</td><td>May not reflect specialised workflows.</td><td>Payroll or general accounting software.</td></tr>
+										<tr><td>Vertical application</td><td>Software designed for the specialised needs of one industry.</td><td>Industry rules and workflows are central to the requirement.</td><td>Provides a closer functional fit and industry terminology.</td><td>Smaller vendor market, higher cost and possible vendor dependence.</td><td>A hospital patient-management or airline-reservation system.</td></tr>
+									</table>
+								</div>
+							</details>
+
+							<h4>Diagnosis -> solution -> limitation</h4>
+							<p class="assignment-links"><a href="#chapter-1">Compare with all Chapter 1 General Module Content ↓</a></p>
+							<table>
+								<tr><th>Diagnosis / evidence</th><th>Suitable solution</th><th>Why it helps</th><th>Limitation or control</th></tr>
+								<tr><td>No package satisfies unique requirements; legacy rules cannot change.</td><td>Develop in-house or build a controlled custom layer.</td><td>Maximises business fit and integration control.</td><td>Requires skills, time, testing, documentation and long-term ownership.</td></tr>
+								<tr><td>Requirements are standard and time-to-value is critical.</td><td>Buy a proven horizontal/vertical package.</td><td>Reuses tested software and vendor support.</td><td>Confirm process fit, integration, training, licensing and upgrade costs.</td></tr>
+								<tr><td>Internal capacity is weak or workload fluctuates.</td><td>Outsource to a capable service provider.</td><td>Provides specialist skills and flexible capacity.</td><td>Use SLAs, security clauses, ownership terms, recovery provisions and an exit plan.</td></tr>
+								<tr><td>Users need broad online access without local infrastructure.</td><td>SaaS or managed web service.</td><td>Provider manages hosting, maintenance and upgrades.</td><td>Assess recurring fees, availability, lock-in, privacy and data portability.</td></tr>
+								<tr><td>Quoted purchase price appears attractive.</td><td>Perform TCO, ROI, payback and NPV analysis.</td><td>Exposes lifetime cost and benefit timing.</td><td>Forecasts are uncertain; test assumptions with scenarios and sensitivity analysis.</td></tr>
+								<tr><td>Management lacks enough evidence to proceed.</td><td>Complete evaluation and issue a system requirements document.</td><td>Provides requirements, alternatives, costs, benefits and recommendation.</td><td>Management may approve, revise or stop; unresolved risk must remain visible.</td></tr>
+							</table>
+							<div class="note danger"><strong>Critical limitation:</strong> buying, outsourcing or moving to SaaS is not automatically cheaper. Suitability depends on requirements, control, integration, provider risk and total cost over the system's life.</div>
+							<h4 id="ca-ch1-worked-example">Chapter 1 Worked Example: Acquiring a Clinic Booking System</h4>
+							<p><strong>Case:</strong> A growing clinic uses telephone bookings and spreadsheets. It needs online booking within four months, has one IT technician, handles confidential patient information and must connect to its existing billing system.</p>
+							<table>
+								<tr><th>Case fact</th><th>Diagnosis</th><th>Applied response</th><th>Benefit</th><th>Limitation and control</th></tr>
+								<tr><td>Four-month deadline and limited internal skills</td><td>Full in-house development has high schedule and capability risk.</td><td>Shortlist a healthcare-focused vertical package or SaaS service rather than building from zero.</td><td>Faster deployment and access to tested specialist functions.</td><td>The package may not fit every process; use fit-gap analysis and configure before considering customisation.</td></tr>
+								<tr><td>Patient information is confidential</td><td>Hosting and vendor access create privacy, security and accountability risks.</td><td>Put access control, encryption, audit logs, breach duties, backup and data-location requirements in the RFP and SLA.</td><td>Makes protection measurable and gives the clinic contractual remedies.</td><td>Contracts cannot prevent every incident; conduct due diligence, monitor the SLA and test recovery.</td></tr>
+								<tr><td>The new service must exchange billing data</td><td>A stand-alone package would create duplicate entry and inconsistent records.</td><td>Require a documented interface, common identifiers, validation and reconciliation testing.</td><td>Reduces transcription work and preserves consistency between systems.</td><td>Integration adds cost and vendor dependency; prototype the interface and define ownership.</td></tr>
+								<tr><td>The monthly fee looks affordable</td><td>Purchase price alone hides migration, training, support, integration and exit costs.</td><td>Compare alternatives using total cost of ownership (TCO), return on investment (ROI), payback and net present value (NPV).</td><td>Compares lifetime cost and benefit timing, not only the first invoice.</td><td>Forecasts depend on assumptions; perform sensitivity analysis for user growth and fee increases.</td></tr>
+							</table>
+							<div class="note success"><strong>Reasoned recommendation:</strong> select the best-fitting vertical SaaS product only if its security, billing integration, service availability and data-export requirements pass evaluation. Run an RFP, score vendors with weighted criteria, negotiate the SLA, pilot the workflow, train users and retain an exit plan. <a href="#ch1-worked-acquisition-case">Compare with the General Module acquisition example ↓</a></div>
+						</details>
+
+						<details class="card wide glossary-card" id="ca-chapter-2">
+							<summary><span>Chapter 2 CA Reference: User Interface Design</span></summary>
+							<div class="note"><strong>Central question:</strong> How can an analyst make interaction accurate, efficient, learnable, accessible and secure for the people performing the business work?</div>
+							<div class="assignment-links"><strong>Source map:</strong> Study Guide PDF pages 37-76. <a href="#chapter-2">Open fuller Chapter 2 notes</a> <a href="#ch2-8-forms-reports-worked-example">Open forms/reports worked example</a></div>
+							<h4 id="ca-ch2-1">2.1-2.3 User Interfaces, HCI and Design Habits</h4>
+							<p class="assignment-links"><a href="#ch2-1-ui-hci">View UI and HCI</a> <a href="#ch2-6-seven-habits">View the Seven Design Habits ↓</a></p>
+							<p><code>HCI</code> studies how people interact with computer systems. A strong design begins with users, tasks, business rules, work environment, devices, skill levels and accessibility needs—not colour and decoration.</p>
+							<div class="note"><code>Understand the business -> Understand users and tasks -> Model/prototype -> Observe and measure usability -> Gather feedback -> Refine -> Document</code></div>
+							<figure class="ca-visual">
+								<img src="assets/information-systems/ui-control-flow.svg" alt="User interface flow showing task-focused input, validation and access controls, DBMS processing, purpose-fit output and a user feedback loop." loading="lazy">
+								<figcaption>The quality chain links interface design to validation, database integrity and useful output. Weak input produces unreliable output even when the report looks professional.</figcaption>
+							</figure>
+							<table>
+								<tr><th>Design goal</th><th>Practical application</th><th>Why it matters</th></tr>
+								<tr><td>Easy to learn and use</td><td>Consistent language, predictable navigation, recognition rather than recall.</td><td>Reduces training time and user errors.</td></tr>
+								<tr><td>Productivity</td><td>Logical tab order, defaults, shortcuts, lookups and minimal re-entry.</td><td>Reduces task time and operational cost.</td></tr>
+								<tr><td>Flexibility</td><td>Support novice and expert paths, multiple devices and suitable personalisation.</td><td>Accommodates different users without losing control.</td></tr>
+								<tr><td>Help and feedback</td><td>Clear status, confirmation, corrective error messages and accessible help.</td><td>Lets users recover and understand system state.</td></tr>
+								<tr><td>Readable layout</td><td>Grouping, alignment, whitespace, contrast and consistent visual hierarchy.</td><td>Improves scanning and reduces cognitive load.</td></tr>
+							</table>
+
+							<h4 id="ca-ch2-4">2.4-2.5 Interface Guidelines, Input and Source Documents</h4>
+							<p class="assignment-links"><a href="#ch2-3-validation">View Validation Rules in General Module Content ↓</a></p>
+							<table>
+								<tr><th>Validation/control</th><th>Question it asks</th><th>Example</th></tr>
+								<tr><td>Sequence check</td><td>Are records or numbers in the expected order?</td><td>Detect a missing invoice number.</td></tr>
+								<tr><td>Existence check</td><td>Was a mandatory field entered?</td><td>Patient ID cannot be blank.</td></tr>
+								<tr><td>Data-type check</td><td>Is the value the correct type?</td><td>Quantity must be numeric.</td></tr>
+								<tr><td>Range check</td><td>Is the value between fixed limits?</td><td>Assessment mark must be 0-100.</td></tr>
+								<tr><td>Reasonableness check</td><td>Is the value plausible in context?</td><td>An employee cannot work 200 hours in a week.</td></tr>
+								<tr><td>Validity check</td><td>Is the value in the permitted list or master data?</td><td>Doctor ID must exist.</td></tr>
+								<tr><td>Combination check</td><td>Are related values acceptable together?</td><td>A delivery date cannot precede the order date.</td></tr>
+								<tr><td>Batch control</td><td>Is a group complete and correctly totalled?</td><td>Record count and financial control total agree.</td></tr>
+							</table>
+							<p><strong>Source-document zones:</strong> heading, control, instructions, body, totals and authorisation. Good forms follow the business sequence, use clear captions and collect data once at its source.</p>
+
+							<h4 id="ca-ch2-6">2.6 Printed Output and Report Design</h4>
+							<p class="assignment-links"><a href="#ch2-4-reports-controls">View Forms, Reports and Controls</a> <a href="#ch2-8-forms-reports-worked-example">View the Worked Example ↓</a></p>
+							<table>
+								<tr><th>Position</th><th>Typical content</th><th>Purpose</th></tr>
+								<tr><td>Report header</td><td>Report title, organisation and date range.</td><td>Identifies the whole report once.</td></tr>
+								<tr><td>Page header</td><td>Column headings, date and page identity.</td><td>Keeps each page understandable.</td></tr>
+								<tr><td>Detail area</td><td>Records or transactions.</td><td>Provides the required operational information.</td></tr>
+								<tr><td>Control break</td><td>Group subtotal when a sorted control field changes.</td><td>Summarises each group, such as a store or department.</td></tr>
+								<tr><td>Page footer</td><td>Page number or repeated report identity.</td><td>Supports sequence and document control.</td></tr>
+								<tr><td>Report footer</td><td>Grand totals and final notes.</td><td>Closes and summarises the complete report.</td></tr>
+							</table>
+							<p><strong>Report selection:</strong> use a <code>detail report</code> for every relevant record, a <code>summary report</code> for grouped totals, and an <code>exception report</code> for items requiring attention. Printed output must have a justified audience, purpose, frequency, delivery method and security classification.</p>
+
+							<h4 id="ca-ch2-7">2.7-2.9 Technology, Security, Responsive Design and Prototyping</h4>
+							<p class="assignment-links"><a href="#ch2-5-prototyping">View Prototyping and Trends</a> <a href="#ch2-9-technology-security">View Technology, Controls and Emerging Trends ↓</a></p>
+							<ul>
+								<li><strong>Output channels:</strong> screens, printed documents, internet delivery, email, messaging, wireless devices, digital audio/images/video and specialised devices. Select according to user, timing, portability, confidentiality and accessibility.</li>
+								<li><strong>Input choices:</strong> batch input suits accumulated work; online input suits immediate interaction. Automated capture improves speed but still requires validation and controls.</li>
+								<li><strong>Output security:</strong> restrict recipients and viewing, protect storage and disposal, classify confidential reports and retain audit evidence.</li>
+								<li><strong>Input security:</strong> authentication, authorisation, encryption, validation, audit trails and controlled source documents.</li>
+								<li><strong>Responsive design:</strong> adapt layout and interaction to device size without hiding essential tasks or controls.</li>
+								<li><strong>Prototype:</strong> test requirements and usability early; distinguish a throwaway learning model from production-quality software.</li>
+							</ul>
+
+							<details class="card glossary-card ca-term-glossary">
+								<summary><span>Chapter 2 Definitions, Benefits, Limits and Examples</span></summary>
+								<div class="glossary-table-wrap">
+									<table class="glossary-table">
+										<tr><th>Term</th><th>Plain-language definition</th><th>Diagnosis / when relevant</th><th>Benefit</th><th>Limitation or risk</th><th>Example</th></tr>
+										<tr><td>UI<br><span class="muted">User Interface</span></td><td>The screens, controls, messages, forms and outputs through which a person uses a system.</td><td>Users struggle to navigate, enter data or understand results.</td><td>Connects business tasks and system functions in a usable form.</td><td>A polished UI cannot repair incorrect business rules or poor data design.</td><td>A clinic appointment screen with patient lookup, date selection and confirmation.</td></tr>
+										<tr><td>HCI<br><span class="muted">Human-Computer Interaction</span></td><td>The study and design of how people interact with computer systems while performing tasks.</td><td>Errors, slow completion, frustration or accessibility barriers suggest a person-system mismatch.</td><td>Improves effectiveness, efficiency, learnability and satisfaction.</td><td>Needs representative user research; assumptions by designers can be misleading.</td><td>Observing receptionists use a prototype to identify confusing field order.</td></tr>
+										<tr><td>GUI<br><span class="muted">Graphical User Interface</span></td><td>An interface using windows, icons, menus, buttons and other visual controls.</td><td>Users need direct visual interaction instead of typed commands.</td><td>Supports recognition, visual feedback and easier learning.</td><td>Can become cluttered, inconsistent or inaccessible.</td><td>A dashboard with labelled navigation, icons and interactive forms.</td></tr>
+										<tr><td>Usability</td><td>The degree to which specified users achieve goals effectively, efficiently and satisfactorily.</td><td>Tasks take too long, errors are frequent or users avoid the system.</td><td>Reduces training, mistakes and support demand.</td><td>Must be measured for particular users and tasks; it is not simply appearance.</td><td>Users complete a return transaction accurately in under two minutes.</td></tr>
+										<tr><td>GIGO<br><span class="muted">Garbage In, Garbage Out</span></td><td>Poor, incomplete or invalid input produces unreliable output.</td><td>A professional-looking report contains incorrect totals or decisions.</td><td>Highlights why source quality and validation matter.</td><td>Validation cannot detect every believable but incorrect value.</td><td>An incorrect quantity entered on a return form creates a wrong stock report.</td></tr>
+										<tr><td>FDD<br><span class="muted">Functional Decomposition Diagram</span></td><td>A hierarchy that breaks a business function into smaller functions and tasks.</td><td>The interface may omit tasks or mix unrelated functions.</td><td>Helps map navigation and screens to complete business functionality.</td><td>Shows functional hierarchy, not timing, data movement or detailed interaction.</td><td>Sales decomposes into capture order, verify credit, dispatch and invoice.</td></tr>
+										<tr><td>Prototype</td><td>An early model used to test requirements, interaction or layout before full construction.</td><td>Requirements are unclear or users disagree about how work should flow.</td><td>Reveals misunderstandings early and supports user feedback.</td><td>A throwaway prototype may lack security, scalability and production-quality code.</td><td>A clickable clinic booking mock-up tested by receptionists.</td></tr>
+										<tr><td>Responsive web design</td><td>A design approach that adapts layout and controls to different screen sizes and devices.</td><td>Mobile users must zoom, scroll sideways or cannot reach essential actions.</td><td>Improves access across phones, tablets and desktops.</td><td>Complex tables and workflows may still need device-specific simplification.</td><td>A report filter stacks vertically on a phone but displays in one row on desktop.</td></tr>
+										<tr><td>Source document</td><td>The original form that captures, authorises or records transaction data at its source.</td><td>Staff enter inconsistent data from informal notes or duplicate documents.</td><td>Standardises capture and creates an original transaction record.</td><td>Poorly designed forms reproduce errors and increase work.</td><td>A numbered goods-return form with heading, control, body, totals and authorisation zones.</td></tr>
+										<tr><td>Validation rule</td><td>A rule that checks whether entered data satisfies an expected condition.</td><td>Missing, mistyped, out-of-range or inconsistent values reach processing.</td><td>Detects many input errors close to their source.</td><td>A valid-looking value can still be factually wrong; overrides may be needed.</td><td>A validity check requires Doctor ID to exist in the doctor master table.</td></tr>
+										<tr><td>Detail report</td><td>A report showing one or more lines for every relevant record.</td><td>A user needs transaction-level evidence or audit detail.</td><td>Provides completeness and traceability.</td><td>Can overwhelm managers and hide exceptions.</td><td>Every sale, item, quantity and price for the day.</td></tr>
+										<tr><td>Summary report</td><td>A report grouping and totalling information for higher-level review.</td><td>Managers need trends or totals rather than every transaction.</td><td>Supports quick comparison and decision-making.</td><td>Aggregation can hide unusual individual records.</td><td>Total monthly sales by branch and product category.</td></tr>
+										<tr><td>Exception report</td><td>A report showing only records that meet an unusual or action-required condition.</td><td>Urgent cases are buried in a long detail report.</td><td>Focuses attention and reduces information overload.</td><td>Bad thresholds can miss important cases or generate too many alerts.</td><td>Accounts overdue by more than 60 days.</td></tr>
+										<tr><td>Control break</td><td>A point where a sorted control field changes and triggers a subtotal or group action.</td><td>A report needs subtotals for each branch, department or category.</td><td>Creates readable grouped summaries.</td><td>Records must be sorted by the control field first.</td><td>Print a store subtotal whenever StoreNumber changes.</td></tr>
+										<tr><td>Audit trail</td><td>A traceable record of who performed an action, what changed and when.</td><td>Errors or unauthorised changes cannot be attributed or reconstructed.</td><td>Supports accountability, investigation and control.</td><td>Logs require secure storage, monitoring and retention rules.</td><td>Record the user, timestamp, old value and new value for a price change.</td></tr>
+									</table>
+								</div>
+							</details>
+
+							<h4>Diagnosis -> solution -> limitation</h4>
+							<p class="assignment-links"><a href="#chapter-2">Compare with all Chapter 2 General Module Content ↓</a></p>
+							<table>
+								<tr><th>Diagnosis / evidence</th><th>Suitable solution</th><th>Why it helps</th><th>Limitation or control</th></tr>
+								<tr><td>Users need training for routine tasks or repeatedly get lost.</td><td>Simplify navigation, use familiar terms, consistent layouts and visible feedback.</td><td>Reduces memory load, task time and support demand.</td><td>Test with representative novice and experienced users; designer intuition is insufficient.</td></tr>
+								<tr><td>Incomplete, invalid or implausible data enters the system.</td><td>Use mandatory fields, type/range/reasonableness/validity/combination checks and controlled lookups.</td><td>Stops errors close to their source.</td><td>Over-validation can block legitimate exceptions; provide authorised override and audit trails.</td></tr>
+								<tr><td>Staff retype data and make transcription errors.</td><td>Defaults, codes, selection controls, automated capture and integrated source documents.</td><td>Reduces volume, duplication and entry time.</td><td>Automatic values can propagate bad source data; users must verify critical fields.</td></tr>
+								<tr><td>Managers cannot identify urgent problems in long reports.</td><td>Use exception reports, meaningful grouping, control breaks and clear totals.</td><td>Directs attention to actionable deviations.</td><td>Bad thresholds can hide important cases or create alert fatigue.</td></tr>
+								<tr><td>Confidential data appears on screens or printed output.</td><td>Apply authentication, role-based access, output classification, encryption and audit logging.</td><td>Limits viewing and creates accountability.</td><td>Printed copies and exports still require secure distribution, storage, retention and disposal.</td></tr>
+								<tr><td>Requirements are unclear or users disagree about layout.</td><td>Prototype, observe tasks, collect feedback and refine iteratively.</td><td>Makes assumptions visible before expensive construction.</td><td>A throwaway prototype is not secure, scalable or production-ready.</td></tr>
+							</table>
+							<div class="note danger"><strong>Critical limitation:</strong> visual attractiveness alone does not establish usability. A design is successful only when real users complete real tasks accurately, efficiently and securely.</div>
+							<h4 id="ca-ch2-worked-example">Chapter 2 Worked Example: Redesigning Booking Input and Reports</h4>
+							<p><strong>Case:</strong> Receptionists enter appointments on a crowded screen. Dates are typed freely, doctor codes are memorised, errors appear only after submission, and managers receive a 60-page daily printout containing every appointment.</p>
+							<table>
+								<tr><th>Observed symptom</th><th>Diagnosis</th><th>Design solution</th><th>Benefit</th><th>Limitation and control</th></tr>
+								<tr><td>Staff skip fields and enter impossible dates.</td><td>Poor grouping and weak validation allow garbage in, garbage out (GIGO).</td><td>Group patient, booking and payment fields; mark required items; use date controls plus range and reasonableness checks.</td><td>Prevents incomplete and implausible records at the source.</td><td>Rigid rules may reject genuine exceptions; allow authorised override with a reason and audit entry.</td></tr>
+								<tr><td>Receptionists memorise doctor codes.</td><td>The interface increases memory load and selection errors.</td><td>Use a searchable list displaying doctor name and specialty while storing the controlled DoctorID.</td><td>Improves learnability and selects a valid database value.</td><td>Outdated lists remain harmful; synchronise them with the master doctor table.</td></tr>
+								<tr><td>Errors appear only after submission.</td><td>Feedback is late and does not identify the exact correction.</td><td>Validate beside the field, preserve valid entries and state the error and remedy in plain language.</td><td>Shortens recovery time and prevents repeated submission.</td><td>Too many alerts interrupt work; prioritise critical errors and test messages with users.</td></tr>
+								<tr><td>Managers search a 60-page report for problems.</td><td>A detail report is being used for exception-based management.</td><td>Provide a summary dashboard and exception report for unpaid, cancelled or overbooked appointments; keep detail available on demand.</td><td>Directs attention to action while preserving supporting evidence.</td><td>Incorrect thresholds can hide cases; review rules and reconcile totals to source records.</td></tr>
+							</table>
+							<div class="note success"><strong>Worked result:</strong> prototype the revised form, observe receptionists completing realistic tasks, measure completion time and error rate, refine the design, then apply role-based access and protect printed/exported reports. <a href="#ch2-8-forms-reports-worked-example">Compare with the General Module forms and reports example ↓</a></div>
+						</details>
+
+						<details class="card wide glossary-card" id="ca-chapter-3">
+							<summary><span>Chapter 3 CA Reference: Data Design</span></summary>
+							<div class="note"><strong>Central question:</strong> How should data be structured, related, stored and controlled so it remains accurate, non-redundant, accessible and secure?</div>
+							<div class="assignment-links"><strong>Source map:</strong> Study Guide PDF pages 77-122. <a href="#chapter-3">Open fuller Chapter 3 notes</a> <a href="#ch3-8-erd-normalization-worked-example">Open normalization worked example</a></div>
+							<h4 id="ca-ch3-1">3.1-3.3 Data Concepts, DBMS Components and Web-Based Design</h4>
+							<p class="assignment-links"><a href="#ch3-1-dbms">View Data Structures and DBMS</a> <a href="#ch3-6-file-vs-dbms-case">View the Mario and Danica Comparison ↓</a></p>
+							<table>
+								<tr><th>Issue</th><th>File-oriented system</th><th>Relational database and DBMS</th></tr>
+								<tr><td>Organisation</td><td>Separate files owned by applications or departments.</td><td>Related tables form an integrated data structure.</td></tr>
+								<tr><td>Redundancy</td><td>The same facts may be stored in multiple files.</td><td>Normalised tables aim to store facts once and link them with keys.</td></tr>
+								<tr><td>Integrity</td><td>Updates can leave conflicting copies.</td><td>Constraints and referential integrity protect consistency.</td></tr>
+								<tr><td>Access</td><td>New information needs may require new programs.</td><td>Interfaces and DML provide flexible controlled access.</td></tr>
+							</table>
+							<p><strong>DBMS components:</strong> user interface, DBA interface, interfaces to related systems, data manipulation language, schema, subschemas and the physical data repository. The <code>schema</code> defines the overall database; a <code>subschema</code> exposes an authorised view for a user or application.</p>
+
+							<h4 id="ca-ch3-4">3.4-3.5 Data Terms, Integrity and Entity-Relationship Diagrams</h4>
+							<p class="assignment-links"><a href="#ch3-2-terms-integrity">View Data Terms and Integrity</a> <a href="#ch3-3-erd">View Entity-Relationship Diagrams ↓</a></p>
+							<figure class="ca-visual">
+								<img src="assets/information-systems/order-erd-crows-foot.svg" alt="Crow's-foot ERD for Customer, Order, Order Line, Product and Supplier, including primary and foreign keys and a cardinality legend." loading="lazy">
+								<figcaption>Read every relationship in both directions. The associative ORDER_LINE entity resolves the many-to-many relationship between ORDER and PRODUCT and stores relationship facts such as quantity and selling price.</figcaption>
+							</figure>
+							<table>
+								<tr><th>Concept</th><th>Operational meaning</th></tr>
+								<tr><td>Entity</td><td>A person, place, thing, event or concept about which data is stored.</td></tr>
+								<tr><td>Attribute</td><td>A characteristic describing an entity; represented as a field/column.</td></tr>
+								<tr><td>Primary key</td><td>The minimal field or field combination that uniquely identifies each row.</td></tr>
+								<tr><td>Foreign key</td><td>A field that stores the primary-key value of a related table.</td></tr>
+								<tr><td>Referential integrity</td><td>A foreign-key value must match an existing primary key, unless a permitted null represents no relationship.</td></tr>
+								<tr><td>Cardinality</td><td>The number and optionality of instances participating in a relationship.</td></tr>
+							</table>
+							<div class="note"><strong>Relationship visual:</strong> <code>CUSTOMER 1 ---- M ORDER 1 ---- M ORDER_LINE M ---- 1 PRODUCT</code>. ORDER_LINE resolves the many-to-many relationship between ORDER and PRODUCT and can store relationship facts such as quantity and selling price.</div>
+							<p><strong>ERD method:</strong> extract nouns as candidate entities, identify business events, assign keys, connect relationships, label cardinality/optionality, resolve every M:N relationship with an associative entity, then validate the model against realistic transactions and business rules.</p>
+
+							<h4 id="ca-ch3-6">3.6 Normalization Stages</h4>
+							<p class="assignment-links"><a href="#ch3-4-normalization">View Normalization</a> <a href="#ch3-8-erd-normalization-worked-example">View the Full Worked Example ↓</a></p>
+							<table>
+								<tr><th>Stage</th><th>Question to ask</th><th>Action</th></tr>
+								<tr><td>UNF to 1NF</td><td>Are there repeating groups or multi-valued fields?</td><td>Make values atomic and place repeating groups in rows or a related table.</td></tr>
+								<tr><td>1NF to 2NF</td><td>With a composite key, does a non-key field depend on only part of it?</td><td>Move partial dependencies to a table where that determinant is the key.</td></tr>
+								<tr><td>2NF to 3NF</td><td>Does a non-key field depend on another non-key field?</td><td>Move transitive dependencies to their own table and retain a foreign key.</td></tr>
+							</table>
+							<p><strong>Quick example:</strong> <code>ORDER_LINE(OrderNo, ProductNo, OrderDate, ProductDescription, SupplierNo, SupplierName, Quantity)</code>. The composite key is <code>OrderNo + ProductNo</code>. Move OrderDate to ORDER; move product facts to PRODUCT; move SupplierName to SUPPLIER. Keep ORDER_LINE for facts depending on the complete order-product combination.</p>
+							<div class="note success"><strong>Why normalize:</strong> reduce redundancy and prevent insertion, update and deletion anomalies. Always state the problem removed at each step.</div>
+
+							<h4 id="ca-ch3-7">3.7-3.9 Codes, Storage, Access and Data Control</h4>
+							<p class="assignment-links"><a href="#ch3-5-codes-controls">View Codes, Storage and Control</a> <a href="#ch3-9-codes-storage-controls">View the Expanded Reference ↓</a></p>
+							<table>
+								<tr><th>Code type</th><th>Best use</th><th>Caution</th></tr>
+								<tr><td>Sequence</td><td>Unique items issued in order.</td><td>Carries no descriptive meaning.</td></tr>
+								<tr><td>Block sequence</td><td>Reserve number ranges for categories.</td><td>Blocks may run out or be poorly sized.</td></tr>
+								<tr><td>Alphabetic/category</td><td>Identify a class with letters.</td><td>Abbreviations can be ambiguous.</td></tr>
+								<tr><td>Mnemonic</td><td>Human-readable memory aid.</td><td>Similar names can create collisions.</td></tr>
+								<tr><td>Significant digit</td><td>Each position represents a fact.</td><td>Becomes rigid when classifications change.</td></tr>
+								<tr><td>Derivation</td><td>Generate a code from existing attributes.</td><td>Can expose personal facts and may not remain unique.</td></tr>
+								<tr><td>Action</td><td>Tell the system which operation to perform.</td><td>Must be simple, controlled and documented.</td></tr>
+							</table>
+							<ul>
+								<li><strong>Data warehouse:</strong> integrated enterprise data from multiple sources for analysis and decisions.</li>
+								<li><strong>Data mart:</strong> smaller, department-focused analytical collection.</li>
+								<li><strong>Data mining:</strong> discovers useful patterns and relationships; clickstream and market-basket analysis also raise privacy concerns.</li>
+								<li><strong>Logical storage:</strong> the user's structured view of fields and records. <strong>Physical storage:</strong> how binary data is placed on media and managed by hardware/operating systems.</li>
+								<li><strong>Data coding:</strong> ASCII, EBCDIC, binary and Unicode represent data; Unicode supports large multilingual character sets.</li>
+								<li><strong>Controls:</strong> subschemas, passwords, privileges, encryption, audit trails, backup and recovery protect accuracy, completeness and security.</li>
+							</ul>
+
+							<details class="card glossary-card ca-term-glossary">
+								<summary><span>Chapter 3 Definitions, Benefits, Limits and Examples</span></summary>
+								<div class="glossary-table-wrap"><table class="glossary-table">
+									<tr><th>Term</th><th>Plain-language definition</th><th>Diagnosis / when relevant</th><th>Benefit</th><th>Limitation or risk</th><th>Example</th></tr>
+									<tr><td>DBMS<br><span class="muted">Database Management System</span></td><td>Software that creates, controls and provides access to a database.</td><td>Separate files duplicate data or require custom programs for every query.</td><td>Central integrity, security, shared access and flexible queries.</td><td>Cost, complexity and need for administration.</td><td>Users and applications access related customer and order tables through the DBMS.</td></tr>
+									<tr><td>DBA<br><span class="muted">Database Administrator</span></td><td>The specialist responsible for database structure, access, performance, backup and recovery.</td><td>Ownership of database control and maintenance is unclear.</td><td>Central accountability and technical governance.</td><td>Creates dependence on scarce specialist skills.</td><td>The DBA grants roles and monitors slow queries.</td></tr>
+									<tr><td>DML<br><span class="muted">Data Manipulation Language</span></td><td>Commands used to query, insert, update and delete data.</td><td>Users or applications need controlled interaction with stored data.</td><td>Provides consistent operations over database records.</td><td>Incorrect or unauthorised commands can damage or expose data.</td><td>SQL SELECT retrieves orders; UPDATE changes an approved status.</td></tr>
+									<tr><td>ERD<br><span class="muted">Entity-Relationship Diagram</span></td><td>A visual model of entities, attributes and their relationships.</td><td>Business rules and data relationships are unclear.</td><td>Exposes missing entities, incorrect cardinality and M:N relationships.</td><td>A diagram can still be wrong if business rules were misunderstood.</td><td>CUSTOMER 1-to-many ORDER.</td></tr>
+									<tr><td>PK<br><span class="muted">Primary Key</span></td><td>The minimal attribute or combination that uniquely identifies a row.</td><td>Records cannot be identified reliably or duplicates exist.</td><td>Supports uniqueness, relationships and accurate updates.</td><td>A poor natural key may change; composite keys can complicate joins.</td><td>OrderNo uniquely identifies ORDER.</td></tr>
+									<tr><td>FK<br><span class="muted">Foreign Key</span></td><td>An attribute holding the primary-key value of a related table.</td><td>Tables need a controlled connection.</td><td>Implements relationships and supports referential integrity.</td><td>Invalid or unmanaged FKs create orphan records.</td><td>ORDER.CustomerNo references CUSTOMER.CustomerNo.</td></tr>
+									<tr><td>UNF<br><span class="muted">Unnormalised Form</span></td><td>Data that still contains repeating groups, lists or mixed subjects.</td><td>Fields such as Item1, Item2, Item3 or comma-separated values appear.</td><td>Identifying UNF reveals where normalization must begin.</td><td>It is unsuitable as a final relational design.</td><td>One order row contains several product columns.</td></tr>
+									<tr><td>1NF<br><span class="muted">First Normal Form</span></td><td>Every field contains one atomic value and repeating groups are removed.</td><td>One cell contains many values or columns repeat.</td><td>Creates consistent rows that can be searched and related.</td><td>Redundancy can remain through partial and transitive dependencies.</td><td>Move repeating products into ORDER_LINE rows.</td></tr>
+									<tr><td>2NF<br><span class="muted">Second Normal Form</span></td><td>1NF plus every non-key attribute depends on the whole composite key.</td><td>A field depends on only OrderNo or only ProductNo within ORDER_LINE.</td><td>Removes partial-dependency duplication.</td><td>Mainly matters where composite keys exist; transitive dependencies may remain.</td><td>Move ProductDescription to PRODUCT.</td></tr>
+									<tr><td>3NF<br><span class="muted">Third Normal Form</span></td><td>2NF plus no non-key attribute depends on another non-key attribute.</td><td>SupplierName depends on SupplierNo rather than the table's key.</td><td>Removes transitive dependencies and update anomalies.</td><td>More tables can make queries more complex.</td><td>Move SupplierName to SUPPLIER and retain SupplierNo as FK.</td></tr>
+									<tr><td>Cardinality</td><td>The number and optionality of entity instances allowed in a relationship.</td><td>The model does not show whether a relationship is one, many, mandatory or optional.</td><td>Turns business rules into precise database constraints.</td><td>Wrong assumptions produce an incorrect design.</td><td>One ORDER contains one or many ORDER_LINE records.</td></tr>
+									<tr><td>Associative entity</td><td>An entity that resolves an M:N relationship and stores facts about that relationship.</td><td>Each instance on both sides can relate to many on the other side.</td><td>Converts M:N into two manageable 1:M relationships.</td><td>Needs correct composite/unique keys and cardinality.</td><td>ORDER_LINE links ORDER and PRODUCT and stores Quantity.</td></tr>
+									<tr><td>ASCII</td><td>A character-coding standard historically used widely on personal computers.</td><td>Text must be stored or exchanged using an agreed character code.</td><td>Simple and broadly compatible for basic characters.</td><td>Limited character range compared with Unicode.</td><td>The letter A is represented by a numeric code.</td></tr>
+									<tr><td>EBCDIC</td><td>A character-coding scheme associated mainly with IBM mainframes.</td><td>Legacy or mainframe data must be interpreted or converted.</td><td>Supports established mainframe environments.</td><td>Less universal than ASCII/Unicode and may complicate integration.</td><td>Convert an EBCDIC mainframe export before loading it into a modern system.</td></tr>
+									<tr><td>Unicode</td><td>A character standard supporting a very large range of world scripts and symbols.</td><td>A system must store multilingual names and content consistently.</td><td>Enables global language support and reliable exchange.</td><td>Encoding must be handled consistently across systems.</td><td>Store English, isiZulu and Arabic customer names in one database.</td></tr>
+								</table></div>
+							</details>
+
+							<h4>Diagnosis -> solution -> limitation</h4>
+							<p class="assignment-links"><a href="#chapter-3">Compare with all Chapter 3 General Module Content ↓</a></p>
+							<table>
+								<tr><th>Diagnosis / evidence</th><th>Suitable solution</th><th>Why it helps</th><th>Limitation or control</th></tr>
+								<tr><td>The same customer, product or employee fact differs between rows/files.</td><td>Separate entities and normalise related tables.</td><td>Stores each fact once and removes update anomalies.</td><td>More tables require correct joins, keys and DBMS support.</td></tr>
+								<tr><td>A cell contains a list; columns repeat as Item1, Item2, Item3.</td><td>Apply 1NF and create a child/transaction-line table.</td><td>Makes each value atomic and supports unlimited occurrences.</td><td>The new relationship needs a foreign key and correct cardinality.</td></tr>
+								<tr><td>A composite-key table contains facts about only one part of the key.</td><td>Apply 2NF and move partial dependencies.</td><td>Prevents facts such as ProductDescription repeating per order.</td><td>2NF alone does not remove non-key-to-non-key dependencies.</td></tr>
+								<tr><td>A non-key field determines another non-key field.</td><td>Apply 3NF and create a table for the transitive dependency.</td><td>Prevents facts such as SupplierName repeating with SupplierNo.</td><td>Excessive decomposition can complicate reporting; preserve meaningful business entities.</td></tr>
+								<tr><td>A many-to-many relationship appears directly in the model.</td><td>Create an associative entity with the parent keys and relationship attributes.</td><td>Represents each transaction/event and converts M:N into two 1:M relationships.</td><td>Define uniqueness and optionality carefully to prevent duplicate relationships.</td></tr>
+								<tr><td>Managers need analysis across several operational databases.</td><td>Use an integrated data warehouse or a focused data mart.</td><td>Supports consolidated historical and multidimensional analysis.</td><td>Data quality, refresh delay, privacy, lineage and integration cost remain concerns.</td></tr>
+								<tr><td>Records are orphaned or changes cannot be traced.</td><td>Enforce referential integrity and add privileges, subschemas, audit trails and recovery.</td><td>Protects consistency, accountability and availability.</td><td>Controls require administration, monitoring, testing and periodic review.</td></tr>
+							</table>
+							<div class="note danger"><strong>Critical limitation:</strong> normalization improves integrity but does not replace validation, access control, backup, recovery or sound business rules.</div>
+							<h4 id="ca-ch3-worked-example">Chapter 3 Worked Example: Converting a Booking Spreadsheet</h4>
+							<p><strong>Case:</strong> One spreadsheet stores <code>AppointmentNo, Date, PatientNo, PatientName, PatientPhone, DoctorNo, DoctorName, Procedure1, Procedure2, AmountPaid</code>. Patient details repeat, procedure columns are limited, and some doctor numbers do not exist.</p>
+							<table>
+								<tr><th>Evidence</th><th>Diagnosis</th><th>Data-design response</th><th>Benefit</th><th>Limitation and control</th></tr>
+								<tr><td>Procedure1 and Procedure2 repeat the same kind of fact.</td><td>The spreadsheet is unnormalised and cannot support an unlimited number of procedures.</td><td>Create APPOINTMENT_PROCEDURE with AppointmentNo and ProcedureNo as keys plus Quantity/Price.</td><td>Achieves first normal form and resolves the appointment-procedure many-to-many relationship.</td><td>Prevent duplicate lines with a composite or surrogate key plus a uniqueness rule.</td></tr>
+								<tr><td>PatientName and PatientPhone repeat for every appointment.</td><td>Patient facts depend on PatientNo, causing update anomalies.</td><td>Create PATIENT(PatientNo PK, Name, Phone); retain PatientNo as an FK in APPOINTMENT.</td><td>Stores the patient's current details once.</td><td>History may be needed; deliberately store approved snapshot fields or use temporal history.</td></tr>
+								<tr><td>DoctorName repeats and invalid doctor numbers occur.</td><td>Redundancy and missing referential integrity allow inconsistent assignments.</td><td>Create DOCTOR(DoctorNo PK, Name) and enforce APPOINTMENT.DoctorNo as an FK.</td><td>Prevents appointments referring to nonexistent doctors.</td><td>Deletion rules must protect history; deactivate doctors rather than deleting referenced rows.</td></tr>
+								<tr><td>Blank AmountPaid is used to imply non-payment.</td><td>Null has ambiguous meaning and weak business rules.</td><td>Store charges/payments as related transaction records and calculate balance; validate amount and status.</td><td>Supports partial payments, an audit trail and reliable outstanding-balance reporting.</td><td>Calculated totals must reconcile to source transactions and be protected by permissions.</td></tr>
+							</table>
+							<div class="note"><strong>Resulting relationships:</strong> <code>PATIENT 1—M APPOINTMENT M—1 DOCTOR</code> and <code>APPOINTMENT 1—M APPOINTMENT_PROCEDURE M—1 PROCEDURE</code>. Each table has a primary key; foreign keys implement relationships; validation, privileges, audit trails and backups protect the normalised design.</div>
+							<div class="note success"><strong>Reasoned conclusion:</strong> the redesign reaches third normal form by separating patient, doctor and procedure facts according to their determinants. It removes repeating groups and update anomalies, but the DBMS still needs input validation, security, backup and recovery. <a href="#ch3-8-erd-normalization-worked-example">Compare with the General Module ERD and normalization example ↓</a></div>
+						</details>
+
+						<details class="card wide glossary-card" id="ca-combined-case-table">
+							<summary><span>Combined Chapters 1-3 Case Reference</span></summary>
+							<h4>Integrated Case Table</h4>
+							<p>Use the case facts to connect acquisition strategy, user interaction and data design. A strong integrated discussion follows the whole system rather than treating the chapters as isolated topics.</p>
+							<div class="note"><strong>Integrated flow:</strong> <code>Business need → acquisition strategy → interface and input controls → database structure and integrity → useful output → risk review</code></div>
+							<h4>System Example Bank</h4>
+							<table>
+								<tr><th>System example</th><th>Purpose and typical users</th><th>Chapter 1 angle</th><th>Chapter 2 angle</th><th>Chapter 3 angle</th><th>Useful case scenario</th></tr>
+								<tr><td><strong>CRM</strong><br><span class="muted">Customer Relationship Management</span></td><td>Sales, marketing and support staff manage customers, leads, interactions and service cases.</td><td>Compare a packaged cloud CRM with custom development; assess subscription TCO, integration and vendor lock-in.</td><td>Design quick contact capture, sales pipelines, reminders and exception views for overdue cases.</td><td>Relate CUSTOMER, CONTACT, SALES_OPPORTUNITY and INTERACTION while preventing duplicate customers.</td><td>A growing retailer cannot see a complete customer history because each branch keeps separate spreadsheets.</td></tr>
+								<tr><td><strong>SMS</strong><br><span class="muted">Student Management System</span></td><td>Students, lecturers and administrators manage applications, registration, modules, marks and fees.</td><td>Evaluate a higher-education package or SaaS platform against institutional rules, scalability and legacy integration.</td><td>Provide role-specific portals, clear registration feedback, prerequisite validation and accessible mobile forms.</td><td>Relate STUDENT, MODULE, ENROLMENT, ASSESSMENT and PAYMENT; ENROLMENT resolves the Student–Module M:N relationship.</td><td>Students are registered twice, prerequisite failures are missed and marks differ between lecturer files.</td></tr>
+								<tr><td><strong>ERP</strong><br><span class="muted">Enterprise Resource Planning</span></td><td>Integrates finance, purchasing, inventory, production and human resources across an organisation.</td><td>Package fit and business-process change are central; consider phased implementation, customisation and high TCO.</td><td>Use consistent navigation and role-based dashboards while avoiding screens overloaded by enterprise complexity.</td><td>A shared database links departments and master data, but requires strong ownership, codes and access privileges.</td><td>Finance and warehousing report different stock values because departments use disconnected systems.</td></tr>
+								<tr><td><strong>POS and inventory system</strong><br><span class="muted">Point of Sale</span></td><td>Cashiers record sales while managers control products, stock, prices and replenishment.</td><td>Choose between a retail package, custom solution or hosted service based on store count, offline needs and integration.</td><td>Support rapid scanning, clear totals, payment validation, error recovery and low-stock exception reports.</td><td>Relate SALE, SALE_LINE, PRODUCT, STORE and STOCK; SALE_LINE resolves the Sale–Product M:N relationship.</td><td>A chain oversells products because online and store inventory are updated in separate files.</td></tr>
+								<tr><td><strong>Clinic or patient management system</strong></td><td>Receptionists, clinicians and billing staff manage patients, appointments, treatment and payments.</td><td>A vertical healthcare package may deliver faster fit, but privacy, billing integration, SLA and data portability are critical.</td><td>Use searchable patient selection, appointment conflict checks, confidential role-based views and unpaid-account exceptions.</td><td>Relate PATIENT, DOCTOR, APPOINTMENT, PROCEDURE and PAYMENT with referential integrity and audit history.</td><td>A clinic duplicates patient details and cannot reliably identify unpaid appointments or doctor availability.</td></tr>
+								<tr><td><strong>HRIS</strong><br><span class="muted">Human Resources Information System</span></td><td>Human resources staff and managers administer employees, leave, recruitment, performance and payroll-related data.</td><td>Assess package functionality, payroll integration, legal compliance, vendor support and confidentiality.</td><td>Provide employee self-service, manager approvals, validation and tightly restricted salary or disciplinary views.</td><td>Relate EMPLOYEE, POSITION, DEPARTMENT, LEAVE_REQUEST and PERFORMANCE_REVIEW; preserve employment history.</td><td>Leave balances conflict across spreadsheets and unauthorised staff can view confidential employee details.</td></tr>
+								<tr><td><strong>E-commerce system</strong></td><td>Customers browse products, place orders and pay; staff manage fulfilment, stock and returns.</td><td>Compare a hosted commerce platform with custom development using scalability, transaction fees, integration and control.</td><td>Design responsive product search, a short checkout, immediate validation, progress feedback and safe error messages.</td><td>Relate CUSTOMER, ORDER, ORDER_LINE, PRODUCT and PAYMENT; protect transaction integrity and customer data.</td><td>Customers abandon mobile checkout and stock reports become inaccurate when orders fail midway.</td></tr>
+								<tr><td><strong>Fleet or logistics management system</strong></td><td>Dispatchers and drivers manage vehicles, routes, deliveries, maintenance and tracking.</td><td>Evaluate specialist software, mobile/GPS integration, service availability and the cost of operational downtime.</td><td>Give dispatchers exception dashboards and drivers simple mobile task screens with timely status feedback.</td><td>Relate VEHICLE, DRIVER, ROUTE, DELIVERY and MAINTENANCE_EVENT while retaining time-stamped history.</td><td>Late deliveries cannot be diagnosed because route, driver and vehicle data are stored separately.</td></tr>
+							</table>
+							<div class="note success"><strong>Choosing an example:</strong> use the system that naturally matches the case facts. CRM suits fragmented customer contact; an SMS suits registration and marks; ERP suits cross-department integration; POS suits sales and stock; a clinic system suits appointments and privacy; HRIS suits employee records; e-commerce suits online transactions; logistics suits routes and deliveries.</div>
+							<h4>Cross-Chapter Case Patterns</h4>
+							<table>
+								<tr><th>Case fact / diagnosis</th><th>Chapter 1: strategy</th><th>Chapter 2: interface</th><th>Chapter 3: data</th><th>Integrated benefit</th><th>Limitation / control</th></tr>
+								<tr><td>Rapid growth has made spreadsheets slow, duplicated and unreliable.</td><td>Compare a vertical package, custom system and SaaS using fit, time, TCO, ROI and integration.</td><td>Replace free-text capture with task-based forms, validation, feedback and exception reports.</td><td>Identify entities and keys, resolve M:N relationships and normalise to 3NF.</td><td>A scalable system captures accurate data once and turns it into timely management information.</td><td>Migration can carry old errors forward; profile, cleanse, reconcile and retain an auditable migration trail.</td></tr>
+								<tr><td>Customers and mobile staff need access from different devices.</td><td>Assess web/SaaS options, scalability, provider reliability, recurring cost and lock-in.</td><td>Use responsive design, accessible controls, clear navigation and secure sessions.</td><td>Use one controlled database with roles/subschemas and stable identifiers across channels.</td><td>Users share current information without separate device-specific records.</td><td>Connectivity, privacy and device loss remain risks; use offline rules, encryption, authentication and remote session control.</td></tr>
+								<tr><td>A vendor demo looks impressive, but requirements are uncertain.</td><td>Complete requirements, issue an RFP, use weighted evaluation, references, a pilot and contract/SLA review.</td><td>Prototype real workflows and usability-test them with representative users.</td><td>Inspect the vendor data model, import/export format, integrity controls and portability.</td><td>Selection evidence covers business fit, human use and long-term ownership of data.</td><td>A polished prototype may hide integration or performance problems; test realistic volumes and end-to-end scenarios.</td></tr>
+								<tr><td>Management cannot identify unpaid or exceptional transactions.</td><td>Require reporting, integration and measurable service outcomes in the chosen solution.</td><td>Provide summary and exception output with useful grouping, totals and drill-down detail.</td><td>Model charges and payments as related records; enforce keys and calculate balances from transactions.</td><td>Reliable stored facts produce actionable reports and stronger decisions.</td><td>Wrong rules produce misleading output; reconcile totals, review thresholds and maintain an audit trail.</td></tr>
+								<tr><td>Confidential records will be hosted by an external provider.</td><td>Perform due diligence and define security, availability, backup, incident, ownership and exit terms in the SLA.</td><td>Apply least-privilege screens, masked fields, safe errors and controlled printing/export.</td><td>Use roles, privileges, encryption, referential integrity, audit logs, backup and tested recovery.</td><td>Technical and contractual controls protect data across acquisition, use and storage.</td><td>No control removes all risk; monitor access and service levels, test recovery and maintain a portable exit copy.</td></tr>
+								<tr><td>Users resist the new system and continue creating private files.</td><td>Include user participation, training, support and change cost in the acquisition and implementation plan.</td><td>Observe work, reduce unnecessary entry, use familiar language and iteratively test prototypes.</td><td>Provide governed views and reports that meet legitimate needs without uncontrolled copies.</td><td>Adoption improves because the system fits work and supplies trusted information.</td><td>Convenience can conflict with control; monitor workarounds, address root causes and govern exports.</td></tr>
+							</table>
+							<div class="note success"><strong>At-a-glance synthesis:</strong> Chapter 1 decides <em>how the system is obtained</em>; Chapter 2 decides <em>how people enter, receive and act on information</em>; Chapter 3 decides <em>how that information is structured and protected</em>. The best recommendation must make all three compatible.</div>
+						</details>
+
+						<article class="card wide" id="ca-answer-guide-key">
+							<h3>Answer Guide Key</h3>
+							<table>
+								<tr><th>Label</th><th>What to include</th><th>Quick test</th></tr>
+								<tr><td><strong>Definition</strong></td><td>The precise meaning of the concept.</td><td>What is it?</td></tr>
+								<tr><td><strong>Diagnosis</strong></td><td>The underlying problem shown by the facts or symptoms.</td><td>What is going wrong, and what evidence proves it?</td></tr>
+								<tr><td><strong>Solution</strong></td><td>The method, design choice or control that addresses the diagnosis.</td><td>What should change?</td></tr>
+								<tr><td><strong>Justification</strong></td><td>The reason the solution fits this situation and the benefit it creates.</td><td>Why is this suitable here?</td></tr>
+								<tr><td><strong>Limitation</strong></td><td>A cost, risk, dependency, trade-off or condition under which the solution may fail.</td><td>What does the solution not solve?</td></tr>
+								<tr><td><strong>Control</strong></td><td>A measure that reduces the identified risk or protects quality, security and integrity.</td><td>How is the limitation managed?</td></tr>
+								<tr><td><strong>Recommendation</strong></td><td>The preferred option, stated with the conditions and assumptions that make it appropriate.</td><td>What should be chosen, under which conditions?</td></tr>
+							</table>
+							<div class="note"><strong>Compact content chain:</strong> <code>Define -> Diagnose -> Select solution -> Justify benefit -> State limitation -> Add control -> Recommend</code>.</div>
+						</article>
 					</div>
 				</section>
 
@@ -1638,10 +2155,22 @@
 			const menuToggle = document.querySelector(".menu-toggle");
 			const sidebar = document.querySelector(".sidebar");
 			const navLinks = Array.from(document.querySelectorAll(".nav-link"));
-			const sections = Array.from(document.querySelectorAll("[data-nav-section]"));
 			const backTop = document.querySelector(".back-top");
+			const alwaysOpenNavGroups = Array.from(sidebar.querySelectorAll(".nav-always-open"));
 
 			const navMap = new Map(navLinks.map((link) => [link.getAttribute("href").slice(1), link]));
+			const trackedTargets = Array.from(navMap.keys())
+				.map((id) => document.getElementById(id))
+				.filter(Boolean);
+			let activeNavId = null;
+
+			alwaysOpenNavGroups.forEach((group) => {
+				group.open = true;
+				group.querySelector(":scope > summary")?.addEventListener("click", (event) => event.preventDefault());
+				group.addEventListener("toggle", () => {
+					if (!group.open) group.open = true;
+				});
+			});
 
 			function parentChapterId(element) {
 				const chapter = element.closest(".chapter");
@@ -1656,6 +2185,10 @@
 			}
 
 			function setActiveNav(id) {
+				if (!navMap.has(id) || activeNavId === id) return;
+				activeNavId = id;
+				const activeLink = navMap.get(id);
+
 				navLinks.forEach((link) => {
 					const isActive = link.getAttribute("href") === "#" + id;
 					if (isActive) {
@@ -1664,17 +2197,33 @@
 						link.removeAttribute("aria-current");
 					}
 				});
+
+				activeLink.closest("details")?.setAttribute("open", "");
+				let parentDetails = activeLink.parentElement.closest("details");
+				while (parentDetails) {
+					parentDetails.open = true;
+					parentDetails = parentDetails.parentElement.closest("details");
+				}
+
+				const sidebarBox = sidebar.getBoundingClientRect();
+				const linkBox = activeLink.getBoundingClientRect();
+				const breathingRoom = 56;
+				if (linkBox.top < sidebarBox.top + breathingRoom) {
+					sidebar.scrollTo({ top: sidebar.scrollTop + linkBox.top - sidebarBox.top - breathingRoom, behavior: "smooth" });
+				} else if (linkBox.bottom > sidebarBox.bottom - breathingRoom) {
+					sidebar.scrollTo({ top: sidebar.scrollTop + linkBox.bottom - sidebarBox.bottom + breathingRoom, behavior: "smooth" });
+				}
 			}
 
 			function updateActiveNav() {
-				const checkpoint = window.scrollY + 140;
-				let current = sections[0];
-				for (const section of sections) {
-					if (section.offsetTop <= checkpoint) {
-						current = section;
-					} else {
-						break;
-					}
+				const checkpoint = 150;
+				const visibleTargets = trackedTargets
+					.filter((target) => target.getClientRects().length > 0)
+					.sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top);
+				let current = visibleTargets[0];
+				for (const target of visibleTargets) {
+					if (target.getBoundingClientRect().top <= checkpoint) current = target;
+					else break;
 				}
 				if (current) {
 					setActiveNav(navIdForElement(current));
@@ -1707,6 +2256,10 @@
 					return;
 				}
 				const targetId = link.getAttribute("href").slice(1);
+				const target = document.getElementById(targetId);
+				if (target && target.tagName === "DETAILS") {
+					target.open = true;
+				}
 				setActiveNav(targetId);
 				body.classList.remove("nav-open");
 				menuToggle.setAttribute("aria-expanded", "false");
@@ -1714,7 +2267,7 @@
 
 			backTop.addEventListener("click", () => {
 				window.scrollTo({ top: 0, behavior: "smooth" });
-				setActiveNav("exam-focus-areas");
+				setActiveNav("assignment-helper");
 			});
 
 			document.addEventListener("keydown", (event) => {

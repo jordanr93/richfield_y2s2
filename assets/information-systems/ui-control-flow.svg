@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">User interface input, validation and output control flow</title>
+  <desc id="desc">A user enters data through a task-focused interface. Validation and access controls protect the DBMS, which produces appropriate detail, summary or exception output and feedback.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#58c4dd"/></marker>
+    <style>.bg{fill:#0d1117}.box{fill:#161b22;stroke:#30363d;stroke-width:2}.user{fill:#261a3d;stroke:#bc8cff;stroke-width:2}.control{fill:#102a1c;stroke:#3fb950;stroke-width:2}.risk{fill:#35181a;stroke:#f85149;stroke-width:2}.line{stroke:#58c4dd;stroke-width:3;fill:none;marker-end:url(#arrow)}.dash{stroke:#8b949e;stroke-width:2;stroke-dasharray:8 7;fill:none}.title{fill:#f0f6fc;font:700 30px Arial}.head{fill:#f0f6fc;font:700 20px Arial}.text{fill:#c9d1d9;font:16px Arial}.small{fill:#8b949e;font:14px Arial}</style>
+  </defs>
+  <rect class="bg" width="1200" height="620" rx="22"/><text class="title" x="50" y="55">Interface quality chain: input to useful output</text>
+  <circle class="user" cx="105" cy="210" r="62"/><circle fill="#bc8cff" cx="105" cy="190" r="16"/><path d="M75 242 Q105 205 135 242" stroke="#bc8cff" stroke-width="12" fill="none" stroke-linecap="round"/><text class="head" x="70" y="305">USER</text>
+  <path class="line" d="M170 210 H250"/>
+  <rect class="box" x="255" y="120" width="250" height="180" rx="16"/><text class="head" x="280" y="155">Task-focused UI</text><text class="text" x="280" y="190">Clear labels and grouping</text><text class="text" x="280" y="220">Defaults and lookups</text><text class="text" x="280" y="250">Help and feedback</text><text class="text" x="280" y="280">Accessible, responsive layout</text>
+  <path class="line" d="M505 210 H585"/>
+  <rect class="control" x="590" y="105" width="260" height="210" rx="16"/><text class="head" x="615" y="140">Input controls</text><text class="text" x="615" y="175">Existence • Type • Range</text><text class="text" x="615" y="205">Reasonableness • Validity</text><text class="text" x="615" y="235">Combination • Sequence</text><text class="text" x="615" y="265">Authentication • Access</text><text class="text" x="615" y="295">Audit trail • Encryption</text>
+  <path class="line" d="M850 210 H925"/>
+  <rect class="box" x="930" y="135" width="220" height="150" rx="16"/><text class="head" x="985" y="173">DBMS</text><text class="text" x="955" y="208">Accurate records</text><text class="text" x="955" y="238">Controlled access</text><text class="text" x="955" y="268">Traceable changes</text>
+  <path class="line" d="M1040 285 V375"/>
+  <rect class="box" x="760" y="380" width="390" height="155" rx="16"/><text class="head" x="785" y="417">Purpose-fit output</text><text class="text" x="785" y="452">Detail: every relevant record</text><text class="text" x="785" y="482">Summary: grouped totals</text><text class="text" x="785" y="512">Exception: items needing action</text>
+  <path class="line" d="M760 455 H510"/><rect class="user" x="255" y="380" width="250" height="155" rx="16"/><text class="head" x="280" y="417">Feedback loop</text><text class="text" x="280" y="452">User reviews outcome</text><text class="text" x="280" y="482">Errors are corrected</text><text class="text" x="280" y="512">Prototype is refined</text>
+  <path class="dash" d="M380 380 V305"/><rect class="risk" x="50" y="405" width="150" height="105" rx="14"/><text class="head" x="72" y="440">GIGO risk</text><text class="small" x="72" y="470">Weak input creates</text><text class="small" x="72" y="493">unreliable output</text><path class="dash" d="M200 457 H255"/>
+</svg>
