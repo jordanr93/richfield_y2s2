@@ -137,10 +137,6 @@
 			font-size: 0.84rem;
 		}
 
-		.nav-always-open > summary {
-			cursor: default;
-		}
-
 		.ca-visual {
 			margin: 16px 0 20px;
 			padding: 12px;
@@ -702,13 +698,11 @@
 					<h2>Modules</h2>
 					<a class="home-link" href="index.html">View All</a>
 				</div>
-<details class="nav-group nav-collapsible nav-always-open" open>
+<details class="nav-group nav-collapsible">
 	<summary>Test Focus Areas</summary>
+	<a class="nav-link" href="#test-focus-areas" data-nav-link="test-focus-areas">CA Overview</a>
+	<a class="nav-link" href="#ca-at-a-glance">At-a-Glance Index</a>
 	<details class="nav-collapsible nav-submenu">
-		<summary>CA Test</summary>
-		<a class="nav-link" href="#test-focus-areas" data-nav-link="test-focus-areas">CA Overview</a>
-		<a class="nav-link" href="#ca-at-a-glance">At-a-Glance Index</a>
-		<details class="nav-collapsible nav-submenu">
 			<summary>Chapter 1</summary>
 			<a class="nav-link" href="#ca-ch1-1">1.1 Traditional vs Web</a>
 			<a class="nav-link" href="#ca-ch1-2">1.2 Evolving Trends</a>
@@ -717,25 +711,24 @@
 			<a class="nav-link" href="#ca-ch1-8">1.8 Acquisition Process</a>
 			<a class="nav-link" href="#ca-ch1-9">1.9 Analysis Completion</a>
 			<a class="nav-link" href="#ca-ch1-worked-example">Worked Example</a>
-		</details>
-		<details class="nav-collapsible nav-submenu">
+	</details>
+	<details class="nav-collapsible nav-submenu">
 			<summary>Chapter 2</summary>
 			<a class="nav-link" href="#ca-ch2-1">2.1-2.3 UI, HCI and Habits</a>
 			<a class="nav-link" href="#ca-ch2-4">2.4-2.5 Input and Forms</a>
 			<a class="nav-link" href="#ca-ch2-6">2.6 Printed Output</a>
 			<a class="nav-link" href="#ca-ch2-7">2.7-2.9 Technology and Control</a>
 			<a class="nav-link" href="#ca-ch2-worked-example">Worked Example</a>
-		</details>
-		<details class="nav-collapsible nav-submenu">
+	</details>
+	<details class="nav-collapsible nav-submenu">
 			<summary>Chapter 3</summary>
 			<a class="nav-link" href="#ca-ch3-1">3.1-3.3 Data and DBMS</a>
 			<a class="nav-link" href="#ca-ch3-4">3.4-3.5 Terms and ERDs</a>
 			<a class="nav-link" href="#ca-ch3-6">3.6 Normalization</a>
 			<a class="nav-link" href="#ca-ch3-7">3.7-3.9 Codes and Control</a>
 			<a class="nav-link" href="#ca-ch3-worked-example">Worked Example</a>
-		</details>
-		<a class="nav-link" href="#ca-combined-case-table">Combined Chapters 1-3</a>
 	</details>
+	<a class="nav-link" href="#ca-combined-case-table">Combined Chapters 1-3</a>
 </details>
 
 				<details class="nav-group nav-collapsible">
@@ -753,7 +746,7 @@
 				</div>
 				<details class="nav-group nav-collapsible">
 					<summary>Learning Lab</summary>
-					<a class="nav-link" href="#quiz-builder" data-nav-link="preparation-station">Quiz Builder</a>
+					<a class="nav-link" href="#preparation-station" data-nav-link="preparation-station">Quiz Builder</a>
 					<a class="nav-link" href="#lab-flashcards">Flashcards</a>
 					<a class="nav-link" href="#lab-challenge">Concept Checker</a>
 				</details>
@@ -1324,8 +1317,10 @@
 						<div class="grid">
 							<article class="card chapter-card" id="ch1-1-traditional-vs-web">
 								<h3>1.1 Traditional vs Web-Based Systems</h3>
-								<p><strong>Traditional systems</strong> usually run within company-controlled hardware, software, LAN/WAN, and legacy environments. Internet features may exist, but they are often add-ons.</p>
-								<p><strong>Web-based systems</strong> treat the web as the platform. They are more scalable, less tied to one hardware environment, and often easier to deliver as services.</p>
+								<h4>1.1.1 Traditional development</h4>
+								<p>Traditional systems are designed to function within specific hardware and software environments. They usually depend on company-controlled infrastructure, LAN/WAN resources and existing legacy systems. Internet resources may be used as enhancements, but the core system remains tied to a defined technical environment.</p>
+								<h4>1.1.2 Web-based development</h4>
+								<p>Web-based systems use the web as a central platform. They are generally more scalable, less dependent on specific hardware, easier to access across different devices and well suited to outsourced operation and support. Web 2.0 adds collaboration, information sharing and social-networking capabilities.</p>
 								<table>
 									<tr><th>Traditional</th><th>Web-based</th></tr>
 									<tr><td>Legacy integration strongly affects design.</td><td>Internet framework is central to the application.</td></tr>
@@ -1336,8 +1331,11 @@
 							<article class="card chapter-card" id="ch1-2-trends">
 								<h3>1.2 Evolving Trends</h3>
 								<p>Web 2.0, cloud computing, mobile devices, SaaS, and web-hosted software expanded the acquisition choices available to organizations. The analyst must understand how each trend changes cost, control, scalability, and maintenance.</p>
+								<h4>Web 2.0</h4>
+								<p>Web 2.0 platforms emphasise collaboration, information sharing, user participation and social networking rather than one-way publishing.</p>
+								<h4>Cloud computing</h4>
+								<p>Cloud computing allows companies to access software and data over the internet through powerful shared infrastructure, reducing the need for in-house servers and resources.</p>
 								<ul>
-									<li><strong>Cloud computing:</strong> software and data are accessed over the internet using cloud infrastructure.</li>
 									<li><strong>SaaS:</strong> applications are provided as services, reducing installation and maintenance work for the customer.</li>
 									<li><strong>Mobile and web platforms:</strong> increase access needs and raise compatibility, security, and interface concerns.</li>
 								</ul>
@@ -1348,11 +1346,32 @@
 								<h4>1.3.1 Make-or-buy decision</h4>
 								<p>Compare developing a custom system with purchasing a commercial package. Consider total cost of ownership, business fit, implementation time, available skills, integration and long-term support. A <strong>horizontal application</strong> serves many industries; a <strong>vertical application</strong> targets a specialised industry. A value-added reseller (VAR) customizes commercial software for a particular customer or market.</p>
 								<h4>1.3.2 Developing software in-house</h4>
-								<p>In-house development may be appropriate when requirements are unique, existing business procedures should change as little as possible, legacy systems or technology impose constraints, or the organisation wants to build internal IT capability.</p>
+								<p>In-house development may be appropriate when a company wants to:</p>
+								<ul>
+									<li>Satisfy unique business requirements that commercial software cannot meet.</li>
+									<li>Minimize changes to existing business procedures and policies.</li>
+									<li>Meet constraints imposed by existing systems and integration requirements.</li>
+									<li>Meet constraints imposed by existing hardware, software or legacy technology.</li>
+									<li>Develop internal IT resources and capabilities for long-term support.</li>
+								</ul>
 								<h4>1.3.3 Purchasing a software package</h4>
-								<p>Buying can reduce initial cost and implementation time, provide proven features and benchmarks, require fewer development staff, and provide vendor upgrades. Include process disruption, retraining, integration and total-cost effects in the evaluation.</p>
+								<p>Buying a commercial package can provide the following benefits:</p>
+								<ul>
+									<li>Lower initial development costs because the package is sold to multiple customers.</li>
+									<li>Less time to implement because the software has already been designed, programmed, tested and documented.</li>
+									<li>Proven reliability and performance benchmarks when the product has an established user base.</li>
+									<li>Less need for technical development staff.</li>
+									<li>Future upgrades and enhancements provided by the vendor.</li>
+									<li>Useful input from other companies that already use the package.</li>
+								</ul>
+								<p>Balance these benefits against process disruption, retraining, integration and total-cost effects.</p>
 								<h4>1.3.4 Customizing a software package</h4>
-								<p>Customization can use vendor add-ons, negotiated vendor enhancements, or permitted internal modifications. It may improve business fit, but can increase cost and delivery time and make future upgrades or vendor support more difficult.</p>
+								<ol>
+									<li><strong>Purchase a basic package with vendor customization:</strong> select optional modules or add-ons that the vendor provides.</li>
+									<li><strong>Negotiate directly with the vendor for enhancements:</strong> pay the vendor to change or extend the package.</li>
+									<li><strong>Purchase the package and modify it internally:</strong> make permitted changes using internal analysts and programmers.</li>
+								</ol>
+								<p><strong>Additional considerations:</strong> vendor customization can increase cost and delivery time, while internal changes can make future upgrades and support more difficult.</p>
 								<h4>1.3.5 Creating user applications</h4>
 								<p>Users may create smaller solutions with productivity software such as spreadsheets or word processors. This can reduce the IT backlog and empower users, but it still requires training, support, security, data-integrity controls and clear limits on access to corporate data.</p>
 								<div class="note">The systems analyst's role changes by option: deeper design and testing involvement for in-house work, more vendor evaluation and contract/support focus for packages and outsourcing.</div>
@@ -1379,19 +1398,32 @@
 							</article>
 							<article class="card chapter-card" id="ch1-4-acquisition">
 								<h3>1.4 Outsourcing</h3>
-								<p>Outsourcing transfers development, operation or maintenance to an external service provider for a fee. It may involve a programming task, an application service provider (ASP), Internet Business Services (IBS), business process outsourcing or a managed IT function.</p>
-								<p>Evaluate fee models, control, information ownership, confidentiality, licensing, liability, support quality, provider stability, disaster recovery and the long-term effect on internal capability.</p>
+								<h4>1.4.1 The growth of outsourcing</h4>
+								<p>Outsourcing transfers development, operation or maintenance to an external service provider for a fee. It can range from a small programming task to a complete IT function or business process. Organisations use it to control costs, obtain specialist skills and avoid directing internal IT effort toward routine maintenance.</p>
+								<ul>
+									<li><strong>Application Service Providers (ASPs):</strong> rent access to an operational software application, commonly through a subscription or usage fee.</li>
+									<li><strong>Internet Business Services (IBS):</strong> provide hosted web-based support for transactions such as order processing, billing and customer relationship management.</li>
+								</ul>
+								<h4>1.4.2 Outsourcing fees</h4>
 								<table>
 									<tr><th>Fee model</th><th>Meaning</th></tr>
 									<tr><td>Fixed fee</td><td>A set fee for a defined service level.</td></tr>
 									<tr><td>Subscription</td><td>Cost varies with the number of users or workstations.</td></tr>
 									<tr><td>Usage or transaction</td><td>Cost rises with transaction or operation volume.</td></tr>
 								</table>
+								<h4>1.4.3 Outsourcing issues and concerns</h4>
+								<p>Evaluate control, information ownership, confidentiality, licensing, liability, support quality, provider stability, disaster recovery and the long-term effect on internal capability. The quality of the result depends heavily on the provider's capability and financial stability.</p>
 							</article>
 							<article class="card chapter-card wide" id="ch1-6-outsourcing-saas-offshoring">
 								<h3>1.5 Offshoring and 1.6 Software as a Service</h3>
 								<p><strong>Related 1.4 context:</strong> outsourcing transfers development, operation, or maintenance work to an external service provider for a fee. It can range from a small programming task to a full IT function, business process outsourcing, application service provider support, or managed hosting through internet business services.</p>
-								<p><strong>1.5 Offshoring:</strong> global outsourcing moves IT development, support or operations to another country. Cost savings must be weighed against project control, security, cultural differences, language and time-zone communication risks.</p>
+								<p><strong>1.5 Offshoring:</strong> global outsourcing moves IT development, support or operations to another country. Cost savings must be weighed against:</p>
+								<ul>
+									<li>Project control across remote teams.</li>
+									<li>Security and differences in data-protection requirements.</li>
+									<li>Cultural and language differences.</li>
+									<li>Effective communication across distance and time zones.</li>
+								</ul>
 								<p><strong>1.6 Software as a Service (SaaS):</strong> hosted software is delivered over the internet through subscription or usage-based access. The provider handles much of the infrastructure, operation, maintenance and updating, while the customer evaluates service levels, security, vendor dependence and long-term cost.</p>
 								<table>
 									<tr><th>Fee model</th><th>How it works</th><th>Revision clue</th></tr>
@@ -1402,11 +1434,11 @@
 							</article>
 							<article class="card chapter-card" id="ch1-7-selecting-strategy">
 								<h3>1.7 Selecting a Development Strategy</h3>
-								<p>The systems analyst helps management compare outsourcing, in-house development, packaged software, user applications or a combination. Include users and relevant IT staff in the evaluation team, compare total cost of ownership, and rule out alternatives that do not meet requirements.</p>
+								<p>The systems analyst helps management compare outsourcing, in-house development, packaged software, user applications or a combination. In-house development requires deeper involvement in design, testing and implementation; outsourcing and commercial packages shift more of that work to the vendor. Include users and relevant IT staff in the evaluation team, compare total cost of ownership, and rule out alternatives that do not meet requirements.</p>
 								<h4>1.7.1 The systems analyst's role</h4>
 								<p>Analyse requirements, costs, benefits, risks and future needs, then present a recommendation that management can approve.</p>
 								<h4>1.7.2 Cost-benefit analysis</h4>
-								<p>Use payback analysis, return on investment (ROI), net present value (NPV) and total cost of ownership (TCO) to compare alternatives.</p>
+								<p>TCO is the key selection factor because it includes initial development or purchase cost plus long-term maintenance, support, upgrades, training and operating costs. Use payback analysis, return on investment (ROI) and net present value (NPV) to compare alternatives.</p>
 								<h4>1.7.3 Cost-benefit checklist</h4>
 								<p>List alternatives, identify when costs and benefits occur, allow for growth, include support and licensing costs, apply the financial tools, and report the results.</p>
 							</article>
@@ -1416,18 +1448,24 @@
 								<ol>
 									<li><strong>Evaluate requirements:</strong> identify features, network and web issues, future volume and hardware, software and personnel constraints; prepare an RFP or RFQ.</li>
 									<li><strong>Identify vendors or outsourcing options:</strong> investigate vendors, consultants, industry sources, forums and current users.</li>
-									<li><strong>Evaluate alternatives:</strong> compare proposals, demonstrations, tests, references, benchmarks and weighted evaluation models.</li>
+									<li><strong>Evaluate alternatives:</strong> compare proposals, demonstrations, tests, references, benchmarks and weighted evaluation models.
+										<ul>
+											<li><strong>Existing users:</strong> ask current customers about reliability, performance, support and implementation experience.</li>
+											<li><strong>Application testing:</strong> test important features and workflows against the organisation's requirements.</li>
+											<li><strong>Benchmarking:</strong> measure performance under realistic transaction volumes and workloads.</li>
+										</ul>
+									</li>
 									<li><strong>Perform cost-benefit analysis:</strong> include licensing, support, maintenance, training, staffing, customization, transaction fees and TCO.</li>
-									<li><strong>Recommend a strategy:</strong> present costs, benefits, risks, limitations and the best-fit option to management.</li>
+									<li><strong>Prepare a recommendation:</strong> present costs, benefits, risks, limitations and the best-fit option to management before implementation planning begins.</li>
 								</ol>
 								<div class="note"><strong>RFP versus RFQ:</strong> an RFP asks vendors how they will meet a business requirement; an RFQ is used when the product or service is known and comparable pricing is required.</div>
 							</article>
 							<article class="card chapter-card" id="ch1-9-completion">
 								<h3>1.9 Completion of Systems Analysis Tasks</h3>
 								<ul>
-									<li><strong>System requirements document:</strong> records the requirements, alternatives, analysis and recommendation.</li>
-									<li><strong>Presentation to management:</strong> communicates the findings, financial case, risks and recommended direction.</li>
-									<li><strong>Transition to systems design:</strong> hands the approved requirements and decisions to the design phase.</li>
+									<li><strong>1.9.1 System requirements document:</strong> the output of systems analysis, containing detailed specifications, requirements, alternatives, recommendations and cost and time estimates.</li>
+									<li><strong>1.9.2 Presentation to management:</strong> communicates the findings, financial case, risks and recommended direction so management can decide whether to proceed, modify the current system, purchase or customize software, or stop the project.</li>
+									<li><strong>1.9.3 Transition to systems design:</strong> hands the approved requirements and decisions to the design phase and provides the basis for implementation planning.</li>
 								</ul>
 							</article>
 							<article class="card chapter-card wide" id="ch1-worked-acquisition-case">
@@ -1442,6 +1480,19 @@
 									<li><strong>Recommend:</strong> present costs, benefits, advantages, disadvantages, and the option that best fits strategy and risk.</li>
 								</ol>
 								<div class="note success">Strong exam answer: mention the analyst's role, the selection team, user ownership, TCO, and management approval. That shows you understand the whole decision path.</div>
+							</article>
+							<article class="card chapter-card wide" id="ch1-key-points">
+								<h3>Chapter 1 Key Points</h3>
+								<ul>
+									<li><strong>Traditional versus web-based systems:</strong> traditional systems are tied more closely to defined hardware, software and legacy environments, while web-based systems are more scalable and suited to distributed or outsourced operation.</li>
+									<li><strong>Cloud computing and SaaS:</strong> both provide internet-based access; cloud computing focuses on shared infrastructure, while SaaS provides hosted application functionality.</li>
+									<li><strong>Development choices:</strong> in-house development offers business fit and control, while commercial packages can be cheaper, faster and supported by vendor upgrades.</li>
+									<li><strong>Outsourcing and offshoring:</strong> these can reduce cost or provide expertise, but introduce control, security, communication, cultural and provider-dependence risks.</li>
+									<li><strong>Systems analyst's role:</strong> involvement is deeper for in-house development and shifts toward evaluation, contracts and support when vendors provide the solution.</li>
+									<li><strong>TCO and financial analysis:</strong> compare long-term costs, not only the initial price, using TCO, payback, ROI and NPV.</li>
+									<li><strong>Acquisition process:</strong> evaluate requirements, identify vendors, evaluate alternatives, perform cost-benefit analysis and prepare a recommendation.</li>
+									<li><strong>Requirements document:</strong> records the analysed requirements, alternatives, recommendations, costs and time estimates that support management approval and transition to design.</li>
+								</ul>
 							</article>
 							<details class="card chapter-card wide glossary-card" id="ch1-glossary">
 								<summary><span>Chapter 1 Glossary: Development Strategy Terms</span></summary>
@@ -2203,21 +2254,12 @@
 			const sidebar = document.querySelector(".sidebar");
 			const navLinks = Array.from(document.querySelectorAll(".nav-link"));
 			const backTop = document.querySelector(".back-top");
-			const alwaysOpenNavGroups = Array.from(sidebar.querySelectorAll(".nav-always-open"));
 
 			const navMap = new Map(navLinks.map((link) => [link.getAttribute("href").slice(1), link]));
 			const trackedTargets = Array.from(navMap.keys())
 				.map((id) => document.getElementById(id))
 				.filter(Boolean);
 			let activeNavId = null;
-
-			alwaysOpenNavGroups.forEach((group) => {
-				group.open = true;
-				group.querySelector(":scope > summary")?.addEventListener("click", (event) => event.preventDefault());
-				group.addEventListener("toggle", () => {
-					if (!group.open) group.open = true;
-				});
-			});
 
 			function parentChapterId(element) {
 				const chapter = element.closest(".chapter");
@@ -2245,12 +2287,15 @@
 					}
 				});
 
-				activeLink.closest("details")?.setAttribute("open", "");
-				let parentDetails = activeLink.parentElement.closest("details");
+				const activeDetails = new Set();
+				let parentDetails = activeLink.closest("details");
 				while (parentDetails) {
-					parentDetails.open = true;
+					activeDetails.add(parentDetails);
 					parentDetails = parentDetails.parentElement.closest("details");
 				}
+				sidebar.querySelectorAll("details.nav-collapsible").forEach((group) => {
+					group.open = activeDetails.has(group);
+				});
 
 				const sidebarBox = sidebar.getBoundingClientRect();
 				const linkBox = activeLink.getBoundingClientRect();
@@ -2267,7 +2312,7 @@
 				const visibleTargets = trackedTargets
 					.filter((target) => target.getClientRects().length > 0)
 					.sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top);
-				let current = visibleTargets[0];
+				let current = null;
 				for (const target of visibleTargets) {
 					if (target.getBoundingClientRect().top <= checkpoint) current = target;
 					else break;
