@@ -812,7 +812,7 @@
 									<li>The design must support one patient having many appointments, one doctor having many appointments, multiple billable procedures per appointment, doctor cover/reassignment, medical-aid details and future medication dispensing.</li>
 								</ul>
 								<p>Describe or draw an ERD with at least four entities. A strong design could include Patient, Doctor, Appointment, Procedure or BillingLine, MedicalAidMembership and MedicationDispensing. Explain cardinalities such as Patient 1-to-many Appointment, Doctor 1-to-many Appointment, Appointment 1-to-many BillingLine and Appointment 0-to-many MedicationDispensing. State assumptions clearly.</p>
-								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch3-1-dbms">Data Structures and DBMS</a> <a href="#ch3-2-terms-integrity">Data Terms and Integrity</a> <a href="#ch3-3-erd">Entity-Relationship Diagrams</a> <a href="#ch3-4-normalization">Normalization</a> <a href="#ch3-8-erd-normalization-worked-example">ERD and Normalization Worked Example</a> <a href="#ch3-9-codes-storage-controls">Codes, Storage and Controls</a></div>
+								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch3-1-dbms">Data Structures and DBMS</a> <a href="#ch3-2-terms-integrity">Data Terms and Integrity</a> <a href="#ch3-3-erd">Entity-Relationship Diagrams</a> <a href="#ch3-4-normalization">Normalization</a> <a href="#ch3-8-erd-normalization-worked-example">ERD and Normalization Worked Example</a> <a href="#ch3-9-codes-storage-controls">Codes and Storage</a> <a href="#ch3-10-data-storage-access">Data Storage and Access</a> <a href="#ch3-11-data-control">Data Control</a></div>
 							</div>
 					</article>
 
@@ -1175,7 +1175,7 @@
 							<div class="note success"><strong>Why normalize:</strong> reduce redundancy and prevent insertion, update and deletion anomalies. Always state the problem removed at each step.</div>
 
 							<h4 id="ca-ch3-7">3.7-3.9 Codes, Storage, Access and Data Control</h4>
-							<p class="assignment-links"><a href="#ch3-5-codes-controls">View Codes, Storage and Control</a> <a href="#ch3-9-codes-storage-controls">View the Expanded Reference ↓</a></p>
+							<p class="assignment-links"><a href="#ch3-5-codes-controls">View Codes</a> <a href="#ch3-9-codes-storage-controls">View the Expanded Codes Reference ↓</a> <a href="#ch3-10-data-storage-access">View Data Storage and Access</a> <a href="#ch3-11-data-control">View Data Control</a></p>
 							<table>
 								<tr><th>Code type</th><th>Best use</th><th>Caution</th></tr>
 								<tr><td>Sequence</td><td>Unique items issued in order.</td><td>Carries no descriptive meaning.</td></tr>
@@ -1192,6 +1192,7 @@
 								<li><strong>Data mining:</strong> discovers useful patterns and relationships; clickstream and market-basket analysis also raise privacy concerns.</li>
 								<li><strong>Logical storage:</strong> the user's structured view of fields and records. <strong>Physical storage:</strong> how binary data is placed on media and managed by hardware/operating systems.</li>
 								<li><strong>Data coding:</strong> ASCII, EBCDIC, binary and Unicode represent data; Unicode supports large multilingual character sets.</li>
+								<li><strong>Date storage:</strong> the study guide compares sortable ISO-style <code>YYYYMMDD</code> dates with absolute dates, which count days from a base date to support date calculations.</li>
 								<li><strong>Controls:</strong> subschemas, passwords, privileges, encryption, audit trails, backup and recovery protect accuracy, completeness and security.</li>
 							</ul>
 
@@ -1739,8 +1740,26 @@
 								<p>Normalization refines table design to reduce redundancy, update problems and data inconsistency.</p>
 							</article>
 							<article class="card chapter-card" id="ch3-5-codes-controls">
-								<h3>3.7 Codes · 3.8 Data Storage and Access · 3.9 Data Control</h3>
-								<p>Codes use letters or numbers to represent data. They can speed entry, reduce storage, cut transmission time, reveal information, or conceal information. Data controls include access privileges, encryption, backups, recovery procedures, audit logs, and audit fields.</p>
+								<h3>3.7 Codes</h3>
+								<p>Codes use letters or numbers to represent data. They can speed entry, reduce storage, cut transmission time, reveal information, or conceal information. The study guide groups them into sequence, block sequence, alphabetic, significant-digit, derivation, cipher and action codes.</p>
+							</article>
+							<article class="card chapter-card wide" id="ch3-10-data-storage-access">
+								<h3>3.8 Data Storage and Access</h3>
+								<p>Storage and access design covers strategic tools for using organisational data, the distinction between users' logical view and its physical implementation, suitable data formats and the treatment of date fields.</p>
+								<h4>3.8.1 Tools and Techniques</h4>
+								<ul>
+									<li><strong>Data warehousing:</strong> integrates data from multiple organisational systems—such as orders, inventory and payroll—so it can be analysed together to support management decisions.</li>
+									<li><strong>Data mart:</strong> a smaller, focused collection for a particular department. Its narrower scope can make access faster and more relevant to that department.</li>
+									<li><strong>Data storage and access:</strong> storing large volumes requires planned architecture and structure, regardless of whether the organisation uses a warehouse or a mart.</li>
+									<li><strong>Data mining:</strong> software searches data for meaningful patterns and relationships. The guide's examples include customer-purchase patterns and market-basket analysis; clickstream use also raises privacy and ethical concerns.</li>
+									<li><strong>Logical vs. physical storage:</strong> logical storage is the user's view of fields and records; physical storage is how hardware and the operating system place and retrieve binary data on media. Allocate field sizes for anticipated values without waste.</li>
+									<li><strong>Data coding:</strong> computers represent information with bits. The guide covers EBCDIC, ASCII, binary and Unicode: binary stores numeric values efficiently, while Unicode supports a broad range of multilingual characters.</li>
+									<li><strong>Storing dates:</strong> a four-digit-year ISO format (<code>YYYYMMDD</code>) avoids the two-digit-year problem and sorts chronologically. For date arithmetic, an <em>absolute date</em> counts the days from a chosen base date; subtracting two such values gives the interval.</li>
+								</ul>
+							</article>
+							<article class="card chapter-card wide" id="ch3-11-data-control">
+								<h3>3.9 Data Control</h3>
+								<p>File and database management must keep stored data accurate, complete and protected, including the physical security of the system and controls over input and output. A well-designed DBMS provides security and integrity features such as subschemas, passwords, encryption, audit-trail files, and backup and recovery procedures. The analyst ensures these controls are used correctly.</p>
 							</article>
 							<article class="card chapter-card wide" id="ch3-6-file-vs-dbms-case">
 								<h3>Expanded example: 3.1.2 Mario and Danica</h3>
@@ -1796,11 +1815,11 @@
 								<div class="note">Exam trap: do not jump straight to 3NF language. Say what problem is removed at each stage: repeating groups, partial dependencies, then transitive dependencies.</div>
 							</article>
 							<article class="card chapter-card wide" id="ch3-9-codes-storage-controls">
-								<h3>Expanded notes: 3.7-3.9 Codes, Storage, Access and Controls</h3>
+								<h3>Expanded notes: 3.7 Codes</h3>
 								<h4>3.7.1 Overview of Codes</h4>
 								<p>Codes represent data concisely and can support identification, classification, sorting, data entry, storage and processing. Good design avoids ambiguity and allows for future growth.</p>
 								<h4>3.7.2 Types of Codes</h4>
-								<p>Codes simplify input, output, and storage by representing data with letters or numbers. The guide identifies seven code types and warns that code design should be concise, expandable, stable, unique, sortable, simple, non-confusing, and meaningful.</p>
+								<p>Codes simplify input, output, and storage by representing data with letters or numbers. The guide identifies seven code types and sets out ten design criteria: keep codes concise; allow for expansion; keep them stable, unique and sortable; use a simple structure; avoid confusing characters; make codes meaningful; use each code for a single purpose; and keep coding consistent across systems.</p>
 								<table>
 									<tr><th>Code type</th><th>Meaning</th><th>Example pattern from the guide</th></tr>
 									<tr><td>Sequence</td><td>Assigned in order and carries no extra meaning.</td><td>Employee numbers issued consecutively.</td></tr>
@@ -1814,7 +1833,7 @@
 									<tr><td>Action</td><td>Indicates an operation the system should perform.</td><td><code>D</code> display, <code>A</code> add, <code>X</code> exit.</td></tr>
 								</table>
 								<h4>3.7.3 Designing Codes</h4>
-								<p>Good codes should be concise, unique, simple, meaningful, stable, sortable, non-confusing and expandable for future growth. Data control protects stored data with access privileges, encryption, backup/recovery procedures, audit logs and audit fields. Storage and access decisions must distinguish logical design from physical storage.</p>
+								<p>Apply all ten criteria when designing a code scheme; for example, avoid ambiguous characters such as <code>O</code>/<code>0</code> and <code>I</code>/<code>1</code>, leave capacity for growth, and avoid combining unrelated attributes in one code.</p>
 							</article>
 							<details class="card chapter-card wide glossary-card" id="ch3-glossary">
 								<summary><span>Chapter 3 Glossary: Data Design Terms</span></summary>
