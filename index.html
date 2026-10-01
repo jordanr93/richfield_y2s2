@@ -119,7 +119,21 @@
       font-size: 1.05rem;
     }
 
-    .quiz-jump { display: inline-block; margin-top: 14px; color: var(--purple); font-weight: 800; }
+    .quiz-jump {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      margin-top: 20px;
+      border: 1px solid var(--purple);
+      border-radius: 8px;
+      padding: 9px 16px;
+      color: var(--purple);
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .quiz-jump:hover { background: rgba(188, 140, 255, .12); }
 
     .module-grid {
       display: grid;
@@ -151,10 +165,12 @@
       background: var(--accent, var(--green));
     }
 
-    .module-button:hover {
-      transform: translateY(-4px);
-      border-color: var(--accent, var(--cyan));
-      box-shadow: var(--shadow);
+    @media (hover: hover) {
+      .module-button:hover {
+        transform: translateY(-4px);
+        border-color: var(--accent, var(--cyan));
+        box-shadow: var(--shadow);
+      }
     }
 
     .module-kicker {
@@ -212,7 +228,7 @@
       border: 1px solid var(--border);
       border-radius: 8px;
       background: var(--panel);
-      padding: clamp(18px, 4vw, 30px);
+      padding: clamp(18px, 4vw, 30px) clamp(18px, 4vw, 30px) max(18px, env(safe-area-inset-bottom));
       scroll-margin-top: 20px;
     }
 
@@ -239,6 +255,8 @@
       padding: 10px 12px;
       font: inherit;
     }
+    /* Quiz answer buttons are created by quiz-me.js. */
+    /*noinspection CssUnusedSymbol*/
     .quiz-field select:focus-visible, .quiz-field input:focus-visible, .quiz-answer:focus-visible, .quiz-button:focus-visible {
       outline: 3px solid var(--purple);
       outline-offset: 2px;
@@ -247,16 +265,31 @@
     .quiz-topic-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
     .quiz-topic-option {
       display: flex;
-      align-items: flex-start;
-      gap: 11px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      width: 100%;
       min-height: 52px;
       border: 1px solid var(--border);
       border-radius: 8px;
       background: var(--code-bg);
+      color: var(--text);
       padding: 12px;
+      font: inherit;
+      text-align: left;
       cursor: pointer;
     }
-    .quiz-topic-option input { width: 22px; height: 22px; margin: 1px 0 0; flex: 0 0 auto; accent-color: var(--purple); }
+    .quiz-topic-option[aria-pressed="true"] { border-color: var(--purple); background: rgba(188, 140, 255, .15); box-shadow: inset 0 0 0 1px var(--purple); }
+    .quiz-topic-option[aria-pressed="true"]::after {
+      content: "Selected";
+      flex: 0 0 auto;
+      border-radius: 999px;
+      background: var(--purple);
+      color: #160d20;
+      padding: 2px 8px;
+      font-size: .72rem;
+      font-weight: 800;
+    }
     .quiz-topic-option span { min-width: 0; line-height: 1.35; }
     .quiz-topic-option small { display: block; margin-top: 3px; color: var(--muted); }
     .quiz-status { min-height: 1.5em; margin: 0; }
@@ -277,9 +310,11 @@
     .quiz-button:disabled { cursor: not-allowed; opacity: .48; }
     .quiz-session { margin-top: 22px; border-top: 1px solid var(--border); padding-top: 22px; }
     .quiz-progress { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; margin-bottom: 14px; color: var(--muted); font-size: .95rem; }
+    .quiz-progress strong { color: var(--text); }
     .quiz-topic-label { margin: 0 0 6px; color: var(--purple); font-size: .85rem; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
     .quiz-question { margin: 0 0 16px; font-size: clamp(1.1rem, 3.8vw, 1.35rem); line-height: 1.4; overflow-wrap: anywhere; }
     .quiz-answers { display: grid; gap: 10px; }
+    /*noinspection CssUnusedSymbol*/
     .quiz-answer {
       width: 100%;
       min-height: 52px;
@@ -295,12 +330,18 @@
       overflow-wrap: anywhere;
       cursor: pointer;
     }
+    /*noinspection CssUnusedSymbol*/
     .quiz-answer:hover:not(:disabled) { border-color: var(--purple); }
+    /*noinspection CssUnusedSymbol*/
     .quiz-answer:disabled { cursor: default; }
+    /*noinspection CssUnusedSymbol*/
     .quiz-answer.is-correct { border-color: var(--green); background: rgba(63, 185, 80, .14); }
+    /*noinspection CssUnusedSymbol*/
     .quiz-answer.is-wrong { border-color: var(--red); background: rgba(248, 81, 73, .14); }
-    .quiz-feedback { min-height: 1.6em; margin: 14px 0; font-weight: 700; }
+    .quiz-feedback { min-height: 1.6em; margin: 14px 0; font-weight: 700; white-space: pre-wrap; overflow-wrap: anywhere; }
+    /*noinspection CssUnusedSymbol*/
     .quiz-feedback.is-right { color: var(--green); }
+    /*noinspection CssUnusedSymbol*/
     .quiz-feedback.is-wrong { color: #ff8b83; }
     .quiz-result { border: 1px solid var(--border); border-radius: 8px; padding: 18px; }
     .quiz-result h3 { margin-bottom: 6px; }
@@ -314,31 +355,73 @@
 
     @media (max-width: 680px) {
       .shell {
-        width: min(100% - 24px, 1120px);
-        padding-top: 22px;
+        width: min(100% - 20px, 1120px);
+        padding-top: max(14px, env(safe-area-inset-top));
+        padding-bottom: max(24px, env(safe-area-inset-bottom));
       }
 
       .topbar {
-        align-items: flex-start;
-        flex-direction: column;
-        margin-bottom: 42px;
+        margin-bottom: 18px;
+        padding-bottom: 14px;
       }
 
+      .brand { gap: 10px; font-size: .95rem; line-height: 1.2; }
+      .brand-mark { width: 38px; height: 38px; flex: 0 0 auto; }
+      .hero { padding: 18px; margin-bottom: 18px; }
+      .eyebrow { margin-bottom: 8px; }
       h1 {
-        font-size: clamp(2.2rem, 13vw, 3.3rem);
+        font-size: clamp(2rem, 10vw, 3rem);
+        line-height: 1.06;
       }
+
+      .hero-copy { margin-top: 12px; font-size: 1rem; line-height: 1.45; }
+      .quiz-jump { width: 100%; margin-top: 18px; }
 
       .module-grid {
         grid-template-columns: 1fr;
+        gap: 10px;
+        margin-top: 18px;
       }
 
       .module-button {
-        min-height: 176px;
+        min-height: 0;
+        padding: 15px 16px 12px;
       }
 
+      .module-title { margin: 10px 0 0; font-size: 1.16rem; }
+      .module-desc { display: none; }
+      .module-footer { margin-top: 8px; font-size: .88rem; }
+      .arrow { width: 30px; height: 30px; }
+
+      .quiz-me { margin-top: 20px; padding: 18px 16px max(22px, env(safe-area-inset-bottom)); }
+      .quiz-intro { margin-bottom: 18px; line-height: 1.45; }
+      .quiz-setup { gap: 16px; }
+
       .quiz-controls, .quiz-topic-list { grid-template-columns: 1fr; }
+      .quiz-topic-option { min-height: 58px; padding: 13px 12px; }
+      .quiz-session { margin-top: 20px; padding-top: 0; scroll-margin-top: 8px; }
+      .quiz-progress {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        margin: 0 -16px 16px;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        background: var(--panel);
+        padding: 10px 16px;
+        font-size: .85rem;
+        line-height: 1.3;
+      }
+      .quiz-question { font-size: 1.12rem; line-height: 1.38; }
+      /*noinspection CssUnusedSymbol*/
+      .quiz-answer { min-height: 56px; padding: 14px 13px; line-height: 1.4; }
+      .quiz-feedback { line-height: 1.45; scroll-margin-top: 84px; }
       .quiz-button { width: 100%; }
-      .quiz-progress { font-size: .9rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .module-button { transition: none; }
     }
   </style>
 </head>
@@ -363,51 +446,51 @@
     <nav class="module-grid" aria-label="Module navigation">
       <!-- Programming 622 link. -->
       <a class="module-button" href="programming_guide.html" style="--accent: var(--green);">
-        <span>
+        <div>
           <span class="module-kicker">PRG622</span>
           <h2 class="module-title">Programming 622</h2>
           <p class="module-desc">Object-oriented programming revision, C++ patterns, exam examples, and practical code walkthroughs.</p>
-        </span>
+        </div>
         <span class="module-footer">Open module <span class="arrow" aria-hidden="true">-&gt;</span></span>
       </a>
 
       <!-- Information Systems 622 link. -->
       <a class="module-button" href="information_systems_guide.html" style="--accent: var(--purple);">
-        <span>
+        <div>
           <span class="module-kicker">IS622</span>
           <h2 class="module-title">Information Systems 622</h2>
           <p class="module-desc">Systems analysis, process modelling, data modelling, and structured exam preparation notes.</p>
-        </span>
+        </div>
         <span class="module-footer">Open module <span class="arrow" aria-hidden="true">-&gt;</span></span>
       </a>
 
       <!-- Internet Programming 622 link. -->
       <a class="module-button" href="internet_programming_guide.html" style="--accent: var(--red);">
-        <span>
+        <div>
           <span class="module-kicker">IP622</span>
           <h2 class="module-title">Internet Programming 622</h2>
           <p class="module-desc">Web programming concepts, server-side logic, debugging guidance, and applied revision examples.</p>
-        </span>
+        </div>
         <span class="module-footer">Open module <span class="arrow" aria-hidden="true">-&gt;</span></span>
       </a>
 
       <!-- Machine Learning 600 link. -->
       <a class="module-button" href="machine_learning_guide.html" style="--accent: var(--cyan);">
-        <span>
+        <div>
           <span class="module-kicker">ML600</span>
           <h2 class="module-title">Machine Learning 600</h2>
           <p class="module-desc">Machine learning foundations, model reasoning, key terminology, and exam-focused concept review.</p>
-        </span>
+        </div>
         <span class="module-footer">Open module <span class="arrow" aria-hidden="true">-&gt;</span></span>
       </a>
 
       <!-- Big Data and IoT 600 link. -->
       <a class="module-button" href="big_data_IOT_guide.html" style="--accent: var(--amber);">
-        <span>
+        <div>
           <span class="module-kicker">BDIOT600</span>
           <h2 class="module-title">Big Data and IoT 600</h2>
           <p class="module-desc">Big data principles, IoT architecture, analytics concepts, and module study-guide navigation.</p>
-        </span>
+        </div>
         <span class="module-footer">Open module <span class="arrow" aria-hidden="true">-&gt;</span></span>
       </a>
     </nav>
@@ -430,6 +513,11 @@
         <fieldset class="quiz-field quiz-topics">
           <legend>Topics <span class="quiz-help">(select one or more)</span></legend>
           <div class="quiz-topic-list" id="quiz-topic-list"><p class="quiz-help">Loading topics…</p></div>
+          <template id="quiz-topic-template">
+            <button class="quiz-topic-option" type="button" aria-pressed="false">
+              <span><span data-topic-name>Topic</span><small>0 questions available</small></span>
+            </button>
+          </template>
         </fieldset>
         <p class="quiz-status" id="quiz-status" role="status" aria-live="polite">Loading question bank…</p>
         <button class="quiz-button" id="quiz-start" type="button" disabled>Start quiz</button>
@@ -437,7 +525,7 @@
       <div class="quiz-session" id="quiz-session" hidden aria-live="polite">
         <div class="quiz-progress"><strong id="quiz-progress-count"></strong><span id="quiz-progress-score"></span></div>
         <p class="quiz-topic-label" id="quiz-question-topic"></p>
-        <h3 class="quiz-question" id="quiz-question"></h3>
+        <h3 class="quiz-question" id="quiz-question" tabindex="-1"></h3>
         <div class="quiz-answers" id="quiz-answers"></div>
         <p class="quiz-feedback" id="quiz-feedback" role="status" aria-live="assertive"></p>
         <button class="quiz-button" id="quiz-next" type="button" disabled>Next question</button>

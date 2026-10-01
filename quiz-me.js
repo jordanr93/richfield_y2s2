@@ -4,6 +4,7 @@
   const csvPath = 'information_systems_topics_1-3_quiz.csv';
   const moduleSelect = document.querySelector('#quiz-module');
   const topicList = document.querySelector('#quiz-topic-list');
+  const topicTemplate = document.querySelector('#quiz-topic-template');
   const countInput = document.querySelector('#quiz-count');
   const status = document.querySelector('#quiz-status');
   const startButton = document.querySelector('#quiz-start');
@@ -69,7 +70,7 @@
   }
 
   function selectedTopics() {
-    return [...topicList.querySelectorAll('input[type="checkbox"]:checked')].map((input) => input.value);
+    return [...topicList.querySelectorAll('.quiz-topic-option[aria-pressed="true"]')].map((button) => button.dataset.topic);
   }
 
   function setStatus(message) {
@@ -95,19 +96,15 @@
       return;
     }
     for (const [topic, questions] of module) {
-      const label = document.createElement('label');
-      label.className = 'quiz-topic-option';
-      const checkbox = document.createElement('input');
-      checkbox.type = 'checkbox';
-      checkbox.value = topic;
-      checkbox.addEventListener('change', updateStartState);
-      const text = document.createElement('span');
-      text.append(document.createTextNode(topic));
-      const available = document.createElement('small');
-      available.textContent = `${questions.length} questions available`;
-      text.append(available);
-      label.append(checkbox, text);
-      topicList.append(label);
+      const button = topicTemplate.content.firstElementChild.cloneNode(true);
+      button.dataset.topic = topic;
+      button.addEventListener('click', () => {
+        button.setAttribute('aria-pressed', button.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+        updateStartState();
+      });
+      button.querySelector('[data-topic-name]').textContent = topic;
+      button.querySelector('small').textContent = `${questions.length} questions available`;
+      topicList.append(button);
     }
     updateStartState();
   }
@@ -119,6 +116,15 @@
       [copy[i], copy[j]] = [copy[j], copy[i]];
     }
     return copy;
+  }
+
+  function scrollBehavior() {
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+  }
+
+  function bringQuestionIntoView() {
+    questionText.focus({ preventScroll: true });
+    session.scrollIntoView({ behavior: scrollBehavior(), block: 'start' });
   }
 
   function startQuiz() {
@@ -148,7 +154,7 @@
       setStatus(`${quiz.length} questions ready. Topics will be mixed at random.`);
     }
     showQuestion();
-    session.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    bringQuestionIntoView();
   }
 
   function showQuestion() {
@@ -197,6 +203,9 @@
     }
     progressScore.textContent = `Answered ${currentIndex + 1} · Correct ${score}`;
     nextButton.disabled = false;
+    if (window.matchMedia('(max-width: 680px)').matches) {
+      feedback.scrollIntoView({ behavior: scrollBehavior(), block: 'start' });
+    }
   }
 
   function showResults() {
@@ -204,6 +213,7 @@
     result.replaceChildren();
     const heading = document.createElement('h3');
     heading.textContent = 'Quiz complete';
+    heading.tabIndex = -1;
     const summary = document.createElement('p');
     summary.textContent = `You answered ${quiz.length} questions and got ${score} correct.`;
     const detail = document.createElement('p');
@@ -211,18 +221,30 @@
     detail.textContent = 'Change the module or topic selection and start another quiz whenever you’re ready.';
     result.append(heading, summary, detail);
     result.hidden = false;
-    result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    heading.focus({ preventScroll: true });
+    result.scrollIntoView({ behavior: scrollBehavior(), block: 'start' });
     setStatus('Quiz finished. Your selections are still available above.');
+  }
+
+  function showQuestionBankError(message) {
+    moduleSelect.disabled = true;
+    startButton.disabled = true;
+    topicList.textContent = 'Topics could not be loaded.';
+    setStatus(`${message} Open this page through the site server so the CSV can be fetched.`);
   }
 
   async function loadQuestionBank() {
     try {
       const response = await fetch(csvPath, { cache: 'no-store' });
-      if (!response.ok) throw new Error(`Question bank request failed (${response.status}).`);
+      if (!response.ok) {
+        showQuestionBankError(`Question bank request failed (${response.status}).`);
+        return;
+      }
       const entries = parseCSV(await response.text());
       const required = ['module', 'topic', 'question', 'answer_a', 'answer_b', 'answer_c', 'answer_d', 'correct_answer', 'explanation'];
       if (!entries.length || required.some((key) => !(key in entries[0]))) {
-        throw new Error('The CSV is missing one or more required columns.');
+        showQuestionBankError('The CSV is missing one or more required columns.');
+        return;
       }
       for (const entry of entries) {
         if (!entry.module || !entry.topic || !entry.question || !['A', 'B', 'C', 'D'].includes(entry.correct_answer.trim().toUpperCase())) continue;
@@ -232,6 +254,10 @@
         if (!topics.has(entry.topic)) topics.set(entry.topic, []);
         topics.get(entry.topic).push(entry);
       }
+      if (!bankByModule.size) {
+        showQuestionBankError('No valid questions were found in the CSV.');
+        return;
+      }
       moduleSelect.replaceChildren();
       for (const module of bankByModule.keys()) {
         const option = document.createElement('option');
@@ -239,7 +265,6 @@
         option.textContent = module;
         moduleSelect.append(option);
       }
-      if (!bankByModule.size) throw new Error('No valid questions were found in the CSV.');
       moduleSelect.disabled = false;
       moduleSelect.addEventListener('change', renderTopics);
       countInput.addEventListener('input', updateStartState);
@@ -249,6 +274,7 @@
         if (currentIndex + 1 < quiz.length) {
           currentIndex += 1;
           showQuestion();
+          bringQuestionIntoView();
         } else {
           showResults();
         }
@@ -257,10 +283,7 @@
       const total = [...bankByModule.values()].reduce((sum, topics) => sum + [...topics.values()].reduce((sub, questions) => sub + questions.length, 0), 0);
       setStatus(`Loaded ${total} questions from the CSV.`);
     } catch (error) {
-      moduleSelect.disabled = true;
-      startButton.disabled = true;
-      topicList.textContent = 'Topics could not be loaded.';
-      setStatus(`${error.message} Open this page through the site server so the CSV can be fetched.`);
+      showQuestionBankError(error instanceof Error ? error.message : String(error));
     }
   }
 
