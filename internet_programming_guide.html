@@ -248,11 +248,8 @@
 			color: var(--muted);
 			font-size: 1.12rem;
 		}
-
-		.hero-actions,
-		.legend,
-		.related-chapters,
-		.chip-row {
+	.hero-actions,
+	.legend {
 			display: flex;
 			flex-wrap: wrap;
 			gap: 0.55rem;
@@ -331,12 +328,6 @@
 			color: var(--muted);
 		}
 
-		.grid {
-			display: grid;
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-			gap: 1rem;
-		}
-
 		.card {
 			background: var(--panel);
 			border: 1px solid var(--border);
@@ -363,35 +354,6 @@
 
 		.card li + li {
 			margin-top: 0.25rem;
-		}
-
-		.exam-card {
-			border-top: 3px solid var(--cyan);
-		}
-
-		.exam-card.security { border-top-color: var(--red); }
-		.exam-card.state { border-top-color: var(--purple); }
-		.exam-card.files { border-top-color: var(--green); }
-		.exam-card.sql { border-top-color: var(--amber); }
-		.exam-card.setup { border-top-color: var(--cyan); }
-
-		.related-chapters {
-			margin-top: 0.8rem;
-			border-top: 1px solid var(--border);
-			padding-top: 0.75rem;
-			font-size: 0.92rem;
-		}
-
-		.related-chapters span {
-			color: var(--muted);
-			font-weight: 700;
-		}
-
-		.related-chapters a {
-			border: 1px solid var(--border);
-			border-radius: 999px;
-			padding: 0.16rem 0.55rem;
-			background: rgba(255, 255, 255, 0.03);
 		}
 
 		.table-wrap {
@@ -576,10 +538,6 @@
 
 		.back-link {
 			margin-top: 1rem;
-		}
-
-		.cheat-sheet {
-			margin-top: 1.6rem;
 		}
 
 		.quiz-section {
@@ -900,15 +858,13 @@
 			body {
 				font-size: 16px;
 			}
-
-			.grid,
-			.chapter-grid,
-			.function-list,
-			.flow,
-			.glossary-list,
-			.quiz-counts,
-			.learning-lab,
-			.state-lanes {
+	.chapter-grid,
+	.function-list,
+	.flow,
+	.glossary-list,
+	.quiz-counts,
+	.learning-lab,
+	.state-lanes {
 				grid-template-columns: 1fr;
 			}
 
@@ -971,8 +927,8 @@
 			<a href="#ip-quiz-builder" data-nav-link="preparation-station">Quiz Builder</a>
 			<a href="#ip-flashcards">Flashcards</a>
 			<a href="#ip-concept-checker">Concept Checker</a>
-			<a href="#ip-code-practice">Fill in the Code</a>
-			<a href="#ip-code-tracer">Code Tracer</a>
+			<a href="#code-practice">Fill in the Code</a>
+			<a href="#code-tracer">Code Tracer</a>
 		</details>
 	</nav>
 
@@ -985,7 +941,7 @@
 				<p>A dark, readable study page for the supplied guide: PHP forms, request handling, cookies, sessions, file operations, SQL, MySQL connections, and local XAMPP execution.</p>
 				<div class="hero-actions">
 					<a class="button" href="#exam-focus-areas">Start Exam Focus</a>
-					<a class="button secondary" href="#general-module-content">Browse General Content</a>
+					<a class="button secondary" href="#chapter-1">Browse General Content</a>
 				</div>
 				<div class="legend" aria-label="Colour legend">
 					<span class="chip cyan">Definitions</span>
@@ -2499,7 +2455,7 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 					</div>
 					<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
 				</section>
-			</section>
+
 
 		<section id="legacy-preparation-station" class="quiz-section" data-nav-section hidden>
 			<div class="section-heading">

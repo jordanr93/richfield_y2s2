@@ -76,7 +76,7 @@
 
 		.progress span {
 			display: block;
-			width: 0%;
+			width: 0;
 			height: 100%;
 			background: linear-gradient(90deg, var(--cyan), var(--green), var(--amber));
 		}
@@ -223,11 +223,8 @@
 			color: var(--muted);
 			font-size: 1.08rem;
 		}
-
-		.hero-actions,
-		.legend,
-		.related-chapters,
-		.chip-row {
+	.hero-actions,
+	.legend {
 			display: flex;
 			flex-wrap: wrap;
 			gap: 0.65rem;
@@ -352,123 +349,6 @@
 			grid-column: 1 / -1;
 		}
 
-		.assignment-grid {
-			display: grid;
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-			gap: 1rem;
-		}
-
-		.assignment-card {
-			border-top: 3px solid var(--cyan);
-		}
-
-		.assignment-card.data {
-			border-top-color: var(--green);
-		}
-
-		.assignment-card.pca {
-			border-top-color: var(--purple);
-		}
-
-		.assignment-card.models {
-			border-top-color: var(--amber);
-		}
-
-		.assignment-card.optimisation {
-			border-top-color: var(--red);
-		}
-
-		.assignment-card.presentation {
-			border-top-color: var(--green);
-		}
-
-		.assignment-card.wide {
-			grid-column: 1 / -1;
-		}
-
-		.question-meta {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 0.55rem;
-			align-items: center;
-			margin-bottom: 0.65rem;
-		}
-
-		.question-number {
-			color: var(--muted);
-			font-size: 0.82rem;
-			font-weight: 900;
-			letter-spacing: 0.06em;
-			text-transform: uppercase;
-		}
-
-		.assignment-card h3 {
-			color: var(--text);
-		}
-
-		.assignment-card h4 {
-			margin-top: 1rem;
-			color: var(--cyan);
-		}
-
-		.assignment-card.data h4 {
-			color: var(--green);
-		}
-
-		.assignment-card.pca h4 {
-			color: var(--purple);
-		}
-
-		.assignment-card.models h4 {
-			color: var(--amber);
-		}
-
-		.assignment-card.optimisation h4 {
-			color: var(--red);
-		}
-
-		.study-links {
-			margin-bottom: 0;
-		}
-
-		.assignment-links {
-			margin-top: 1rem;
-			padding: 0.75rem 0.9rem;
-			border-left: 4px solid var(--cyan);
-			border-radius: 0 var(--radius) var(--radius) 0;
-			background: rgba(88, 196, 221, 0.07);
-			font-size: 0.92rem;
-		}
-
-		.assignment-card.data .assignment-links {
-			border-left-color: var(--green);
-			background: rgba(63, 185, 80, 0.07);
-		}
-
-		.assignment-card.pca .assignment-links {
-			border-left-color: var(--purple);
-			background: rgba(188, 140, 255, 0.07);
-		}
-
-		.assignment-card.models .assignment-links {
-			border-left-color: var(--amber);
-			background: rgba(210, 153, 34, 0.07);
-		}
-
-		.assignment-card.optimisation .assignment-links {
-			border-left-color: var(--red);
-			background: rgba(248, 81, 73, 0.07);
-		}
-
-		.assignment-links strong {
-			color: var(--text);
-		}
-
-		.assignment-links a + a::before {
-			content: " · ";
-			color: var(--muted);
-		}
-
 		.card h3,
 		.card h4 {
 			margin: 0 0 0.65rem;
@@ -487,46 +367,6 @@
 		.card ol {
 			margin: 0.55rem 0 0;
 			padding-left: 1.25rem;
-		}
-
-		.exam-card {
-			border-top: 3px solid var(--cyan);
-		}
-
-		.exam-card.warning {
-			border-top-color: var(--amber);
-		}
-
-		.exam-card.success {
-			border-top-color: var(--green);
-		}
-
-		.exam-card.risk {
-			border-top-color: var(--red);
-		}
-
-		.exam-card.structure {
-			border-top-color: var(--purple);
-		}
-
-		.related-chapters {
-			margin-top: 1rem;
-			padding-top: 0.8rem;
-			border-top: 1px solid var(--border);
-		}
-
-		.related-chapters span {
-			color: var(--muted);
-			font-size: 0.86rem;
-			font-weight: 800;
-		}
-
-		.related-chapters a {
-			padding: 0.24rem 0.48rem;
-			border: 1px solid rgba(88, 196, 221, 0.35);
-			border-radius: var(--radius);
-			background: rgba(88, 196, 221, 0.07);
-			font-size: 0.85rem;
 		}
 
 		.table-wrap {
@@ -791,10 +631,8 @@
 			.hero {
 				padding-top: 4.5rem;
 			}
-
-			.grid,
-			.grid.three,
-			.assignment-grid {
+	.grid,
+	.grid.three {
 				grid-template-columns: 1fr;
 			}
 
@@ -886,11 +724,11 @@
 
 			<details class="nav-group nav-collapsible">
 				<summary>Learning Lab</summary>
-				<a href="#quiz-builder" data-nav-link="preparation-station">Quiz Builder</a>
+				<a href="#preparation-station" data-nav-link="preparation-station">Quiz Builder</a>
 				<a href="#lab-flashcards">Flashcards</a>
 				<a href="#lab-challenge">Concept Checker</a>
-				<a href="#code-practice">Fill in the Code</a>
-				<a href="#code-tracer">Code Tracer</a>
+				<a href="#preparation-station">Fill in the Code</a>
+				<a href="#preparation-station">Code Tracer</a>
 			</details>
 
 		</nav>
@@ -2760,7 +2598,7 @@ print("DBSCAN noise count:", len(noise_customers))</code></pre>
 					</div>
 				</section>
 
-		<section id="preparation-station" class="section-band module-learning-lab" data-nav-section><div class="section-inner"><div class="section-heading"><h2>Learning Lab</h2><p>Use these interactive tools to practise Machine Learning 600 concepts. Your quiz attempts are saved only in this browser.</p></div><div class="learning-lab-grid"><div class="learning-lab-panel learning-lab-quiz"><h3>Quiz Builder</h3><p>Choose how many questions to draw from each topic, then answer and submit when ready.</p><div class="lab-counts"></div><div class="lab-actions"><button class="lab-button" type="button" data-lab-action="new-quiz">Start New Quiz</button><button class="lab-button secondary" type="button" data-lab-action="restart-quiz">Restart Current Quiz</button><button class="lab-button danger" type="button" data-lab-action="clear-progress">Clear Progress</button></div></div><div class="lab-summary" aria-live="polite"></div><div class="lab-questions"></div><button class="lab-button learning-lab-quiz lab-submit" type="button" data-lab-action="submit-quiz">Submit Quiz</button><div class="lab-history learning-lab-quiz"></div><article class="learning-lab-panel" id="lab-flashcards"><h3>Flashcards</h3><p>Recall the definition before flipping the card.</p><div class="lab-flashcard" tabindex="0" role="button"></div><div class="lab-actions"><button class="lab-button secondary" type="button" data-lab-action="previous-card">Previous</button><button class="lab-button" type="button" data-lab-action="flip">Flip card</button><button class="lab-button secondary" type="button" data-lab-action="next-card">Next</button></div><div class="lab-feedback lab-flashcard-status" aria-live="polite"></div></article><article class="learning-lab-panel" id="lab-challenge"><h3>Concept Challenge</h3><p class="lab-challenge-prompt"></p><div class="lab-options lab-challenge-options"></div><div class="lab-feedback lab-challenge-feedback" aria-live="polite"></div><div class="lab-actions"><button class="lab-button secondary" type="button" data-lab-action="next-challenge">Next challenge</button></div></article><article class="learning-lab-panel wide" id="lab-explain"><h3>Explain It</h3><p class="lab-explain-prompt"></p><textarea class="lab-explain-input" placeholder="Write your explanation before revealing the model answer."></textarea><div class="lab-actions"><button class="lab-button" type="button" data-lab-action="show-explain">Reveal model answer</button></div><div class="lab-feedback lab-explain-answer"></div></article></div></div></section>
+		<section id="preparation-station" class="section-band module-learning-lab" data-nav-section><div class="section-inner"><div class="section-heading"><h2>Learning Lab</h2><p>Use these interactive tools to practise Machine Learning 600 concepts. Your quiz attempts are saved only in this browser.</p></div><div class="learning-lab-grid"><div class="learning-lab-panel learning-lab-quiz"><h3>Quiz Builder</h3><p>Choose how many questions to draw from each topic, then answer and submit when ready.</p><div class="lab-counts"></div><div class="lab-actions"><button class="lab-button" type="button" data-lab-action="new-quiz">Start New Quiz</button><button class="lab-button secondary" type="button" data-lab-action="restart-quiz">Restart Current Quiz</button><button class="lab-button danger" type="button" data-lab-action="clear-progress">Clear Progress</button></div></div><div class="lab-summary" aria-live="polite"></div><div class="lab-questions"></div><button class="lab-button learning-lab-quiz lab-submit" type="button" data-lab-action="submit-quiz">Submit Quiz</button><div class="lab-history learning-lab-quiz"></div><article class="learning-lab-panel" id="lab-flashcards"><h3>Flashcards</h3><p>Recall the definition before flipping the card.</p><div class="lab-flashcard" tabindex="0" role="button"></div><div class="lab-actions"><button class="lab-button secondary" type="button" data-lab-action="previous-card">Previous</button><button class="lab-button" type="button" data-lab-action="flip">Flip card</button><button class="lab-button secondary" type="button" data-lab-action="next-card">Next</button></div><div class="lab-feedback lab-flashcard-status" aria-live="polite"></div></article><article class="learning-lab-panel" id="lab-challenge"><h3>Concept Challenge</h3><p class="lab-challenge-prompt"></p><div class="lab-options lab-challenge-options"></div><div class="lab-feedback lab-challenge-feedback" aria-live="polite"></div><div class="lab-actions"><button class="lab-button secondary" type="button" data-lab-action="next-challenge">Next challenge</button></div></article><article class="learning-lab-panel wide" id="lab-explain"><h3>Explain It</h3><p class="lab-explain-prompt"></p><textarea class="lab-explain-input" aria-label="Your explanation" placeholder="Write your explanation before revealing the model answer."></textarea><div class="lab-actions"><button class="lab-button" type="button" data-lab-action="show-explain">Reveal model answer</button></div><div class="lab-feedback lab-explain-answer"></div></article></div></div></section>
 
 		<footer class="footer">
 			<div class="footer-inner">

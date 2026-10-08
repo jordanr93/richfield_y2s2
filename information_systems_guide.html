@@ -282,11 +282,8 @@
 			color: var(--muted);
 			font-size: 1.08rem;
 		}
-
-		.actions,
-		.legend,
-		.related-chapters,
-		.tag-row {
+	.actions,
+	.legend {
 			display: flex;
 			flex-wrap: wrap;
 			gap: 10px;
@@ -329,9 +326,7 @@
 			color: var(--muted);
 			font-size: 0.9rem;
 		}
-
-		.legend-item,
-		.tag {
+	.legend-item {
 			display: inline-flex;
 			align-items: center;
 			gap: 7px;
@@ -344,11 +339,6 @@
 			display: inline-block;
 		}
 
-		.cyan { color: var(--cyan); }
-		.green { color: var(--green); }
-		.amber { color: var(--amber); }
-		.red { color: var(--red); }
-		.purple { color: var(--purple); }
 		.bg-cyan { background: var(--cyan); }
 		.bg-green { background: var(--green); }
 		.bg-amber { background: var(--amber); }
@@ -358,12 +348,6 @@
 		.section {
 			padding: 44px 0 6px;
 			scroll-margin-top: 26px;
-		}
-
-		.section-intro {
-			max-width: 900px;
-			color: var(--muted);
-			margin-bottom: 22px;
 		}
 
 		.grid {
@@ -388,37 +372,6 @@
 			scroll-margin-top: 24px;
 		}
 
-		.assignment-card {
-			border-top: 4px solid var(--purple);
-		}
-
-		.assignment-card > p:last-child,
-		.assignment-part > p:last-child {
-			margin-bottom: 0;
-		}
-
-		.assignment-part {
-			padding-top: 18px;
-			margin-top: 18px;
-			border-top: 1px solid var(--border);
-		}
-
-		.assignment-part:first-of-type {
-			padding-top: 0;
-			margin-top: 0;
-			border-top: 0;
-		}
-
-		.assignment-part h4 {
-			color: var(--purple);
-		}
-
-		.assignment-card .muted {
-			color: var(--muted);
-			font-size: 0.78em;
-			font-weight: 600;
-		}
-
 		.assignment-links {
 			margin-top: 12px;
 			padding: 12px 14px;
@@ -435,17 +388,6 @@
 			content: " · ";
 			color: var(--muted);
 		}
-
-		.exam-card {
-			border-top: 4px solid var(--cyan);
-		}
-
-		.exam-card.strategy { border-top-color: var(--cyan); }
-		.exam-card.design { border-top-color: var(--green); }
-		.exam-card.data { border-top-color: var(--purple); }
-		.exam-card.architecture { border-top-color: var(--amber); }
-		.exam-card.implementation { border-top-color: var(--green); }
-		.exam-card.security { border-top-color: var(--red); }
 
 		.chapter {
 			padding: 42px 0 8px;
@@ -590,30 +532,6 @@
 			color: var(--muted);
 		}
 
-		.related-chapters {
-			margin-top: 16px;
-			font-size: 0.9rem;
-		}
-
-		.related-chapters span {
-			color: var(--muted);
-			font-weight: 700;
-		}
-
-		.related-chapters a,
-		.tag {
-			border: 1px solid var(--border);
-			background: var(--header);
-			border-radius: 999px;
-			padding: 5px 10px;
-		}
-
-		.cheat-grid {
-			display: grid;
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-			gap: 16px;
-		}
-
 		.footer {
 			margin-top: 46px;
 			padding-top: 20px;
@@ -665,10 +583,8 @@
 				margin-left: 0;
 				padding: 68px 18px 72px;
 			}
-
-			.grid,
-			.grid.three,
-			.cheat-grid {
+	.grid,
+	.grid.three {
 				grid-template-columns: 1fr;
 			}
 
@@ -2203,9 +2119,9 @@
 						</div>
 						<p><a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a></p>
 					</section>
-				</section>
 
-				<section class="section module-learning-lab" id="preparation-station" data-nav-section><div class="section-heading"><h2>Learning Lab</h2><p>Use these interactive tools to practise Information Systems 622 concepts. Your quiz attempts are saved only in this browser.</p></div><div class="learning-lab-grid"><div class="learning-lab-panel learning-lab-quiz"><h3>Quiz Builder</h3><p>Choose how many questions to draw from each topic, then answer and submit when ready.</p><div class="lab-counts"></div><div class="lab-actions"><button class="lab-button" type="button" data-lab-action="new-quiz">Start New Quiz</button><button class="lab-button secondary" type="button" data-lab-action="restart-quiz">Restart Current Quiz</button><button class="lab-button danger" type="button" data-lab-action="clear-progress">Clear Progress</button></div></div><div class="lab-summary" aria-live="polite"></div><div class="lab-questions"></div><button class="lab-button learning-lab-quiz lab-submit" type="button" data-lab-action="submit-quiz">Submit Quiz</button><div class="lab-history learning-lab-quiz"></div><article class="learning-lab-panel" id="lab-flashcards"><h3>Flashcards</h3><p>Recall the definition before flipping the card.</p><div class="lab-flashcard" tabindex="0" role="button"></div><div class="lab-actions"><button class="lab-button secondary" type="button" data-lab-action="previous-card">Previous</button><button class="lab-button" type="button" data-lab-action="flip">Flip card</button><button class="lab-button secondary" type="button" data-lab-action="next-card">Next</button></div><div class="lab-feedback lab-flashcard-status" aria-live="polite"></div></article><article class="learning-lab-panel" id="lab-challenge"><h3>Concept Challenge</h3><p class="lab-challenge-prompt"></p><div class="lab-options lab-challenge-options"></div><div class="lab-feedback lab-challenge-feedback" aria-live="polite"></div><div class="lab-actions"><button class="lab-button secondary" type="button" data-lab-action="next-challenge">Next challenge</button></div></article><article class="learning-lab-panel wide" id="lab-explain"><h3>Explain It</h3><p class="lab-explain-prompt"></p><textarea class="lab-explain-input" placeholder="Write your explanation before revealing the model answer."></textarea><div class="lab-actions"><button class="lab-button" type="button" data-lab-action="show-explain">Reveal model answer</button></div><div class="lab-feedback lab-explain-answer"></div></article></div></section>
+
+				<section class="section module-learning-lab" id="preparation-station" data-nav-section><div class="section-heading"><h2>Learning Lab</h2><p>Use these interactive tools to practise Information Systems 622 concepts. Your quiz attempts are saved only in this browser.</p></div><div class="learning-lab-grid"><div class="learning-lab-panel learning-lab-quiz"><h3>Quiz Builder</h3><p>Choose how many questions to draw from each topic, then answer and submit when ready.</p><div class="lab-counts"></div><div class="lab-actions"><button class="lab-button" type="button" data-lab-action="new-quiz">Start New Quiz</button><button class="lab-button secondary" type="button" data-lab-action="restart-quiz">Restart Current Quiz</button><button class="lab-button danger" type="button" data-lab-action="clear-progress">Clear Progress</button></div></div><div class="lab-summary" aria-live="polite"></div><div class="lab-questions"></div><button class="lab-button learning-lab-quiz lab-submit" type="button" data-lab-action="submit-quiz">Submit Quiz</button><div class="lab-history learning-lab-quiz"></div><article class="learning-lab-panel" id="lab-flashcards"><h3>Flashcards</h3><p>Recall the definition before flipping the card.</p><div class="lab-flashcard" tabindex="0" role="button"></div><div class="lab-actions"><button class="lab-button secondary" type="button" data-lab-action="previous-card">Previous</button><button class="lab-button" type="button" data-lab-action="flip">Flip card</button><button class="lab-button secondary" type="button" data-lab-action="next-card">Next</button></div><div class="lab-feedback lab-flashcard-status" aria-live="polite"></div></article><article class="learning-lab-panel" id="lab-challenge"><h3>Concept Challenge</h3><p class="lab-challenge-prompt"></p><div class="lab-options lab-challenge-options"></div><div class="lab-feedback lab-challenge-feedback" aria-live="polite"></div><div class="lab-actions"><button class="lab-button secondary" type="button" data-lab-action="next-challenge">Next challenge</button></div></article><article class="learning-lab-panel wide" id="lab-explain"><h3>Explain It</h3><p class="lab-explain-prompt"></p><textarea class="lab-explain-input" aria-label="Your explanation" placeholder="Write your explanation before revealing the model answer."></textarea><div class="lab-actions"><button class="lab-button" type="button" data-lab-action="show-explain">Reveal model answer</button></div><div class="lab-feedback lab-explain-answer"></div></article></div></section>
 
 				<footer class="footer">
 					<p>Built from the 2026 Information Systems 622 Study Guide and the local one-page study-site instructions.</p>

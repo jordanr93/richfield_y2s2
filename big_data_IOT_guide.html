@@ -195,20 +195,15 @@
 			color: var(--muted);
 			font-size: 1.1rem;
 		}
-
-		.actions,
-		.legend,
-		.related-chapters,
-		.chips {
+	.actions,
+	.legend {
 			display: flex;
 			flex-wrap: wrap;
 			gap: 10px;
 			align-items: center;
 		}
-
-		.actions a,
-		.back-link,
-		.related-chapters a {
+	.actions a,
+	.back-link {
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;
@@ -229,9 +224,7 @@
 		.legend {
 			margin-top: 22px;
 		}
-
-		.legend span,
-		.chip {
+	.legend span {
 			display: inline-flex;
 			align-items: center;
 			min-height: 30px;
@@ -313,64 +306,6 @@
 
 		.card li + li {
 			margin-top: 6px;
-		}
-
-		.exam-card {
-			border-top: 4px solid var(--cyan);
-		}
-
-		.exam-card.architecture {
-			border-top-color: var(--purple);
-		}
-
-		.exam-card.success {
-			border-top-color: var(--green);
-		}
-
-		.exam-card.warning {
-			border-top-color: var(--amber);
-		}
-
-		.exam-card.danger {
-			border-top-color: var(--red);
-		}
-
-		.assignment-question {
-			border-top: 4px solid var(--amber);
-		}
-
-		.assignment-question h3 {
-			color: var(--amber);
-		}
-
-		.assignment-question h4 {
-			margin-top: 16px;
-		}
-
-		.assignment-question .question-marks {
-			margin: -4px 0 14px;
-			color: var(--muted);
-			font-size: 0.92rem;
-			font-weight: 700;
-		}
-
-		.related-chapters {
-			margin-top: 16px;
-			padding-top: 14px;
-			border-top: 1px solid var(--border);
-		}
-
-		.related-chapters span {
-			color: var(--muted);
-			font-size: 0.9rem;
-			font-weight: 700;
-		}
-
-		.related-chapters a {
-			min-height: 34px;
-			padding: 5px 9px;
-			font-size: 0.88rem;
-			font-weight: 600;
 		}
 
 		.table-wrap {
@@ -682,7 +617,7 @@
 
 		<details class="nav-group nav-collapsible">
 			<summary>Learning Lab</summary>
-			<a href="#quiz-builder" data-nav-link="preparation-station">Quiz Builder</a>
+			<a href="#preparation-station" data-nav-link="preparation-station">Quiz Builder</a>
 			<a href="#lab-flashcards">Flashcards</a>
 			<a href="#lab-challenge">Concept Checker</a>
 		</details>
@@ -698,7 +633,7 @@
 				<p>A dark, readable one-page guide covering the high-yield focus areas and the full module content from the 2026 Big Data &amp; IoT 600 learner guide.</p>
 				<div class="actions" aria-label="Primary page links">
 					<a href="#exam-focus-areas">Start Exam Focus</a>
-					<a href="#general-module-content">Browse General Content</a>
+					<a href="#chapter-1">Browse General Content</a>
 				</div>
 				<div class="legend" aria-label="Colour legend">
 					<span><i aria-hidden="true" style="background: var(--cyan);">&#8203;</i>Definitions</span>
@@ -1976,12 +1911,12 @@
 						<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
 				</section>
 
-			<section id="preparation-station" class="module-learning-lab" data-nav-section><div class="section-heading"><h2>Learning Lab</h2><p>Use these interactive tools to practise Big Data &amp; IoT 600 concepts. Your quiz attempts are saved only in this browser.</p></div><div class="learning-lab-grid"><div class="learning-lab-panel learning-lab-quiz"><h3>Quiz Builder</h3><p>Choose how many questions to draw from each topic, then answer and submit when ready.</p><div class="lab-counts"></div><div class="lab-actions"><button class="lab-button" type="button" data-lab-action="new-quiz">Start New Quiz</button><button class="lab-button secondary" type="button" data-lab-action="restart-quiz">Restart Current Quiz</button><button class="lab-button danger" type="button" data-lab-action="clear-progress">Clear Progress</button></div></div><div class="lab-summary" aria-live="polite"></div><div class="lab-questions"></div><button class="lab-button learning-lab-quiz lab-submit" type="button" data-lab-action="submit-quiz">Submit Quiz</button><div class="lab-history learning-lab-quiz"></div><article class="learning-lab-panel" id="lab-flashcards"><h3>Flashcards</h3><p>Recall the definition before flipping the card.</p><div class="lab-flashcard" tabindex="0" role="button"></div><div class="lab-actions"><button class="lab-button secondary" type="button" data-lab-action="previous-card">Previous</button><button class="lab-button" type="button" data-lab-action="flip">Flip card</button><button class="lab-button secondary" type="button" data-lab-action="next-card">Next</button></div><div class="lab-feedback lab-flashcard-status" aria-live="polite"></div></article><article class="learning-lab-panel" id="lab-challenge"><h3>Concept Challenge</h3><p class="lab-challenge-prompt"></p><div class="lab-options lab-challenge-options"></div><div class="lab-feedback lab-challenge-feedback" aria-live="polite"></div><div class="lab-actions"><button class="lab-button secondary" type="button" data-lab-action="next-challenge">Next challenge</button></div></article><article class="learning-lab-panel wide" id="lab-explain"><h3>Explain It</h3><p class="lab-explain-prompt"></p><textarea class="lab-explain-input" placeholder="Write your explanation before revealing the model answer."></textarea><div class="lab-actions"><button class="lab-button" type="button" data-lab-action="show-explain">Reveal model answer</button></div><div class="lab-feedback lab-explain-answer"></div></article></div></section>
+			<section id="preparation-station" class="module-learning-lab" data-nav-section><div class="section-heading"><h2>Learning Lab</h2><p>Use these interactive tools to practise Big Data &amp; IoT 600 concepts. Your quiz attempts are saved only in this browser.</p></div><div class="learning-lab-grid"><div class="learning-lab-panel learning-lab-quiz"><h3>Quiz Builder</h3><p>Choose how many questions to draw from each topic, then answer and submit when ready.</p><div class="lab-counts"></div><div class="lab-actions"><button class="lab-button" type="button" data-lab-action="new-quiz">Start New Quiz</button><button class="lab-button secondary" type="button" data-lab-action="restart-quiz">Restart Current Quiz</button><button class="lab-button danger" type="button" data-lab-action="clear-progress">Clear Progress</button></div></div><div class="lab-summary" aria-live="polite"></div><div class="lab-questions"></div><button class="lab-button learning-lab-quiz lab-submit" type="button" data-lab-action="submit-quiz">Submit Quiz</button><div class="lab-history learning-lab-quiz"></div><article class="learning-lab-panel" id="lab-flashcards"><h3>Flashcards</h3><p>Recall the definition before flipping the card.</p><div class="lab-flashcard" tabindex="0" role="button"></div><div class="lab-actions"><button class="lab-button secondary" type="button" data-lab-action="previous-card">Previous</button><button class="lab-button" type="button" data-lab-action="flip">Flip card</button><button class="lab-button secondary" type="button" data-lab-action="next-card">Next</button></div><div class="lab-feedback lab-flashcard-status" aria-live="polite"></div></article><article class="learning-lab-panel" id="lab-challenge"><h3>Concept Challenge</h3><p class="lab-challenge-prompt"></p><div class="lab-options lab-challenge-options"></div><div class="lab-feedback lab-challenge-feedback" aria-live="polite"></div><div class="lab-actions"><button class="lab-button secondary" type="button" data-lab-action="next-challenge">Next challenge</button></div></article><article class="learning-lab-panel wide" id="lab-explain"><h3>Explain It</h3><p class="lab-explain-prompt"></p><textarea class="lab-explain-input" aria-label="Your explanation" placeholder="Write your explanation before revealing the model answer."></textarea><div class="lab-actions"><button class="lab-button" type="button" data-lab-action="show-explain">Reveal model answer</button></div><div class="lab-feedback lab-explain-answer"></div></article></div></section>
 
 				<footer class="footer">
 					<p>Source: <em>2026 Big Data &amp; IoT 600 Study Guide</em>, Richfield Faculty of Information Technology. Content has been condensed and reorganized for revision use.</p>
 				</footer>
-			</section>
+
 		</main>
 	</div>
 
