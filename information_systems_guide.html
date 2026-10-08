@@ -750,14 +750,7 @@
 					<a class="nav-link" href="#lab-flashcards">Flashcards</a>
 					<a class="nav-link" href="#lab-challenge">Concept Checker</a>
 				</details>
-				<details class="nav-group nav-collapsible">
-					<summary>Assignment Helper</summary>
-					<a class="nav-link" href="#assignment-helper" data-nav-link="assignment-helper">Overview</a>
-					<a class="nav-link" href="#assignment-question-1" data-nav-link="assignment-question-1">Question 1: UI and clinic data design</a>
-					<a class="nav-link" href="#assignment-question-2" data-nav-link="assignment-question-2">Question 2: Support and maintenance</a>
-					<a class="nav-link" href="#assignment-question-3" data-nav-link="assignment-question-3">Question 3: Horizon Logistics changeover</a>
-					<a class="nav-link" href="#assignment-question-4" data-nav-link="assignment-question-4">Question 4: Strategic systems choices</a>
-				</details>
+
 			</nav>
 		</aside>
 
@@ -781,108 +774,7 @@
 					</div>
 				</header>
 
-				<section class="section" id="assignment-helper" data-nav-section>
-					<div class="section-heading">
-						<h2>Assignment Helper</h2>
-						<p>This reading map follows the 3rd version of the 2026 Information Systems 622 assignment. It summarises the applicable study-guide content for each question and links directly to the fuller explanations in General Module Content.</p>
-					</div>
-					<div class="note success"><strong>How to use this section:</strong> Use the linked chapter material to build an integrated answer, then apply the concepts to the named case study. The assignment totals 100 marks: Question 1 is 40, Question 2 is 20, Question 3 is 30 and Question 4 is 10.</div>
-					<div class="grid">
-						<article class="card assignment-card wide" id="assignment-question-1" data-nav-section>
-							<h3>Question 1 · User interface design and Sunrise Medical Clinic <span class="muted">(40 marks)</span></h3>
-							<div class="assignment-part">
-								<h4>1.1 Integrated user-interface design essay <span class="muted">(20 marks)</span></h4>
-								<p>Write an integrated discussion rather than a disconnected list. Explain how a systems analyst designs interfaces that are easy to learn, easy to use and productive, then connect those principles to forms, printed reports, security, controls and an emerging interface trend.</p>
-								<ul>
-									<li><strong>General principles:</strong> understand the business and the user, think like the user, reduce unnecessary input, provide feedback and help, support flexibility, and design for usability and productivity.</li>
-									<li><strong>Source documents and forms:</strong> explain how clear labels, logical grouping, sensible defaults, validation and appropriate input controls reduce data-entry errors.</li>
-									<li><strong>Printed output and reports:</strong> discuss report purpose, readability, accurate content, useful ordering and control of sensitive information.</li>
-									<li><strong>Security and control:</strong> cover input validation, authorisation, access control and protection of confidential information in both input screens and output reports.</li>
-									<li><strong>Emerging trend:</strong> choose responsive web design or prototyping and explain how it improves compatibility, feedback, usability and modern device access.</li>
-								</ul>
-								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch2-1-ui-hci">UI and HCI</a> <a href="#ch2-2-guidelines">Interface Design Guidelines</a> <a href="#ch2-6-seven-habits">Seven Habits of Successful Interface Designers</a> <a href="#ch2-7-ten-guidelines">Ten UI Design Guidelines</a> <a href="#ch2-4-reports-controls">Forms, Reports and Controls</a> <a href="#ch2-8-forms-reports-worked-example">Forms and Reports Worked Example</a> <a href="#ch2-9-technology-security">Technology, Controls and Emerging Trends</a></div>
-							</div>
-							<div class="assignment-part">
-								<h4>1.2 Sunrise Medical Clinic data-design case study <span class="muted">(20 marks)</span></h4>
-								<p>Start by identifying the spreadsheet's data-design problems and connect each one to the clinic's symptoms:</p>
-								<ul>
-									<li>Repeated patient and doctor details create redundancy and update anomalies. A changed contact number can remain incorrect in some rows.</li>
-									<li>Free-text Notes, inconsistent surnames and unrestricted Doctor IDs create inconsistent, invalid and difficult-to-search data.</li>
-									<li>Missing Amount Paid values make unpaid appointments and lost revenue difficult to identify.</li>
-									<li>The design must support one patient having many appointments, one doctor having many appointments, multiple billable procedures per appointment, doctor cover/reassignment, medical-aid details and future medication dispensing.</li>
-								</ul>
-								<p>Describe or draw an ERD with at least four entities. A strong design could include Patient, Doctor, Appointment, Procedure or BillingLine, MedicalAidMembership and MedicationDispensing. Explain cardinalities such as Patient 1-to-many Appointment, Doctor 1-to-many Appointment, Appointment 1-to-many BillingLine and Appointment 0-to-many MedicationDispensing. State assumptions clearly.</p>
-								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch3-1-dbms">Data Structures and DBMS</a> <a href="#ch3-2-terms-integrity">Data Terms and Integrity</a> <a href="#ch3-3-erd">Entity-Relationship Diagrams</a> <a href="#ch3-4-normalization">Normalization</a> <a href="#ch3-8-erd-normalization-worked-example">ERD and Normalization Worked Example</a> <a href="#ch3-9-codes-storage-controls">Codes and Storage</a> <a href="#ch3-10-data-storage-access">Data Storage and Access</a> <a href="#ch3-11-data-control">Data Control</a></div>
-							</div>
-					</article>
 
-						<article class="card assignment-card wide" id="assignment-question-2" data-nav-section>
-							<h3>Question 2 · Systems support and maintenance essay <span class="muted">(20 marks)</span></h3>
-							<p>Discuss how support and maintenance management contribute to the long-term reliability and security of an information system. Keep the essay integrated and use examples rather than listing definitions.</p>
-							<ul>
-								<li><strong>Four maintenance types:</strong> corrective fixes faults; adaptive responds to new requirements or environments; perfective improves efficiency, performance or maintainability; preventive reduces the chance of future failure. Give one relevant example for each.</li>
-								<li><strong>Maintenance management:</strong> explain the maintenance team, maintenance requests, priorities, configuration management, version control, baselines and planned maintenance releases. Link these to cost control, change control and reliability.</li>
-								<li><strong>Physical and network security:</strong> explain how physical controls protect rooms, equipment and servers, while network controls protect communications through firewalls, monitoring, secure protocols and related measures.</li>
-								<li><strong>Backup, recovery and continuity:</strong> distinguish restoring systems after failure from keeping essential business functions operating during disruption. Discuss backup schedules, retention, recovery procedures, testing and business continuity planning.</li>
-							</ul>
-							<div class="assignment-links"><strong>General module content:</strong> <a href="#ch6-1-support">User Support</a> <a href="#ch6-6-user-support-help-desk">User Training and Help Desks</a> <a href="#ch6-2-maintenance">Maintenance Tasks</a> <a href="#ch6-7-maintenance-management-expanded">Maintenance Types and Management</a> <a href="#ch6-4-security">Security Levels</a> <a href="#ch6-8-performance-security-expanded">Performance and Security</a> <a href="#ch6-5-backup-retirement">Backup, Recovery and Retirement</a></div>
-						</article>
-
-						<article class="card assignment-card wide" id="assignment-question-3" data-nav-section>
-							<h3>Question 3 · Horizon Logistics changeover case study <span class="muted">(30 marks)</span></h3>
-							<p><strong>Scenario:</strong> Horizon Logistics is replacing the ageing FleetTrack Classic with a web-integrated Fleet Management System. The company has three depots, strict delivery penalties, external integrations and a previous failed tablet rollout.</p>
-							<div class="assignment-part">
-								<h4>3.1 Recommend the changeover strategy</h4>
-								<ul>
-									<li>Recommend <strong>parallel operation</strong> as the primary changeover strategy because delivery operations have very low tolerance for disruption. Run the old and new systems together long enough to reconcile vehicle assignments, schedules and delivery status.</li>
-									<li>Explain the safeguards: controlled data conversion, reconciliation rules, clear rollback criteria, a support team and a planned switch-off only after the FMS is reliable.</li>
-									<li>Compare alternatives: direct cutover is cheaper but exposes the company to the greatest operational risk; pilot operation is useful for rehearsing in one depot but does not by itself protect the remaining depots; phased operation can prolong hybrid processes and manual re-entry between modules.</li>
-								</ul>
-								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch5-5-changeover">Installation and Changeover</a> <a href="#ch5-9-installation-worked-example">Changeover Worked Example</a> <a href="#ch5-6-quality-engineering">Quality Assurance and Changeover Planning</a></div>
-							</div>
-							<div class="assignment-part">
-								<h4>3.2 Plan three types of testing</h4>
-								<ul>
-									<li><strong>Integration testing:</strong> verify that the FMS exchanges correct data with the customer portal, fuel-card provider and GPS tracking service.</li>
-									<li><strong>System testing:</strong> verify the complete FMS end to end, including vehicle assignment, route scheduling, driver management, portal updates, error handling and performance under realistic workloads.</li>
-									<li><strong>User acceptance or usability testing:</strong> involve dispatchers, depot managers and representative drivers to verify day-to-day workflows, data-entry clarity, route information and practical usability.</li>
-								</ul>
-								<p>Link each test to evidence: expected messages and status updates, correct calculations and assignments, response times, and user sign-off against operational requirements.</p>
-								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch5-4-testing-docs">Testing and Documentation</a> <a href="#ch5-8-testing-docs-expanded">Coding, Testing and Documentation</a> <a href="#ch5-1-qa">Quality Assurance</a> <a href="#ch4-3-processing">Internet, E-Commerce and Processing</a></div>
-							</div>
-							<div class="assignment-part">
-								<h4>3.3 Training, documentation and post-implementation review</h4>
-								<ul>
-									<li>Use role-based training, a train-the-trainer approach, hands-on practice, a pilot or rehearsal, feedback loops and floor support. This directly addresses the previous one-page-instruction failure.</li>
-									<li>Provide user documentation with task procedures, screenshots, field definitions, troubleshooting, escalation routes and quick-reference guidance. Operations and system documentation should cover integrations, monitoring, backup and recovery.</li>
-									<li>After go-live, evaluate operational KPIs and financial benefits, review user feedback and support logs, compare actual costs and performance against the business case, and report findings to the board. The question asks for three post-implementation tasks; cover at least three even though the rubric wording refers to two.</li>
-								</ul>
-								<div class="assignment-links"><strong>General module content:</strong> <a href="#ch5-8-testing-docs-expanded">Documentation</a> <a href="#ch5-5-changeover">Training and Changeover</a> <a href="#ch5-9-installation-worked-example">Post-Implementation Evaluation</a> <a href="#ch6-1-support">User Support</a></div>
-							</div>
-						</article>
-
-						<article class="card assignment-card wide" id="assignment-question-4" data-nav-section>
-							<h3>Question 4 · Strategic choices in systems development <span class="muted">(10 marks)</span></h3>
-							<ul>
-								<li><strong>Traditional versus web-based development:</strong> compare legacy and organisation-controlled environments with web-based systems where the web is central to access, scalability and service delivery.</li>
-								<li><strong>In-house options:</strong> discuss build versus buy, packages, customisation, user applications, outsourcing, offshoring and SaaS. Compare control, fit, cost, skills, integration, maintenance and vendor dependency.</li>
-								<li><strong>Evolving trends:</strong> explain how Web 2.0, cloud computing and mobile devices influence access, collaboration, scalability, deployment, security and maintenance.</li>
-								<li><strong>Architecture selection:</strong> apply organisational culture, ERP/SCM and integration needs, initial cost and TCO, scalability, web and legacy interfaces, processing needs and security as selection criteria.</li>
-								<li><strong>Online versus batch processing:</strong> online processing handles transactions in real time, while batch processing collects transactions and processes them together on a schedule. Match the choice to urgency, volume, availability and business need.</li>
-							</ul>
-							<div class="assignment-links"><strong>General module content:</strong> <a href="#ch1-1-traditional-vs-web">Traditional vs Web-Based Systems</a> <a href="#ch1-2-trends">Evolving Trends</a> <a href="#ch1-3-development-options">Development Options</a> <a href="#ch1-5-build-buy-customize">Make, Buy and Customize</a> <a href="#ch1-6-outsourcing-saas-offshoring">Outsourcing, Offshoring and SaaS</a> <a href="#ch4-1-checklist">Architecture Checklist</a> <a href="#ch4-3-processing">Internet, E-Commerce and Processing</a> <a href="#ch4-8-internet-processing-network-example">Processing and Architecture Example</a></div>
-						</article>
-
-						<article class="card assignment-card wide" id="assignment-compliance">
-							<h3>Submission checklist</h3>
-							<ul>
-								<li>Use the specified cover page, Times New Roman 12-point font and 1.5-line spacing.</li>
-								<li>Include a table of contents, introduction, main body with relevant subheadings, conclusion and references.</li>
-								<li>Apply Harvard referencing, sign the declaration of originality and submit the final document as a PDF on Moodle.</li>
-							</ul>
-						</article>
-					</div>
-				</section>
 
 				<section class="section" id="test-focus-areas" data-nav-section>
 					<div class="section-heading">
@@ -2438,7 +2330,6 @@
 
 			backTop.addEventListener("click", () => {
 				window.scrollTo({ top: 0, behavior: "smooth" });
-				setActiveNav("assignment-helper");
 			});
 
 			document.addEventListener("keydown", (event) => {
