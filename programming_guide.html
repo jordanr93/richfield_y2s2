@@ -354,6 +354,138 @@
 			margin-top: 8px;
 		}
 
+		.topic-index {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 18px;
+		}
+
+		.topic-index-card {
+			scroll-margin-top: 20px;
+		}
+
+		.topic-index-card h3 a {
+			color: var(--text);
+		}
+
+		.scope-label,
+		.reference-label {
+			color: var(--muted);
+			font-size: 0.88rem;
+		}
+
+		.subtopic-links {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px;
+			padding: 0;
+			list-style: none;
+		}
+
+		.subtopic-links a {
+			display: inline-flex;
+			min-height: 40px;
+			align-items: center;
+			padding: 7px 11px;
+			border: 1px solid var(--border);
+			border-radius: 999px;
+			background: rgba(255, 255, 255, 0.03);
+		}
+
+		.quick-points {
+			padding-left: 1.2rem;
+		}
+
+		.quick-points li + li {
+			margin-top: 8px;
+		}
+
+		.api-task {
+			margin: 28px 0;
+		}
+
+		.api-task h3 {
+			margin-bottom: 14px;
+		}
+
+		.api-entry {
+			margin: 12px 0;
+			padding: 16px;
+			border: 1px solid var(--border);
+			border-radius: var(--radius);
+			background: var(--panel);
+			scroll-margin-top: 20px;
+		}
+
+		.api-entry h4 {
+			margin: 0 0 6px;
+			color: var(--cyan);
+		}
+
+		.api-entry p {
+			margin: 6px 0;
+		}
+
+		.api-entry pre {
+			margin: 10px 0;
+		}
+
+		.assignment-body {
+			border: 1px solid var(--module-accent-border, var(--border));
+			border-radius: var(--radius);
+			padding: 0 18px 18px;
+		}
+
+		.assignment-body > summary {
+			display: flex;
+			min-height: 60px;
+			align-items: center;
+			justify-content: space-between;
+			gap: 14px;
+			padding-top: 14px;
+			color: var(--cyan);
+			font-weight: 700;
+			cursor: pointer;
+			list-style: none;
+		}
+
+		.assignment-body > summary::-webkit-details-marker { display: none; }
+		.assignment-toggle-label { flex: 0 0 auto; padding: 5px 10px; border: 1px solid var(--border); border-radius: 5px; font-size: .85rem; }
+		.assignment-toggle-label::after { content: "Show +"; }
+		.assignment-body[open] .assignment-toggle-label::after { content: "Hide −"; }
+		.assignment-body[open] > summary { padding-bottom: 14px; border-bottom: 1px solid var(--border); margin-bottom: 16px; }
+
+		.cpp-jumps,
+		.cpp-entry-links {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px;
+			margin: 14px 0;
+		}
+
+		.cpp-jumps a,
+		.cpp-entry-links a,
+		.cpp-return-dock a,
+		.cpp-return-dock button {
+			display: inline-flex;
+			min-height: 44px;
+			align-items: center;
+			padding: 7px 12px;
+			border: 1px solid var(--module-accent-border, var(--border));
+			border-radius: 6px;
+			background: var(--panel);
+			color: var(--cyan);
+			font: inherit;
+			cursor: pointer;
+		}
+
+		.cpp-letter { padding: 12px 0; border-bottom: 1px solid var(--border); scroll-margin-top: 20px; }
+		.cpp-letter h4 { display: inline-block; min-width: 2rem; margin: 0; color: var(--cyan); }
+		.cpp-letter a { display: inline-flex; min-height: 44px; align-items: center; margin: 4px 10px 4px 0; padding: 4px 8px; border: 1px solid var(--border); border-radius: 5px; }
+		.api-entry:target { outline: 2px solid var(--cyan); outline-offset: 4px; }
+		.cpp-return-dock { position: fixed; left: calc(var(--nav-width) + 18px); right: 76px; bottom: 12px; z-index: 700; display: flex; flex-wrap: wrap; gap: 6px; width: fit-content; max-width: calc(100% - var(--nav-width) - 100px); padding: 6px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); box-shadow: 0 8px 30px rgba(0,0,0,.35); }
+		.cpp-return-dock [hidden] { display: none; }
+
 		.assignment-card .callout {
 			margin-top: 18px;
 		}
@@ -698,6 +830,7 @@
 			.assignment-grid,
 			.grid,
 			.grid.three,
+			.topic-index,
 			.resource-grid {
 				grid-template-columns: 1fr;
 			}
@@ -742,6 +875,10 @@
 			main {
 				margin-left: 0;
 			}
+
+			.cpp-return-dock { left: 8px; right: 8px; bottom: max(8px, env(safe-area-inset-bottom)); width: auto; max-width: none; }
+			.cpp-return-dock a, .cpp-return-dock button { flex: 1 1 0; justify-content: center; min-height: 44px; padding: 6px; font-size: .82rem; }
+			.assignment-body { padding-left: 12px; padding-right: 12px; }
 
 			.hero,
 			.content-section,
@@ -797,9 +934,18 @@
 	<a class="nav-link" href="#assignment-q7" data-nav-link="assignment-q7">7. Persistence</a>
 </details>
 
-<details class="nav-group nav-collapsible">
-	<summary>Test Focus Areas</summary>
-	<a class="nav-link" href="#test-focus-areas" data-nav-link="test-focus-areas">Coming Soon</a>
+<details class="nav-group nav-collapsible" open>
+	<summary>Open-Book Test · Topics 1–4</summary>
+	<a class="nav-link" href="#test-focus-areas" data-nav-link="test-focus-areas">Topic index and quick reference</a>
+	<a class="nav-link" href="#test-topic-1">Topic 1 · Classes and design</a>
+	<a class="nav-link" href="#test-topic-2">Topic 2 · STL</a>
+	<a class="nav-link" href="#test-topic-3">Topic 3 · Linked lists</a>
+	<a class="nav-link" href="#test-topic-4">Topic 4 · Recursion</a>
+	<a class="nav-link" href="#topic-1-index">Topic 1 subtopics</a>
+	<a class="nav-link" href="#topic-2-index">Topic 2 subtopics</a>
+	<a class="nav-link" href="#topic-3-index">Topic 3 subtopics</a>
+	<a class="nav-link" href="#topic-4-index">Topic 4 subtopics</a>
+	<a class="nav-link" href="#detailed-reference" data-nav-link="detailed-reference">Classes, functions, methods &amp; attributes</a>
 </details>
 
 		<details class="nav-group nav-collapsible">
@@ -843,9 +989,9 @@
 		<header class="hero">
 			<div class="module-identity">PRG622 · Programming 622</div>
 			<h1>Programming 622 Study Hub</h1>
-			<p>A dark, readable revision page for the Programming 622 study guide, focused on C++ software design, STL containers, data structures, searching, sorting, trees and graphs.</p>
+			<p>A Programming 622 open-book reference with a guided index for test Topics 1–4, concise quick points, detailed explanations, and task-organised C++ examples.</p>
 			<div class="hero-actions">
-				<a class="button primary" href="#exam-focus-areas">Start Exam Focus</a>
+				<a class="button primary" href="#test-focus-areas">Open Topics 1–4</a>
 				<a class="button" href="#general-module-content">Browse General Content</a>
 			</div>
 			<ul class="legend" aria-label="Colour legend">
@@ -862,6 +1008,8 @@
 				<h2>Assignment Helper</h2>
 				<p class="assignment-intro">A question-by-question map from the Programming 622 assignment brief to the most relevant content in this study hub. Start with the topics listed for each question, then use the links to open the fuller explanations, examples, and complexity notes in the general module content.</p>
 			</div>
+			<details id="assignment-body" class="assignment-body">
+				<summary><span>Assignment study map · Questions 1–7</span><span class="assignment-toggle-label" aria-hidden="true"></span></summary>
 			<div class="callout warning">
 				<strong>Use the assignment brief as the requirement source.</strong> The cards below identify study-guide content to revise; they do not replace the brief's implementation, testing, README, file-submission, or academic-integrity requirements. The subsection marks printed in the brief add to 105, although Question One is labelled 100 marks, so confirm the weighting with your lecturer if needed.
 			</div>
@@ -987,18 +1135,56 @@
 					<div class="callout danger"><strong>Scope note:</strong> File streams are an assignment extension rather than a standalone chapter in this study-guide-derived page. Keep the persistence layer separate from the data structures, validate every open/read operation, and explain the chosen text or binary format in the README.</div>
 				</article>
 			</div>
+			</details>
 		</section>
 
 		<section class="content-section" id="test-focus-areas" data-nav-section>
 			<div class="section-heading">
-				<h2>Test Focus Areas</h2>
-				<p>A future home for confirmed test coverage and targeted revision guidance.</p>
+				<h2>Open-Book Test Reference · Topics 1–4</h2>
+				<p>Use this index with a mouse or touchscreen to jump to a topic, subtopic, or fuller explanation. The topic boundaries below follow the Programming 622 Study Guide.</p>
 			</div>
-			<div class="card coming-soon-card">
-				<span class="coming-soon-label">Coming soon</span>
-				<h3>Test Focus Areas are coming soon</h3>
-				<p>This section will be updated when the relevant guidance is available.</p>
+			<div class="callout info">
+				<strong>Confirmed scope source:</strong> <em>Programming 622 Study Guide</em>, <a href="reference-library/originals/PROGRAMMING%20622%20STUDY%20GUIDE.pdf">open the source PDF</a>. Topics 1–4 span printed pages 9–284. Topic headings, subtopics, and review-question ranges below are study-guide coverage. Explanations and examples in the general content are study aids; entries marked <strong>Useful supporting detail</strong> add context and are not confirmed test content by the study guide.
 			</div>
+			<nav class="topic-index" aria-label="Topics 1 to 4 index">
+				<article class="card topic-index-card" id="test-topic-1">
+					<h3><a href="#chapter-1">Topic 1 · Software Engineering Principles and C++ Classes</a></h3>
+					<p class="scope-label">Study-guide scope · PDF pages 9–64</p>
+					<ul class="subtopic-links" id="topic-1-index">
+						<li><a href="#ch1-1-software-life-cycle">Software life cycle</a></li><li><a href="#ch1-2-development-phase">Software development phase</a></li><li><a href="#ch1-3-big-o">Algorithm analysis and Big-O</a></li><li><a href="#ch1-4-classes">Classes and access control</a></li><li><a href="#ch1-8-uml">UML class notation</a></li><li><a href="#ch1-code-example">Class example</a></li><li><a href="#ch1-6-adts">Abstraction and ADTs</a></li><li><a href="#ch1-7-identifying-classes">Identify classes, objects, and operations</a></li>
+					</ul>
+					<ul class="quick-points"><li><a href="#ch1-2-development-phase">Work from problem analysis to design, implementation, testing, and debugging.</a></li><li><a href="#ch1-4-classes">Hide representation with private data and expose a clear public interface.</a></li><li><a href="#ch1-6-adts">Describe an ADT by its values and operations, separately from its implementation.</a></li><li><a href="#ch1-3-big-o">Compare growth by counting dominant operations as input size grows.</a></li></ul>
+					<a class="back-link" href="#general-module-content">Open Topic 1 general content</a>
+				</article>
+				<article class="card topic-index-card" id="test-topic-2">
+					<h3><a href="#chapter-2">Topic 2 · Standard Template Library (STL)</a></h3>
+					<p class="scope-label">Study-guide scope · PDF pages 65–117</p>
+					<ul class="subtopic-links" id="topic-2-index">
+						<li><a href="#ch2-1-stl-components">Containers, iterators, algorithms</a></li><li><a href="#ch2-2-sequence-containers">Container types and sequences</a></li><li><a href="#ch2-3-vector">vector</a></li><li><a href="#ch2-4-begin-end">begin(), end(), insert(), erase()</a></li><li><a href="#ch2-5-copy">copy()</a></li><li><a href="#ch2-6-ostream-iterator">ostream_iterator</a></li><li><a href="#ch2-7-iterators">Iterator operations and categories</a></li>
+					</ul>
+					<ul class="quick-points"><li><a href="#ch2-1-stl-components">Use containers to store data, iterators to traverse ranges, and algorithms to process ranges.</a></li><li><a href="#ch2-3-vector">Choose vector for dynamic contiguous storage and constant-time indexed access; end insertion is amortized constant time.</a></li><li><a href="#ch2-4-begin-end">Treat an STL range as [first, last): end() is past the final element and is not dereferenced.</a></li><li><a href="#ch2-5-copy">Ensure copy() has a valid destination range; use an output iterator when writing to a stream.</a></li></ul>
+					<a class="back-link" href="#general-module-content">Open Topic 2 general content</a>
+				</article>
+				<article class="card topic-index-card" id="test-topic-3">
+					<h3><a href="#chapter-3">Topic 3 · Linked Lists</a></h3>
+					<p class="scope-label">Study-guide scope · PDF pages 118–232</p>
+					<ul class="subtopic-links" id="topic-3-index">
+						<li><a href="#ch3-1-linked-lists">Nodes and links</a></li><li><a href="#ch3-2-insertion-deletion">Insertion and deletion</a></li><li><a href="#ch3-3-linked-list-adt">Linked-list ADT</a></li><li><a href="#ch3-4-linked-list-iterators">Linked-list iterators</a></li><li><a href="#ch3-5-ordered-unordered">Unordered and ordered lists</a></li><li><a href="#ch3-7-doubly-linked-lists">Doubly linked and sentinel-node lists</a></li><li><a href="#ch3-7-doubly-linked-lists">STL list</a></li>
+					</ul>
+					<ul class="quick-points"><li><a href="#ch3-1-linked-lists">A node stores data and links; traversal follows links from the first-node pointer.</a></li><li><a href="#ch3-2-traversal">Traverse with a current pointer so the head/first pointer remains available.</a></li><li><a href="#ch3-2-insertion-deletion">Link insertion/deletion can be O(1) once the position is known; finding that position is usually O(n).</a></li><li><a href="#ch3-5-ordered-unordered">Preserve sorted order after ordered-list changes; for doubly linked nodes, update both links.</a></li></ul>
+					<a class="back-link" href="#general-module-content">Open Topic 3 general content</a>
+				</article>
+				<article class="card topic-index-card" id="test-topic-4">
+					<h3><a href="#chapter-4">Topic 4 · Recursion</a></h3>
+					<p class="scope-label">Study-guide scope · PDF pages 233–284</p>
+					<ul class="subtopic-links" id="topic-4-index">
+						<li><a href="#ch4-1-recursive-definitions">Recursive definitions</a></li><li><a href="#ch4-2-problem-solving-recursion">Problem solving with recursion</a></li><li><a href="#ch4-3-recursion-vs-iteration">Recursion or iteration?</a></li><li><a href="#ch4-4-backtracking">Backtracking and n-Queens</a></li><li><a href="#ch4-code-example">Code examples and call order</a></li>
+					</ul>
+					<ul class="quick-points"><li><a href="#ch4-1-recursive-definitions">Give every recursive solution a reachable base case and a general case that makes progress.</a></li><li><a href="#ch4-2-problem-solving-recursion">Trace calls down to the base case, then trace returned values or actions as calls unwind.</a></li><li><a href="#ch4-3-recursion-vs-iteration">Account for per-call stack space and compare recursion with an equivalent loop.</a></li><li><a href="#ch4-4-backtracking">Backtracking builds a partial solution and reverses a choice when that path fails.</a></li></ul>
+					<a class="back-link" href="#general-module-content">Open Topic 4 general content</a>
+				</article>
+			</nav>
+			<p class="scope-label">Review-question ranges are also included in the source guide: Topic 1 pages 58–64, Topic 2 pages 111–117, Topic 3 pages 224–232, and Topic 4 pages 281–284.</p>
 		</section>
 
 		<section class="content-section" id="exam-focus-areas" data-nav-section>
@@ -1016,7 +1202,7 @@
 		<section class="content-section" id="general-module-content" data-nav-section>
 			<div class="section-heading">
 				<h2>General Module Content</h2>
-				<p>Use the chapter links below for the full study-guide-derived explanations and examples referenced by the Assignment Helper.</p>
+				<p>Use the chapter links below for fuller explanations and examples for all ten study-guide topics. Topics 1–4 are indexed above for this test.</p>
 			</div>
 			<section class="chapter" id="chapter-1" data-nav-section>
 				<h2>1. Software Engineering Principles And C++ Classes</h2>
@@ -1167,6 +1353,20 @@ public:
 							<li>After choosing a class, identify operations objects can perform, operations performed on the object, and information the object must maintain.</li>
 						</ul>
 						<div class="callout info"><strong>Guide example:</strong> In a cylinder problem, <code>cylinderType</code> is a natural class; radius and height are data; volume, surface area, input and print are operations.</div>
+					</article>
+					<article class="card chapter-card definition" id="ch1-8-uml">
+						<h3>1.8 UML Class Notation</h3>
+						<p>The study guide lists Unified Modeling Language (UML) notation as a Topic 1 learning outcome. A class box commonly shows the class name, attributes, and operations in separate compartments. Visibility symbols are <code>+</code> public, <code>-</code> private, and <code>#</code> protected.</p>
+						<pre><code>------------------------
+| Cylinder             |
+------------------------
+- radius: double       |
+- height: double       |
+------------------------
++ volume(): double     |
++ setHeight(h: double) |
+------------------------</code></pre>
+						<p>This box describes the interface and structure; it does not prescribe the internal code.</p>
 					</article>
 					<article class="card chapter-card wide structure" id="ch1-code-example">
 						<h3>Topic 1 Extended Code Example: ADT-Style Class With Contracts</h3>
@@ -1321,7 +1521,7 @@ int main() {
 							</dl>
 						</details>
 					</div>
-					<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
+					<a class="back-link" href="#test-focus-areas">Back to Topics 1–4 index</a>
 				</section>
 
 			<section class="chapter" id="chapter-2" data-nav-section>
@@ -1386,8 +1586,8 @@ int main() {
 							<li>Use <code>#include &lt;vector&gt;</code>.</li>
 							<li>Declare the component type, for example <code>vector&lt;int&gt; intList;</code>.</li>
 							<li><code>vector&lt;int&gt; intList(10);</code> creates ten integer elements initialized to zero.</li>
-							<li><code>push_back</code> adds a new element at the end when you do not already know the final size.</li>
-							<li>Do not write past the current vector size with the subscript operator.</li>
+						<li><code>push_back</code> adds a new element at the end; repeated end insertion is amortized constant time, although an individual reallocation can take linear time.</li>
+						<li><code>operator[]</code> does not check bounds. The index must be less than <code>size()</code>; use <code>at()</code> when bounds checking is wanted.</li>
 						</ul>
 						<pre><code>#include &lt;vector&gt;
 #include &lt;iostream&gt;
@@ -1613,7 +1813,7 @@ int main() {
 							</dl>
 						</details>
 					</div>
-					<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
+					<a class="back-link" href="#test-focus-areas">Back to Topics 1–4 index</a>
 				</section>
 
 			<section class="chapter" id="chapter-3" data-nav-section>
@@ -1655,6 +1855,21 @@ while (current != nullptr) {
 	cout &lt;&lt; current-&gt;info &lt;&lt; " ";
 	current = current-&gt;link;
 }</code></pre>
+					</article>
+					<article class="card chapter-card definition" id="ch3-4-linked-list-iterators">
+						<h3>3.4 Linked-List Iterators</h3>
+						<p>The study guide develops a linked-list iterator that keeps a pointer to the current node and overloads iterator operations. Dereference reads the current item; increment follows the link; comparison detects the end position.</p>
+						<pre><code>#include &lt;iostream&gt;
+#include &lt;list&gt;
+
+int main() {
+    std::list&lt;int&gt; values{10, 20, 30};
+    for (auto it = values.begin(); it != values.end(); ++it) {
+        std::cout &lt;&lt; *it &lt;&lt; ' ';
+    }
+    return 0;
+}</code></pre>
+						<p>A linked-list iterator moves node by node. It does not support jumping to item <code>i</code> in constant time like a vector iterator.</p>
 					</article>
 					<article class="card chapter-card success" id="ch3-2-insertion-deletion">
 						<h3>3.2 Item Insertion And Deletion</h3>
@@ -1703,9 +1918,10 @@ while (current != nullptr) {
 						<h3>3.7-3.9 List Variations</h3>
 						<p>A doubly linked list stores links in both directions. This supports backward movement, but every insert or delete must maintain both the forward and backward links.</p>
 						<ul>
-							<li><code>list</code> is the STL sequence container version of a linked list.</li>
-							<li>Header and trailer nodes can simplify edge cases at the beginning and end of a list.</li>
-							<li>Circular linked lists connect the final node back into the list rather than ending with <code>NULL</code>.</li>
+						<li><code>std::list</code> is the STL doubly linked sequence container; it supports bidirectional iteration and insert/erase at a known iterator position.</li>
+						<li>Header and trailer nodes can simplify edge cases at the beginning and end of a list.</li>
+						<li>Circular linked lists connect the final node back into the list rather than ending with <code>NULL</code>.</li>
+						<li>Finding a matching item still requires traversal, usually O(n); changing links is O(1) only after the position is known.</li>
 						</ul>
 					</article>
 					<article class="card chapter-card wide structure" id="ch3-code-example">
@@ -1805,7 +2021,7 @@ int main() {
 							</dl>
 						</details>
 					</div>
-					<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
+					<a class="back-link" href="#test-focus-areas">Back to Topics 1–4 index</a>
 				</section>
 
 			<section class="chapter" id="chapter-4" data-nav-section>
@@ -1862,8 +2078,9 @@ int main() {
 						</ul>
 					</article>
 					<article class="card chapter-card structure" id="ch4-4-backtracking">
-						<h3>4.3 Backtracking</h3>
-						<p>Backtracking constructs partial solutions and abandons a path when it cannot lead to a valid solution. The guide uses the n-queens puzzle: place queens row by row, and back up when a row has no legal column.</p>
+						<h3>4.3.1 Backtracking</h3>
+						<p>Backtracking builds partial solutions and abandons a path when it cannot lead to a valid solution. The guide uses the n-queens puzzle: place queens row by row, and back up when a row has no legal column.</p>
+						<p>Guide pattern: test a candidate, record it, recurse to the next decision, then try another candidate if that branch does not complete a solution.</p>
 						<ul>
 							<li>Build a partial solution.</li>
 							<li>Reject it as soon as it violates a rule.</li>
@@ -1958,7 +2175,7 @@ int main() {
 							</dl>
 						</details>
 					</div>
-					<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
+					<a class="back-link" href="#test-focus-areas">Back to Topics 1–4 index</a>
 				</section>
 
 			<section class="chapter" id="chapter-5" data-nav-section>
@@ -3116,6 +3333,69 @@ int main() {
 				</section>
 		</section>
 
+		<section class="content-section" id="detailed-reference" data-nav-section>
+			<div class="section-heading">
+				<h2>Classes, Functions, Methods &amp; Attributes</h2>
+				<p>Choose a programming task, or use the alphabetical index to jump to an API name. Each reference explains what it does, when to use it, gives a small example, and links to the fuller explanation in General Module Content.</p>
+			</div>
+			<a class="back-link" href="#test-focus-areas">Back to Topics 1–4 index</a>
+			<div class="callout info"><strong>Scope labels:</strong> “Study-guide term” marks concepts or APIs explicitly treated in the study guide. “Useful supporting detail” adds standard C++ usage or practical clarification; it is not additional confirmed test content.</div>
+			<h3>Choose a programming task</h3>
+			<nav id="cpp-task-index" class="cpp-jumps" aria-label="Choose a programming task">
+				<a href="#api-design-class">Design a class and its contract</a><a href="#api-stl">Choose a container and process a range</a><a href="#api-linked-lists">Build and update a linked list</a><a href="#api-recursion">Solve a problem recursively</a>
+			</nav>
+			<h3>Find an API name · A–Z</h3>
+			<nav id="cpp-alpha" class="cpp-jumps" aria-label="Alphabetical API index"></nav>
+			<div id="cpp-name-index" aria-label="API names by letter"></div>
+
+			<div class="api-task" id="api-design-class">
+				<h3>Task 1 · Design a class and its contract</h3>
+				<article class="api-entry"><h4><code>class</code>, data members, and member functions <span class="reference-label">Study-guide term</span></h4><p><strong>Does:</strong> Defines a user type that groups state and operations. <strong>Use it when:</strong> the problem has objects with maintained data and meaningful behavior. <strong>Example:</strong> <code>class Clock { int hour; void print() const; };</code></p><a href="#ch1-4-classes">Full explanation: classes</a></article>
+				<article class="api-entry"><h4><code>private</code>, <code>protected</code>, <code>public</code> <span class="reference-label">Study-guide term</span></h4><p><strong>Does:</strong> Controls access: private to the class, protected to the class and derived classes, public to clients. <strong>Use it when:</strong> protecting representation while exposing required operations. <strong>Example:</strong> <code>private: int hour; public: int getHour() const;</code></p><a href="#ch1-4-classes">Full explanation: classes and access control</a></article>
+				<article class="api-entry"><h4>Constructors and destructors <span class="reference-label">Study-guide term</span></h4><p><strong>Does:</strong> A constructor establishes the initial object state; a destructor runs when the object lifetime ends and releases resources the object owns. <strong>Use it when:</strong> every object needs a valid starting state or owns a resource. <strong>Example:</strong> <code>Clock() : hour(0) {} ~Clock() = default;</code></p><a href="#ch1-code-example">Full explanation: class example</a></article>
+				<article class="api-entry"><h4>Accessors, mutators, and <code>const</code> member functions <span class="reference-label">Useful supporting detail</span></h4><p><strong>Does:</strong> Accessors report state; mutators change it; a trailing <code>const</code> promises a member function will not modify the object. <strong>Use it when:</strong> offering controlled access to private data. <strong>Example:</strong> <code>int getHour() const { return hour; }</code></p><a href="#ch1-4-classes">Full explanation: class interface</a></article>
+				<article class="api-entry"><h4>Preconditions, postconditions, and <code>assert</code> <span class="reference-label">Study-guide concept</span></h4><p><strong>Does:</strong> A precondition states what must be true before a call; a postcondition states what the function guarantees afterward. <code>assert(condition)</code> checks a development-time assumption and terminates if it fails. <strong>Example:</strong> <code>assert(radius &gt; 0);</code></p><a href="#ch1-5-contracts">Full explanation: function contracts</a></article>
+				<article class="api-entry"><h4>Abstract data type (ADT) <span class="reference-label">Study-guide term</span></h4><p><strong>Does:</strong> Describes a type through its name, valid values, and operations while leaving representation details hidden. <strong>Use it when:</strong> specifying what clients may do without tying them to storage choices. <strong>Example:</strong> a clock ADT offers <code>setTime()</code> and <code>printTime()</code>.</p><a href="#ch1-6-adts">Full explanation: abstraction and ADTs</a></article>
+				<article class="api-entry"><h4>UML class box <span class="reference-label">Study-guide outcome</span></h4><p><strong>Does:</strong> Summarises a class name, attributes, operations, and visibility. <strong>Use it when:</strong> translating a design into a class interface. <strong>Example:</strong> <code>- radius: double</code> is private; <code>+ area(): double</code> is public.</p><a href="#ch1-8-uml">Full explanation: UML class notation</a></article>
+			</div>
+
+			<div class="api-task" id="api-stl">
+				<h3>Task 2 · Choose a container and process a range</h3>
+				<article class="api-entry"><h4><code>vector&lt;T&gt;</code> <span class="reference-label">Study-guide term</span></h4><p><strong>Does:</strong> Stores a growable sequence with random-access indexing. <strong>Use it when:</strong> indexed access is useful and items are mostly appended. <strong>Example:</strong> <code>vector&lt;int&gt; marks{72, 85}; marks.push_back(91);</code> End insertion is amortized O(1); an individual reallocation may be O(n).</p><a href="#ch2-3-vector">Full explanation: vector</a></article>
+				<article class="api-entry"><h4><code>deque&lt;T&gt;</code> and <code>std::list&lt;T&gt;</code> <span class="reference-label">Study-guide terms</span></h4><p><strong>Does:</strong> A deque supports efficient operations at both ends; a list is a doubly linked sequence. <strong>Use it when:</strong> the needed end operations or linked-node behavior justify them. <strong>Example:</strong> <code>items.push_front(x); items.push_back(y);</code> (valid for deque and list, not vector).</p><a href="#ch2-2-sequence-containers">Full explanation: sequence containers</a> · <a href="#ch3-7-doubly-linked-lists">Full explanation: STL list</a></article>
+				<article class="api-entry"><h4><code>begin()</code> and <code>end()</code> <span class="reference-label">Study-guide term</span></h4><p><strong>Does:</strong> Marks a half-open range [first, past-the-last). <strong>Use it when:</strong> traversing a container or passing a range to an algorithm. <strong>Example:</strong> <code>for (auto it = v.begin(); it != v.end(); ++it) use(*it);</code> Never dereference <code>end()</code>.</p><a href="#ch2-4-begin-end">Full explanation: begin() and end()</a></article>
+				<article class="api-entry"><h4>Iterator operations: <code>*it</code>, <code>++it</code>, <code>it != last</code> <span class="reference-label">Study-guide term</span></h4><p><strong>Does:</strong> Reads the current element, advances to the next, and checks whether the stopping position is reached. <strong>Use it when:</strong> writing container-independent traversal. <strong>Example:</strong> <code>sum += *it; ++it;</code></p><a href="#ch2-7-iterators">Full explanation: iterators</a></article>
+				<article class="api-entry"><h4><code>size()</code>, <code>empty()</code>, <code>operator[]</code>, <code>at()</code> <span class="reference-label">Useful supporting detail</span></h4><p><strong>Does:</strong> Reports element count, tests emptiness, accesses by index without bounds checks (<code>[]</code>), or accesses with bounds checking (<code>at</code>). <strong>Example:</strong> <code>if (!v.empty()) cout &lt;&lt; v.at(0);</code></p><a href="#ch2-3-vector">Full explanation: vector storage and access</a></article>
+				<article class="api-entry"><h4><code>push_back()</code>, <code>push_front()</code>, <code>insert()</code>, <code>erase()</code> <span class="reference-label">Study-guide terms</span></h4><p><strong>Does:</strong> Adds/removes elements at an end or iterator position. <strong>Use it when:</strong> the container's insertion point matches the task. <strong>Example:</strong> <code>auto pos = v.begin() + 1; v.insert(pos, 90);</code> Vector middle insertion shifts later elements and invalidates some iterators.</p><a href="#ch2-4-begin-end">Full explanation: insertion and erasure</a></article>
+				<article class="api-entry"><h4><code>std::copy(first, last, destination)</code> <span class="reference-label">Study-guide term</span></h4><p><strong>Does:</strong> Copies every element in [first, last) to a destination starting position. <strong>Use it when:</strong> copying a range into already-allocated output space. <strong>Example:</strong> <code>copy(v.begin(), v.end(), out.begin());</code> The output must have enough writable elements.</p><a href="#ch2-5-copy">Full explanation: copy()</a></article>
+				<article class="api-entry"><h4><code>ostream_iterator&lt;T&gt;</code> <span class="reference-label">Study-guide term</span></h4><p><strong>Does:</strong> Adapts an output stream so algorithms can write values to it. <strong>Use it when:</strong> printing a range with <code>copy</code>. <strong>Example:</strong> <code>copy(v.begin(), v.end(), ostream_iterator&lt;int&gt;(cout, " "));</code> Include <code>&lt;iterator&gt;</code>.</p><a href="#ch2-6-ostream-iterator">Full explanation: ostream_iterator and copy</a></article>
+			</div>
+
+			<div class="api-task" id="api-linked-lists">
+				<h3>Task 3 · Build, traverse, and update a linked list</h3>
+				<article class="api-entry"><h4><code>nodeType</code>, <code>info</code>, <code>link</code>, <code>head</code>/<code>first</code> <span class="reference-label">Study-guide terms</span></h4><p><strong>Does:</strong> A node stores one item and a pointer to the next node; head/first reaches the first node. <strong>Use it when:</strong> representing a sequence with individually linked nodes. <strong>Example:</strong> <code>struct Node { int info; Node* link; };</code></p><a href="#ch3-1-linked-lists">Full explanation: nodes and links</a></article>
+				<article class="api-entry"><h4><code>last</code>, <code>count</code>, <code>current</code> <span class="reference-label">Guide-style attributes</span></h4><p><strong>Does:</strong> <code>last</code> caches the tail, <code>count</code> caches length, and <code>current</code> is a temporary traversal pointer. <strong>Use it when:</strong> the list implementation needs fast end insertion/count access or safe traversal. Keep cached values accurate after mutations. <strong>Example:</strong> <code>Node* current = first;</code></p><a href="#ch3-2-traversal">Full explanation: traversal discipline</a></article>
+				<article class="api-entry"><h4><code>new</code>, <code>delete</code>, and <code>nullptr</code> <span class="reference-label">Study-guide code terms</span></h4><p><strong>Does:</strong> Allocates a node, releases a node, and represents a pointer to no node. <strong>Use it when:</strong> managing a hand-built linked list. <strong>Example:</strong> <code>Node* p = new Node{value, nullptr}; delete p;</code> Every allocated node must be released exactly once.</p><a href="#ch3-code-example">Full explanation: linked-list code example</a></article>
+				<article class="api-entry"><h4><code>initializeList()</code>, <code>isEmptyList()</code>, <code>length()</code>, <code>print()</code> <span class="reference-label">Study-guide ADT operations</span></h4><p><strong>Does:</strong> Establishes an empty state, checks it, counts nodes, or displays items. <strong>Use it when:</strong> clients should work through the list interface rather than manipulate pointers. <strong>Example:</strong> <code>if (list.isEmptyList()) list.print();</code> Exact method names/signatures depend on the class design.</p><a href="#ch3-3-linked-list-adt">Full explanation: linked-list ADT</a></article>
+				<article class="api-entry"><h4><code>front()</code>, <code>back()</code>, <code>search()</code>, <code>retrieve()</code> <span class="reference-label">Study-guide ADT operations</span></h4><p><strong>Does:</strong> Reads endpoint values or finds/returns a matching item. <strong>Use it when:</strong> asking for data without exposing node representation. Empty-list behavior must be specified. <strong>Example:</strong> <code>if (!list.isEmptyList()) firstValue = list.front();</code></p><a href="#ch3-3-linked-list-adt">Full explanation: linked-list ADT</a></article>
+				<article class="api-entry"><h4><code>insert()</code>, <code>deleteNode()</code>, <code>destroyList()</code>, <code>copyList()</code> <span class="reference-label">Study-guide ADT operations</span></h4><p><strong>Does:</strong> Adds an item, removes a matching node, frees every node, or creates a separate copy. <strong>Use it when:</strong> changing list contents or managing ownership. A copy should duplicate nodes rather than make two lists share one chain. <strong>Example:</strong> <code>insertAfter(p, value);</code> In a singly linked list, save the next link before bypassing and deleting a node.</p><a href="#ch3-2-insertion-deletion">Full explanation: insertion and deletion</a> · <a href="#ch3-3-linked-list-adt">Full explanation: list ADT and copy</a></article>
+				<article class="api-entry"><h4><code>operator*</code>, <code>operator++</code>, <code>operator!=</code> on a list iterator <span class="reference-label">Study-guide term</span></h4><p><strong>Does:</strong> Dereferences the current node, advances to its successor, and compares iterators. <strong>Use it when:</strong> making a custom list work with standard traversal patterns. <strong>Example:</strong> <code>for (auto it = values.begin(); it != values.end(); ++it) std::cout &lt;&lt; *it;</code></p><a href="#ch3-4-linked-list-iterators">Full explanation: linked-list iterators</a></article>
+				<article class="api-entry"><h4>Ordered/unordered, doubly linked, and sentinel-node variants <span class="reference-label">Study-guide terms</span></h4><p><strong>Does:</strong> Variants maintain order, add a previous link, or use header/trailer nodes to simplify boundary cases. <strong>Use it when:</strong> those guarantees make operations clearer. <strong>Example:</strong> a doubly linked node stores both <code>next</code> and <code>prev</code>.</p><a href="#ch3-5-ordered-unordered">Full explanation: ordered and unordered lists</a> · <a href="#ch3-7-doubly-linked-lists">Full explanation: list variations</a></article>
+			</div>
+
+			<div class="api-task" id="api-recursion">
+				<h3>Task 4 · Solve a problem recursively</h3>
+				<article class="api-entry"><h4>Base case and general case <span class="reference-label">Study-guide terms</span></h4><p><strong>Does:</strong> The base case answers the smallest problem directly; the general case reduces it toward that case. <strong>Use it when:</strong> each problem can be expressed in terms of a smaller instance. <strong>Example:</strong> <code>if (n == 0) return 1; return n * fact(n - 1);</code></p><a href="#ch4-1-recursive-definitions">Full explanation: recursive definitions</a></article>
+				<article class="api-entry"><h4>Recursive function and <code>return</code> <span class="reference-label">Study-guide terms</span></h4><p><strong>Does:</strong> A recursive function calls itself on a smaller case; <code>return</code> sends a result to the previous call. <strong>Use it when:</strong> the result is naturally composed from smaller results. <strong>Example:</strong> <code>return n * fact(n - 1);</code></p><a href="#ch4-2-problem-solving-recursion">Full explanation: problem solving with recursion</a></article>
+				<article class="api-entry"><h4><code>factorial(n)</code> and <code>rFibNum(a, b, n)</code> <span class="reference-label">Study-guide examples</span></h4><p><strong>Does:</strong> Computes a factorial or a term in a sequence defined from two starting values. <strong>Use it when:</strong> demonstrating how a mathematical recurrence becomes a recursive function. <strong>Example:</strong> <code>fact(0) == 1</code>; otherwise <code>fact(n) == n * fact(n - 1)</code>. Validate the input domain and beware integer overflow.</p><a href="#ch4-2-problem-solving-recursion">Full explanation: factorial and Fibonacci examples</a></article>
+				<article class="api-entry"><h4><code>largest(values, low, high)</code> <span class="reference-label">Study-guide example</span></h4><p><strong>Does:</strong> Finds the largest item in a non-empty subarray. <strong>Use it when:</strong> showing a recursive reduction over an index range. <strong>Example:</strong> stop when <code>low == high</code>; otherwise compare <code>values[low]</code> with <code>largest(values, low + 1, high)</code>.</p><a href="#ch4-code-example">Full explanation: largest-array example</a></article>
+				<article class="api-entry"><h4><code>reversePrint(node)</code> <span class="reference-label">Study-guide example</span></h4><p><strong>Does:</strong> Prints a linked list in reverse without changing its links. <strong>Use it when:</strong> demonstrating work performed after a recursive call. <strong>Example:</strong> recurse on <code>node-&gt;link</code>, then print <code>node-&gt;info</code>.</p><a href="#ch4-code-example">Full explanation: reverse-print example</a></article>
+				<article class="api-entry"><h4><code>canPlaceQueen(k, column)</code> and <code>queensConfiguration(k)</code> <span class="reference-label">Study-guide functions</span></h4><p><strong>Does:</strong> Tests whether a queen is safe in a column, then recursively tries legal placements for row <code>k</code>. <strong>Use it when:</strong> following the guide's n-Queens backtracking example. <strong>Example:</strong> <code>if (canPlaceQueen(k, col)) { queen[k] = col; queensConfiguration(k + 1); }</code> The guide's class uses its own state and exact signatures.</p><a href="#ch4-4-backtracking">Full explanation: backtracking and n-Queens</a></article>
+				<article class="api-entry"><h4>Call stack and backtracking <span class="reference-label">Study-guide concepts/examples</span></h4><p><strong>Does:</strong> Each active call retains its parameters and local state; backtracking explores a choice and returns to try another when it fails. <strong>Use it when:</strong> reasoning about unwind order or searching a tree of choices. <strong>Example:</strong> place one queen, recurse to the next row, then try the next column when that branch fails.</p><a href="#ch4-3-recursion-vs-iteration">Full explanation: recursion and iteration costs</a> · <a href="#ch4-4-backtracking">Full explanation: backtracking and n-Queens</a></article>
+			</div>
+			<a class="back-link" href="#test-focus-areas">Back to Topics 1–4 index</a>
+		</section>
+
 		<section class="content-section module-learning-lab" id="preparation-station" data-nav-section>
 			<div class="section-heading"><h2>Learning Lab</h2><p>Use these interactive tools to practise Programming 622 concepts. Your quiz attempts are saved only in this browser.</p></div>
 			<div class="learning-lab-grid">
@@ -3136,7 +3416,7 @@ int main() {
 			<div class="resource-grid">
 				<article class="card resource-card definition" id="resource-videos" data-nav-section>
 					<h3>Videos</h3>
-					<p>C++ STL containers explained for beginners, including vectors, lists, maps, and more.</p>
+					<p>C++ STL containers explained for beginners, including vectors, lists, maps, and more. Streaming the video requires an internet connection; the written study material and code examples on this page work offline.</p>
 					<iframe
 						class="video-embed"
 						src="https://www.youtube.com/embed/nx3Mpy1X-kk"
@@ -3160,6 +3440,12 @@ int main() {
 		</footer>
 	</main>
 
+	<nav class="cpp-return-dock" aria-label="Programming reference return controls">
+		<button type="button" id="cpp-return" hidden>Return to API entry</button>
+		<a href="#detailed-reference">API index</a>
+		<a href="#test-focus-areas">Topics 1–4</a>
+		<a href="#general-module-content">General content</a>
+	</nav>
 	<button class="back-to-top" id="backToTop" aria-label="Back to top">^</button>
 
 	<script src="module-learning-lab.js"></script>
@@ -3255,6 +3541,74 @@ int main() {
 
 		updateProgress();
 		updateActiveFromScroll();
+	</script>
+	<script>
+		(() => {
+			const root = document.getElementById("detailed-reference");
+			if (!root) return;
+			const entries = Array.from(root.querySelectorAll(".api-entry"));
+			const taskIndex = document.getElementById("cpp-task-index");
+			const alphaIndex = document.getElementById("cpp-alpha");
+			const nameIndex = document.getElementById("cpp-name-index");
+			const returnButton = document.getElementById("cpp-return");
+			let origin = null;
+			const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[character]));
+
+			const groups = Array.from(root.querySelectorAll(".api-task"));
+			if (taskIndex) {
+				taskIndex.innerHTML = groups.map((group) => `<a href="#${group.id}">${escapeHtml(group.querySelector("h3").textContent.replace(/^Task \d+ · /, ""))}</a>`).join("");
+			}
+
+			const indexed = entries.map((entry, index) => {
+				const heading = entry.querySelector("h4");
+				const names = Array.from(heading.querySelectorAll("code"), (node) => node.textContent.trim()).filter(Boolean);
+				if (!names.length) names.push(heading.textContent.replace(/Study-guide term|Study-guide concept|Study-guide outcome|Study-guide examples|Study-guide functions|Study-guide ADT operations|Useful supporting detail|Guide-style attributes/g, "").trim());
+				const id = `cpp-api-${index + 1}`;
+				entry.id = id;
+				entry.dataset.apiName = names.join(", ");
+				const links = Array.from(entry.querySelectorAll(":scope > a"));
+				if (links.length) {
+					const linkRow = document.createElement("div");
+					linkRow.className = "cpp-entry-links";
+					links.forEach((link) => {
+						link.classList.add("cpp-reference-link");
+						if (link.textContent.startsWith("Full explanation")) link.dataset.cppRead = "true";
+						linkRow.append(link);
+					});
+					linkRow.append(Object.assign(document.createElement("a"), { href: `#${entry.closest(".api-task").id}`, textContent: "Back to task index" }));
+					linkRow.append(Object.assign(document.createElement("a"), { href: "#detailed-reference", textContent: "All API names / A–Z" }));
+					entry.append(linkRow);
+				}
+				return names.map((name) => ({ id, name, letter: (name.match(/[A-Za-z]/)?.[0] || "#").toUpperCase() }));
+			});
+			const allNames = indexed.flat();
+			const letters = [...new Set(allNames.map((item) => item.letter))].sort();
+			if (alphaIndex) alphaIndex.innerHTML = letters.map((letter) => `<a href="#cpp-letter-${letter}">${letter}</a>`).join("");
+			if (nameIndex) nameIndex.innerHTML = letters.map((letter) => `<div class="cpp-letter" id="cpp-letter-${letter}"><h4>${letter}</h4>${allNames.filter((item) => item.letter === letter).sort((a, b) => a.name.localeCompare(b.name)).map((item) => `<a href="#${item.id}">${escapeHtml(item.name)}</a>`).join("")}</div>`).join("");
+
+			root.addEventListener("click", (event) => {
+				const link = event.target.closest("a[data-cpp-read]");
+				if (!link) return;
+				origin = { y: window.scrollY, hash: location.hash };
+				returnButton.hidden = false;
+			});
+			returnButton.addEventListener("click", () => {
+				if (!origin) return;
+				history.pushState(null, "", origin.hash || location.pathname + location.search);
+				window.scrollTo({ top: origin.y, behavior: "instant" });
+				returnButton.hidden = true;
+			});
+			const revealHash = () => {
+				const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+				if (!target) return;
+				for (let parent = target.parentElement; parent; parent = parent.parentElement) {
+					if (parent.tagName === "DETAILS") parent.open = true;
+				}
+				target.scrollIntoView({ block: "start" });
+			};
+			window.addEventListener("hashchange", revealHash);
+			revealHash();
+		})();
 	</script>
 </body>
 </html>
