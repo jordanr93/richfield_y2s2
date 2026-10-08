@@ -458,7 +458,7 @@
 
 		.resource-grid {
 			display: grid;
-			grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
+			grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
 			gap: 18px;
 		}
 
@@ -926,9 +926,7 @@
 
 		<div class="nav-group">
 			<h2>Resources</h2>
-			<a href="#resources" data-nav-link="resources">Overview</a>
 			<a href="#resource-videos" data-nav-link="resource-videos">Videos</a>
-			<a href="#resource-articles" data-nav-link="resource-articles">Articles</a>
 		</div>
 		<details class="nav-group nav-collapsible">
 			<summary>Programming 621</summary>
@@ -3247,14 +3245,23 @@ int main() {
 
 		<section class="content-section" id="resources" data-nav-section>
 			<div class="section-heading">
-				<h2>Resources</h2>
-				<p>Helpful videos and articles to support your Programming 622 revision.</p>
+				<h2>Programming 622 Video Reference</h2>
 			</div>
 
 			<div class="resource-grid">
 				<article class="card resource-card definition" id="resource-videos" data-nav-section>
-					<h3>Videos</h3>
-					<p>C++ STL containers explained for beginners, including vectors, lists, maps, and more. Streaming the video requires an internet connection; the written study material and code examples on this page work offline.</p>
+					<h3>Topic 1 · Software development life cycle</h3>
+					<p>Explains the stages of software development, from planning and requirements through testing and maintenance. Popularity snapshot: about 1.2M views.</p>
+					<iframe class="video-embed" src="https://www.youtube.com/embed/i-QyW8D3ei0" title="Topic 1: What Are the Key Phases in the Software Development Lifecycle?" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</article>
+				<article class="card resource-card definition">
+					<h3>Topic 1 · C++ classes and object-oriented programming</h3>
+					<p>Classes, objects, constructors, encapsulation, inheritance, and polymorphism. Popularity snapshot: 3.19M views and 82K likes.</p>
+					<iframe class="video-embed" src="https://www.youtube.com/embed/wN0x9eZLix4" title="Topic 1: Object-Oriented Programming (OOP) in C++ Course | freeCodeCamp.org" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</article>
+				<article class="card resource-card definition">
+					<h3>Topic 2 · Standard Template Library (STL)</h3>
+					<p>Beginner introduction to C++ STL containers, including vectors, lists, maps, and more.</p>
 					<iframe
 						class="video-embed"
 						src="https://www.youtube.com/embed/nx3Mpy1X-kk"
@@ -3264,11 +3271,60 @@ int main() {
 						allowfullscreen>
 					</iframe>
 				</article>
-
-				<article class="card resource-card structure" id="resource-articles" data-nav-section>
-					<h3>Articles</h3>
-					<span class="coming-soon-label">Coming soon</span>
-					<p>Articles and written resources will be added here.</p>
+				<article class="card resource-card definition">
+					<h3>Topic 3 · Linked-list implementation (14 min)</h3>
+					<p>A 14-minute chapter from the C/C++ data structures course, starting at the linked-list implementation lesson.</p>
+					<iframe class="video-embed" src="https://www.youtube.com/embed/B31LgI4Y4DQ?start=2945&amp;end=3782" title="Topic 3: Linked List Implementation in C/C++ — chapter segment" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</article>
+				<article class="card resource-card definition">
+					<h3>Topic 4 · Recursion with linked lists (23 min)</h3>
+					<p>A focused chapter segment on printing and reversing a linked list recursively.</p>
+					<iframe class="video-embed" src="https://www.youtube.com/embed/B31LgI4Y4DQ?start=7041&amp;end=8438" title="Topic 4: Recursive Linked-list Examples — chapter segment" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</article>
+				<article class="card resource-card definition">
+					<h3>Topic 5 · Stack implementation (13 min)</h3>
+					<p>A short segment showing stack operations implemented with an array.</p>
+					<iframe class="video-embed" src="https://www.youtube.com/embed/B31LgI4Y4DQ?start=10294&amp;end=11082" title="Topic 5: Array Implementation of Stacks — chapter segment" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</article>
+				<article class="card resource-card definition">
+					<h3>Topic 6 · Queue implementation (15 min)</h3>
+					<p>A short segment showing queue operations implemented with an array.</p>
+					<iframe class="video-embed" src="https://www.youtube.com/embed/B31LgI4Y4DQ?start=16895&amp;end=17793" title="Topic 6: Array Implementation of Queues — chapter segment" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</article>
+				<article class="card resource-card definition">
+					<h3>Topic 7 · Binary search</h3>
+					<p>Explains binary search and compares it with linear search, with a C++ implementation. Popularity snapshot: 237K views and 2.7K likes.</p>
+					<iframe class="video-embed" src="https://www.youtube.com/embed/vohuRrwbTT4" title="Topic 7: C++ Programming — Binary Search Algorithm" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</article>
+				<article class="card resource-card definition">
+					<h3>Topic 7 · Hash tables and collision handling</h3>
+					<p>Short introduction to hash tables and collision handling with chaining. Popularity snapshot: 1.18M views and 14K likes.</p>
+					<iframe class="video-embed" src="https://www.youtube.com/embed/MfhjkfocRR0" title="Topic 7: Introduction to Hash Tables and Chaining" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</article>
+				<article class="card resource-card definition">
+					<h3>Topic 8 · Sorting algorithms visual companion</h3>
+					<p>Visual comparison of merge sort, heap sort, quicksort, and other sorting methods. Use this alongside the course explanations. Popularity snapshot: 28.6M views and 564K likes.</p>
+					<iframe class="video-embed" src="https://www.youtube.com/embed/kPRA0W1kECg" title="Topic 8: 15 Sorting Algorithms in 6 Minutes | Timo Bingmann" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</article>
+				<article class="card resource-card definition">
+					<h3>Topic 9 · B-trees</h3>
+					<p>Focused animated explanation of B-tree structure and operations. Popularity snapshot: about 1.13M views and 43K likes.</p>
+					<iframe class="video-embed" src="https://www.youtube.com/embed/K1a2Bk8NrYQ" title="Topic 9: Understanding B-Trees — The Data Structure Behind Modern Databases | Spanning Tree" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</article>
+				<article class="card resource-card definition">
+					<h3>Topic 9 · Binary trees (16 min)</h3>
+					<p>Chapter segment introducing binary trees and their structure.</p>
+					<iframe class="video-embed" src="https://www.youtube.com/embed/B31LgI4Y4DQ?start=19597&amp;end=20571" title="Topic 9: Binary Tree — chapter segment" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</article>
+				<article class="card resource-card definition">
+					<h3>Topic 9 · Binary search trees (19 min)</h3>
+					<p>Chapter segment introducing binary search trees and their implementation.</p>
+					<iframe class="video-embed" src="https://www.youtube.com/embed/B31LgI4Y4DQ?start=20571&amp;end=21737" title="Topic 9: Binary Search Tree — chapter segment" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</article>
+				<article class="card resource-card definition">
+					<h3>Topic 10 · Graph basics and traversal (22 min)</h3>
+					<p>A 22-minute chapter segment on graph basics, depth-first search, and breadth-first search. Demonstrations use JavaScript; focus on the algorithm and translate it into C++. Popularity snapshot for the full video: 1.49M views and 33K likes.</p>
+					<iframe class="video-embed" src="https://www.youtube.com/embed/tWVWeAqZ0WU?start=430&amp;end=1753" title="Topic 10: Graph Basics, Depth-first and Breadth-first Traversal — chapter segment" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 				</article>
 			</div>
 		</section>
