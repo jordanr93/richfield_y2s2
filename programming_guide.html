@@ -901,6 +901,70 @@
 					grid-template-columns: 1fr;
 				}
 			}
+		.nav-subheading {
+			margin: 12px 0 4px 10px;
+			color: var(--muted);
+			font-size: 0.73rem;
+			letter-spacing: 0.05em;
+			text-transform: uppercase;
+		}
+		.p621-archive {
+			padding: 0 clamp(22px, 5vw, 70px) 28px;
+			border-bottom: 1px solid var(--border);
+		}
+		.p621-archive > section {
+			padding: 30px 0;
+			border-bottom: 1px solid var(--border);
+			scroll-margin-top: 20px;
+		}
+		.p621-archive > section:last-child { border-bottom: 0; }
+		.p621-archive .section-title {
+			display: flex;
+			align-items: baseline;
+			justify-content: space-between;
+			gap: 12px;
+			margin-bottom: 16px;
+		}
+		.p621-archive .section-title h2 { margin: 0; font-size: clamp(1.45rem, 2.6vw, 2rem); }
+		.p621-archive .section-title small { color: var(--cyan); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; }
+		.p621-archive .lead { max-width: 72rem; color: var(--muted); }
+		.p621-archive .card h3.green { color: var(--green); background: transparent; }
+		.p621-archive .card h3.amber { color: var(--amber); background: transparent; }
+		.p621-archive .card h3.purple { color: var(--purple); background: transparent; }
+		.p621-archive .card h3.red { color: var(--red); background: transparent; }
+		.p621-archive .note,
+		.p621-archive .warning,
+		.p621-archive .danger {
+			margin-top: 14px;
+			padding: 12px 14px;
+			border: 1px solid var(--cyan);
+			border-left-width: 4px;
+			border-radius: var(--radius);
+			background: #10151d;
+		}
+		.p621-archive .warning { border-color: var(--amber); color: #f0c36a; }
+		.p621-archive .danger { border-color: var(--red); color: #ffb1ad; }
+		.p621-archive table { display: block; overflow-x: auto; min-width: 0; }
+		.p621-archive .top-link,
+		.p621-archive .links a {
+			display: inline-flex;
+			min-height: 40px;
+			align-items: center;
+			margin: 4px 6px 4px 0;
+			padding: 6px 10px;
+			border: 1px solid var(--border);
+			border-radius: 6px;
+			background: var(--panel);
+		}
+		.p621-archive .checklist li::marker { color: var(--green); }
+		.p621-archive .reference-table { font-size: 0.9rem; }
+		.p621-archive .reference-example { display: block; margin-top: 4px; }
+		@media (max-width: 820px) {
+			.p621-archive { padding: 0 18px 24px; }
+			.p621-archive .section-title { display: block; }
+			.p621-archive .section-title small { display: block; margin-top: 5px; }
+		}
+
 	</style>
 	<link rel="stylesheet" href="module-theme.css">
 	<link rel="stylesheet" href="module-learning-lab.css">
@@ -935,7 +999,7 @@
 </details>
 
 <details class="nav-group nav-collapsible" open>
-	<summary>Open-Book Test · Topics 1–4</summary>
+	<summary>CA Test</summary>
 	<a class="nav-link" href="#test-focus-areas" data-nav-link="test-focus-areas">Topic index and quick reference</a>
 	<a class="nav-link" href="#test-topic-1">Topic 1 · Classes and design</a>
 	<a class="nav-link" href="#test-topic-2">Topic 2 · STL</a>
@@ -952,6 +1016,7 @@
 	<summary>Exam Focus Areas</summary>
 	<a class="nav-link" href="#exam-focus-areas" data-nav-link="exam-focus-areas">Coming Soon</a>
 </details>
+
 
 		<div class="nav-group">
 			<h2>General Module Content</h2>
@@ -970,7 +1035,7 @@
 
 		<details class="nav-group nav-collapsible">
 			<summary>Learning Lab</summary>
-			<a href="#quiz-builder" data-nav-link="preparation-station">Quiz Builder</a>
+			<a href="#preparation-station" data-nav-link="preparation-station">Quiz Builder</a>
 			<a href="#lab-flashcards">Flashcards</a>
 			<a href="#lab-challenge">Concept Checker</a>
 			<a href="#code-practice">Fill in the Code</a>
@@ -983,6 +1048,30 @@
 			<a href="#resource-videos" data-nav-link="resource-videos">Videos</a>
 			<a href="#resource-articles" data-nav-link="resource-articles">Articles</a>
 		</div>
+		<details class="nav-group nav-collapsible">
+			<summary>Programming 621</summary>
+			<a class="nav-link" href="#programming-621-reference" data-nav-link="programming-621-reference">Overview</a>
+			<h3 class="nav-subheading">Exam pointer topics</h3>
+			<a class="nav-link" href="#p621-exam-map" data-nav-link="p621-exam-map">Topic index</a>
+			<a class="nav-link" href="#p621-functions-exam" data-nav-link="p621-functions-exam">Functions and overloading</a>
+			<a class="nav-link" href="#p621-files-exam" data-nav-link="p621-files-exam">File streams</a>
+			<a class="nav-link" href="#p621-exceptions-exam" data-nav-link="p621-exceptions-exam">Exceptions</a>
+			<a class="nav-link" href="#p621-loops-exam" data-nav-link="p621-loops-exam">do-while patterns</a>
+			<a class="nav-link" href="#p621-oop-exam" data-nav-link="p621-oop-exam">Virtual functions and inheritance</a>
+			<a class="nav-link" href="#p621-pointers-exam" data-nav-link="p621-pointers-exam">Pointer arithmetic</a>
+			<h3 class="nav-subheading">Study guide chapters</h3>
+			<a class="nav-link" href="#p621-chapter-1" data-nav-link="p621-chapter-1">Chapter 1 · Programming paradigms</a>
+			<a class="nav-link" href="#p621-chapter-2" data-nav-link="p621-chapter-2">Chapter 2 · Introduction to C++</a>
+			<a class="nav-link" href="#p621-chapter-3" data-nav-link="p621-chapter-3">Chapter 3 · Control structures</a>
+			<a class="nav-link" href="#p621-chapter-4" data-nav-link="p621-chapter-4">Chapter 4 · Functions</a>
+			<a class="nav-link" href="#p621-chapter-5" data-nav-link="p621-chapter-5">Chapter 5 · Strings, arrays, pointers</a>
+			<a class="nav-link" href="#p621-chapter-6" data-nav-link="p621-chapter-6">Chapter 6 · Classes and inheritance</a>
+			<a class="nav-link" href="#p621-chapter-7" data-nav-link="p621-chapter-7">Chapter 7 · Templates and virtual functions</a>
+			<a class="nav-link" href="#p621-chapter-8" data-nav-link="p621-chapter-8">Chapter 8 · File I/O and exceptions</a>
+			<a class="nav-link" href="#p621-quick-review" data-nav-link="p621-quick-review">Quick review</a>
+			<a class="nav-link" href="#p621-if-they-ask" data-nav-link="p621-if-they-ask">If they ask</a>
+		</details>
+
 	</nav>
 
 	<main id="main">
@@ -1140,7 +1229,7 @@
 
 		<section class="content-section" id="test-focus-areas" data-nav-section>
 			<div class="section-heading">
-				<h2>Open-Book Test Reference · Topics 1–4</h2>
+				<h2>CA Test</h2>
 				<p>Use this index with a mouse or touchscreen to jump to a topic, subtopic, or fuller explanation. The topic boundaries below follow the Programming 622 Study Guide.</p>
 			</div>
 			<div class="callout info">
@@ -3434,6 +3523,1350 @@ int main() {
 				</article>
 			</div>
 		</section>
+
+		<section class="content-section" id="programming-621-reference" data-nav-section>
+			<div class="section-heading">
+				<h2>Programming 621 · Previous Study Reference</h2>
+				<p>This section brings together the supplied Programming 621 exam pointers and chapter notes as a reference to material covered previously. Its exam-pointer labels describe Programming 621 and do not establish Programming 622 test scope.</p>
+			</div>
+		</section>
+		<div class="p621-archive" aria-label="Programming 621 study material">
+    <section id="p621-exam-map" data-nav-section>
+      <div class="section-title">
+        <h2>Exam Pointer Map</h2>
+        <small>Start here</small>
+      </div>
+      <p class="lead">These are the pointer-file topics grouped into the main exam skills. Each row points to the deeper chapter review further down the page.</p>
+      <table>
+        <thead>
+          <tr><th>Pointer topic</th><th>What to know</th><th>Go deeper</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Overloading and default arguments</td><td>Same function name, different parameter lists; default values supplied in the prototype.</td><td><a href="#p621-chapter-4">Chapter 4</a>, <a href="#p621-chapter-7">Chapter 7</a></td></tr>
+          <tr><td><code>ifstream</code>, <code>ofstream</code>, <code>fstream</code></td><td>Read, write, or read/write file data using stream objects.</td><td><a href="#p621-chapter-8">Chapter 8</a></td></tr>
+          <tr><td><code>try</code>, <code>catch</code>, <code>throw</code></td><td>Detect runtime problems, throw a value, and handle it in a matching catch block.</td><td><a href="#p621-chapter-8">Chapter 8</a></td></tr>
+          <tr><td><code>do-while</code> login/menu loops</td><td>Run once before testing the condition; ideal for repeated prompts and menus.</td><td><a href="#p621-chapter-3">Chapter 3</a></td></tr>
+          <tr><td>Function prototypes and calls</td><td>Declare before use; match return type, function name, and parameter order.</td><td><a href="#p621-chapter-4">Chapter 4</a></td></tr>
+          <tr><td><code>calculateFine()</code> and <code>printReceipt()</code></td><td>Use value-returning functions when a result is needed; use void for output/action functions.</td><td><a href="#p621-chapter-4">Chapter 4</a></td></tr>
+          <tr><td>Pure virtual functions</td><td>Use <code>= 0</code> to make a base class abstract.</td><td><a href="#p621-chapter-7">Chapter 7</a></td></tr>
+          <tr><td>Initializer lists</td><td>Call base constructors before the derived constructor body runs.</td><td><a href="#p621-chapter-6">Chapter 6</a></td></tr>
+          <tr><td>Function overriding</td><td>Derived classes provide their own version of a virtual base function.</td><td><a href="#p621-chapter-7">Chapter 7</a></td></tr>
+          <tr><td>Object pointers and deletion</td><td>Store derived objects through base pointers, call virtual functions, then <code>delete</code> dynamic objects.</td><td><a href="#p621-chapter-6">Chapter 6</a>, <a href="#p621-chapter-7">Chapter 7</a></td></tr>
+          <tr><td>Pointer arithmetic and arrays</td><td>Move through arrays using addresses, dereferencing, and pointer increments.</td><td><a href="#p621-chapter-5">Chapter 5</a></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="p621-functions-exam" data-nav-section>
+      <div class="section-title">
+        <h2>Functions and Overloading</h2>
+        <small>Exam focus</small>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3 class="green">Prototype, Call, Definition</h3>
+          <p>A function prototype tells the compiler the function name, return type, and parameter list before the function is called.</p>
+          <pre><code>double calculateFine(int daysLate);   // prototype
+void printReceipt(string name, double fine);
+
+int main()
+{
+    int daysLate = 3;
+    double fine;
+
+    fine = calculateFine(daysLate);    // call
+    printReceipt("Maya", fine);        // call
+    return 0;
+}
+
+double calculateFine(int daysLate)    // definition
+{
+    double fine;
+
+    fine = daysLate * 2.50;
+    return fine;
+}</code></pre>
+          <div class="links"><a href="#p621-chapter-4">Study Chapter 4</a></div>
+        </article>
+        <article class="card">
+          <h3 class="purple">Overloading and Defaults</h3>
+          <p>Function overloading means using the same function name with different formal parameter lists. Constructor overloading uses the same idea inside a class.</p>
+          <pre><code>void display(int mark);
+void display(double average);
+void display(string name, int mark = 0);
+
+class Student {
+public:
+    Student();
+    Student(string n);
+    Student(string n, int m);
+};</code></pre>
+          <div class="warning">Do not overload by return type only. The parameter list must be different.</div>
+          <div class="links"><a href="#p621-chapter-7">Study Chapter 7</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="p621-files-exam" data-nav-section>
+      <div class="section-title">
+        <h2>File Streams</h2>
+        <small>Exam focus</small>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3>Stream Classes</h3>
+          <table>
+            <thead><tr><th>Class</th><th>Purpose</th><th>Operator pattern</th></tr></thead>
+            <tbody>
+              <tr><td><code>ifstream</code></td><td>Input file stream; reads from a file.</td><td><code>inFile &gt;&gt; value;</code></td></tr>
+              <tr><td><code>ofstream</code></td><td>Output file stream; writes to a file.</td><td><code>outFile &lt;&lt; value;</code></td></tr>
+              <tr><td><code>fstream</code></td><td>Can read and write when opened with the correct mode.</td><td><code>file &gt;&gt;</code> and <code>file &lt;&lt;</code></td></tr>
+            </tbody>
+          </table>
+        </article>
+        <article class="card">
+          <h3 class="green">Typical Read Pattern</h3>
+          <pre><code>#include &lt;fstream&gt;
+using namespace std;
+
+ifstream inFile;
+int mark;
+int total = 0;
+
+inFile.open("marks.txt");
+
+if (!inFile) {
+    cout &lt;&lt; "File could not open";
+} else {
+    while (inFile &gt;&gt; mark) {
+        total += mark;
+    }
+}
+
+inFile.close();</code></pre>
+          <div class="links"><a href="#p621-chapter-8">Study Chapter 8</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="p621-exceptions-exam" data-nav-section>
+      <div class="section-title">
+        <h2>Exception Handling</h2>
+        <small>Exam focus</small>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3 class="amber">try, throw, catch</h3>
+          <ul>
+            <li><code>try</code> contains code that may cause a runtime problem.</li>
+            <li><code>throw</code> sends an exception value when the problem is detected.</li>
+            <li><code>catch</code> receives and handles the thrown value.</li>
+          </ul>
+          <pre><code>try {
+    if (daysLate &lt; 0) {
+        throw daysLate;
+    }
+
+    fine = calculateFine(daysLate);
+}
+catch (int value) {
+    cout &lt;&lt; "Invalid days: " &lt;&lt; value;
+}</code></pre>
+        </article>
+        <article class="card">
+          <h3 class="red">Common Mistakes</h3>
+          <ul>
+            <li>A <code>catch</code> block only runs if something is thrown.</li>
+            <li>Code after <code>throw</code> inside the same block is skipped.</li>
+            <li>Exception handling does not fix bad logic; it handles exceptional cases.</li>
+          </ul>
+          <div class="links"><a href="#p621-chapter-8">Study Chapter 8</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="p621-loops-exam" data-nav-section>
+      <div class="section-title">
+        <h2>do-while Login and Menu Patterns</h2>
+        <small>Exam focus</small>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3 class="green">Login Loop</h3>
+          <p>A <code>do-while</code> loop is useful when the user must be prompted at least once.</p>
+          <pre><code>do {
+    cout &lt;&lt; "Enter password: ";
+    cin &gt;&gt; password;
+} while (password != "admin");</code></pre>
+        </article>
+        <article class="card">
+          <h3 class="green">Menu Loop</h3>
+          <pre><code>do {
+    cout &lt;&lt; "1. Add\\n2. Print\\n0. Exit\\n";
+    cin &gt;&gt; choice;
+
+    switch (choice) {
+    case 1:
+        addRecord();
+        break;
+    case 2:
+        printRecords();
+        break;
+    case 0:
+        cout &lt;&lt; "Goodbye";
+        break;
+    default:
+        cout &lt;&lt; "Invalid choice";
+    }
+} while (choice != 0);</code></pre>
+          <div class="links"><a href="#p621-chapter-3">Study Chapter 3</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="p621-oop-exam" data-nav-section>
+      <div class="section-title">
+        <h2>Virtual Functions and Inheritance</h2>
+        <small>Exam focus</small>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3 class="purple">Abstract Base Class</h3>
+          <pre><code>class Student {
+protected:
+    string name;
+public:
+    Student(string n)
+    {
+        name = n;
+    }
+
+    virtual ~Student() {}
+    virtual void print() const = 0;
+};</code></pre>
+          <p>The <code>= 0</code> makes <code>print()</code> pure virtual. The base class becomes abstract, so you cannot create plain <code>Student</code> objects.</p>
+          <ul>
+            <li>The base class stores common data, such as <code>name</code>.</li>
+            <li><code>protected</code> lets derived classes use the member while still hiding it from the rest of the program.</li>
+            <li>The virtual destructor helps clean up correctly when deleting through a base-class pointer.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3 class="purple">Derived Classes and Overriding</h3>
+          <pre><code>class FullTimeStudent : public Student {
+private:
+    double tuition;
+public:
+    FullTimeStudent(string n, double t)
+        : Student(n)
+    {
+        tuition = t;
+    }
+
+    void print() const override {
+        cout &lt;&lt; name &lt;&lt; " " &lt;&lt; tuition;
+    }
+};</code></pre>
+          <div class="warning">Initializer lists call the base constructor before the derived constructor body runs.</div>
+          <ul>
+            <li><code>: public Student</code> means <code>FullTimeStudent</code> is a kind of <code>Student</code>.</li>
+            <li><code>: Student(n)</code> calls the base-class constructor before the derived constructor body runs.</li>
+            <li><code>tuition = t;</code> is the more foundational way to assign the derived class's own data inside the constructor body.</li>
+            <li><code>override</code> confirms that this function replaces a virtual function from the base class.</li>
+          </ul>
+        </article>
+      </div>
+      <div class="grid" style="margin-top:1rem">
+        <article class="card">
+          <h3 class="amber">The Colon in Inheritance</h3>
+          <p>In C++, the colon is required when one class inherits from another class. There is no simpler replacement for the inheritance line itself.</p>
+          <pre><code>class FullTimeStudent : public Student
+{
+    // FullTimeStudent inherits from Student
+};</code></pre>
+          <ul>
+            <li><code>: public Student</code> means <code>FullTimeStudent</code> is a type of <code>Student</code>.</li>
+            <li>The word <code>public</code> keeps the base class's public members public in the derived class.</li>
+            <li>For exam writing, read the colon as "inherits from".</li>
+          </ul>
+          <div class="warning">The inheritance colon is required. What can be made more foundational is the constructor body after the class has inherited.</div>
+        </article>
+        <article class="card">
+          <h3 class="amber">The Tilde in Destructors</h3>
+          <p>A destructor is a special member function that runs when an object is destroyed. It has the same name as the class, but starts with <code>~</code>.</p>
+          <pre><code>class Student {
+public:
+    virtual ~Student()
+    {
+        // cleanup code would go here
+    }
+};</code></pre>
+          <ul>
+            <li><code>~Student()</code> means "destructor for Student".</li>
+            <li>A destructor has no return type, not even <code>void</code>.</li>
+            <li>Use <code>virtual</code> on a base-class destructor when derived objects may be deleted through a base-class pointer.</li>
+            <li>If there is no special cleanup, the destructor body can be empty.</li>
+          </ul>
+        </article>
+      </div>
+      <div class="card" style="margin-top:1rem">
+        <h3 class="green">Iterating Through Object Pointers</h3>
+        <pre><code>Student* list[2];
+list[0] = new FullTimeStudent("Asha", 12000);
+list[1] = new PartTimeStudent("Ben", 3);
+
+for (int i = 0; i &lt; 2; i++) {
+    list[i]-&gt;print();      // virtual call
+}
+
+for (int i = 0; i &lt; 2; i++) {
+    delete list[i];        // release memory
+    list[i] = nullptr;     // no longer points to deleted memory
+}</code></pre>
+        <table>
+          <thead><tr><th>Line</th><th>Logic</th></tr></thead>
+          <tbody>
+            <tr><td><code>Student* list[2];</code></td><td>The array stores addresses of <code>Student</code>-type objects.</td></tr>
+            <tr><td><code>new FullTimeStudent(...)</code></td><td>A derived object is created dynamically and its address is stored in a base-class pointer.</td></tr>
+            <tr><td><code>list[i]-&gt;print()</code></td><td>Because <code>print()</code> is virtual, C++ chooses the correct derived version at runtime.</td></tr>
+            <tr><td><code>delete list[i];</code></td><td>Memory created with <code>new</code> must be released after use.</td></tr>
+            <tr><td><code>list[i] = nullptr;</code></td><td>After deletion, clearly mark the pointer as pointing to no valid object.</td></tr>
+          </tbody>
+        </table>
+        <div class="links"><a href="#p621-chapter-6">Study Chapter 6</a><a href="#p621-chapter-7">Study Chapter 7</a></div>
+      </div>
+    </section>
+
+    <section id="p621-pointers-exam" data-nav-section>
+      <div class="section-title">
+        <h2>Pointer Arithmetic</h2>
+        <small>Exam focus</small>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3 class="green">2D Array Traversal</h3>
+          <pre><code>int votes[2][3] = {{12, 8, 15}, {9, 17, 11}};
+int* p;
+p = &amp;votes[0][0];
+
+for (int i = 0; i &lt; 6; i++) {
+    cout &lt;&lt; *(p + i) &lt;&lt; " ";
+}</code></pre>
+          <p>A two-dimensional array is stored row by row in memory. The pointer starts at the first element, then <code>p + i</code> moves to the next integer position.</p>
+          <table>
+            <thead><tr><th>Expression</th><th>Element reached</th><th>Value</th></tr></thead>
+            <tbody>
+              <tr><td><code>*(p + 0)</code></td><td><code>votes[0][0]</code></td><td><code>12</code></td></tr>
+              <tr><td><code>*(p + 1)</code></td><td><code>votes[0][1]</code></td><td><code>8</code></td></tr>
+              <tr><td><code>*(p + 2)</code></td><td><code>votes[0][2]</code></td><td><code>15</code></td></tr>
+              <tr><td><code>*(p + 3)</code></td><td><code>votes[1][0]</code></td><td><code>9</code></td></tr>
+            </tbody>
+          </table>
+        </article>
+        <article class="card">
+          <h3 class="green">Maximum and Total Votes</h3>
+          <pre><code>int maximum(int* p, int size)
+{
+    int maxValue = *p;
+    for (int i = 1; i &lt; size; i++) {
+        if (*(p + i) &gt; maxValue) {
+            maxValue = *(p + i);
+        }
+    }
+    return maxValue;
+}
+
+int totalVotes(int* p, int size)
+{
+    int total = 0;
+    for (int i = 0; i &lt; size; i++) {
+        total += *(p + i);
+    }
+    return total;
+}</code></pre>
+          <ul>
+            <li><code>*p</code> means "the value at the address currently stored in <code>p</code>".</li>
+            <li><code>*(p + i)</code> means "move <code>i</code> elements forward, then read the value there".</li>
+            <li>The <code>size</code> argument protects the function from reading past the end of the array.</li>
+          </ul>
+          <div class="links"><a href="#p621-chapter-5">Study Chapter 5</a></div>
+        </article>
+      </div>
+      <div class="card" style="margin-top:1rem">
+        <h3 class="amber">Pointer Logic: Address, Dereference, Move</h3>
+        <p>Most pointer questions use the same three-step thinking pattern. First identify the address, then decide whether the code moves the pointer, and only then read or change the value.</p>
+        <table>
+          <thead><tr><th>Step</th><th>Question to ask</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td>Address</td><td>What memory location does the pointer hold?</td><td><code>p = &amp;marks[0];</code></td></tr>
+            <tr><td>Move</td><td>Does the expression move to another element?</td><td><code>p + 2</code> reaches the third element.</td></tr>
+            <tr><td>Dereference</td><td>Does the code read the value at that address?</td><td><code>*(p + 2)</code> reads the third element's value.</td></tr>
+          </tbody>
+        </table>
+        <pre><code>int marks[4] = {70, 65, 88, 91};
+int* p;
+p = marks;               // same as &amp;marks[0]
+
+cout &lt;&lt; *p;             // 70
+cout &lt;&lt; *(p + 2);       // 88
+
+p++;                    // p now points at marks[1]
+cout &lt;&lt; *p;             // 65</code></pre>
+        <div class="danger">Exam trap: <code>p + 2</code> does not change <code>p</code>. It only calculates another address. <code>p++</code> actually changes where <code>p</code> points.</div>
+      </div>
+      <div class="grid" style="margin-top:1rem">
+        <article class="card">
+          <h3 class="red">Why Pointer Cleanup Is Necessary</h3>
+          <p><code>new</code> reserves memory while the program is running. That memory remains reserved until it is released with <code>delete</code>, even if the pointer variable goes out of scope.</p>
+          <table>
+            <thead><tr><th>Problem</th><th>Meaning</th><th>Cause</th></tr></thead>
+            <tbody>
+              <tr><td>Memory leak</td><td>Allocated memory is never returned to the program.</td><td>Losing or replacing a pointer before calling <code>delete</code>.</td></tr>
+              <tr><td>Dangling pointer</td><td>A pointer still contains the address of memory that has already been deleted.</td><td>Calling <code>delete</code> without resetting the pointer.</td></tr>
+              <tr><td>Double deletion</td><td>The program tries to delete the same allocation more than once.</td><td>Calling <code>delete</code> again through a dangling pointer.</td></tr>
+            </tbody>
+          </table>
+          <div class="note">Cleanup is about ownership: the code that owns memory created with <code>new</code> is responsible for releasing it.</div>
+        </article>
+        <article class="card">
+          <h3 class="green">The Basic Cleanup Pattern</h3>
+          <pre><code>Student* student;
+student = new FullTimeStudent("Asha", 12000);
+
+student-&gt;print();
+
+delete student;       // destroy object and release memory
+student = nullptr;    // pointer now points to nothing</code></pre>
+          <ol>
+            <li>Use the dynamically allocated object.</li>
+            <li>Call <code>delete</code> once when the object is no longer needed.</li>
+            <li>Assign <code>nullptr</code> if the pointer remains in scope.</li>
+          </ol>
+          <div class="warning"><code>delete</code> releases the object, but it does not automatically change the pointer variable. Without the assignment, the pointer still stores the old address.</div>
+        </article>
+      </div>
+      <div class="grid" style="margin-top:1rem">
+        <article class="card">
+          <h3 class="green">delete vs delete[]</h3>
+          <table>
+            <thead><tr><th>Allocation</th><th>Correct cleanup</th></tr></thead>
+            <tbody>
+              <tr><td><code>p = new int;</code></td><td><code>delete p;</code></td></tr>
+              <tr><td><code>p = new Student(...);</code></td><td><code>delete p;</code></td></tr>
+              <tr><td><code>p = new int[10];</code></td><td><code>delete[] p;</code></td></tr>
+              <tr><td><code>p = new Student[5];</code></td><td><code>delete[] p;</code></td></tr>
+            </tbody>
+          </table>
+          <pre><code>int* marks;
+marks = new int[5];
+
+// use marks[0] to marks[4]
+
+delete[] marks;
+marks = nullptr;</code></pre>
+          <div class="danger">Match the forms exactly: one object uses <code>delete</code>; an array created with <code>new[]</code> uses <code>delete[]</code>.</div>
+        </article>
+        <article class="card">
+          <h3 class="amber">When Not to Use delete</h3>
+          <p>Only delete memory that your program obtained with <code>new</code>. Normal local variables and fixed arrays are cleaned up automatically.</p>
+          <pre><code>int mark = 80;
+int marks[5];
+Student student("Asha");
+
+// Do not delete these.
+
+int* p;
+p = &amp;mark;              // points to existing variable
+
+// Do not delete p.</code></pre>
+          <ul>
+            <li>Do not delete a stack/local variable.</li>
+            <li>Do not delete a pointer that only borrows another object's address.</li>
+            <li>Do not delete the same allocation through two different pointers.</li>
+          </ul>
+        </article>
+      </div>
+      <div class="grid" style="margin-top:1rem">
+        <article class="card">
+          <h3 class="green">Understanding nullptr</h3>
+          <p><code>nullptr</code> is a special value meaning that a pointer deliberately points to no object or memory location.</p>
+          <pre><code>Student* student;
+student = nullptr;
+
+if (student != nullptr) {
+    student-&gt;print();
+}
+
+delete student;        // safe: deleting nullptr does nothing</code></pre>
+          <ul>
+            <li>Initialize a pointer to <code>nullptr</code> when it does not yet have an address.</li>
+            <li>Test against <code>nullptr</code> before dereferencing an optional pointer.</li>
+            <li>Reset a pointer to <code>nullptr</code> after deletion when it remains available for later use.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3 class="red">Unsafe and Safe Comparison</h3>
+          <pre><code>// Unsafe
+Student* p;
+p = new FullTimeStudent("Asha", 12000);
+delete p;
+p-&gt;print();             // error: dangling pointer
+
+// Safer
+p = new FullTimeStudent("Asha", 12000);
+delete p;
+p = nullptr;
+
+if (p != nullptr) {
+    p-&gt;print();
+}</code></pre>
+          <div class="warning">Setting a pointer to <code>nullptr</code> does not release memory by itself. If you write <code>p = nullptr;</code> before <code>delete p;</code>, the original address is lost and the allocation leaks.</div>
+        </article>
+      </div>
+      <div class="card" style="margin-top:1rem">
+        <h3 class="amber">Pointer Cleanup Checklist</h3>
+        <ol>
+          <li>Was the memory created with <code>new</code> or <code>new[]</code>? If not, do not delete it.</li>
+          <li>Who owns the allocation and is responsible for cleanup?</li>
+          <li>Use <code>delete</code> for one object or <code>delete[]</code> for a dynamic array.</li>
+          <li>Delete it once, after its final use.</li>
+          <li>Set the surviving pointer to <code>nullptr</code>.</li>
+          <li>Never dereference a pointer after deletion or while it is <code>nullptr</code>.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="divider" id="p621-study-guide" data-nav-section>
+      <div class="section-title">
+        <h2>Study Guide Chapter Review</h2>
+        <small>Deeper notes</small>
+      </div>
+      <p class="lead">The chapter notes below cover the guide from the beginning, so the exam pointer topics have a foundation: problem solving, C++ basics, control structures, functions, arrays, classes, polymorphism, files, and exceptions.</p>
+    </section>
+
+    <section id="p621-chapter-1" data-nav-section>
+      <div class="section-title">
+        <h2>Chapter 1: Programming Paradigms</h2>
+        <small>Problem solving</small>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3>Core Ideas</h3>
+          <ul>
+            <li>A programming paradigm is an approach to solving a problem using a programming language.</li>
+            <li>Imperative programming focuses on how steps execute.</li>
+            <li>Declarative programming focuses on what result is wanted.</li>
+            <li>Structured design divides a problem into smaller subproblems.</li>
+            <li>Object-oriented design identifies objects, their data, and their operations.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>C++ Processing Steps</h3>
+          <ol>
+            <li>Editor: create and save the source code as a <code>.cpp</code> file.</li>
+            <li>Preprocessor: handles lines beginning with <code>#</code>.</li>
+            <li>Compiler: checks syntax and translates source to object code.</li>
+            <li>Linker: combines object code with library code.</li>
+            <li>Loader: places the executable in memory.</li>
+            <li>Execution: the program runs.</li>
+          </ol>
+          <div class="warning">A compiler checks syntax. A program can compile and still produce the wrong result.</div>
+        </article>
+      </div>
+      <p><a class="top-link" href="#p621-exam-map">Back to exam map</a></p>
+    </section>
+
+    <section id="p621-chapter-2" data-nav-section>
+      <div class="section-title">
+        <h2>Chapter 2: Introduction to C++</h2>
+        <small>Syntax basics</small>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3>Program Structure</h3>
+          <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main()
+{
+    cout &lt;&lt; "Hello" &lt;&lt; endl;
+    return 0;
+}</code></pre>
+          <ul>
+            <li><code>#include &lt;iostream&gt;</code> enables input and output.</li>
+            <li><code>int main()</code> is the starting point.</li>
+            <li>Braces group statements into a block.</li>
+            <li><code>return 0;</code> indicates normal program completion.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Tokens, Types, and Operators</h3>
+          <table>
+            <thead><tr><th>Concept</th><th>Exam meaning</th></tr></thead>
+            <tbody>
+              <tr><td>Token</td><td>Smallest individual unit of a C++ program.</td></tr>
+              <tr><td>Identifier</td><td>Name for variables, functions, classes, and objects.</td></tr>
+              <tr><td>Data type</td><td>Set of values and allowed operations.</td></tr>
+              <tr><td>Simple types</td><td><code>int</code>, <code>double</code>, <code>char</code>, <code>bool</code>.</td></tr>
+              <tr><td>Structured types</td><td>Arrays and classes.</td></tr>
+              <tr><td>Pointer types</td><td>Variables that store addresses.</td></tr>
+            </tbody>
+          </table>
+          <div class="note">Use <code>static_cast&lt;double&gt;(total)</code> when integer division would lose the fractional part.</div>
+        </article>
+      </div>
+      <p><a class="top-link" href="#p621-exam-map">Back to exam map</a></p>
+    </section>
+
+    <section id="p621-chapter-3" data-nav-section>
+      <div class="section-title">
+        <h2>Chapter 3: Control Structures</h2>
+        <small>Selection and loops</small>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3>Selection</h3>
+          <ul>
+            <li>Sequence executes statements in order.</li>
+            <li>Selection chooses a path using <code>if</code>, <code>if...else</code>, or <code>switch</code>.</li>
+            <li><code>switch</code> works well when one expression is compared with constant case labels.</li>
+            <li>Use <code>break</code> to prevent fall-through between cases.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Repetition</h3>
+          <table>
+            <thead><tr><th>Loop</th><th>Best use</th></tr></thead>
+            <tbody>
+              <tr><td><code>while</code></td><td>Repeat while a condition remains true; may run zero times.</td></tr>
+              <tr><td><code>do-while</code></td><td>Run once first, then test; useful for menus and validation.</td></tr>
+              <tr><td><code>for</code></td><td>Counter-controlled repetition when the number of repeats is known.</td></tr>
+            </tbody>
+          </table>
+          <div class="warning">Exam menus usually need a <code>do-while</code> because the menu must display before the choice is tested.</div>
+        </article>
+      </div>
+      <p><a class="top-link" href="#p621-loops-exam">Back to do-while exam section</a></p>
+    </section>
+
+    <section id="p621-chapter-4" data-nav-section>
+      <div class="section-title">
+        <h2>Chapter 4: Functions</h2>
+        <small>Reusable blocks</small>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3>Function Basics</h3>
+          <ul>
+            <li>A function is a named block that performs a task.</li>
+            <li>A value-returning function sends a result back with <code>return</code>.</li>
+            <li>A <code>void</code> function performs an action without returning a value.</li>
+            <li>Formal parameters appear in the function heading.</li>
+            <li>Actual parameters are the values passed during the call.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3 class="green">Exam Function Pattern</h3>
+          <pre><code>double calculateFine(int daysLate)
+{
+    double fine;
+
+    fine = daysLate * 2.50;
+    return fine;
+}
+
+void printReceipt(string name, double fine)
+{
+    cout &lt;&lt; "Name: " &lt;&lt; name &lt;&lt; endl;
+    cout &lt;&lt; "Fine: R" &lt;&lt; fine &lt;&lt; endl;
+}</code></pre>
+          <div class="note"><code>calculateFine()</code> returns a value because the main program needs the fine. <code>printReceipt()</code> is void because it prints output.</div>
+        </article>
+      </div>
+      <p><a class="top-link" href="#p621-functions-exam">Back to functions exam section</a></p>
+    </section>
+
+    <section id="p621-chapter-5" data-nav-section>
+      <div class="section-title">
+        <h2>Chapter 5: Strings, Arrays, and Pointers</h2>
+        <small>Stored collections</small>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3>Arrays and Strings</h3>
+          <ul>
+            <li>An array stores multiple values of the same type under one name.</li>
+            <li>Array indexes start at <code>0</code>.</li>
+            <li>A one-dimensional array is list-like.</li>
+            <li>A two-dimensional array uses rows and columns.</li>
+            <li>Arrays passed to functions behave like address-based data.</li>
+          </ul>
+          <div class="note">Important wording: a normal C++ array does not have built-in methods like <code>marks.length()</code>. In exams, "array methods" usually means functions you write to process arrays.</div>
+        </article>
+        <article class="card">
+          <h3 class="green">Pointer Essentials</h3>
+          <table>
+            <thead><tr><th>Syntax</th><th>Meaning</th></tr></thead>
+            <tbody>
+              <tr><td><code>int* p;</code></td><td><code>p</code> can store the address of an integer.</td></tr>
+              <tr><td><code>p = &amp;x;</code></td><td>Store the address of <code>x</code>.</td></tr>
+              <tr><td><code>*p</code></td><td>Dereference: access the value stored at the address.</td></tr>
+              <tr><td><code>p + 1</code></td><td>Move to the next element of the same type.</td></tr>
+            </tbody>
+          </table>
+          <div class="warning">Pointer arithmetic moves by element size, not by one raw byte in normal typed pointer use.</div>
+        </article>
+      </div>
+      <div class="grid" style="margin-top:1rem">
+        <article class="card">
+          <h3>Declaring, Filling, and Printing Arrays</h3>
+          <p>The size of a fixed array must be known before it is used. Most exam code passes the array and its size together.</p>
+          <pre><code>const int SIZE = 5;
+int marks[SIZE];
+
+for (int i = 0; i &lt; SIZE; i++) {
+    cout &lt;&lt; "Enter mark " &lt;&lt; i + 1 &lt;&lt; ": ";
+    cin &gt;&gt; marks[i];
+}
+
+for (int i = 0; i &lt; SIZE; i++) {
+    cout &lt;&lt; marks[i] &lt;&lt; " ";
+}</code></pre>
+          <div class="warning">The last valid index is <code>SIZE - 1</code>. If <code>SIZE</code> is 5, valid indexes are <code>0</code> to <code>4</code>.</div>
+        </article>
+        <article class="card">
+          <h3 class="green">Passing Arrays to Functions</h3>
+          <p>When an array is passed to a function, the function receives access to the original array data. That is why changes inside the function can affect the original elements.</p>
+          <pre><code>void printArray(const int values[], int size)
+{
+    for (int i = 0; i &lt; size; i++) {
+        cout &lt;&lt; values[i] &lt;&lt; " ";
+    }
+}
+
+void increaseAll(int values[], int size)
+{
+    for (int i = 0; i &lt; size; i++) {
+        values[i] = values[i] + 1;
+    }
+}</code></pre>
+          <div class="note">Use <code>const</code> when the function should read the array but not change it.</div>
+        </article>
+      </div>
+      <div class="grid" style="margin-top:1rem">
+        <article class="card">
+          <h3 class="green">Common Array Functions</h3>
+          <table>
+            <thead><tr><th>Function pattern</th><th>Purpose</th><th>Typical return</th></tr></thead>
+            <tbody>
+              <tr><td><code>sumArray()</code></td><td>Add all elements.</td><td><code>int</code> or <code>double</code></td></tr>
+              <tr><td><code>averageArray()</code></td><td>Calculate the mean value.</td><td><code>double</code></td></tr>
+              <tr><td><code>findMax()</code></td><td>Find the largest value.</td><td>Element value</td></tr>
+              <tr><td><code>findMin()</code></td><td>Find the smallest value.</td><td>Element value</td></tr>
+              <tr><td><code>linearSearch()</code></td><td>Find whether a target exists.</td><td>Index or <code>-1</code></td></tr>
+              <tr><td><code>countIf()</code></td><td>Count values matching a condition.</td><td><code>int</code></td></tr>
+              <tr><td><code>sortArray()</code></td><td>Arrange values in order.</td><td><code>void</code></td></tr>
+            </tbody>
+          </table>
+        </article>
+        <article class="card">
+          <h3 class="green">Sum, Average, and Maximum</h3>
+          <pre><code>int sumArray(const int values[], int size)
+{
+    int total = 0;
+    for (int i = 0; i &lt; size; i++) {
+        total += values[i];
+    }
+    return total;
+}
+
+double averageArray(const int values[], int size)
+{
+    int total;
+    double average;
+
+    total = sumArray(values, size);
+    average = total / static_cast&lt;double&gt;(size);
+
+    return average;
+}
+
+int findMax(const int values[], int size)
+{
+    int maxValue = values[0];
+    for (int i = 1; i &lt; size; i++) {
+        if (values[i] &gt; maxValue) {
+            maxValue = values[i];
+        }
+    }
+    return maxValue;
+}</code></pre>
+        </article>
+      </div>
+      <div class="grid" style="margin-top:1rem">
+        <article class="card">
+          <h3 class="green">Search and Count</h3>
+          <pre><code>int linearSearch(const int values[], int size, int target)
+{
+    for (int i = 0; i &lt; size; i++) {
+        if (values[i] == target) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int countPasses(const int marks[], int size)
+{
+    int count = 0;
+    for (int i = 0; i &lt; size; i++) {
+        if (marks[i] &gt;= 50) {
+            count++;
+        }
+    }
+    return count;
+}</code></pre>
+          <p><code>-1</code> is often used to mean "not found" because it is not a valid array index.</p>
+        </article>
+        <article class="card">
+          <h3 class="green">Simple Sort Pattern</h3>
+          <p>This nested-loop pattern is easy to remember for exams. It repeatedly swaps values so the smaller values move toward the front.</p>
+          <pre><code>void sortArray(int values[], int size)
+{
+    for (int i = 0; i &lt; size - 1; i++) {
+        for (int j = i + 1; j &lt; size; j++) {
+            if (values[j] &lt; values[i]) {
+                int temp = values[i];
+                values[i] = values[j];
+                values[j] = temp;
+            }
+        }
+    }
+}</code></pre>
+          <div class="warning">Sorting changes the original array because the function receives access to the array elements.</div>
+        </article>
+      </div>
+      <div class="grid" style="margin-top:1rem">
+        <article class="card">
+          <h3>Two-Dimensional Arrays</h3>
+          <p>A 2D array is useful for rows and columns, such as candidates and voting stations or students and tests.</p>
+          <pre><code>const int ROWS = 2;
+const int COLS = 3;
+int votes[ROWS][COLS] = {
+    {12, 8, 15},
+    {9, 17, 11}
+};
+
+for (int r = 0; r &lt; ROWS; r++) {
+    for (int c = 0; c &lt; COLS; c++) {
+        cout &lt;&lt; votes[r][c] &lt;&lt; " ";
+    }
+    cout &lt;&lt; endl;
+}</code></pre>
+        </article>
+        <article class="card">
+          <h3 class="amber">Array Exam Traps</h3>
+          <ul>
+            <li>Do not use <code>&lt;= size</code> in the loop condition. Use <code>i &lt; size</code>.</li>
+            <li>Initialize totals before adding: <code>int total = 0;</code>.</li>
+            <li>Initialize maximum/minimum from the first element, not from a random number.</li>
+            <li>Pass the number of rows and columns when processing 2D arrays.</li>
+            <li>Use nested loops for 2D arrays: outer loop for rows, inner loop for columns.</li>
+          </ul>
+        </article>
+      </div>
+      <div class="grid" style="margin-top:1rem">
+        <article class="card">
+          <h3 class="green">Pointer Arithmetic Walkthrough</h3>
+          <p>When an array name is used in many expressions, it behaves like the address of the first element. That means <code>marks</code>, <code>&amp;marks[0]</code>, and a pointer assigned with <code>int* p = marks;</code> all lead to the first element.</p>
+          <pre><code>int marks[5] = {45, 78, 66, 91, 52};
+int* p;
+p = marks;
+
+for (int i = 0; i &lt; 5; i++) {
+    cout &lt;&lt; "Address: " &lt;&lt; (p + i);
+    cout &lt;&lt; " Value: " &lt;&lt; *(p + i);
+}</code></pre>
+          <p>The loop does not need square brackets. The expression <code>*(p + i)</code> is another way to write <code>marks[i]</code>.</p>
+        </article>
+        <article class="card">
+          <h3 class="amber">Pointer Exam Reasoning</h3>
+          <ol>
+            <li>Write down the array values in order.</li>
+            <li>Place the pointer on the element it currently addresses.</li>
+            <li>Apply any movement such as <code>p++</code>, <code>p + i</code>, or <code>p += 2</code>.</li>
+            <li>Only read the value when you see <code>*</code>.</li>
+          </ol>
+          <table>
+            <thead><tr><th>Expression</th><th>Changes pointer?</th><th>Reads value?</th></tr></thead>
+            <tbody>
+              <tr><td><code>p</code></td><td>No</td><td>No, it is the address.</td></tr>
+              <tr><td><code>*p</code></td><td>No</td><td>Yes, reads current value.</td></tr>
+              <tr><td><code>p + 1</code></td><td>No</td><td>No, calculates next address.</td></tr>
+              <tr><td><code>*(p + 1)</code></td><td>No</td><td>Yes, reads next value.</td></tr>
+              <tr><td><code>p++</code></td><td>Yes</td><td>No, unless combined with <code>*</code>.</td></tr>
+            </tbody>
+          </table>
+        </article>
+      </div>
+      <p><a class="top-link" href="#p621-pointers-exam">Back to pointer exam section</a></p>
+    </section>
+
+    <section id="p621-chapter-6" data-nav-section>
+      <div class="section-title">
+        <h2>Chapter 6: Classes and Inheritance</h2>
+        <small>OOP foundations</small>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3 class="purple">Classes and Objects</h3>
+          <ul>
+            <li>A class groups data members and member functions into one unit.</li>
+            <li>An object is an instance of a class.</li>
+            <li><code>private</code> members are accessible only inside the class.</li>
+            <li><code>public</code> members form the interface used by the rest of the program.</li>
+            <li>Constructors initialize objects when they are created.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3 class="purple">Inheritance</h3>
+          <pre><code>class Person {
+protected:
+    string name;
+public:
+    Person(string n)
+    {
+        name = n;
+    }
+};
+
+class Student : public Person {
+private:
+    int studentNo;
+public:
+    Student(string n, int s)
+        : Person(n)
+    {
+        studentNo = s;
+    }
+};</code></pre>
+          <div class="note">The derived constructor uses an initializer list to call the base constructor.</div>
+        </article>
+      </div>
+      <div class="grid" style="margin-top:1rem">
+        <article class="card">
+          <h3 class="purple">Base vs Derived Responsibilities</h3>
+          <table>
+            <thead><tr><th>Class level</th><th>Responsibility</th><th>Student example</th></tr></thead>
+            <tbody>
+              <tr><td>Base class</td><td>Stores shared features and defines the common interface.</td><td><code>Student</code> stores <code>name</code> and declares <code>print()</code>.</td></tr>
+              <tr><td>Derived class</td><td>Adds specialized data and behavior.</td><td><code>FullTimeStudent</code> adds <code>tuition</code>.</td></tr>
+              <tr><td>Object</td><td>A real instance created from a class.</td><td><code>FullTimeStudent s("Asha", 12000);</code></td></tr>
+            </tbody>
+          </table>
+          <div class="note">Think "is a": a full-time student is a student, so inheritance makes sense.</div>
+        </article>
+        <article class="card">
+          <h3 class="purple">Constructor Order</h3>
+          <pre><code>class PartTimeStudent : public Student {
+private:
+    int modules;
+public:
+    PartTimeStudent(string n, int m)
+        : Student(n)
+    {
+        modules = m;
+    }
+};</code></pre>
+          <ol>
+            <li>The base part, <code>Student(n)</code>, is built first.</li>
+            <li>The derived data member, <code>modules(m)</code>, is initialized next.</li>
+            <li>The constructor body runs last.</li>
+          </ol>
+          <div class="warning">If the base class has no default constructor, the derived constructor must call a base constructor in the initializer list.</div>
+        </article>
+      </div>
+      <p><a class="top-link" href="#p621-oop-exam">Back to OOP exam section</a></p>
+    </section>
+
+    <section id="p621-chapter-7" data-nav-section>
+      <div class="section-title">
+        <h2>Chapter 7: Templates, Virtual Functions, and Overloading</h2>
+        <small>Polymorphism</small>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3 class="purple">Virtual Functions</h3>
+          <ul>
+            <li>A virtual function allows the derived class version to run through a base-class pointer or reference.</li>
+            <li>A pure virtual function is written with <code>= 0</code>.</li>
+            <li>A class with at least one pure virtual function is abstract.</li>
+            <li>Concrete derived classes must override inherited pure virtual functions.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3 class="green">Overloading and Templates</h3>
+          <ul>
+            <li>Function overloading uses one function name with different parameter lists.</li>
+            <li>Operator overloading gives an operator a class-specific meaning.</li>
+            <li>Templates allow a function or class pattern to work with different data types.</li>
+          </ul>
+          <pre><code>template &lt;class Type&gt;
+Type larger(Type x, Type y)
+{
+    if (x &gt; y) {
+        return x;
+    } else {
+        return y;
+    }
+}</code></pre>
+        </article>
+      </div>
+      <div class="grid" style="margin-top:1rem">
+        <article class="card">
+          <h3 class="purple">Overriding Checklist</h3>
+          <ul>
+            <li>The base function must be marked <code>virtual</code> when runtime polymorphism is needed.</li>
+            <li>The derived function must have the same name, return type, and parameter list.</li>
+            <li>Use <code>override</code> so the compiler warns you if the signature does not match.</li>
+            <li>A pure virtual function must be implemented before a derived class can be used to create objects.</li>
+          </ul>
+          <pre><code>class PartTimeStudent : public Student {
+public:
+    void print() const override {
+        cout &lt;&lt; "Part-time: " &lt;&lt; name;
+    }
+};</code></pre>
+        </article>
+        <article class="card">
+          <h3 class="red">Overriding vs Overloading</h3>
+          <table>
+            <thead><tr><th>Concept</th><th>Meaning</th><th>Example</th></tr></thead>
+            <tbody>
+              <tr><td>Overriding</td><td>Derived class replaces a base virtual function.</td><td><code>void print() const override</code></td></tr>
+              <tr><td>Overloading</td><td>Same scope uses same name with different parameters.</td><td><code>display(int)</code>, <code>display(string)</code></td></tr>
+              <tr><td>Exam clue</td><td>Look for inheritance and <code>virtual</code>.</td><td>Usually overriding.</td></tr>
+            </tbody>
+          </table>
+          <div class="danger">Changing the parameter list in a derived class can accidentally overload instead of override. That is why <code>override</code> is useful.</div>
+        </article>
+      </div>
+      <p><a class="top-link" href="#p621-oop-exam">Back to OOP exam section</a></p>
+    </section>
+
+    <section id="p621-chapter-8" data-nav-section>
+      <div class="section-title">
+        <h2>Chapter 8: File I/O and Exception Handling</h2>
+        <small>Runtime data</small>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3>File I/O</h3>
+          <ul>
+            <li>Include <code>&lt;fstream&gt;</code> for file streams.</li>
+            <li>Use <code>ifstream</code> to read from files.</li>
+            <li>Use <code>ofstream</code> to write to files.</li>
+            <li>Use <code>fstream</code> when a file needs both input and output modes.</li>
+            <li>Always check that the file opened successfully before processing it.</li>
+          </ul>
+          <table>
+            <thead><tr><th>Stream</th><th>Direction</th><th>Think of it as</th></tr></thead>
+            <tbody>
+              <tr><td><code>ifstream</code></td><td>File to program</td><td>Like <code>cin</code>, but from a file.</td></tr>
+              <tr><td><code>ofstream</code></td><td>Program to file</td><td>Like <code>cout</code>, but into a file.</td></tr>
+              <tr><td><code>fstream</code></td><td>Both directions</td><td>A stream that can read and write.</td></tr>
+            </tbody>
+          </table>
+        </article>
+        <article class="card">
+          <h3 class="amber">Exceptions</h3>
+          <ul>
+            <li>An exception is an undesirable situation detected while the program runs.</li>
+            <li><code>throw</code> raises an exception.</li>
+            <li><code>catch</code> handles the exception.</li>
+            <li>Multiple catch blocks can handle different thrown types.</li>
+          </ul>
+          <div class="danger">A thrown type must match a compatible catch block. For example, <code>throw 10;</code> is handled by <code>catch (int e)</code>.</div>
+        </article>
+      </div>
+      <div class="grid" style="margin-top:1rem">
+        <article class="card">
+          <h3>Opening and Closing Files</h3>
+          <p>You can open a file directly when you create the stream, or create the stream first and call <code>open()</code> later.</p>
+          <pre><code>// Option 1: open immediately
+ifstream inFile("marks.txt");
+
+// Option 2: declare first, open later
+ofstream outFile;
+outFile.open("results.txt");
+
+if (!outFile) {
+    cout &lt;&lt; "File could not be opened";
+}
+
+outFile.close();</code></pre>
+          <div class="note">Closing is good practice because it releases the file and makes sure buffered output is written.</div>
+        </article>
+        <article class="card">
+          <h3>File Open Modes</h3>
+          <table>
+            <thead><tr><th>Mode</th><th>Purpose</th><th>Example</th></tr></thead>
+            <tbody>
+              <tr><td><code>ios::in</code></td><td>Open for reading.</td><td><code>fstream file("data.txt", ios::in);</code></td></tr>
+              <tr><td><code>ios::out</code></td><td>Open for writing. Usually replaces existing content.</td><td><code>ofstream file("data.txt", ios::out);</code></td></tr>
+              <tr><td><code>ios::app</code></td><td>Append new output at the end of the file.</td><td><code>ofstream file("log.txt", ios::app);</code></td></tr>
+              <tr><td><code>ios::binary</code></td><td>Open as binary data rather than normal text.</td><td><code>fstream file("data.bin", ios::binary);</code></td></tr>
+            </tbody>
+          </table>
+          <div class="warning"><code>ios::out</code> can overwrite an existing file. Use <code>ios::app</code> when you want to add new lines without deleting old content.</div>
+        </article>
+      </div>
+      <div class="grid" style="margin-top:1rem">
+        <article class="card">
+          <h3 class="green">Writing to a File</h3>
+          <p>Writing uses the insertion operator <code>&lt;&lt;</code>, just like <code>cout</code>.</p>
+          <pre><code>ofstream outFile("receipt.txt");
+
+if (!outFile) {
+    cout &lt;&lt; "Cannot create file";
+} else {
+    outFile &lt;&lt; "Student: " &lt;&lt; name &lt;&lt; endl;
+    outFile &lt;&lt; "Fine: R" &lt;&lt; fine &lt;&lt; endl;
+}
+
+outFile.close();</code></pre>
+        </article>
+        <article class="card">
+          <h3 class="green">Appending to a File</h3>
+          <p>Appending is useful for logs, repeated receipts, marks added over time, or audit trails.</p>
+          <pre><code>ofstream logFile("activity.txt", ios::app);
+
+if (logFile) {
+    logFile &lt;&lt; "Menu option selected: ";
+    logFile &lt;&lt; choice &lt;&lt; endl;
+}
+
+logFile.close();</code></pre>
+          <div class="note">Append mode places the write position at the end of the file before writing.</div>
+        </article>
+      </div>
+      <div class="grid" style="margin-top:1rem">
+        <article class="card">
+          <h3 class="green">Reading Values with &gt;&gt;</h3>
+          <p>Use the extraction operator <code>&gt;&gt;</code> when the file contains simple whitespace-separated values such as marks, totals, names without spaces, or codes.</p>
+          <pre><code>ifstream inFile("marks.txt");
+int mark;
+int total = 0;
+int count = 0;
+
+while (inFile &gt;&gt; mark) {
+    total += mark;
+    count++;
+}
+
+inFile.close();</code></pre>
+          <div class="warning">This pattern stops automatically when reading fails, usually because the end of the file has been reached.</div>
+        </article>
+        <article class="card">
+          <h3 class="green">Reading Whole Lines with getline</h3>
+          <p>Use <code>getline()</code> when the file contains text that may include spaces, such as full names, addresses, or descriptions.</p>
+          <pre><code>ifstream inFile("students.txt");
+string line;
+
+while (getline(inFile, line)) {
+    cout &lt;&lt; line &lt;&lt; endl;
+}
+
+inFile.close();</code></pre>
+          <div class="note"><code>inFile &gt;&gt; name</code> reads only up to whitespace. <code>getline(inFile, name)</code> reads the whole line.</div>
+        </article>
+      </div>
+      <div class="grid" style="margin-top:1rem">
+        <article class="card">
+          <h3>Reading Records</h3>
+          <p>A record is a group of related fields. For example, each student record might have a name, mark, and status.</p>
+          <pre><code>// File format per line:
+// name mark
+// Asha 78
+// Ben 62
+
+ifstream inFile("students.txt");
+string name;
+int mark;
+
+while (inFile &gt;&gt; name &gt;&gt; mark) {
+    cout &lt;&lt; name &lt;&lt; " scored " &lt;&lt; mark &lt;&lt; endl;
+}
+
+inFile.close();</code></pre>
+          <div class="warning">This works well when names have no spaces. For full names, use <code>getline()</code> and a clearer file format.</div>
+        </article>
+        <article class="card">
+          <h3>Processing File Data</h3>
+          <p>Most exam questions ask you to read a file and calculate something: total, average, highest, count, or a filtered result.</p>
+          <pre><code>ifstream inFile("votes.txt");
+int vote;
+int total = 0;
+int highest = 0;
+
+while (inFile &gt;&gt; vote) {
+    total += vote;
+    if (vote &gt; highest) {
+        highest = vote;
+    }
+}
+
+cout &lt;&lt; "Total votes: " &lt;&lt; total &lt;&lt; endl;
+cout &lt;&lt; "Highest: " &lt;&lt; highest &lt;&lt; endl;</code></pre>
+        </article>
+      </div>
+      <div class="grid" style="margin-top:1rem">
+        <article class="card">
+          <h3>Using fstream for Read and Write</h3>
+          <p><code>fstream</code> is used when the same file stream may need input and output. You specify the modes when opening.</p>
+          <pre><code>fstream file("data.txt", ios::in | ios::out);
+
+if (!file) {
+    cout &lt;&lt; "File error";
+} else {
+    string word;
+    file &gt;&gt; word;             // read
+
+    file.clear();             // clear stream state if needed
+    file &lt;&lt; "\\nUpdated";      // write
+}
+
+file.close();</code></pre>
+          <div class="warning">For beginner exam questions, separate <code>ifstream</code> and <code>ofstream</code> code is usually clearer unless the question specifically asks for <code>fstream</code>.</div>
+        </article>
+        <article class="card">
+          <h3 class="amber">File State Checks</h3>
+          <table>
+            <thead><tr><th>Check</th><th>Meaning</th><th>Common use</th></tr></thead>
+            <tbody>
+              <tr><td><code>if (!file)</code></td><td>The file stream is not usable.</td><td>Check after opening.</td></tr>
+              <tr><td><code>file.is_open()</code></td><td>The stream is connected to a file.</td><td>Confirm open status.</td></tr>
+              <tr><td><code>file.eof()</code></td><td>End of file has been reached.</td><td>Less preferred for loop control.</td></tr>
+              <tr><td><code>while (file &gt;&gt; value)</code></td><td>Read succeeded.</td><td>Preferred read loop.</td></tr>
+            </tbody>
+          </table>
+          <div class="danger">Avoid <code>while (!file.eof())</code> for normal reading. It often processes the last value incorrectly. Prefer <code>while (file &gt;&gt; value)</code>.</div>
+        </article>
+      </div>
+      <div class="grid" style="margin-top:1rem">
+        <article class="card">
+          <h3>Combining Files and Exceptions</h3>
+          <p>You can throw an exception when a file cannot be opened, then handle the error in a <code>catch</code> block.</p>
+          <pre><code>try {
+    ifstream inFile("marks.txt");
+
+    if (!inFile) {
+        throw string("marks.txt could not open");
+    }
+
+    int mark;
+    while (inFile &gt;&gt; mark) {
+        cout &lt;&lt; mark &lt;&lt; endl;
+    }
+}
+catch (string message) {
+    cout &lt;&lt; "File error: " &lt;&lt; message;
+}</code></pre>
+        </article>
+        <article class="card">
+          <h3 class="red">File Handling Exam Traps</h3>
+          <ul>
+            <li>Forgetting <code>#include &lt;fstream&gt;</code>.</li>
+            <li>Using <code>ifstream</code> when you need to write.</li>
+            <li>Using <code>ofstream</code> when you need to read.</li>
+            <li>Not checking whether the file opened.</li>
+            <li>Using <code>while (!file.eof())</code> instead of checking whether the read worked.</li>
+            <li>Forgetting that <code>ios::out</code> can replace existing file content.</li>
+            <li>Using <code>&gt;&gt;</code> for full names or sentences that contain spaces.</li>
+          </ul>
+        </article>
+      </div>
+      <p><a class="top-link" href="#p621-files-exam">Back to files exam section</a> <a class="top-link" href="#p621-exceptions-exam">Back to exceptions exam section</a></p>
+    </section>
+
+    <section id="p621-quick-review" data-nav-section>
+      <div class="section-title">
+        <h2>Quick Review: High-Risk Mistakes</h2>
+        <small>Final pass</small>
+      </div>
+      <div class="grid three">
+        <article class="card">
+          <h3 class="red">Syntax Traps</h3>
+          <ul class="checklist">
+            <li>Prototype ends with a semicolon; function definition does not.</li>
+            <li><code>if</code>, <code>while</code>, and <code>for</code> conditions use parentheses.</li>
+            <li>Array indexes start at <code>0</code>, so the last index is <code>size - 1</code>.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3 class="red">Concept Traps</h3>
+          <ul class="checklist">
+            <li><code>ifstream</code> reads; <code>ofstream</code> writes.</li>
+            <li>A pure virtual function makes the base class abstract.</li>
+            <li>A <code>void</code> function cannot be assigned to a variable.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3 class="red">Memory Traps</h3>
+          <ul class="checklist">
+            <li>Use <code>-&gt;</code> to access members through an object pointer.</li>
+            <li>Delete objects created with <code>new</code>.</li>
+            <li>Do not dereference an uninitialized pointer.</li>
+          </ul>
+        </article>
+      </div>
+      <p><a class="top-link" href="#programming-621-reference">Back to top</a></p>
+    </section>
+
+    <section id="p621-if-they-ask" data-nav-section>
+      <div class="section-title">
+        <h2>If They Ask</h2>
+        <small>Question links</small>
+      </div>
+      <p class="lead">Use these as quick jump links when a question asks for a specific pattern, explanation, or comparison.</p>
+      <div class="grid three">
+        <article class="card">
+          <h3 class="green">Code Pattern Questions</h3>
+          <ul class="checklist">
+            <li><a href="#p621-functions-exam">Write a function prototype, call, and definition.</a></li>
+            <li><a href="#p621-functions-exam">Show function overloading or default arguments.</a></li>
+            <li><a href="#p621-loops-exam">Write a do-while login loop.</a></li>
+            <li><a href="#p621-loops-exam">Write a menu-driven do-while loop.</a></li>
+            <li><a href="#p621-pointers-exam">Use pointer arithmetic to move through an array.</a></li>
+            <li><a href="#p621-chapter-5">Write array functions for sum, average, maximum, search, count, or sort.</a></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3 class="amber">File and Exception Questions</h3>
+          <ul class="checklist">
+            <li><a href="#p621-files-exam">Choose between ifstream, ofstream, and fstream.</a></li>
+            <li><a href="#p621-chapter-8">Open, check, read from, write to, append to, and close files.</a></li>
+            <li><a href="#p621-chapter-8">Read records from a text file.</a></li>
+            <li><a href="#p621-chapter-8">Process file data for total, highest, count, or average.</a></li>
+            <li><a href="#p621-exceptions-exam">Explain try, throw, and catch.</a></li>
+            <li><a href="#p621-chapter-8">Combine file opening with exception handling.</a></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3 class="purple">Theory and OOP Questions</h3>
+          <ul class="checklist">
+            <li><a href="#p621-chapter-1">Explain programming paradigms and C++ processing steps.</a></li>
+            <li><a href="#p621-chapter-2">Identify tokens, data types, identifiers, and operators.</a></li>
+            <li><a href="#p621-chapter-6">Explain classes, objects, inheritance, and constructor order.</a></li>
+            <li><a href="#p621-oop-exam">Write or explain a pure virtual function.</a></li>
+            <li><a href="#p621-chapter-7">Compare overriding, overloading, and templates.</a></li>
+            <li><a href="#p621-quick-review">Check high-risk syntax, concept, and memory mistakes.</a></li>
+          </ul>
+        </article>
+      </div>
+      <p><a class="top-link" href="#programming-621-reference">Back to top</a></p>
+    </section>
+		</div>
 
 		<footer class="footer">
 			<p>Built as a self-contained Programming 622 revision guide from the local study guide PDF. Open this file directly in a browser; no build step or internet connection is required.</p>
