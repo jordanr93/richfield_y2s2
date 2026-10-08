@@ -356,9 +356,6 @@
 			gap: 16px;
 		}
 
-		.grid.three {
-			grid-template-columns: repeat(3, minmax(0, 1fr));
-		}
 
 		.grid .wide {
 			grid-column: 1 / -1;
@@ -561,6 +558,7 @@
 		}
 
 		@media (max-width: 980px) {
+		/*noinspection CssUnusedSymbol*/
 			body.nav-open {
 				overflow: hidden;
 			}
@@ -583,8 +581,7 @@
 				margin-left: 0;
 				padding: 68px 18px 72px;
 			}
-	.grid,
-	.grid.three {
+	.grid {
 				grid-template-columns: 1fr;
 			}
 

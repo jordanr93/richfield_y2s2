@@ -308,9 +308,6 @@
 			border-bottom: 1px solid var(--border);
 		}
 
-		.section-band.alt {
-			background: #0f141b;
-		}
 
 		.section-heading {
 			margin-bottom: 1.4rem;
@@ -333,9 +330,6 @@
 			gap: 1rem;
 		}
 
-		.grid.three {
-			grid-template-columns: repeat(3, minmax(0, 1fr));
-		}
 
 		.card {
 			border: 1px solid var(--border);
@@ -588,6 +582,7 @@
 			transition: opacity 180ms ease, transform 180ms ease;
 		}
 
+		/*noinspection CssUnusedSymbol*/
 		.back-top.visible {
 			opacity: 1;
 			pointer-events: auto;
@@ -599,6 +594,7 @@
 		}
 
 		@media (max-width: 980px) {
+		/*noinspection CssUnusedSymbol*/
 			body.menu-open {
 				overflow: hidden;
 			}
@@ -631,8 +627,7 @@
 			.hero {
 				padding-top: 4.5rem;
 			}
-	.grid,
-	.grid.three {
+	.grid {
 				grid-template-columns: 1fr;
 			}
 
@@ -694,9 +689,13 @@
 <details class="nav-group nav-collapsible" open>
 	<summary>CA · Topics 1–4</summary>
 	<a href="#test-focus-areas" data-nav-link="test-focus-areas">Quick-reference home</a>
+	<!--suppress HtmlUnknownTarget -->
 	<a href="#ca-topic-1" data-nav-link="ca-topic-1">1 · Foundations</a>
+	<!--suppress HtmlUnknownTarget -->
 	<a href="#ca-topic-2" data-nav-link="ca-topic-2">2 · Preprocessing &amp; PCA</a>
+	<!--suppress HtmlUnknownTarget -->
 	<a href="#ca-topic-3" data-nav-link="ca-topic-3">3 · Regression &amp; trees</a>
+	<!--suppress HtmlUnknownTarget -->
 	<a href="#ca-topic-4" data-nav-link="ca-topic-4">4 · Classification</a>
 	<a href="#ca-formulas" data-nav-link="ca-formulas">Formulas &amp; metric example</a>
 </details>
@@ -766,7 +765,16 @@
 					<p>Choose a topic, a task or an API name. Every reference links to its explanation in General Module Content. Coverage is based on your stated CA scope, not a prediction of individual questions.</p>
 				</div>
 				<nav class="ca-jumps" aria-label="CA quick links">
-					<a href="#ca-topic-1">1 · Foundations</a><a href="#ca-topic-2">2 · Preprocessing</a><a href="#ca-topic-3">3 · Regression</a><a href="#ca-topic-4">4 · Classification</a><a href="#ca-formulas">Formulas</a><a href="#ca-api">Classes &amp; methods</a>
+					<!--suppress HtmlUnknownTarget -->
+					<a href="#ca-topic-1">1 · Foundations</a>
+					<!--suppress HtmlUnknownTarget -->
+					<a href="#ca-topic-2">2 · Preprocessing</a>
+					<!--suppress HtmlUnknownTarget -->
+					<a href="#ca-topic-3">3 · Regression</a>
+					<!--suppress HtmlUnknownTarget -->
+					<a href="#ca-topic-4">4 · Classification</a>
+					<a href="#ca-formulas">Formulas</a>
+					<a href="#ca-api">Classes &amp; methods</a>
 					<button type="button" id="ca-print">Print quick reference</button>
 				</nav>
 				<div id="ca-topics"></div>
@@ -2173,12 +2181,12 @@ iris = load_iris()
 df = pd.DataFrame(iris.data, columns=iris.feature_names)
 df["target"] = iris.target
 X = df.drop(columns=["target"])
-y = df["target"]</code></pre><a href="#ca-group-load">Back to create/load reference</a></article>
+y = df["target"]</code></pre><!--suppress HtmlUnknownTarget --><a href="#ca-group-load">Back to create/load reference</a></article>
 					<article class="card ca-general" id="general-code-inspect"><h4>Inspect before modelling</h4><p><code>head</code> previews records, <code>info</code> prints schema and non-null counts, and <code>describe</code> summarises distributions. <code>shape</code> reports dimension lengths; <code>ndim</code> counts dimensions; <code>size</code> counts elements. NumPy <code>dtype</code> describes an array's element type; pandas <code>dtypes</code> reports each column's type. Attributes do not take parentheses.</p><pre><code>print(df.head())
 df.info()  # prints a summary, returns None
 print(df.describe())
 print(df.shape, df.dtypes, df.columns)
-print(df.isna().sum())</code></pre><a href="#ca-group-inspect">Back to inspection reference</a></article>
+print(df.isna().sum())</code></pre><!--suppress HtmlUnknownTarget --><a href="#ca-group-inspect">Back to inspection reference</a></article>
 					<article class="card ca-general" id="general-code-shape"><h4>Array shapes, selection and reshaping</h4><p>The models here expect X shaped <code>(n_samples, n_features)</code>. For ordinary single-target problems y is usually <code>(n_samples,)</code>. Three house areas are three observations of one feature, not one observation with three features. <code>reshape</code> keeps the elements and changes their arrangement; one <code>-1</code> infers a dimension from the element count. Total size must remain compatible.</p><pre><code>values = np.array([1200, 1500, 1800])
 print(values.shape)                   # (3,)
 print(values.reshape(-1, 1).shape)    # (3, 1): 3 houses, 1 feature
@@ -2188,7 +2196,7 @@ X = np.array([[1, 2], [3, 4], [5, 6]])
 print(X[:, 0])                        # [1, 3, 5], shape (3,)
 print(X[:, [0]])                      # column table, shape (3, 1)
 print(X[0])                           # first row
-print(X.T.shape)                      # (2, 3)</code></pre><p><code>ravel</code> flattens, sharing data when possible; <code>flatten</code> always returns a copy. Neither should be used to erase sample boundaries accidentally. A 1D array's <code>.T</code> remains 1D. <code>hstack</code> joins matching 2D feature blocks horizontally. With pandas, <code>df["Age"]</code> returns a Series but <code>df[["Age"]]</code> returns a one-column table. <code>loc</code> selects labels/masks (label slice endpoints included); <code>iloc</code> selects positions (slice stop excluded).</p><p>A Boolean mask selects only matching records: <code>df.loc[df["Age"] &gt;= 18, ["Age"]]</code>. Combine masks using parenthesised expressions and <code>&amp;</code>/<code>|</code>. In indexing, -1 means the last position, not inferred length. <a href="https://numpy.org/doc/stable/reference/generated/numpy.reshape.html">NumPy reshape reference</a>.</p><a href="#ca-api-reshape">Back to reshape card</a></article>
+print(X.T.shape)                      # (2, 3)</code></pre><p><code>ravel</code> flattens, sharing data when possible; <code>flatten</code> always returns a copy. Neither should be used to erase sample boundaries accidentally. A 1D array's <code>.T</code> remains 1D. <code>hstack</code> joins matching 2D feature blocks horizontally. With pandas, <code>df["Age"]</code> returns a Series but <code>df[["Age"]]</code> returns a one-column table. <code>loc</code> selects labels/masks (label slice endpoints included); <code>iloc</code> selects positions (slice stop excluded).</p><p>A Boolean mask selects only matching records: <code>df.loc[df["Age"] &gt;= 18, ["Age"]]</code>. Combine masks using parenthesised expressions and <code>&amp;</code>/<code>|</code>. In indexing, -1 means the last position, not inferred length. <a href="https://numpy.org/doc/stable/reference/generated/numpy.reshape.html">NumPy reshape reference</a>.</p><!--suppress HtmlUnknownTarget --><a href="#ca-api-reshape">Back to reshape card</a></article>
 					<article class="card ca-general" id="general-code-clean"><h4>Missingness, summaries and clean subsets</h4><p><code>isna</code> creates a Boolean mask; summing counts True values. <code>dropna</code> removes incomplete rows/columns, whereas <code>fillna</code> replaces values. <code>drop(columns=[...])</code> removes named columns regardless of missingness. These ordinarily return new objects: assign the result. Learn imputation values on training data only.</p><p>Mean is sensitive to outliers; median is more robust; mode may return multiple values or an empty result. Pandas numeric summaries normally skip missing entries, while ordinary NumPy percentile does not. <code>duplicated</code> flags repeats and <code>drop_duplicates</code> removes them; check whether repetition is legitimate before deleting. A percentile cutoff identifies a distribution tail, not automatically a data error.</p><pre><code>print(df.isna().sum())
 X = df.drop(columns=["target"])
 y = df["target"]
@@ -2198,7 +2206,7 @@ train_age = X_train["Age"].fillna(replacement)
 test_age = X_test["Age"].fillna(replacement)
 a = np.array([[1, 2], [3, 4]])
 print(a.sum(axis=0))  # [4, 6]: column totals
-print(a.sum(axis=1))  # [3, 7]: row totals</code></pre><a href="#ca-group-clean">Back to cleaning reference</a></article>
+print(a.sum(axis=1))  # [3, 7]: row totals</code></pre><!--suppress HtmlUnknownTarget --><a href="#ca-group-clean">Back to cleaning reference</a></article>
 					<article class="card ca-general" id="general-code-pipeline"><h4>Splits and pipelines: one consistent workflow</h4><p><code>train_test_split(X,y)</code> returns X_train, X_test, y_train, y_test in that order. <code>test_size</code> controls the held-out fraction; <code>random_state</code> makes a random split reproducible; <code>stratify=y</code> preserves approximate class proportions when feasible. Regression targets are not class strata. Random splitting is not suitable for every time-ordered or grouped dataset.</p><p>A Pipeline fits its intermediate transformers on training data and passes their outputs to the final estimator. Prediction reuses those transformers. <code>make_pipeline</code> supplies lowercase names automatically; <code>Pipeline</code> accepts explicit (name, estimator) pairs. <code>named_steps</code> accesses a component. During cross-validation, fit the entire pipeline inside each training fold.</p><pre><code>from sklearn.model_selection import train_test_split
 from sklearn.pipeline import make_pipeline
 from sklearn.impute import SimpleImputer
@@ -2210,9 +2218,9 @@ model = make_pipeline(SimpleImputer(strategy="median"),
     StandardScaler(), LogisticRegression(max_iter=1000))
 model.fit(X_train, y_train)
 predictions = model.predict(X_test)
-print(model.named_steps["logisticregression"].coef_)</code></pre><a href="#ca-group-split">Back to pipeline reference</a></article>
-					<article class="card ca-general" id="general-code-model"><h4>Fit, predict and score are different operations</h4><p><code>fit(X_train,y_train)</code> learns an estimator and returns that estimator. <code>predict(X_test)</code> returns labels for classifiers or numbers for regressors. <code>predict_proba</code>, where available, gives columns ordered by <code>classes_</code>; <code>decision_function</code> returns scores, not probabilities. SVC needs <code>probability=True</code> before fitting to expose probabilities; LinearSVC has no probability method.</p><p>The classifiers in Topics 1–4 use accuracy for <code>score</code>; LinearRegression and DecisionTreeRegressor use R². A Pipeline delegates this to its final estimator. Maintain the same feature order and representation at prediction time. A new sample is still a row of a 2D table.</p><a href="#ca-group-model">Back to train/predict reference</a></article>
-					<article class="card ca-general" id="general-code-results"><h4>Parameters, learned attributes and interpretation</h4><p>Constructor parameters such as <code>n_neighbors</code>, <code>max_depth</code> and <code>C</code> are choices made before training. Attributes such as <code>coef_</code>, <code>classes_</code>, <code>components_</code> and <code>feature_importances_</code> are learned results, typically available after fit. They are read without parentheses. <code>shape</code> is also an attribute but is not a learned estimator parameter.</p><p>Linear coefficients depend on units and correlations. A PCA component is a direction, not an observation. Class labels determine probability-column order. Tree importance is not a signed or causal effect. Inspect a pipeline's estimator through <code>named_steps</code>, not by assuming the pipeline exposes every internal attribute.</p><a href="#ca-group-learned">Back to learned-results reference</a></article>
+print(model.named_steps["logisticregression"].coef_)</code></pre><!--suppress HtmlUnknownTarget --><a href="#ca-group-split">Back to pipeline reference</a></article>
+					<article class="card ca-general" id="general-code-model"><h4>Fit, predict and score are different operations</h4><p><code>fit(X_train,y_train)</code> learns an estimator and returns that estimator. <code>predict(X_test)</code> returns labels for classifiers or numbers for regressors. <code>predict_proba</code>, where available, gives columns ordered by <code>classes_</code>; <code>decision_function</code> returns scores, not probabilities. SVC needs <code>probability=True</code> before fitting to expose probabilities; LinearSVC has no probability method.</p><p>The classifiers in Topics 1–4 use accuracy for <code>score</code>; LinearRegression and DecisionTreeRegressor use R². A Pipeline delegates this to its final estimator. Maintain the same feature order and representation at prediction time. A new sample is still a row of a 2D table.</p><!--suppress HtmlUnknownTarget --><a href="#ca-group-model">Back to train/predict reference</a></article>
+					<article class="card ca-general" id="general-code-results"><h4>Parameters, learned attributes and interpretation</h4><p>Constructor parameters such as <code>n_neighbors</code>, <code>max_depth</code> and <code>C</code> are choices made before training. Attributes such as <code>coef_</code>, <code>classes_</code>, <code>components_</code> and <code>feature_importances_</code> are learned results, typically available after fit. They are read without parentheses. <code>shape</code> is also an attribute but is not a learned estimator parameter.</p><p>Linear coefficients depend on units and correlations. A PCA component is a direction, not an observation. Class labels determine probability-column order. Tree importance is not a signed or causal effect. Inspect a pipeline's estimator through <code>named_steps</code>, not by assuming the pipeline exposes every internal attribute.</p><!--suppress HtmlUnknownTarget --><a href="#ca-group-learned">Back to learned-results reference</a></article>
 					<article class="card ca-general" id="general-code-plot"><h4>Plots and synthetic examples</h4><p>Use <code>scatter</code> for points; <code>plot</code> connects points in supplied order; <code>hist</code> shows a distribution; <code>imshow</code> displays a pixel array. <code>subplots</code> returns a Figure and Axes (or an array of Axes). Label axes/units, add a title and use labelled series for a legend. <code>show</code> displays the figure.</p><p>For a smooth one-feature regression curve, generate a column grid using <code>linspace(...).reshape(-1,1)</code>, predict on that grid, and plot in ascending x order. <code>argsort</code> returns sorting indices for existing observations. For a decision tree use <code>plot_tree</code>, or export DOT text with the guide's <code>export_graphviz</code>.</p><pre><code># model must be fitted on one feature for this particular curve example.
 grid = np.linspace(X[:, 0].min(), X[:, 0].max(), 100).reshape(-1, 1)
 plt.scatter(X[:, 0], y, label="Observed")
@@ -2225,7 +2233,7 @@ plt.show()
 # Guide-style synthetic data; seed makes the draws reproducible.
 np.random.seed(42)
 synthetic_X = np.random.rand(100, 2)
-noise = np.random.randn(100, 1)</code></pre><p><code>rand</code> draws uniform values on [0,1); <code>randn</code> draws standard-normal values. Modern code can use an independent <code>np.random.default_rng</code>. Synthetic exercises demonstrate mechanics, not evidence of real-world performance.</p><a href="#ca-group-plot">Back to plotting reference</a></article>
+noise = np.random.randn(100, 1)</code></pre><p><code>rand</code> draws uniform values on [0,1); <code>randn</code> draws standard-normal values. Modern code can use an independent <code>np.random.default_rng</code>. Synthetic exercises demonstrate mechanics, not evidence of real-world performance.</p><!--suppress HtmlUnknownTarget --><a href="#ca-group-plot">Back to plotting reference</a></article>
 				</section>
 				<section id="chapter-5" class="chapter" data-nav-section>
 					<h3>Chapter 5: Unsupervised Learning - Clustering Algorithms</h3>
