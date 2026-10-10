@@ -440,6 +440,19 @@
 			line-height: 1.25;
 		}
 
+		.code-example-details > summary {
+			cursor: pointer;
+		}
+
+		.code-example-details > summary h3 {
+			display: inline-block;
+			margin: 0;
+		}
+
+		.code-example-details[open] > summary {
+			margin-bottom: 14px;
+		}
+
 		.card p,
 		.card ul,
 		.card ol {
@@ -887,11 +900,6 @@
 	<a class="nav-link" href="#test-topic-2">Topic 2 · STL</a>
 	<a class="nav-link" href="#test-topic-3">Topic 3 · Linked lists</a>
 	<a class="nav-link" href="#test-topic-4">Topic 4 · Recursion</a>
-	<a class="nav-link" href="#topic-1-index">Topic 1 subtopics</a>
-	<a class="nav-link" href="#topic-2-index">Topic 2 subtopics</a>
-	<a class="nav-link" href="#topic-3-index">Topic 3 subtopics</a>
-	<a class="nav-link" href="#topic-4-index">Topic 4 subtopics</a>
-	<a class="nav-link" href="#detailed-reference" data-nav-link="detailed-reference">Classes, functions, methods &amp; attributes</a>
 </details>
 
 		<details class="nav-group nav-collapsible">
@@ -913,6 +921,10 @@
 			<a href="#chapter-8" data-nav-link="chapter-8">8. Sorting algorithms</a>
 			<a href="#chapter-9" data-nav-link="chapter-9">9. Binary trees and B-trees</a>
 			<a href="#chapter-10" data-nav-link="chapter-10">10. Graphs</a>
+		</div>
+		<div class="nav-group">
+			<h2>Reference</h2>
+			<a href="#detailed-reference" data-nav-link="detailed-reference">Classes, Functions, Methods &amp; Attributes</a>
 		</div>
 
 		<details class="nav-group nav-collapsible">
@@ -1204,8 +1216,8 @@ public:
 ------------------------</code></pre>
 						<p>This box describes the interface and structure; it does not prescribe the internal code.</p>
 					</article>
-					<article class="card chapter-card wide structure" id="ch1-code-example">
-						<h3>Topic 1 Extended Code Example: ADT-Style Class With Contracts</h3>
+					<details class="card chapter-card wide structure code-example-details" id="ch1-code-example">
+						<summary><h3>Topic 1 Extended Code Example: ADT-Style Class With Contracts</h3></summary>
 						<p>This example combines the guide's software-design ideas: analyse the problem, model the correct object, protect its data, document preconditions/postconditions, and expose clear operations.</p>
 						<pre><code>#include &lt;cassert&gt;
 #include &lt;cmath&gt;
@@ -1273,9 +1285,9 @@ int main() {
 
 	return 0;
 }</code></pre>
-					</article>
-						<article class="card chapter-card wide warning" id="ch1-code-analysis-example">
-							<h3>Topic 1 Extended Code Example: Reading Code For Big-O</h3>
+					</details>
+						<details class="card chapter-card wide warning code-example-details" id="ch1-code-analysis-example">
+							<summary><h3>Topic 1 Extended Code Example: Reading Code For Big-O</h3></summary>
 							<p>This small program shows how to connect code structure to operation growth, which is exactly what the Big-O section expects you to practise.</p>
 						<pre><code>#include &lt;iostream&gt;
 #include &lt;vector&gt;
@@ -1314,7 +1326,7 @@ int main() {
 
 	return 0;
 }</code></pre>
-						</article>
+						</details>
 						<details class="card chapter-card wide structure glossary-card" id="ch1-glossary">
 							<summary><span>Topic 1 Glossary: Key Words And Code Terms</span></summary>
 							<dl class="glossary-list">
@@ -1515,8 +1527,8 @@ copy(vecList.begin(), vecList.end(), screen);</code></pre>
 						</div>
 						<div class="callout warning"><strong>Exam trap:</strong> Do not assume every container behaves like an array. Some containers are better traversed through iterators than direct indexes.</div>
 					</article>
-					<article class="card chapter-card wide success" id="ch2-code-vector-example">
-						<h3>Topic 2 Extended Code Example: vector, Iterators, insert And copy</h3>
+					<details class="card chapter-card wide success code-example-details" id="ch2-code-vector-example">
+						<summary><h3>Topic 2 Extended Code Example: vector, Iterators, insert And copy</h3></summary>
 						<p>This example follows the guide's vector sequence: declare a vector, add elements, process by index, process by iterator, insert at an iterator position, and output with <code>copy</code>.</p>
 						<pre><code>#include &lt;algorithm&gt;
 #include &lt;iostream&gt;
@@ -1563,9 +1575,9 @@ int main() {
 
 	return 0;
 }</code></pre>
-					</article>
-						<article class="card chapter-card wide structure" id="ch2-code-deque-example">
-							<h3>Topic 2 Extended Code Example: deque And Double-Ended Access</h3>
+					</details>
+						<details class="card chapter-card wide structure code-example-details" id="ch2-code-deque-example">
+							<summary><h3>Topic 2 Extended Code Example: deque And Double-Ended Access</h3></summary>
 							<p>The guide introduces <code>deque</code> after <code>vector</code>. Use it when insertions/removals at both the front and the back are part of the problem.</p>
 						<pre><code>#include &lt;algorithm&gt;
 #include &lt;deque&gt;
@@ -1610,7 +1622,7 @@ int main() {
 
 	return 0;
 }</code></pre>
-						</article>
+						</details>
 						<details class="card chapter-card wide structure glossary-card" id="ch2-glossary">
 							<summary><span>Topic 2 Glossary: Key Words And Code Terms</span></summary>
 							<dl class="glossary-list">
@@ -1760,8 +1772,8 @@ int main() {
 						<li>Finding a matching item still requires traversal, usually O(n); changing links is O(1) only after the position is known.</li>
 						</ul>
 					</article>
-					<article class="card chapter-card wide structure" id="ch3-code-example">
-						<h3>Topic 3 Extended Code Example: Build, Traverse, Insert And Delete A Linked List</h3>
+					<details class="card chapter-card wide structure code-example-details" id="ch3-code-example">
+						<summary><h3>Topic 3 Extended Code Example: Build, Traverse, Insert And Delete A Linked List</h3></summary>
 						<p>This example demonstrates the guide's essential linked-list pointer rules: keep <code>head</code> stable during traversal, connect the new node before changing the previous node, and delete removed nodes.</p>
 						<pre><code>#include &lt;iostream&gt;
 using namespace std;
@@ -1820,7 +1832,7 @@ int main() {
 
 	return 0;
 }</code></pre>
-						</article>
+						</details>
 						<details class="card chapter-card wide structure glossary-card" id="ch3-glossary">
 							<summary><span>Topic 3 Glossary: Key Words And Code Terms</span></summary>
 							<dl class="glossary-list">
@@ -1924,8 +1936,8 @@ int main() {
 							<li>Continue until a complete valid solution is found or all choices fail.</li>
 						</ul>
 					</article>
-					<article class="card chapter-card wide success" id="ch4-code-example">
-						<h3>Topic 4 Extended Code Example: Recursive Largest And Reverse Print</h3>
+					<details class="card chapter-card wide success code-example-details" id="ch4-code-example">
+						<summary><h3>Topic 4 Extended Code Example: Recursive Largest And Reverse Print</h3></summary>
 						<p>This example shows two guide patterns: a recursive array problem that reduces the index range, and a linked-list problem where the action happens after the recursive call.</p>
 						<pre><code>#include &lt;iostream&gt;
 using namespace std;
@@ -1978,7 +1990,7 @@ int main() {
 	return 0;
 }</code></pre>
 							<div class="callout warning"><strong>Note:</strong> The recursive call must move toward the base case. In <code>largest</code>, <code>lowerIndex</code> increases; in <code>reversePrint</code>, <code>current</code> moves along the link chain.</div>
-						</article>
+						</details>
 						<details class="card chapter-card wide structure glossary-card" id="ch4-glossary">
 							<summary><span>Topic 4 Glossary: Key Words And Code Terms</span></summary>
 							<dl class="glossary-list">
@@ -2081,8 +2093,8 @@ int main() {
 							<li>Use this when you need a nonrecursive version of a naturally recursive algorithm.</li>
 						</ul>
 					</article>
-					<article class="card chapter-card wide structure" id="ch5-code-example">
-						<h3>Topic 5 Extended Code Example: Postfix Calculator With stack</h3>
+					<details class="card chapter-card wide structure code-example-details" id="ch5-code-example">
+						<summary><h3>Topic 5 Extended Code Example: Postfix Calculator With stack</h3></summary>
 						<p>This program implements the guide's postfix rule: operands are pushed, operators pop two operands, and the final stack must contain exactly one answer.</p>
 						<pre><code>#include &lt;iostream&gt;
 #include &lt;sstream&gt;
@@ -2149,7 +2161,7 @@ int main() {
 
 	return 0;
 }</code></pre>
-						</article>
+						</details>
 						<details class="card chapter-card wide structure glossary-card" id="ch5-glossary">
 							<summary><span>Topic 5 Glossary: Key Words And Code Terms</span></summary>
 							<dl class="glossary-list">
@@ -2257,8 +2269,8 @@ int main() {
 							<li>Queues are the natural structure for customers waiting to be served in arrival order.</li>
 						</ul>
 					</article>
-					<article class="card chapter-card wide success" id="ch6-code-example">
-						<h3>Topic 6 Extended Code Example: Circular Array Queue</h3>
+					<details class="card chapter-card wide success code-example-details" id="ch6-code-example">
+						<summary><h3>Topic 6 Extended Code Example: Circular Array Queue</h3></summary>
 						<p>This example uses the guide's circular-array idea: the front and rear wrap around with modulo arithmetic, and <code>count</code> tells whether the queue is empty or full.</p>
 						<pre><code>#include &lt;iostream&gt;
 #include &lt;stdexcept&gt;
@@ -2329,7 +2341,7 @@ int main() {
 
 	return 0;
 }</code></pre>
-						</article>
+						</details>
 						<details class="card chapter-card wide structure glossary-card" id="ch6-glossary">
 							<summary><span>Topic 6 Glossary: Key Words And Code Terms</span></summary>
 							<dl class="glossary-list">
@@ -2446,8 +2458,8 @@ return -1;</code></pre>
 							</table>
 						</div>
 					</article>
-					<article class="card chapter-card wide success" id="ch7-code-example">
-						<h3>Topic 7 Extended Code Example: Binary Search And Hashing</h3>
+					<details class="card chapter-card wide success code-example-details" id="ch7-code-example">
+						<summary><h3>Topic 7 Extended Code Example: Binary Search And Hashing</h3></summary>
 						<p>This example contrasts comparison-based binary search with hash-table addressing and linear probing for collisions.</p>
 						<pre><code>#include &lt;iostream&gt;
 #include &lt;string&gt;
@@ -2518,7 +2530,7 @@ int main() {
 
 	return 0;
 }</code></pre>
-						</article>
+						</details>
 						<details class="card chapter-card wide structure glossary-card" id="ch7-glossary">
 							<summary><span>Topic 7 Glossary: Key Words And Code Terms</span></summary>
 							<dl class="glossary-list">
@@ -2635,8 +2647,8 @@ int main() {
 						<h3>8.6 Priority Queues Revisited</h3>
 						<p>Heaps connect sorting to priority queues. A heap keeps the highest-priority item available at the root, making it a natural structure for repeated priority removal.</p>
 					</article>
-					<article class="card chapter-card wide success" id="ch8-code-example">
-						<h3>Topic 8 Extended Code Example: Selection Sort And Insertion Sort</h3>
+					<details class="card chapter-card wide success code-example-details" id="ch8-code-example">
+						<summary><h3>Topic 8 Extended Code Example: Selection Sort And Insertion Sort</h3></summary>
 						<p>This example shows the two early array-based sorts from the guide: selection sort chooses the smallest remaining item, while insertion sort shifts a value into the sorted part.</p>
 						<pre><code>#include &lt;iostream&gt;
 #include &lt;vector&gt;
@@ -2699,7 +2711,7 @@ int main() {
 
 	return 0;
 }</code></pre>
-						</article>
+						</details>
 						<details class="card chapter-card wide structure glossary-card" id="ch8-glossary">
 							<summary><span>Topic 8 Glossary: Key Words And Code Terms</span></summary>
 							<dl class="glossary-list">
@@ -2821,8 +2833,8 @@ int main() {
 						<h3>9.9 B-Trees</h3>
 						<p>B-trees generalize search trees so a node can hold multiple keys and multiple children. They are useful when minimizing tree height matters, especially for storage systems where each node access is expensive.</p>
 					</article>
-					<article class="card chapter-card wide structure" id="ch9-code-example">
-						<h3>Topic 9 Extended Code Example: Binary Search Tree Insert, Search And Traversal</h3>
+					<details class="card chapter-card wide structure code-example-details" id="ch9-code-example">
+						<summary><h3>Topic 9 Extended Code Example: Binary Search Tree Insert, Search And Traversal</h3></summary>
 						<p>This example uses the guide's BST rule: compare at the current node, then move left for smaller values and right for larger values. Inorder traversal prints values in sorted order.</p>
 						<pre><code>#include &lt;iostream&gt;
 using namespace std;
@@ -2896,7 +2908,7 @@ int main() {
 	destroy(root);
 	return 0;
 }</code></pre>
-						</article>
+						</details>
 						<details class="card chapter-card wide structure glossary-card" id="ch9-glossary">
 							<summary><span>Topic 9 Glossary: Key Words And Code Terms</span></summary>
 							<dl class="glossary-list">
@@ -3038,8 +3050,8 @@ int main() {
 							<li>Breadth-first topological ordering uses indegrees and a queue.</li>
 						</ul>
 					</article>
-					<article class="card chapter-card wide success" id="ch10-code-example">
-						<h3>Topic 10 Extended Code Example: Adjacency List With DFS And BFS</h3>
+					<details class="card chapter-card wide success code-example-details" id="ch10-code-example">
+						<summary><h3>Topic 10 Extended Code Example: Adjacency List With DFS And BFS</h3></summary>
 						<p>This example stores a graph as adjacency lists, then traverses it with depth-first recursion and breadth-first queue processing.</p>
 						<pre><code>#include &lt;iostream&gt;
 #include &lt;queue&gt;
@@ -3124,7 +3136,7 @@ int main() {
 
 	return 0;
 }</code></pre>
-						</article>
+						</details>
 						<details class="card chapter-card wide structure glossary-card" id="ch10-glossary">
 							<summary><span>Topic 10 Glossary: Key Words And Code Terms</span></summary>
 							<dl class="glossary-list">
