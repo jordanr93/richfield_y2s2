@@ -1008,7 +1008,7 @@
 					<h3><a href="#chapter-2">Topic 2 · Standard Template Library (STL)</a></h3>
 					<p class="scope-label">Study-guide scope · PDF pages 65–117</p>
 					<ul class="subtopic-links" id="topic-2-index">
-						<li><a href="#ch2-1-stl-components">Containers, iterators, algorithms</a></li><li><a href="#ch2-2-sequence-containers">Container types and sequences</a></li><li><a href="#ch2-3-vector">vector</a></li><li><a href="#ch2-4-begin-end">begin(), end(), insert(), erase()</a></li><li><a href="#ch2-5-copy">copy()</a></li><li><a href="#ch2-6-ostream-iterator">ostream_iterator</a></li><li><a href="#ch2-7-iterators">Iterator operations and categories</a></li><li><a href="#ch2-8-common-algorithms">Common algorithms and container compatibility</a></li>
+						<li><a href="#ch2-1-stl-components">Containers, iterators, algorithms</a></li><li><a href="#ch2-2-sequence-containers">Container types, sequences and performance</a></li><li><a href="#ch2-3-vector">vector</a></li><li><a href="#ch2-4-begin-end">begin(), end(), insert(), erase()</a></li><li><a href="#ch2-5-copy">copy()</a></li><li><a href="#ch2-6-ostream-iterator">ostream_iterator</a></li><li><a href="#ch2-7-iterators">Iterator operations and categories</a></li><li><a href="#ch2-8-common-algorithms">Common algorithms and container compatibility</a></li>
 					</ul>
 					<ul class="quick-points"><li><a href="#ch2-1-stl-components">Use containers to store data, iterators to traverse ranges, and algorithms to process ranges.</a></li><li><a href="#ch2-3-vector">Choose vector for dynamic contiguous storage and constant-time indexed access; end insertion is amortized constant time.</a></li><li><a href="#ch2-4-begin-end">Treat an STL range as [first, last): end() is past the final element and is not dereferenced.</a></li><li><a href="#ch2-5-copy">Ensure copy() has a valid destination range; use an output iterator when writing to a stream.</a></li><li><a href="#ch2-8-common-algorithms">Check iterator requirements before choosing an algorithm: std::sort needs random-access iterators.</a></li></ul>
 					<a class="back-link" href="#general-module-content">Open Topic 2 general content</a>
@@ -1026,7 +1026,7 @@
 					<h3><a href="#chapter-4">Topic 4 · Recursion</a></h3>
 					<p class="scope-label">Study-guide scope · PDF pages 233–284</p>
 					<ul class="subtopic-links" id="topic-4-index">
-						<li><a href="#ch4-1-recursive-definitions">Recursive definitions</a></li><li><a href="#ch4-2-problem-solving-recursion">Problem solving with recursion</a></li><li><a href="#ch4-3-recursion-vs-iteration">Recursion or iteration?</a></li><li><a href="#ch4-4-backtracking">Backtracking and n-Queens</a></li><li><a href="#ch4-code-example">Code examples and call order</a></li>
+						<li><a href="#ch4-1-recursive-definitions">Recursive definitions</a></li><li><a href="#ch4-2-problem-solving-recursion">Problem solving with recursion</a></li><li><a href="#ch4-3-recursion-vs-iteration">Recursion or iteration?</a></li><li><a href="#ch4-4-backtracking">Backtracking and n-Queens</a></li><li><a href="#ch4-code-example">Code examples: arrays, vectors and lists</a></li>
 					</ul>
 					<ul class="quick-points"><li><a href="#ch4-1-recursive-definitions">Give every recursive solution a reachable base case and a general case that makes progress.</a></li><li><a href="#ch4-2-problem-solving-recursion">Trace calls down to the base case, then trace returned values or actions as calls unwind.</a></li><li><a href="#ch4-3-recursion-vs-iteration">Account for per-call stack space and compare recursion with an equivalent loop.</a></li><li><a href="#ch4-4-backtracking">Backtracking builds a partial solution and reverses a choice when that path fails.</a></li></ul>
 					<a class="back-link" href="#general-module-content">Open Topic 4 general content</a>
@@ -1426,6 +1426,21 @@ int main() {
 							<li><code>list</code>: linked sequence container, covered later in the linked-list topic.</li>
 							<li>Container adapters are revisited with stacks and queues.</li>
 						</ul>
+						<h4>Container Performance Comparison</h4>
+						<p>Use these typical complexity costs to compare containers. <code>n</code> is the number of elements. “Middle insertion” assumes the insertion position is already known; finding a position in a linked list still takes linear time.</p>
+						<div class="table-wrap">
+							<table>
+								<thead><tr><th>Container</th><th>Random access</th><th>Middle insertion</th><th>End insertion / insertion by key</th><th>Search</th><th>Memory per element</th></tr></thead>
+								<tbody>
+									<tr><td><code>vector</code></td><td>O(1)</td><td>O(n)</td><td>Amortized O(1) at the back; O(n) for an individual reallocation</td><td>O(n)</td><td>Low</td></tr>
+									<tr><td><code>list</code></td><td>O(n)</td><td>O(1) with the position iterator</td><td>O(1) at either end</td><td>O(n)</td><td>High</td></tr>
+									<tr><td><code>deque</code></td><td>O(1)</td><td>O(n)</td><td>O(1) at either end</td><td>O(n)</td><td>Medium</td></tr>
+									<tr><td>Ordered <code>map</code> / <code>set</code></td><td>O(n) to advance to an arbitrary position; no index access</td><td>Not position-based; insertion by key is O(log n)</td><td>Insertion by key is O(log n)</td><td>O(log n)</td><td>High</td></tr>
+									<tr><td><code>unordered_map</code> / <code>unordered_set</code></td><td>O(n) to advance; no index access</td><td>Not position-based; insertion by key is average O(1)</td><td>Insertion by key is average O(1)</td><td>Average O(1), worst O(n)</td><td>Medium</td></tr>
+								</tbody>
+							</table>
+						</div>
+						<p><small>Memory labels are approximate: linked and associative containers store per-element links or tree/hash bookkeeping, while sequence-container storage can be contiguous or segmented. Unordered-container operations are usually constant time but can become linear during heavy collisions or rehashing.</small></p>
 					</article>
 					<article class="card chapter-card success" id="ch2-3-vector">
 						<h3>2.3 Sequence Container: vector</h3>
@@ -2009,6 +2024,54 @@ int main() {
 	}
 	return 0;
 }</code></pre>
+							<h4>Variations With Standard C++ Containers</h4>
+							<p>The first example uses a built-in C-style array. These standalone alternatives use <code>std::array</code>, <code>std::vector</code>, and <code>std::list</code>. Each keeps a base case and makes one step toward it; the list version uses iterators because lists do not support indexing.</p>
+							<p><strong><code>std::array</code>: recursively find the largest value in an index range.</strong></p>
+							<pre><code>#include &lt;array&gt;
+#include &lt;cstddef&gt;
+
+int largest(const std::array&lt;int, 5&gt;&amp; values,
+            std::size_t first, std::size_t last) {
+	if (first == last) { // Base case: one value remains.
+		return values[first];
+	}
+	int largestRest = largest(values, first + 1, last);
+	return values[first] &gt; largestRest ? values[first] : largestRest;
+}
+
+std::array&lt;int, 5&gt; values{23, 43, 35, 38, 67};
+int answer = largest(values, 0, values.size() - 1); // 67</code></pre>
+							<p><strong><code>std::vector</code>: recursively sum values from the current index onward.</strong></p>
+							<pre><code>#include &lt;cstddef&gt;
+#include &lt;vector&gt;
+
+int recursiveSum(const std::vector&lt;int&gt;&amp; values, std::size_t index = 0) {
+	if (index == values.size()) { // Base case: no values remain.
+		return 0;
+	}
+	return values[index] + recursiveSum(values, index + 1);
+}
+
+std::vector&lt;int&gt; values{4, 7, 2};
+int answer = recursiveSum(values); // 13</code></pre>
+							<p><strong><code>std::list</code>: print values in reverse using recursion and iterator advancement.</strong></p>
+							<pre><code>#include &lt;iostream&gt;
+#include &lt;list&gt;
+
+void reversePrint(std::list&lt;int&gt;::const_iterator current,
+                  std::list&lt;int&gt;::const_iterator last) {
+	if (current == last) { // Base case: reached past the final element.
+		return;
+	}
+	auto next = current;
+	++next;
+	reversePrint(next, last); // Visit the rest of the list first.
+	std::cout &lt;&lt; *current &lt;&lt; " "; // Print while calls unwind.
+}
+
+std::list&lt;int&gt; values{4, 7, 2};
+reversePrint(values.cbegin(), values.cend()); // Prints: 2 7 4</code></pre>
+							<div class="callout info"><strong>Container note:</strong> The <code>std::array</code> and <code>std::vector</code> examples use indexes; the <code>std::list</code> example advances an iterator one position per call. All three use O(n) recursive calls for n elements, so very large inputs can exhaust the call stack.</div>
 							<div class="callout warning"><strong>Note:</strong> The recursive call must move toward the base case. In <code>largest</code>, <code>lowerIndex</code> increases; in <code>reversePrint</code>, <code>current</code> moves along the link chain.</div>
 						</details>
 						<details class="card chapter-card wide structure glossary-card" id="ch4-glossary">
@@ -3266,7 +3329,7 @@ int main() {
 				<article class="api-entry"><h4>Base case and general case <span class="reference-label">Study-guide terms</span></h4><p><strong>Does:</strong> The base case answers the smallest problem directly; the general case reduces it toward that case. <strong>Use it when:</strong> each problem can be expressed in terms of a smaller instance. <strong>Example:</strong> <code>if (n == 0) return 1; return n * fact(n - 1);</code></p><a href="#ch4-1-recursive-definitions">Full explanation: recursive definitions</a></article>
 				<article class="api-entry"><h4>Recursive function and <code>return</code> <span class="reference-label">Study-guide terms</span></h4><p><strong>Does:</strong> A recursive function calls itself on a smaller case; <code>return</code> sends a result to the previous call. <strong>Use it when:</strong> the result is naturally composed from smaller results. <strong>Example:</strong> <code>return n * fact(n - 1);</code></p><a href="#ch4-2-problem-solving-recursion">Full explanation: problem solving with recursion</a></article>
 				<article class="api-entry"><h4><code>factorial(n)</code> and <code>rFibNum(a, b, n)</code> <span class="reference-label">Study-guide examples</span></h4><p><strong>Does:</strong> Computes a factorial or a term in a sequence defined from two starting values. <strong>Use it when:</strong> demonstrating how a mathematical recurrence becomes a recursive function. <strong>Example:</strong> <code>fact(0) == 1</code>; otherwise <code>fact(n) == n * fact(n - 1)</code>. Validate the input domain and beware integer overflow.</p><a href="#ch4-2-problem-solving-recursion">Full explanation: factorial and Fibonacci examples</a></article>
-				<article class="api-entry"><h4><code>largest(values, low, high)</code> <span class="reference-label">Study-guide example</span></h4><p><strong>Does:</strong> Finds the largest item in a non-empty subarray. <strong>Use it when:</strong> showing a recursive reduction over an index range. <strong>Example:</strong> stop when <code>low == high</code>; otherwise compare <code>values[low]</code> with <code>largest(values, low + 1, high)</code>.</p><a href="#ch4-code-example">Full explanation: largest-array example</a></article>
+				<article class="api-entry"><h4><code>largest(values, low, high)</code>, <code>recursiveSum(values, index)</code>, <code>reversePrint(iterator, last)</code> <span class="reference-label">Study-guide examples</span></h4><p><strong>Does:</strong> Demonstrates recursive reduction over array and vector indexes, plus reverse-order output from a <code>std::list</code> using iterators. <strong>Use it when:</strong> comparing how recursion works with different container interfaces.</p><a href="#ch4-code-example">Full explanation: recursive container examples</a></article>
 				<article class="api-entry"><h4><code>reversePrint(node)</code> <span class="reference-label">Study-guide example</span></h4><p><strong>Does:</strong> Prints a linked list in reverse without changing its links. <strong>Use it when:</strong> demonstrating work performed after a recursive call. <strong>Example:</strong> recurse on <code>node-&gt;link</code>, then print <code>node-&gt;info</code>.</p><a href="#ch4-code-example">Full explanation: reverse-print example</a></article>
 				<article class="api-entry"><h4><code>canPlaceQueen(k, column)</code> and <code>queensConfiguration(k)</code> <span class="reference-label">Study-guide functions</span></h4><p><strong>Does:</strong> Tests whether a queen is safe in a column, then recursively tries legal placements for row <code>k</code>. <strong>Use it when:</strong> following the guide's n-Queens backtracking example. <strong>Example:</strong> <code>if (canPlaceQueen(k, col)) { queen[k] = col; queensConfiguration(k + 1); }</code> The guide's class uses its own state and exact signatures.</p><a href="#ch4-4-backtracking">Full explanation: backtracking and n-Queens</a></article>
 				<article class="api-entry"><h4>Call stack and backtracking <span class="reference-label">Study-guide concepts/examples</span></h4><p><strong>Does:</strong> Each active call retains its parameters and local state; backtracking explores a choice and returns to try another when it fails. <strong>Use it when:</strong> reasoning about unwind order or searching a tree of choices. <strong>Example:</strong> place one queen, recurse to the next row, then try the next column when that branch fails.</p><a href="#ch4-3-recursion-vs-iteration">Full explanation: recursion and iteration costs</a> · <a href="#ch4-4-backtracking">Full explanation: backtracking and n-Queens</a></article>
