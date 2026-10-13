@@ -428,6 +428,39 @@
 			margin-bottom: 16px;
 		}
 
+
+		.nav-submenu { margin: 6px 0 8px 10px; padding-left: 9px; border-left: 1px solid var(--border); }
+		.nav-submenu .nav-link { padding: 6px 8px; font-size: .84rem; }
+
+		.study-index-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+		.study-index-card h3 { margin-top: 0; }
+		.study-index-card ul { margin: 0; padding-left: 20px; }
+		.study-index-card li { margin: 7px 0; }
+		.test-scope-label { display: inline-block; margin: 0 0 8px; border: 1px solid var(--green); border-radius: 999px; padding: 3px 9px; color: var(--green); font-size: .78rem; font-weight: 700; }
+		.test-support-label { border-color: var(--amber); color: var(--amber); }
+		.test-reference { width: 100%; border-collapse: collapse; }
+		.test-reference th, .test-reference td { border-bottom: 1px solid var(--border); padding: 9px; text-align: left; vertical-align: top; }
+		.test-reference th { color: var(--cyan); }
+		.bd-index-block { margin: 18px 0 24px; padding: 16px; border: 1px solid var(--border); border-radius: 12px; background: var(--panel); }
+		.bd-index-block h3 { margin: 8px 0; }
+		.bd-reference-jumps, .bd-letter-links, .bd-term-links { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+		.bd-reference-jumps a, .bd-letter-links a, .bd-term-links a, .bd-reference-return { display: inline-flex; align-items: center; min-height: 42px; padding: 7px 11px; border: 1px solid var(--border); border-radius: 8px; color: var(--cyan); text-decoration: none; }
+		.bd-reference-jumps a:hover, .bd-letter-links a:hover, .bd-term-links a:hover, .bd-reference-return:hover { background: var(--header); }
+		.bd-letter-group { padding: 8px 0; border-bottom: 1px solid var(--border); scroll-margin-top: 18px; }
+		.bd-letter-group h4 { display: inline-block; min-width: 2rem; margin: 0; color: var(--cyan); }
+		.bd-reference-row { scroll-margin-top: 18px; }
+		.bd-reference-row:target { outline: 2px solid var(--cyan); outline-offset: 3px; }
+		@media (max-width: 980px) { .study-index-grid { grid-template-columns: 1fr; } }
+		@media (max-width: 620px) {
+			.bd-index-block { padding: 12px; }
+			.bd-reference-jumps a, .bd-letter-links a, .bd-term-links a, .bd-reference-return { min-height: 44px; }
+			.test-reference, .test-reference tbody, .test-reference tr, .test-reference td { display: block; width: 100%; }
+			.test-reference thead { display: none; }
+			.test-reference tr { padding: 9px 0; border-bottom: 1px solid var(--border); }
+			.test-reference td { border: 0; padding: 4px 8px; }
+			.test-reference td:first-child { color: var(--cyan); font-weight: 700; }
+		}
+
 		.glossary-card summary {
 			cursor: pointer;
 			color: var(--cyan);
@@ -597,7 +630,39 @@
 
 <details class="nav-group nav-collapsible">
 	<summary>Test Focus Areas</summary>
-	<a class="nav-link" href="#test-focus-areas" data-nav-link="test-focus-areas">Coming Soon</a>
+	<a class="nav-link" href="#test-focus-areas" data-nav-link="test-focus-areas">Test References Overview</a>
+	<a class="nav-link" href="#bd-at-a-glance">At-a-Glance Diagnostic Index</a>
+	<details class="nav-collapsible nav-submenu">
+		<summary>Topic 1 · Big Data analysis</summary>
+		<a class="nav-link" href="#bd-topic-1">Topic 1 Reference</a>
+		<a class="nav-link" href="#ch1-1-big-data">Big Data and Five Vs</a>
+		<a class="nav-link" href="#ch1-1-data-types">Data forms and extraction</a>
+		<a class="nav-link" href="#ch1-2-sources">Data sources</a>
+		<a class="nav-link" href="#ch1-3-tools-frameworks">Tools and frameworks</a>
+		<a class="nav-link" href="#ch1-4-analysis-techniques">Analysis techniques</a>
+		<a class="nav-link" href="#ch1-5-preprocessing">Preprocessing</a>
+	</details>
+	<details class="nav-collapsible nav-submenu">
+		<summary>Topic 2 · IoT architecture</summary>
+		<a class="nav-link" href="#bd-topic-2">Topic 2 Reference</a>
+		<a class="nav-link" href="#ch2-1-iot-concepts">Core concepts</a>
+		<a class="nav-link" href="#ch2-2-how-iot-works">How IoT works</a>
+		<a class="nav-link" href="#ch2-3-layer-architecture">Layer architecture</a>
+		<a class="nav-link" href="#ch2-4-iot-architecture-blocks">Architecture and building blocks</a>
+		<a class="nav-link" href="#ch2-5-iot-security">Security challenges</a>
+		<a class="nav-link" href="#ch2-6-iot-applications">Applications</a>
+	</details>
+	<details class="nav-collapsible nav-submenu">
+		<summary>Topic 3 · IoT technologies</summary>
+		<a class="nav-link" href="#bd-topic-3">Topic 3 Reference</a>
+		<a class="nav-link" href="#ch3-1-iot-technologies">Technology overview</a>
+		<a class="nav-link" href="#ch3-2-protocols">Protocols and connectivity</a>
+		<a class="nav-link" href="#ch3-3-standards">Standards</a>
+		<a class="nav-link" href="#ch3-4-data-standards">Data standards</a>
+		<a class="nav-link" href="#ch3-5-practical-applications">Practical applications</a>
+	</details>
+	<a class="nav-link" href="#bd-combined-case-table">Combined Topics 1–3</a>
+	<a class="nav-link" href="#bd-answer-guide-key">Answer Guide Key</a>
 </details>
 
 		<details class="nav-group nav-collapsible">
@@ -613,6 +678,16 @@
 			<a href="#chapter-4" data-nav-link="chapter-4">Chapter 4: Storage &amp; Security</a>
 			<a href="#chapter-5" data-nav-link="chapter-5">Chapter 5: Strategy</a>
 		</div>
+
+		<details class="nav-group nav-collapsible">
+			<summary>Concepts, Tools, Methods &amp; Standards</summary>
+			<a href="#test-methods-reference">Topics 1–3 Reference</a>
+			<a href="#bd-reference-index">Task and A–Z Index</a>
+			<a href="#bd-task-1">Task 1 · Big Data</a>
+			<a href="#bd-task-2">Task 2 · Tools and preparation</a>
+			<a href="#bd-task-3">Task 3 · IoT systems and safeguards</a>
+			<a href="#bd-task-4">Task 4 · Technologies and standards</a>
+		</details>
 
 		<details class="nav-group nav-collapsible">
 			<summary>Learning Lab</summary>
@@ -631,7 +706,7 @@
 				<h1>Big Data &amp; IoT 600 Study Hub</h1>
 				<p>A dark, readable one-page guide covering the high-yield focus areas and the full module content from the 2026 Big Data &amp; IoT 600 learner guide.</p>
 				<div class="actions" aria-label="Primary page links">
-					<a href="#exam-focus-areas">Start Exam Focus</a>
+					<a href="#test-focus-areas">Start Test Topics 1–3</a>
 					<a href="#chapter-1">Browse General Content</a>
 				</div>
 				<div class="legend" aria-label="Colour legend">
@@ -645,16 +720,98 @@
 
 
 
-			<section id="test-focus-areas" data-nav-section>
+			<section id="test-focus-areas" data-nav-section aria-labelledby="test-focus-title">
 				<div class="section-heading">
-					<h2>Test Focus Areas</h2>
-					<p>A future home for confirmed test coverage and targeted revision guidance.</p>
+					<h2 id="test-focus-title">Big Data Test References</h2>
+					<p>A focused open-book reference for Topics 1–3, organised like the Information Systems CA references: start with the at-a-glance index, then open a topic reference for key points and worked links.</p>
 				</div>
-				<div class="card coming-soon-card">
-					<span class="coming-soon-label">Coming soon</span>
-					<h3>Test Focus Areas are coming soon</h3>
-					<p>This section will be updated when the relevant guidance is available.</p>
+				<div class="card callout success"><strong>Study-guide scope:</strong> the confirmed test scope is Chapters 1–3 of the 2026 Big Data &amp; IoT 600 Study Guide. The at-a-glance table and topic references below summarise that material. Brief examples are explanatory cues, not extra confirmed test content. Chapters 4–5 remain general module content outside this test scope.</div>
+				<div class="callout"><strong>Answer pattern:</strong> define the concept → explain its role → match it to the data or IoT constraint → give a short example → state a relevant limitation or security consideration.</div>
+				<div class="grid">
+					<article class="card wide" id="bd-at-a-glance">
+						<h3>At-a-Glance Diagnostic Index</h3>
+						<div class="table-wrap"><table class="test-reference"><thead><tr><th>Question or symptom</th><th>Likely concept</th><th>Primary reference</th><th>Typical point to make</th></tr></thead><tbody>
+							<tr><td>Data is huge, arrives quickly, or has mixed forms.</td><td>Big Data characteristics.</td><td><a href="#bd-topic-1">Topic 1</a> · <a href="#ch1-2-five-vs">Five Vs</a></td><td>Identify volume, velocity, variety, veracity, and value as relevant.</td></tr>
+							<tr><td>Records do not share a fixed table structure.</td><td>Structured, semi-structured, and unstructured data.</td><td><a href="#ch1-1-data-types">Topic 1.1 · Data forms</a></td><td>Name the form and the extraction or parsing it needs.</td></tr>
+							<tr><td>A tool must be selected for storage, streams, processing, or reporting.</td><td>Big Data tool fit.</td><td><a href="#ch1-3-tools-frameworks">Topic 1.3 · Tools</a></td><td>Match tool purpose to the workload, data form, and scale.</td></tr>
+							<tr><td>Raw data contains errors, missing values, or inconsistent scales.</td><td>Preprocessing.</td><td><a href="#ch1-5-preprocessing">Topic 1.5 · Preparation</a></td><td>Separate cleaning, numeric scaling, and transformation.</td></tr>
+							<tr><td>A system senses a condition and responds.</td><td>IoT data-to-action flow.</td><td><a href="#bd-topic-2">Topic 2</a> · <a href="#ch2-2-how-iot-works">How IoT works</a></td><td>Trace sense → connect → process → decide → act.</td></tr>
+							<tr><td>Asked to describe IoT architecture.</td><td>Five-layer model and system building blocks.</td><td><a href="#ch2-3-layer-architecture">Topic 2.3 · Layers</a></td><td>Explain each layer’s role and show data moving through it.</td></tr>
+							<tr><td>Connected devices have limited resources or handle sensitive data.</td><td>IoT security.</td><td><a href="#ch2-5-iot-security">Topic 2.5 · Security</a></td><td>Discuss encryption, authentication, and privacy with device constraints.</td></tr>
+							<tr><td>A device needs local, short-range, long-range, or low-latency communication.</td><td>Connectivity and compute placement.</td><td><a href="#bd-topic-3">Topic 3</a> · <a href="#ch3-1-technology-detail">Technology choices</a></td><td>Match range, power, data rate, and latency to the use case.</td></tr>
+							<tr><td>Devices need to exchange messages or work across vendors.</td><td>Protocols, standards, and interoperability.</td><td><a href="#ch3-2-protocols">Topic 3.2 · Protocols</a> · <a href="#ch3-3-standards">Topic 3.3 · Standards</a></td><td>Distinguish application protocols from network/connectivity technologies; explain how standards support compatibility.</td></tr>
+						</tbody></table></div>
+					</article>
+
+					<details class="card wide glossary-card" id="bd-topic-1">
+						<summary><span>Topic 1 Reference: Big Data Analysis and Extraction</span></summary>
+						<div class="callout"><strong>Central question:</strong> How do you describe, source, analyse, and prepare varied data so it can support useful decisions?</div>
+						<p><strong>Study-guide map:</strong> Big Data; Five Vs and sources; common analysis tools; analysis techniques; cleaning, normalization, and transformation. <a href="#chapter-1">Open the fuller Chapter 1 module content</a>.</p>
+						<h4 id="bd-t1-five-vs">1.1-1.2 Big Data, characteristics, and sources</h4>
+						<p class="assignment-links"><a href="#ch1-1-big-data">Read Big Data definition</a> · <a href="#ch1-2-five-vs">Read the Five Vs</a> · <a href="#ch1-2-sources">Open source examples</a></p>
+						<table><thead><tr><th>V</th><th>Recall cue</th></tr></thead><tbody><tr><td>Volume</td><td>How much data is generated and stored.</td></tr><tr><td>Variety</td><td>Different data forms and structures.</td></tr><tr><td>Velocity</td><td>Rate of generation and processing.</td></tr><tr><td>Veracity</td><td>Accuracy, reliability, and uncertainty.</td></tr><tr><td>Value</td><td>Useful insight or action gained from analysis.</td></tr></tbody></table>
+						<h4 id="bd-t1-tools">1.3 Tools and frameworks</h4>
+						<p class="assignment-links"><a href="#ch1-3-tools-frameworks">Open the tool comparison</a> · <a href="#ch1-3-tool-selection">Open a worked selection example</a></p>
+						<p><strong>Match by role:</strong> Hadoop/HDFS and MapReduce for distributed storage and batch processing; Spark for distributed analytics; Kafka for event streams; MongoDB for flexible documents; Tableau for visualization; AWS for cloud services; Flink for low-latency batch/stream processing.</p>
+						<h4 id="bd-t1-analysis">1.4 Analysis and extraction techniques</h4>
+						<p class="assignment-links"><a href="#ch1-4-analysis-techniques">Open analysis techniques</a> · <a href="#ch1-4-analysis-detail">Compare the questions and use cases</a></p>
+						<p><strong>Recall by question:</strong> descriptive—what happened; predictive—what may happen; machine/deep learning—what patterns can be learned; real-time—what is happening now; sentiment—what opinions are expressed.</p>
+						<h4 id="bd-t1-preprocessing">1.5 Cleaning, normalization, and transformation</h4>
+						<p class="assignment-links"><a href="#ch1-5-preprocessing">Open the preprocessing comparison</a> · <a href="#ch1-5-worked-example">Open the RetailMax workflow</a></p>
+						<p><strong>Distinguish the steps:</strong> clean errors, duplicates, and missing data; normalize/scale numeric features when comparability is needed; transform formats or derive fields for analysis. Useful formulas: min–max <code>(x − min)/(max − min)</code>; z-score <code>(x − mean)/standard deviation</code>. Examples in this reference are cues; see the linked workflow for context.</p>
+						<div class="callout warning"><strong>Common distinction:</strong> category encoding is a data transformation/preparation operation; it is not the same thing as rescaling numeric values.</div>
+					</details>
+
+					<details class="card wide glossary-card" id="bd-topic-2">
+						<summary><span>Topic 2 Reference: IoT Architectures and Applications</span></summary>
+						<div class="callout"><strong>Central question:</strong> How do connected physical devices collect information, communicate, process it, and support services or action?</div>
+						<p><strong>Study-guide map:</strong> IoT concepts and ecosystem; operation and architecture; security challenges; application domains. <a href="#chapter-2">Open the fuller Chapter 2 module content</a>.</p>
+						<h4 id="bd-t2-ecosystem">2.1-2.2 Core concepts and how IoT works</h4>
+						<p class="assignment-links"><a href="#ch2-1-iot-concepts">Open the IoT ecosystem</a> · <a href="#ch2-2-how-iot-works">Open the data flow</a> · <a href="#ch2-2-data-loop">See the data-to-action example</a></p>
+						<p>Core parts include sensors, actuators, connectivity, processing, platforms, applications, and security controls. Trace a system as: <code>sense → connect → process → decide → act</code>.</p>
+						<h4 id="bd-t2-architecture">2.3-2.4 Layers, architectures, and building blocks</h4>
+						<p class="assignment-links"><a href="#ch2-3-layer-architecture">Open the layer architecture</a> · <a href="#ch2-4-iot-architecture-blocks">Open architectures and enablers</a> · <a href="#ch2-4-building-blocks-detail">See the gateway and data-store roles</a></p>
+						<p><strong>Five layers:</strong> perception senses; network transfers; middleware processes/stores; application provides services; business evaluates outcomes. A gateway can filter, translate protocols, connect devices, and relay commands.</p>
+						<h4 id="bd-t2-security">2.5 Security challenges</h4>
+						<p class="assignment-links"><a href="#ch2-5-iot-security">Open the challenge/response table</a> · <a href="#ch2-5-security-detail">Open the connected-health scenario</a></p>
+						<table><thead><tr><th>Area</th><th>What to discuss</th><th>Example controls from the guide</th></tr></thead><tbody><tr><td>Encryption</td><td>Device limits, end-to-end protection, and key management.</td><td>Efficient cryptography, PKI, transport protection.</td></tr><tr><td>Authentication</td><td>Default credentials, scale, and device impersonation.</td><td>Remove defaults; use strong credentials, certificates, and secure boot where suitable.</td></tr><tr><td>Privacy</td><td>Sensitive collection and differing privacy obligations.</td><td>Privacy-by-design, clear use, minimisation, anonymisation, and compliance review.</td></tr></tbody></table>
+						<h4 id="bd-t2-applications">2.6 IoT applications</h4>
+						<p class="assignment-links"><a href="#ch2-6-iot-applications">Open the application overview</a> · <a href="#ch2-6-applications-detail">Open the domain map</a></p>
+						<p>Use the general-content map to connect domain, devices/data, and outcome across smart homes, healthcare, industrial IoT, farming, cities, transport/logistics, retail, energy, environmental monitoring, and wearables. These are study-guide application areas.</p>
+					</details>
+
+					<details class="card wide glossary-card" id="bd-topic-3">
+						<summary><span>Topic 3 Reference: IoT Technologies and Standards</span></summary>
+						<div class="callout"><strong>Central question:</strong> Which technologies, communication protocols, data formats, and standards let IoT devices exchange useful information reliably?</div>
+						<p><strong>Study-guide map:</strong> technology overview; application/network protocols; IoT and data standards; practical applications. <a href="#chapter-3">Open the fuller Chapter 3 module content</a>.</p>
+						<h4 id="bd-t3-technologies">3.1 Technology areas</h4>
+						<p class="assignment-links"><a href="#ch3-1-iot-technologies">Open the technology overview</a> · <a href="#ch3-1-technology-detail">Compare choices by constraint</a></p>
+						<p>Consider sensing/actuation, connectivity, edge/fog/cloud processing, storage and analytics, identification/tagging, security, integration, power management, and miniaturisation. Choose against range, power, data rate, latency, and processing needs.</p>
+						<h4 id="bd-t3-protocols">3.2 Application and network communication</h4>
+						<p class="assignment-links"><a href="#ch3-2-protocols">Open the protocol comparison</a> · <a href="#ch3-2-protocol-detail">Review delivery models and distinctions</a></p>
+						<p><strong>Keep categories clear:</strong> MQTT, HTTP, CoAP, DDS, AMQP, and OPC UA are application/industrial messaging or communication protocols in this reference; BLE, Zigbee, LoRaWAN, NB-IoT, Wi-Fi, and 5G describe connectivity technologies. Use the guide’s comparison for their particular roles.</p>
+						<h4 id="bd-t3-standards">3.3-3.4 Standards and IoT data</h4>
+						<p class="assignment-links"><a href="#ch3-3-standards">Open the standards overview</a> · <a href="#ch3-3-standards-detail">Open the standards and organizations map</a> · <a href="#ch3-4-data-detail">Open data formats and interoperability</a></p>
+						<p>Standards address connectivity, application messaging, security, data formats/serialization, storage, interoperability, and processing. ISO/IEC, IEEE, IETF, and GSMA are examples of standards organisations discussed in the guide.</p>
+						<h4 id="bd-t3-application">3.5 Practical application pattern</h4>
+						<p class="assignment-links"><a href="#ch3-5-practical-applications">Open practical applications</a> · <a href="#ch3-5-application-case">Follow the precision-farming design</a></p>
+						<p>State the environment and constraints; choose sensing, connectivity, processing location, protocol/standard, and security; then explain the outcome.</p>
+					</details>
+
+					<details class="card wide glossary-card" id="bd-combined-case-table">
+						<summary><span>Combined Topics 1–3 Case Reference</span></summary>
+						<h4>Integrated precision-farming flow</h4>
+						<div class="table-wrap"><table><thead><tr><th>Stage</th><th>Concept to apply</th><th>Example / explanation</th><th>Topic</th></tr></thead><tbody><tr><td>Collect</td><td>Sensor and data source</td><td>Soil sensors and weather stations produce varied readings.</td><td><a href="#ch2-2-how-iot-works">2</a></td></tr><tr><td>Connect</td><td>Connectivity and application communication</td><td>Choose a low-power, long-range link for remote fields.</td><td><a href="#ch3-1-technology-detail">3</a></td></tr><tr><td>Process</td><td>Edge and analytics</td><td>Make urgent local decisions; retain data for later analysis.</td><td><a href="#ch3-1-technology-detail">3</a></td></tr><tr><td>Prepare</td><td>Clean and transform</td><td>Validate readings, handle missing/duplicate data, and align fields.</td><td><a href="#ch1-5-worked-example">1</a></td></tr><tr><td>Act and evaluate</td><td>Application and value</td><td>Adjust irrigation and assess water use or crop outcomes.</td><td><a href="#ch3-5-application-case">3</a></td></tr></tbody></table></div>
+						<div class="callout warning"><strong>Scope note:</strong> this is a synthesis example to connect the study-guide topics; it does not add a new required standard or test subtopic.</div>
+					</details>
+
+					<article class="card wide" id="bd-answer-guide-key">
+						<h3>Answer Guide Key</h3>
+						<table><thead><tr><th>Prompt asks you to…</th><th>Answer structure</th><th>Reference</th></tr></thead><tbody><tr><td>Define or compare</td><td>Give the meaning, distinguish related terms, then give one suitable example.</td><td><a href="#bd-topic-1">Topic 1</a> · <a href="#bd-topic-2">Topic 2</a> · <a href="#bd-topic-3">Topic 3</a></td></tr><tr><td>Choose a tool or technology</td><td>State the data/use case and constraints; match the choice; explain its fit and limitation.</td><td><a href="#test-methods-reference">Methods reference</a></td></tr><tr><td>Design an IoT solution</td><td>Show sense → connect → process → decide → act; name the protocol/standard and security approach.</td><td><a href="#ch3-5-application-case">Applied design example</a></td></tr><tr><td>Explain data preparation</td><td>Separate cleaning, numeric scaling, and transformation; give the chosen procedure.</td><td><a href="#ch1-5-worked-example">Preprocessing example</a></td></tr></tbody></table>
+						<div class="callout"><strong>Source:</strong> 2026 Big Data &amp; IoT 600 Study Guide, Topics 1–3. Use the linked general module explanations for fuller detail.</div>
+					</article>
 				</div>
+				<p><a class="back-link" href="#test-focus-areas">Back to Test References ↑</a></p>
 			</section>
 
 			<section id="exam-focus-areas" aria-labelledby="exam-focus-title" data-nav-section>
@@ -1910,6 +2067,78 @@
 						<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
 				</section>
 
+
+			<section id="test-methods-reference" data-nav-section aria-labelledby="test-methods-title">
+				<div class="section-heading"><h2 id="test-methods-title">Topics 1–3 · Concepts, Tools, Methods &amp; Standards</h2><p>Choose a task, a letter, or a term. Each term links to its fuller explanation in the general module content. Entries reflect the study-guide scope; examples are short explanatory cues.</p><p><span class="test-scope-label">Study-guide scope · examples are explanatory</span></p></div>
+				<div class="bd-index-block" id="bd-reference-index" aria-label="Big Data reference index">
+					<h3>Browse by task</h3>
+					<nav id="bd-task-index" class="bd-reference-jumps" aria-label="Reference tasks"></nav>
+					<h3>Browse terms A–Z</h3>
+					<nav id="bd-alpha-index" class="bd-letter-links" aria-label="Alphabetical term index"></nav>
+					<div id="bd-name-index" aria-label="Terms by letter"></div>
+				</div>
+				<h3 id="bd-task-1">Task 1 · Characterise, source, and analyse Big Data</h3>
+				<div class="card table-wrap"><table class="test-reference"><thead><tr><th>Term</th><th>What it does / when to use it</th><th>Example</th><th>Details</th></tr></thead><tbody>
+					<tr><td>Big Data</td><td>Data whose volume, speed, variety, or complexity requires specialised storage and analysis.</td><td>Combine large transaction records and sensor streams.</td><td><a href="#ch1-1-big-data">Big Data</a></td></tr>
+					<tr><td>Volume · variety · velocity · veracity · value</td><td>Five attributes used to describe scale, forms, speed, trustworthiness, and usefulness.</td><td>Fast sensor data with uncertain readings has high velocity and a veracity concern.</td><td><a href="#ch1-2-five-vs">Five Vs</a></td></tr>
+					<tr><td>Structured · semi-structured · unstructured</td><td>Classify data by how consistently its fields follow a fixed schema; choose extraction accordingly.</td><td>Table row · JSON message · image.</td><td><a href="#ch1-1-data-types">Data forms</a></td></tr>
+					<tr><td>Sources</td><td>Identify where records originate and the insight they could support.</td><td>Transactions → sales trends; IoT → monitoring.</td><td><a href="#ch1-2-sources">Source map</a></td></tr>
+					<tr><td>Descriptive analysis</td><td>Summarises past data; use to answer “what happened?”</td><td>Monthly sales report.</td><td><a href="#ch1-4-analysis-techniques">Analysis methods</a></td></tr>
+					<tr><td>Predictive analytics</td><td>Uses historical data and models to estimate likely outcomes.</td><td>Forecast demand.</td><td><a href="#ch1-4-analysis-techniques">Analysis methods</a></td></tr>
+					<tr><td>Machine / deep learning</td><td>Learns patterns for classification, clustering, or complex pattern detection.</td><td>Group similar customer behaviour.</td><td><a href="#ch1-4-analysis-techniques">Analysis methods</a></td></tr>
+					<tr><td>Real-time analytics</td><td>Processes data promptly to support immediate decisions.</td><td>Alert on an abnormal machine reading.</td><td><a href="#ch1-4-analysis-techniques">Analysis methods</a></td></tr>
+					<tr><td>Sentiment analysis</td><td>Uses language analysis to classify opinion or tone in text.</td><td>Classify feedback as positive, neutral, or negative.</td><td><a href="#ch1-4-analysis-techniques">Analysis methods</a></td></tr>
+				</tbody></table></div>
+				<h3 id="bd-task-2">Task 2 · Select tools and prepare data</h3>
+				<div class="card table-wrap"><table class="test-reference"><thead><tr><th>Tool / step</th><th>What it does / when to use it</th><th>Example</th><th>Details</th></tr></thead><tbody>
+					<tr><td>Hadoop · HDFS · MapReduce</td><td>Distributed framework, storage, and parallel batch processing for large datasets.</td><td>Store files across nodes and count records in parallel.</td><td><a href="#ch1-3-tools-frameworks">Tools</a></td></tr>
+					<tr><td>Apache Spark</td><td>Distributed analytics; use for fast batch or stream processing and machine-learning workloads.</td><td>Aggregate a large sales dataset.</td><td><a href="#ch1-3-tools-frameworks">Tools</a></td></tr>
+					<tr><td>Apache Kafka</td><td>Event streaming platform for high-throughput data flows.</td><td>Collect checkout events for processing.</td><td><a href="#ch1-3-tools-frameworks">Tools</a></td></tr>
+					<tr><td>MongoDB</td><td>Document NoSQL store for flexible semi-structured records.</td><td>Store product documents with optional fields.</td><td><a href="#ch1-3-tools-frameworks">Tools</a></td></tr>
+					<tr><td>Tableau</td><td>Visualizes analysis as charts, dashboards, and reports.</td><td>Compare sales by month.</td><td><a href="#ch1-3-tools-frameworks">Tools</a></td></tr>
+					<tr><td>AWS</td><td>Cloud services for storage, processing, and analytics.</td><td>Use managed cloud processing for a large dataset.</td><td><a href="#ch1-3-tools-frameworks">Tools</a></td></tr>
+					<tr><td>Apache Flink</td><td>Batch and stream processing with low latency.</td><td>React to a sensor event as it arrives.</td><td><a href="#ch1-3-tools-frameworks">Tools</a></td></tr>
+					<tr><td>Cleaning</td><td>Find and handle missing, duplicate, inconsistent, or erroneous values before analysis.</td><td>Remove duplicate rows and standardise dates.</td><td><a href="#ch1-5-preprocessing">Preprocessing</a></td></tr>
+					<tr><td>Normalization / scaling</td><td>Rescales numeric values when comparable ranges are needed.</td><td>Min–max: <code>(x − min)/(max − min)</code>.</td><td><a href="#ch1-5-preprocessing">Preprocessing</a></td></tr>
+					<tr><td>Z-score</td><td>Expresses a value relative to the mean and standard deviation.</td><td><code>z = (x − mean)/SD</code>.</td><td><a href="#ch1-5-preprocessing">Preprocessing</a></td></tr>
+					<tr><td>Transformation</td><td>Changes format, type, or structure to suit analysis; may include parsing, aggregation, and encoding.</td><td>Parse JSON, then aggregate by customer.</td><td><a href="#ch1-5-worked-example">Worked workflow</a></td></tr>
+				</tbody></table></div>
+				<h3 id="bd-task-3">Task 3 · Explain an IoT system and its safeguards</h3>
+				<div class="card table-wrap"><table class="test-reference"><thead><tr><th>Term / framework</th><th>What it does / when to use it</th><th>Example</th><th>Details</th></tr></thead><tbody>
+					<tr><td>Sensor / actuator</td><td>Sensor observes a condition; actuator performs a physical action.</td><td>Moisture sensor reads; valve opens.</td><td><a href="#ch2-1-iot-concepts">IoT ecosystem</a></td></tr>
+					<tr><td>Gateway</td><td>Connects device networks and platforms; may filter data, translate protocols, and relay commands.</td><td>Gateway collects field sensor messages.</td><td><a href="#ch2-4-building-blocks-detail">Building blocks</a></td></tr>
+					<tr><td>Sense → connect → process → decide → act</td><td>Sequence for describing an IoT data-to-action flow.</td><td>Read temperature → transmit → detect overheating → alert.</td><td><a href="#ch2-2-how-iot-works">IoT flow</a></td></tr>
+					<tr><td>Perception / network / middleware / application / business</td><td>Five-layer model: capture, transfer, process, deliver service, evaluate value.</td><td>Sensor reading appears on an operational dashboard.</td><td><a href="#ch2-3-layer-architecture">Layer model</a></td></tr>
+					<tr><td>Edge / fog / cloud</td><td>Processing near devices, across intermediate nodes, or centrally; choose by latency and scale.</td><td>Local emergency stop at edge; historical analysis in cloud.</td><td><a href="#ch3-1-technology-detail">Computing choices</a></td></tr>
+					<tr><td>Encryption</td><td>Protects data confidentiality; consider device limits and key management.</td><td>Encrypt health readings in transit.</td><td><a href="#ch2-5-iot-security">Security challenges</a></td></tr>
+					<tr><td>Authentication</td><td>Verifies a device or user identity before access.</td><td>Authenticate a device with a certificate.</td><td><a href="#ch2-5-security-detail">Security scenario</a></td></tr>
+					<tr><td>Privacy</td><td>Govern collection, disclosure, and use of personal or sensitive data.</td><td>Collect only needed readings and explain why.</td><td><a href="#ch2-5-security-detail">Security scenario</a></td></tr>
+					<tr><td>ECC</td><td>Elliptic-curve cryptography; a security option the guide associates with resource-limited devices.</td><td>Protect a small sensor’s communication with an efficient cryptographic approach.</td><td><a href="#ch2-5-iot-security">Security challenges</a></td></tr>
+					<tr><td>PKI / X.509</td><td>Infrastructure and certificate formats for managing and checking identities/keys.</td><td>Verify a device certificate before accepting its messages.</td><td><a href="#ch3-3-standards-detail">Security standards</a></td></tr>
+					<tr><td>Secure boot</td><td>Checks firmware during startup so a device runs verified software.</td><td>Reject an altered firmware image.</td><td><a href="#ch2-5-security-detail">Security scenario</a></td></tr>
+					<tr><td>IoMT / IIoT</td><td>Medical / industrial IoT domains; connect device examples to domain needs.</td><td>Health wearable / factory sensors.</td><td><a href="#ch2-6-applications-detail">Application map</a></td></tr>
+				</tbody></table></div>
+				<h3 id="bd-task-4">Task 4 · Match IoT technology, protocol, and standard to a use case</h3>
+				<div class="card table-wrap"><table class="test-reference"><thead><tr><th>Term / framework</th><th>What it does / when to use it</th><th>Example</th><th>Details</th></tr></thead><tbody>
+					<tr><td>RFID / NFC</td><td>Identification technologies for tagging, tracking, or very short-range exchange.</td><td>Identify a tagged shipment.</td><td><a href="#ch3-1-iot-technologies">Technology overview</a></td></tr>
+					<tr><td>BLE / Zigbee / Wi-Fi / 5G</td><td>Connectivity options with different range, power, capacity, and latency trade-offs.</td><td>BLE wearable; Wi-Fi camera; 5G mobile connection.</td><td><a href="#ch3-1-technology-detail">Technology choices</a></td></tr>
+					<tr><td>LoRaWAN / NB-IoT</td><td>Long-range, low-power connectivity for remote or wide-area devices.</td><td>Send periodic soil readings.</td><td><a href="#ch3-1-technology-detail">Technology choices</a></td></tr>
+					<tr><td>MQTT</td><td>Lightweight publish/subscribe application messaging, typically through a broker.</td><td>Sensor publishes a reading; app subscribes.</td><td><a href="#ch3-2-protocol-detail">Protocol comparison</a></td></tr>
+					<tr><td>HTTP / CoAP</td><td>Request/response application protocols; CoAP is designed for constrained environments.</td><td>Use CoAP GET to read a device resource.</td><td><a href="#ch3-2-protocols">Protocol comparison</a></td></tr>
+					<tr><td>DDS / AMQP</td><td>Messaging approaches for real-time data distribution or message queuing.</td><td>Share industrial state or queue service events.</td><td><a href="#ch3-2-protocol-detail">Protocol comparison</a></td></tr>
+					<tr><td>OPC UA</td><td>Industrial communication standard supporting interoperability.</td><td>Exchange data across factory vendors.</td><td><a href="#ch3-3-standards-detail">Standards map</a></td></tr>
+					<tr><td>IPv6 / 6LoWPAN / IEEE 802.15.4</td><td>Addressing, adaptation, and low-power network standards for constrained IoT networks.</td><td>Carry IPv6 traffic over a low-power wireless network.</td><td><a href="#ch3-3-standards-detail">Network standards</a></td></tr>
+					<tr><td>JSON / XML / Protocol Buffers</td><td>Data formats and serialization choices; consider readability and message size.</td><td>Represent a sensor message as JSON.</td><td><a href="#ch3-4-data-detail">Data standards</a></td></tr>
+					<tr><td>TLS / DTLS / AES / OAuth 2.0</td><td>Security mechanisms for protected transport, encryption, and controlled access.</td><td>Protect a device connection and restrict an application’s access.</td><td><a href="#ch3-3-standards-detail">Security standards</a></td></tr>
+					<tr><td>Power management / nanotechnology</td><td>Low-power design extends device operation; miniaturisation enables small integrated sensors.</td><td>Use a low-power sensor for a remote field reading.</td><td><a href="#ch3-1-technology-detail">Technology choices</a></td></tr>
+					<tr><td>TLS / DTLS / X.509 / PKI</td><td>Security and identity components for protecting communication and managing certificates/keys.</td><td>TLS protects a connection; certificate identifies device.</td><td><a href="#ch3-3-standards-detail">Standards map</a></td></tr>
+					<tr><td>OneM2M / interoperability</td><td>Shared service and data approaches help different systems work together.</td><td>Integrate devices from different suppliers.</td><td><a href="#ch3-4-data-detail">Data standards</a></td></tr>
+					<tr><td>ISO/IEC · IEEE · IETF · GSMA</td><td>Organizations that develop international, networking, Internet, and mobile IoT standards.</td><td>IETF develops Internet protocols such as IPv6.</td><td><a href="#ch3-3-standards-detail">Standards and organizations</a></td></tr>
+					<tr><td>Design procedure</td><td>Identify domain and constraints; choose sensors, connectivity, compute location, protocols/standards, and security.</td><td>Farm sensor → LoRaWAN → edge decision → secured irrigation command.</td><td><a href="#ch3-5-application-case">Precision-farming example</a></td></tr>
+				</tbody></table></div>
+				<p><a class="back-link" href="#test-focus-areas">Back to Topic Index ↑</a></p>
+			</section>
+
 			<section id="preparation-station" class="module-learning-lab" data-nav-section><div class="section-heading"><h2>Learning Lab</h2><p>Use these interactive tools to practise Big Data &amp; IoT 600 concepts. Your quiz attempts are saved only in this browser.</p></div><div class="learning-lab-grid"><div class="learning-lab-panel learning-lab-quiz"><h3>Quiz Builder</h3><p>Choose how many questions to draw from each topic, then answer and submit when ready.</p><div class="lab-counts"></div><div class="lab-actions"><button class="lab-button" type="button" data-lab-action="new-quiz">Start New Quiz</button><button class="lab-button secondary" type="button" data-lab-action="restart-quiz">Restart Current Quiz</button><button class="lab-button danger" type="button" data-lab-action="clear-progress">Clear Progress</button></div></div><div class="lab-summary" aria-live="polite"></div><div class="lab-questions"></div><button class="lab-button learning-lab-quiz lab-submit" type="button" data-lab-action="submit-quiz">Submit Quiz</button><div class="lab-history learning-lab-quiz"></div><article class="learning-lab-panel" id="lab-flashcards"><h3>Flashcards</h3><p>Recall the definition before flipping the card.</p><div class="lab-flashcard" tabindex="0" role="button"></div><div class="lab-actions"><button class="lab-button secondary" type="button" data-lab-action="previous-card">Previous</button><button class="lab-button" type="button" data-lab-action="flip">Flip card</button><button class="lab-button secondary" type="button" data-lab-action="next-card">Next</button></div><div class="lab-feedback lab-flashcard-status" aria-live="polite"></div></article><article class="learning-lab-panel" id="lab-challenge"><h3>Concept Challenge</h3><p class="lab-challenge-prompt"></p><div class="lab-options lab-challenge-options"></div><div class="lab-feedback lab-challenge-feedback" aria-live="polite"></div><div class="lab-actions"><button class="lab-button secondary" type="button" data-lab-action="next-challenge">Next challenge</button></div></article><article class="learning-lab-panel wide" id="lab-explain"><h3>Explain It</h3><p class="lab-explain-prompt"></p><textarea class="lab-explain-input" aria-label="Your explanation" placeholder="Write your explanation before revealing the model answer."></textarea><div class="lab-actions"><button class="lab-button" type="button" data-lab-action="show-explain">Reveal model answer</button></div><div class="lab-feedback lab-explain-answer"></div></article></div></section>
 
 				<footer class="footer">
@@ -2015,6 +2244,74 @@
 
 		updateProgress();
 		updateActiveNav();
+	</script>
+	<script>
+		(() => {
+			const root = document.getElementById('test-methods-reference');
+			const taskIndex = document.getElementById('bd-task-index');
+			const alphaIndex = document.getElementById('bd-alpha-index');
+			const nameIndex = document.getElementById('bd-name-index');
+			if (!root || !taskIndex || !alphaIndex || !nameIndex) return;
+
+			const makeLink = (href, label) => {
+				const link = document.createElement('a');
+				link.href = href;
+				link.textContent = label;
+				return link;
+			};
+			const tasks = Array.from(root.querySelectorAll(':scope > h3[id^="bd-task-"]'));
+			const terms = new Map();
+			let entryNumber = 0;
+
+			tasks.forEach((heading) => {
+				taskIndex.append(makeLink(`#${heading.id}`, heading.textContent.replace(/^Task\s+\d+\s*·\s*/, '')));
+				const table = heading.nextElementSibling?.querySelector('table.test-reference');
+				if (!table) return;
+				const taskLinks = document.createElement('nav');
+				taskLinks.className = 'bd-term-links';
+				taskLinks.setAttribute('aria-label', `${heading.textContent} term links`);
+				table.closest('.table-wrap').before(taskLinks);
+
+				Array.from(table.querySelectorAll('tbody tr')).forEach((row) => {
+					const labelCell = row.cells[0];
+					if (!labelCell) return;
+					const rowId = `bd-term-${entryNumber++}`;
+					row.id = rowId;
+					row.classList.add('bd-reference-row');
+					const labels = labelCell.textContent.split(/[·/→;]/).map((part) => part.trim()).filter(Boolean);
+					labels.forEach((label) => {
+						taskLinks.append(makeLink(`#${rowId}`, label));
+						const key = label.toLocaleLowerCase();
+						if (!terms.has(key)) terms.set(key, { label, rowId });
+					});
+					const detailsCell = row.cells[row.cells.length - 1];
+					if (detailsCell && !detailsCell.querySelector('.bd-reference-return')) {
+						const back = makeLink('#bd-reference-index', 'Index ↑');
+						back.className = 'bd-reference-return';
+						detailsCell.append(document.createTextNode(' · '), back);
+					}
+				});
+			});
+
+			const sortedTerms = Array.from(terms.values()).sort((a, b) => a.label.localeCompare(b.label));
+			const letters = new Map();
+			sortedTerms.forEach((term) => {
+				const initial = /^[a-z]/i.test(term.label) ? term.label[0].toUpperCase() : '#';
+				if (!letters.has(initial)) letters.set(initial, []);
+				letters.get(initial).push(term);
+			});
+			Array.from(letters.keys()).sort().forEach((letter) => {
+				alphaIndex.append(makeLink(`#bd-letter-${letter}`, letter));
+				const group = document.createElement('div');
+				group.className = 'bd-letter-group';
+				group.id = `bd-letter-${letter}`;
+				const heading = document.createElement('h4');
+				heading.textContent = letter;
+				group.append(heading);
+				letters.get(letter).forEach((term) => group.append(makeLink(`#${term.rowId}`, term.label)));
+				nameIndex.append(group);
+			});
+		})();
 	</script>
 </body>
 </html>
