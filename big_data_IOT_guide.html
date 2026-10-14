@@ -20,6 +20,7 @@
 			--code-bg: #010409;
 			--code-text: #7ee787;
 			--nav-width: 310px;
+
 		}
 
 		* {
@@ -427,38 +428,67 @@
 		.chapter-card {
 			margin-bottom: 16px;
 		}
+		.chapter-subsection { margin: -6px 0 16px 18px; border-left: 3px solid var(--amber); scroll-margin-top: 18px; }
+		.chapter-subsection summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; cursor: pointer; color: var(--cyan); font-weight: 700; list-style: none; }
+		.chapter-subsection summary::-webkit-details-marker { display: none; }
+		.chapter-subsection summary::after { content: '+'; flex: none; color: var(--amber); font-size: 1.25rem; line-height: 1; }
+		.chapter-subsection[open] summary { padding-bottom: 12px; border-bottom: 1px solid var(--border); margin-bottom: 16px; }
+		.chapter-subsection[open] summary::after { content: '−'; }
+		.chapter-subsection:target { outline: 2px solid var(--cyan); outline-offset: 3px; }
 
 
 		.nav-submenu { margin: 6px 0 8px 10px; padding-left: 9px; border-left: 1px solid var(--border); }
 		.nav-submenu .nav-link { padding: 6px 8px; font-size: .84rem; }
 
-		.study-index-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-		.study-index-card h3 { margin-top: 0; }
-		.study-index-card ul { margin: 0; padding-left: 20px; }
-		.study-index-card li { margin: 7px 0; }
+		.test-topic-card h3 { margin-top: 0; }
 		.test-scope-label { display: inline-block; margin: 0 0 8px; border: 1px solid var(--green); border-radius: 999px; padding: 3px 9px; color: var(--green); font-size: .78rem; font-weight: 700; }
-		.test-support-label { border-color: var(--amber); color: var(--amber); }
 		.test-reference { width: 100%; border-collapse: collapse; }
 		.test-reference th, .test-reference td { border-bottom: 1px solid var(--border); padding: 9px; text-align: left; vertical-align: top; }
 		.test-reference th { color: var(--cyan); }
+		#test-focus-areas .card, #test-methods-reference .card { min-width: 0; }
+		#test-focus-areas .table-wrap, #test-methods-reference .table-wrap {
+			max-width: 100%;
+			min-width: 0;
+			overflow-x: auto;
+			-webkit-overflow-scrolling: touch;
+		}
+		#test-focus-areas .table-wrap > table, #test-methods-reference .table-wrap > table {
+			width: 100%;
+			min-width: 680px;
+		}
+		#test-focus-areas .table-wrap.compact > table { min-width: 440px; }
 		.bd-index-block { margin: 18px 0 24px; padding: 16px; border: 1px solid var(--border); border-radius: 12px; background: var(--panel); }
 		.bd-index-block h3 { margin: 8px 0; }
+		/* The reference-index script creates these links and rows at runtime. */
+		/*noinspection CssUnusedSymbol*/
 		.bd-reference-jumps, .bd-letter-links, .bd-term-links { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+		/*noinspection CssUnusedSymbol*/
 		.bd-reference-jumps a, .bd-letter-links a, .bd-term-links a, .bd-reference-return { display: inline-flex; align-items: center; min-height: 42px; padding: 7px 11px; border: 1px solid var(--border); border-radius: 8px; color: var(--cyan); text-decoration: none; }
+		/*noinspection CssUnusedSymbol*/
 		.bd-reference-jumps a:hover, .bd-letter-links a:hover, .bd-term-links a:hover, .bd-reference-return:hover { background: var(--header); }
-		.bd-letter-group { padding: 8px 0; border-bottom: 1px solid var(--border); scroll-margin-top: 18px; }
-		.bd-letter-group h4 { display: inline-block; min-width: 2rem; margin: 0; color: var(--cyan); }
+		/*noinspection CssUnusedSymbol*/
+		.bd-letter-group { display: grid; grid-template-columns: 2rem minmax(0, 1fr); align-items: start; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); scroll-margin-top: 18px; }
+		/*noinspection CssUnusedSymbol*/
+		.bd-letter-group h4 { margin: 8px 0 0; color: var(--cyan); }
+		/*noinspection CssUnusedSymbol*/
+		.bd-letter-terms { display: flex; flex-wrap: wrap; gap: 8px; min-width: 0; }
+		/*noinspection CssUnusedSymbol*/
+		body.module-page .bd-letter-terms a { display: inline-flex; align-items: center; min-height: 40px; max-width: 100%; padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); line-height: 1.25; overflow-wrap: anywhere; }
+		/*noinspection CssUnusedSymbol*/
+		body.module-page .bd-letter-terms a:hover, body.module-page .bd-letter-terms a:focus-visible { background: var(--header); border-color: var(--amber); }
+		.standards-table { width: 100%; border-collapse: collapse; }
+		.standards-table th, .standards-table td { padding: 9px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+		/*noinspection CssUnusedSymbol*/
 		.bd-reference-row { scroll-margin-top: 18px; }
+		/*noinspection CssUnusedSymbol*/
 		.bd-reference-row:target { outline: 2px solid var(--cyan); outline-offset: 3px; }
-		@media (max-width: 980px) { .study-index-grid { grid-template-columns: 1fr; } }
 		@media (max-width: 620px) {
 			.bd-index-block { padding: 12px; }
+			.chapter-subsection { margin-left: 0; }
+			/*noinspection CssUnusedSymbol*/
+			body.module-page .bd-letter-terms a { min-height: 44px; }
+			/*noinspection CssUnusedSymbol*/
 			.bd-reference-jumps a, .bd-letter-links a, .bd-term-links a, .bd-reference-return { min-height: 44px; }
-			.test-reference, .test-reference tbody, .test-reference tr, .test-reference td { display: block; width: 100%; }
-			.test-reference thead { display: none; }
-			.test-reference tr { padding: 9px 0; border-bottom: 1px solid var(--border); }
-			.test-reference td { border: 0; padding: 4px 8px; }
-			.test-reference td:first-child { color: var(--cyan); font-weight: 700; }
 		}
 
 		.glossary-card summary {
@@ -657,6 +687,7 @@
 		<a class="nav-link" href="#bd-topic-3">Topic 3 Reference</a>
 		<a class="nav-link" href="#ch3-1-iot-technologies">Technology overview</a>
 		<a class="nav-link" href="#ch3-2-protocols">Protocols and connectivity</a>
+		<a class="nav-link" href="#bd-standards-table">Standards comparison table</a>
 		<a class="nav-link" href="#ch3-3-standards">Standards</a>
 		<a class="nav-link" href="#ch3-4-data-standards">Data standards</a>
 		<a class="nav-link" href="#ch3-5-practical-applications">Practical applications</a>
@@ -723,7 +754,7 @@
 			<section id="test-focus-areas" data-nav-section aria-labelledby="test-focus-title">
 				<div class="section-heading">
 					<h2 id="test-focus-title">Big Data Test References</h2>
-					<p>A focused open-book reference for Topics 1–3, organised like the Information Systems CA references: start with the at-a-glance index, then open a topic reference for key points and worked links.</p>
+					<p>A focused open-book reference for Topics 1–3, organised like the Information Systems CA references: start with the at-a-glance index, then jump to a topic reference for key points and worked links. On narrow screens, swipe tables sideways to see every column.</p>
 				</div>
 				<div class="card callout success"><strong>Study-guide scope:</strong> the confirmed test scope is Chapters 1–3 of the 2026 Big Data &amp; IoT 600 Study Guide. The at-a-glance table and topic references below summarise that material. Brief examples are explanatory cues, not extra confirmed test content. Chapters 4–5 remain general module content outside this test scope.</div>
 				<div class="callout"><strong>Answer pattern:</strong> define the concept → explain its role → match it to the data or IoT constraint → give a short example → state a relevant limitation or security consideration.</div>
@@ -743,13 +774,13 @@
 						</tbody></table></div>
 					</article>
 
-					<details class="card wide glossary-card" id="bd-topic-1">
-						<summary><span>Topic 1 Reference: Big Data Analysis and Extraction</span></summary>
+					<article class="card wide test-topic-card" id="bd-topic-1">
+						<h3>Topic 1 Reference: Big Data Analysis and Extraction</h3>
 						<div class="callout"><strong>Central question:</strong> How do you describe, source, analyse, and prepare varied data so it can support useful decisions?</div>
 						<p><strong>Study-guide map:</strong> Big Data; Five Vs and sources; common analysis tools; analysis techniques; cleaning, normalization, and transformation. <a href="#chapter-1">Open the fuller Chapter 1 module content</a>.</p>
 						<h4 id="bd-t1-five-vs">1.1-1.2 Big Data, characteristics, and sources</h4>
 						<p class="assignment-links"><a href="#ch1-1-big-data">Read Big Data definition</a> · <a href="#ch1-2-five-vs">Read the Five Vs</a> · <a href="#ch1-2-sources">Open source examples</a></p>
-						<table><thead><tr><th>V</th><th>Recall cue</th></tr></thead><tbody><tr><td>Volume</td><td>How much data is generated and stored.</td></tr><tr><td>Variety</td><td>Different data forms and structures.</td></tr><tr><td>Velocity</td><td>Rate of generation and processing.</td></tr><tr><td>Veracity</td><td>Accuracy, reliability, and uncertainty.</td></tr><tr><td>Value</td><td>Useful insight or action gained from analysis.</td></tr></tbody></table>
+						<div class="table-wrap compact"><table><thead><tr><th>V</th><th>Recall cue</th></tr></thead><tbody><tr><td>Volume</td><td>How much data is generated and stored.</td></tr><tr><td>Variety</td><td>Different data forms and structures.</td></tr><tr><td>Velocity</td><td>Rate of generation and processing.</td></tr><tr><td>Veracity</td><td>Accuracy, reliability, and uncertainty.</td></tr><tr><td>Value</td><td>Useful insight or action gained from analysis.</td></tr></tbody></table></div>
 						<h4 id="bd-t1-tools">1.3 Tools and frameworks</h4>
 						<p class="assignment-links"><a href="#ch1-3-tools-frameworks">Open the tool comparison</a> · <a href="#ch1-3-tool-selection">Open a worked selection example</a></p>
 						<p><strong>Match by role:</strong> Hadoop/HDFS and MapReduce for distributed storage and batch processing; Spark for distributed analytics; Kafka for event streams; MongoDB for flexible documents; Tableau for visualization; AWS for cloud services; Flink for low-latency batch/stream processing.</p>
@@ -760,10 +791,10 @@
 						<p class="assignment-links"><a href="#ch1-5-preprocessing">Open the preprocessing comparison</a> · <a href="#ch1-5-worked-example">Open the RetailMax workflow</a></p>
 						<p><strong>Distinguish the steps:</strong> clean errors, duplicates, and missing data; normalize/scale numeric features when comparability is needed; transform formats or derive fields for analysis. Useful formulas: min–max <code>(x − min)/(max − min)</code>; z-score <code>(x − mean)/standard deviation</code>. Examples in this reference are cues; see the linked workflow for context.</p>
 						<div class="callout warning"><strong>Common distinction:</strong> category encoding is a data transformation/preparation operation; it is not the same thing as rescaling numeric values.</div>
-					</details>
+					</article>
 
-					<details class="card wide glossary-card" id="bd-topic-2">
-						<summary><span>Topic 2 Reference: IoT Architectures and Applications</span></summary>
+					<article class="card wide test-topic-card" id="bd-topic-2">
+						<h3>Topic 2 Reference: IoT Architectures and Applications</h3>
 						<div class="callout"><strong>Central question:</strong> How do connected physical devices collect information, communicate, process it, and support services or action?</div>
 						<p><strong>Study-guide map:</strong> IoT concepts and ecosystem; operation and architecture; security challenges; application domains. <a href="#chapter-2">Open the fuller Chapter 2 module content</a>.</p>
 						<h4 id="bd-t2-ecosystem">2.1-2.2 Core concepts and how IoT works</h4>
@@ -774,14 +805,14 @@
 						<p><strong>Five layers:</strong> perception senses; network transfers; middleware processes/stores; application provides services; business evaluates outcomes. A gateway can filter, translate protocols, connect devices, and relay commands.</p>
 						<h4 id="bd-t2-security">2.5 Security challenges</h4>
 						<p class="assignment-links"><a href="#ch2-5-iot-security">Open the challenge/response table</a> · <a href="#ch2-5-security-detail">Open the connected-health scenario</a></p>
-						<table><thead><tr><th>Area</th><th>What to discuss</th><th>Example controls from the guide</th></tr></thead><tbody><tr><td>Encryption</td><td>Device limits, end-to-end protection, and key management.</td><td>Efficient cryptography, PKI, transport protection.</td></tr><tr><td>Authentication</td><td>Default credentials, scale, and device impersonation.</td><td>Remove defaults; use strong credentials, certificates, and secure boot where suitable.</td></tr><tr><td>Privacy</td><td>Sensitive collection and differing privacy obligations.</td><td>Privacy-by-design, clear use, minimisation, anonymisation, and compliance review.</td></tr></tbody></table>
+						<div class="table-wrap"><table><thead><tr><th>Area</th><th>What to discuss</th><th>Example controls from the guide</th></tr></thead><tbody><tr><td>Encryption</td><td>Device limits, end-to-end protection, and key management.</td><td>Efficient cryptography, PKI, transport protection.</td></tr><tr><td>Authentication</td><td>Default credentials, scale, and device impersonation.</td><td>Remove defaults; use strong credentials, certificates, and secure boot where suitable.</td></tr><tr><td>Privacy</td><td>Sensitive collection and differing privacy obligations.</td><td>Privacy-by-design, clear use, minimisation, anonymisation, and compliance review.</td></tr></tbody></table></div>
 						<h4 id="bd-t2-applications">2.6 IoT applications</h4>
 						<p class="assignment-links"><a href="#ch2-6-iot-applications">Open the application overview</a> · <a href="#ch2-6-applications-detail">Open the domain map</a></p>
 						<p>Use the general-content map to connect domain, devices/data, and outcome across smart homes, healthcare, industrial IoT, farming, cities, transport/logistics, retail, energy, environmental monitoring, and wearables. These are study-guide application areas.</p>
-					</details>
+					</article>
 
-					<details class="card wide glossary-card" id="bd-topic-3">
-						<summary><span>Topic 3 Reference: IoT Technologies and Standards</span></summary>
+					<article class="card wide test-topic-card" id="bd-topic-3">
+						<h3>Topic 3 Reference: IoT Technologies and Standards</h3>
 						<div class="callout"><strong>Central question:</strong> Which technologies, communication protocols, data formats, and standards let IoT devices exchange useful information reliably?</div>
 						<p><strong>Study-guide map:</strong> technology overview; application/network protocols; IoT and data standards; practical applications. <a href="#chapter-3">Open the fuller Chapter 3 module content</a>.</p>
 						<h4 id="bd-t3-technologies">3.1 Technology areas</h4>
@@ -793,21 +824,34 @@
 						<h4 id="bd-t3-standards">3.3-3.4 Standards and IoT data</h4>
 						<p class="assignment-links"><a href="#ch3-3-standards">Open the standards overview</a> · <a href="#ch3-3-standards-detail">Open the standards and organizations map</a> · <a href="#ch3-4-data-detail">Open data formats and interoperability</a></p>
 						<p>Standards address connectivity, application messaging, security, data formats/serialization, storage, interoperability, and processing. ISO/IEC, IEEE, IETF, and GSMA are examples of standards organisations discussed in the guide.</p>
+						<h5 id="bd-standards-table">Standards comparison at a glance</h5>
+						<div class="table-wrap"><table class="standards-table"><thead><tr><th>Layer or role</th><th>Examples</th><th>Use or distinction</th><th>Fuller explanation</th></tr></thead><tbody>
+							<tr><td data-label="Layer or role">Addressing and adaptation</td><td data-label="Examples">IPv6 · 6LoWPAN</td><td data-label="Use or distinction">IPv6 addresses devices; 6LoWPAN adapts IPv6 for constrained low-power networks.</td><td data-label="Fuller explanation"><a href="#ch3-3-standards-detail">Network standards</a></td></tr>
+							<tr><td data-label="Layer or role">Low-power local link</td><td data-label="Examples">IEEE 802.15.4</td><td data-label="Use or distinction">Wireless link basis for low-rate, low-power device networks.</td><td data-label="Fuller explanation"><a href="#ch3-3-standards-detail">Network standards</a></td></tr>
+							<tr><td data-label="Layer or role">Wide-area connectivity</td><td data-label="Examples">LoRaWAN · NB-IoT</td><td data-label="Use or distinction">Remote, low-data-rate sensing; NB-IoT uses cellular infrastructure.</td><td data-label="Fuller explanation"><a href="#ch3-1-technology-detail">Connectivity choices</a></td></tr>
+							<tr><td data-label="Layer or role">Application messaging</td><td data-label="Examples">MQTT · CoAP</td><td data-label="Use or distinction">MQTT uses brokered publish/subscribe; CoAP offers lightweight resource requests.</td><td data-label="Fuller explanation"><a href="#ch3-2-protocol-detail">Protocol comparison</a></td></tr>
+							<tr><td data-label="Layer or role">Interoperability</td><td data-label="Examples">OneM2M · OPC UA</td><td data-label="Use or distinction">OneM2M supports common IoT services; OPC UA supports vendor-neutral industrial exchange.</td><td data-label="Fuller explanation"><a href="#ch3-3-standards-detail">Standards map</a></td></tr>
+							<tr><td data-label="Layer or role">Data representation</td><td data-label="Examples">JSON · XML · Protocol Buffers</td><td data-label="Use or distinction">Choose readable text formats or compact binary serialization for device data.</td><td data-label="Fuller explanation"><a href="#ch3-4-data-detail">Data standards</a></td></tr>
+							<tr><td data-label="Layer or role">Communication protection</td><td data-label="Examples">TLS · DTLS · AES</td><td data-label="Use or distinction">TLS/DTLS protect connections; AES is an encryption standard used within security designs.</td><td data-label="Fuller explanation"><a href="#ch3-3-standards-detail">Security standards</a></td></tr>
+							<tr><td data-label="Layer or role">Identity and access</td><td data-label="Examples">X.509 · PKI · OAuth 2.0</td><td data-label="Use or distinction">Certificates and PKI manage device identities; OAuth 2.0 delegates application access.</td><td data-label="Fuller explanation"><a href="#ch3-3-standards-detail">Security standards</a></td></tr>
+							<tr><td data-label="Layer or role">Security practice</td><td data-label="Examples">ETSI EN 303 645 · ISO/IEC 27001</td><td data-label="Use or distinction">Consumer IoT security baseline versus organisation-wide security management.</td><td data-label="Fuller explanation"><a href="#ch3-3-standards-detail">Standards map</a></td></tr>
+						</tbody></table></div>
+						<p class="muted">These rows group standards and technologies named in Topics 3.2–3.4; the use cues are explanatory examples. ISO/IEC, IEEE, IETF, and GSMA are standards organisations; GDPR is a data-protection law.</p>
 						<h4 id="bd-t3-application">3.5 Practical application pattern</h4>
 						<p class="assignment-links"><a href="#ch3-5-practical-applications">Open practical applications</a> · <a href="#ch3-5-application-case">Follow the precision-farming design</a></p>
 						<p>State the environment and constraints; choose sensing, connectivity, processing location, protocol/standard, and security; then explain the outcome.</p>
-					</details>
+					</article>
 
-					<details class="card wide glossary-card" id="bd-combined-case-table">
-						<summary><span>Combined Topics 1–3 Case Reference</span></summary>
+					<article class="card wide test-topic-card" id="bd-combined-case-table">
+						<h3>Combined Topics 1–3 Case Reference</h3>
 						<h4>Integrated precision-farming flow</h4>
 						<div class="table-wrap"><table><thead><tr><th>Stage</th><th>Concept to apply</th><th>Example / explanation</th><th>Topic</th></tr></thead><tbody><tr><td>Collect</td><td>Sensor and data source</td><td>Soil sensors and weather stations produce varied readings.</td><td><a href="#ch2-2-how-iot-works">2</a></td></tr><tr><td>Connect</td><td>Connectivity and application communication</td><td>Choose a low-power, long-range link for remote fields.</td><td><a href="#ch3-1-technology-detail">3</a></td></tr><tr><td>Process</td><td>Edge and analytics</td><td>Make urgent local decisions; retain data for later analysis.</td><td><a href="#ch3-1-technology-detail">3</a></td></tr><tr><td>Prepare</td><td>Clean and transform</td><td>Validate readings, handle missing/duplicate data, and align fields.</td><td><a href="#ch1-5-worked-example">1</a></td></tr><tr><td>Act and evaluate</td><td>Application and value</td><td>Adjust irrigation and assess water use or crop outcomes.</td><td><a href="#ch3-5-application-case">3</a></td></tr></tbody></table></div>
 						<div class="callout warning"><strong>Scope note:</strong> this is a synthesis example to connect the study-guide topics; it does not add a new required standard or test subtopic.</div>
-					</details>
+					</article>
 
 					<article class="card wide" id="bd-answer-guide-key">
 						<h3>Answer Guide Key</h3>
-						<table><thead><tr><th>Prompt asks you to…</th><th>Answer structure</th><th>Reference</th></tr></thead><tbody><tr><td>Define or compare</td><td>Give the meaning, distinguish related terms, then give one suitable example.</td><td><a href="#bd-topic-1">Topic 1</a> · <a href="#bd-topic-2">Topic 2</a> · <a href="#bd-topic-3">Topic 3</a></td></tr><tr><td>Choose a tool or technology</td><td>State the data/use case and constraints; match the choice; explain its fit and limitation.</td><td><a href="#test-methods-reference">Methods reference</a></td></tr><tr><td>Design an IoT solution</td><td>Show sense → connect → process → decide → act; name the protocol/standard and security approach.</td><td><a href="#ch3-5-application-case">Applied design example</a></td></tr><tr><td>Explain data preparation</td><td>Separate cleaning, numeric scaling, and transformation; give the chosen procedure.</td><td><a href="#ch1-5-worked-example">Preprocessing example</a></td></tr></tbody></table>
+						<div class="table-wrap"><table><thead><tr><th>Prompt asks you to…</th><th>Answer structure</th><th>Reference</th></tr></thead><tbody><tr><td>Define or compare</td><td>Give the meaning, distinguish related terms, then give one suitable example.</td><td><a href="#bd-topic-1">Topic 1</a> · <a href="#bd-topic-2">Topic 2</a> · <a href="#bd-topic-3">Topic 3</a></td></tr><tr><td>Choose a tool or technology</td><td>State the data/use case and constraints; match the choice; explain its fit and limitation.</td><td><a href="#test-methods-reference">Methods reference</a></td></tr><tr><td>Design an IoT solution</td><td>Show sense → connect → process → decide → act; name the protocol/standard and security approach.</td><td><a href="#ch3-5-application-case">Applied design example</a></td></tr><tr><td>Explain data preparation</td><td>Separate cleaning, numeric scaling, and transformation; give the chosen procedure.</td><td><a href="#ch1-5-worked-example">Preprocessing example</a></td></tr></tbody></table></div>
 						<div class="callout"><strong>Source:</strong> 2026 Big Data &amp; IoT 600 Study Guide, Topics 1–3. Use the linked general module explanations for fuller detail.</div>
 					</article>
 				</div>
@@ -834,6 +878,22 @@
 						<p>Big Data describes extremely large datasets that are too voluminous, complex, or fast-moving for traditional data-processing tools to handle effectively. Managing it requires specialized technologies for storage, processing, analysis, and retrieval.</p>
 						<p>The guide links Big Data directly to efficient storage and analysis: organizations must manage volume, variety, velocity, and veracity so they can extract value.</p>
 					</article>
+					<details class="card chapter-card chapter-subsection" id="ch1-1-data-types">
+						<summary>1.1.1 Data forms and the extraction problem</summary>
+							<p>The guide’s Big Data discussion assumes that useful data arrives in different forms and at different speeds. <strong>Structured data</strong> fits a defined schema such as transaction rows. <strong>Semi-structured data</strong> carries tags or flexible fields, such as JSON logs. <strong>Unstructured data</strong> includes posts, images, audio, video, documents, and other content without a fixed table structure.</p>
+							<div class="table-wrap">
+								<table>
+									<thead><tr><th>Form</th><th>Example in the guide</th><th>Extraction implication</th></tr></thead>
+									<tbody>
+										<tr><td>Structured</td><td>Banking, sales, and transaction records.</td><td>Can be queried after schema checks and type validation.</td></tr>
+										<tr><td>Semi-structured</td><td>JSON mobile-app logs and sensor messages.</td><td>Fields must be parsed, aligned, and converted to common names and types.</td></tr>
+										<tr><td>Unstructured</td><td>Social posts, comments, images, and healthcare documents.</td><td>Needs text, media, or document extraction before analysis.</td></tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="callout warning"><strong>Exam trap:</strong> Big Data is not defined only by size. Variety, velocity, veracity, and the value that can be extracted are equally important in the guide.</div>
+
+					</details>
 
 					<article class="card chapter-card" id="ch1-2-five-vs">
 						<h3>1.2 Characteristics of Big Data: The Five Vs</h3>
@@ -878,6 +938,24 @@
 						<h4>Sources of Big Data</h4>
 						<p>Sources include business transactions, social media interactions, IoT sensor streams, digital activity, healthcare records, scientific experiments, and government/public-service datasets.</p>
 					</article>
+					<details class="card chapter-card chapter-subsection" id="ch1-2-sources">
+						<summary>1.2.1 Sources of Big Data</summary>
+							<p>Different sources explain why Big Data is both large and varied. A strong answer names the source, the form of data it produces, and the type of insight it can support.</p>
+							<div class="table-wrap">
+								<table>
+									<thead><tr><th>Source</th><th>Typical data</th><th>Possible insight</th></tr></thead>
+									<tbody>
+										<tr><td>Business transactions</td><td>Purchases, banking, finance, orders.</td><td>Sales performance, customer value, and financial trends.</td></tr>
+										<tr><td>Social media</td><td>Posts, comments, likes, shares.</td><td>Human interaction, sentiment, and emerging trends.</td></tr>
+										<tr><td>IoT devices</td><td>Sensor readings, wearables, industrial equipment.</td><td>Real-time monitoring, automation, and predictive maintenance.</td></tr>
+										<tr><td>Web and digital activity</td><td>Searches, clicks, browsing, adverts, e-commerce behaviour.</td><td>Preferences, journeys, campaign response, and personalization.</td></tr>
+										<tr><td>Healthcare</td><td>Electronic records, diagnostic images, wearable health data.</td><td>Personalized care, treatment outcomes, and research.</td></tr>
+										<tr><td>Scientific and public sources</td><td>Experiments, observations, government and public-service records.</td><td>Research patterns, planning, and service improvement.</td></tr>
+									</tbody>
+								</table>
+							</div>
+
+					</details>
 
 					<article class="card chapter-card" id="ch1-3-tools-frameworks">
 						<h3>1.3 Common Tools and Frameworks</h3>
@@ -933,6 +1011,19 @@
 							<strong>Choosing a tool:</strong> match the tool to data type, processing need, scalability, and affordability.
 						</div>
 					</article>
+					<details class="card chapter-card chapter-subsection" id="ch1-3-tool-selection">
+						<summary>1.3.1 Tool-selection worked example</summary>
+							<p>Suppose a retailer receives live checkout events, stores customer documents, and needs a management dashboard. The source guide’s tools fit together as a pipeline rather than as competing answers.</p>
+							<div class="diagram" aria-label="Big Data tool workflow">
+								<div><strong>Collect</strong><code>Kafka</code> receives high-velocity event streams.</div>
+								<div><strong>Store</strong><code>MongoDB</code> keeps flexible customer documents; <code>HDFS</code> keeps distributed files.</div>
+								<div><strong>Process</strong><code>Spark</code> analyses batch and streaming data in memory.</div>
+								<div><strong>Model</strong><code>MLlib</code> or another analytics layer finds patterns and predictions.</div>
+								<div><strong>Communicate</strong><code>Tableau</code> or Power BI turns results into dashboards.</div>
+							</div>
+							<div class="callout success"><strong>Why this works:</strong> Hadoop is emphasized for distributed storage and MapReduce processing; Spark for faster in-memory batch/stream analytics; Kafka for durable high-throughput events; MongoDB for flexible document data; cloud platforms such as AWS for scalable services; Flink for low-latency stream and batch processing.</div>
+
+					</details>
 
 					<article class="card chapter-card" id="ch1-4-analysis-techniques">
 						<h3>1.4 Big Data Analysis Techniques</h3>
@@ -959,6 +1050,23 @@
 							</div>
 						</div>
 					</article>
+					<details class="card chapter-card chapter-subsection" id="ch1-4-analysis-detail">
+						<summary>1.4.1 From description to action</summary>
+							<p>The analysis techniques in the guide answer different questions. They can be combined: descriptive analysis shows a sales drop, diagnostic analysis investigates complaints or operational issues, predictive analytics forecasts demand, and prescriptive analysis can recommend inventory or marketing action.</p>
+							<div class="table-wrap">
+								<table>
+									<thead><tr><th>Technique</th><th>Question</th><th>Guide-based application</th></tr></thead>
+									<tbody>
+										<tr><td>Descriptive analysis</td><td>What happened?</td><td>Reports, dashboards, and infographics summarize historical business, healthcare, marketing, or finance performance.</td></tr>
+										<tr><td>Predictive analytics</td><td>What is likely to happen?</td><td>Historical data and models forecast demand, risk, behaviour, or market trends.</td></tr>
+										<tr><td>Machine/deep learning</td><td>Can a system learn patterns?</td><td>Classification, clustering, and complex pattern detection support automated decisions.</td></tr>
+										<tr><td>Real-time analytics</td><td>What is happening now?</td><td>Streaming data supports immediate fraud alerts, maintenance warnings, or operational responses.</td></tr>
+										<tr><td>Sentiment analysis</td><td>How do people feel?</td><td>Natural-language processing classifies text as positive, negative, or neutral.</td></tr>
+									</tbody>
+								</table>
+							</div>
+
+					</details>
 
 					<article class="card chapter-card" id="ch1-5-preprocessing">
 						<h3>1.5 Data Cleaning, Normalization, and Transformation</h3>
@@ -994,72 +1102,8 @@
 							<strong>Case study route:</strong> for the RetailMax pipeline, mention each source, clean missing/duplicate records, normalize customer/product fields, transform JSON/CSV/MongoDB records into a unified customer view, then segment by purchase behavior, lifetime value, and preferences.
 						</div>
 					</article>
-						<article class="card chapter-card" id="ch1-1-data-types">
-							<h3>1.1.1 Data forms and the extraction problem</h3>
-							<p>The guide’s Big Data discussion assumes that useful data arrives in different forms and at different speeds. <strong>Structured data</strong> fits a defined schema such as transaction rows. <strong>Semi-structured data</strong> carries tags or flexible fields, such as JSON logs. <strong>Unstructured data</strong> includes posts, images, audio, video, documents, and other content without a fixed table structure.</p>
-							<div class="table-wrap">
-								<table>
-									<thead><tr><th>Form</th><th>Example in the guide</th><th>Extraction implication</th></tr></thead>
-									<tbody>
-										<tr><td>Structured</td><td>Banking, sales, and transaction records.</td><td>Can be queried after schema checks and type validation.</td></tr>
-										<tr><td>Semi-structured</td><td>JSON mobile-app logs and sensor messages.</td><td>Fields must be parsed, aligned, and converted to common names and types.</td></tr>
-										<tr><td>Unstructured</td><td>Social posts, comments, images, and healthcare documents.</td><td>Needs text, media, or document extraction before analysis.</td></tr>
-									</tbody>
-								</table>
-							</div>
-							<div class="callout warning"><strong>Exam trap:</strong> Big Data is not defined only by size. Variety, velocity, veracity, and the value that can be extracted are equally important in the guide.</div>
-						</article>
-
-						<article class="card chapter-card" id="ch1-2-sources">
-							<h3>1.2.1 Sources of Big Data</h3>
-							<p>Different sources explain why Big Data is both large and varied. A strong answer names the source, the form of data it produces, and the type of insight it can support.</p>
-							<div class="table-wrap">
-								<table>
-									<thead><tr><th>Source</th><th>Typical data</th><th>Possible insight</th></tr></thead>
-									<tbody>
-										<tr><td>Business transactions</td><td>Purchases, banking, finance, orders.</td><td>Sales performance, customer value, and financial trends.</td></tr>
-										<tr><td>Social media</td><td>Posts, comments, likes, shares.</td><td>Human interaction, sentiment, and emerging trends.</td></tr>
-										<tr><td>IoT devices</td><td>Sensor readings, wearables, industrial equipment.</td><td>Real-time monitoring, automation, and predictive maintenance.</td></tr>
-										<tr><td>Web and digital activity</td><td>Searches, clicks, browsing, adverts, e-commerce behaviour.</td><td>Preferences, journeys, campaign response, and personalization.</td></tr>
-										<tr><td>Healthcare</td><td>Electronic records, diagnostic images, wearable health data.</td><td>Personalized care, treatment outcomes, and research.</td></tr>
-										<tr><td>Scientific and public sources</td><td>Experiments, observations, government and public-service records.</td><td>Research patterns, planning, and service improvement.</td></tr>
-									</tbody>
-								</table>
-							</div>
-						</article>
-
-						<article class="card chapter-card" id="ch1-3-tool-selection">
-							<h3>1.3.1 Tool-selection worked example</h3>
-							<p>Suppose a retailer receives live checkout events, stores customer documents, and needs a management dashboard. The source guide’s tools fit together as a pipeline rather than as competing answers.</p>
-							<div class="diagram" aria-label="Big Data tool workflow">
-								<div><strong>Collect</strong><code>Kafka</code> receives high-velocity event streams.</div>
-								<div><strong>Store</strong><code>MongoDB</code> keeps flexible customer documents; <code>HDFS</code> keeps distributed files.</div>
-								<div><strong>Process</strong><code>Spark</code> analyses batch and streaming data in memory.</div>
-								<div><strong>Model</strong><code>MLlib</code> or another analytics layer finds patterns and predictions.</div>
-								<div><strong>Communicate</strong><code>Tableau</code> or Power BI turns results into dashboards.</div>
-							</div>
-							<div class="callout success"><strong>Why this works:</strong> Hadoop is emphasized for distributed storage and MapReduce processing; Spark for faster in-memory batch/stream analytics; Kafka for durable high-throughput events; MongoDB for flexible document data; cloud platforms such as AWS for scalable services; Flink for low-latency stream and batch processing.</div>
-						</article>
-
-						<article class="card chapter-card" id="ch1-4-analysis-detail">
-							<h3>1.4.1 From description to action</h3>
-							<p>The analysis techniques in the guide answer different questions. They can be combined: descriptive analysis shows a sales drop, diagnostic analysis investigates complaints or operational issues, predictive analytics forecasts demand, and prescriptive analysis can recommend inventory or marketing action.</p>
-							<div class="table-wrap">
-								<table>
-									<thead><tr><th>Technique</th><th>Question</th><th>Guide-based application</th></tr></thead>
-									<tbody>
-										<tr><td>Descriptive analysis</td><td>What happened?</td><td>Reports, dashboards, and infographics summarize historical business, healthcare, marketing, or finance performance.</td></tr>
-										<tr><td>Predictive analytics</td><td>What is likely to happen?</td><td>Historical data and models forecast demand, risk, behaviour, or market trends.</td></tr>
-										<tr><td>Machine/deep learning</td><td>Can a system learn patterns?</td><td>Classification, clustering, and complex pattern detection support automated decisions.</td></tr>
-										<tr><td>Real-time analytics</td><td>What is happening now?</td><td>Streaming data supports immediate fraud alerts, maintenance warnings, or operational responses.</td></tr>
-										<tr><td>Sentiment analysis</td><td>How do people feel?</td><td>Natural-language processing classifies text as positive, negative, or neutral.</td></tr>
-									</tbody>
-								</table>
-							</div>
-						</article>
-
-						<article class="card chapter-card" id="ch1-5-worked-example">
-							<h3>1.5.1 RetailMax preprocessing walkthrough</h3>
+					<details class="card chapter-card chapter-subsection" id="ch1-5-worked-example">
+						<summary>1.5.1 RetailMax preprocessing walkthrough</summary>
 							<p>RetailMax has an Oracle CRM, PostgreSQL e-commerce data, JSON app logs, CSV social-media exports, and MongoDB service tickets. The workflow should be explained in this order:</p>
 							<ol>
 								<li><strong>Profile and ingest:</strong> record the source, timestamp, owner, format, and expected fields for every input.</li>
@@ -1070,7 +1114,17 @@
 							</ol>
 							<div class="callout danger"><strong>Impact of skipping preprocessing:</strong> duplicate customers can inflate segment sizes; inconsistent dates can distort trends; missing values can bias models; and extreme values can make averages or predictions misleading.</div>
 							<p class="muted">Useful formulas: <code>min-max = (x - min) / (max - min)</code>; <code>z-score = (x - mean) / standard deviation</code>. Use the first to map values to a range such as 0–1 and the second to center values around 0.</p>
-						</article>
+
+					</details>
+
+
+
+
+
+
+
+
+
 
 						<details class="card chapter-card glossary-card" id="ch1-glossary">
 							<summary>Chapter 1 Glossary: Big Data and preprocessing terms</summary>
@@ -1124,6 +1178,19 @@
 							<div><strong>Act</strong> Users or actuators respond with alerts, controls, or automation.</div>
 						</div>
 					</article>
+					<details class="card chapter-card chapter-subsection" id="ch2-2-data-loop">
+						<summary>2.2.1 The IoT data-to-action loop</summary>
+							<p>The guide describes an IoT gateway as a central link between devices and the wider system. It can receive sensor data, filter or preprocess it locally, translate between protocols, send useful data to the cloud, and return commands to actuators.</p>
+							<div class="diagram" aria-label="IoT data to action flow">
+								<div><strong>Device</strong>Sensor observes temperature, moisture, motion, health, or machine condition.</div>
+								<div><strong>Gateway</strong>Collects messages, filters noise, and provides protocol compatibility.</div>
+								<div><strong>Platform</strong>Stores raw data in a lake and structured data in a warehouse.</div>
+								<div><strong>Analytics</strong>Finds patterns, predicts a condition, or checks a threshold.</div>
+								<div><strong>Control</strong>Application sends an alert or an actuator command back through the gateway.</div>
+							</div>
+							<div class="callout success"><strong>Worked example:</strong> dry-soil readings are filtered at the gateway; the platform compares them with weather data; the control application starts irrigation; the user app reports the action. This is the same sense–connect–process–decide–act logic used throughout the guide.</div>
+
+					</details>
 
 					<article class="card chapter-card" id="ch2-3-layer-architecture">
 						<h3>2.3 Layer Architecture of IoT</h3>
@@ -1179,6 +1246,23 @@
 						<h4>System building blocks</h4>
 						<p>Gateways connect devices to cloud systems, filter data, support protocol compatibility, and transmit commands. IoT data may enter a data lake in raw form, move into a warehouse for structured analysis, and feed machine-learning models or control applications.</p>
 					</article>
+					<details class="card chapter-card chapter-subsection" id="ch2-4-building-blocks-detail">
+						<summary>2.4.1 Building blocks: from data lake to user application</summary>
+							<div class="table-wrap">
+								<table>
+									<thead><tr><th>Block</th><th>What it does</th><th>Revision example</th></tr></thead>
+									<tbody>
+										<tr><td>Gateway</td><td>Preprocesses and filters data, translates protocols, and transmits commands.</td><td>Combines a low-power field sensor with a cloud service.</td></tr>
+										<tr><td>Data lake</td><td>Stores large raw streams in their unprocessed form.</td><td>Retains historical sensor readings for later modelling.</td></tr>
+										<tr><td>Data warehouse</td><td>Stores selected, cleaned, organized data for efficient analysis.</td><td>Provides tables used to identify trends and patterns.</td></tr>
+										<tr><td>Machine learning</td><td>Uses past warehouse data to improve predictions and control algorithms.</td><td>Predicts a machine pre-failure state or future irrigation need.</td></tr>
+										<tr><td>User application</td><td>Connects people to devices through web or mobile interfaces.</td><td>Shows readings, changes settings, and initiates actions.</td></tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="callout"><strong>Architecture distinction:</strong> the gateway is not merely storage. Its local filtering, protocol compatibility, and command transmission roles reduce cloud traffic and make field devices work together.</div>
+
+					</details>
 
 					<article class="card chapter-card" id="ch2-5-iot-security">
 						<h3>2.5 Evaluating IoT Security Challenges</h3>
@@ -1211,6 +1295,17 @@
 							</table>
 						</div>
 					</article>
+					<details class="card chapter-card chapter-subsection" id="ch2-5-security-detail">
+						<summary>2.5.1 Security scenario: securing a connected health monitor</summary>
+							<p>A connected health monitor has limited memory and battery power, sends sensitive readings, and must be accessible only to authorized people and services. Apply the guide’s three security areas as follows:</p>
+							<ol>
+								<li><strong>Encryption:</strong> use an efficient method such as ECC on the device, protect transport with TLS, and manage keys through PKI.</li>
+								<li><strong>Authentication:</strong> remove default credentials, use strong passwords and MFA where practical, authenticate devices with certificates, and use secure boot so only verified firmware runs.</li>
+								<li><strong>Privacy:</strong> collect only what is needed, explain collection and use, apply anonymisation and encryption, and review privacy-law compliance across deployment regions.</li>
+							</ol>
+							<div class="callout danger"><strong>Failure chain:</strong> a default password can permit unauthorized access; weak encryption can expose readings; poor privacy controls can cause breaches, loss of trust, regulatory penalties, and reputational harm.</div>
+
+					</details>
 
 					<article class="card chapter-card" id="ch2-6-iot-applications">
 						<h3>2.6 IoT Applications</h3>
@@ -1225,49 +1320,8 @@
 							<div><h4>Energy and environment</h4><p>Smart grids, meters, pollution sensors, water quality systems, and wildlife tracking improve sustainability.</p></div>
 						</div>
 					</article>
-						<article class="card chapter-card" id="ch2-2-data-loop">
-							<h3>2.2.1 The IoT data-to-action loop</h3>
-							<p>The guide describes an IoT gateway as a central link between devices and the wider system. It can receive sensor data, filter or preprocess it locally, translate between protocols, send useful data to the cloud, and return commands to actuators.</p>
-							<div class="diagram" aria-label="IoT data to action flow">
-								<div><strong>Device</strong>Sensor observes temperature, moisture, motion, health, or machine condition.</div>
-								<div><strong>Gateway</strong>Collects messages, filters noise, and provides protocol compatibility.</div>
-								<div><strong>Platform</strong>Stores raw data in a lake and structured data in a warehouse.</div>
-								<div><strong>Analytics</strong>Finds patterns, predicts a condition, or checks a threshold.</div>
-								<div><strong>Control</strong>Application sends an alert or an actuator command back through the gateway.</div>
-							</div>
-							<div class="callout success"><strong>Worked example:</strong> dry-soil readings are filtered at the gateway; the platform compares them with weather data; the control application starts irrigation; the user app reports the action. This is the same sense–connect–process–decide–act logic used throughout the guide.</div>
-						</article>
-
-						<article class="card chapter-card" id="ch2-4-building-blocks-detail">
-							<h3>2.4.1 Building blocks: from data lake to user application</h3>
-							<div class="table-wrap">
-								<table>
-									<thead><tr><th>Block</th><th>What it does</th><th>Revision example</th></tr></thead>
-									<tbody>
-										<tr><td>Gateway</td><td>Preprocesses and filters data, translates protocols, and transmits commands.</td><td>Combines a low-power field sensor with a cloud service.</td></tr>
-										<tr><td>Data lake</td><td>Stores large raw streams in their unprocessed form.</td><td>Retains historical sensor readings for later modelling.</td></tr>
-										<tr><td>Data warehouse</td><td>Stores selected, cleaned, organized data for efficient analysis.</td><td>Provides tables used to identify trends and patterns.</td></tr>
-										<tr><td>Machine learning</td><td>Uses past warehouse data to improve predictions and control algorithms.</td><td>Predicts a machine pre-failure state or future irrigation need.</td></tr>
-										<tr><td>User application</td><td>Connects people to devices through web or mobile interfaces.</td><td>Shows readings, changes settings, and initiates actions.</td></tr>
-									</tbody>
-								</table>
-							</div>
-							<div class="callout"><strong>Architecture distinction:</strong> the gateway is not merely storage. Its local filtering, protocol compatibility, and command transmission roles reduce cloud traffic and make field devices work together.</div>
-						</article>
-
-						<article class="card chapter-card" id="ch2-5-security-detail">
-							<h3>2.5.1 Security scenario: securing a connected health monitor</h3>
-							<p>A connected health monitor has limited memory and battery power, sends sensitive readings, and must be accessible only to authorized people and services. Apply the guide’s three security areas as follows:</p>
-							<ol>
-								<li><strong>Encryption:</strong> use an efficient method such as ECC on the device, protect transport with TLS, and manage keys through PKI.</li>
-								<li><strong>Authentication:</strong> remove default credentials, use strong passwords and MFA where practical, authenticate devices with certificates, and use secure boot so only verified firmware runs.</li>
-								<li><strong>Privacy:</strong> collect only what is needed, explain collection and use, apply anonymisation and encryption, and review privacy-law compliance across deployment regions.</li>
-							</ol>
-							<div class="callout danger"><strong>Failure chain:</strong> a default password can permit unauthorized access; weak encryption can expose readings; poor privacy controls can cause breaches, loss of trust, regulatory penalties, and reputational harm.</div>
-						</article>
-
-						<article class="card chapter-card" id="ch2-6-applications-detail">
-							<h3>2.6.1 Application map</h3>
+					<details class="card chapter-card chapter-subsection" id="ch2-6-applications-detail">
+						<summary>2.6.1 Application map</summary>
 							<div class="table-wrap">
 								<table>
 									<thead><tr><th>Domain</th><th>Devices or data</th><th>Outcome described in the guide</th></tr></thead>
@@ -1284,12 +1338,20 @@
 								</table>
 							</div>
 							<p>Emerging applications in the source include smart classrooms, connected financial services such as ATMs and transaction monitoring, and connected entertainment such as smart TVs and gaming consoles.</p>
-						</article>
+
+					</details>
+
+
+
+
+
+
+
 
 						<details class="card chapter-card glossary-card" id="ch2-glossary">
 							<summary>Chapter 2 Glossary: IoT architecture and application terms</summary>
 							<dl>
-								<dt><code>IoT</code></dt><dd>A network of physical objects, sensors, software, and technologies that communicate and share information.</dd>
+								<dt><code>IoT</code></dt><dd>Internet of Things; a network of physical objects, sensors, software, and technologies that communicate and share information.</dd>
 								<dt><code>Sensor</code></dt><dd>A device that captures a condition such as temperature, moisture, motion, sound, or health data.</dd>
 								<dt><code>Actuator</code></dt><dd>A component that performs a physical action, such as opening a valve, moving an arm, or changing a motor speed.</dd>
 								<dt><code>Gateway</code></dt><dd>A link between field devices and cloud/platform systems that can filter data, translate protocols, and transmit commands.</dd>
@@ -1301,7 +1363,7 @@
 								<dt><code>Data warehouse</code></dt><dd>A structured store of selected and organized data optimized for analysis.</dd>
 								<dt><code>IoMT</code></dt><dd>Internet of Medical Things; connected healthcare devices and systems.</dd>
 								<dt><code>IIoT</code></dt><dd>Industrial Internet of Things; connected industrial machines, sensors, and systems.</dd>
-								<dt><code>ECC</code></dt><dd>Elliptic-curve cryptography; an encryption approach the guide identifies as suitable for resource-limited devices.</dd>
+								<dt><code>ECC</code></dt><dd>Elliptic-Curve Cryptography; a family of public-key cryptographic techniques that can suit resource-limited devices.</dd>
 								<dt><code>PKI</code></dt><dd>Public Key Infrastructure for managing certificates, identities, and encryption keys.</dd>
 								<dt><code>Secure boot</code></dt><dd>A startup control that allows a device to execute only verified firmware.</dd>
 							</dl>
@@ -1364,6 +1426,25 @@
 							</table>
 						</div>
 					</article>
+					<details class="card chapter-card chapter-subsection" id="ch3-1-technology-detail">
+						<summary>3.1.1 Technology choices by constraint</summary>
+							<p>Technology selection is a constraint-matching exercise. The source guide repeatedly connects a choice to range, power, data rate, latency, processing location, and device size.</p>
+							<div class="table-wrap">
+								<table>
+									<thead><tr><th>Constraint</th><th>Guide-aligned choice</th><th>Reason</th></tr></thead>
+									<tbody>
+										<tr><td>Very small, local exchange</td><td>Bluetooth / BLE or NFC</td><td>Short-range communication for wearables, medical monitors, contactless payment, or access control.</td></tr>
+										<tr><td>Low-power home mesh</td><td>Zigbee</td><td>Low-power, low-data-rate networking for smart-home devices.</td></tr>
+										<tr><td>Remote low-data sensing</td><td>LoRaWAN or NB-IoT</td><td>Long-range, low-power communication for agriculture, utilities, and remote monitoring.</td></tr>
+										<tr><td>High speed or very low latency</td><td>5G</td><td>Supports real-time applications such as industrial automation and connected vehicles.</td></tr>
+										<tr><td>Immediate local response</td><td>Edge computing</td><td>Processes data at or near the device instead of waiting for a central cloud.</td></tr>
+										<tr><td>Large-scale analysis</td><td>Cloud, Hadoop, Spark</td><td>Provides scalable storage, distributed processing, AI, and machine learning.</td></tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="callout"><strong>Remember the three computing positions:</strong> edge is closest to the device and fastest for local action; fog distributes processing between edge and cloud; cloud centralizes large-scale storage and analytics.</div>
+
+					</details>
 
 					<article class="card chapter-card" id="ch3-2-protocols">
 						<h3>3.2 IoT Communication Protocols</h3>
@@ -1442,59 +1523,8 @@
 							</table>
 						</div>
 					</article>
-
-					<article class="card chapter-card" id="ch3-3-standards">
-						<h3>3.3 IoT Standards</h3>
-						<p>Standards ensure interoperability, security, privacy, and reliable communication across varied devices and vendors.</p>
-						<ul>
-							<li><strong>Connectivity standards:</strong> IPv6, 6LoWPAN, IEEE 802.15.4, LoRaWAN, and NB-IoT.</li>
-							<li><strong>Application-level standards:</strong> MQTT, CoAP, OneM2M, and OASIS-style integration frameworks.</li>
-							<li><strong>Security standards:</strong> TLS/SSL, DTLS, AES, IEEE 802.1X, PKI, OAuth 2.0, IPsec, ETSI EN 303 645, IoTSF guidance.</li>
-							<li><strong>Privacy and data protection:</strong> GDPR and ISO/IEC 27001.</li>
-							<li><strong>Industrial IoT:</strong> OPC UA and ISA/IEC 62443 for secure industrial automation and control systems.</li>
-						</ul>
-					</article>
-
-					<article class="card chapter-card" id="ch3-4-data-standards">
-						<h3>3.4 Data Standards in IoT</h3>
-						<div class="grid">
-							<div><h4>Data formats</h4><p>JSON is lightweight and readable, XML is older and more verbose, and Protocol Buffers are compact for low-bandwidth serialization.</p></div>
-							<div><h4>Security</h4><p>TLS/SSL secures transmission, X.509 certificates authenticate devices, and OAuth2/OpenID Connect manage access.</p></div>
-							<div><h4>Storage</h4><p>SQL and NoSQL databases store structured and unstructured data; time-series databases handle timestamped IoT streams.</p></div>
-							<div><h4>Interoperability</h4><p>OneM2M, ODF, and AllJoyn help devices and applications work together across manufacturers.</p></div>
-							<div><h4>Processing</h4><p>Edge computing reduces latency, while Hadoop and Spark process high-volume IoT datasets.</p></div>
-							<div><h4>Organizations</h4><p>ISO/IEC, IEEE, IETF, and GSMA contribute standards for architecture, networking, protocols, and mobile IoT.</p></div>
-						</div>
-					</article>
-
-					<article class="card chapter-card" id="ch3-5-practical-applications">
-						<h3>3.5 Practical Application of IoT Technologies and Standards</h3>
-						<p>Practical IoT design combines technologies and standards to fit a domain. For example, a smart agriculture system might use soil sensors, LoRaWAN, edge computing, CoAP, OneM2M, and TLS. A hospital wearable may use BLE, MQTT, IEEE medical-device communication standards, and encrypted transmission.</p>
-						<div class="callout success">
-							<strong>Design-answer pattern:</strong> identify the environment, choose sensors, choose connectivity, decide edge/fog/cloud processing, choose protocol/standards, then explain security.
-						</div>
-					</article>
-						<article class="card chapter-card" id="ch3-1-technology-detail">
-							<h3>3.1.1 Technology choices by constraint</h3>
-							<p>Technology selection is a constraint-matching exercise. The source guide repeatedly connects a choice to range, power, data rate, latency, processing location, and device size.</p>
-							<div class="table-wrap">
-								<table>
-									<thead><tr><th>Constraint</th><th>Guide-aligned choice</th><th>Reason</th></tr></thead>
-									<tbody>
-										<tr><td>Very small, local exchange</td><td>Bluetooth / BLE or NFC</td><td>Short-range communication for wearables, medical monitors, contactless payment, or access control.</td></tr>
-										<tr><td>Low-power home mesh</td><td>Zigbee</td><td>Low-power, low-data-rate networking for smart-home devices.</td></tr>
-										<tr><td>Remote low-data sensing</td><td>LoRaWAN or NB-IoT</td><td>Long-range, low-power communication for agriculture, utilities, and remote monitoring.</td></tr>
-										<tr><td>High speed or very low latency</td><td>5G</td><td>Supports real-time applications such as industrial automation and connected vehicles.</td></tr>
-										<tr><td>Immediate local response</td><td>Edge computing</td><td>Processes data at or near the device instead of waiting for a central cloud.</td></tr>
-										<tr><td>Large-scale analysis</td><td>Cloud, Hadoop, Spark</td><td>Provides scalable storage, distributed processing, AI, and machine learning.</td></tr>
-									</tbody>
-								</table>
-							</div>
-							<div class="callout"><strong>Remember the three computing positions:</strong> edge is closest to the device and fastest for local action; fog distributes processing between edge and cloud; cloud centralizes large-scale storage and analytics.</div>
-						</article>
-
-						<article class="card chapter-card" id="ch3-2-protocol-detail">
-							<h3>3.2.1 Protocol comparison and message delivery</h3>
+					<details class="card chapter-card chapter-subsection" id="ch3-2-protocol-detail">
+						<summary>3.2.1 Protocol comparison and message delivery</summary>
 							<div class="table-wrap">
 								<table>
 									<thead><tr><th>Protocol</th><th>Communication model</th><th>Important exam point</th></tr></thead>
@@ -1509,10 +1539,22 @@
 								</table>
 							</div>
 							<div class="callout danger"><strong>Exam trap:</strong> MQTT and DDS are both publish/subscribe, but MQTT normally uses a broker while DDS connects devices through a Global Data Space without a broker.</div>
-						</article>
 
-						<article class="card chapter-card" id="ch3-3-standards-detail">
-							<h3>3.3.1 Standards map: what each family solves</h3>
+					</details>
+
+					<article class="card chapter-card" id="ch3-3-standards">
+						<h3>3.3 IoT Standards</h3>
+						<p>Standards ensure interoperability, security, privacy, and reliable communication across varied devices and vendors.</p>
+						<ul>
+							<li><strong>Connectivity standards:</strong> IPv6, 6LoWPAN, IEEE 802.15.4, LoRaWAN, and NB-IoT.</li>
+							<li><strong>Application-level standards:</strong> MQTT, CoAP, OneM2M, and OASIS-style integration frameworks.</li>
+							<li><strong>Security standards:</strong> TLS/SSL, DTLS, AES, IEEE 802.1X, PKI, OAuth 2.0, IPsec, ETSI EN 303 645, IoTSF guidance.</li>
+							<li><strong>Privacy and data protection:</strong> GDPR and ISO/IEC 27001.</li>
+							<li><strong>Industrial IoT:</strong> OPC UA and ISA/IEC 62443 for secure industrial automation and control systems.</li>
+						</ul>
+					</article>
+					<details class="card chapter-card chapter-subsection" id="ch3-3-standards-detail">
+						<summary>3.3.1 Standards map: what each family solves</summary>
 							<div class="table-wrap">
 								<table>
 									<thead><tr><th>Standards family</th><th>Examples</th><th>Problem addressed</th></tr></thead>
@@ -1527,10 +1569,22 @@
 								</table>
 							</div>
 							<p>The organizations behind the standards are also examinable: <code>ISO/IEC</code> develops international standards such as IoT architecture; <code>IEEE</code> works on networking and data communication; <code>IETF</code> develops Internet protocols such as IPv6; and <code>GSMA</code> focuses on mobile IoT, including NB-IoT and 5G.</p>
-						</article>
 
-						<article class="card chapter-card" id="ch3-4-data-detail">
-							<h3>3.4.1 Data standards and interoperability walkthrough</h3>
+					</details>
+
+					<article class="card chapter-card" id="ch3-4-data-standards">
+						<h3>3.4 Data Standards in IoT</h3>
+						<div class="grid">
+							<div><h4>Data formats</h4><p>JSON is lightweight and readable, XML is older and more verbose, and Protocol Buffers are compact for low-bandwidth serialization.</p></div>
+							<div><h4>Security</h4><p>TLS/SSL secures transmission, X.509 certificates authenticate devices, and OAuth2/OpenID Connect manage access.</p></div>
+							<div><h4>Storage</h4><p>SQL and NoSQL databases store structured and unstructured data; time-series databases handle timestamped IoT streams.</p></div>
+							<div><h4>Interoperability</h4><p>OneM2M, ODF, and AllJoyn help devices and applications work together across manufacturers.</p></div>
+							<div><h4>Processing</h4><p>Edge computing reduces latency, while Hadoop and Spark process high-volume IoT datasets.</p></div>
+							<div><h4>Organizations</h4><p>ISO/IEC, IEEE, IETF, and GSMA contribute standards for architecture, networking, protocols, and mobile IoT.</p></div>
+						</div>
+					</article>
+					<details class="card chapter-card chapter-subsection" id="ch3-4-data-detail">
+						<summary>3.4.1 Data standards and interoperability walkthrough</summary>
 							<div class="diagram" aria-label="IoT data standards workflow">
 								<div><strong>Format</strong><code>JSON</code> is readable; <code>XML</code> is more verbose; <code>Protobuf</code> is compact for serialization.</div>
 								<div><strong>Transmit</strong><code>MQTT</code>, <code>CoAP</code>, HTTP/HTTPS, Zigbee, Bluetooth, or LoRaWAN carry data.</div>
@@ -1539,10 +1593,18 @@
 								<div><strong>Analyse</strong>Edge processing, Hadoop, Spark, AI, and ML convert streams into decisions.</div>
 							</div>
 							<div class="callout success"><strong>Why standards matter:</strong> without common formats, interfaces, security rules, and interoperability practices, devices become isolated ecosystems and data cannot move reliably between manufacturers or platforms.</div>
-						</article>
 
-						<article class="card chapter-card" id="ch3-5-application-case">
-							<h3>3.5.1 Case study: precision farming design</h3>
+					</details>
+
+					<article class="card chapter-card" id="ch3-5-practical-applications">
+						<h3>3.5 Practical Application of IoT Technologies and Standards</h3>
+						<p>Practical IoT design combines technologies and standards to fit a domain. For example, a smart agriculture system might use soil sensors, LoRaWAN, edge computing, CoAP, OneM2M, and TLS. A hospital wearable may use BLE, MQTT, IEEE medical-device communication standards, and encrypted transmission.</p>
+						<div class="callout success">
+							<strong>Design-answer pattern:</strong> identify the environment, choose sensors, choose connectivity, decide edge/fog/cloud processing, choose protocol/standards, then explain security.
+						</div>
+					</article>
+					<details class="card chapter-card chapter-subsection" id="ch3-5-application-case">
+						<summary>3.5.1 Case study: precision farming design</summary>
 							<p>A source-grounded precision-farming answer can be built as a chain:</p>
 							<ol>
 								<li>Use soil-moisture sensors, weather stations, and drones to collect field data.</li>
@@ -1552,29 +1614,39 @@
 								<li>Use <code>TLS</code> to protect transmission; the irrigation actuator changes water delivery when the soil reading and weather context justify it.</li>
 							</ol>
 							<p>The same pattern transfers to other case studies: IIoT uses sensors, edge, LoRaWAN/NB-IoT, OPC UA, and X.509 certificates; smart healthcare uses wearables, BLE, Wi-Fi/cellular, IEEE 11073, and HL7; smart cities use traffic/parking/waste sensors, 5G, ISO 37120, OneM2M, and TLS/SSL; logistics uses RFID/GPS, condition sensors, LoRaWAN/cellular/Wi-Fi, GS1/GTIN, and ISO/IEC 18000.</p>
-						</article>
+
+					</details>
+
+
+
+
+
+
+
+
+
 
 						<details class="card chapter-card glossary-card" id="ch3-glossary">
 							<summary>Chapter 3 Glossary: IoT technologies, protocols, and standards</summary>
 							<dl>
 								<dt><code>Edge computing</code></dt><dd>Processing at or near the device or gateway to reduce latency and cloud traffic.</dd>
 								<dt><code>Fog computing</code></dt><dd>Processing distributed between edge devices and the cloud.</dd>
-								<dt><code>Cloud computing</code></dt><dd>Centralized, scalable storage and processing for large IoT datasets and analytics.</dd>
+								<dt><code>Cloud computing</code></dt><dd>Centralized, scalable storage and processing for large Internet of Things (IoT) datasets and analytics.</dd>
 								<dt><code>RFID</code></dt><dd>Radio Frequency Identification for automatic object tracking and identification.</dd>
 								<dt><code>NFC</code></dt><dd>Near Field Communication for short-range transfer such as contactless payments and access control.</dd>
-								<dt><code>MQTT</code></dt><dd>Lightweight publish/subscribe application protocol using a broker and topic subscriptions.</dd>
-								<dt><code>QoS</code></dt><dd>Quality of Service; MQTT delivery levels 0, 1, and 2 express increasing delivery assurance.</dd>
-								<dt><code>CoAP</code></dt><dd>Constrained Application Protocol with low overhead and REST-like resource methods.</dd>
+								<dt><code>MQTT</code></dt><dd>Message Queuing Telemetry Transport; a lightweight publish/subscribe application protocol using a broker and topic subscriptions.</dd>
+								<dt><code>QoS</code></dt><dd>Quality of Service; Message Queuing Telemetry Transport (MQTT) delivery levels 0, 1, and 2 express increasing delivery assurance.</dd>
+								<dt><code>CoAP</code></dt><dd>Constrained Application Protocol with low overhead and Representational State Transfer (REST)-like resource methods.</dd>
 								<dt><code>DDS</code></dt><dd>Data Distribution Service; brokerless publish/subscribe for high-demand real-time systems.</dd>
-								<dt><code>6LoWPAN</code></dt><dd>IPv6 adaptation for Low-Power Wireless Personal Area Networks.</dd>
-								<dt><code>LoRaWAN</code></dt><dd>Long-range, low-power wide-area communication for low-data-rate remote sensing.</dd>
-								<dt><code>NB-IoT</code></dt><dd>Narrowband IoT; low-power wide-area connectivity for reliable low-data-rate transmission.</dd>
-								<dt><code>JSON</code></dt><dd>Lightweight, readable data format often used for IoT exchange.</dd>
+								<dt><code>6LoWPAN</code></dt><dd>Internet Protocol version 6 (IPv6) over Low-Power Wireless Personal Area Networks; adapts IPv6 for constrained wireless links.</dd>
+								<dt><code>LoRaWAN</code></dt><dd>Long Range Wide Area Network; low-power, long-range communication for low-data-rate remote sensing.</dd>
+								<dt><code>NB-IoT</code></dt><dd>Narrowband Internet of Things; cellular wide-area connectivity for reliable low-data-rate transmission.</dd>
+								<dt><code>JSON</code></dt><dd>JavaScript Object Notation; a lightweight, readable data format often used for Internet of Things (IoT) exchange.</dd>
 								<dt><code>Protocol Buffers</code></dt><dd>Compact binary serialization format useful when bandwidth is limited.</dd>
 								<dt><code>Interoperability</code></dt><dd>The ability of devices and systems from different manufacturers or platforms to work together.</dd>
-								<dt><code>OPC UA</code></dt><dd>Industrial standard for secure, vendor-neutral data exchange.</dd>
-								<dt><code>OneM2M</code></dt><dd>Standard for communication and interoperability across IoT industries and devices.</dd>
-								<dt><code>ISO/IEC 27001</code></dt><dd>Information security management system standard applicable to protecting IoT data.</dd>
+								<dt><code>OPC UA</code></dt><dd>Open Platform Communications Unified Architecture; an industrial standard for secure, vendor-neutral data exchange.</dd>
+								<dt><code>OneM2M</code></dt><dd>One Machine-to-Machine; a common service-layer standard for communication and interoperability across Internet of Things (IoT) industries and devices.</dd>
+								<dt><code>ISO/IEC 27001</code></dt><dd>A joint International Organization for Standardization (ISO) and International Electrotechnical Commission (IEC) standard for information security management systems, applicable to protecting Internet of Things (IoT) data.</dd>
 							</dl>
 						</details>
 						<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
@@ -1642,6 +1714,24 @@
 							<div><h4>Data lakes</h4><p>Store raw structured, semi-structured, and unstructured data until it is needed for analysis.</p></div>
 						</div>
 					</article>
+					<details class="card chapter-card chapter-subsection" id="ch4-4-solutions-detail">
+						<summary>4.4.1 Storage solution comparison</summary>
+							<div class="table-wrap">
+								<table>
+									<thead><tr><th>Solution</th><th>How it stores data</th><th>Best revision point</th></tr></thead>
+									<tbody>
+										<tr><td>HDFS / distributed file system</td><td>Splits large files into blocks across DataNodes and replicates them.</td><td>High throughput, scalability, and fault tolerance for large datasets.</td></tr>
+										<tr><td>MongoDB</td><td>Document-oriented, JSON-like flexible records.</td><td>Good for variable semi-structured data and schema flexibility.</td></tr>
+										<tr><td>Cassandra</td><td>Column-family distributed storage.</td><td>High availability and fault tolerance across distributed systems.</td></tr>
+										<tr><td>Couchbase</td><td>Key-value and document storage.</td><td>High-performance, real-time data processing.</td></tr>
+										<tr><td>Cloud object storage</td><td>Elastic remote objects such as S3, Google Cloud Storage, or Azure Blob Storage.</td><td>On-demand scale, geographic redundancy, access from anywhere, and pay-as-you-go cost.</td></tr>
+										<tr><td>Data lake</td><td>Raw structured, semi-structured, and unstructured data in native form.</td><td>Structure later for flexible future analytics and machine learning.</td></tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="callout"><strong>Selection rule:</strong> choose based on data form, scale, read/write pattern, latency, fault tolerance, governance, and cost—not simply on the largest storage capacity.</div>
+
+					</details>
 
 					<article class="card chapter-card" id="ch4-5-storage-architectures">
 						<h3>4.5 Big Data Storage Architectures</h3>
@@ -1685,6 +1775,19 @@
 							</table>
 						</div>
 					</article>
+					<details class="card chapter-card chapter-subsection" id="ch4-5-architecture-detail">
+						<summary>4.5.1 Architecture characteristics and HDFS flow</summary>
+							<div class="diagram" aria-label="HDFS storage flow">
+								<div><strong>Client</strong>Requests a file operation through the HDFS namespace.</div>
+								<div><strong>NameNode</strong>Keeps metadata, namespace, and block-to-DataNode mappings.</div>
+								<div><strong>Blocks</strong>Large files are divided into blocks, commonly 128 MB or 256 MB in the guide.</div>
+								<div><strong>DataNodes</strong>Store blocks and serve read/write requests; blocks are replicated, typically three times.</div>
+								<div><strong>Recovery</strong>If a node fails, another replica remains available; more nodes can be added as data grows.</div>
+							</div>
+							<p>Big Data architectures are designed around <strong>horizontal scalability</strong> (add machines), <strong>fault tolerance</strong> (continue after node failure), <strong>distributed processing</strong> (work in parallel), and <strong>high throughput</strong> (move large amounts of data efficiently). Hadoop adds <code>MapReduce</code> for processing, <code>YARN</code> for resource management, and Hadoop Common utilities.</p>
+							<div class="callout danger"><strong>Exam trap:</strong> the NameNode stores metadata and coordinates the namespace; it does not carry user data blocks. DataNodes store the blocks and serve client reads/writes.</div>
+
+					</details>
 
 					<article class="card chapter-card" id="ch4-6-data-management">
 						<h3>4.6 Data Management Techniques</h3>
@@ -1698,6 +1801,19 @@
 							<li><strong>Real-time processing:</strong> Kafka and Flink support continuous ingestion and event-driven decisions.</li>
 						</ul>
 					</article>
+					<details class="card chapter-card chapter-subsection" id="ch4-6-management-detail">
+						<summary>4.6.1 Data management workflow</summary>
+							<ol>
+								<li><strong>Store:</strong> use distributed or cloud systems that split, replicate, and retrieve data in parallel.</li>
+								<li><strong>Integrate:</strong> combine databases, JSON, sensors, social media, and other sources using <code>ETL</code> or <code>ELT</code>.</li>
+								<li><strong>Govern:</strong> define policies for quality, access, security, privacy, lifecycle, and regulations such as GDPR or HIPAA.</li>
+								<li><strong>Assure quality:</strong> cleanse, validate, and enrich data so decisions are based on accurate information.</li>
+								<li><strong>Analyse:</strong> apply Spark, Hadoop, machine learning, AI, data mining, or real-time analytics.</li>
+								<li><strong>Scale:</strong> add servers or use elastic cloud resources as data volume and demand grow.</li>
+								<li><strong>Stream:</strong> use Kafka and Flink when data must be ingested and processed continuously.</li>
+							</ol>
+
+					</details>
 
 					<article class="card chapter-card" id="ch4-7-big-data-security">
 						<h3>4.7 Big Data Security</h3>
@@ -1739,52 +1855,8 @@
 							</table>
 						</div>
 					</article>
-						<article class="card chapter-card" id="ch4-4-solutions-detail">
-							<h3>4.4.1 Storage solution comparison</h3>
-							<div class="table-wrap">
-								<table>
-									<thead><tr><th>Solution</th><th>How it stores data</th><th>Best revision point</th></tr></thead>
-									<tbody>
-										<tr><td>HDFS / distributed file system</td><td>Splits large files into blocks across DataNodes and replicates them.</td><td>High throughput, scalability, and fault tolerance for large datasets.</td></tr>
-										<tr><td>MongoDB</td><td>Document-oriented, JSON-like flexible records.</td><td>Good for variable semi-structured data and schema flexibility.</td></tr>
-										<tr><td>Cassandra</td><td>Column-family distributed storage.</td><td>High availability and fault tolerance across distributed systems.</td></tr>
-										<tr><td>Couchbase</td><td>Key-value and document storage.</td><td>High-performance, real-time data processing.</td></tr>
-										<tr><td>Cloud object storage</td><td>Elastic remote objects such as S3, Google Cloud Storage, or Azure Blob Storage.</td><td>On-demand scale, geographic redundancy, access from anywhere, and pay-as-you-go cost.</td></tr>
-										<tr><td>Data lake</td><td>Raw structured, semi-structured, and unstructured data in native form.</td><td>Structure later for flexible future analytics and machine learning.</td></tr>
-									</tbody>
-								</table>
-							</div>
-							<div class="callout"><strong>Selection rule:</strong> choose based on data form, scale, read/write pattern, latency, fault tolerance, governance, and cost—not simply on the largest storage capacity.</div>
-						</article>
-
-						<article class="card chapter-card" id="ch4-5-architecture-detail">
-							<h3>4.5.1 Architecture characteristics and HDFS flow</h3>
-							<div class="diagram" aria-label="HDFS storage flow">
-								<div><strong>Client</strong>Requests a file operation through the HDFS namespace.</div>
-								<div><strong>NameNode</strong>Keeps metadata, namespace, and block-to-DataNode mappings.</div>
-								<div><strong>Blocks</strong>Large files are divided into blocks, commonly 128 MB or 256 MB in the guide.</div>
-								<div><strong>DataNodes</strong>Store blocks and serve read/write requests; blocks are replicated, typically three times.</div>
-								<div><strong>Recovery</strong>If a node fails, another replica remains available; more nodes can be added as data grows.</div>
-							</div>
-							<p>Big Data architectures are designed around <strong>horizontal scalability</strong> (add machines), <strong>fault tolerance</strong> (continue after node failure), <strong>distributed processing</strong> (work in parallel), and <strong>high throughput</strong> (move large amounts of data efficiently). Hadoop adds <code>MapReduce</code> for processing, <code>YARN</code> for resource management, and Hadoop Common utilities.</p>
-							<div class="callout danger"><strong>Exam trap:</strong> the NameNode stores metadata and coordinates the namespace; it does not carry user data blocks. DataNodes store the blocks and serve client reads/writes.</div>
-						</article>
-
-						<article class="card chapter-card" id="ch4-6-management-detail">
-							<h3>4.6.1 Data management workflow</h3>
-							<ol>
-								<li><strong>Store:</strong> use distributed or cloud systems that split, replicate, and retrieve data in parallel.</li>
-								<li><strong>Integrate:</strong> combine databases, JSON, sensors, social media, and other sources using <code>ETL</code> or <code>ELT</code>.</li>
-								<li><strong>Govern:</strong> define policies for quality, access, security, privacy, lifecycle, and regulations such as GDPR or HIPAA.</li>
-								<li><strong>Assure quality:</strong> cleanse, validate, and enrich data so decisions are based on accurate information.</li>
-								<li><strong>Analyse:</strong> apply Spark, Hadoop, machine learning, AI, data mining, or real-time analytics.</li>
-								<li><strong>Scale:</strong> add servers or use elastic cloud resources as data volume and demand grow.</li>
-								<li><strong>Stream:</strong> use Kafka and Flink when data must be ingested and processed continuously.</li>
-							</ol>
-						</article>
-
-						<article class="card chapter-card" id="ch4-7-security-detail">
-							<h3>4.7.1 Security controls by risk</h3>
+					<details class="card chapter-card chapter-subsection" id="ch4-7-security-detail">
+						<summary>4.7.1 Security controls by risk</summary>
 							<div class="table-wrap">
 								<table>
 									<thead><tr><th>Risk</th><th>Control from the guide</th><th>What it protects</th></tr></thead>
@@ -1799,28 +1871,36 @@
 								</table>
 							</div>
 							<p>For distributed systems, the guide also identifies sharding/data segmentation, blockchain or distributed ledgers for traceability, and homomorphic encryption for selected computations on encrypted data.</p>
-						</article>
+
+					</details>
+
+
+
+
+
+
+
 
 						<details class="card chapter-card glossary-card" id="ch4-glossary">
 							<summary>Chapter 4 Glossary: storage, management, and security terms</summary>
 							<dl>
-								<dt><code>Big data storage</code></dt><dd>Infrastructure for storing, managing, retrieving, and processing very large datasets, often at TB or PB scale.</dd>
+								<dt><code>Big data storage</code></dt><dd>Infrastructure for storing, managing, retrieving, and processing very large datasets, often at terabyte (TB) or petabyte (PB) scale.</dd>
 								<dt><code>Hadoop</code></dt><dd>Open-source framework that distributes storage and processing over cluster nodes.</dd>
 								<dt><code>HDFS</code></dt><dd>Hadoop Distributed File System; block-based, replicated distributed storage.</dd>
-								<dt><code>NameNode</code></dt><dd>HDFS master that maintains the namespace and block metadata.</dd>
-								<dt><code>DataNode</code></dt><dd>HDFS worker that stores blocks and serves read/write requests.</dd>
+								<dt><code>NameNode</code></dt><dd>Hadoop Distributed File System (HDFS) master that maintains the namespace and block metadata.</dd>
+								<dt><code>DataNode</code></dt><dd>Hadoop Distributed File System (HDFS) worker that stores blocks and serves read/write requests.</dd>
 								<dt><code>YARN</code></dt><dd>Yet Another Resource Negotiator; manages and schedules cluster resources.</dd>
 								<dt><code>Replication</code></dt><dd>Keeping copies of a data block on multiple nodes to preserve availability after failure.</dd>
 								<dt><code>Horizontal scalability</code></dt><dd>Growing capacity by adding more machines or nodes rather than only upgrading one machine.</dd>
-								<dt><code>NoSQL</code></dt><dd>Flexible database family for large unstructured or semi-structured data, including document, column-family, key-value, and graph models.</dd>
+								<dt><code>NoSQL</code></dt><dd>Commonly read as “Not Only SQL” (Structured Query Language); a flexible database family for large unstructured or semi-structured data, including document, column-family, key-value, and graph models.</dd>
 								<dt><code>Data lake</code></dt><dd>Central repository that keeps raw data in native format until it is needed.</dd>
 								<dt><code>ETL / ELT</code></dt><dd>Extract–Transform–Load or Extract–Load–Transform data integration approaches.</dd>
 								<dt><code>Data governance</code></dt><dd>Policies and procedures controlling quality, access, security, compliance, and lifecycle.</dd>
 								<dt><code>IAM</code></dt><dd>Identity and Access Management for controlling users, services, roles, and resources.</dd>
-								<dt><code>RBAC / ABAC</code></dt><dd>Role-based or attribute-based access control.</dd>
+								<dt><code>RBAC / ABAC</code></dt><dd>Role-Based Access Control (RBAC) assigns permissions by role; Attribute-Based Access Control (ABAC) evaluates attributes and policies.</dd>
 								<dt><code>Masking</code></dt><dd>Replacing sensitive values with safe but structurally similar values for analysis or testing.</dd>
 								<dt><code>Tokenization</code></dt><dd>Replacing sensitive data with a unique token that does not reveal the original.</dd>
-								<dt><code>NIST Cybersecurity Framework</code></dt><dd>Security lifecycle of identify, protect, detect, respond, and recover.</dd>
+								<dt><code>NIST Cybersecurity Framework</code></dt><dd>National Institute of Standards and Technology (NIST) framework for the security functions identify, protect, detect, respond, and recover.</dd>
 							</dl>
 						</details>
 						<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
@@ -1867,6 +1947,18 @@
 							<strong>Retail example:</strong> the guide uses customer retention, online sales, segmentation, inventory optimization, delivery improvement, A/B testing, CRM, and analytics platforms to show how data becomes strategy.
 						</div>
 					</article>
+					<details class="card chapter-card chapter-subsection" id="ch5-3-formulation-detail">
+						<summary>5.3.1 Data-driven strategy loop</summary>
+							<div class="diagram" aria-label="Data driven strategy loop">
+								<div><strong>1. Objective</strong>Set a measurable goal tied to the business, such as retention or online sales.</div>
+								<div><strong>2. Data</strong>Collect relevant customer, sales, market, operational, or sentiment data.</div>
+								<div><strong>3. Insight</strong>Use segmentation, prediction, and sentiment analysis to identify patterns.</div>
+								<div><strong>4. Action</strong>Change marketing, inventory, delivery, product, or resource decisions.</div>
+								<div><strong>5. Feedback</strong>Measure results, run tests, learn, and update the strategy.</div>
+							</div>
+							<div class="callout success"><strong>RetailMax-style worked example:</strong> target a 20% retention increase and 15% online-sales increase; combine purchase, browsing, demographic, product, competitor, review, and sentiment data; segment frequent buyers, first-time shoppers, and discount hunters; personalize offers and recommendations; optimize inventory; run A/B tests using click-through and conversion rates; then revise the strategy using the results.</div>
+
+					</details>
 
 					<article class="card chapter-card" id="ch5-4-analytics-types">
 						<h3>5.4 Types of Big Data Analytics</h3>
@@ -1904,64 +1996,8 @@
 							</table>
 						</div>
 					</article>
-
-					<article class="card chapter-card" id="ch5-5-visualization">
-						<h3>5.5 Data Visualization for Strategy Communication</h3>
-						<p>Visualization turns complex data into charts, graphs, dashboards, and visual stories so stakeholders can understand performance, track KPIs, spot trends, collaborate, and make faster decisions.</p>
-						<ul>
-							<li>Line graphs can show customer sign-up growth.</li>
-							<li>Pie charts can show acquisition sources such as ads, referrals, or organic search.</li>
-							<li>Bar charts can compare campaign conversion rates.</li>
-							<li>Maps can show customer acquisition by region.</li>
-						</ul>
-					</article>
-
-					<article class="card chapter-card" id="ch5-6-integration-challenges">
-						<h3>5.6 Challenges of Integrating Big Data with Business Strategy</h3>
-						<div class="grid">
-							<div><h4>Data quality</h4><p>Incomplete, inconsistent, or outdated data can lead to weak decisions.</p></div>
-							<div><h4>Data overload</h4><p>Large volumes can hide relevant insight if filtering and prioritization are poor.</p></div>
-							<div><h4>Legacy integration</h4><p>Existing systems may not support big data scale and complexity.</p></div>
-							<div><h4>Talent gaps</h4><p>Data scientists, analysts, and engineers are needed to convert data into action.</p></div>
-							<div><h4>Privacy and security</h4><p>Sensitive customer data creates compliance and trust risks.</p></div>
-							<div><h4>Cultural resistance</h4><p>Teams may resist evidence-based decision-making if they rely on intuition.</p></div>
-							<div><h4>Real-time processing</h4><p>Fast-moving industries need infrastructure for up-to-date insights.</p></div>
-						</div>
-					</article>
-
-					<article class="card chapter-card" id="ch5-7-ethics-legal">
-						<h3>5.7 Ethical and Legal Considerations</h3>
-						<ul>
-							<li><strong>Privacy and data protection:</strong> collect, store, and process personal data responsibly and securely.</li>
-							<li><strong>Transparency and accountability:</strong> explain what data is collected and how it is used.</li>
-							<li><strong>Bias and fairness:</strong> prevent algorithms from producing discriminatory decisions.</li>
-							<li><strong>Data ownership:</strong> clarify who owns data and who may use it.</li>
-							<li><strong>Security and breaches:</strong> protect sensitive information and respond properly when incidents occur.</li>
-							<li><strong>Unintended use:</strong> do not repurpose data in ways users were not told about.</li>
-						</ul>
-					</article>
-
-					<article class="card chapter-card" id="ch5-8-monitor-adjust">
-						<h3>5.8 Monitor and Adjust Big Data Strategies</h3>
-						<p>Big Data strategies should be monitored through goals, KPIs, real-time dashboards, processing performance, governance reviews, stakeholder feedback, infrastructure optimization, model evaluation, security checks, communication, and continuous improvement.</p>
-						<div class="callout success">
-							<strong>Answer pattern:</strong> set metrics, monitor systems and outcomes, review compliance and data quality, adjust technology or models, then communicate progress to stakeholders.
-						</div>
-					</article>
-						<article class="card chapter-card" id="ch5-3-formulation-detail">
-							<h3>5.3.1 Data-driven strategy loop</h3>
-							<div class="diagram" aria-label="Data driven strategy loop">
-								<div><strong>1. Objective</strong>Set a measurable goal tied to the business, such as retention or online sales.</div>
-								<div><strong>2. Data</strong>Collect relevant customer, sales, market, operational, or sentiment data.</div>
-								<div><strong>3. Insight</strong>Use segmentation, prediction, and sentiment analysis to identify patterns.</div>
-								<div><strong>4. Action</strong>Change marketing, inventory, delivery, product, or resource decisions.</div>
-								<div><strong>5. Feedback</strong>Measure results, run tests, learn, and update the strategy.</div>
-							</div>
-							<div class="callout success"><strong>RetailMax-style worked example:</strong> target a 20% retention increase and 15% online-sales increase; combine purchase, browsing, demographic, product, competitor, review, and sentiment data; segment frequent buyers, first-time shoppers, and discount hunters; personalize offers and recommendations; optimize inventory; run A/B tests using click-through and conversion rates; then revise the strategy using the results.</div>
-						</article>
-
-						<article class="card chapter-card" id="ch5-4-analytics-detail">
-							<h3>5.4.1 The four analytics questions</h3>
+					<details class="card chapter-card chapter-subsection" id="ch5-4-analytics-detail">
+						<summary>5.4.1 The four analytics questions</summary>
 							<div class="table-wrap">
 								<table>
 									<thead><tr><th>Type</th><th>Question</th><th>Strategy use</th><th>Example</th></tr></thead>
@@ -1975,10 +2011,21 @@
 							</div>
 							<p>Predictive analytics tells the strategy team what is likely; prescriptive analytics turns that forecast into a recommended response. For example, predicted demand can lead to a prescription to scale production, adjust supply, or allocate marketing resources.</p>
 							<div class="callout"><strong>Exam trap:</strong> a forecast is not a recommendation. “Demand will rise” is predictive; “increase stock by the recommended amount and shift promotion budget” is prescriptive.</div>
-						</article>
 
-						<article class="card chapter-card" id="ch5-5-visualization-detail">
-							<h3>5.5.1 Choosing visuals for strategy communication</h3>
+					</details>
+
+					<article class="card chapter-card" id="ch5-5-visualization">
+						<h3>5.5 Data Visualization for Strategy Communication</h3>
+						<p>Visualization turns complex data into charts, graphs, dashboards, and visual stories so stakeholders can understand performance, track KPIs, spot trends, collaborate, and make faster decisions.</p>
+						<ul>
+							<li>Line graphs can show customer sign-up growth.</li>
+							<li>Pie charts can show acquisition sources such as ads, referrals, or organic search.</li>
+							<li>Bar charts can compare campaign conversion rates.</li>
+							<li>Maps can show customer acquisition by region.</li>
+						</ul>
+					</article>
+					<details class="card chapter-card chapter-subsection" id="ch5-5-visualization-detail">
+						<summary>5.5.1 Choosing visuals for strategy communication</summary>
 							<div class="table-wrap">
 								<table>
 									<thead><tr><th>Visual</th><th>Best question</th><th>Guide example</th></tr></thead>
@@ -1993,10 +2040,23 @@
 								</table>
 							</div>
 							<p>Good visualization makes complex data understandable, tracks KPIs, supports storytelling, speeds decisions, encourages collaboration, reveals trends and outliers, and aligns teams with strategic goals. An interactive dashboard lets stakeholders explore the same evidence and discuss actions.</p>
-						</article>
 
-						<article class="card chapter-card" id="ch5-6-challenges-detail">
-							<h3>5.6.1 Integration challenges and responses</h3>
+					</details>
+
+					<article class="card chapter-card" id="ch5-6-integration-challenges">
+						<h3>5.6 Challenges of Integrating Big Data with Business Strategy</h3>
+						<div class="grid">
+							<div><h4>Data quality</h4><p>Incomplete, inconsistent, or outdated data can lead to weak decisions.</p></div>
+							<div><h4>Data overload</h4><p>Large volumes can hide relevant insight if filtering and prioritization are poor.</p></div>
+							<div><h4>Legacy integration</h4><p>Existing systems may not support big data scale and complexity.</p></div>
+							<div><h4>Talent gaps</h4><p>Data scientists, analysts, and engineers are needed to convert data into action.</p></div>
+							<div><h4>Privacy and security</h4><p>Sensitive customer data creates compliance and trust risks.</p></div>
+							<div><h4>Cultural resistance</h4><p>Teams may resist evidence-based decision-making if they rely on intuition.</p></div>
+							<div><h4>Real-time processing</h4><p>Fast-moving industries need infrastructure for up-to-date insights.</p></div>
+						</div>
+					</article>
+					<details class="card chapter-card chapter-subsection" id="ch5-6-challenges-detail">
+						<summary>5.6.1 Integration challenges and responses</summary>
 							<div class="table-wrap">
 								<table>
 									<thead><tr><th>Challenge</th><th>Why it harms strategy</th><th>Response to discuss</th></tr></thead>
@@ -2011,10 +2071,22 @@
 									</tbody>
 								</table>
 							</div>
-						</article>
 
-						<article class="card chapter-card" id="ch5-7-ethics-detail">
-							<h3>5.7.1 Ethics and legal decision checklist</h3>
+					</details>
+
+					<article class="card chapter-card" id="ch5-7-ethics-legal">
+						<h3>5.7 Ethical and Legal Considerations</h3>
+						<ul>
+							<li><strong>Privacy and data protection:</strong> collect, store, and process personal data responsibly and securely.</li>
+							<li><strong>Transparency and accountability:</strong> explain what data is collected and how it is used.</li>
+							<li><strong>Bias and fairness:</strong> prevent algorithms from producing discriminatory decisions.</li>
+							<li><strong>Data ownership:</strong> clarify who owns data and who may use it.</li>
+							<li><strong>Security and breaches:</strong> protect sensitive information and respond properly when incidents occur.</li>
+							<li><strong>Unintended use:</strong> do not repurpose data in ways users were not told about.</li>
+						</ul>
+					</article>
+					<details class="card chapter-card chapter-subsection" id="ch5-7-ethics-detail">
+						<summary>5.7.1 Ethics and legal decision checklist</summary>
 							<ul>
 								<li><strong>Privacy and protection:</strong> obtain consent where required, secure sensitive data, and respect access/deletion rights.</li>
 								<li><strong>Transparency and accountability:</strong> explain what is collected, why it is used, and how decisions are made; provide opt-out control where practical.</li>
@@ -2024,10 +2096,18 @@
 								<li><strong>Purpose limitation:</strong> do not repurpose data for marketing or another use that was not communicated or agreed.</li>
 							</ul>
 							<div class="callout danger"><strong>Exam trap:</strong> anonymising data does not automatically remove privacy risk; the source notes that advanced analytics can sometimes re-identify people.</div>
-						</article>
 
-						<article class="card chapter-card" id="ch5-8-monitor-detail">
-							<h3>5.8.1 Monitoring and continuous improvement plan</h3>
+					</details>
+
+					<article class="card chapter-card" id="ch5-8-monitor-adjust">
+						<h3>5.8 Monitor and Adjust Big Data Strategies</h3>
+						<p>Big Data strategies should be monitored through goals, KPIs, real-time dashboards, processing performance, governance reviews, stakeholder feedback, infrastructure optimization, model evaluation, security checks, communication, and continuous improvement.</p>
+						<div class="callout success">
+							<strong>Answer pattern:</strong> set metrics, monitor systems and outcomes, review compliance and data quality, adjust technology or models, then communicate progress to stakeholders.
+						</div>
+					</article>
+					<details class="card chapter-card chapter-subsection" id="ch5-8-monitor-detail">
+						<summary>5.8.1 Monitoring and continuous improvement plan</summary>
 							<div class="table-wrap">
 								<table>
 									<thead><tr><th>Monitor</th><th>Evidence or KPI</th><th>Adjustment</th></tr></thead>
@@ -2042,7 +2122,19 @@
 								</table>
 							</div>
 							<p>A complete cycle is: set goals and metrics, use real-time monitoring and alerts, assess performance, review governance, stay flexible, gather feedback, optimize storage/infrastructure, evaluate models, ensure security, communicate progress, and foster continuous improvement.</p>
-						</article>
+
+					</details>
+
+
+
+
+
+
+
+
+
+
+
 
 						<details class="card chapter-card glossary-card" id="ch5-glossary">
 							<summary>Chapter 5 Glossary: strategy, analytics, ethics, and monitoring</summary>
@@ -2054,7 +2146,7 @@
 								<dt><code>Predictive analytics</code></dt><dd>Uses historical data, statistical algorithms, and machine learning to estimate what could happen.</dd>
 								<dt><code>Prescriptive analytics</code></dt><dd>Uses decision models, optimization, or simulation to recommend what should be done.</dd>
 								<dt><code>Segmentation</code></dt><dd>Dividing customers or records into groups with similar behaviours or preferences.</dd>
-								<dt><code>A/B testing</code></dt><dd>Comparing two approaches and using responses such as click-through or conversion rates to refine strategy.</dd>
+								<dt><code>A/B testing</code></dt><dd>Comparing variant A with variant B and using responses such as click-through or conversion rates to refine strategy.</dd>
 								<dt><code>Data governance</code></dt><dd>Rules and responsibilities for quality, access, privacy, security, compliance, and lifecycle.</dd>
 								<dt><code>Privacy-by-design</code></dt><dd>Building privacy controls into the system from the start rather than adding them after deployment.</dd>
 								<dt><code>Bias</code></dt><dd>A systematic distortion that can cause an analytical model or decision process to disadvantage a group.</dd>
@@ -2069,7 +2161,7 @@
 
 
 			<section id="test-methods-reference" data-nav-section aria-labelledby="test-methods-title">
-				<div class="section-heading"><h2 id="test-methods-title">Topics 1–3 · Concepts, Tools, Methods &amp; Standards</h2><p>Choose a task, a letter, or a term. Each term links to its fuller explanation in the general module content. Entries reflect the study-guide scope; examples are short explanatory cues.</p><p><span class="test-scope-label">Study-guide scope · examples are explanatory</span></p></div>
+				<div class="section-heading"><h2 id="test-methods-title">Topics 1–3 · Concepts, Tools, Methods &amp; Standards</h2><p>Choose a task, a letter, or a term. Each term links to its fuller explanation in the general module content. Entries reflect the study-guide scope; examples are short explanatory cues. On narrow screens, swipe tables sideways to see every column.</p><p><span class="test-scope-label">Study-guide scope · examples are explanatory</span></p></div>
 				<div class="bd-index-block" id="bd-reference-index" aria-label="Big Data reference index">
 					<h3>Browse by task</h3>
 					<nav id="bd-task-index" class="bd-reference-jumps" aria-label="Reference tasks"></nav>
@@ -2224,11 +2316,18 @@
 			updateActiveNav();
 		}
 
+		function revealTarget(target) {
+			for (let node = target; node; node = node.parentElement) {
+				if (node.tagName === 'DETAILS') node.open = true;
+			}
+		}
+
 		document.querySelectorAll('a[href^="#"]').forEach((link) => {
 			link.addEventListener('click', () => {
 				const id = link.getAttribute('href').slice(1);
 				const target = document.getElementById(id);
 				if (target) {
+					revealTarget(target);
 					const navId = navIdForElement(target);
 					if (navId) setActiveNav(navId);
 				}
@@ -2241,6 +2340,10 @@
 		backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 		window.addEventListener('scroll', onScroll, { passive: true });
 		window.addEventListener('resize', onScroll);
+		window.addEventListener('hashchange', () => revealTarget(document.getElementById(location.hash.slice(1))));
+		const initialTarget = document.getElementById(location.hash.slice(1));
+		revealTarget(initialTarget);
+		if (initialTarget) requestAnimationFrame(() => initialTarget.scrollIntoView());
 
 		updateProgress();
 		updateActiveNav();
@@ -2307,8 +2410,10 @@
 				group.id = `bd-letter-${letter}`;
 				const heading = document.createElement('h4');
 				heading.textContent = letter;
-				group.append(heading);
-				letters.get(letter).forEach((term) => group.append(makeLink(`#${term.rowId}`, term.label)));
+				const links = document.createElement('div');
+				links.className = 'bd-letter-terms';
+				letters.get(letter).forEach((term) => links.append(makeLink(`#${term.rowId}`, term.label)));
+				group.append(heading, links);
 				nameIndex.append(group);
 			});
 		})();
