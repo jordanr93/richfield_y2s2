@@ -20,6 +20,7 @@
 			--code-bg: #010409;
 			--code-text: #6cff87;
 			--nav-width: 296px;
+
 		}
 
 		* {
@@ -679,6 +680,8 @@
 			margin-top: 0.85rem;
 		}
 
+		/* Quiz buttons are created by the learning-lab script. */
+		/*noinspection CssUnusedSymbol*/
 		.quiz-option {
 			display: grid;
 			grid-template-columns: 24px minmax(0, 1fr);
@@ -2775,7 +2778,12 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 					q('Which statement about deleting cookies is true?', ['The browser removes it after receiving an expired Set-Cookie header', 'PHP can erase it from the browser without sending a header', 'unlink() deletes all cookies', 'Cookies disappear only when MySQL closes'], 0, 'Cookie deletion is performed by sending a cookie with an expired time.'),
 					q('In a login system, where should the successful username commonly be stored for the visit?', ['$_SESSION["username"]', '$_FILES["username"]', '$_POST forever', 'A DROP statement'], 0, 'The review task asks for the username to be stored in a session variable.'),
 					q('What does the final page in the multi-step form review exercise show?', ['A summary of entered information', 'A list of SQL indexes only', 'Only the Apache port', 'A binary length count'], 0, 'The final step should display all entered data before submission.'),
-					q('What is a common first line in any PHP page that relies on sessions?', ['session_start();', 'DROP TABLE sessions;', 'setcookie(); with no arguments', 'echo before headers;'], 0, 'session_start() initializes session access.'),
+					q('What is a common first line in any PHP page that relies on sessions?', [
+						'session_start();',
+						//noinspection SqlNoDataSourceInspection
+						'DROP TABLE sessions;',
+						'setcookie(); with no arguments', 'echo before headers;'
+					], 0, 'session_start() initializes session access.'),
 					q('Which state mechanism is best for remembering a preference across browser restarts?', ['A persistent cookie with an expiration date', 'A local PHP variable only', 'A temporary variable inside one request', 'An unselected radio button'], 0, 'Cookies can persist beyond the current browser session if an expiration is set.'),
 					q('What is the main reason to combine sessions and cookies?', ['Use sessions for temporary server state and cookies for small persistent identifiers or preferences', 'Make SQL statements shorter', 'Avoid writing any PHP', 'Make uploaded files larger'], 0, 'The study page describes combining them for practical state handling.'),
 					q('Which option best summarizes Topic 2?', ['Remembering user state with cookies, sessions, login, logout, and multi-step forms', 'Only validating email fields', 'Only creating SQL tables', 'Only using htdocs'], 0, 'Topic 2 is about state through sessions and cookies.'),
@@ -2843,12 +2851,16 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 					q('What is a foreign key?', ['A field that references a key in another table', 'A PHP upload extension', 'A cookie expiration date', 'A local server folder'], 0, 'Foreign keys connect related tables.'),
 					q('Which SQL statement creates a database?', ['CREATE DATABASE', 'MAKE FORM', 'OPEN FILE', 'START SESSION'], 0, 'CREATE DATABASE creates a database.'),
 					q('Which SQL statement selects the active database?', ['USE database_name;', 'OPEN database_name;', 'SESSION database_name;', 'READ database_name;'], 0, 'USE tells MySQL which database to operate on.'),
-					q('Which SQL statement creates a table?', ['CREATE TABLE', 'INSERT TABLE', 'MAKE ROW', 'FORM TABLE'], 0, 'CREATE TABLE defines table structure.'),
+					q('Which SQL statement creates a table?', ['CREATE TABLE', 'INSERT TABLE', 'MAKE ROW', 'FORM TABLE'], 0,
+						//noinspection SqlNoDataSourceInspection
+						'CREATE TABLE defines table structure.'),
 					q('Which SQL statement adds a new row?', ['INSERT', 'SELECT', 'UPDATE', 'DROP'], 0, 'INSERT adds rows.'),
 					q('Which SQL statement retrieves rows?', ['SELECT', 'INSERT', 'DELETE', 'ALTER'], 0, 'SELECT returns data.'),
 					q('Which SQL statement modifies existing rows?', ['UPDATE', 'CREATE', 'DROP', 'USE'], 0, 'UPDATE changes existing records.'),
 					q('Which SQL statement deletes rows but keeps the table?', ['DELETE', 'DROP', 'ALTER', 'CREATE'], 0, 'DELETE removes records while leaving the table structure.'),
-					q('Which SQL statement removes a table structure?', ['DROP TABLE', 'DELETE ROW', 'UNLINK TABLE', 'REMOVE FIELD'], 0, 'DROP TABLE deletes the table itself.'),
+					q('Which SQL statement removes a table structure?', ['DROP TABLE', 'DELETE ROW', 'UNLINK TABLE', 'REMOVE FIELD'], 0,
+						//noinspection SqlNoDataSourceInspection
+						'DROP TABLE deletes the table itself.'),
 					q('Which clause filters rows in SELECT, UPDATE, and DELETE statements?', ['WHERE', 'FORM', 'COOKIE', 'SESSION'], 0, 'WHERE limits which rows are returned or affected.'),
 					q('What is the risk of UPDATE without WHERE?', ['It can update every row', 'It can only update one row', 'It starts Apache', 'It hashes all passwords'], 0, 'Without WHERE, all rows may be changed.'),
 					q('What is the risk of DELETE without WHERE?', ['It can delete every row', 'It only deletes one column', 'It validates email', 'It closes the browser'], 0, 'DELETE without a filter can remove all records.'),
@@ -2860,10 +2872,20 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 					q('Which function closes a mysqli connection?', ['mysqli_close()', 'fclose()', 'session_destroy()', 'closedir()'], 0, 'mysqli_close() closes the database connection.'),
 					q('Which method is recommended to prevent SQL injection in login forms?', ['Prepared statements', 'String concatenation with raw POST values', 'Echoing SQL into HTML', 'Using GET for passwords'], 0, 'Prepared statements keep user data separate from SQL code.'),
 					q('What does this SQL do?', ['Creates a database named mydatabase', 'Creates a cookie', 'Deletes a table', 'Starts PHP'], 0, 'CREATE DATABASE defines a new database.', 'CREATE DATABASE mydatabase;'),
-					q('What does this SQL define?', ['A fruit table with an auto-incrementing primary key', 'A PHP session', 'An upload folder', 'A cookie named fruit'], 0, 'The id field is the primary key and auto-increments.', 'CREATE TABLE fruit (\n\tid SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,\n\tname VARCHAR(30) NOT NULL,\n\tPRIMARY KEY (id)\n);'),
-					q('What does this SQL add?', ['A banana row in the fruit table', 'A new database', 'A session cookie', 'A file handle'], 0, 'INSERT INTO adds a row with the supplied values.', "INSERT INTO fruit (name, color) VALUES ('banana', 'yellow');"),
-					q('What does this query return?', ['All columns from fruit', 'Only the table structure', 'Only deleted rows', 'The current PHP session'], 0, 'SELECT * returns every column for matching rows.', 'SELECT * FROM fruit;'),
-					q('What does this SQL change?', ['The row with id 2', 'Every row regardless of id', 'The database name', 'The Apache port'], 0, 'The WHERE clause limits the update to id = 2.', "UPDATE fruit\nSET name = 'grapefruit', color = 'yellow'\nWHERE id = 2;"),
+					q('What does this SQL define?', ['A fruit table with an auto-incrementing primary key', 'A PHP session', 'An upload folder', 'A cookie named fruit'], 0, 'The id field is the primary key and auto-increments.',
+						//noinspection SqlNoDataSourceInspection
+						'CREATE TABLE fruit (\n\tid SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,\n\tname VARCHAR(30) NOT NULL,\n\tPRIMARY KEY (id)\n);'),
+					q('What does this SQL add?', ['A banana row in the fruit table', 'A new database', 'A session cookie', 'A file handle'], 0,
+						//noinspection SqlNoDataSourceInspection
+						'INSERT INTO adds a row with the supplied values.',
+						//noinspection SqlNoDataSourceInspection
+						"INSERT INTO fruit (name, color) VALUES ('banana', 'yellow');"),
+					q('What does this query return?', ['All columns from fruit', 'Only the table structure', 'Only deleted rows', 'The current PHP session'], 0, 'SELECT * returns every column for matching rows.',
+						//noinspection SqlNoDataSourceInspection
+						'SELECT * FROM fruit;'),
+					q('What does this SQL change?', ['The row with id 2', 'Every row regardless of id', 'The database name', 'The Apache port'], 0, 'The WHERE clause limits the update to id = 2.',
+						//noinspection SqlNoDataSourceInspection
+						"UPDATE fruit\nSET name = 'grapefruit', color = 'yellow'\nWHERE id = 2;"),
 					q('What is the correct deletion order when Orders references Customers?', ['Delete the customer’s orders before deleting the customer', 'Delete the customer first always', 'Drop MySQL before deleting rows', 'Delete the primary key column only'], 0, 'Foreign-key dependencies mean child rows should be removed first.'),
 					q('Which join pattern lists orders with matching customer names?', ['INNER JOIN Orders ON Customers.CustomerID = Orders.CustomerID', 'GROUP BY without a table', 'DROP JOIN', 'COOKIE JOIN'], 0, 'The relationship is through CustomerID.'),
 					q('Which aggregate answers total amount spent by each customer?', ['SUM(TotalAmount) with GROUP BY customer', 'COUNT(*) without a table', 'DELETE with WHERE', 'AUTO_INCREMENT only'], 0, 'The review question asks for total spent per customer, which uses SUM and GROUP BY.'),
@@ -3210,7 +3232,10 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 			{ title: 'Optional checkbox', prompt: 'if (__________) {\n\techo htmlspecialchars($_POST["newsletter"]);\n}', answers: ['isset($_POST["newsletter"])'], explanation: 'An unchecked checkbox may not send a key at all, so isset() is the safe first check.' },
 			{ title: 'Start a session', prompt: '<?php\n__________\n$_SESSION["username"] = "Amina";\n?>', answers: ['session_start();', 'session_start()'], explanation: 'session_start() must run before reading or writing $_SESSION.' },
 			{ title: 'Read a file', prompt: '$handle = fopen("notes.txt", "r");\n$content = __________;\nfclose($handle);', answers: ['fread($handle, filesize("notes.txt"));'], explanation: 'fread() reads bytes from an open handle; filesize() provides the number of bytes here.' },
-			{ title: 'Safe SQL update', prompt: 'UPDATE fruit\nSET color = \'yellow\'\n__________;', answers: ['WHERE id = 2', 'WHERE id=2'], explanation: 'WHERE makes the update target a specific row instead of every row.' },
+			{ title: 'Safe SQL update',
+				//noinspection SqlNoDataSourceInspection
+				prompt: 'UPDATE fruit\nSET color = \'yellow\'\n__________;',
+				answers: ['WHERE id = 2', 'WHERE id=2'], explanation: 'WHERE makes the update target a specific row instead of every row.' },
 		];
 
 		const traceExamples = [
@@ -3230,7 +3255,10 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 		const debugChallenges = [
 			{ title: 'Session page', code: '$_SESSION["username"] = "Amina";\necho $_SESSION["username"];', options: ['Add session_start() before using $_SESSION.', 'Replace $_SESSION with $_POST.', 'Use fopen() before the first line.'], answer: 0, explanation: 'PHP must start or resume the session before accessing $_SESSION.' },
 			{ title: 'Unsafe output', code: 'echo $_POST["firstName"];', options: ['Use htmlspecialchars() around the submitted value.', 'Change the field to GET.', 'Store the first name in a cookie first.'], answer: 0, explanation: 'Submitted data is untrusted. Escape it before placing it in HTML output.' },
-			{ title: 'Risky update', code: 'UPDATE fruit\nSET color = \'yellow\';', options: ['Add a WHERE clause to select the intended row.', 'Use SELECT instead of UPDATE.', 'Add AUTO_INCREMENT to color.'], answer: 0, explanation: 'Without WHERE, the query updates every fruit row.' },
+			{ title: 'Risky update',
+				//noinspection SqlNoDataSourceInspection
+				code: 'UPDATE fruit\nSET color = \'yellow\';',
+				options: ['Add a WHERE clause to select the intended row.', 'Use SELECT instead of UPDATE.', 'Add AUTO_INCREMENT to color.'], answer: 0, explanation: 'Without WHERE, the query updates every fruit row.' },
 			{ title: 'File overwrite', code: '$handle = fopen("log.txt", "w");\nfwrite($handle, "Visit\n");', options: ['Use a mode if you want to append rather than erase existing content.', 'Remove fwrite().', 'Replace the filename with $_SESSION.'], answer: 0, explanation: 'w truncates an existing file. Use a when the purpose is to add a log entry.' },
 		];
 
@@ -3246,7 +3274,18 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 			Forms: { prompt: 'echo __________;', answer: 'htmlspecialchars($_POST["name"])', explanation: 'Escape submitted output before placing it in HTML.', trace: '$name = "Amina";\necho htmlspecialchars($name);', steps: ['The variable receives Amina.', 'htmlspecialchars() prepares safe output.', 'The page displays Amina.'] },
 			Sessions: { prompt: '<?php\n__________\n$_SESSION["user"] = "Amina";', answer: 'session_start();', explanation: 'Start or resume the session before using $_SESSION.', trace: 'session_start();\n$count = ($_SESSION["count"] ?? 0) + 1;\necho $count;', steps: ['The session starts.', 'A missing count becomes 0 then increases to 1.', 'The page displays 1.'] },
 			Files: { prompt: '$handle = fopen("notes.txt", "r");\n$text = __________;\nfclose($handle);', answer: 'fread($handle, filesize("notes.txt"))', explanation: 'fread() reads data from an open file handle.', trace: '$handle = fopen("log.txt", "a");\nfwrite($handle, "Visit\\n");\nfclose($handle);', steps: ['The file opens in append mode.', 'A new line is written at the end.', 'The file handle closes.'] },
-			SQL: { prompt: 'UPDATE fruit\nSET color = "green"\n__________;', answer: 'WHERE id = 2', explanation: 'WHERE keeps the update limited to the intended row.', trace: 'SELECT * FROM fruit\nWHERE id = 2;', steps: ['SELECT requests rows from fruit.', 'WHERE limits the result to id 2.', 'One matching row is returned.'] },
+			SQL: {
+				//noinspection SqlNoDataSourceInspection
+				prompt: 'UPDATE fruit\nSET color = "green"\n__________;',
+				answer: 'WHERE id = 2', explanation: 'WHERE keeps the update limited to the intended row.',
+				//noinspection SqlNoDataSourceInspection
+				trace: 'SELECT * FROM fruit\nWHERE id = 2;',
+				steps: [
+					//noinspection SqlNoDataSourceInspection
+					'SELECT requests rows from fruit.',
+					'WHERE limits the result to id 2.', 'One matching row is returned.'
+				]
+			},
 			XAMPP: { prompt: '<?php\n__________ "PHP is running";\n?>', answer: 'echo', explanation: 'echo sends text from the PHP script to the browser.', trace: 'echo $_SERVER["SERVER_NAME"];', steps: ['Apache receives the PHP request.', 'PHP reads the server name.', 'The browser receives the generated response.'] },
 		};
 		Object.entries(expandedLabTopics).forEach(([topic, terms]) => {
@@ -3400,6 +3439,7 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 			if (operation === 'INSERT') return `INSERT INTO fruit (name, color) VALUES ('${name}', '${color}');`;
 			if (operation === 'UPDATE') return `UPDATE fruit\nSET name = '${name}', color = '${color}'\nWHERE id = ${id};`;
 			if (operation === 'DELETE') return `DELETE FROM fruit\nWHERE id = ${id};`;
+			//noinspection SqlNoDataSourceInspection
 			return 'SELECT * FROM fruit;';
 		}
 
