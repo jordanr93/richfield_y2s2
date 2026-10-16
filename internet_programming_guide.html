@@ -430,7 +430,7 @@
 
 		.chapter-grid {
 			display: grid;
-			grid-template-columns: repeat(2, minmax(0, 1fr));
+			grid-template-columns: minmax(0, 1fr);
 			gap: 1rem;
 		}
 
@@ -900,6 +900,19 @@
 				font-size: 2.2rem;
 			}
 		}
+		.ip-api-task { margin: 1.6rem 0; scroll-margin-top: 1.25rem; }
+		.ip-api-entry { margin: 0.8rem 0; padding: 1rem; border: 1px solid var(--border); border-radius: 8px; background: var(--panel); scroll-margin-top: 1.25rem; }
+		.ip-api-entry h4 { margin: 0 0 0.4rem; color: var(--cyan); }
+		.ip-api-entry p { margin: 0.4rem 0; }
+		.ip-reference-label { color: var(--muted); font-size: 0.85em; font-weight: 400; }
+		.ip-api-jumps, .ip-api-entry-links { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.9rem 0; }
+		.ip-api-jumps a, .ip-api-entry-links a { display: inline-flex; min-height: 44px; align-items: center; padding: 0.45rem 0.7rem; border: 1px solid rgba(88,196,221,.42); border-radius: 6px; background: var(--panel); }
+		.ip-api-letter { padding: 0.65rem 0; border-bottom: 1px solid var(--border); scroll-margin-top: 1.25rem; }
+		.ip-api-letter h4 { display: inline-block; min-width: 2rem; margin: 0; color: var(--cyan); }
+		.ip-api-letter a { display: inline-flex; min-height: 44px; align-items: center; margin: 0.2rem 0.45rem; padding: 0.25rem 0.5rem; border: 1px solid var(--border); border-radius: 5px; }
+		.ip-api-entry:target { outline: 2px solid var(--cyan); outline-offset: 3px; }
+		@media (max-width: 780px) { .ip-api-entry { padding: 0.8rem; } }
+
 	</style>
 	<link rel="stylesheet" href="module-theme.css">
 	<link rel="stylesheet" href="module-learning-lab.css">
@@ -923,9 +936,15 @@
 
 
 
-<details class="nav-group nav-collapsible">
-	<summary>Test Focus Areas</summary>
-	<a class="nav-link" href="#test-focus-areas" data-nav-link="test-focus-areas">Coming Soon</a>
+<details class="nav-group nav-collapsible" open>
+	<summary>Test Focus Areas · Topics 1 &amp; 2</summary>
+	<a class="nav-link" href="#test-focus-areas" data-nav-link="test-focus-areas">Test index</a>
+	<a href="#test-t1-forms">1 · HTML forms</a>
+	<a href="#test-t1-request">1 · Request handling</a>
+	<a href="#test-t1-validation">1 · Validation and safety</a>
+	<a href="#test-t2-state">2 · State and query strings</a>
+	<a href="#test-t2-cookies">2 · Cookies</a>
+	<a href="#test-t2-sessions">2 · Sessions</a>
 </details>
 
 		<details class="nav-group nav-collapsible">
@@ -940,6 +959,7 @@
 			<a href="#chapter-3" data-nav-link="chapter-3">Topic 3: File System Management</a>
 			<a href="#chapter-4" data-nav-link="chapter-4">Topic 4: SQL and Databases</a>
 			<a href="#chapter-5" data-nav-link="chapter-5">Addendum: Running PHP</a>
+			<a href="#detailed-reference" data-nav-link="detailed-reference">Classes, Functions, Methods &amp; Attributes</a>
 		</div>
 
 		<details class="nav-group nav-collapsible">
@@ -978,13 +998,49 @@
 
 		<section id="test-focus-areas" class="quiz-section" data-nav-section>
 			<div class="section-heading">
-				<h2>Test Focus Areas</h2>
-				<p>A future home for confirmed test coverage and targeted revision guidance.</p>
+				<h2>Internet Programming Test · Topics 1 &amp; 2</h2>
+				<p>Open-book index and concise reference based on the Internet Programming 622 Study Guide. Start with a task below, then follow its link to the fuller explanation in General Module Content.</p>
 			</div>
-			<div class="card coming-soon-card">
-				<span class="coming-soon-label">Coming soon</span>
-				<h3>Test Focus Areas are coming soon</h3>
-				<p>This section will be updated when the relevant guidance is available.</p>
+			<div class="callout success"><strong>Confirmed scope:</strong> Topic 1, “PHP and HTML Form” (study guide PDF pp. 9–41), and Topic 2, “Session Controls and Cookies” (pp. 42–58). <a href="reference-library/originals/INTERNET%20PROGRAMMING%20%20622%20STUDY%20GUIDE.pdf">Open the supplied study guide PDF</a>. Subtopic labels below follow its contents. The “Supporting practice” notes are useful coding safeguards; they are not additional confirmed test coverage.</div>
+			<div class="grid">
+				<article class="card wide" id="test-at-a-glance">
+					<h3>Topic Index and Quick Reference</h3>
+					<p>Choose a subtopic; each quick point opens its fuller explanation.</p>
+					<div class="table-wrap"><table>
+						<thead><tr><th>Study guide topic</th><th>Subtopic</th><th>Quick point</th><th>Full explanation</th></tr></thead>
+						<tbody>
+						<tr><td rowspan="4">1 · PHP and HTML Form</td><td><a href="#test-t1-web">Web foundations (listed outcomes)</a></td><td>Know the browser/server request cycle, standards and accessibility, HTTP/HTTPS/FTP, URLs/URIs/DNS, responsive design, and ethical handling of information.</td><td><a href="#ch1-0-web-foundations">Topic 1 foundations</a></td></tr>
+						<tr><td><a href="#test-t1-forms">Form structure and controls</a></td><td>Use <code>action</code> for the receiver, <code>method</code> for GET/POST, and each control’s <code>name</code> as the submitted key.</td><td><a href="#ch1-1-form-basics">How forms work</a> · <a href="#ch1-2-get-post">GET vs POST</a></td></tr>
+						<tr><td><a href="#test-t1-request">Read submitted data</a></td><td>Match the form method to <code>$_GET</code> or <code>$_POST</code>; check optional keys before reading.</td><td><a href="#ch1-3-superglobals">Request superglobals</a> · <a href="#ch1-5-empty-fields">Empty and unselected controls</a></td></tr>
+						<tr><td><a href="#test-t1-validation">Validate and display safely</a></td><td>Validate on the server, escape output for HTML, and never echo a password.</td><td><a href="#ch1-4-security">Security</a> · <a href="#ch1-6-validation-flow">Validation and redisplay</a></td></tr>
+						<tr><td rowspan="3">2 · Session Controls and Cookies</td><td><a href="#test-t2-state">State and query strings</a></td><td>HTTP requests are independent; carry only small, non-sensitive state in a query string.</td><td><a href="#ch2-1-stateless-http">Stateless HTTP</a></td></tr>
+						<tr><td><a href="#test-t2-cookies">Create, read, delete cookies</a></td><td>Cookies live in the browser and return with later requests; set them before page output.</td><td><a href="#ch2-2-cookies">Cookies</a></td></tr>
+						<tr><td><a href="#test-t2-sessions">Start, use, and end sessions</a></td><td>Start the session before output, store values in <code>$_SESSION</code>, and clear data on logout.</td><td><a href="#ch2-3-sessions">Sessions</a> · <a href="#ch2-4-cookie-session-comparison">Compare cookies and sessions</a></td></tr>
+						<tr><td>Topic 2 · Apply</td><td><a href="#test-t2-combine">Combine state methods</a></td><td>Use session data for current visit state; use a cookie for a small preference that should persist.</td><td><a href="#ch2-5-combining-state">Combining cookies and sessions</a> · <a href="#ch2-6-review-tasks">Study guide tasks</a></td></tr>
+						</tbody>
+					</table></div>
+				</article>
+				<details class="card wide glossary-card" id="test-topic-details" open>
+					<summary><span>Clickable Subtopic Notes</span></summary>
+					<h4 id="test-t1-web">Topic 1 · Web foundations listed in the learning outcomes</h4>
+					<p>Browsers request resources from servers using protocols: HTTP transfers web pages, HTTPS adds transport encryption, and FTP transfers files. A URI identifies a resource; a URL gives its location/access method; DNS maps a domain name to an IP address. Web standards support consistent behavior and accessibility; universal design aims to make content usable by people with varied abilities and devices. Responsive design adapts layouts to screen sizes. Treat personal data carefully and keep published information accurate. The study guide lists these outcomes at the start of Topic 1 but develops the remaining pages primarily through forms. <a href="#ch1-0-web-foundations">Read the concise foundations note</a>.</p>
+					<h4 id="test-t1-forms">Topic 1 · Form structure and controls</h4>
+					<p>A browser sends successful controls (those with a <code>name</code>) to the URL in <code>action</code>. GET places values in the URL query string; POST places them in the request body. Radio choices share a name; a checkbox or unselected radio sends no key. <a href="#ch1-1-form-basics">Read how forms work</a> · <a href="#ch1-2-get-post">Compare GET and POST</a>.</p>
+					<h4 id="test-t1-request">Topic 1 · Request handling and missing fields</h4>
+					<p>PHP exposes submitted keys through <code>$_GET</code> or <code>$_POST</code>. A text box left blank is usually sent as an empty string, but an unselected checkbox/radio is omitted. Use <code>isset()</code> to test presence and handle missing keys before access. <a href="#ch1-3-superglobals">Read request data</a> · <a href="#ch1-5-empty-fields">Review empty-field behavior</a>.</p>
+					<h4 id="test-t1-validation">Topic 1 · Validation, security, and redisplay</h4>
+					<p>Server-side validation checks required values, type, format, and allowed range. Escape user text when inserting it into HTML to reduce XSS risk; validation does not replace escaping. Preserve valid values on redisplay and never display or store plain-text passwords. <a href="#ch1-4-security">Read security guidance</a> · <a href="#ch1-6-validation-flow">Follow the validation flow</a>.</p>
+					<h4 id="test-t2-state">Topic 2 · State and query strings</h4>
+					<p>HTTP does not remember one request when the next begins. Query strings can carry small, visible values; cookies store browser-side values; sessions keep associated data server-side. <a href="#ch2-1-stateless-http">Read the state overview</a>.</p>
+					<h4 id="test-t2-cookies">Topic 2 · Cookie lifecycle</h4>
+					<p><code>setcookie()</code> asks the browser to store a cookie. The browser returns it on a later request through <code>$_COOKIE</code>, so a newly set cookie should not be expected in <code>$_COOKIE</code> during the same request. To delete it, send the same name/path with an expiry in the past. Cookies can be disabled or changed by the user; do not store secrets in them. <a href="#ch2-2-cookies">Read cookie details</a>.</p>
+					<h4 id="test-t2-sessions">Topic 2 · Session lifecycle</h4>
+					<p>Call <code>session_start()</code> before output on every page that reads or writes session data. Store values in <code>$_SESSION</code>. <code>session_destroy()</code> removes server-side session data; for a complete logout, clear the session array and expire the session cookie as well. <a href="#ch2-3-sessions">Read session details</a> · <a href="#ch2-4-cookie-session-comparison">Compare storage and use</a>.</p>
+					<h4 id="test-t2-combine">Topic 2 · Combine state methods</h4>
+					<p>Use session state for a login or multi-page form during a visit. A cookie may remember a non-sensitive preference across visits; validate allowed values before use. <a href="#ch2-5-combining-state">Read the combined pattern</a> · <a href="#ch2-6-review-tasks">Open the guide’s review tasks</a>.</p>
+					<div class="callout warning"><strong>Supporting practice (not confirmed test scope):</strong> modern deployments should use HTTPS, secure/HttpOnly/SameSite cookie settings, CSRF protections for state-changing requests, and password hashing for authentication. These are prudent implementation controls; the cited Topic 1–2 outline does not list each as examinable coverage.</div>
+					<p class="assignment-links"><a href="#test-focus-areas">Back to topic index ↑</a> · <a href="#detailed-reference">Open Classes, Functions, Methods &amp; Attributes reference</a></p>
+				</details>
 			</div>
 		</section>
 
@@ -1011,6 +1067,19 @@
 						<span class="chip">validation helpers</span>
 					</div>
 					<div class="chapter-grid">
+						<article class="card chapter-card architecture" id="ch1-0-web-foundations">
+							<h3>1.0 Web Foundations Listed in the Study Guide Outcomes</h3>
+							<p><strong>Scope note:</strong> the Topic 1 opening page lists these outcomes (study guide PDF p. 9); the detailed Topic 1 material that follows concentrates on HTML forms and PHP form processing. Treat this as a concise orientation to the stated outcomes, with detail depth limited by the supplied guide.</p>
+							<div class="table-wrap"><table><thead><tr><th>Term</th><th>Key point</th></tr></thead><tbody>
+							<tr><td>Browser and server</td><td>The browser requests a resource; the server responds. PHP runs on the server and can produce HTML for the browser.</td></tr>
+							<tr><td>HTTP / HTTPS / FTP</td><td>HTTP transfers web requests and responses; HTTPS protects HTTP traffic with TLS; FTP is a file-transfer protocol.</td></tr>
+							<tr><td>URI, URL, DNS</td><td>A URI identifies a resource; a URL locates/accesses it; DNS resolves domain names to IP addresses used for routing.</td></tr>
+							<tr><td>Standards and universal design</td><td>Standards support consistent behavior across browsers/devices. Universal design aims for usability across different abilities and circumstances; use semantic structure, labels, text alternatives, and keyboard access.</td></tr>
+							<tr><td>Responsive and progressive design</td><td>Responsive layouts adapt to screen sizes. Progressive enhancement starts with core accessible content and adds capabilities where available.</td></tr>
+							<tr><td>Ethics</td><td>Respect privacy, collect/use personal information responsibly, and keep web content accurate.</td></tr>
+							</tbody></table></div>
+							<p class="assignment-links"><a href="#test-focus-areas">Back to Topics 1 &amp; 2 Test Index ↑</a></p>
+						</article>
 						<article class="card chapter-card definition" id="ch1-1-form-basics">
 							<h3>1.1 How HTML Forms Work</h3>
 							<p>A web form is a collection of controls inside a <code>&lt;form&gt;</code> element. Typical controls include text fields, passwords, checkboxes, radio buttons, file selectors, hidden fields, select lists, multi-select boxes, text areas, submit buttons, and reset buttons.</p>
@@ -1029,7 +1098,7 @@
 
 						<article class="card chapter-card pattern" id="ch1-2-get-post">
 							<h3>1.2 GET vs POST</h3>
-							<p>The form <code>action</code> says where the data goes. The form <code>method</code> says how it is sent. The guide presents <code>GET</code> as suitable for small amounts of data because values appear in the URL. <code>POST</code> sends data in the request body and is better when more data or more sensitive data is involved.</p>
+							<p>The form <code>action</code> says where the data goes. The form <code>method</code> says how it is sent. <code>GET</code> places values in the URL, so use it for non-sensitive searches and bookmarkable requests. <code>POST</code> sends data in the request body and suits submissions that process or change data. POST does not encrypt data; use HTTPS to protect traffic in transit.</p>
 							<div class="table-wrap">
 								<table>
 									<thead>
@@ -1050,8 +1119,8 @@
 										<tr>
 											<td><code>POST</code></td>
 											<td>Request body</td>
-											<td>Larger submissions and sensitive form content</td>
-											<td>Refreshing may ask the user to resubmit form data</td>
+											<td>Submissions that process or change data; larger request bodies</td>
+											<td>POST alone does not encrypt data; use HTTPS for transport protection</td>
 										</tr>
 									</tbody>
 								</table>
@@ -1139,8 +1208,8 @@ foreach (["name", "email", "age"] as $field) {
 						</article>
 					</div>
 					<div class="chapter-grid">
-						<article class="card chapter-card wide pattern" id="ch1-code-registration-handler">
-							<h3>Topic 1 Extended Code Example: Widget Club Form Handler</h3>
+						<details class="card chapter-card wide pattern glossary-card" id="ch1-code-registration-handler">
+							<summary><span>Topic 1 Extended Code Example: Widget Club Form Handler</span></summary>
 							<p>This example follows the guide's <code>registration.html</code> and <code>process_registration.php</code> idea, but it applies the later security and empty-field rules so the revision version is safer than the first teaching example.</p>
 							<pre><code>&lt;?php
 // process_registration.php
@@ -1187,10 +1256,10 @@ echo "&lt;/dl&gt;";
 // Exam trap: the guide's first handler printed the submitted password.
 // A secure revision answer should never display password values back to the user.
 ?&gt;</code></pre>
-						</article>
+						</details>
 
-						<article class="card chapter-card wide warning" id="ch1-code-validated-reusable-form">
-							<h3>Topic 1 Extended Code Example: Redisplay A Form With Validation</h3>
+						<details class="card chapter-card wide warning glossary-card" id="ch1-code-validated-reusable-form">
+							<summary><span>Topic 1 Extended Code Example: Redisplay A Form With Validation</span></summary>
 							<p>The guide's generated-form section names helpers such as <code>processForm()</code>, <code>displayForm()</code>, <code>setValue()</code>, <code>setChecked()</code>, <code>setSelected()</code>, and <code>validateField()</code>. This compact version shows how those functions fit together.</p>
 							<pre><code>&lt;?php
 // Single-page PHP form: first display, failed redisplay, and success display.
@@ -1261,7 +1330,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" &amp;&amp; !$missingFields) {
 	&lt;button type="submit"&gt;Submit&lt;/button&gt;
 &lt;/form&gt;
 &lt;?php } ?&gt;</code></pre>
-						</article>
+						</details>
 
 						<details class="card chapter-card wide architecture glossary-card" id="ch1-glossary">
 							<summary><span>Topic 1 Glossary: Forms, Request Data And Validation</span></summary>
@@ -1323,7 +1392,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" &amp;&amp; !$missingFields) {
 							</dl>
 						</details>
 					</div>
-					<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
+					<a class="back-link" href="#test-focus-areas">Back to Topics 1 &amp; 2 Test Index</a>
 				</section>
 
 				<section id="chapter-2" class="chapter" data-nav-section>
@@ -1340,7 +1409,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" &amp;&amp; !$missingFields) {
 					<div class="chapter-grid">
 						<article class="card chapter-card architecture" id="ch2-1-stateless-http">
 							<h3>2.1 Stateless HTTP</h3>
-							<p>Each browser request is independent. PHP starts with a clean slate, runs the script, then removes variables from memory. Applications such as shopping carts, login systems, forums, and multi-page forms need continuity between requests.</p>
+							<p>Each browser request is independent. Ordinary request-local PHP variables do not automatically carry into the next request. Applications such as shopping carts, login systems, forums, and multi-page forms need a state mechanism to connect related requests.</p>
 							<div class="flow" aria-label="State options">
 								<span>Query string</span>
 								<span>Cookie</span>
@@ -1369,7 +1438,7 @@ if (isset($_COOKIE["bg"])) {
 
 						<article class="card chapter-card pattern" id="ch2-3-sessions">
 							<h3>2.3 Sessions</h3>
-							<p>Sessions store persistent variables on the server and link them to a user through a session ID. PHP commonly stores that ID in a browser cookie called <code>PHPSESSID</code>.</p>
+							<p>Sessions store associated data on the server and link requests through a session ID. PHP commonly sends that ID in a browser cookie called <code>PHPSESSID</code>. Session lifetime depends on server configuration and application behavior; do not assume a session always lasts across visits.</p>
 							<pre><code>session_start();
 
 $_SESSION["hits"] = ($_SESSION["hits"] ?? 0) + 1;
@@ -1401,13 +1470,13 @@ echo "This page has been viewed " . $_SESSION["hits"] . " times.";</code></pre>
 										</tr>
 										<tr>
 											<td>Size</td>
-											<td>Small; guide notes about 4 KB as a practical limit</td>
+											<td>Limited; “about 4 KB” is a common approximation, not a fixed universal browser limit</td>
 											<td>Better for larger temporary state</td>
 										</tr>
 										<tr>
 											<td>Persistence</td>
 											<td>Can last beyond browser close if expiration is set</td>
-											<td>Usually expires when the browser closes unless configured</td>
+											<td>Controlled by server/session settings; often temporary, but not inherently tied to browser close</td>
 										</tr>
 										<tr>
 											<td>Best use</td>
@@ -1422,7 +1491,7 @@ echo "This page has been viewed " . $_SESSION["hits"] . " times.";</code></pre>
 
 						<article class="card chapter-card pattern" id="ch2-5-combining-state">
 							<h3>2.5 Combining Cookies and Sessions</h3>
-							<p>The guide explains that temporary state can live in a PHP session, while longer-term identity or preference state can be stored in a cookie and then used to retrieve persistent data.</p>
+							<p>The guide explains that temporary state can live in a PHP session, while a non-sensitive preference can be stored in a cookie and used across visits. A cookie value is user-controlled: validate it before using it, and do not store passwords or secrets there.</p>
 							<pre><code>if (isset($_POST["bgcolor"])) {
 	setcookie("bgcolor", $_POST["bgcolor"], time() + 60 * 60 * 24 * 7);
 }
@@ -1441,8 +1510,8 @@ $background = $_COOKIE["bgcolor"] ?? $_POST["bgcolor"] ?? "gray";</code></pre>
 						</article>
 					</div>
 					<div class="chapter-grid">
-						<article class="card chapter-card wide pattern" id="ch2-code-cookie-preferences">
-							<h3>Topic 2 Extended Code Example: Cookie-Based Colour Preferences</h3>
+						<details class="card chapter-card wide pattern glossary-card" id="ch2-code-cookie-preferences">
+							<summary><span>Topic 2 Extended Code Example: Cookie-Based Colour Preferences</span></summary>
 							<p>This example follows the guide's <code>prefs.php</code>, <code>prefs_demo.php</code>, and <code>save_state.php</code> colour-preference pattern. The important revision point is that <code>setcookie()</code> sends an HTTP header, so it must run before normal page output.</p>
 							<pre><code>&lt;?php
 // save_state.php
@@ -1490,11 +1559,11 @@ $backgroundHex = $validColours[$backgroundName];
 	&lt;/form&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-						</article>
+						</details>
 
-						<article class="card chapter-card wide architecture" id="ch2-code-session-login">
-							<h3>Topic 2 Extended Code Example: Session Login, Welcome And Logout</h3>
-							<p>The review section asks for a hardcoded login, a welcome page, and logout. These three files show the session lifecycle: start the session, store the username, read it on another page, then destroy the session.</p>
+						<details class="card chapter-card wide architecture glossary-card" id="ch2-code-session-login">
+							<summary><span>Topic 2 Extended Code Example: Session Login, Welcome And Logout</span></summary>
+							<p>The study guide review task asks for a hardcoded login, a welcome page, and logout. This simplified exercise demonstrates the session flow only; hardcoded credentials are not suitable for a real login system. The supporting logout clears session data and expires the session cookie.</p>
 							<pre><code>&lt;?php
 // login.php
 session_start();
@@ -1537,10 +1606,14 @@ echo "&lt;p&gt;&lt;a href=\"logout.php\"&gt;Log out&lt;/a&gt;&lt;/p&gt;";
 session_start();
 $_SESSION = [];
 session_destroy();
+if (ini_get("session.use_cookies")) {
+	$params = session_get_cookie_params();
+	setcookie(session_name(), "", time() - 42000, $params["path"], $params["domain"], $params["secure"], $params["httponly"]);
+}
 header("Location: login.php");
 exit;
 ?&gt;</code></pre>
-						</article>
+						</details>
 
 						<details class="card chapter-card wide architecture glossary-card" id="ch2-glossary">
 							<summary><span>Topic 2 Glossary: State, Cookies And Sessions</span></summary>
@@ -1567,8 +1640,8 @@ exit;
 								<dd>The cookie parameter that limits which hostnames receive the cookie.</dd>
 								<dt><code>secure</code></dt>
 								<dd>The cookie parameter that tells the browser to send the cookie only over HTTPS.</dd>
-								<dt><code>4 KB</code></dt>
-								<dd>The guide's practical cookie-size limit from the original Netscape specification.</dd>
+								<dt><code>Cookie size</code></dt>
+								<dd>Cookies are small; about 4 KB is a common practical approximation, while actual limits vary by browser and cookie rules.</dd>
 								<dt><code>session</code></dt>
 								<dd>Server-side persistent variables linked to a user's browser by a session ID.</dd>
 								<dt><code>session_start()</code></dt>
@@ -1592,7 +1665,7 @@ exit;
 							</dl>
 						</details>
 					</div>
-					<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
+					<a class="back-link" href="#test-focus-areas">Back to Topics 1 &amp; 2 Test Index</a>
 				</section>
 
 				<section id="chapter-3" class="chapter" data-nav-section>
@@ -1739,8 +1812,8 @@ if ($handle) {
 						</article>
 					</div>
 					<div class="chapter-grid">
-						<article class="card chapter-card wide pattern" id="ch3-code-file-metadata-counter">
-							<h3>Topic 3 Extended Code Example: Metadata Check And Hit Counter</h3>
+						<details class="card chapter-card wide pattern glossary-card" id="ch3-code-file-metadata-counter">
+							<summary><span>Topic 3 Extended Code Example: Metadata Check And Hit Counter</span></summary>
 							<p>This combines the guide's practical tasks for <code>example.txt</code> and the hit-counter example using <code>count.dat</code>. Notice how the script checks existence before reading and closes each file handle after use.</p>
 							<pre><code>&lt;?php
 // file_status_and_counter.php
@@ -1786,10 +1859,10 @@ fclose($handle);
 
 echo "&lt;p&gt;You are visitor #$counter.&lt;/p&gt;";
 ?&gt;</code></pre>
-						</article>
+						</details>
 
-						<article class="card chapter-card wide architecture" id="ch3-code-directory-and-csv">
-							<h3>Topic 3 Extended Code Example: Directory Listing And CSV Table</h3>
+						<details class="card chapter-card wide architecture glossary-card" id="ch3-code-directory-and-csv">
+							<summary><span>Topic 3 Extended Code Example: Directory Listing And CSV Table</span></summary>
 							<p>The guide treats directories like file-like structures with handles, then asks for a CSV table in the review. This example shows both: create/list <code>files_dir</code>, skip <code>.</code> and <code>..</code>, then read CSV rows with <code>fgetcsv()</code>.</p>
 							<pre><code>&lt;?php
 // directory_and_csv.php
@@ -1849,7 +1922,7 @@ while (($row = fgetcsv($csvHandle)) !== false) {
 echo "&lt;/table&gt;";
 fclose($csvHandle);
 ?&gt;</code></pre>
-						</article>
+						</details>
 
 						<details class="card chapter-card wide architecture glossary-card" id="ch3-glossary">
 							<summary><span>Topic 3 Glossary: Files, Pointers And Directories</span></summary>
@@ -2089,8 +2162,8 @@ GROUP BY c.CustomerID, c.Name;</code></pre>
 						</article>
 					</div>
 					<div class="chapter-grid">
-						<article class="card chapter-card wide pattern" id="ch4-code-fruit-database-script">
-							<h3>Topic 4 Extended Code Example: Build And Query The Fruit Database</h3>
+						<details class="card chapter-card wide pattern glossary-card" id="ch4-code-fruit-database-script">
+							<summary><span>Topic 4 Extended Code Example: Build And Query The Fruit Database</span></summary>
 							<p>This complete SQL script follows the guide's <code>mydatabase</code> and <code>fruit</code> example. It shows the exam sequence: create the database, select it, create a table, insert rows, read rows, update one row, delete one row, and verify the result.</p>
 							<pre><code>-- Run these statements at the mysql &gt; prompt after logging in with:
 -- mysql -u root -p
@@ -2133,10 +2206,10 @@ DELETE FROM fruit WHERE id = 2;
 
 -- DROP TABLE removes the whole table and all its data permanently.
 -- DROP TABLE fruit;</code></pre>
-						</article>
+						</details>
 
-						<article class="card chapter-card wide architecture" id="ch4-code-mysqli-read-fruit">
-							<h3>Topic 4 Extended Code Example: Read Fruit Data From PHP</h3>
+						<details class="card chapter-card wide architecture glossary-card" id="ch4-code-mysqli-read-fruit">
+							<summary><span>Topic 4 Extended Code Example: Read Fruit Data From PHP</span></summary>
 							<p>This follows the guide's <code>get_fruit.php</code> pattern. The PHP script connects with procedural <code>mysqli</code>, checks the connection, runs <code>SELECT * FROM fruit</code>, checks the query result, escapes output, and closes the connection.</p>
 							<pre><code>&lt;?php
 // get_fruit.php
@@ -2180,7 +2253,7 @@ echo "&lt;/ul&gt;";
 
 mysqli_close($conn);
 ?&gt;</code></pre>
-						</article>
+						</details>
 
 						<article class="card chapter-card wide warning" id="ch4-code-ecommerce-review">
 							<h3>Topic 4 Exam-Style SQL Example: Customers And Orders</h3>
@@ -2375,8 +2448,8 @@ echo "&lt;h1&gt;My Name is Derek&lt;/h1&gt;";
 						</article>
 					</div>
 					<div class="chapter-grid">
-						<article class="card chapter-card wide pattern" id="ch5-code-local-test-page">
-							<h3>Addendum Extended Code Example: First Local PHP Test Page</h3>
+						<details class="card chapter-card wide pattern glossary-card" id="ch5-code-local-test-page">
+							<summary><span>Addendum Extended Code Example: First Local PHP Test Page</span></summary>
 							<p>This example cleans up the addendum's first <code>test.php</code> idea. Save it inside your XAMPP project folder, start Apache, then open it through <code>localhost</code>.</p>
 							<pre><code>&lt;?php
 // htdocs/Demo/test.php
@@ -2397,10 +2470,10 @@ $today = date("Y-m-d");
 	&lt;p&gt;If you can see today's date, Apache and PHP are working through XAMPP.&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-						</article>
+						</details>
 
-						<article class="card chapter-card wide warning" id="ch5-code-xampp-debug-checks">
-							<h3>Addendum Extended Code Example: XAMPP Run Checks</h3>
+						<details class="card chapter-card wide warning glossary-card" id="ch5-code-xampp-debug-checks">
+							<summary><span>Addendum Extended Code Example: XAMPP Run Checks</span></summary>
 							<p>Use this as a short troubleshooting script when a practical example behaves oddly. It reinforces the addendum's main rule: PHP should be run through the local server, not opened directly as a file.</p>
 							<pre><code>&lt;?php
 // diagnostics.php
@@ -2427,7 +2500,7 @@ if (file_put_contents($testFile, "Apache and PHP can write here.", LOCK_EX) !== 
 
 echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not file://...&lt;/p&gt;";
 ?&gt;</code></pre>
-						</article>
+						</details>
 
 						<details class="card chapter-card wide architecture glossary-card" id="ch5-glossary">
 							<summary><span>Addendum Glossary: XAMPP, Localhost And Running PHP</span></summary>
@@ -2476,6 +2549,53 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 					<a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a>
 				</section>
 
+
+
+		<section id="detailed-reference" class="chapter ip-api-reference" data-nav-section>
+			<div class="section-heading"><h2>Classes, Functions, Methods &amp; Attributes</h2><p>Internet Programming 622 reference for the HTML form and PHP request/state work in Topics 1 &amp; 2. Choose a task or an alphabetical name; each entry says what it does, when to use it, gives a small example, and links to the fuller explanation in General Module Content.</p></div>
+			<p class="assignment-links"><a class="back-link" href="#test-focus-areas">Back to Topics 1 &amp; 2 Test Index</a></p>
+			<div class="callout"><strong>Scope:</strong> Entries marked “Study-guide content” follow Internet Programming Topics 1–2. “Supporting practice” adds useful implementation guidance and is not confirmed test coverage. HTML uses a <code>class</code> attribute for CSS/behavior hooks; PHP class definitions are not part of this test reference.</div>
+			<h3>Choose an Internet Programming task</h3>
+			<nav id="ip-api-task-index" class="ip-api-jumps" aria-label="Choose an Internet Programming task">
+				<a href="#ip-api-form">Build and submit a form</a><a href="#ip-api-process">Process and validate a request</a><a href="#ip-api-state">Preserve state across requests</a>
+			</nav>
+			<h3>Find an API name · A–Z</h3>
+			<nav id="ip-api-alpha" class="ip-api-jumps" aria-label="Alphabetical Internet Programming reference index"></nav>
+			<div id="ip-api-name-index" aria-label="Internet Programming reference names by letter"></div>
+
+			<div class="ip-api-task" id="ip-api-form"><h3>Task 1 · Build and submit an HTML form</h3>
+				<article class="ip-api-entry"><h4><code>&lt;form&gt;</code>, <code>action</code>, and <code>method</code> <span class="ip-reference-label">Study-guide content</span></h4><p><strong>Does:</strong> Groups controls, identifies the receiving script, and chooses GET or POST. <strong>Use it when:</strong> collecting input for a PHP handler. GET suits non-sensitive searches; POST suits submissions that process or change data. POST does not encrypt data. <strong>Example:</strong> <code>&lt;form action="handle.php" method="post"&gt;…&lt;/form&gt;</code></p><a href="#ch1-1-form-basics">Full explanation: form structure</a> · <a href="#ch1-2-get-post">Full explanation: GET and POST</a></article>
+				<article class="ip-api-entry"><h4><code>name</code>, <code>value</code>, <code>type</code> <span class="ip-reference-label">Study-guide content</span></h4><p><strong>Does:</strong> Names the submitted key, supplies its value, and chooses the control type. <strong>Use it when:</strong> a PHP handler needs to identify each form field. <strong>Example:</strong> <code>&lt;input type="email" name="email" value=""&gt;</code></p><a href="#ch1-1-form-basics">Full explanation: form controls</a> · <a href="#ch1-3-superglobals">Full explanation: request keys</a></article>
+				<article class="ip-api-entry"><h4><code>&lt;label for&gt;</code> and control <code>id</code> <span class="ip-reference-label">Study-guide content</span></h4><p><strong>Does:</strong> Connects visible prompt text to a control. <strong>Use it when:</strong> making a form understandable and usable, including for assistive technology. The label’s <code>for</code> value must match the control’s <code>id</code>. <strong>Example:</strong> <code>&lt;label for="email"&gt;Email&lt;/label&gt;&lt;input id="email" name="email"&gt;</code></p><a href="#ch1-1-form-basics">Full explanation: form structure</a></article>
+				<article class="ip-api-entry"><h4><code>class</code> attribute <span class="ip-reference-label">Study-guide content</span></h4><p><strong>Does:</strong> Gives one or more CSS class names to an HTML element. <strong>Use it when:</strong> styling a field or marking a validation error. It is not a PHP class definition. <strong>Example:</strong> <code>&lt;label class="error"&gt;Email&lt;/label&gt;</code></p><a href="#ch1-6-validation-flow">Full explanation: marking invalid fields</a> · <a href="#ch1-code-validated-reusable-form">Full explanation: validation helper</a></article>
+				<article class="ip-api-entry"><h4>Checkboxes, radio buttons, <code>&lt;select&gt;</code>, <code>&lt;option&gt;</code>, and <code>&lt;textarea&gt;</code> <span class="ip-reference-label">Study-guide content</span></h4><p><strong>Does:</strong> Collects a boolean choice, one choice from a group/list, or longer text. <strong>Use it when:</strong> the answer format should constrain or guide input. Radio choices share a <code>name</code>; the selected option’s <code>value</code> is submitted. Unselected checkbox/radio keys are omitted. <strong>Example:</strong> <code>&lt;input type="radio" name="size" value="S"&gt;</code></p><a href="#ch1-1-form-basics">Full explanation: control types</a> · <a href="#ch1-5-empty-fields">Full explanation: omitted fields</a></article>
+				<article class="ip-api-entry"><h4><code>required</code>, <code>min</code>, <code>max</code>, <code>checked</code>, <code>selected</code> <span class="ip-reference-label">Study-guide content + supporting practice</span></h4><p><strong>Does:</strong> Adds browser-side required/range checks or marks a choice selected. <strong>Use it when:</strong> improving form guidance and restoring a choice after validation. Browser checks can be bypassed, so validate on the server too. <strong>Example:</strong> <code>&lt;input type="number" name="age" min="18" max="60" required&gt;</code></p><a href="#ch1-6-validation-flow">Full explanation: validation</a> · <a href="#ch1-code-validated-reusable-form">Full explanation: preserve choices</a></article>
+				<article class="ip-api-entry"><h4><code>enctype="multipart/form-data"</code> <span class="ip-reference-label">Supporting practice for the guide’s upload exercise</span></h4><p><strong>Does:</strong> Encodes a request so it can carry file content. <strong>Use it when:</strong> a form includes a file input and submits with POST. <strong>Example:</strong> <code>&lt;form method="post" enctype="multipart/form-data"&gt;</code></p><a href="#ch1-glossary">Full explanation: upload terms in the Topic 1 glossary</a></article>
+			</div>
+
+			<div class="ip-api-task" id="ip-api-process"><h3>Task 2 · Process and validate a request</h3>
+				<article class="ip-api-entry"><h4><code>$_GET</code>, <code>$_POST</code>, <code>$_REQUEST</code> <span class="ip-reference-label">Study-guide content</span></h4><p><strong>Does:</strong> Provides request values as PHP associative arrays. <strong>Use it when:</strong> reading submitted data; select <code>$_GET</code> or <code>$_POST</code> to match the form method. <code>$_REQUEST</code> can combine sources and be ambiguous. <strong>Example:</strong> <code>$name = $_POST["name"] ?? "";</code></p><a href="#ch1-3-superglobals">Full explanation: capturing form data</a></article>
+				<article class="ip-api-entry"><h4><code>$_SERVER["REQUEST_METHOD"]</code> <span class="ip-reference-label">Supporting practice</span></h4><p><strong>Does:</strong> Identifies the HTTP method used for this request. <strong>Use it when:</strong> separating the first page display from form submission processing. <strong>Example:</strong> <code>if ($_SERVER["REQUEST_METHOD"] === "POST") { /* process */ }</code></p><a href="#ch1-6-validation-flow">Full explanation: form processing flow</a></article>
+				<article class="ip-api-entry"><h4><code>isset()</code>, <code>empty()</code>, <code>array_key_exists()</code> <span class="ip-reference-label">Study-guide content</span></h4><p><strong>Does:</strong> Checks whether a key/value is present or empty. <strong>Use it when:</strong> optional controls may not have been sent or a required field may be blank. <code>empty("0")</code> is true, so choose checks to fit the field’s valid values. <strong>Example:</strong> <code>if (!isset($_POST["news"])) { /* unchecked */ }</code></p><a href="#ch1-5-empty-fields">Full explanation: empty form fields</a> · <a href="#ch1-6-validation-flow">Full explanation: validation</a></article>
+				<article class="ip-api-entry"><h4><code>filter_var()</code> and <code>FILTER_VALIDATE_EMAIL</code> <span class="ip-reference-label">Study-guide content</span></h4><p><strong>Does:</strong> Checks whether a value matches a recognized email format. <strong>Use it when:</strong> validating a non-empty email field on the server. <strong>Example:</strong> <code>$valid = filter_var($email, FILTER_VALIDATE_EMAIL) !== false;</code></p><a href="#ch1-6-validation-flow">Full explanation: server-side validation</a></article>
+				<article class="ip-api-entry"><h4><code>htmlspecialchars()</code> <span class="ip-reference-label">Study-guide content</span></h4><p><strong>Does:</strong> Encodes special characters for safe HTML output. <strong>Use it when:</strong> displaying submitted text in an HTML page; it prevents submitted markup from being interpreted as page markup. It is output escaping, not validation. <strong>Example:</strong> <code>echo htmlspecialchars($name, ENT_QUOTES, "UTF-8");</code></p><a href="#ch1-4-security">Full explanation: form-data security and XSS</a></article>
+				<article class="ip-api-entry"><h4><code>setValue()</code>, <code>setChecked()</code>, <code>setSelected()</code>, <code>validateField()</code> <span class="ip-reference-label">Study-guide helper patterns</span></h4><p><strong>Does:</strong> Preserves entered text/choices and marks fields with errors after failed validation. <strong>Use it when:</strong> generating and redisplaying a form. Escape restored values for their HTML context. <strong>Example:</strong> <code>value="&lt;?= htmlspecialchars($_POST["name"] ?? "", ENT_QUOTES, "UTF-8") ?&gt;"</code></p><a href="#ch1-6-validation-flow">Full explanation: dynamic forms and validation</a> · <a href="#ch1-code-validated-reusable-form">Full explanation: helper example</a></article>
+				<article class="ip-api-entry"><h4><code>$_FILES</code> and <code>move_uploaded_file()</code> <span class="ip-reference-label">Supporting practice for a Topic 1 review exercise</span></h4><p><strong>Does:</strong> Exposes uploaded-file details and moves a valid upload from PHP’s temporary location. <strong>Use it when:</strong> handling an upload after checking upload status, size, and allowed file type. <strong>Example:</strong> <code>move_uploaded_file($_FILES["photo"]["tmp_name"], $destination);</code></p><a href="#ch1-glossary">Full explanation: upload terms</a></article>
+				<article class="ip-api-entry"><h4><code>password_hash()</code> and <code>password_verify()</code> <span class="ip-reference-label">Supporting security practice</span></h4><p><strong>Does:</strong> Creates a one-way password hash and verifies a typed password against it. <strong>Use it when:</strong> implementing authentication; never store or redisplay plain-text passwords. <strong>Example:</strong> <code>$hash = password_hash($password, PASSWORD_DEFAULT);</code></p><a href="#ch1-4-security">Full explanation: security notes</a></article>
+			</div>
+
+			<div class="ip-api-task" id="ip-api-state"><h3>Task 3 · Preserve state across requests</h3>
+				<article class="ip-api-entry"><h4>Query string <span class="ip-reference-label">Study-guide concept</span></h4><p><strong>Does:</strong> Carries small values in the URL after <code>?</code>. <strong>Use it when:</strong> a value is non-sensitive and a request should be linkable/bookmarkable. <strong>Example:</strong> <code>items.php?page=2</code></p><a href="#ch2-1-stateless-http">Full explanation: stateless HTTP and state choices</a></article>
+				<article class="ip-api-entry"><h4><code>setcookie()</code> and <code>$_COOKIE</code> <span class="ip-reference-label">Study-guide content</span></h4><p><strong>Does:</strong> Sends a cookie instruction in the response header and reads cookies returned by the browser. <strong>Use it when:</strong> remembering a small browser-side preference. Call <code>setcookie()</code> before output; the browser sends the new value on a later request. <strong>Example:</strong> <code>setcookie("theme", "dark", time() + 3600, "/");</code></p><a href="#ch2-2-cookies">Full explanation: cookie lifecycle</a> · <a href="#ch2-code-cookie-preferences">Full explanation: preference example</a></article>
+				<article class="ip-api-entry"><h4>Cookie attributes: <code>expires</code>, <code>path</code>, <code>domain</code>, <code>secure</code>, <code>httponly</code>, <code>samesite</code> <span class="ip-reference-label">Study-guide parameters + supporting practice</span></h4><p><strong>Does:</strong> Controls lifetime and where/how the browser sends a cookie. <strong>Use it when:</strong> setting a cookie’s scope and protection. Secure cookies require HTTPS; HttpOnly limits JavaScript access; SameSite helps constrain cross-site sending. <strong>Example:</strong> <code>setcookie("theme", "dark", ["expires" =&gt; time()+3600, "path" =&gt; "/", "secure" =&gt; true, "httponly" =&gt; true, "samesite" =&gt; "Lax"]);</code></p><a href="#ch2-2-cookies">Full explanation: cookie parameters</a></article>
+				<article class="ip-api-entry"><h4><code>time()</code> <span class="ip-reference-label">Study-guide content</span></h4><p><strong>Does:</strong> Returns the current Unix timestamp. <strong>Use it when:</strong> calculating a cookie expiry in seconds. <strong>Example:</strong> <code>$expires = time() + 7 * 24 * 60 * 60;</code></p><a href="#ch2-2-cookies">Full explanation: cookie expiry</a></article>
+				<article class="ip-api-entry"><h4><code>session_start()</code> and <code>$_SESSION</code> <span class="ip-reference-label">Study-guide content</span></h4><p><strong>Does:</strong> Starts/resumes a session and provides its server-side values. <strong>Use it when:</strong> preserving login or multi-step form data between pages. Call it before output on every page that uses the session. <strong>Example:</strong> <code>session_start(); $_SESSION["step"] = 2;</code></p><a href="#ch2-3-sessions">Full explanation: session lifecycle</a> · <a href="#ch2-code-session-login">Full explanation: login flow</a></article>
+				<article class="ip-api-entry"><h4><code>session_id()</code>, <code>session_name()</code>, <code>session_get_cookie_params()</code> <span class="ip-reference-label">Study-guide API + supporting logout details</span></h4><p><strong>Does:</strong> Reads the current session identifier/name and configured cookie parameters. <strong>Use it when:</strong> examining session setup or expiring the session cookie during logout. Do not reveal session IDs in URLs or page output. <strong>Example:</strong> <code>$params = session_get_cookie_params();</code></p><a href="#ch2-3-sessions">Full explanation: session IDs</a> · <a href="#ch2-code-session-login">Full explanation: logout code</a></article>
+				<article class="ip-api-entry"><h4><code>session_destroy()</code> and <code>unset()</code> <span class="ip-reference-label">Study-guide content + supporting practice</span></h4><p><strong>Does:</strong> Removes session data; <code>unset()</code> removes a selected session value. <strong>Use it when:</strong> logging out or clearing one saved step. For full logout, clear <code>$_SESSION</code>, destroy session data, and expire the session cookie. <strong>Example:</strong> <code>$_SESSION = []; session_destroy();</code></p><a href="#ch2-3-sessions">Full explanation: ending a session</a> · <a href="#ch2-code-session-login">Full explanation: logout code</a></article>
+				<article class="ip-api-entry"><h4><code>header()</code>, <code>exit</code>, <code>session_regenerate_id()</code> <span class="ip-reference-label">Supporting authentication practice</span></h4><p><strong>Does:</strong> Sends a redirect, stops script execution, and replaces the session ID. <strong>Use it when:</strong> redirecting after a login/logout transition and regenerating the ID after authentication. Send headers before output. <strong>Example:</strong> <code>session_regenerate_id(true); header("Location: welcome.php"); exit;</code></p><a href="#ch2-code-session-login">Full explanation: session login example</a></article>
+			</div>
+			<p class="assignment-links"><a href="#test-focus-areas">Back to Topics 1 &amp; 2 Test Index ↑</a> · <a href="#chapter-1">Topic 1 general content</a> · <a href="#chapter-2">Topic 2 general content</a></p>
+		</section>
 
 		<section id="legacy-preparation-station" class="quiz-section" data-nav-section hidden>
 			<div class="section-heading">
@@ -3660,12 +3780,20 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 			link.addEventListener('click', () => {
 				const target = document.querySelector(link.getAttribute('href'));
 				if (target) {
+					const disclosure = target.closest('details');
+					if (disclosure) disclosure.open = true;
 					const id = navIdForElement(target);
 					if (id) setActiveNav(id);
 				}
 				setMenu(false);
 			});
 		});
+
+		const initialTarget = location.hash ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null;
+		if (initialTarget) {
+			const disclosure = initialTarget.closest('details');
+			if (disclosure) disclosure.open = true;
+		}
 
 		topButton.addEventListener('click', () => {
 			window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -3691,6 +3819,34 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 		updateProgress();
 		updateActiveFromScroll();
 	</script>
+	<script>
+	(() => {
+		const root = document.getElementById("detailed-reference");
+		if (!root) return;
+		const entries = [...root.querySelectorAll(".ip-api-entry")];
+		const alpha = document.getElementById("ip-api-alpha");
+		const index = document.getElementById("ip-api-name-index");
+		const esc = (s) => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+		const names = entries.flatMap((entry, i) => {
+			entry.id = `ip-api-${i + 1}`;
+			const heading = entry.querySelector("h4");
+			const items = [...heading.querySelectorAll("code")].map(code => code.textContent.trim());
+			if (!items.length) items.push(heading.childNodes[0]?.textContent.trim() || heading.textContent.trim());
+			const links = [...entry.querySelectorAll(":scope > a")];
+			if (links.length) {
+				const row = document.createElement("div"); row.className = "ip-api-entry-links";
+				links.forEach(link => { row.append(link); });
+				row.insertAdjacentHTML("beforeend", `<a href="#${entry.closest('.ip-api-task').id}">Back to task index</a><a href="#detailed-reference">All API names / A–Z</a>`);
+				entry.append(row);
+			}
+			return items.map(name => ({ id: entry.id, name, letter: (name.match(/[A-Za-z]/)?.[0] || "#").toUpperCase() }));
+		});
+		const letters = [...new Set(names.map(item => item.letter))].sort();
+		alpha.innerHTML = letters.map(letter => `<a href="#ip-api-letter-${letter}">${letter}</a>`).join("");
+		index.innerHTML = letters.map(letter => `<div class="ip-api-letter" id="ip-api-letter-${letter}"><h4>${letter}</h4>${names.filter(item => item.letter === letter).sort((a,b) => a.name.localeCompare(b.name)).map(item => `<a href="#${item.id}">${esc(item.name)}</a>`).join("")}</div>`).join("");
+	})();
+	</script>
+
 	<script src="module-learning-lab.js"></script>
 </body>
 </html>
