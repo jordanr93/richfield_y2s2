@@ -1623,24 +1623,17 @@ if (!is_string($backgroundName) || !is_string($foregroundName) || !array_key_exi
 	exit("Choose a valid background and text colour.");
 }
 
-$cookieOptions = [
-	"expires" =&gt; time() + (60 * 60 * 24 * 7),
-	"path" =&gt; "/",
-	"httponly" =&gt; true,
-	"samesite" =&gt; "Lax",
-];
-
 // The browser sends these cookie values back on a later request.
-setcookie("bg", $backgroundName, $cookieOptions);
-setcookie("fg", $foregroundName, $cookieOptions);
+setcookie("bg", $backgroundName, time() + (60 * 60 * 24 * 7));
+setcookie("fg", $foregroundName, time() + (60 * 60 * 24 * 7));
 ?&gt;
 &lt;!doctype html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;&lt;meta charset="utf-8"&gt;&lt;title&gt;Preferences Saved&lt;/title&gt;&lt;/head&gt;
 &lt;body&gt;
 	&lt;h1&gt;Preferences saved&lt;/h1&gt;
-	&lt;p&gt;Background: &lt;?= htmlspecialchars($backgroundName, ENT_QUOTES, "UTF-8") ?&gt;&lt;/p&gt;
-	&lt;p&gt;Text: &lt;?= htmlspecialchars($foregroundName, ENT_QUOTES, "UTF-8") ?&gt;&lt;/p&gt;
+	&lt;p&gt;Background: &lt;?= $backgroundName ?&gt;&lt;/p&gt;
+	&lt;p&gt;Text: &lt;?= $foregroundName ?&gt;&lt;/p&gt;
 	&lt;p&gt;&lt;a href="prefs_demo.php"&gt;View the page with these preferences&lt;/a&gt;&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
@@ -1682,12 +1675,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	$postedColour = $_POST["bgcolor"] ?? "";
 	if (in_array($postedColour, $validColours, true)) {
 		$backgroundName = $postedColour;
-		setcookie("bgcolor", $backgroundName, [
-			"expires" =&gt; time() + (60 * 60 * 24 * 7),
-			"path" =&gt; "/",
-			"httponly" =&gt; true,
-			"samesite" =&gt; "Lax",
-		]);
+		setcookie("bgcolor", $backgroundName, time() + (60 * 60 * 24 * 7));
 	}
 }
 if (!in_array($backgroundName, $validColours, true)) $backgroundName = "gray";
@@ -1695,12 +1683,12 @@ if (!in_array($backgroundName, $validColours, true)) $backgroundName = "gray";
 &lt;!doctype html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;&lt;meta charset="utf-8"&gt;&lt;title&gt;Save It&lt;/title&gt;&lt;/head&gt;
-&lt;body style="background-color: &lt;?= htmlspecialchars($backgroundName, ENT_QUOTES, "UTF-8") ?&gt;"&gt;
-	&lt;form action="&lt;?= htmlspecialchars($_SERVER["PHP_SELF"], ENT_QUOTES, "UTF-8") ?&gt;" method="post"&gt;
+&lt;body style="background-color: &lt;?= $backgroundName ?&gt;"&gt;
+	&lt;form action="save_state.php" method="post"&gt;
 		&lt;label for="bgcolor"&gt;Background colour&lt;/label&gt;
 		&lt;select id="bgcolor" name="bgcolor"&gt;
 			&lt;?php foreach ($validColours as $colour): ?&gt;
-				&lt;option value="&lt;?= htmlspecialchars($colour, ENT_QUOTES, "UTF-8") ?&gt;" &lt;?= $colour === $backgroundName ? "selected" : "" ?&gt;&gt;&lt;?= ucfirst($colour) ?&gt;&lt;/option&gt;
+				&lt;option value="&lt;?= $colour ?&gt;" &lt;?= $colour === $backgroundName ? "selected" : "" ?&gt;&gt;&lt;?= ucfirst($colour) ?&gt;&lt;/option&gt;
 			&lt;?php endforeach; ?&gt;
 		&lt;/select&gt;
 		&lt;button type="submit"&gt;Save preference&lt;/button&gt;
