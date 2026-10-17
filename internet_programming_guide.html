@@ -1210,7 +1210,61 @@ foreach (["name", "email", "age"] as $field) {
 					<div class="chapter-grid">
 						<details class="card chapter-card wide pattern glossary-card" id="ch1-code-registration-handler">
 							<summary><span>Topic 1 Extended Code Example: Widget Club Form Handler</span></summary>
-							<p>This example follows the guide's <code>registration.html</code> and <code>process_registration.php</code> idea, but it applies the later security and empty-field rules so the revision version is safer than the first teaching example.</p>
+							<p>This example follows the guide's <code>registration.html</code> and <code>process_registration.php</code> idea, but it applies the later security and empty-field rules so the revision version is safer than the first teaching example. It demonstrates form handling only; it does not create an account or store a password.</p>
+			<p><strong><code>registration.html</code>:</strong> save this form beside <code>process_registration.php</code>. Each control name matches a key used by the handler below.</p>
+			<pre><code>&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+	&lt;meta charset="utf-8"&gt;
+	&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+	&lt;title&gt;Widget Club Registration&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;h1&gt;Join the Widget Club&lt;/h1&gt;
+	&lt;form action="process_registration.php" method="post"&gt;
+		&lt;p&gt;
+			&lt;label for="firstName"&gt;First name&lt;/label&gt;
+			&lt;input id="firstName" name="firstName" type="text" required&gt;
+		&lt;/p&gt;
+		&lt;p&gt;
+			&lt;label for="lastName"&gt;Last name&lt;/label&gt;
+			&lt;input id="lastName" name="lastName" type="text" required&gt;
+		&lt;/p&gt;
+		&lt;p&gt;
+			&lt;label for="password1"&gt;Password&lt;/label&gt;
+			&lt;input id="password1" name="password1" type="password" required&gt;
+		&lt;/p&gt;
+		&lt;p&gt;
+			&lt;label for="password2"&gt;Confirm password&lt;/label&gt;
+			&lt;input id="password2" name="password2" type="password" required&gt;
+		&lt;/p&gt;
+		&lt;fieldset&gt;
+			&lt;legend&gt;Gender&lt;/legend&gt;
+			&lt;label&gt;&lt;input name="gender" type="radio" value="female" required&gt; Female&lt;/label&gt;
+			&lt;label&gt;&lt;input name="gender" type="radio" value="male"&gt; Male&lt;/label&gt;
+			&lt;label&gt;&lt;input name="gender" type="radio" value="other"&gt; Prefer to self-describe&lt;/label&gt;
+		&lt;/fieldset&gt;
+		&lt;p&gt;
+			&lt;label for="favoriteWidget"&gt;Favorite widget&lt;/label&gt;
+			&lt;select id="favoriteWidget" name="favoriteWidget"&gt;
+				&lt;option value=""&gt;Choose one (optional)&lt;/option&gt;
+				&lt;option value="clockwork bird"&gt;Clockwork bird&lt;/option&gt;
+				&lt;option value="pocket telescope"&gt;Pocket telescope&lt;/option&gt;
+				&lt;option value="self-stirring mug"&gt;Self-stirring mug&lt;/option&gt;
+			&lt;/select&gt;
+		&lt;/p&gt;
+		&lt;p&gt;
+			&lt;label&gt;&lt;input name="newsletter" type="checkbox" value="yes"&gt; Send me the newsletter&lt;/label&gt;
+		&lt;/p&gt;
+		&lt;p&gt;
+			&lt;label for="comments"&gt;Comments (optional)&lt;/label&gt;
+			&lt;textarea id="comments" name="comments" rows="4" cols="40"&gt;&lt;/textarea&gt;
+		&lt;/p&gt;
+		&lt;button type="submit"&gt;Send registration&lt;/button&gt;
+	&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+			<p><strong><code>process_registration.php</code>:</strong> read the submitted values, check required fields, then escape text before displaying it.</p>
 							<pre><code>&lt;?php
 // process_registration.php
 // This script receives the Widget Club form through method="post".
@@ -1240,6 +1294,11 @@ $comments = htmlspecialchars($_POST["comments"] ?? "");
 if ($missingFields) {
 	echo "&lt;h1&gt;Please complete the required fields&lt;/h1&gt;";
 	echo "&lt;p&gt;Missing: " . htmlspecialchars(implode(", ", $missingFields)) . "&lt;/p&gt;";
+	exit;
+}
+
+if ($_POST["password1"] !== $_POST["password2"]) {
+	echo "&lt;p&gt;The passwords do not match. Please try again.&lt;/p&gt;";
 	exit;
 }
 
@@ -1512,48 +1571,137 @@ $background = $_COOKIE["bgcolor"] ?? $_POST["bgcolor"] ?? "gray";</code></pre>
 					<div class="chapter-grid">
 						<details class="card chapter-card wide pattern glossary-card" id="ch2-code-cookie-preferences">
 							<summary><span>Topic 2 Extended Code Example: Cookie-Based Colour Preferences</span></summary>
-							<p>This example follows the guide's <code>prefs.php</code>, <code>prefs_demo.php</code>, and <code>save_state.php</code> colour-preference pattern. The important revision point is that <code>setcookie()</code> sends an HTTP header, so it must run before normal page output.</p>
-							<pre><code>&lt;?php
-// save_state.php
-// Cookies preserve small browser-side values between visits.
-// The guide uses background colour as a simple preference example.
-
-$validColours = [
-	"gray" =&gt; "#808080",
-	"white" =&gt; "#ffffff",
-	"black" =&gt; "#000000",
-	"blue" =&gt; "#0000ff",
-	"green" =&gt; "#008000",
-];
-
-if (isset($_POST["bgcolor"]) &amp;&amp; array_key_exists($_POST["bgcolor"], $validColours)) {
-	// Store the chosen colour for one week.
-	// time() returns the current UNIX timestamp.
-	setcookie("bgcolor", $_POST["bgcolor"], time() + (60 * 60 * 24 * 7));
-	$backgroundName = $_POST["bgcolor"];
-} elseif (isset($_COOKIE["bgcolor"]) &amp;&amp; array_key_exists($_COOKIE["bgcolor"], $validColours)) {
-	// On a later visit, the browser sends the cookie back to PHP.
-	$backgroundName = $_COOKIE["bgcolor"];
-} else {
-	$backgroundName = "gray";
-}
-
-$backgroundHex = $validColours[$backgroundName];
-?&gt;
-&lt;!DOCTYPE html&gt;
+							<p>The study guide’s preference flow uses a form page, a cookie-setting handler, and a demo page that reads the cookies. These files are self-contained and use only local PHP; the compact <code>save_state.php</code> version is included as a one-file alternative. Cookie headers are sent before page output, and the chosen values are checked against an allowlist.</p>
+			<p><strong><code>colors.php</code> · choose the preferences:</strong></p>
+			<pre><code>&lt;!doctype html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;
-	&lt;title&gt;Save It&lt;/title&gt;
+	&lt;meta charset="utf-8"&gt;
+	&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+	&lt;title&gt;Set Your Preferences&lt;/title&gt;
 &lt;/head&gt;
-&lt;body style="background: &lt;?= htmlspecialchars($backgroundHex) ?&gt;;"&gt;
-	&lt;form action="&lt;?= htmlspecialchars($_SERVER["PHP_SELF"]) ?&gt;" method="post"&gt;
-		&lt;label&gt;Background colour&lt;/label&gt;
-		&lt;select name="bgcolor"&gt;
-			&lt;option value="gray"&gt;Gray&lt;/option&gt;
-			&lt;option value="white"&gt;White&lt;/option&gt;
-			&lt;option value="black"&gt;Black&lt;/option&gt;
-			&lt;option value="blue"&gt;Blue&lt;/option&gt;
-			&lt;option value="green"&gt;Green&lt;/option&gt;
+&lt;body&gt;
+	&lt;h1&gt;Choose page colours&lt;/h1&gt;
+	&lt;form action="prefs.php" method="post"&gt;
+		&lt;p&gt;
+			&lt;label for="background"&gt;Background&lt;/label&gt;
+			&lt;select id="background" name="background"&gt;
+				&lt;option value="white"&gt;White&lt;/option&gt;
+				&lt;option value="black"&gt;Black&lt;/option&gt;
+				&lt;option value="red"&gt;Red&lt;/option&gt;
+				&lt;option value="blue"&gt;Blue&lt;/option&gt;
+			&lt;/select&gt;
+		&lt;/p&gt;
+		&lt;p&gt;
+			&lt;label for="foreground"&gt;Text colour&lt;/label&gt;
+			&lt;select id="foreground" name="foreground"&gt;
+				&lt;option value="black"&gt;Black&lt;/option&gt;
+				&lt;option value="white"&gt;White&lt;/option&gt;
+				&lt;option value="red"&gt;Red&lt;/option&gt;
+				&lt;option value="blue"&gt;Blue&lt;/option&gt;
+			&lt;/select&gt;
+		&lt;/p&gt;
+		&lt;button type="submit"&gt;Save preferences&lt;/button&gt;
+	&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+			<p><strong><code>prefs.php</code> · validate the selections, set both cookies, and confirm:</strong></p>
+			<pre><code>&lt;?php
+// prefs.php
+$colors = [
+	"black" =&gt; "#000000",
+	"white" =&gt; "#ffffff",
+	"red" =&gt; "#ff0000",
+	"blue" =&gt; "#0000ff",
+];
+
+$backgroundName = $_POST["background"] ?? "";
+$foregroundName = $_POST["foreground"] ?? "";
+
+if (!is_string($backgroundName) || !is_string($foregroundName) || !array_key_exists($backgroundName, $colors) || !array_key_exists($foregroundName, $colors)) {
+	http_response_code(400);
+	exit("Choose a valid background and text colour.");
+}
+
+$cookieOptions = [
+	"expires" =&gt; time() + (60 * 60 * 24 * 7),
+	"path" =&gt; "/",
+	"httponly" =&gt; true,
+	"samesite" =&gt; "Lax",
+];
+
+// The browser sends these cookie values back on a later request.
+setcookie("bg", $backgroundName, $cookieOptions);
+setcookie("fg", $foregroundName, $cookieOptions);
+?&gt;
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;&lt;meta charset="utf-8"&gt;&lt;title&gt;Preferences Saved&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+	&lt;h1&gt;Preferences saved&lt;/h1&gt;
+	&lt;p&gt;Background: &lt;?= htmlspecialchars($backgroundName, ENT_QUOTES, "UTF-8") ?&gt;&lt;/p&gt;
+	&lt;p&gt;Text: &lt;?= htmlspecialchars($foregroundName, ENT_QUOTES, "UTF-8") ?&gt;&lt;/p&gt;
+	&lt;p&gt;&lt;a href="prefs_demo.php"&gt;View the page with these preferences&lt;/a&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+			<p><strong><code>prefs_demo.php</code> · read the cookies on the next request and apply the allowlisted colours:</strong></p>
+			<pre><code>&lt;?php
+// prefs_demo.php
+$colors = [
+	"black" =&gt; "#000000",
+	"white" =&gt; "#ffffff",
+	"red" =&gt; "#ff0000",
+	"blue" =&gt; "#0000ff",
+];
+
+$backgroundName = $_COOKIE["bg"] ?? "white";
+$foregroundName = $_COOKIE["fg"] ?? "black";
+if (!is_string($backgroundName) || !array_key_exists($backgroundName, $colors)) $backgroundName = "white";
+if (!is_string($foregroundName) || !array_key_exists($foregroundName, $colors)) $foregroundName = "black";
+?&gt;
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+	&lt;meta charset="utf-8"&gt;
+	&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+	&lt;title&gt;Widget Club Store&lt;/title&gt;
+&lt;/head&gt;
+&lt;body style="background-color: &lt;?= $colors[$backgroundName] ?&gt;; color: &lt;?= $colors[$foregroundName] ?&gt;"&gt;
+	&lt;h1&gt;Welcome to the Widget Club store&lt;/h1&gt;
+	&lt;p&gt;Your colour preferences came from cookies returned by the browser.&lt;/p&gt;
+	&lt;p&gt;&lt;a href="colors.php"&gt;Change preferences&lt;/a&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+			<p><strong><code>save_state.php</code> · optional one-file version:</strong> this alternative combines the form and preference handling in one page.</p>
+			<pre><code>&lt;?php
+// save_state.php
+$validColours = ["gray", "white", "black", "blue", "green"];
+$backgroundName = $_COOKIE["bgcolor"] ?? "gray";
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+	$postedColour = $_POST["bgcolor"] ?? "";
+	if (in_array($postedColour, $validColours, true)) {
+		$backgroundName = $postedColour;
+		setcookie("bgcolor", $backgroundName, [
+			"expires" =&gt; time() + (60 * 60 * 24 * 7),
+			"path" =&gt; "/",
+			"httponly" =&gt; true,
+			"samesite" =&gt; "Lax",
+		]);
+	}
+}
+if (!in_array($backgroundName, $validColours, true)) $backgroundName = "gray";
+?&gt;
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;&lt;meta charset="utf-8"&gt;&lt;title&gt;Save It&lt;/title&gt;&lt;/head&gt;
+&lt;body style="background-color: &lt;?= htmlspecialchars($backgroundName, ENT_QUOTES, "UTF-8") ?&gt;"&gt;
+	&lt;form action="&lt;?= htmlspecialchars($_SERVER["PHP_SELF"], ENT_QUOTES, "UTF-8") ?&gt;" method="post"&gt;
+		&lt;label for="bgcolor"&gt;Background colour&lt;/label&gt;
+		&lt;select id="bgcolor" name="bgcolor"&gt;
+			&lt;?php foreach ($validColours as $colour): ?&gt;
+				&lt;option value="&lt;?= htmlspecialchars($colour, ENT_QUOTES, "UTF-8") ?&gt;" &lt;?= $colour === $backgroundName ? "selected" : "" ?&gt;&gt;&lt;?= ucfirst($colour) ?&gt;&lt;/option&gt;
+			&lt;?php endforeach; ?&gt;
 		&lt;/select&gt;
 		&lt;button type="submit"&gt;Save preference&lt;/button&gt;
 	&lt;/form&gt;
