@@ -913,6 +913,35 @@
 		.ip-api-entry:target { outline: 2px solid var(--cyan); outline-offset: 3px; }
 		@media (max-width: 780px) { .ip-api-entry { padding: 0.8rem; } }
 
+		.ip-video-index { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1rem 0; }
+		.ip-video-index a { display: inline-flex; min-height: 44px; align-items: center; padding: 0.45rem 0.75rem; border: 1px solid var(--border); border-radius: 6px; background: var(--panel); }
+		.ip-video-topic { margin: 2rem 0; scroll-margin-top: 1rem; }
+		.ip-video-topic > h3 { display: flex; flex-wrap: wrap; align-items: center; gap: 0.65rem; margin: 0 0 1rem; }
+		.ip-video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 390px), 1fr)); gap: 18px; }
+		.ip-video-card h4 { margin: 0 0 0.5rem; color: var(--cyan); }
+		.ip-video-card p { margin: 0.4rem 0; }
+		.ip-video-credit { color: var(--muted); font-size: 0.9rem; }
+		.ip-video-scope { border: 1px solid var(--green); border-radius: 999px; padding: 0.15rem 0.55rem; color: var(--green); font-size: 0.72rem; font-weight: 700; }
+		.ip-video-scope.supporting { border-color: var(--muted); color: var(--muted); }
+		.ip-video-playlist-link { margin: 0.5rem 0 1.5rem; color: var(--muted); }
+
+		.ip-resource-grid {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr);
+			gap: 18px;
+		}
+		.ip-video-embed {
+			display: block;
+			width: 100%;
+			max-width: 1100px;
+			aspect-ratio: 16 / 9;
+			margin-top: 14px;
+			border: 0;
+			border-radius: 10px;
+			background: var(--code-bg);
+		}
+		.ip-resource-note { color: var(--muted); margin-top: 0.75rem; }
+
 		.legacy-guide-frame {
 			display: block;
 			width: 100%;
@@ -972,11 +1001,6 @@
 			<a href="#detailed-reference" data-nav-link="detailed-reference">Classes, Functions, Methods &amp; Attributes</a>
 		</div>
 
-		<div class="nav-group">
-			<h2>Previous Course Reference</h2>
-			<a href="#internet-programming-621-reference" data-nav-link="internet-programming-621-reference">Internet Programming 621 · Full Guide</a>
-		</div>
-
 		<details class="nav-group nav-collapsible">
 			<summary>Learning Lab</summary>
 			<a href="#ip-quiz-builder" data-nav-link="preparation-station">Quiz Builder</a>
@@ -984,6 +1008,42 @@
 			<a href="#ip-concept-checker">Concept Checker</a>
 			<a href="#code-practice">Fill in the Code</a>
 			<a href="#code-tracer">Code Tracer</a>
+		</details>
+
+		<div class="nav-group">
+			<h2>Resources</h2>
+			<a href="#internet-programming-videos" data-nav-link="internet-programming-videos">PHP video resources</a>
+		</div>
+
+		<details class="nav-group nav-collapsible">
+			<summary>Internet Programming 621</summary>
+			<p class="nav-subheading">Exam focus areas</p>
+			<a href="#internet-programming-621-reference" data-archive-target="exam-focus-areas">Exam focus index</a>
+			<a href="#internet-programming-621-reference" data-archive-target="exam-overview">Exam overview</a>
+			<a href="#internet-programming-621-reference" data-archive-target="php-fundamentals-phpini">PHP fundamentals and php.ini</a>
+			<a href="#internet-programming-621-reference" data-archive-target="variables-constants-data-types">Variables, constants and data types</a>
+			<a href="#internet-programming-621-reference" data-archive-target="operators-output-prediction">Operators and output prediction</a>
+			<a href="#internet-programming-621-reference" data-archive-target="conditional-logic-business-rules">Conditional logic</a>
+			<a href="#internet-programming-621-reference" data-archive-target="loops-code-tracing">Loops and code tracing</a>
+			<a href="#internet-programming-621-reference" data-archive-target="string-functions">String functions</a>
+			<a href="#internet-programming-621-reference" data-archive-target="arrays-array-processing">Arrays and array processing</a>
+			<a href="#internet-programming-621-reference" data-archive-target="average-maximum-calculations">Average and maximum calculations</a>
+			<a href="#internet-programming-621-reference" data-archive-target="functions-scope">Functions and scope</a>
+			<a href="#internet-programming-621-reference" data-archive-target="complete-php-program-patterns">Complete program patterns</a>
+			<a href="#internet-programming-621-reference" data-archive-target="debugging-exam-traps">Debugging and exam traps</a>
+			<p class="nav-subheading">General module content</p>
+			<a href="#internet-programming-621-reference" data-archive-target="general-module-content">Module content index</a>
+			<a href="#internet-programming-621-reference" data-archive-target="chapter-1">Topic 1 · Introduction to PHP</a>
+			<a href="#internet-programming-621-reference" data-archive-target="chapter-2">Topic 2 · PHP language basics</a>
+			<a href="#internet-programming-621-reference" data-archive-target="chapter-3">Topic 3 · Decisions and control structures</a>
+			<a href="#internet-programming-621-reference" data-archive-target="chapter-4">Topic 4 · Strings and string manipulation</a>
+			<a href="#internet-programming-621-reference" data-archive-target="chapter-5">Topic 5 · Arrays</a>
+			<a href="#internet-programming-621-reference" data-archive-target="chapter-6">Topic 6 · Re-using code and writing functions</a>
+			<p class="nav-subheading">Final revision</p>
+			<a href="#internet-programming-621-reference" data-archive-target="final-revision">Final revision index</a>
+			<a href="#internet-programming-621-reference" data-archive-target="final-cheat-sheets">Cheat sheets</a>
+			<a href="#internet-programming-621-reference" data-archive-target="final-practice-programs">Practice programs</a>
+			<a href="#internet-programming-621-reference" data-archive-target="final-common-misconceptions">Common misconceptions</a>
 		</details>
 	</nav>
 
@@ -2917,6 +2977,112 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 				<article class="learning-lab-panel lab-challenge-panel" id="ip-concept-checker"><h3>Concept Checker</h3><p class="lab-challenge-prompt"></p><div class="lab-options lab-challenge-options"></div><div class="lab-feedback lab-challenge-feedback" aria-live="polite"></div><div class="lab-actions"><button class="lab-button secondary" type="button" data-lab-action="next-challenge">Next challenge</button></div></article>
 			</div>
 		</section>
+		<section id="internet-programming-videos" class="content-section" data-nav-section>
+			<div class="section-heading">
+				<h2>Internet Programming Video Resources</h2>
+				<p>Selected lessons mapped to the topics in this guide. Topics 1 and 2 match the confirmed current test scope; Topics 3 and 4 are supporting resources for the wider module, not confirmed content for that test.</p>
+			</div>
+			<div class="callout warning"><strong>Online resource:</strong> YouTube embeds and links require an internet connection. The rest of the guide remains available offline. Videos supplement the supplied study guide; where versions or code styles differ, follow the guide’s stated scope and examples.</div>
+			<nav class="ip-video-index" aria-label="Jump to Internet Programming video topics">
+				<a href="#video-topic-1">Topic 1 · Forms</a><a href="#video-topic-2">Topic 2 · State</a><a href="#video-topic-3">Topic 3 · Files</a><a href="#video-topic-4">Topic 4 · Databases</a>
+			</nav>
+			<p class="ip-video-playlist-link">The selected Topic 1 lessons come from <a href="https://www.youtube.com/playlist?list=PL0eyrZgxdwhwwQQZA79OzYwl5ewA7HQih" target="_blank" rel="noopener noreferrer">the PHP playlist you shared</a>. Additional lessons fill the file-system and state-management topics.</p>
+			<section class="ip-video-topic" id="video-topic-1">
+				<h3>Topic 1 · PHP and HTML Forms <span class="ip-video-scope">Confirmed test scope</span></h3>
+				<div class="ip-video-grid">				<article class="card definition ip-video-card" id="video-t1-forms">
+					<h4>Topic 1 · Form handling</h4>
+					<p>Follow how submitted form data reaches PHP and is handled. Pair the examples with the guide’s action/method and GET/POST explanations.</p>
+					<p class="ip-video-credit">Dani Krossing</p>
+					<iframe class="ip-video-embed" src="https://www.youtube-nocookie.com/embed/bOqTCDfc7Tk" title="6 | The Basics of PHP Form Handling Tutorial — Dani Krossing" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+					<p><a href="https://www.youtube.com/watch?v=bOqTCDfc7Tk" target="_blank" rel="noopener noreferrer">Open this video on YouTube</a></p>
+				</article>
+				<article class="card definition ip-video-card" id="video-t1-validation">
+					<h4>Topic 1 · Validation</h4>
+					<p>A focused example of checking required input. The course guide covers the wider validation, redisplay, and output-escaping patterns.</p>
+					<p class="ip-video-credit">The Net Ninja</p>
+					<iframe class="ip-video-embed" src="https://www.youtube-nocookie.com/embed/g7x4JO0YW1s" title="PHP Tutorial (& MySQL) #19 - Basic Form Validation (part 1) — The Net Ninja" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+					<p><a href="https://www.youtube.com/watch?v=g7x4JO0YW1s" target="_blank" rel="noopener noreferrer">Open this video on YouTube</a></p>
+				</article>
+				</div>
+			</section>
+			<section class="ip-video-topic" id="video-topic-2">
+				<h3>Topic 2 · Sessions and Cookies <span class="ip-video-scope">Confirmed test scope</span></h3>
+				<div class="ip-video-grid">				<article class="card definition ip-video-card" id="video-t2-sessions">
+					<h4>Topic 2 · Sessions</h4>
+					<p>Explains session state across page requests. Compare the video workflow with the guide’s session_start(), $_SESSION, and logout explanations.</p>
+					<p class="ip-video-credit">The Net Ninja</p>
+					<iframe class="ip-video-embed" src="https://www.youtube-nocookie.com/embed/6ZDTUZ1KRUI" title="PHP Tutorial (& MySQL) #36 - Sessions — The Net Ninja" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+					<p><a href="https://www.youtube.com/watch?v=6ZDTUZ1KRUI" target="_blank" rel="noopener noreferrer">Open this video on YouTube</a></p>
+				</article>
+				<article class="card definition ip-video-card" id="video-t2-cookies">
+					<h4>Topic 2 · Cookies</h4>
+					<p>Covers browser cookies. Use the guide for the cookie lifecycle, expiry, and the difference between cookies and sessions.</p>
+					<p class="ip-video-credit">The Net Ninja</p>
+					<iframe class="ip-video-embed" src="https://www.youtube-nocookie.com/embed/GNGf-I5pNrI" title="PHP Tutorial (& MySQL) #38 - Cookies — The Net Ninja" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+					<p><a href="https://www.youtube.com/watch?v=GNGf-I5pNrI" target="_blank" rel="noopener noreferrer">Open this video on YouTube</a></p>
+				</article>
+				</div>
+			</section>
+			<section class="ip-video-topic" id="video-topic-3">
+				<h3>Topic 3 · File System Management <span class="ip-video-scope supporting">Wider module support</span></h3>
+				<div class="ip-video-grid">				<article class="card definition ip-video-card" id="video-t3-files-1">
+					<h4>Topic 3 · File system, part 1</h4>
+					<p>Introduces reading and writing files in PHP, matching the file-handling topic in the module guide.</p>
+					<p class="ip-video-credit">The Net Ninja</p>
+					<iframe class="ip-video-embed" src="https://www.youtube-nocookie.com/embed/yUzcYBuSgc4" title="PHP Tutorial (& MySQL) #39 - File System (part 1) — The Net Ninja" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+					<p><a href="https://www.youtube.com/watch?v=yUzcYBuSgc4" target="_blank" rel="noopener noreferrer">Open this video on YouTube</a></p>
+				</article>
+				<article class="card definition ip-video-card" id="video-t3-files-2">
+					<h4>Topic 3 · File system, part 2</h4>
+					<p>Follow-on lesson for the file-system examples. Use it alongside the guide’s file pointers, directories, and CSV sections.</p>
+					<p class="ip-video-credit">The Net Ninja</p>
+					<iframe class="ip-video-embed" src="https://www.youtube-nocookie.com/embed/UT9zKFYr18U" title="PHP Tutorial (& MySQL) #40 - File System (part 2) — The Net Ninja" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+					<p><a href="https://www.youtube.com/watch?v=UT9zKFYr18U" target="_blank" rel="noopener noreferrer">Open this video on YouTube</a></p>
+				</article>
+				</div>
+			</section>
+			<section class="ip-video-topic" id="video-topic-4">
+				<h3>Topic 4 · Databases and SQL <span class="ip-video-scope supporting">Wider module support</span></h3>
+				<div class="ip-video-grid">				<article class="card definition ip-video-card" id="video-t4-database">
+					<h4>Topic 4 · Database setup</h4>
+					<p>Shows creating the database used by a PHP website; the guide adds database architecture and table-structure notes.</p>
+					<p class="ip-video-credit">Dani Krossing</p>
+					<iframe class="ip-video-embed" src="https://www.youtube-nocookie.com/embed/H2XtR1zwg6s" title="16 | Create a Database in MySQL PHP Tutorial | 2023 — Dani Krossing" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+					<p><a href="https://www.youtube.com/watch?v=H2XtR1zwg6s" target="_blank" rel="noopener noreferrer">Open this video on YouTube</a></p>
+				</article>
+				<article class="card definition ip-video-card" id="video-t4-sql-joins">
+					<h4>Topic 4 · SQL SELECT and JOIN</h4>
+					<p>Practise retrieving and joining table data. The guide provides additional query patterns and exam-style examples.</p>
+					<p class="ip-video-credit">Dani Krossing</p>
+					<iframe class="ip-video-embed" src="https://www.youtube-nocookie.com/embed/LiK0mhBbhbc" title="19 | SELECT & JOIN Database Table Data in MySQL | 2023 — Dani Krossing" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+					<p><a href="https://www.youtube.com/watch?v=LiK0mhBbhbc" target="_blank" rel="noopener noreferrer">Open this video on YouTube</a></p>
+				</article>
+				<article class="card definition ip-video-card" id="video-t4-connect">
+					<h4>Topic 4 · Connect PHP to MySQL</h4>
+					<p>Demonstrates a PHP database connection using PDO. The module guide also shows procedural mysqli, so compare the common connection/query steps.</p>
+					<p class="ip-video-credit">Dani Krossing</p>
+					<iframe class="ip-video-embed" src="https://www.youtube-nocookie.com/embed/tHKsZdS8Oug" title="20 | Connect to a Database From a Website Using PHP | 2023 — Dani Krossing" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+					<p><a href="https://www.youtube.com/watch?v=tHKsZdS8Oug" target="_blank" rel="noopener noreferrer">Open this video on YouTube</a></p>
+				</article>
+				<article class="card definition ip-video-card" id="video-t4-crud">
+					<h4>Topic 4 · Insert, update, and delete</h4>
+					<p>Shows form-to-database insertion and prepared statements. For UPDATE and DELETE, pair it with the next targeted lesson.</p>
+					<p class="ip-video-credit">Dani Krossing</p>
+					<iframe class="ip-video-embed" src="https://www.youtube-nocookie.com/embed/IagGGcC95Ig" title="22 | INSERT INTO Database Using PHP From Your Website! | 2023 — Dani Krossing" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+					<p><a href="https://www.youtube.com/watch?v=IagGGcC95Ig" target="_blank" rel="noopener noreferrer">Open this video on YouTube</a></p>
+				</article>
+				<article class="card definition ip-video-card" id="video-t4-update-delete">
+					<h4>Topic 4 · UPDATE and DELETE</h4>
+					<p>Shows changing and deleting database records from PHP forms; compare the SQL with the guide’s warnings about DELETE conditions.</p>
+					<p class="ip-video-credit">Dani Krossing</p>
+					<iframe class="ip-video-embed" src="https://www.youtube-nocookie.com/embed/9Mkd4ig3yjE" title="23 | UPDATE & DELETE Database Data Using PHP From Your Website! | 2023 — Dani Krossing" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+					<p><a href="https://www.youtube.com/watch?v=9Mkd4ig3yjE" target="_blank" rel="noopener noreferrer">Open this video on YouTube</a></p>
+				</article>
+				</div>
+			</section>
+			<p class="assignment-links"><a href="#internet-programming-videos">Back to video topic index ↑</a> · <a href="#test-focus-areas">Back to Topics 1 &amp; 2 test index</a></p>
+		</section>
+
 		<section id="internet-programming-621-reference" class="quiz-section legacy-guide" data-nav-section>
 			<div class="section-heading">
 				<h2>Internet Programming 621 · Previous Study Reference</h2>
@@ -3600,7 +3766,12 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
         padding: 1rem;
       }
     }
-  &lt;/style&gt;
+
+/* Navigation now lives in the Internet Programming 622 sidebar. */
+#site-navigation, .menu-button, .nav-overlay, .progress-track, .back-to-top, .skip-link { display: none !important; }
+.page-wrap { margin-left: 0 !important; }
+
+&lt;/style&gt;
 &lt;/head&gt;
 &lt;body&gt;
   &lt;a class=&quot;skip-link&quot; href=&quot;#main-content&quot;&gt;Skip to main content&lt;/a&gt;
@@ -5147,6 +5318,20 @@ foreach ($counts as $word =&amp;gt; $count) {
   requestAnimationFrame(sendHeight);
 })();
 &lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  const sendHeight = () =&gt; parent.postMessage({ type: &quot;ip621-archive-height&quot;, height: document.documentElement.scrollHeight }, &quot;*&quot;);
+  new ResizeObserver(sendHeight).observe(document.documentElement);
+  window.addEventListener(&quot;load&quot;, sendHeight);
+  window.addEventListener(&quot;message&quot;, (event) =&gt; {
+    if (event.source !== parent || event.data?.type !== &quot;ip621-navigate&quot;) return;
+    const target = document.getElementById(String(event.data.target || &quot;&quot;));
+    if (!target) return;
+    parent.postMessage({ type: &quot;ip621-navigate-target&quot;, top: target.getBoundingClientRect().top + window.scrollY }, &quot;*&quot;);
+  });
+  requestAnimationFrame(sendHeight);
+})();
+&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 "></iframe>
@@ -6237,10 +6422,32 @@ foreach ($counts as $word =&amp;gt; $count) {
 		(() => {
 			const frame = document.getElementById('ip621-archive-frame');
 			window.addEventListener('message', (event) => {
-				if (event.source !== frame.contentWindow || event.data?.type !== 'ip621-archive-height') return;
-				const height = Number(event.data.height);
-				if (Number.isFinite(height) && height > 0) frame.style.height = `${Math.ceil(height) + 20}px`;
+				if (event.source !== frame.contentWindow) return;
+				if (event.data?.type === 'ip621-archive-height') {
+					const height = Number(event.data.height);
+					if (Number.isFinite(height) && height > 0) frame.style.height = `${Math.ceil(height) + 20}px`;
+					return;
+				}
+				if (event.data?.type === 'ip621-navigate-target') {
+					const top = Number(event.data.top);
+					if (!Number.isFinite(top)) return;
+					const frameTop = frame.getBoundingClientRect().top + window.scrollY;
+					window.scrollTo({ top: frameTop + top, behavior: 'smooth' });
+				}
 			});
+			document.addEventListener('click', (event) => {
+				const link = event.target instanceof Element ? event.target.closest('a[data-archive-target]') : null;
+				if (!link) return;
+				event.preventDefault();
+				event.stopImmediatePropagation();
+				const menu = document.getElementById('site-nav');
+				const menuToggle = document.querySelector('.menu-toggle');
+				document.body.classList.remove('menu-open');
+				menuToggle.setAttribute('aria-expanded', 'false');
+				const frame = document.getElementById('ip621-archive-frame');
+				history.replaceState(null, '', '#internet-programming-621-reference');
+				frame.contentWindow.postMessage({ type: 'ip621-navigate', target: link.dataset.archiveTarget }, '*');
+			}, true);
 		})();
 	</script>
 </body>
