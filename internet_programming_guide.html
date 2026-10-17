@@ -913,6 +913,16 @@
 		.ip-api-entry:target { outline: 2px solid var(--cyan); outline-offset: 3px; }
 		@media (max-width: 780px) { .ip-api-entry { padding: 0.8rem; } }
 
+		.legacy-guide-frame {
+			display: block;
+			width: 100%;
+			min-height: 78vh;
+			height: 900px;
+			border: 1px solid var(--border);
+			border-radius: 10px;
+			background: var(--panel);
+		}
+		.legacy-guide-intro { margin-bottom: 1rem; }
 	</style>
 	<link rel="stylesheet" href="module-theme.css">
 	<link rel="stylesheet" href="module-learning-lab.css">
@@ -960,6 +970,11 @@
 			<a href="#chapter-4" data-nav-link="chapter-4">Topic 4: SQL and Databases</a>
 			<a href="#chapter-5" data-nav-link="chapter-5">Addendum: Running PHP</a>
 			<a href="#detailed-reference" data-nav-link="detailed-reference">Classes, Functions, Methods &amp; Attributes</a>
+		</div>
+
+		<div class="nav-group">
+			<h2>Previous Course Reference</h2>
+			<a href="#internet-programming-621-reference" data-nav-link="internet-programming-621-reference">Internet Programming 621 · Full Guide</a>
 		</div>
 
 		<details class="nav-group nav-collapsible">
@@ -2902,6 +2917,2240 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 				<article class="learning-lab-panel lab-challenge-panel" id="ip-concept-checker"><h3>Concept Checker</h3><p class="lab-challenge-prompt"></p><div class="lab-options lab-challenge-options"></div><div class="lab-feedback lab-challenge-feedback" aria-live="polite"></div><div class="lab-actions"><button class="lab-button secondary" type="button" data-lab-action="next-challenge">Next challenge</button></div></article>
 			</div>
 		</section>
+		<section id="internet-programming-621-reference" class="quiz-section legacy-guide" data-nav-section>
+			<div class="section-heading">
+				<h2>Internet Programming 621 · Previous Study Reference</h2>
+				<p class="legacy-guide-intro">Complete archived copy of the previous semester’s Internet Programming 621 study guide. Its notes and exam focus belong to that course and are included for reference; they do not define Internet Programming 622 test scope. Use the guide’s own Menu to move between its sections.</p>
+			</div>
+			<iframe id="ip621-archive-frame" class="legacy-guide-frame" title="Complete Internet Programming 621 Study Hub" loading="eager" sandbox="allow-scripts" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;Internet Programming 621 Study Hub&lt;/title&gt;
+  &lt;style&gt;
+    :root {
+      --bg: #0D1117;
+      --panel: #161B22;
+      --border: #21262D;
+      --header: #1C2128;
+      --text: #E6EDF3;
+      --muted: #8B949E;
+      --cyan: #58C4DD;
+      --green: #3FB950;
+      --amber: #D29922;
+      --red: #F85149;
+      --purple: #BC8CFF;
+      --code-bg: #010409;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Calibri, Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--cyan);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 0.18em;
+    }
+
+    a:hover {
+      color: var(--green);
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--amber);
+      outline-offset: 3px;
+    }
+
+    p {
+      margin: 0 0 1rem;
+    }
+
+    ul,
+    ol {
+      margin: 0 0 1rem;
+      padding-left: 1.35rem;
+    }
+
+    li + li {
+      margin-top: 0.35rem;
+    }
+
+    code,
+    kbd {
+      background: var(--code-bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.08rem 0.32rem;
+      font-family: Consolas, &quot;Courier New&quot;, monospace;
+      font-size: 0.92em;
+    }
+
+    pre {
+      margin: 0 0 1rem;
+      padding: 1rem;
+      background: var(--code-bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow-x: auto;
+      line-height: 1.45;
+    }
+
+    pre code {
+      display: block;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      font-size: 0.95rem;
+      white-space: pre;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 680px;
+    }
+
+    th,
+    td {
+      padding: 0.8rem;
+      border: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--header);
+      color: var(--text);
+    }
+
+    td {
+      background: rgba(22, 27, 34, 0.72);
+    }
+
+    .skip-link {
+      position: fixed;
+      top: 0.8rem;
+      left: 0.8rem;
+      z-index: 1200;
+      transform: translateY(-180%);
+      background: var(--cyan);
+      color: var(--bg);
+      border-radius: 6px;
+      padding: 0.7rem 1rem;
+      font-weight: 700;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .progress-track {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1100;
+      width: 100%;
+      height: 5px;
+      background: var(--code-bg);
+    }
+
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      background: var(--green);
+      transition: width 120ms linear;
+    }
+
+    .menu-button {
+      display: none;
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1001;
+      align-items: center;
+      gap: 0.55rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--header);
+      color: var(--text);
+      padding: 0.68rem 0.85rem;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .menu-lines {
+      display: grid;
+      gap: 4px;
+      width: 20px;
+    }
+
+    .menu-lines span {
+      display: block;
+      height: 2px;
+      background: var(--text);
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 5px;
+      bottom: 0;
+      left: 0;
+      z-index: 900;
+      width: 310px;
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+      background: var(--panel);
+      padding: 1.2rem 1rem 2rem;
+    }
+
+    .site-title {
+      margin: 0 0 1rem;
+      color: var(--text);
+      font-size: 1.2rem;
+      line-height: 1.25;
+    }
+
+    .nav-group {
+      margin-top: 1.2rem;
+    }
+
+    .nav-group-title {
+      margin: 0 0 0.35rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .nav-list {
+      display: grid;
+      gap: 0.2rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .nav-list a {
+      display: block;
+      border-left: 3px solid transparent;
+      border-radius: 0 6px 6px 0;
+      color: var(--muted);
+      padding: 0.42rem 0.6rem;
+      text-decoration: none;
+      line-height: 1.25;
+    }
+
+    .nav-list a:hover,
+    .nav-list a.is-active,
+    .nav-list a[aria-current=&quot;true&quot;] {
+      border-left-color: var(--cyan);
+      background: var(--header);
+      color: var(--text);
+    }
+
+    .nav-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 850;
+      background: rgba(1, 4, 9, 0.72);
+    }
+
+    .page-wrap {
+      margin-left: 310px;
+    }
+
+    header.hero,
+    main,
+    footer {
+      width: min(1180px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 4.8rem 0 2.4rem;
+    }
+
+    .eyebrow {
+      margin-bottom: 0.5rem;
+      color: var(--cyan);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      margin: 0;
+      line-height: 1.18;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 920px;
+      color: var(--text);
+      font-size: clamp(2.5rem, 7vw, 5.5rem);
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+      color: var(--text);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+    }
+
+    h3 {
+      margin-bottom: 0.75rem;
+      color: var(--text);
+      font-size: 1.45rem;
+    }
+
+    h4 {
+      margin-bottom: 0.55rem;
+      color: var(--text);
+      font-size: 1.1rem;
+    }
+
+    .hero-description {
+      max-width: 840px;
+      margin: 1rem 0 1.4rem;
+      color: var(--muted);
+      font-size: 1.18rem;
+    }
+
+    .button-row,
+    .link-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin: 1.1rem 0;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--cyan);
+      color: var(--bg);
+      padding: 0.65rem 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .button.secondary {
+      background: var(--header);
+      color: var(--text);
+    }
+
+    .button:hover {
+      background: var(--green);
+      color: var(--bg);
+    }
+
+    .hero-tools {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.62fr);
+      gap: 1rem;
+      margin-top: 1.4rem;
+    }
+
+    .panel {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--panel);
+      padding: 1rem;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      align-items: center;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--header);
+      color: var(--text);
+      padding: 0.2rem 0.62rem;
+      font-size: 0.88rem;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .chip::before {
+      content: &quot;&quot;;
+      width: 0.6rem;
+      height: 0.6rem;
+      border-radius: 999px;
+      background: var(--muted);
+    }
+
+    .chip.cyan::before {
+      background: var(--cyan);
+    }
+
+    .chip.green::before {
+      background: var(--green);
+    }
+
+    .chip.amber::before {
+      background: var(--amber);
+    }
+
+    .chip.red::before {
+      background: var(--red);
+    }
+
+    .chip.purple::before {
+      background: var(--purple);
+    }
+
+    .major-section,
+    .chapter {
+      padding: 2rem 0;
+      scroll-margin-top: 84px;
+    }
+
+    .section-intro {
+      max-width: 920px;
+      margin-bottom: 1.2rem;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .two-col {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .three-col {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      margin-bottom: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--panel);
+      padding: 1.15rem;
+      scroll-margin-top: 84px;
+    }
+
+    .exam-card.definition {
+      border-top: 4px solid var(--cyan);
+    }
+
+    .exam-card.success {
+      border-top: 4px solid var(--green);
+    }
+
+    .exam-card.warning {
+      border-top: 4px solid var(--amber);
+    }
+
+    .exam-card.structure {
+      border-top: 4px solid var(--purple);
+    }
+
+    .exam-card.error {
+      border-top: 4px solid var(--red);
+    }
+
+    .chapter-card {
+      border-left: 4px solid var(--purple);
+    }
+
+    .chapter-example {
+      border-left-color: var(--green);
+    }
+
+    .revision-card {
+      border-top: 4px solid var(--green);
+    }
+
+    .callout {
+      margin: 1rem 0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--header);
+      padding: 0.85rem 1rem;
+    }
+
+    .callout strong {
+      display: inline-block;
+      margin-right: 0.2rem;
+    }
+
+    .callout.definition {
+      border-left: 4px solid var(--cyan);
+    }
+
+    .callout.success {
+      border-left: 4px solid var(--green);
+    }
+
+    .callout.warning {
+      border-left: 4px solid var(--amber);
+    }
+
+    .callout.error {
+      border-left: 4px solid var(--red);
+    }
+
+    .callout.structure {
+      border-left: 4px solid var(--purple);
+    }
+
+    .table-wrap {
+      max-width: 100%;
+      margin: 1rem 0;
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .table-wrap table {
+      margin: 0;
+    }
+
+    .code-label {
+      display: inline-block;
+      margin: 0.75rem 0 0.35rem;
+      color: var(--purple);
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .related-chapters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.85rem;
+    }
+
+    .related-chapters a,
+    .back-link {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--header);
+      color: var(--text);
+      padding: 0.28rem 0.65rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .related-chapters a:hover,
+    .back-link:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    .diagram-flow {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(130px, 1fr));
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+
+    .diagram-flow span {
+      display: grid;
+      place-items: center;
+      min-height: 74px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--header);
+      color: var(--text);
+      padding: 0.7rem;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .mini-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.7rem;
+      margin: 1rem 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .mini-list li {
+      margin: 0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--header);
+      padding: 0.75rem;
+    }
+
+    .back-to-top {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 900;
+      display: none;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--green);
+      color: var(--bg);
+      padding: 0.75rem 0.9rem;
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .back-to-top.is-visible {
+      display: inline-flex;
+    }
+
+    footer {
+      padding: 2rem 0 3rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 1040px) {
+      .hero-tools,
+      .two-col,
+      .three-col {
+        grid-template-columns: 1fr;
+      }
+
+      .diagram-flow {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 820px) {
+      body {
+        font-size: 17px;
+      }
+
+      .menu-button {
+        display: inline-flex;
+      }
+
+      .sidebar {
+        width: min(86vw, 330px);
+        transform: translateX(-105%);
+        transition: transform 180ms ease;
+      }
+
+      body.menu-open .sidebar {
+        transform: translateX(0);
+      }
+
+      body.menu-open .nav-overlay {
+        display: block;
+      }
+
+      .page-wrap {
+        margin-left: 0;
+      }
+
+      header.hero,
+      main,
+      footer {
+        width: min(100% - 1.2rem, 1180px);
+      }
+
+      .hero {
+        padding-top: 5rem;
+      }
+
+      .mini-list {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 1rem;
+      }
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;a class=&quot;skip-link&quot; href=&quot;#main-content&quot;&gt;Skip to main content&lt;/a&gt;
+
+  &lt;div class=&quot;progress-track&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;div class=&quot;progress-bar&quot; id=&quot;scroll-progress&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;button class=&quot;menu-button&quot; type=&quot;button&quot; aria-controls=&quot;site-navigation&quot; aria-expanded=&quot;false&quot;&gt;
+    &lt;span class=&quot;menu-lines&quot; aria-hidden=&quot;true&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;
+    Menu
+  &lt;/button&gt;
+
+  &lt;div class=&quot;nav-overlay&quot; data-close-menu&gt;&lt;/div&gt;
+
+  &lt;nav class=&quot;sidebar&quot; id=&quot;site-navigation&quot; aria-label=&quot;Study hub navigation&quot;&gt;
+    &lt;h2 class=&quot;site-title&quot;&gt;Internet Programming 621&lt;/h2&gt;
+
+    &lt;div class=&quot;nav-group&quot;&gt;
+      &lt;p class=&quot;nav-group-title&quot;&gt;Exam Focus Areas&lt;/p&gt;
+      &lt;ul class=&quot;nav-list&quot;&gt;
+        &lt;li&gt;&lt;a href=&quot;#exam-focus-areas&quot; data-nav-link=&quot;exam-focus-areas&quot;&gt;Exam Focus Areas&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#exam-overview&quot; data-nav-link=&quot;exam-overview&quot;&gt;Exam Overview&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#php-fundamentals-phpini&quot; data-nav-link=&quot;php-fundamentals-phpini&quot;&gt;PHP Fundamentals and php.ini&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#variables-constants-data-types&quot; data-nav-link=&quot;variables-constants-data-types&quot;&gt;Variables, Constants and Data Types&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#operators-output-prediction&quot; data-nav-link=&quot;operators-output-prediction&quot;&gt;Operators and Output Prediction&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#conditional-logic-business-rules&quot; data-nav-link=&quot;conditional-logic-business-rules&quot;&gt;Conditional Logic and Business Rules&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#loops-code-tracing&quot; data-nav-link=&quot;loops-code-tracing&quot;&gt;Loops and Code Tracing&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#string-functions&quot; data-nav-link=&quot;string-functions&quot;&gt;String Functions&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#arrays-array-processing&quot; data-nav-link=&quot;arrays-array-processing&quot;&gt;Arrays and Array Processing&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#average-maximum-calculations&quot; data-nav-link=&quot;average-maximum-calculations&quot;&gt;Average and Maximum Calculations&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#functions-scope&quot; data-nav-link=&quot;functions-scope&quot;&gt;Functions and Scope&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#complete-php-program-patterns&quot; data-nav-link=&quot;complete-php-program-patterns&quot;&gt;Complete PHP Program Patterns&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#debugging-exam-traps&quot; data-nav-link=&quot;debugging-exam-traps&quot;&gt;Debugging and Exam Traps&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;nav-group&quot;&gt;
+      &lt;p class=&quot;nav-group-title&quot;&gt;General Module Content&lt;/p&gt;
+      &lt;ul class=&quot;nav-list&quot;&gt;
+        &lt;li&gt;&lt;a href=&quot;#general-module-content&quot; data-nav-link=&quot;general-module-content&quot;&gt;General Module Content&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#chapter-1&quot; data-nav-link=&quot;chapter-1&quot;&gt;Topic 1: Introduction to PHP&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#chapter-2&quot; data-nav-link=&quot;chapter-2&quot;&gt;Topic 2: PHP Language Basics&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#chapter-3&quot; data-nav-link=&quot;chapter-3&quot;&gt;Topic 3: Decisions and Control Structures&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#chapter-4&quot; data-nav-link=&quot;chapter-4&quot;&gt;Topic 4: Strings and String Manipulation&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#chapter-5&quot; data-nav-link=&quot;chapter-5&quot;&gt;Topic 5: Arrays&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#chapter-6&quot; data-nav-link=&quot;chapter-6&quot;&gt;Topic 6: Re-using Code and Writing Functions&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;nav-group&quot;&gt;
+      &lt;p class=&quot;nav-group-title&quot;&gt;Final Revision&lt;/p&gt;
+      &lt;ul class=&quot;nav-list&quot;&gt;
+        &lt;li&gt;&lt;a href=&quot;#final-revision&quot; data-nav-link=&quot;final-revision&quot;&gt;Final Revision&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#final-cheat-sheets&quot; data-nav-link=&quot;final-cheat-sheets&quot;&gt;Cheat Sheets&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#final-practice-programs&quot; data-nav-link=&quot;final-practice-programs&quot;&gt;Practice Programs&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#final-common-misconceptions&quot; data-nav-link=&quot;final-common-misconceptions&quot;&gt;Common Misconceptions&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;div class=&quot;page-wrap&quot;&gt;
+    &lt;header class=&quot;hero&quot; id=&quot;top&quot;&gt;
+      &lt;p class=&quot;eyebrow&quot;&gt;PHP exam revision&lt;/p&gt;
+      &lt;h1&gt;Internet Programming 621 Study Hub&lt;/h1&gt;
+      &lt;p class=&quot;hero-description&quot;&gt;A dark, readable PHP revision page covering the high-yield exam focus areas and the full Internet Programming 621 study guide.&lt;/p&gt;
+      &lt;div class=&quot;button-row&quot; aria-label=&quot;Primary study actions&quot;&gt;
+        &lt;a class=&quot;button&quot; href=&quot;#exam-focus-areas&quot;&gt;Start Exam Focus&lt;/a&gt;
+        &lt;a class=&quot;button secondary&quot; href=&quot;#general-module-content&quot;&gt;Browse General Content&lt;/a&gt;
+      &lt;/div&gt;
+
+      &lt;div class=&quot;hero-tools&quot;&gt;
+        &lt;div class=&quot;panel&quot;&gt;
+          &lt;h2&gt;How to use this page&lt;/h2&gt;
+          &lt;ol&gt;
+            &lt;li&gt;First revise the exam focus cards for the most likely task types.&lt;/li&gt;
+            &lt;li&gt;Then use the topic sections for deeper explanations and syntax reminders.&lt;/li&gt;
+            &lt;li&gt;Finish with the cheat sheets, tracing tables, and practice programs.&lt;/li&gt;
+          &lt;/ol&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;panel&quot;&gt;
+          &lt;h2&gt;Colour legend&lt;/h2&gt;
+          &lt;div class=&quot;legend&quot; aria-label=&quot;Study colour legend&quot;&gt;
+            &lt;span class=&quot;chip cyan&quot;&gt;Definitions&lt;/span&gt;
+            &lt;span class=&quot;chip green&quot;&gt;Correct patterns&lt;/span&gt;
+            &lt;span class=&quot;chip amber&quot;&gt;Exam traps&lt;/span&gt;
+            &lt;span class=&quot;chip red&quot;&gt;Errors&lt;/span&gt;
+            &lt;span class=&quot;chip purple&quot;&gt;Program flow&lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/header&gt;
+
+    &lt;main id=&quot;main-content&quot;&gt;
+      &lt;section id=&quot;exam-focus-areas&quot; class=&quot;major-section&quot; data-nav-section&gt;
+        &lt;h2&gt;Exam Focus Areas&lt;/h2&gt;
+        &lt;p class=&quot;section-intro&quot;&gt;Start here when time is short. These cards cover the recurring exam skills: reading PHP, predicting output, tracing loops, processing arrays, and writing complete small programs.&lt;/p&gt;
+
+        &lt;article class=&quot;card&quot; id=&quot;exam-overview&quot; data-nav-section&gt;
+          &lt;h3&gt;Exam Overview&lt;/h3&gt;
+          &lt;div class=&quot;table-wrap&quot;&gt;
+            &lt;table&gt;
+              &lt;thead&gt;
+                &lt;tr&gt;
+                  &lt;th&gt;Focus Area&lt;/th&gt;
+                  &lt;th&gt;What to Know&lt;/th&gt;
+                  &lt;th&gt;Exam Task Style&lt;/th&gt;
+                &lt;/tr&gt;
+              &lt;/thead&gt;
+              &lt;tbody&gt;
+                &lt;tr&gt;
+                  &lt;td&gt;PHP fundamentals and &lt;code&gt;php.ini&lt;/code&gt;&lt;/td&gt;
+                  &lt;td&gt;Server-side scripting, PHP tags, &lt;code&gt;echo&lt;/code&gt;, comments, configuration basics.&lt;/td&gt;
+                  &lt;td&gt;Explain, identify, write small scripts.&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                  &lt;td&gt;Variables, constants and data types&lt;/td&gt;
+                  &lt;td&gt;Naming rules, loose typing, &lt;code&gt;gettype()&lt;/code&gt;, &lt;code&gt;settype()&lt;/code&gt;, casting, &lt;code&gt;define()&lt;/code&gt;.&lt;/td&gt;
+                  &lt;td&gt;Predict type or output, fix declarations.&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                  &lt;td&gt;Operators and arithmetic&lt;/td&gt;
+                  &lt;td&gt;Arithmetic, assignment, comparison, logical operators, string concatenation, precedence.&lt;/td&gt;
+                  &lt;td&gt;Calculate output, correct expressions.&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                  &lt;td&gt;Conditional logic&lt;/td&gt;
+                  &lt;td&gt;&lt;code&gt;if&lt;/code&gt;, &lt;code&gt;elseif&lt;/code&gt;, &lt;code&gt;else&lt;/code&gt;, &lt;code&gt;switch&lt;/code&gt;, ternary, comparison and logical operators.&lt;/td&gt;
+                  &lt;td&gt;Business rules, grading, discounts, access control.&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                  &lt;td&gt;Loops&lt;/td&gt;
+                  &lt;td&gt;&lt;code&gt;for&lt;/code&gt;, &lt;code&gt;while&lt;/code&gt;, &lt;code&gt;do...while&lt;/code&gt;, &lt;code&gt;foreach&lt;/code&gt;, counters, accumulators.&lt;/td&gt;
+                  &lt;td&gt;Trace loops, predict output, sum, average, max.&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                  &lt;td&gt;Strings&lt;/td&gt;
+                  &lt;td&gt;Quotes, interpolation, &lt;code&gt;strlen()&lt;/code&gt;, &lt;code&gt;substr()&lt;/code&gt;, &lt;code&gt;strpos()&lt;/code&gt;, case and formatting functions.&lt;/td&gt;
+                  &lt;td&gt;Manipulate text, validate input, format output.&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                  &lt;td&gt;Arrays&lt;/td&gt;
+                  &lt;td&gt;Indexed, associative, multidimensional arrays, &lt;code&gt;print_r()&lt;/code&gt;, &lt;code&gt;count()&lt;/code&gt;, slicing, sorting.&lt;/td&gt;
+                  &lt;td&gt;Process lists, student marks, carts, word counts.&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                  &lt;td&gt;Functions&lt;/td&gt;
+                  &lt;td&gt;Built-in vs user-defined, parameters, arguments, return values, scope.&lt;/td&gt;
+                  &lt;td&gt;Write reusable functions, debug scope issues.&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                  &lt;td&gt;Complete programs&lt;/td&gt;
+                  &lt;td&gt;Combine variables, loops, arrays, functions, and decisions.&lt;/td&gt;
+                  &lt;td&gt;Build complete exam-style PHP scripts.&lt;/td&gt;
+                &lt;/tr&gt;
+              &lt;/tbody&gt;
+            &lt;/table&gt;
+          &lt;/div&gt;
+        &lt;/article&gt;
+
+        &lt;article class=&quot;card exam-card definition&quot; id=&quot;php-fundamentals-phpini&quot; data-nav-section&gt;
+          &lt;h3&gt;PHP Fundamentals and php.ini&lt;/h3&gt;
+          &lt;p&gt;PHP runs on the server. The browser requests a page, the web server sends PHP code to the PHP engine, and the browser receives generated HTML. PHP code is embedded with &lt;code&gt;&amp;lt;?php ... ?&amp;gt;&lt;/code&gt;, and &lt;code&gt;echo&lt;/code&gt; sends output into the response.&lt;/p&gt;
+          &lt;ul&gt;
+            &lt;li&gt;Comments can use &lt;code&gt;//&lt;/code&gt;, &lt;code&gt;#&lt;/code&gt;, or &lt;code&gt;/* ... */&lt;/code&gt;.&lt;/li&gt;
+            &lt;li&gt;&lt;code&gt;php.ini&lt;/code&gt; controls runtime settings such as &lt;code&gt;date.timezone&lt;/code&gt;, &lt;code&gt;display_errors&lt;/code&gt;, and &lt;code&gt;upload_max_filesize&lt;/code&gt;.&lt;/li&gt;
+            &lt;li&gt;After changing configuration, Apache or XAMPP usually needs a restart.&lt;/li&gt;
+          &lt;/ul&gt;
+          &lt;span class=&quot;code-label&quot;&gt;Setup check&lt;/span&gt;
+          &lt;pre&gt;&lt;code&gt;&amp;lt;?php
+// Display PHP configuration for testing setup
+phpinfo();
+?&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+          &lt;div class=&quot;callout warning&quot;&gt;&lt;strong&gt;Exam trap:&lt;/strong&gt; Editing &lt;code&gt;php.ini&lt;/code&gt; often needs administrator access and a server restart. &lt;code&gt;phpinfo()&lt;/code&gt; is useful for testing but should not be left public on a real site.&lt;/div&gt;
+          &lt;nav class=&quot;related-chapters&quot; aria-label=&quot;Related sections for PHP fundamentals&quot;&gt;
+            &lt;a href=&quot;#ch1-1-what-is-php&quot;&gt;What is PHP?&lt;/a&gt;
+            &lt;a href=&quot;#ch1-2-php-ini&quot;&gt;php.ini&lt;/a&gt;
+            &lt;a href=&quot;#ch1-8-comments&quot;&gt;Comments&lt;/a&gt;
+          &lt;/nav&gt;
+        &lt;/article&gt;
+
+        &lt;article class=&quot;card exam-card definition&quot; id=&quot;variables-constants-data-types&quot; data-nav-section&gt;
+          &lt;h3&gt;Variables, Constants and Data Types&lt;/h3&gt;
+          &lt;p&gt;Variables store values and begin with &lt;code&gt;$&lt;/code&gt;. The first character after &lt;code&gt;$&lt;/code&gt; must be a letter or underscore, and variable names are case-sensitive. PHP is loosely typed, so the type can change depending on the value or context.&lt;/p&gt;
+          &lt;p&gt;Know the main groups: scalar values such as integers, floats, strings, and Booleans; compound values such as arrays and objects; special values such as resources and &lt;code&gt;null&lt;/code&gt;. Constants use &lt;code&gt;define()&lt;/code&gt; and do not start with &lt;code&gt;$&lt;/code&gt;.&lt;/p&gt;
+          &lt;span class=&quot;code-label&quot;&gt;Type example&lt;/span&gt;
+          &lt;pre&gt;&lt;code&gt;&amp;lt;?php
+$name = &quot;Rix&quot;;
+$score = &quot;75&quot;;
+$scoreNumber = (int) $score;
+
+define(&quot;PASS_MARK&quot;, 50);
+
+echo gettype($score) . &quot;&amp;lt;br&amp;gt;&quot;;       // string
+echo gettype($scoreNumber) . &quot;&amp;lt;br&amp;gt;&quot;; // integer
+echo ($scoreNumber &amp;gt;= PASS_MARK) ? &quot;Pass&quot; : &quot;Fail&quot;;
+?&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+          &lt;div class=&quot;callout warning&quot;&gt;&lt;strong&gt;Exam trap:&lt;/strong&gt; &lt;code&gt;$Score&lt;/code&gt; and &lt;code&gt;$score&lt;/code&gt; are different variables. &lt;code&gt;settype()&lt;/code&gt; changes the variable itself; casting changes how the value is treated in that expression.&lt;/div&gt;
+          &lt;nav class=&quot;related-chapters&quot; aria-label=&quot;Related sections for variables and data types&quot;&gt;
+            &lt;a href=&quot;#ch2-1-variables&quot;&gt;Variables&lt;/a&gt;
+            &lt;a href=&quot;#ch2-4-data-types&quot;&gt;Data types&lt;/a&gt;
+            &lt;a href=&quot;#ch2-13-constants&quot;&gt;Constants&lt;/a&gt;
+          &lt;/nav&gt;
+        &lt;/article&gt;
+
+        &lt;article class=&quot;card exam-card warning&quot; id=&quot;operators-output-prediction&quot; data-nav-section&gt;
+          &lt;h3&gt;Operators and Output Prediction&lt;/h3&gt;
+          &lt;p&gt;Operators are symbols that perform work in expressions. Know arithmetic operators, assignment operators, comparison operators, logical operators, concatenation with &lt;code&gt;.&lt;/code&gt;, and increment or decrement operators.&lt;/p&gt;
+          &lt;span class=&quot;code-label&quot;&gt;Trace the output&lt;/span&gt;
+          &lt;pre&gt;&lt;code&gt;&amp;lt;?php
+$x = 5;
+echo ++$x; // 6, then x is 6
+
+echo &quot;&amp;lt;br&amp;gt;&quot;;
+
+$x = 5;
+echo $x++; // 5, then x becomes 6
+
+echo &quot;&amp;lt;br&amp;gt;&quot;;
+echo 10 + 5 * 2; // 20, multiplication first
+?&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+          &lt;div class=&quot;callout warning&quot;&gt;&lt;strong&gt;Exam trap:&lt;/strong&gt; &lt;code&gt;=&lt;/code&gt; assigns and &lt;code&gt;==&lt;/code&gt; compares. &lt;code&gt;++$x&lt;/code&gt; changes before output; &lt;code&gt;$x++&lt;/code&gt; outputs first, then changes.&lt;/div&gt;
+          &lt;nav class=&quot;related-chapters&quot; aria-label=&quot;Related sections for operators&quot;&gt;
+            &lt;a href=&quot;#ch2-9-operators&quot;&gt;Operators&lt;/a&gt;
+            &lt;a href=&quot;#ch2-11-increment-decrement&quot;&gt;Increment and decrement&lt;/a&gt;
+            &lt;a href=&quot;#final-output-prediction-table&quot;&gt;Output prediction table&lt;/a&gt;
+          &lt;/nav&gt;
+        &lt;/article&gt;
+
+        &lt;article class=&quot;card exam-card structure&quot; id=&quot;conditional-logic-business-rules&quot; data-nav-section&gt;
+          &lt;h3&gt;Conditional Logic and Business Rules&lt;/h3&gt;
+          &lt;p&gt;Decisions choose which block of code runs. Use &lt;code&gt;if&lt;/code&gt;, &lt;code&gt;elseif&lt;/code&gt;, and &lt;code&gt;else&lt;/code&gt; for ranges or complex rules. Use &lt;code&gt;switch&lt;/code&gt; when one expression is compared against several exact values.&lt;/p&gt;
+          &lt;span class=&quot;code-label&quot;&gt;Discount rule&lt;/span&gt;
+          &lt;pre&gt;&lt;code&gt;&amp;lt;?php
+$quantity = 7;
+$price = 120;
+$total = $quantity * $price;
+
+if ($quantity &amp;gt; 5) {
+    $total *= 0.90; // 10% discount
+}
+
+echo &quot;Total: R&quot; . number_format($total, 2);
+?&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+          &lt;span class=&quot;code-label&quot;&gt;Switch example&lt;/span&gt;
+          &lt;pre&gt;&lt;code&gt;&amp;lt;?php
+$grade = &quot;B&quot;;
+
+switch ($grade) {
+    case &quot;A&quot;:
+        echo &quot;Excellent&quot;;
+        break;
+    case &quot;B&quot;:
+        echo &quot;Good&quot;;
+        break;
+    default:
+        echo &quot;Keep improving&quot;;
+}
+?&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+          &lt;div class=&quot;callout warning&quot;&gt;&lt;strong&gt;Exam trap:&lt;/strong&gt; Missing &lt;code&gt;break&lt;/code&gt; in &lt;code&gt;switch&lt;/code&gt; can cause fall-through. Conditions must evaluate to true or false.&lt;/div&gt;
+          &lt;nav class=&quot;related-chapters&quot; aria-label=&quot;Related sections for conditional logic&quot;&gt;
+            &lt;a href=&quot;#ch3-2-if-statement&quot;&gt;If statement&lt;/a&gt;
+            &lt;a href=&quot;#ch3-3-else-statement&quot;&gt;Else and elseif&lt;/a&gt;
+            &lt;a href=&quot;#ch3-4-switch-statement&quot;&gt;Switch&lt;/a&gt;
+          &lt;/nav&gt;
+        &lt;/article&gt;
+
+        &lt;article class=&quot;card exam-card structure&quot; id=&quot;loops-code-tracing&quot; data-nav-section&gt;
+          &lt;h3&gt;Loops and Code Tracing&lt;/h3&gt;
+          &lt;p&gt;Loops repeat code while a condition remains true. &lt;code&gt;while&lt;/code&gt; checks before running, &lt;code&gt;do...while&lt;/code&gt; runs at least once, &lt;code&gt;for&lt;/code&gt; is useful when the counter pattern is known, and &lt;code&gt;foreach&lt;/code&gt; is best for arrays.&lt;/p&gt;
+          &lt;span class=&quot;code-label&quot;&gt;Accumulator example&lt;/span&gt;
+          &lt;pre&gt;&lt;code&gt;&amp;lt;?php
+$total = 0;
+
+for ($i = 1; $i &amp;lt;= 10; $i++) {
+    $total += $i;
+}
+
+echo $total; // 55
+?&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+          &lt;div class=&quot;table-wrap&quot;&gt;
+            &lt;table&gt;
+              &lt;thead&gt;
+                &lt;tr&gt;
+                  &lt;th&gt;Iteration&lt;/th&gt;
+                  &lt;th&gt;&lt;code&gt;$i&lt;/code&gt;&lt;/th&gt;
+                  &lt;th&gt;&lt;code&gt;$total&lt;/code&gt; before&lt;/th&gt;
+                  &lt;th&gt;Operation&lt;/th&gt;
+                  &lt;th&gt;&lt;code&gt;$total&lt;/code&gt; after&lt;/th&gt;
+                &lt;/tr&gt;
+              &lt;/thead&gt;
+              &lt;tbody&gt;
+                &lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;&lt;code&gt;0 + 1&lt;/code&gt;&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;&lt;code&gt;1 + 2&lt;/code&gt;&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;...&lt;/td&gt;&lt;td&gt;...&lt;/td&gt;&lt;td&gt;...&lt;/td&gt;&lt;td&gt;...&lt;/td&gt;&lt;td&gt;...&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;10&lt;/td&gt;&lt;td&gt;10&lt;/td&gt;&lt;td&gt;45&lt;/td&gt;&lt;td&gt;&lt;code&gt;45 + 10&lt;/code&gt;&lt;/td&gt;&lt;td&gt;55&lt;/td&gt;&lt;/tr&gt;
+              &lt;/tbody&gt;
+            &lt;/table&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;callout warning&quot;&gt;&lt;strong&gt;Exam trap:&lt;/strong&gt; Infinite loops happen when the condition never becomes false. Always identify the initial value, condition, body, and update.&lt;/div&gt;
+          &lt;nav class=&quot;related-chapters&quot; aria-label=&quot;Related sections for loops&quot;&gt;
+            &lt;a href=&quot;#ch3-5-looping&quot;&gt;Looping&lt;/a&gt;
+            &lt;a href=&quot;#ch3-6-while-statement&quot;&gt;While statement&lt;/a&gt;
+            &lt;a href=&quot;#final-code-tracing-table&quot;&gt;Code tracing table&lt;/a&gt;
+          &lt;/nav&gt;
+        &lt;/article&gt;
+
+        &lt;article class=&quot;card exam-card definition&quot; id=&quot;string-functions&quot; data-nav-section&gt;
+          &lt;h3&gt;String Functions&lt;/h3&gt;
+          &lt;p&gt;Strings are sequences of characters. Single quotes display most text literally, while double quotes can interpolate variables and use escape sequences such as &lt;code&gt;\n&lt;/code&gt;, &lt;code&gt;\t&lt;/code&gt;, &lt;code&gt;\$&lt;/code&gt;, and &lt;code&gt;\&quot;&lt;/code&gt;.&lt;/p&gt;
+          &lt;p&gt;Practise &lt;code&gt;strlen()&lt;/code&gt;, &lt;code&gt;str_word_count()&lt;/code&gt;, &lt;code&gt;substr()&lt;/code&gt;, &lt;code&gt;strstr()&lt;/code&gt;, &lt;code&gt;strpos()&lt;/code&gt;, &lt;code&gt;strrpos()&lt;/code&gt;, &lt;code&gt;substr_count()&lt;/code&gt;, &lt;code&gt;strtr()&lt;/code&gt;, case functions, &lt;code&gt;str_pad()&lt;/code&gt;, and &lt;code&gt;number_format()&lt;/code&gt;.&lt;/p&gt;
+          &lt;span class=&quot;code-label&quot;&gt;Search and transform&lt;/span&gt;
+          &lt;pre&gt;&lt;code&gt;&amp;lt;?php
+$text = &quot;Hello, PHP World!&quot;;
+
+echo strlen($text) . &quot;&amp;lt;br&amp;gt;&quot;;
+echo strtoupper($text) . &quot;&amp;lt;br&amp;gt;&quot;;
+echo substr($text, 7, 3) . &quot;&amp;lt;br&amp;gt;&quot;;
+
+echo (strpos($text, &quot;PHP&quot;) !== false) ? &quot;Found&quot; : &quot;Not found&quot;;
+?&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+          &lt;div class=&quot;callout warning&quot;&gt;&lt;strong&gt;Exam trap:&lt;/strong&gt; &lt;code&gt;strpos()&lt;/code&gt; can return &lt;code&gt;0&lt;/code&gt; when text is found at the start of a string. Test with &lt;code&gt;!== false&lt;/code&gt;.&lt;/div&gt;
+          &lt;nav class=&quot;related-chapters&quot; aria-label=&quot;Related sections for strings&quot;&gt;
+            &lt;a href=&quot;#ch4-1-create-access-strings&quot;&gt;Create strings&lt;/a&gt;
+            &lt;a href=&quot;#ch4-6-searching-strings&quot;&gt;Searching strings&lt;/a&gt;
+            &lt;a href=&quot;#ch4-13-number-format&quot;&gt;Number format&lt;/a&gt;
+          &lt;/nav&gt;
+        &lt;/article&gt;
+
+        &lt;article class=&quot;card exam-card success&quot; id=&quot;arrays-array-processing&quot; data-nav-section&gt;
+          &lt;h3&gt;Arrays and Array Processing&lt;/h3&gt;
+          &lt;p&gt;Arrays store multiple values in one variable. Indexed arrays use numeric indexes, associative arrays use string keys, and multidimensional arrays store arrays inside arrays. &lt;code&gt;foreach&lt;/code&gt; is the clearest loop for traversal.&lt;/p&gt;
+          &lt;p&gt;Use &lt;code&gt;print_r()&lt;/code&gt; for debugging, &lt;code&gt;count()&lt;/code&gt; for number of elements, &lt;code&gt;array_slice()&lt;/code&gt; for extracting part of an array, and sorting functions such as &lt;code&gt;sort()&lt;/code&gt;, &lt;code&gt;rsort()&lt;/code&gt;, &lt;code&gt;asort()&lt;/code&gt;, &lt;code&gt;arsort()&lt;/code&gt;, &lt;code&gt;ksort()&lt;/code&gt;, and &lt;code&gt;krsort()&lt;/code&gt;.&lt;/p&gt;
+          &lt;span class=&quot;code-label&quot;&gt;Associative array loop&lt;/span&gt;
+          &lt;pre&gt;&lt;code&gt;&amp;lt;?php
+$marks = array(&quot;Ava&quot; =&amp;gt; 72, &quot;Ben&quot; =&amp;gt; 65, &quot;Cara&quot; =&amp;gt; 88);
+
+foreach ($marks as $student =&amp;gt; $mark) {
+    echo &quot;$student scored $mark&amp;lt;br&amp;gt;&quot;;
+}
+?&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+          &lt;div class=&quot;callout warning&quot;&gt;&lt;strong&gt;Exam trap:&lt;/strong&gt; &lt;code&gt;count($array) - 1&lt;/code&gt; only gives the last index if the indexed array uses consecutive keys starting at 0. Sparse arrays can break this assumption.&lt;/div&gt;
+          &lt;nav class=&quot;related-chapters&quot; aria-label=&quot;Related sections for arrays&quot;&gt;
+            &lt;a href=&quot;#ch5-1-defining-arrays&quot;&gt;Defining arrays&lt;/a&gt;
+            &lt;a href=&quot;#ch5-5-print-r&quot;&gt;print_r&lt;/a&gt;
+            &lt;a href=&quot;#ch5-7-counting-arrays&quot;&gt;Counting arrays&lt;/a&gt;
+          &lt;/nav&gt;
+        &lt;/article&gt;
+
+        &lt;article class=&quot;card exam-card success&quot; id=&quot;average-maximum-calculations&quot; data-nav-section&gt;
+          &lt;h3&gt;Average and Maximum Calculations&lt;/h3&gt;
+          &lt;p&gt;Average and maximum questions usually need an accumulator, a count, and a comparison. These patterns apply to marks, prices, temperatures, sales, and many other list problems.&lt;/p&gt;
+          &lt;span class=&quot;code-label&quot;&gt;Average and maximum&lt;/span&gt;
+          &lt;pre&gt;&lt;code&gt;&amp;lt;?php
+$marks = array(72, 65, 88, 54, 91);
+$total = 0;
+$maximum = $marks[0];
+
+foreach ($marks as $mark) {
+    $total += $mark;
+
+    if ($mark &amp;gt; $maximum) {
+        $maximum = $mark;
+    }
+}
+
+$average = $total / count($marks);
+
+echo &quot;Average: &quot; . number_format($average, 2) . &quot;&amp;lt;br&amp;gt;&quot;;
+echo &quot;Maximum: $maximum&quot;;
+?&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+          &lt;div class=&quot;callout warning&quot;&gt;&lt;strong&gt;Exam trap:&lt;/strong&gt; Initialize &lt;code&gt;$maximum&lt;/code&gt; with the first array value, not &lt;code&gt;0&lt;/code&gt;. Also avoid division by zero when an array is empty.&lt;/div&gt;
+          &lt;nav class=&quot;related-chapters&quot; aria-label=&quot;Related sections for average and maximum&quot;&gt;
+            &lt;a href=&quot;#ch5-7-counting-arrays&quot;&gt;Counting arrays&lt;/a&gt;
+            &lt;a href=&quot;#final-average-max-pattern&quot;&gt;Average/max pattern&lt;/a&gt;
+            &lt;a href=&quot;#complete-program-student-marks&quot;&gt;Student marks program&lt;/a&gt;
+          &lt;/nav&gt;
+        &lt;/article&gt;
+
+        &lt;article class=&quot;card exam-card structure&quot; id=&quot;functions-scope&quot; data-nav-section&gt;
+          &lt;h3&gt;Functions and Scope&lt;/h3&gt;
+          &lt;p&gt;Functions package reusable logic. Know the difference between built-in functions and user-defined functions, parameters and arguments, return values, default parameters, local scope, and global scope.&lt;/p&gt;
+          &lt;span class=&quot;code-label&quot;&gt;Reusable average function&lt;/span&gt;
+          &lt;pre&gt;&lt;code&gt;&amp;lt;?php
+function calculateAverage($values) {
+    if (count($values) === 0) {
+        return 0;
+    }
+
+    $total = 0;
+    foreach ($values as $value) {
+        $total += $value;
+    }
+
+    return $total / count($values);
+}
+
+$marks = array(70, 80, 90);
+echo calculateAverage($marks); // 80
+?&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+          &lt;div class=&quot;callout warning&quot;&gt;&lt;strong&gt;Exam trap:&lt;/strong&gt; Variables created inside a function are local unless passed in, returned, or accessed using &lt;code&gt;global&lt;/code&gt;. Prefer parameters and returns.&lt;/div&gt;
+          &lt;nav class=&quot;related-chapters&quot; aria-label=&quot;Related sections for functions&quot;&gt;
+            &lt;a href=&quot;#ch6-2-what-is-function&quot;&gt;What is a function?&lt;/a&gt;
+            &lt;a href=&quot;#ch6-6-parameters&quot;&gt;Parameters&lt;/a&gt;
+            &lt;a href=&quot;#ch6-9-variable-scope&quot;&gt;Variable scope&lt;/a&gt;
+          &lt;/nav&gt;
+        &lt;/article&gt;
+
+        &lt;article class=&quot;card exam-card structure&quot; id=&quot;complete-php-program-patterns&quot; data-nav-section&gt;
+          &lt;h3&gt;Complete PHP Program Patterns&lt;/h3&gt;
+          &lt;p&gt;A complete program connects all the parts: input values, variables, arrays, decisions, loops, functions, and formatted output. Practise student marks summaries, shopping cart totals, password checks, word counts, and username generation.&lt;/p&gt;
+          &lt;span class=&quot;code-label&quot;&gt;Complete marks summary&lt;/span&gt;
+          &lt;pre&gt;&lt;code&gt;&amp;lt;?php
+function calculateAverage($values) {
+    $total = 0;
+
+    foreach ($values as $value) {
+        $total += $value;
+    }
+
+    return count($values) &amp;gt; 0 ? $total / count($values) : 0;
+}
+
+function findMaximum($values) {
+    if (count($values) === 0) {
+        return null;
+    }
+
+    $maximum = $values[0];
+
+    foreach ($values as $value) {
+        if ($value &amp;gt; $maximum) {
+            $maximum = $value;
+        }
+    }
+
+    return $maximum;
+}
+
+$marks = array(72, 65, 88, 54, 91);
+$average = calculateAverage($marks);
+$maximum = findMaximum($marks);
+
+if ($average &amp;gt;= 50) {
+    $status = &quot;Class average passed&quot;;
+} else {
+    $status = &quot;Class average failed&quot;;
+}
+
+echo &quot;Average: &quot; . number_format($average, 2) . &quot;&amp;lt;br&amp;gt;&quot;;
+echo &quot;Maximum: $maximum&amp;lt;br&amp;gt;&quot;;
+echo $status;
+?&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+          &lt;div class=&quot;callout warning&quot;&gt;&lt;strong&gt;Exam trap:&lt;/strong&gt; A complete program must be logically connected. Initialize each variable before using it.&lt;/div&gt;
+          &lt;nav class=&quot;related-chapters&quot; aria-label=&quot;Related sections for complete programs&quot;&gt;
+            &lt;a href=&quot;#final-practice-programs&quot;&gt;Practice programs&lt;/a&gt;
+            &lt;a href=&quot;#complete-program-student-marks&quot;&gt;Student marks&lt;/a&gt;
+            &lt;a href=&quot;#complete-program-shopping-cart&quot;&gt;Shopping cart&lt;/a&gt;
+          &lt;/nav&gt;
+        &lt;/article&gt;
+
+        &lt;article class=&quot;card exam-card error&quot; id=&quot;debugging-exam-traps&quot; data-nav-section&gt;
+          &lt;h3&gt;Debugging and Exam Traps&lt;/h3&gt;
+          &lt;p&gt;Syntax errors include missing semicolons, braces, quotes, and parentheses. Logic errors include the wrong operator, wrong condition, or wrong loop update. Runtime warnings often come from undefined variables, undefined indexes, or incorrect function use. Use &lt;code&gt;var_dump()&lt;/code&gt; when you need to see both a value and its data type while debugging.&lt;/p&gt;
+          &lt;span class=&quot;code-label&quot;&gt;Debug output&lt;/span&gt;
+          &lt;pre&gt;&lt;code&gt;&amp;lt;?php
+$numbers = array(4, 8, 15);
+
+echo &quot;Array contents:&amp;lt;pre&amp;gt;&quot;;
+print_r($numbers);
+echo &quot;&amp;lt;/pre&amp;gt;&quot;;
+
+echo &quot;Type of first value: &quot; . gettype($numbers[0]) . &quot;&amp;lt;br&amp;gt;&quot;;
+
+echo &quot;Detailed dump:&amp;lt;pre&amp;gt;&quot;;
+var_dump($numbers);
+echo &quot;&amp;lt;/pre&amp;gt;&quot;;
+?&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+          &lt;ul class=&quot;mini-list&quot;&gt;
+            &lt;li&gt;&lt;code&gt;=&lt;/code&gt; instead of &lt;code&gt;==&lt;/code&gt; in conditions.&lt;/li&gt;
+            &lt;li&gt;Forgetting &lt;code&gt;break&lt;/code&gt; in &lt;code&gt;switch&lt;/code&gt;.&lt;/li&gt;
+            &lt;li&gt;Using &lt;code&gt;$array[count($array)]&lt;/code&gt; for the last element.&lt;/li&gt;
+            &lt;li&gt;Using &lt;code&gt;strpos()&lt;/code&gt; without &lt;code&gt;!== false&lt;/code&gt;.&lt;/li&gt;
+            &lt;li&gt;Forgetting to initialize totals before loops.&lt;/li&gt;
+            &lt;li&gt;Confusing parameters and arguments.&lt;/li&gt;
+          &lt;/ul&gt;
+          &lt;nav class=&quot;related-chapters&quot; aria-label=&quot;Related sections for debugging&quot;&gt;
+            &lt;a href=&quot;#final-debugging-checklist&quot;&gt;Debugging checklist&lt;/a&gt;
+            &lt;a href=&quot;#ch5-5-print-r&quot;&gt;print_r&lt;/a&gt;
+            &lt;a href=&quot;#ch6-9-variable-scope&quot;&gt;Scope&lt;/a&gt;
+          &lt;/nav&gt;
+        &lt;/article&gt;
+      &lt;/section&gt;
+
+      &lt;section id=&quot;general-module-content&quot; class=&quot;major-section&quot; data-nav-section&gt;
+        &lt;h2&gt;General Module Content&lt;/h2&gt;
+        &lt;p class=&quot;section-intro&quot;&gt;Use this section as the chapter-by-chapter study guide. Each topic keeps the explanation simple first, then anchors the correct PHP term or pattern.&lt;/p&gt;
+
+        &lt;section id=&quot;chapter-1&quot; class=&quot;chapter&quot; data-nav-section&gt;
+          &lt;h2&gt;Topic 1: Introduction to PHP&lt;/h2&gt;
+          &lt;p class=&quot;section-intro&quot;&gt;PHP is used to create dynamic pages where the server prepares the response before the browser displays it.&lt;/p&gt;
+          &lt;div class=&quot;grid two-col&quot;&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch1-1-what-is-php&quot;&gt;
+              &lt;h3&gt;What is PHP?&lt;/h3&gt;
+              &lt;p&gt;PHP is a server-side scripting language for dynamic and interactive websites. It can be embedded inside HTML, but the PHP code runs on the server. The browser receives the generated HTML output.&lt;/p&gt;
+              &lt;div class=&quot;diagram-flow&quot; aria-label=&quot;PHP request flow&quot;&gt;
+                &lt;span&gt;Browser request&lt;/span&gt;
+                &lt;span&gt;Web server&lt;/span&gt;
+                &lt;span&gt;PHP engine&lt;/span&gt;
+                &lt;span&gt;Generated HTML&lt;/span&gt;
+                &lt;span&gt;Browser display&lt;/span&gt;
+              &lt;/div&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch1-2-php-ini&quot;&gt;
+              &lt;h3&gt;php.ini&lt;/h3&gt;
+              &lt;p&gt;&lt;code&gt;php.ini&lt;/code&gt; is the PHP configuration file. It controls runtime behaviour, including &lt;code&gt;date.timezone&lt;/code&gt;, &lt;code&gt;display_errors&lt;/code&gt;, and &lt;code&gt;upload_max_filesize&lt;/code&gt;. A server restart may be required after edits.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch1-3-basic-php-syntax&quot;&gt;
+              &lt;h3&gt;Basic PHP Syntax&lt;/h3&gt;
+              &lt;p&gt;PHP starts with &lt;code&gt;&amp;lt;?php&lt;/code&gt;. Statements end with semicolons. &lt;code&gt;echo&lt;/code&gt; and &lt;code&gt;print&lt;/code&gt; output values.&lt;/p&gt;
+              &lt;pre&gt;&lt;code&gt;&amp;lt;?php
+echo &quot;Hello, world!&quot;;
+?&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch1-5-embedding-php-html&quot;&gt;
+              &lt;h3&gt;Embedding PHP in HTML&lt;/h3&gt;
+              &lt;p&gt;A &lt;code&gt;.php&lt;/code&gt; file can contain normal HTML and PHP blocks. PHP runs only inside PHP tags, and the generated output becomes part of the HTML response.&lt;/p&gt;
+              &lt;pre&gt;&lt;code&gt;&amp;lt;h1&amp;gt;&amp;lt;?php echo &quot;Hello, world!&quot;; ?&amp;gt;&amp;lt;/h1&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch1-8-comments&quot;&gt;
+              &lt;h3&gt;Comments&lt;/h3&gt;
+              &lt;p&gt;Comments are ignored by the PHP engine and are used to explain code. Single-line comments use &lt;code&gt;//&lt;/code&gt; or &lt;code&gt;#&lt;/code&gt;. Multi-line comments use &lt;code&gt;/* ... */&lt;/code&gt;.&lt;/p&gt;
+            &lt;/article&gt;
+          &lt;/div&gt;
+
+          &lt;article class=&quot;card chapter-card chapter-example&quot; id=&quot;ch1-example-basic-page&quot;&gt;
+            &lt;h3&gt;Topic 1 Example: A Basic PHP Page&lt;/h3&gt;
+            &lt;p&gt;This small page shows PHP embedded in HTML, comments, and &lt;code&gt;echo&lt;/code&gt; output. The server runs the PHP first, then the browser receives the finished HTML.&lt;/p&gt;
+            &lt;span class=&quot;code-label&quot;&gt;Input PHP file&lt;/span&gt;
+            &lt;pre&gt;&lt;code&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+&amp;lt;body&amp;gt;
+    &amp;lt;?php
+    // This comment is ignored by the PHP engine.
+    echo &quot;&amp;lt;h1&amp;gt;Welcome to IP621&amp;lt;/h1&amp;gt;&quot;;
+    echo &quot;&amp;lt;p&amp;gt;PHP generated this paragraph on the server.&amp;lt;/p&amp;gt;&quot;;
+    ?&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+            &lt;div class=&quot;table-wrap&quot;&gt;
+              &lt;table&gt;
+                &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Concept&lt;/th&gt;&lt;th&gt;What the browser receives&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+                &lt;tbody&gt;
+                  &lt;tr&gt;&lt;td&gt;Embedded PHP&lt;/td&gt;&lt;td&gt;Only the generated HTML appears, not the PHP code.&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;code&gt;echo&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;&amp;lt;h1&amp;gt;Welcome to IP621&amp;lt;/h1&amp;gt;&lt;/code&gt; and a paragraph are sent to the browser.&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;Comment&lt;/td&gt;&lt;td&gt;The comment does not appear in the page output.&lt;/td&gt;&lt;/tr&gt;
+                &lt;/tbody&gt;
+              &lt;/table&gt;
+            &lt;/div&gt;
+          &lt;/article&gt;
+          &lt;a class=&quot;back-link&quot; href=&quot;#exam-focus-areas&quot;&gt;Back to exam focus&lt;/a&gt;
+        &lt;/section&gt;
+
+        &lt;section id=&quot;chapter-2&quot; class=&quot;chapter&quot; data-nav-section&gt;
+          &lt;h2&gt;Topic 2: PHP Language Basics&lt;/h2&gt;
+          &lt;p class=&quot;section-intro&quot;&gt;This topic covers the pieces used in almost every PHP program: variables, data types, type checks, operators, and constants.&lt;/p&gt;
+          &lt;div class=&quot;grid two-col&quot;&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch2-1-variables&quot;&gt;
+              &lt;h3&gt;Variables&lt;/h3&gt;
+              &lt;p&gt;Variables store values. They begin with &lt;code&gt;$&lt;/code&gt; and should use meaningful names such as &lt;code&gt;$studentName&lt;/code&gt; or &lt;code&gt;$totalMark&lt;/code&gt;.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch2-2-naming-variables&quot;&gt;
+              &lt;h3&gt;Naming Variables&lt;/h3&gt;
+              &lt;div class=&quot;table-wrap&quot;&gt;
+                &lt;table&gt;
+                  &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Rule&lt;/th&gt;&lt;th&gt;Valid Example&lt;/th&gt;&lt;th&gt;Invalid Example&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+                  &lt;tbody&gt;
+                    &lt;tr&gt;&lt;td&gt;Must start with &lt;code&gt;$&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;$name&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;name&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                    &lt;tr&gt;&lt;td&gt;First char after &lt;code&gt;$&lt;/code&gt; must be a letter or underscore&lt;/td&gt;&lt;td&gt;&lt;code&gt;$_total&lt;/code&gt;, &lt;code&gt;$score&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;$1score&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                    &lt;tr&gt;&lt;td&gt;No spaces or hyphens&lt;/td&gt;&lt;td&gt;&lt;code&gt;$totalAmount&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;$total amount&lt;/code&gt;, &lt;code&gt;$user-name&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                    &lt;tr&gt;&lt;td&gt;Case-sensitive&lt;/td&gt;&lt;td&gt;&lt;code&gt;$mark&lt;/code&gt; and &lt;code&gt;$Mark&lt;/code&gt; are different&lt;/td&gt;&lt;td&gt;Do not mix cases accidentally&lt;/td&gt;&lt;/tr&gt;
+                  &lt;/tbody&gt;
+                &lt;/table&gt;
+              &lt;/div&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch2-3-creating-variables&quot;&gt;
+              &lt;h3&gt;Creating Variables&lt;/h3&gt;
+              &lt;p&gt;In PHP, a variable is created when you assign a value to it. The assignment operator is &lt;code&gt;=&lt;/code&gt;.&lt;/p&gt;
+              &lt;pre&gt;&lt;code&gt;$x = 5;
+$y = 6;
+echo $x + $y; // 11&lt;/code&gt;&lt;/pre&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch2-4-data-types&quot;&gt;
+              &lt;h3&gt;Data Types&lt;/h3&gt;
+              &lt;div class=&quot;table-wrap&quot;&gt;
+                &lt;table&gt;
+                  &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Type Group&lt;/th&gt;&lt;th&gt;Data Type&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;th&gt;Example&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+                  &lt;tbody&gt;
+                    &lt;tr&gt;&lt;td&gt;Scalar&lt;/td&gt;&lt;td&gt;Integer&lt;/td&gt;&lt;td&gt;Whole number&lt;/td&gt;&lt;td&gt;&lt;code&gt;15&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                    &lt;tr&gt;&lt;td&gt;Scalar&lt;/td&gt;&lt;td&gt;Float/Double&lt;/td&gt;&lt;td&gt;Decimal number&lt;/td&gt;&lt;td&gt;&lt;code&gt;8.23&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                    &lt;tr&gt;&lt;td&gt;Scalar&lt;/td&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;Characters/text&lt;/td&gt;&lt;td&gt;&lt;code&gt;&quot;Hello&quot;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                    &lt;tr&gt;&lt;td&gt;Scalar&lt;/td&gt;&lt;td&gt;Boolean&lt;/td&gt;&lt;td&gt;True/false&lt;/td&gt;&lt;td&gt;&lt;code&gt;true&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                    &lt;tr&gt;&lt;td&gt;Compound&lt;/td&gt;&lt;td&gt;Array&lt;/td&gt;&lt;td&gt;Multiple values&lt;/td&gt;&lt;td&gt;&lt;code&gt;array(1, 2, 3)&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                    &lt;tr&gt;&lt;td&gt;Compound&lt;/td&gt;&lt;td&gt;Object&lt;/td&gt;&lt;td&gt;Properties and methods&lt;/td&gt;&lt;td&gt;object instance&lt;/td&gt;&lt;/tr&gt;
+                    &lt;tr&gt;&lt;td&gt;Special&lt;/td&gt;&lt;td&gt;Resource&lt;/td&gt;&lt;td&gt;External resource&lt;/td&gt;&lt;td&gt;file/database handle&lt;/td&gt;&lt;/tr&gt;
+                    &lt;tr&gt;&lt;td&gt;Special&lt;/td&gt;&lt;td&gt;Null&lt;/td&gt;&lt;td&gt;No explicit value&lt;/td&gt;&lt;td&gt;&lt;code&gt;null&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                  &lt;/tbody&gt;
+                &lt;/table&gt;
+              &lt;/div&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch2-5-loose-typing&quot;&gt;
+              &lt;h3&gt;Loose Typing&lt;/h3&gt;
+              &lt;p&gt;PHP is loosely typed, which means it can convert values depending on context. For example, a numeric string can be treated like a number in arithmetic. A strongly typed language is stricter about type changes.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch2-6-testing-variable-types&quot;&gt;
+              &lt;h3&gt;Testing Variable Types&lt;/h3&gt;
+              &lt;p&gt;Use &lt;code&gt;gettype()&lt;/code&gt; to display the type. Use checks such as &lt;code&gt;is_int()&lt;/code&gt;, &lt;code&gt;is_float()&lt;/code&gt;, &lt;code&gt;is_string()&lt;/code&gt;, &lt;code&gt;is_bool()&lt;/code&gt;, &lt;code&gt;is_array()&lt;/code&gt;, and &lt;code&gt;is_null()&lt;/code&gt;.&lt;/p&gt;
+              &lt;p&gt;For existence and blank-value checks, PHP uses &lt;code&gt;isset()&lt;/code&gt; and &lt;code&gt;empty()&lt;/code&gt;. Think of them as &quot;is set&quot; and &quot;is empty&quot; checks, but remember the real function names do not have underscores.&lt;/p&gt;
+              &lt;pre&gt;&lt;code&gt;$name = &quot;Rix&quot;;
+$email = &quot;&quot;;
+$age = null;
+
+echo isset($name) ? &quot;name is set&amp;lt;br&amp;gt;&quot; : &quot;name is not set&amp;lt;br&amp;gt;&quot;;
+echo empty($email) ? &quot;email is empty&amp;lt;br&amp;gt;&quot; : &quot;email has a value&amp;lt;br&amp;gt;&quot;;
+echo isset($age) ? &quot;age is set&amp;lt;br&amp;gt;&quot; : &quot;age is not set&amp;lt;br&amp;gt;&quot;;
+echo empty($age) ? &quot;age is empty&quot; : &quot;age has a value&quot;;&lt;/code&gt;&lt;/pre&gt;
+              &lt;div class=&quot;table-wrap&quot;&gt;
+                &lt;table&gt;
+                  &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Check&lt;/th&gt;&lt;th&gt;Meaning&lt;/th&gt;&lt;th&gt;Result in example&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+                  &lt;tbody&gt;
+                    &lt;tr&gt;&lt;td&gt;&lt;code&gt;isset($name)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;True when the variable exists and is not &lt;code&gt;null&lt;/code&gt;.&lt;/td&gt;&lt;td&gt;&lt;code&gt;name is set&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                    &lt;tr&gt;&lt;td&gt;&lt;code&gt;empty($email)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;True when the value is blank, zero-like, false, empty array, &lt;code&gt;null&lt;/code&gt;, or unset.&lt;/td&gt;&lt;td&gt;&lt;code&gt;email is empty&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                    &lt;tr&gt;&lt;td&gt;&lt;code&gt;isset($age)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;False because &lt;code&gt;$age&lt;/code&gt; is explicitly &lt;code&gt;null&lt;/code&gt;.&lt;/td&gt;&lt;td&gt;&lt;code&gt;age is not set&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                    &lt;tr&gt;&lt;td&gt;&lt;code&gt;empty($age)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;True because &lt;code&gt;null&lt;/code&gt; counts as empty.&lt;/td&gt;&lt;td&gt;&lt;code&gt;age is empty&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                  &lt;/tbody&gt;
+                &lt;/table&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;callout warning&quot;&gt;&lt;strong&gt;Exam trap:&lt;/strong&gt; &lt;code&gt;isset()&lt;/code&gt; and &lt;code&gt;empty()&lt;/code&gt; answer different questions. A variable can exist but still be empty, such as &lt;code&gt;$email = &quot;&quot;;&lt;/code&gt;.&lt;/div&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch2-7-changing-types&quot;&gt;
+              &lt;h3&gt;Changing Types&lt;/h3&gt;
+              &lt;p&gt;&lt;code&gt;settype()&lt;/code&gt; changes the variable&#x27;s type permanently where possible. That matters in tracing questions because the original variable may be different after the call.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch2-8-type-casting&quot;&gt;
+              &lt;h3&gt;Type Casting&lt;/h3&gt;
+              &lt;p&gt;Casting treats a value as another type for the expression: &lt;code&gt;(int)&lt;/code&gt;, &lt;code&gt;(float)&lt;/code&gt;, &lt;code&gt;(string)&lt;/code&gt;, &lt;code&gt;(bool)&lt;/code&gt;, &lt;code&gt;(array)&lt;/code&gt;, and &lt;code&gt;(object)&lt;/code&gt;. Common helper functions include &lt;code&gt;intval()&lt;/code&gt;, &lt;code&gt;floatval()&lt;/code&gt;, and &lt;code&gt;strval()&lt;/code&gt;.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch2-9-operators&quot;&gt;
+              &lt;h3&gt;Operators&lt;/h3&gt;
+              &lt;p&gt;Operators build expressions. Know arithmetic, assignment, comparison, logical, and string operators. In output questions, apply precedence before writing the result.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch2-11-increment-decrement&quot;&gt;
+              &lt;h3&gt;Increment and Decrement&lt;/h3&gt;
+              &lt;p&gt;Pre-increment changes first: &lt;code&gt;++$x&lt;/code&gt;. Post-increment uses the current value first: &lt;code&gt;$x++&lt;/code&gt;. The same idea applies to decrement.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch2-12-string-operators&quot;&gt;
+              &lt;h3&gt;String Operators&lt;/h3&gt;
+              &lt;p&gt;The dot operator joins strings: &lt;code&gt;$full = $first . &quot; &quot; . $last;&lt;/code&gt;. Combined concatenation assignment appends text: &lt;code&gt;$message .= &quot;!&quot;;&lt;/code&gt;.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch2-13-constants&quot;&gt;
+              &lt;h3&gt;Constants&lt;/h3&gt;
+              &lt;p&gt;Constants hold values that should not change. They do not start with &lt;code&gt;$&lt;/code&gt; and are usually named in uppercase.&lt;/p&gt;
+              &lt;pre&gt;&lt;code&gt;define(&quot;PASS_MARK&quot;, 50);
+echo PASS_MARK;&lt;/code&gt;&lt;/pre&gt;
+            &lt;/article&gt;
+          &lt;/div&gt;
+
+          &lt;article class=&quot;card chapter-card chapter-example&quot; id=&quot;ch2-example-types-operators&quot;&gt;
+            &lt;h3&gt;Topic 2 Example: Variables, Types, Operators and Constants&lt;/h3&gt;
+            &lt;p&gt;This example uses variables, a constant, casting, type checking, arithmetic, concatenation, and a conditional expression in one short script.&lt;/p&gt;
+            &lt;span class=&quot;code-label&quot;&gt;Input PHP&lt;/span&gt;
+            &lt;pre&gt;&lt;code&gt;&amp;lt;?php
+$name = &quot;Rix&quot;;
+$rawMark = &quot;76&quot;;
+$bonus = 4;
+
+define(&quot;PASS_MARK&quot;, 50);
+
+$finalMark = (int) $rawMark + $bonus;
+$line = $name . &quot; final mark: &quot; . $finalMark;
+
+echo $line . &quot;&amp;lt;br&amp;gt;&quot;;
+echo &quot;Original type: &quot; . gettype($rawMark) . &quot;&amp;lt;br&amp;gt;&quot;;
+echo &quot;Final type: &quot; . gettype($finalMark) . &quot;&amp;lt;br&amp;gt;&quot;;
+echo ($finalMark &amp;gt;= PASS_MARK) ? &quot;Status: Pass&quot; : &quot;Status: Fail&quot;;
+?&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+            &lt;div class=&quot;table-wrap&quot;&gt;
+              &lt;table&gt;
+                &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Line&lt;/th&gt;&lt;th&gt;Output&lt;/th&gt;&lt;th&gt;Concept&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+                &lt;tbody&gt;
+                  &lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;&lt;code&gt;Rix final mark: 80&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Concatenation, casting, arithmetic.&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;&lt;code&gt;Original type: string&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;$rawMark&lt;/code&gt; starts as text.&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;&lt;code&gt;Final type: integer&lt;/code&gt;&lt;/td&gt;&lt;td&gt;The cast allows numeric addition.&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;&lt;code&gt;Status: Pass&lt;/code&gt;&lt;/td&gt;&lt;td&gt;The constant &lt;code&gt;PASS_MARK&lt;/code&gt; is used in a comparison.&lt;/td&gt;&lt;/tr&gt;
+                &lt;/tbody&gt;
+              &lt;/table&gt;
+            &lt;/div&gt;
+          &lt;/article&gt;
+          &lt;a class=&quot;back-link&quot; href=&quot;#exam-focus-areas&quot;&gt;Back to exam focus&lt;/a&gt;
+        &lt;/section&gt;
+
+        &lt;section id=&quot;chapter-3&quot; class=&quot;chapter&quot; data-nav-section&gt;
+          &lt;h2&gt;Topic 3: Decisions and Control Structures&lt;/h2&gt;
+          &lt;p class=&quot;section-intro&quot;&gt;Decision structures and loops are where many exam questions become practical business rules or tracing tasks.&lt;/p&gt;
+          &lt;div class=&quot;grid two-col&quot;&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch3-1-making-decisions&quot;&gt;
+              &lt;h3&gt;Making Decisions&lt;/h3&gt;
+              &lt;p&gt;A decision chooses which block of code runs. A condition is an expression that evaluates to true or false.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch3-2-if-statement&quot;&gt;
+              &lt;h3&gt;If Statement&lt;/h3&gt;
+              &lt;p&gt;An &lt;code&gt;if&lt;/code&gt; runs only when its condition is true.&lt;/p&gt;
+              &lt;pre&gt;&lt;code&gt;if ($widgets == 23) {
+    echo &quot;We have exactly 23 widgets in stock!&quot;;
+}&lt;/code&gt;&lt;/pre&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch3-3-else-statement&quot;&gt;
+              &lt;h3&gt;Else and Elseif&lt;/h3&gt;
+              &lt;p&gt;&lt;code&gt;else&lt;/code&gt; gives an alternative path. &lt;code&gt;elseif&lt;/code&gt; checks another condition when the first one fails.&lt;/p&gt;
+              &lt;pre&gt;&lt;code&gt;if ($widgets &amp;gt;= 10) {
+    echo &quot;Plenty in stock&quot;;
+} elseif ($widgets &amp;gt;= 5) {
+    echo &quot;Order soon&quot;;
+} else {
+    echo &quot;Order now&quot;;
+}&lt;/code&gt;&lt;/pre&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch3-4-switch-statement&quot;&gt;
+              &lt;h3&gt;Switch Statement&lt;/h3&gt;
+              &lt;p&gt;&lt;code&gt;switch&lt;/code&gt; is useful for comparing one variable or expression against several exact values. Use &lt;code&gt;case&lt;/code&gt;, &lt;code&gt;break&lt;/code&gt;, and &lt;code&gt;default&lt;/code&gt;.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch3-5-looping&quot;&gt;
+              &lt;h3&gt;Looping&lt;/h3&gt;
+              &lt;p&gt;Loops repeat a block of code until a condition changes. The main loop types are &lt;code&gt;while&lt;/code&gt;, &lt;code&gt;do...while&lt;/code&gt;, and &lt;code&gt;for&lt;/code&gt;.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch3-6-while-statement&quot;&gt;
+              &lt;h3&gt;While Statement&lt;/h3&gt;
+              &lt;p&gt;A &lt;code&gt;while&lt;/code&gt; loop checks its condition before each run. It is useful when you do not know exactly how many repeats are needed.&lt;/p&gt;
+              &lt;pre&gt;&lt;code&gt;$widgets = 10;
+
+while ($widgets &amp;gt; 0) {
+    echo &quot;Sold one widget&amp;lt;br&amp;gt;&quot;;
+    $widgets--;
+}&lt;/code&gt;&lt;/pre&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch3-7-for-loop&quot;&gt;
+              &lt;h3&gt;For Loop&lt;/h3&gt;
+              &lt;p&gt;A &lt;code&gt;for&lt;/code&gt; loop places initialization, condition, and update in one line. It is common in counter-based exam questions.&lt;/p&gt;
+              &lt;pre&gt;&lt;code&gt;for ($i = 1; $i &amp;lt;= 5; $i++) {
+    echo $i . &quot;&amp;lt;br&amp;gt;&quot;;
+}&lt;/code&gt;&lt;/pre&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch3-8-foreach-loop&quot;&gt;
+              &lt;h3&gt;Foreach Loop&lt;/h3&gt;
+              &lt;p&gt;&lt;code&gt;foreach&lt;/code&gt; loops through arrays without manually managing an index. It works well with indexed and associative arrays.&lt;/p&gt;
+              &lt;pre&gt;&lt;code&gt;foreach ($marks as $student =&amp;gt; $mark) {
+    echo &quot;$student: $mark&amp;lt;br&amp;gt;&quot;;
+}&lt;/code&gt;&lt;/pre&gt;
+            &lt;/article&gt;
+          &lt;/div&gt;
+
+          &lt;article class=&quot;card chapter-card chapter-example&quot; id=&quot;ch3-example-decisions-loops&quot;&gt;
+            &lt;h3&gt;Topic 3 Example: Decisions, Switch and Loops&lt;/h3&gt;
+            &lt;p&gt;This script combines &lt;code&gt;switch&lt;/code&gt;, &lt;code&gt;foreach&lt;/code&gt;, &lt;code&gt;if&lt;/code&gt;, &lt;code&gt;for&lt;/code&gt;, and &lt;code&gt;while&lt;/code&gt;. In an exam, trace it by writing each variable value after each loop pass.&lt;/p&gt;
+            &lt;span class=&quot;code-label&quot;&gt;Input PHP&lt;/span&gt;
+            &lt;pre&gt;&lt;code&gt;&amp;lt;?php
+$day = &quot;Tue&quot;;
+$marks = array(45, 67, 82, 50);
+$total = 0;
+$passes = 0;
+
+switch ($day) {
+    case &quot;Mon&quot;:
+        echo &quot;Revision day&amp;lt;br&amp;gt;&quot;;
+        break;
+    case &quot;Tue&quot;:
+        echo &quot;Practice test day&amp;lt;br&amp;gt;&quot;;
+        break;
+    default:
+        echo &quot;Normal study day&amp;lt;br&amp;gt;&quot;;
+}
+
+foreach ($marks as $mark) {
+    $total += $mark;
+
+    if ($mark &amp;gt;= 50) {
+        $passes++;
+    }
+}
+
+$average = $total / count($marks);
+echo &quot;Average: &quot; . number_format($average, 2) . &quot;&amp;lt;br&amp;gt;&quot;;
+echo &quot;Passes: $passes&amp;lt;br&amp;gt;&quot;;
+
+for ($i = 1; $i &amp;lt;= 3; $i++) {
+    echo &quot;Attempt $i&amp;lt;br&amp;gt;&quot;;
+}
+
+$stock = 2;
+while ($stock &amp;gt; 0) {
+    echo &quot;Stock left: $stock&amp;lt;br&amp;gt;&quot;;
+    $stock--;
+}
+?&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+            &lt;div class=&quot;table-wrap&quot;&gt;
+              &lt;table&gt;
+                &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Output&lt;/th&gt;&lt;th&gt;Why it appears&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+                &lt;tbody&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;code&gt;Practice test day&lt;/code&gt;&lt;/td&gt;&lt;td&gt;The &lt;code&gt;switch&lt;/code&gt; matches &lt;code&gt;&quot;Tue&quot;&lt;/code&gt;.&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;code&gt;Average: 61.00&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;(45 + 67 + 82 + 50) / 4&lt;/code&gt;.&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;code&gt;Passes: 3&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Three marks are at least 50.&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;code&gt;Attempt 1&lt;/code&gt;, &lt;code&gt;Attempt 2&lt;/code&gt;, &lt;code&gt;Attempt 3&lt;/code&gt;&lt;/td&gt;&lt;td&gt;The &lt;code&gt;for&lt;/code&gt; loop runs three times.&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;code&gt;Stock left: 2&lt;/code&gt;, then &lt;code&gt;Stock left: 1&lt;/code&gt;&lt;/td&gt;&lt;td&gt;The &lt;code&gt;while&lt;/code&gt; loop stops when stock becomes 0.&lt;/td&gt;&lt;/tr&gt;
+                &lt;/tbody&gt;
+              &lt;/table&gt;
+            &lt;/div&gt;
+          &lt;/article&gt;
+          &lt;a class=&quot;back-link&quot; href=&quot;#exam-focus-areas&quot;&gt;Back to exam focus&lt;/a&gt;
+        &lt;/section&gt;
+
+        &lt;section id=&quot;chapter-4&quot; class=&quot;chapter&quot; data-nav-section&gt;
+          &lt;h2&gt;Topic 4: Strings and String Manipulation&lt;/h2&gt;
+          &lt;p class=&quot;section-intro&quot;&gt;String questions test how carefully you read quotes, indexes, search results, and formatting functions.&lt;/p&gt;
+          &lt;div class=&quot;grid two-col&quot;&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch4-1-create-access-strings&quot;&gt;
+              &lt;h3&gt;Create and Access Strings&lt;/h3&gt;
+              &lt;p&gt;A string is a sequence of characters. Single quotes are mostly literal. Double quotes allow variable interpolation and escape sequences.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch4-2-complex-expressions-strings&quot;&gt;
+              &lt;h3&gt;Complex Expressions in Strings&lt;/h3&gt;
+              &lt;p&gt;Use curly braces when a variable touches surrounding text and PHP needs a clear boundary.&lt;/p&gt;
+              &lt;pre&gt;&lt;code&gt;$favoriteAnimal = &quot;cat&quot;;
+echo &quot;My favorite animals are {$favoriteAnimal}s&quot;;&lt;/code&gt;&lt;/pre&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch4-3-other-ways-create-strings&quot;&gt;
+              &lt;h3&gt;Other Ways to Create Strings&lt;/h3&gt;
+              &lt;p&gt;Strings can be created by concatenation, conditional expressions, or functions that return strings.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch4-4-string-length&quot;&gt;
+              &lt;h3&gt;String Length&lt;/h3&gt;
+              &lt;p&gt;&lt;code&gt;strlen()&lt;/code&gt; counts characters and &lt;code&gt;str_word_count()&lt;/code&gt; counts words. These are useful for validation, summaries, and password checks.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch4-5-access-characters&quot;&gt;
+              &lt;h3&gt;Access Characters&lt;/h3&gt;
+              &lt;p&gt;Use square brackets to access a character by index, starting at 0. Use &lt;code&gt;substr()&lt;/code&gt; to extract part of a string.&lt;/p&gt;
+              &lt;pre&gt;&lt;code&gt;$word = &quot;PHP&quot;;
+echo $word[0];       // P
+echo substr($word, 1); // HP&lt;/code&gt;&lt;/pre&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch4-6-searching-strings&quot;&gt;
+              &lt;h3&gt;Searching Strings&lt;/h3&gt;
+              &lt;p&gt;Use &lt;code&gt;strstr()&lt;/code&gt;, &lt;code&gt;strpos()&lt;/code&gt;, &lt;code&gt;strrpos()&lt;/code&gt;, &lt;code&gt;substr_count()&lt;/code&gt;, and &lt;code&gt;strpbrk()&lt;/code&gt; to find text. Remember that position 0 is a valid result.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch4-7-strtr&quot;&gt;
+              &lt;h3&gt;strtr&lt;/h3&gt;
+              &lt;p&gt;&lt;code&gt;strtr()&lt;/code&gt; translates or replaces characters. It is useful for simple text conversions such as making URL-friendly strings.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch4-11-case-functions&quot;&gt;
+              &lt;h3&gt;Case Functions&lt;/h3&gt;
+              &lt;p&gt;Use &lt;code&gt;strtolower()&lt;/code&gt;, &lt;code&gt;strtoupper()&lt;/code&gt;, &lt;code&gt;ucfirst()&lt;/code&gt;, &lt;code&gt;lcfirst()&lt;/code&gt;, and &lt;code&gt;ucwords()&lt;/code&gt; to control letter case.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch4-12-str-pad&quot;&gt;
+              &lt;h3&gt;str_pad&lt;/h3&gt;
+              &lt;p&gt;&lt;code&gt;str_pad()&lt;/code&gt; pads a string to a chosen length. Padding can be right, left, or both sides using &lt;code&gt;STR_PAD_RIGHT&lt;/code&gt;, &lt;code&gt;STR_PAD_LEFT&lt;/code&gt;, or &lt;code&gt;STR_PAD_BOTH&lt;/code&gt;.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch4-13-number-format&quot;&gt;
+              &lt;h3&gt;number_format&lt;/h3&gt;
+              &lt;p&gt;&lt;code&gt;number_format()&lt;/code&gt; formats numbers with decimal places and thousands separators. It is useful for money and average calculations.&lt;/p&gt;
+            &lt;/article&gt;
+          &lt;/div&gt;
+
+          &lt;article class=&quot;card chapter-card chapter-example&quot; id=&quot;ch4-example-string-functions&quot;&gt;
+            &lt;h3&gt;Topic 4 Example: String Functions with Input and Output&lt;/h3&gt;
+            &lt;p&gt;Use this card when revising string questions. The most common exam mistake is knowing the function name but not knowing exactly what it returns.&lt;/p&gt;
+            &lt;span class=&quot;code-label&quot;&gt;Input PHP&lt;/span&gt;
+            &lt;pre&gt;&lt;code&gt;&amp;lt;?php
+$text = &quot;Hello PHP World&quot;;
+$email = &quot;student@example.com&quot;;
+$phrase = &quot;nay nay&quot;;
+$name = &quot;rix&quot;;
+$price = 1234.5;
+
+echo strlen($text) . &quot;&amp;lt;br&amp;gt;&quot;;
+echo str_word_count($text) . &quot;&amp;lt;br&amp;gt;&quot;;
+echo substr($text, 6, 3) . &quot;&amp;lt;br&amp;gt;&quot;;
+echo strstr($email, &quot;@&quot;) . &quot;&amp;lt;br&amp;gt;&quot;;
+echo strpos($text, &quot;PHP&quot;) . &quot;&amp;lt;br&amp;gt;&quot;;
+echo strrpos(&quot;banana&quot;, &quot;a&quot;) . &quot;&amp;lt;br&amp;gt;&quot;;
+echo substr_count($phrase, &quot;nay&quot;) . &quot;&amp;lt;br&amp;gt;&quot;;
+echo strpbrk(&quot;cat&quot;, &quot;aeiou&quot;) . &quot;&amp;lt;br&amp;gt;&quot;;
+echo strtr(&quot;hello&quot;, &quot;eo&quot;, &quot;30&quot;) . &quot;&amp;lt;br&amp;gt;&quot;;
+echo strtoupper($name) . &quot;&amp;lt;br&amp;gt;&quot;;
+echo ucfirst($name) . &quot;&amp;lt;br&amp;gt;&quot;;
+echo str_pad(&quot;PHP&quot;, 6, &quot;*&quot;) . &quot;&amp;lt;br&amp;gt;&quot;;
+echo number_format($price, 2);
+?&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+            &lt;div class=&quot;table-wrap&quot;&gt;
+              &lt;table&gt;
+                &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Function&lt;/th&gt;&lt;th&gt;Input&lt;/th&gt;&lt;th&gt;Example Code&lt;/th&gt;&lt;th&gt;Output&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+                &lt;tbody&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;code&gt;strlen()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;&quot;Hello PHP World&quot;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;strlen($text)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;15&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;code&gt;str_word_count()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;&quot;Hello PHP World&quot;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;str_word_count($text)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;3&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;code&gt;substr()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;&quot;Hello PHP World&quot;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;substr($text, 6, 3)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;PHP&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;code&gt;strstr()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;&quot;student@example.com&quot;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;strstr($email, &quot;@&quot;)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;@example.com&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;code&gt;strpos()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;&quot;Hello PHP World&quot;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;strpos($text, &quot;PHP&quot;)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;6&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;code&gt;strrpos()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;&quot;banana&quot;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;strrpos(&quot;banana&quot;, &quot;a&quot;)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;5&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;code&gt;substr_count()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;&quot;nay nay&quot;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;substr_count($phrase, &quot;nay&quot;)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;2&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;code&gt;strpbrk()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;&quot;cat&quot;&lt;/code&gt;, search &lt;code&gt;&quot;aeiou&quot;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;strpbrk(&quot;cat&quot;, &quot;aeiou&quot;)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;at&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;code&gt;strtr()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;&quot;hello&quot;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;strtr(&quot;hello&quot;, &quot;eo&quot;, &quot;30&quot;)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;h3ll0&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;code&gt;strtolower()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;&quot;PHP&quot;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;strtolower(&quot;PHP&quot;)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;php&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;code&gt;strtoupper()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;&quot;rix&quot;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;strtoupper($name)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;RIX&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;code&gt;ucfirst()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;&quot;rix&quot;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;ucfirst($name)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;Rix&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;code&gt;lcfirst()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;&quot;Rix&quot;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;lcfirst(&quot;Rix&quot;)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;rix&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;code&gt;ucwords()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;&quot;internet programming&quot;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;ucwords(&quot;internet programming&quot;)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;Internet Programming&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;code&gt;str_pad()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;&quot;PHP&quot;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;str_pad(&quot;PHP&quot;, 6, &quot;*&quot;)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;PHP***&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;code&gt;str_pad()&lt;/code&gt; left&lt;/td&gt;&lt;td&gt;&lt;code&gt;&quot;Hi&quot;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;str_pad(&quot;Hi&quot;, 5, &quot;*&quot;, STR_PAD_LEFT)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;***Hi&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;code&gt;str_pad()&lt;/code&gt; both&lt;/td&gt;&lt;td&gt;&lt;code&gt;&quot;Hi&quot;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;str_pad(&quot;Hi&quot;, 6, &quot;*&quot;, STR_PAD_BOTH)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;**Hi**&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;code&gt;number_format()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;1234.5&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;number_format($price, 2)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;1,234.50&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;/tbody&gt;
+              &lt;/table&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;callout warning&quot;&gt;&lt;strong&gt;Exam trap:&lt;/strong&gt; &lt;code&gt;strpos(&quot;PHP&quot;, &quot;P&quot;)&lt;/code&gt; returns &lt;code&gt;0&lt;/code&gt;, because the first character is position 0. Use &lt;code&gt;!== false&lt;/code&gt; when checking whether a search succeeded.&lt;/div&gt;
+          &lt;/article&gt;
+          &lt;a class=&quot;back-link&quot; href=&quot;#exam-focus-areas&quot;&gt;Back to exam focus&lt;/a&gt;
+        &lt;/section&gt;
+
+        &lt;section id=&quot;chapter-5&quot; class=&quot;chapter&quot; data-nav-section&gt;
+          &lt;h2&gt;Topic 5: Arrays&lt;/h2&gt;
+          &lt;p class=&quot;section-intro&quot;&gt;Arrays are the natural structure for marks, products, words, carts, and any exam task that processes a list.&lt;/p&gt;
+          &lt;div class=&quot;grid two-col&quot;&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch5-1-defining-arrays&quot;&gt;
+              &lt;h3&gt;Defining Arrays&lt;/h3&gt;
+              &lt;p&gt;An array is a special variable that stores multiple values. Values are elements, and elements are accessed by index or key. Arrays can be indexed or associative.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch5-2-creating-arrays&quot;&gt;
+              &lt;h3&gt;Creating Arrays&lt;/h3&gt;
+              &lt;p&gt;Use &lt;code&gt;array()&lt;/code&gt; to create indexed or associative arrays.&lt;/p&gt;
+              &lt;pre&gt;&lt;code&gt;$authors = array(&quot;Steinbeck&quot;, &quot;Kafka&quot;, &quot;Tolkien&quot;, &quot;Dickens&quot;);
+
+$book = array(
+    &quot;title&quot; =&amp;gt; &quot;The Grapes of Wrath&quot;,
+    &quot;author&quot; =&amp;gt; &quot;John Steinbeck&quot;,
+    &quot;pubYear&quot; =&amp;gt; 1939
+);&lt;/code&gt;&lt;/pre&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch5-3-accessing-elements&quot;&gt;
+              &lt;h3&gt;Accessing Elements&lt;/h3&gt;
+              &lt;p&gt;Use numeric indexes for indexed arrays and string keys for associative arrays: &lt;code&gt;$authors[0]&lt;/code&gt; and &lt;code&gt;$book[&quot;title&quot;]&lt;/code&gt;.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch5-4-changing-elements&quot;&gt;
+              &lt;h3&gt;Changing Elements&lt;/h3&gt;
+              &lt;p&gt;Assign a new value to an existing index or key. Add an item with &lt;code&gt;$array[] = value&lt;/code&gt;. Initialize an empty array with &lt;code&gt;$array = array();&lt;/code&gt;.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch5-5-print-r&quot;&gt;
+              &lt;h3&gt;print_r&lt;/h3&gt;
+              &lt;p&gt;&lt;code&gt;echo&lt;/code&gt; cannot display a whole array usefully. Use &lt;code&gt;print_r()&lt;/code&gt; for debugging and wrap it in &lt;code&gt;&amp;lt;pre&amp;gt;&lt;/code&gt; for readable formatting.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch5-6-array-slice&quot;&gt;
+              &lt;h3&gt;array_slice&lt;/h3&gt;
+              &lt;p&gt;&lt;code&gt;array_slice()&lt;/code&gt; extracts a range of elements and leaves the original array unchanged.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch5-7-counting-arrays&quot;&gt;
+              &lt;h3&gt;Counting Arrays&lt;/h3&gt;
+              &lt;p&gt;&lt;code&gt;count()&lt;/code&gt; returns the number of elements. Be careful with sparse arrays: element count and last numeric index are not always the same thing.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch5-8-stepping-through-array&quot;&gt;
+              &lt;h3&gt;Stepping Through an Array&lt;/h3&gt;
+              &lt;p&gt;PHP has pointer-style functions such as &lt;code&gt;current()&lt;/code&gt;, &lt;code&gt;key()&lt;/code&gt;, &lt;code&gt;next()&lt;/code&gt;, &lt;code&gt;prev()&lt;/code&gt;, &lt;code&gt;end()&lt;/code&gt;, and &lt;code&gt;reset()&lt;/code&gt;. For exam readability, &lt;code&gt;foreach&lt;/code&gt; is usually clearer.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch5-9-multidimensional-arrays&quot;&gt;
+              &lt;h3&gt;Multidimensional Arrays&lt;/h3&gt;
+              &lt;p&gt;A multidimensional array is an array of arrays. Access values with multiple brackets and use nested &lt;code&gt;foreach&lt;/code&gt; loops when processing rows and columns.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch5-10-sorting-arrays&quot;&gt;
+              &lt;h3&gt;Sorting Arrays&lt;/h3&gt;
+              &lt;div class=&quot;table-wrap&quot;&gt;
+                &lt;table&gt;
+                  &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Function&lt;/th&gt;&lt;th&gt;Use&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+                  &lt;tbody&gt;
+                    &lt;tr&gt;&lt;td&gt;&lt;code&gt;sort()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Sort indexed array ascending by value.&lt;/td&gt;&lt;/tr&gt;
+                    &lt;tr&gt;&lt;td&gt;&lt;code&gt;rsort()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Sort indexed array descending by value.&lt;/td&gt;&lt;/tr&gt;
+                    &lt;tr&gt;&lt;td&gt;&lt;code&gt;asort()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Sort associative array ascending by value, preserving keys.&lt;/td&gt;&lt;/tr&gt;
+                    &lt;tr&gt;&lt;td&gt;&lt;code&gt;arsort()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Sort associative array descending by value, preserving keys.&lt;/td&gt;&lt;/tr&gt;
+                    &lt;tr&gt;&lt;td&gt;&lt;code&gt;ksort()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Sort associative array ascending by key.&lt;/td&gt;&lt;/tr&gt;
+                    &lt;tr&gt;&lt;td&gt;&lt;code&gt;krsort()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Sort associative array descending by key.&lt;/td&gt;&lt;/tr&gt;
+                    &lt;tr&gt;&lt;td&gt;&lt;code&gt;array_multisort()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Sort multiple arrays or multidimensional arrays.&lt;/td&gt;&lt;/tr&gt;
+                  &lt;/tbody&gt;
+                &lt;/table&gt;
+              &lt;/div&gt;
+            &lt;/article&gt;
+          &lt;/div&gt;
+
+          &lt;article class=&quot;card chapter-card chapter-example&quot; id=&quot;ch5-example-array-processing&quot;&gt;
+            &lt;h3&gt;Topic 5 Example: Array Processing&lt;/h3&gt;
+            &lt;p&gt;This example covers indexed arrays, associative arrays, adding elements, &lt;code&gt;array_slice()&lt;/code&gt;, &lt;code&gt;count()&lt;/code&gt;, &lt;code&gt;print_r()&lt;/code&gt;, sorting, and nested array access.&lt;/p&gt;
+            &lt;span class=&quot;code-label&quot;&gt;Input PHP&lt;/span&gt;
+            &lt;pre&gt;&lt;code&gt;&amp;lt;?php
+$authors = array(&quot;Steinbeck&quot;, &quot;Kafka&quot;, &quot;Tolkien&quot;, &quot;Dickens&quot;);
+$book = array(
+    &quot;title&quot; =&amp;gt; &quot;The Grapes of Wrath&quot;,
+    &quot;author&quot; =&amp;gt; &quot;John Steinbeck&quot;,
+    &quot;pubYear&quot; =&amp;gt; 1939
+);
+
+$marks = array(&quot;Ava&quot; =&amp;gt; 72, &quot;Ben&quot; =&amp;gt; 65, &quot;Cara&quot; =&amp;gt; 88);
+$authors[] = &quot;Achebe&quot;;
+$sample = array_slice($authors, 1, 2);
+
+echo $authors[0] . &quot;&amp;lt;br&amp;gt;&quot;;
+echo $book[&quot;title&quot;] . &quot;&amp;lt;br&amp;gt;&quot;;
+echo count($authors) . &quot;&amp;lt;br&amp;gt;&quot;;
+print_r($sample);
+
+arsort($marks);
+foreach ($marks as $student =&amp;gt; $mark) {
+    echo &quot;$student: $mark&amp;lt;br&amp;gt;&quot;;
+}
+
+$classes = array(
+    &quot;Group A&quot; =&amp;gt; array(&quot;Ava&quot; =&amp;gt; 72, &quot;Ben&quot; =&amp;gt; 65),
+    &quot;Group B&quot; =&amp;gt; array(&quot;Cara&quot; =&amp;gt; 88)
+);
+
+echo $classes[&quot;Group B&quot;][&quot;Cara&quot;];
+?&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+            &lt;div class=&quot;table-wrap&quot;&gt;
+              &lt;table&gt;
+                &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Code idea&lt;/th&gt;&lt;th&gt;Output or result&lt;/th&gt;&lt;th&gt;Concept&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+                &lt;tbody&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;code&gt;$authors[0]&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;Steinbeck&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Indexed array access.&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;code&gt;$book[&quot;title&quot;]&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;The Grapes of Wrath&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Associative array access.&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;code&gt;$authors[] = &quot;Achebe&quot;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Array now has 5 elements.&lt;/td&gt;&lt;td&gt;Adding a new indexed element.&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;code&gt;array_slice($authors, 1, 2)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;Kafka&lt;/code&gt;, &lt;code&gt;Tolkien&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Extract part of the array without changing the original.&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;code&gt;arsort($marks)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;Cara: 88&lt;/code&gt;, &lt;code&gt;Ava: 72&lt;/code&gt;, &lt;code&gt;Ben: 65&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Sort associative values descending and keep keys.&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;&lt;code&gt;$classes[&quot;Group B&quot;][&quot;Cara&quot;]&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;88&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Multidimensional array access.&lt;/td&gt;&lt;/tr&gt;
+                &lt;/tbody&gt;
+              &lt;/table&gt;
+            &lt;/div&gt;
+          &lt;/article&gt;
+          &lt;a class=&quot;back-link&quot; href=&quot;#exam-focus-areas&quot;&gt;Back to exam focus&lt;/a&gt;
+        &lt;/section&gt;
+
+        &lt;section id=&quot;chapter-6&quot; class=&quot;chapter&quot; data-nav-section&gt;
+          &lt;h2&gt;Topic 6: Re-using Code and Writing Functions&lt;/h2&gt;
+          &lt;p class=&quot;section-intro&quot;&gt;Functions help turn repeated steps into named, reusable blocks. They are also important for complete-program exam questions.&lt;/p&gt;
+          &lt;div class=&quot;grid two-col&quot;&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch6-2-what-is-function&quot;&gt;
+              &lt;h3&gt;What is a Function?&lt;/h3&gt;
+              &lt;p&gt;A function is a self-contained block of code that performs a task. It may accept arguments and may return a value.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch6-3-why-functions-useful&quot;&gt;
+              &lt;h3&gt;Why Functions are Useful&lt;/h3&gt;
+              &lt;p&gt;Functions avoid duplicated code, reduce errors, allow reuse in other scripts, and break a big project into smaller parts.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch6-4-variable-functions&quot;&gt;
+              &lt;h3&gt;Variable Functions&lt;/h3&gt;
+              &lt;p&gt;A variable function calls a function using a function name stored inside a variable. This is powerful, but use it carefully so the code stays readable.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch6-5-writing-functions&quot;&gt;
+              &lt;h3&gt;Writing Functions&lt;/h3&gt;
+              &lt;p&gt;Define a function with the &lt;code&gt;function&lt;/code&gt; keyword, a name, parentheses, and a body.&lt;/p&gt;
+              &lt;pre&gt;&lt;code&gt;function hello() {
+    echo &quot;Hello, world!&quot;;
+}
+
+hello();&lt;/code&gt;&lt;/pre&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch6-6-parameters&quot;&gt;
+              &lt;h3&gt;Parameters&lt;/h3&gt;
+              &lt;p&gt;A parameter is the variable in the function definition. An argument is the value passed when the function is called.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch6-7-default-values&quot;&gt;
+              &lt;h3&gt;Default Values&lt;/h3&gt;
+              &lt;p&gt;Optional parameters can have default values. If the caller does not pass that argument, PHP uses the default.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch6-8-return-values&quot;&gt;
+              &lt;h3&gt;Return Values&lt;/h3&gt;
+              &lt;p&gt;&lt;code&gt;return&lt;/code&gt; sends a value back to the calling code and exits the function immediately.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch6-9-variable-scope&quot;&gt;
+              &lt;h3&gt;Variable Scope&lt;/h3&gt;
+              &lt;p&gt;Variables inside functions are local. Variables outside functions are global. Prefer parameters and return values because they make the flow of data clearer.&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;card chapter-card&quot; id=&quot;ch6-10-global-variables&quot;&gt;
+              &lt;h3&gt;Global Variables&lt;/h3&gt;
+              &lt;p&gt;The &lt;code&gt;global&lt;/code&gt; keyword lets a function access a global variable, but it can make code harder to trace. Use it carefully.&lt;/p&gt;
+            &lt;/article&gt;
+          &lt;/div&gt;
+
+          &lt;article class=&quot;card chapter-card chapter-example&quot; id=&quot;ch6-example-functions-scope&quot;&gt;
+            &lt;h3&gt;Topic 6 Example: Functions, Parameters, Returns and Scope&lt;/h3&gt;
+            &lt;p&gt;This example uses a built-in function, user-defined functions, a default parameter, a return value, a variable function, and a scope check.&lt;/p&gt;
+            &lt;span class=&quot;code-label&quot;&gt;Input PHP&lt;/span&gt;
+            &lt;pre&gt;&lt;code&gt;&amp;lt;?php
+$course = &quot;IP621&quot;;
+
+function addBonus($mark, $bonus = 5) {
+    return $mark + $bonus;
+}
+
+function formatResult($name, $mark, $courseName) {
+    $status = ($mark &amp;gt;= 50) ? &quot;Pass&quot; : &quot;Fail&quot;;
+    return $courseName . &quot; - &quot; . strtoupper($name) . &quot;: $mark ($status)&quot;;
+}
+
+$formatter = &quot;formatResult&quot;;
+$finalMark = addBonus(67);
+
+echo $formatter(&quot;Ava&quot;, $finalMark, $course) . &quot;&amp;lt;br&amp;gt;&quot;;
+echo isset($status) ? $status : &quot;The status variable is local&quot;;
+?&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+            &lt;div class=&quot;table-wrap&quot;&gt;
+              &lt;table&gt;
+                &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Concept&lt;/th&gt;&lt;th&gt;Where it appears&lt;/th&gt;&lt;th&gt;Output or meaning&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+                &lt;tbody&gt;
+                  &lt;tr&gt;&lt;td&gt;User-defined function&lt;/td&gt;&lt;td&gt;&lt;code&gt;addBonus()&lt;/code&gt; and &lt;code&gt;formatResult()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Reusable blocks of code.&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;Default parameter&lt;/td&gt;&lt;td&gt;&lt;code&gt;$bonus = 5&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;addBonus(67)&lt;/code&gt; returns &lt;code&gt;72&lt;/code&gt;.&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;Return value&lt;/td&gt;&lt;td&gt;&lt;code&gt;return $mark + $bonus;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;The result is stored in &lt;code&gt;$finalMark&lt;/code&gt;.&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;Built-in function&lt;/td&gt;&lt;td&gt;&lt;code&gt;strtoupper($name)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;Ava&lt;/code&gt; becomes &lt;code&gt;AVA&lt;/code&gt;.&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;Variable function&lt;/td&gt;&lt;td&gt;&lt;code&gt;$formatter(&quot;Ava&quot;, ...)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Calls &lt;code&gt;formatResult()&lt;/code&gt;.&lt;/td&gt;&lt;/tr&gt;
+                  &lt;tr&gt;&lt;td&gt;Local scope&lt;/td&gt;&lt;td&gt;&lt;code&gt;$status&lt;/code&gt; inside &lt;code&gt;formatResult()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Outside the function, output is &lt;code&gt;The status variable is local&lt;/code&gt;.&lt;/td&gt;&lt;/tr&gt;
+                &lt;/tbody&gt;
+              &lt;/table&gt;
+            &lt;/div&gt;
+          &lt;/article&gt;
+          &lt;a class=&quot;back-link&quot; href=&quot;#exam-focus-areas&quot;&gt;Back to exam focus&lt;/a&gt;
+        &lt;/section&gt;
+      &lt;/section&gt;
+
+      &lt;section id=&quot;final-revision&quot; class=&quot;major-section&quot; data-nav-section&gt;
+        &lt;h2&gt;Final Revision&lt;/h2&gt;
+        &lt;p class=&quot;section-intro&quot;&gt;Use these tables and program patterns for last-pass revision. They are designed for quick recall and exam-style practice.&lt;/p&gt;
+
+        &lt;article class=&quot;card revision-card&quot; id=&quot;final-cheat-sheets&quot; data-nav-section&gt;
+          &lt;h3&gt;Cheat Sheets&lt;/h3&gt;
+          &lt;h4&gt;PHP Syntax Cheat Sheet&lt;/h4&gt;
+          &lt;div class=&quot;table-wrap&quot;&gt;
+            &lt;table&gt;
+              &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Concept&lt;/th&gt;&lt;th&gt;Pattern&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+              &lt;tbody&gt;
+                &lt;tr&gt;&lt;td&gt;PHP block&lt;/td&gt;&lt;td&gt;&lt;code&gt;&amp;lt;?php ... ?&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Output&lt;/td&gt;&lt;td&gt;&lt;code&gt;echo &quot;Text&quot;;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Variable&lt;/td&gt;&lt;td&gt;&lt;code&gt;$name = &quot;Rix&quot;;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Constant&lt;/td&gt;&lt;td&gt;&lt;code&gt;define(&quot;SITE_NAME&quot;, &quot;Study Hub&quot;);&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Concatenate&lt;/td&gt;&lt;td&gt;&lt;code&gt;$full = $first . &quot; &quot; . $last;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;If&lt;/td&gt;&lt;td&gt;&lt;code&gt;if ($x &amp;gt; 0) { ... }&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Switch&lt;/td&gt;&lt;td&gt;&lt;code&gt;switch ($value) { case &quot;A&quot;: ... break; }&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;For loop&lt;/td&gt;&lt;td&gt;&lt;code&gt;for ($i = 0; $i &amp;lt; 10; $i++) { ... }&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;While loop&lt;/td&gt;&lt;td&gt;&lt;code&gt;while ($x &amp;gt; 0) { ... }&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Foreach&lt;/td&gt;&lt;td&gt;&lt;code&gt;foreach ($array as $value) { ... }&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Function&lt;/td&gt;&lt;td&gt;&lt;code&gt;function name($param) { return $param; }&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+              &lt;/tbody&gt;
+            &lt;/table&gt;
+          &lt;/div&gt;
+
+          &lt;h4&gt;String Function Cheat Sheet&lt;/h4&gt;
+          &lt;div class=&quot;table-wrap&quot;&gt;
+            &lt;table&gt;
+              &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Function&lt;/th&gt;&lt;th&gt;Purpose&lt;/th&gt;&lt;th&gt;Mini Example&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+              &lt;tbody&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;strlen()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Count characters&lt;/td&gt;&lt;td&gt;&lt;code&gt;strlen(&quot;hello&quot;)&lt;/code&gt; gives &lt;code&gt;5&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;str_word_count()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Count words&lt;/td&gt;&lt;td&gt;&lt;code&gt;str_word_count(&quot;Hello world&quot;)&lt;/code&gt; gives &lt;code&gt;2&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;substr()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Extract substring&lt;/td&gt;&lt;td&gt;&lt;code&gt;substr(&quot;Hello&quot;, 1, 3)&lt;/code&gt; gives &lt;code&gt;ell&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;strpos()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Find first position&lt;/td&gt;&lt;td&gt;&lt;code&gt;strpos(&quot;Hello&quot;, &quot;e&quot;)&lt;/code&gt; gives &lt;code&gt;1&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;substr_count()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Count occurrences&lt;/td&gt;&lt;td&gt;&lt;code&gt;substr_count(&quot;nay nay&quot;, &quot;nay&quot;)&lt;/code&gt; gives &lt;code&gt;2&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;strtolower()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Lowercase&lt;/td&gt;&lt;td&gt;&lt;code&gt;strtolower(&quot;HELLO&quot;)&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;strtoupper()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Uppercase&lt;/td&gt;&lt;td&gt;&lt;code&gt;strtoupper(&quot;hello&quot;)&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;ucfirst()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;First char uppercase&lt;/td&gt;&lt;td&gt;&lt;code&gt;ucfirst(&quot;hello&quot;)&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;ucwords()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;First char of each word uppercase&lt;/td&gt;&lt;td&gt;&lt;code&gt;ucwords(&quot;hello world&quot;)&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;str_pad()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Pad string&lt;/td&gt;&lt;td&gt;&lt;code&gt;str_pad(&quot;Hi&quot;, 5, &quot;*&quot;)&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;number_format()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Format numbers&lt;/td&gt;&lt;td&gt;&lt;code&gt;number_format(1234.5, 2)&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+              &lt;/tbody&gt;
+            &lt;/table&gt;
+          &lt;/div&gt;
+
+          &lt;h4&gt;Array Function Cheat Sheet&lt;/h4&gt;
+          &lt;div class=&quot;table-wrap&quot;&gt;
+            &lt;table&gt;
+              &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Function&lt;/th&gt;&lt;th&gt;Purpose&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+              &lt;tbody&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;print_r()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Display array contents for debugging.&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;count()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Count elements.&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;array_slice()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Extract a portion.&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;sort()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Sort indexed values ascending.&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;rsort()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Sort indexed values descending.&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;asort()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Sort associative values ascending, keep keys.&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;arsort()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Sort associative values descending, keep keys.&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;ksort()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Sort associative keys ascending.&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;krsort()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Sort associative keys descending.&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;array_unique()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Remove duplicate values.&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;in_array()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Check whether a value exists.&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;array_filter()&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Filter values using a condition.&lt;/td&gt;&lt;/tr&gt;
+              &lt;/tbody&gt;
+            &lt;/table&gt;
+          &lt;/div&gt;
+        &lt;/article&gt;
+
+        &lt;article class=&quot;card revision-card&quot; id=&quot;final-output-prediction-table&quot; data-nav-section&gt;
+          &lt;h3&gt;Output Prediction Table&lt;/h3&gt;
+          &lt;div class=&quot;table-wrap&quot;&gt;
+            &lt;table&gt;
+              &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Code&lt;/th&gt;&lt;th&gt;Output&lt;/th&gt;&lt;th&gt;Why&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+              &lt;tbody&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;$x = 5; echo ++$x;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;6&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Pre-increment changes first.&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;$x = 5; echo $x++;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;5&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Post-increment outputs first.&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;echo 10 + 5 * 2;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;20&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Multiplication before addition.&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;$name = &quot;PHP&quot;; echo &#x27;Hello $name&#x27;;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;Hello $name&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Single quotes do not interpolate.&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;$name = &quot;PHP&quot;; echo &quot;Hello $name&quot;;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;Hello PHP&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Double quotes interpolate.&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;strpos(&quot;PHP&quot;, &quot;P&quot;)&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;0&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Found at the first character.&lt;/td&gt;&lt;/tr&gt;
+              &lt;/tbody&gt;
+            &lt;/table&gt;
+          &lt;/div&gt;
+        &lt;/article&gt;
+
+        &lt;article class=&quot;card revision-card&quot; id=&quot;final-code-tracing-table&quot; data-nav-section&gt;
+          &lt;h3&gt;Code Tracing Pattern&lt;/h3&gt;
+          &lt;ol&gt;
+            &lt;li&gt;Identify all variables.&lt;/li&gt;
+            &lt;li&gt;Write initial values.&lt;/li&gt;
+            &lt;li&gt;Check the condition.&lt;/li&gt;
+            &lt;li&gt;Execute the body line by line.&lt;/li&gt;
+            &lt;li&gt;Apply the update.&lt;/li&gt;
+            &lt;li&gt;Repeat until the condition is false.&lt;/li&gt;
+            &lt;li&gt;Write the final output exactly.&lt;/li&gt;
+          &lt;/ol&gt;
+          &lt;div class=&quot;table-wrap&quot;&gt;
+            &lt;table&gt;
+              &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Step&lt;/th&gt;&lt;th&gt;Variable Values&lt;/th&gt;&lt;th&gt;Condition Result&lt;/th&gt;&lt;th&gt;Output So Far&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+              &lt;tbody&gt;
+                &lt;tr&gt;&lt;td&gt;Start&lt;/td&gt;&lt;td&gt;Write initial values&lt;/td&gt;&lt;td&gt;Not checked yet&lt;/td&gt;&lt;td&gt;None&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Iteration 1&lt;/td&gt;&lt;td&gt;Update after each line&lt;/td&gt;&lt;td&gt;true or false&lt;/td&gt;&lt;td&gt;What has printed&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Iteration 2&lt;/td&gt;&lt;td&gt;Update again&lt;/td&gt;&lt;td&gt;true or false&lt;/td&gt;&lt;td&gt;Continue exactly&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;End&lt;/td&gt;&lt;td&gt;Final values&lt;/td&gt;&lt;td&gt;false&lt;/td&gt;&lt;td&gt;Final output&lt;/td&gt;&lt;/tr&gt;
+              &lt;/tbody&gt;
+            &lt;/table&gt;
+          &lt;/div&gt;
+        &lt;/article&gt;
+
+        &lt;article class=&quot;card revision-card&quot; id=&quot;final-average-max-pattern&quot; data-nav-section&gt;
+          &lt;h3&gt;Average and Maximum Pattern&lt;/h3&gt;
+          &lt;p&gt;Average needs a total and a count. Maximum needs a starting value and a comparison inside the loop.&lt;/p&gt;
+          &lt;pre&gt;&lt;code&gt;&amp;lt;?php
+$values = array(10, 25, 7, 40);
+$total = 0;
+$maximum = $values[0];
+
+foreach ($values as $value) {
+    $total += $value;
+
+    if ($value &amp;gt; $maximum) {
+        $maximum = $value;
+    }
+}
+
+$average = count($values) &amp;gt; 0 ? $total / count($values) : 0;
+
+echo &quot;Average: &quot; . number_format($average, 2) . &quot;&amp;lt;br&amp;gt;&quot;;
+echo &quot;Maximum: $maximum&quot;;
+?&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+        &lt;/article&gt;
+
+        &lt;article class=&quot;card revision-card&quot; id=&quot;final-practice-programs&quot; data-nav-section&gt;
+          &lt;h3&gt;Practice Programs&lt;/h3&gt;
+          &lt;div class=&quot;grid two-col&quot;&gt;
+            &lt;article class=&quot;card&quot; id=&quot;complete-program-student-marks&quot;&gt;
+              &lt;h4&gt;Student Marks Summary&lt;/h4&gt;
+              &lt;ul&gt;
+                &lt;li&gt;Store student marks in an associative array.&lt;/li&gt;
+                &lt;li&gt;Display each student and mark.&lt;/li&gt;
+                &lt;li&gt;Calculate average mark and highest mark.&lt;/li&gt;
+                &lt;li&gt;Display pass/fail based on average.&lt;/li&gt;
+              &lt;/ul&gt;
+              &lt;pre&gt;&lt;code&gt;$marks = array(&quot;Ava&quot; =&amp;gt; 72, &quot;Ben&quot; =&amp;gt; 65, &quot;Cara&quot; =&amp;gt; 88);
+$total = 0;
+$highest = null;
+
+foreach ($marks as $student =&amp;gt; $mark) {
+    echo &quot;$student: $mark&amp;lt;br&amp;gt;&quot;;
+    $total += $mark;
+
+    if ($highest === null || $mark &amp;gt; $highest) {
+        $highest = $mark;
+    }
+}
+
+$average = $total / count($marks);
+echo &quot;Average: &quot; . number_format($average, 2) . &quot;&amp;lt;br&amp;gt;&quot;;
+echo &quot;Highest: $highest&amp;lt;br&amp;gt;&quot;;
+echo ($average &amp;gt;= 50) ? &quot;Pass average&quot; : &quot;Fail average&quot;;&lt;/code&gt;&lt;/pre&gt;
+            &lt;/article&gt;
+
+            &lt;article class=&quot;card&quot; id=&quot;complete-program-shopping-cart&quot;&gt;
+              &lt;h4&gt;Shopping Cart with Discount&lt;/h4&gt;
+              &lt;ul&gt;
+                &lt;li&gt;Store products and prices in an associative array.&lt;/li&gt;
+                &lt;li&gt;Calculate total.&lt;/li&gt;
+                &lt;li&gt;Apply 10% discount if item count is greater than 5.&lt;/li&gt;
+                &lt;li&gt;Format final total with &lt;code&gt;number_format()&lt;/code&gt;.&lt;/li&gt;
+              &lt;/ul&gt;
+              &lt;pre&gt;&lt;code&gt;$cart = array(&quot;Mouse&quot; =&amp;gt; 120, &quot;Keyboard&quot; =&amp;gt; 260, &quot;Cable&quot; =&amp;gt; 80);
+$total = 0;
+
+foreach ($cart as $product =&amp;gt; $price) {
+    echo &quot;$product: R$price&amp;lt;br&amp;gt;&quot;;
+    $total += $price;
+}
+
+if (count($cart) &amp;gt; 5) {
+    $total *= 0.90;
+}
+
+echo &quot;Total: R&quot; . number_format($total, 2);&lt;/code&gt;&lt;/pre&gt;
+            &lt;/article&gt;
+
+            &lt;article class=&quot;card&quot; id=&quot;complete-program-password-checker&quot;&gt;
+              &lt;h4&gt;Password Strength Checker&lt;/h4&gt;
+              &lt;ul&gt;
+                &lt;li&gt;Check at least 8 characters.&lt;/li&gt;
+                &lt;li&gt;Check uppercase and lowercase letters.&lt;/li&gt;
+                &lt;li&gt;Check numeric digit and special character.&lt;/li&gt;
+                &lt;li&gt;Use decisions to display strength.&lt;/li&gt;
+              &lt;/ul&gt;
+              &lt;pre&gt;&lt;code&gt;$password = &quot;Php@2026&quot;;
+$strong = strlen($password) &amp;gt;= 8
+    &amp;amp;&amp;amp; preg_match(&quot;/[A-Z]/&quot;, $password)
+    &amp;amp;&amp;amp; preg_match(&quot;/[a-z]/&quot;, $password)
+    &amp;amp;&amp;amp; preg_match(&quot;/[0-9]/&quot;, $password)
+    &amp;amp;&amp;amp; preg_match(&quot;/[^A-Za-z0-9]/&quot;, $password);
+
+echo $strong ? &quot;Strong password&quot; : &quot;Weak password&quot;;&lt;/code&gt;&lt;/pre&gt;
+            &lt;/article&gt;
+
+            &lt;article class=&quot;card&quot; id=&quot;complete-program-word-frequency&quot;&gt;
+              &lt;h4&gt;Word Frequency Counter&lt;/h4&gt;
+              &lt;ul&gt;
+                &lt;li&gt;Take a sentence.&lt;/li&gt;
+                &lt;li&gt;Convert to lowercase and split into words.&lt;/li&gt;
+                &lt;li&gt;Store word counts in an associative array.&lt;/li&gt;
+                &lt;li&gt;Display results in a table.&lt;/li&gt;
+              &lt;/ul&gt;
+              &lt;pre&gt;&lt;code&gt;$sentence = &quot;PHP is fun and PHP is useful&quot;;
+$words = explode(&quot; &quot;, strtolower($sentence));
+$counts = array();
+
+foreach ($words as $word) {
+    if (!isset($counts[$word])) {
+        $counts[$word] = 0;
+    }
+    $counts[$word]++;
+}
+
+foreach ($counts as $word =&amp;gt; $count) {
+    echo &quot;$word: $count&amp;lt;br&amp;gt;&quot;;
+}&lt;/code&gt;&lt;/pre&gt;
+            &lt;/article&gt;
+          &lt;/div&gt;
+        &lt;/article&gt;
+
+        &lt;article class=&quot;card revision-card&quot; id=&quot;final-debugging-checklist&quot; data-nav-section&gt;
+          &lt;h3&gt;Debugging Checklist&lt;/h3&gt;
+          &lt;ul class=&quot;mini-list&quot;&gt;
+            &lt;li&gt;Are all PHP statements ended with semicolons?&lt;/li&gt;
+            &lt;li&gt;Are braces &lt;code&gt;{}&lt;/code&gt; balanced?&lt;/li&gt;
+            &lt;li&gt;Are parentheses &lt;code&gt;()&lt;/code&gt; balanced?&lt;/li&gt;
+            &lt;li&gt;Are quotes closed?&lt;/li&gt;
+            &lt;li&gt;Are variables spelled consistently and with correct case?&lt;/li&gt;
+            &lt;li&gt;Did you use &lt;code&gt;==&lt;/code&gt; or &lt;code&gt;===&lt;/code&gt; for comparison instead of &lt;code&gt;=&lt;/code&gt;?&lt;/li&gt;
+            &lt;li&gt;Did you initialize counters and totals before loops?&lt;/li&gt;
+            &lt;li&gt;Does the loop condition eventually become false?&lt;/li&gt;
+            &lt;li&gt;Did you use &lt;code&gt;break&lt;/code&gt; in each needed &lt;code&gt;switch&lt;/code&gt; case?&lt;/li&gt;
+            &lt;li&gt;Are array indexes and keys correct?&lt;/li&gt;
+            &lt;li&gt;Did you use &lt;code&gt;print_r()&lt;/code&gt; for arrays instead of &lt;code&gt;echo&lt;/code&gt;?&lt;/li&gt;
+            &lt;li&gt;Did you use &lt;code&gt;var_dump()&lt;/code&gt; when you needed both the value and the data type?&lt;/li&gt;
+            &lt;li&gt;Did you test &lt;code&gt;strpos()&lt;/code&gt; using &lt;code&gt;!== false&lt;/code&gt;?&lt;/li&gt;
+            &lt;li&gt;Are function variables local when you expected global?&lt;/li&gt;
+            &lt;li&gt;Are arguments passed in the correct order?&lt;/li&gt;
+            &lt;li&gt;Did you return a value from a function when needed?&lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/article&gt;
+
+        &lt;article class=&quot;card revision-card&quot; id=&quot;final-common-misconceptions&quot; data-nav-section&gt;
+          &lt;h3&gt;Common Misconceptions&lt;/h3&gt;
+          &lt;div class=&quot;table-wrap&quot;&gt;
+            &lt;table&gt;
+              &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Misconception&lt;/th&gt;&lt;th&gt;Correct Understanding&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+              &lt;tbody&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;echo&lt;/code&gt; can print a whole array nicely.&lt;/td&gt;&lt;td&gt;Use &lt;code&gt;print_r()&lt;/code&gt; for debugging arrays.&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;$array[count($array)]&lt;/code&gt; gives the last element.&lt;/td&gt;&lt;td&gt;Last consecutive index is &lt;code&gt;count($array) - 1&lt;/code&gt;.&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Single and double quotes behave the same.&lt;/td&gt;&lt;td&gt;Double quotes interpolate variables; single quotes do not.&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;strpos()&lt;/code&gt; false means not found and &lt;code&gt;0&lt;/code&gt; also means false.&lt;/td&gt;&lt;td&gt;Use &lt;code&gt;!== false&lt;/code&gt; to distinguish found-at-start from not found.&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;A variable inside a function is available outside.&lt;/td&gt;&lt;td&gt;Function variables are local unless passed, returned, or global.&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;&lt;code&gt;switch&lt;/code&gt; stops automatically after matching a case.&lt;/td&gt;&lt;td&gt;Use &lt;code&gt;break&lt;/code&gt; to prevent fall-through.&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;PHP variable names are not case-sensitive.&lt;/td&gt;&lt;td&gt;PHP variable names are case-sensitive.&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Type casting changes the original variable.&lt;/td&gt;&lt;td&gt;Casting affects the expression; &lt;code&gt;settype()&lt;/code&gt; changes the variable.&lt;/td&gt;&lt;/tr&gt;
+              &lt;/tbody&gt;
+            &lt;/table&gt;
+          &lt;/div&gt;
+        &lt;/article&gt;
+      &lt;/section&gt;
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+      &lt;p&gt;Internet Programming 621 Study Hub. Built as a local, self-contained PHP exam revision page.&lt;/p&gt;
+    &lt;/footer&gt;
+  &lt;/div&gt;
+
+  &lt;button class=&quot;back-to-top&quot; type=&quot;button&quot; aria-label=&quot;Back to top&quot;&gt;Top&lt;/button&gt;
+
+  &lt;script&gt;
+    const body = document.body;
+    const progressBar = document.getElementById(&quot;scroll-progress&quot;);
+    const menuButton = document.querySelector(&quot;.menu-button&quot;);
+    const backToTopButton = document.querySelector(&quot;.back-to-top&quot;);
+    const closeMenuTargets = document.querySelectorAll(&quot;[data-close-menu]&quot;);
+    const navLinks = Array.from(document.querySelectorAll(&quot;[data-nav-link]&quot;));
+    const navLinkMap = new Map(navLinks.map((link) =&gt; [link.dataset.navLink, link]));
+    const trackedSections = Array.from(document.querySelectorAll(&quot;[data-nav-section], .chapter-card&quot;))
+      .filter((section) =&gt; section.id);
+
+    function setMenuState(isOpen) {
+      body.classList.toggle(&quot;menu-open&quot;, isOpen);
+      menuButton.setAttribute(&quot;aria-expanded&quot;, String(isOpen));
+    }
+
+    function navIdForElement(element) {
+      if (navLinkMap.has(element.id)) {
+        return element.id;
+      }
+
+      const chapter = element.closest(&quot;.chapter[data-nav-section]&quot;);
+      if (chapter) {
+        return chapter.id;
+      }
+
+      const finalRevision = element.closest(&quot;#final-revision[data-nav-section]&quot;);
+      return finalRevision ? finalRevision.id : &quot;&quot;;
+    }
+
+    function setActiveNav(id) {
+      if (!id || !navLinkMap.has(id)) {
+        return;
+      }
+
+      navLinks.forEach((link) =&gt; {
+        link.classList.remove(&quot;is-active&quot;);
+        link.removeAttribute(&quot;aria-current&quot;);
+      });
+
+      const activeLink = navLinkMap.get(id);
+      activeLink.classList.add(&quot;is-active&quot;);
+      activeLink.setAttribute(&quot;aria-current&quot;, &quot;true&quot;);
+    }
+
+    function currentSectionId() {
+      const marker = window.scrollY + 150;
+      let currentId = trackedSections.length ? navIdForElement(trackedSections[0]) : &quot;&quot;;
+
+      trackedSections.forEach((section) =&gt; {
+        if (section.offsetTop &lt;= marker) {
+          currentId = navIdForElement(section) || currentId;
+        }
+      });
+
+      return currentId;
+    }
+
+    function updateProgress() {
+      const scrollTop = window.scrollY;
+      const available = document.documentElement.scrollHeight - window.innerHeight;
+      const percent = available &gt; 0 ? (scrollTop / available) * 100 : 0;
+      progressBar.style.width = `${Math.min(100, Math.max(0, percent))}%`;
+      backToTopButton.classList.toggle(&quot;is-visible&quot;, scrollTop &gt; 520);
+    }
+
+    let ticking = false;
+
+    function updateOnScroll() {
+      updateProgress();
+      setActiveNav(currentSectionId());
+      ticking = false;
+    }
+
+    function requestScrollUpdate() {
+      if (!ticking) {
+        window.requestAnimationFrame(updateOnScroll);
+        ticking = true;
+      }
+    }
+
+    menuButton.addEventListener(&quot;click&quot;, () =&gt; {
+      setMenuState(!body.classList.contains(&quot;menu-open&quot;));
+    });
+
+    closeMenuTargets.forEach((target) =&gt; {
+      target.addEventListener(&quot;click&quot;, () =&gt; setMenuState(false));
+    });
+
+    navLinks.forEach((link) =&gt; {
+      link.addEventListener(&quot;click&quot;, (event) =&gt; {
+        const targetId = link.getAttribute(&quot;href&quot;).slice(1);
+        const target = document.getElementById(targetId);
+
+        if (!target) {
+          return;
+        }
+
+        event.preventDefault();
+        target.scrollIntoView({ behavior: &quot;smooth&quot;, block: &quot;start&quot; });
+        history.pushState(null, &quot;&quot;, `#${targetId}`);
+        setActiveNav(link.dataset.navLink);
+        setMenuState(false);
+      });
+    });
+
+    document.querySelectorAll(&#x27;a[href^=&quot;#&quot;]:not([data-nav-link])&#x27;).forEach((link) =&gt; {
+      link.addEventListener(&quot;click&quot;, (event) =&gt; {
+        const targetId = link.getAttribute(&quot;href&quot;).slice(1);
+        const target = document.getElementById(targetId);
+
+        if (!target) {
+          return;
+        }
+
+        event.preventDefault();
+        target.scrollIntoView({ behavior: &quot;smooth&quot;, block: &quot;start&quot; });
+        history.pushState(null, &quot;&quot;, `#${targetId}`);
+        setMenuState(false);
+      });
+    });
+
+    backToTopButton.addEventListener(&quot;click&quot;, () =&gt; {
+      window.scrollTo({ top: 0, behavior: &quot;smooth&quot; });
+    });
+
+    window.addEventListener(&quot;scroll&quot;, requestScrollUpdate, { passive: true });
+    window.addEventListener(&quot;resize&quot;, requestScrollUpdate);
+    updateOnScroll();
+  &lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  const sendHeight = () =&gt; parent.postMessage({ type: &quot;ip621-archive-height&quot;, height: document.documentElement.scrollHeight }, &quot;*&quot;);
+  new ResizeObserver(sendHeight).observe(document.documentElement);
+  window.addEventListener(&quot;load&quot;, sendHeight);
+  requestAnimationFrame(sendHeight);
+})();
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
+		</section>
 		</div>
 	</main>
 
@@ -3984,5 +6233,15 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 	</script>
 
 	<script src="module-learning-lab.js"></script>
+	<script>
+		(() => {
+			const frame = document.getElementById('ip621-archive-frame');
+			window.addEventListener('message', (event) => {
+				if (event.source !== frame.contentWindow || event.data?.type !== 'ip621-archive-height') return;
+				const height = Number(event.data.height);
+				if (Number.isFinite(height) && height > 0) frame.style.height = `${Math.ceil(height) + 20}px`;
+			});
+		})();
+	</script>
 </body>
 </html>
