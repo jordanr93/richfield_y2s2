@@ -1397,6 +1397,105 @@ echo "&lt;/dl&gt;";
 ?&gt;</code></pre>
 						</details>
 
+						<details class="card chapter-card wide pattern glossary-card" id="ch1-code-study-session-validation">
+							<summary><span>Topic 1 Extended Code Example: Study Session Form With Validation</span></summary>
+							<p>This single-file example combines an HTML form with a PHP POST handler. It checks that the learner name is present and no longer than 40 characters, that the topic is one of the allowed choices, and that minutes is an integer from 5 to 180. Save it as <code>study-log.php</code> and run it through a PHP-enabled local server. The character-count check uses PHP's <code>mbstring</code> extension.</p>
+							<p><strong><code>study-log.php</code>:</strong> the handler runs before any HTML is sent, so validation and response output can be decided first.</p>
+							<pre><code>&lt;?php
+// The allowed values are defined by the server, not trusted from the request.
+$topics = ["HTML forms", "PHP validation", "Cookies and sessions"];
+$form = ["learner" =&gt; "", "topic" =&gt; "", "minutes" =&gt; ""];
+$errors = [];
+$minutesValue = null;
+$submitted = $_SERVER["REQUEST_METHOD"] === "POST";
+
+if ($submitted) {
+    // Ignore unexpected array input; normal form controls submit strings.
+    foreach (["learner", "topic", "minutes"] as $field) {
+        $value = $_POST[$field] ?? "";
+        $form[$field] = is_string($value) ? trim($value) : "";
+    }
+
+    if ($form["learner"] === "") {
+        $errors[] = "Your name is required.";
+    } elseif (mb_strlen($form["learner"], "UTF-8") &gt; 40) {
+        $errors[] = "Your name must be 40 characters or fewer.";
+    }
+
+    if (!in_array($form["topic"], $topics, true)) {
+        $errors[] = "Choose a valid study topic.";
+    }
+
+    $minutesValue = filter_var($form["minutes"], FILTER_VALIDATE_INT);
+    if ($minutesValue === false || $minutesValue &lt; 5 || $minutesValue &gt; 180) {
+        $errors[] = "Minutes must be a whole number from 5 through 180.";
+    }
+}
+
+function escapeHtml(string $value): string {
+    return htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, "UTF-8");
+}
+?&gt;
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+    &lt;title&gt;Study Session Log&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Log a study session&lt;/h1&gt;
+
+    &lt;?php if ($submitted &amp;&amp; $errors): ?&gt;
+        &lt;div role="alert"&gt;
+            &lt;h2&gt;Please correct these items&lt;/h2&gt;
+            &lt;ul&gt;
+                &lt;?php foreach ($errors as $error): ?&gt;
+                    &lt;li&gt;&lt;?= escapeHtml($error) ?&gt;&lt;/li&gt;
+                &lt;?php endforeach; ?&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;?php elseif ($submitted): ?&gt;
+        &lt;p role="status"&gt;
+            &lt;?= escapeHtml($form["learner"]) ?&gt; studied
+            &lt;?= escapeHtml($form["topic"]) ?&gt; for &lt;?= $minutesValue ?&gt; minutes.
+        &lt;/p&gt;
+    &lt;?php endif; ?&gt;
+
+    &lt;form action="study-log.php" method="post"&gt;
+        &lt;p&gt;
+            &lt;label for="learner"&gt;Your name&lt;/label&gt;
+            &lt;input id="learner" name="learner" type="text" maxlength="40" required
+                   value="&lt;?= escapeHtml($form["learner"]) ?&gt;"&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;label for="topic"&gt;Study topic&lt;/label&gt;
+            &lt;select id="topic" name="topic" required&gt;
+                &lt;option value=""&gt;Choose a topic&lt;/option&gt;
+                &lt;?php foreach ($topics as $topic): ?&gt;
+                    &lt;option value="&lt;?= escapeHtml($topic) ?&gt;"&lt;?= $form["topic"] === $topic ? " selected" : "" ?&gt;&gt;&lt;?= escapeHtml($topic) ?&gt;&lt;/option&gt;
+                &lt;?php endforeach; ?&gt;
+            &lt;/select&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;label for="minutes"&gt;Minutes (5–180)&lt;/label&gt;
+            &lt;input id="minutes" name="minutes" type="number" min="5" max="180" step="1" required
+                   value="&lt;?= escapeHtml($form["minutes"]) ?&gt;"&gt;
+        &lt;/p&gt;
+        &lt;button type="submit"&gt;Save study session&lt;/button&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+							<ul>
+								<li><code>$_SERVER["REQUEST_METHOD"]</code> selects the POST-processing path; the first page visit only displays the form.</li>
+								<li><code>$_POST[$field] ?? ""</code> handles absent controls. The <code>is_string()</code> guard also avoids warnings if a request submits an array instead of a normal text value.</li>
+								<li><code>in_array(..., true)</code> checks the submitted topic against the server-side allowlist using strict comparison.</li>
+								<li><code>filter_var(..., FILTER_VALIDATE_INT)</code> rejects non-integers; the following comparisons enforce the permitted range.</li>
+								<li>HTML attributes and displayed text are escaped when output. Browser constraints such as <code>required</code>, <code>maxlength</code>, and <code>min</code>/<code>max</code> help users but do not replace server-side validation.</li>
+							</ul>
+							<p><a href="#ch1-3-superglobals">Review request superglobals</a> · <a href="#ch1-4-security">Review output security</a> · <a href="#ch1-6-validation-flow">Review form validation</a></p>
+						</details>
+
 						<details class="card chapter-card wide warning glossary-card" id="ch1-code-validated-reusable-form">
 							<summary><span>Topic 1 Extended Code Example: Redisplay A Form With Validation</span></summary>
 							<p>The guide's generated-form section names helpers such as <code>processForm()</code>, <code>displayForm()</code>, <code>setValue()</code>, <code>setChecked()</code>, <code>setSelected()</code>, and <code>validateField()</code>. This compact version shows how those functions fit together.</p>
