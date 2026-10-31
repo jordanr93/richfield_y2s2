@@ -712,12 +712,14 @@
 
 		<details class="nav-group nav-collapsible">
 			<summary>Concepts, Tools, Methods &amp; Standards</summary>
-			<a href="#test-methods-reference">Topics 1–3 Reference</a>
+			<a href="#test-methods-reference">Full-module Reference · Chapters 1–5</a>
 			<a href="#bd-reference-index">Task and A–Z Index</a>
 			<a href="#bd-task-1">Task 1 · Big Data</a>
 			<a href="#bd-task-2">Task 2 · Tools and preparation</a>
 			<a href="#bd-task-3">Task 3 · IoT systems and safeguards</a>
 			<a href="#bd-task-4">Task 4 · Technologies and standards</a>
+			<a href="#bd-task-5">Task 5 · Storage and security</a>
+			<a href="#bd-task-6">Task 6 · Analytics and strategy</a>
 		</details>
 
 		<details class="nav-group nav-collapsible">
@@ -1088,12 +1090,12 @@
 									<tr>
 										<td>Normalization</td>
 										<td>Standardize or scale data to make it easier to compare and process.</td>
-										<td>Min-max scaling, z-score standardization, log transformation, label or one-hot encoding.</td>
+										<td>Min-max scaling and z-score standardization for numeric features.</td>
 									</tr>
 									<tr>
 										<td>Transformation</td>
 										<td>Convert raw data into formats suitable for analysis or model construction.</td>
-										<td>Aggregation, encoding, wrangling, feature engineering, type conversion.</td>
+										<td>Aggregation, categorical encoding (including one-hot encoding), wrangling, feature engineering, and type conversion.</td>
 									</tr>
 								</tbody>
 							</table>
@@ -1333,7 +1335,9 @@
 										<tr><td>Smart cities</td><td>Traffic sensors, bins, streetlights.</td><td>Improved traffic flow, waste routes, energy use, and public safety.</td></tr>
 										<tr><td>Transport and logistics</td><td>Fleet trackers, connected cars, cargo sensors.</td><td>Route planning, vehicle diagnostics, safety, and condition monitoring.</td></tr>
 										<tr><td>Retail</td><td>Smart shelves, beacons, automated checkout.</td><td>Stock visibility, personalized offers, and faster shopping.</td></tr>
-										<tr><td>Energy/environment/wearables</td><td>Smart meters, pollution and water sensors, wildlife trackers, activity devices.</td><td>Sustainability, public health, conservation, and personal health insight.</td></tr>
+										<tr><td>Energy management</td><td>Smart grids, smart meters, and renewable-energy sensors.</td><td>Balance supply and demand, detect faults, and reduce waste.</td></tr>
+										<tr><td>Environmental monitoring</td><td>Air and water sensors, wildlife trackers.</td><td>Detect pollution, protect ecosystems, and support conservation.</td></tr>
+										<tr><td>Smart wearables</td><td>Activity trackers and health monitors.</td><td>Give personal feedback and flag readings that need attention.</td></tr>
 									</tbody>
 								</table>
 							</div>
@@ -1871,6 +1875,7 @@
 								</table>
 							</div>
 							<p>For distributed systems, the guide also identifies sharding/data segmentation, blockchain or distributed ledgers for traceability, and homomorphic encryption for selected computations on encrypted data.</p>
+						<div class="callout success"><strong>Worked storage and security answer:</strong> a retailer ingests checkout events and customer records. Keep large raw event files in replicated distributed or cloud storage, and flexible customer documents in NoSQL. Use ETL/ELT to align customer IDs, validate records, and document ownership. Encrypt files and network traffic, restrict analyst access with IAM and RBAC, tokenize customer identifiers in test data, monitor cloud configuration and access logs, and rehearse recovery from a failed node or lost dataset. Explain each choice using scale, data form, latency, privacy, and fault tolerance.</div>
 
 					</details>
 
@@ -2096,6 +2101,7 @@
 								<li><strong>Purpose limitation:</strong> do not repurpose data for marketing or another use that was not communicated or agreed.</li>
 							</ul>
 							<div class="callout danger"><strong>Exam trap:</strong> anonymising data does not automatically remove privacy risk; the source notes that advanced analytics can sometimes re-identify people.</div>
+						<p><strong>Applied example:</strong> before using purchase history to personalize offers, state the purpose to customers, check that use and access are authorized, test whether the recommendations disadvantage a group, and keep a record of who can change the model. If an unrelated partner later requests the same data, review ownership, consent, and purpose before sharing it.</p>
 
 					</details>
 
@@ -2122,6 +2128,7 @@
 								</table>
 							</div>
 							<p>A complete cycle is: set goals and metrics, use real-time monitoring and alerts, assess performance, review governance, stay flexible, gather feedback, optimize storage/infrastructure, evaluate models, ensure security, communicate progress, and foster continuous improvement.</p>
+						<p><strong>Worked follow-through:</strong> if a retention campaign misses its target, compare the KPI with its baseline, check data freshness and pipeline latency, inspect model accuracy by customer segment, review access and consent, then test a revised offer. Record the result on the dashboard, discuss it with stakeholders, and repeat the cycle.</p>
 
 					</details>
 
@@ -2161,7 +2168,7 @@
 
 
 			<section id="test-methods-reference" data-nav-section aria-labelledby="test-methods-title">
-				<div class="section-heading"><h2 id="test-methods-title">Topics 1–3 · Concepts, Tools, Methods &amp; Standards</h2><p>Choose a task, a letter, or a term. Each term links to its fuller explanation in the general module content. Entries reflect the study-guide scope; examples are short explanatory cues. On narrow screens, swipe tables sideways to see every column.</p><p><span class="test-scope-label">Study-guide scope · examples are explanatory</span></p></div>
+				<div class="section-heading"><h2 id="test-methods-title">Concepts, Tools, Methods &amp; Standards · Chapters 1–5</h2><p>Browse all five study-guide chapters by task or term. Each entry explains when a concept applies, gives a concrete example, and links to fuller notes in General Module Content. Examples illustrate the guide; they are not additional syllabus requirements. On narrow screens, swipe tables sideways to see every column.</p><p><span class="test-scope-label">Full-module guide · examples are explanatory</span></p></div>
 				<div class="bd-index-block" id="bd-reference-index" aria-label="Big Data reference index">
 					<h3>Browse by task</h3>
 					<nav id="bd-task-index" class="bd-reference-jumps" aria-label="Reference tasks"></nav>
@@ -2227,6 +2234,31 @@
 					<tr><td>OneM2M / interoperability</td><td>Shared service and data approaches help different systems work together.</td><td>Integrate devices from different suppliers.</td><td><a href="#ch3-4-data-detail">Data standards</a></td></tr>
 					<tr><td>ISO/IEC · IEEE · IETF · GSMA</td><td>Organizations that develop international, networking, Internet, and mobile IoT standards.</td><td>IETF develops Internet protocols such as IPv6.</td><td><a href="#ch3-3-standards-detail">Standards and organizations</a></td></tr>
 					<tr><td>Design procedure</td><td>Identify domain and constraints; choose sensors, connectivity, compute location, protocols/standards, and security.</td><td>Farm sensor → LoRaWAN → edge decision → secured irrigation command.</td><td><a href="#ch3-5-application-case">Precision-farming example</a></td></tr>
+				</tbody></table></div>
+				<h3 id="bd-task-5">Task 5 · Choose Big Data storage, management, and security controls</h3>
+				<div class="card table-wrap"><table class="test-reference"><thead><tr><th>Concept / tool</th><th>What it does / when to use it</th><th>Example</th><th>Details</th></tr></thead><tbody>
+					<tr><td>Storage requirements</td><td>Match capacity, data variety, access speed, scalability, and fault tolerance to the workload.</td><td>A retailer retains years of purchases and high-volume click events for analysis.</td><td><a href="#ch4-1-storage-fundamentals">4.1 Fundamentals</a></td></tr>
+					<tr><td>Hadoop · HDFS · NameNode · DataNode</td><td>Hadoop distributes work; HDFS stores replicated file blocks. The NameNode tracks metadata while DataNodes store blocks.</td><td>If a DataNode fails, another replica can serve the file.</td><td><a href="#ch4-3-hadoop-architecture">4.2–4.3 Hadoop</a></td></tr>
+					<tr><td>MapReduce · YARN</td><td>MapReduce runs parallel batch jobs; YARN allocates and schedules cluster resources.</td><td>Count purchases by product across a large archive.</td><td><a href="#ch4-3-hadoop-architecture">4.3 Architecture</a></td></tr>
+					<tr><td>Distributed files · NoSQL · cloud objects · data lake</td><td>Choose block files for large distributed datasets, NoSQL for flexible records, cloud objects for elastic storage, or a lake for raw mixed data.</td><td>Keep raw logs in a lake and changing product documents in MongoDB.</td><td><a href="#ch4-4-solutions-detail">4.4 Solutions</a></td></tr>
+					<tr><td>Horizontal scaling · replication · throughput</td><td>Add nodes as demand grows, copy data for availability, and measure how much data can be read or written.</td><td>Expand a cluster and retain copies of each file block.</td><td><a href="#ch4-5-architecture-detail">4.5 Architectures</a></td></tr>
+					<tr><td>ETL / ELT · governance · quality</td><td>Integrate sources, define ownership and access rules, then validate and enrich data before use.</td><td>Join CRM and web records after aligning customer IDs and checking missing values.</td><td><a href="#ch4-6-management-detail">4.6 Management</a></td></tr>
+					<tr><td>Encryption · IAM · RBAC / ABAC · MFA</td><td>Protect stored and moving data and limit access by identity, role, or attribute.</td><td>Encrypt customer records and allow only approved analysts to read them.</td><td><a href="#ch4-7-big-data-security">4.7 Security</a></td></tr>
+					<tr><td>Masking · tokenization · integrity checks</td><td>Hide identifiers in working datasets and detect unauthorized changes.</td><td>Replace account numbers with tokens in a test dataset.</td><td><a href="#ch4-7-security-detail">4.7 Controls by risk</a></td></tr>
+					<tr><td>CSPM · IDS / SIEM · backup and recovery</td><td>Find cloud misconfigurations or suspicious events and restore service after failure.</td><td>Alert on a public storage bucket, close access, then verify backups.</td><td><a href="#ch4-7-security-detail">4.7 Cloud and distributed security</a></td></tr>
+					<tr><td>NIST · CSA · ISO/IEC 27001 · GDPR</td><td>Use cybersecurity, cloud-security, and information-security frameworks; distinguish these from a privacy regulation.</td><td>Use ISO/IEC 27001 to organize an ISMS and GDPR where applicable to personal-data processing.</td><td><a href="#ch4-7-big-data-security">4.7 Frameworks</a></td></tr>
+				</tbody></table></div>
+				<h3 id="bd-task-6">Task 6 · Turn analytics into a responsible, monitored strategy</h3>
+				<div class="card table-wrap"><table class="test-reference"><thead><tr><th>Concept / method</th><th>What it does / when to use it</th><th>Example</th><th>Details</th></tr></thead><tbody>
+					<tr><td>Strategic decision-making</td><td>Use evidence to identify opportunities, allocate resources, and respond to change.</td><td>Purchase patterns reveal where a retailer should improve stock availability.</td><td><a href="#ch5-1-strategic-decision-making">5.1 Role</a></td></tr>
+					<tr><td>Big Data strategy components</td><td>Link goals, data sources, infrastructure, governance, skills, scale, and business alignment.</td><td>Set a retention goal, identify CRM data, assign owners, and choose processing tools.</td><td><a href="#ch5-2-strategy-components">5.2 Components</a></td></tr>
+					<tr><td>Data-driven formulation · A/B testing</td><td>Set a measurable objective, collect and analyse relevant data, act, test, and refine.</td><td>Compare two offers by conversion rate before expanding the stronger one.</td><td><a href="#ch5-3-formulation-detail">5.3 Strategy loop</a></td></tr>
+					<tr><td>Descriptive · diagnostic analytics</td><td>Summarise what happened, then investigate why.</td><td>Sales fell 8%; complaints and delivery delays help explain the fall.</td><td><a href="#ch5-4-analytics-types">5.4 Analytics types</a></td></tr>
+					<tr><td>Predictive · prescriptive analytics</td><td>Forecast a likely outcome, then recommend an action using decision models or optimisation.</td><td>Predict a demand increase, then recommend stock and route changes.</td><td><a href="#ch5-4-analytics-detail">5.4 Analytics questions</a></td></tr>
+					<tr><td>Charts · dashboards · KPIs</td><td>Show trends, comparisons, targets, and geographic patterns so stakeholders can act.</td><td>A line chart tracks retention; a KPI card compares it with the target.</td><td><a href="#ch5-5-visualization-detail">5.5 Visualization</a></td></tr>
+					<tr><td>Quality · overload · integration · skills · culture · latency</td><td>Identify obstacles that make an insight late, unreliable, or hard to adopt, then select a response.</td><td>Filter excess events, fix duplicate records, and train the team using the dashboard.</td><td><a href="#ch5-6-challenges-detail">5.6 Challenges</a></td></tr>
+					<tr><td>Privacy · fairness · ownership · purpose limitation</td><td>Check collection and reuse, explain decisions, test group impacts, and define data rights.</td><td>Before reusing shopping data for targeted offers, check the stated purpose and consent.</td><td><a href="#ch5-7-ethics-detail">5.7 Ethics and law</a></td></tr>
+					<tr><td>Monitoring · governance review · model adjustment</td><td>Track outcomes, pipeline health, data quality, compliance, feedback, and model drift; then revise the plan.</td><td>Falling model accuracy triggers a data check, retraining, and a new performance review.</td><td><a href="#ch5-8-monitor-detail">5.8 Improvement cycle</a></td></tr>
 				</tbody></table></div>
 				<p><a class="back-link" href="#test-focus-areas">Back to Topic Index ↑</a></p>
 			</section>
@@ -2307,7 +2339,7 @@
 			}
 			if (current) {
 				const navId = navIdForElement(current);
-				if (navId) setActiveNav(navId);
+				setActiveNav(navId);
 			}
 		}
 

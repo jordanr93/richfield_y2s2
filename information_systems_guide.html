@@ -362,6 +362,29 @@
 			grid-column: 1 / -1;
 		}
 
+		.is-reference-jumps { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+		.is-reference-jumps a { border: 1px solid var(--border); border-radius: 8px; padding: 6px 11px; background: var(--header); }
+		.is-reference-table { overflow-x: auto; margin: 14px 0 28px; }
+		.is-reference-table table { min-width: 760px; margin: 0; }
+		.is-reference-table th:first-child { min-width: 180px; }
+		.is-reference-table td { vertical-align: top; }
+		.is-reference-table tr[id] { scroll-margin-top: 24px; }
+		.is-reference-table tr:target { outline: 2px solid var(--purple); outline-offset: -2px; background: rgba(188, 140, 255, 0.10); }
+		.is-quick-index { margin: 18px 0 26px; }
+		.is-quick-index label { display: block; font-weight: 700; margin-bottom: 7px; }
+		.is-quick-index input { width: 100%; max-width: 560px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); font: inherit; }
+		.is-quick-index input:focus-visible { outline: 2px solid var(--purple); outline-offset: 2px; }
+		.is-quick-status { color: var(--muted); margin: 8px 0 12px; }
+		.is-quick-links, .is-letter-links, .is-term-links, .is-letter-terms { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+		.is-quick-links a, .is-letter-links a, .is-term-links a, .is-letter-terms a, .is-reference-return { display: inline-flex; align-items: center; min-height: 40px; padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--header); line-height: 1.3; }
+		.is-quick-links a:hover, .is-letter-links a:hover, .is-term-links a:hover, .is-letter-terms a:hover, .is-reference-return:hover { border-color: var(--purple); text-decoration: none; }
+		.is-letter-group { display: grid; grid-template-columns: 2rem minmax(0, 1fr); align-items: start; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); scroll-margin-top: 24px; }
+		.is-letter-group h4 { margin: 6px 0 0; color: var(--purple); }
+		.is-letter-terms { min-width: 0; }
+		.is-letter-terms a { overflow-wrap: anywhere; }
+		.is-reference-return { font-size: 0.85rem; white-space: nowrap; }
+		.is-quick-results[hidden], .is-az-index[hidden] { display: none; }
+
 		.card {
 			background: var(--panel);
 			border: 1px solid var(--border);
@@ -657,6 +680,7 @@
 					<a class="nav-link" href="#chapter-4">Chapter 4: System Architecture</a>
 					<a class="nav-link" href="#chapter-5">Chapter 5: Implementation</a>
 					<a class="nav-link" href="#chapter-6">Chapter 6: Support and Security</a>
+					<a class="nav-link" href="#is-module-reference" data-nav-link="is-module-reference">Concepts, Tools, Methods &amp; Standards</a>
 				</div>
 				<details class="nav-group nav-collapsible">
 					<summary>Learning Lab</summary>
@@ -1111,7 +1135,7 @@
 				</section>
 					<div class="section-heading" id="general-module-content">
 						<h2>General Module Content</h2>
-						<p>Use the chapters below for fuller explanations, examples, comparisons, and glossary terms related to the assignment.</p>
+						<p>Chapters 1–6 follow the full study guide, from choosing a development strategy through interface and data design, architecture, implementation, support and security. Each chapter includes explanations, comparisons and a worked example. The <a href="#is-module-reference">module-wide reference</a> brings its concepts, tools, methods and standards together.</p>
 					</div>
 					<section class="chapter" id="chapter-1" data-nav-section>
 						<div class="chapter-heading">
@@ -1324,7 +1348,7 @@
 								</dl>
 							</details>
 						</div>
-						<p><a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a></p>
+						<p><a class="back-link" href="#general-module-content">Back to General Module Content</a></p>
 					</section>
 
 					<section class="chapter" id="chapter-2" data-nav-section>
@@ -1472,7 +1496,7 @@
 								</dl>
 							</details>
 						</div>
-						<p><a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a></p>
+						<p><a class="back-link" href="#general-module-content">Back to General Module Content</a></p>
 					</section>
 
 					<section class="chapter" id="chapter-3" data-nav-section>
@@ -1668,7 +1692,7 @@
 								</dl>
 							</details>
 						</div>
-						<p><a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a></p>
+						<p><a class="back-link" href="#general-module-content">Back to General Module Content</a></p>
 					</section>
 
 					<section class="chapter" id="chapter-4" data-nav-section>
@@ -1802,7 +1826,7 @@
 								</dl>
 							</details>
 						</div>
-						<p><a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a></p>
+						<p><a class="back-link" href="#general-module-content">Back to General Module Content</a></p>
 					</section>
 
 					<section class="chapter" id="chapter-5" data-nav-section>
@@ -1955,7 +1979,7 @@
 								</dl>
 							</details>
 						</div>
-						<p><a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a></p>
+						<p><a class="back-link" href="#general-module-content">Back to General Module Content</a></p>
 					</section>
 
 					<section class="chapter" id="chapter-6" data-nav-section>
@@ -2115,14 +2139,106 @@
 								</dl>
 							</details>
 						</div>
-						<p><a class="back-link" href="#exam-focus-areas">Back to Exam Focus Areas</a></p>
+						<p><a class="back-link" href="#general-module-content">Back to General Module Content</a></p>
 					</section>
 
+
+				<section class="section" id="is-module-reference" data-nav-section aria-labelledby="is-module-reference-title">
+					<div class="section-heading"><h2 id="is-module-reference-title">Concepts, Tools, Methods &amp; Standards</h2><p>A full-module reference for Chapters 1–6. Use the quick index to search, browse by chapter or choose a term A–Z. Each entry gives an example and links to fuller notes. Examples illustrate the study-guide concepts.</p></div>
+					<div class="card is-quick-index" id="is-reference-index" aria-label="Information Systems quick index">
+						<h3>Quick index search</h3>
+						<label for="is-reference-search">Find a concept, tool, method or standard</label>
+						<input id="is-reference-search" type="search" placeholder="Try normalization, testing, security…" autocomplete="off" aria-controls="is-quick-results">
+						<p class="is-quick-status" id="is-quick-status" role="status" aria-live="polite">Search all six chapters, or browse below.</p>
+						<nav class="is-quick-links is-quick-results" id="is-quick-results" aria-label="Search results" hidden></nav>
+						<div class="is-az-index" id="is-az-index"><h4>Browse A–Z</h4><nav class="is-letter-links" id="is-letter-links" aria-label="Alphabetical letters"></nav><div id="is-name-index"></div></div>
+					</div>
+					<div class="card"><h3>Follow the system life cycle</h3><p>Choose how to obtain a system → design its interface and data → select its architecture → build and install it → support, secure and eventually retire it. For a complete answer, explain the choice, apply it to a scenario and state the relevant control or trade-off.</p><nav class="is-reference-jumps" aria-label="Reference chapters">
+<a href="#is-ref-ch1">Chapter 1: Choose a development strategy</a>
+<a href="#is-ref-ch2">Chapter 2: Design input, interface and output</a>
+<a href="#is-ref-ch3">Chapter 3: Model and control data</a>
+<a href="#is-ref-ch4">Chapter 4: Select an architecture and network</a>
+<a href="#is-ref-ch5">Chapter 5: Build, test and install the system</a>
+<a href="#is-ref-ch6">Chapter 6: Support, secure and retire the system</a>
+</nav><p><strong>Source:</strong> <em>2026 Information Systems 622 Study Guide</em>. The chapter ranges below refer to PDF pages. Use the original PDF for formal citation.</p></div>
+					<h3 id="is-ref-ch1">Chapter 1 · Choose a development strategy</h3>
+					<p>PDF pp. 8–36 · <a href="#chapter-1">Chapter notes</a> · <a href="#ch1-worked-acquisition-case">Worked example</a></p>
+					<div class="card is-reference-table"><table><thead><tr><th>Concept, tool, method or standard</th><th>What it does / when to use it</th><th>Example</th><th>Fuller notes</th></tr></thead><tbody>
+<tr id="is-ref-1-1"><td><strong>Traditional vs web-based systems</strong></td><td>Compare deployment and access needs before choosing a design.</td><td>A local payroll system serves one office; a web portal serves branches.</td><td><a href="#ch1-1-traditional-vs-web">Open notes</a></td></tr>
+<tr id="is-ref-1-2"><td><strong>In-house development</strong></td><td>Build with internal staff when close control and specialist business knowledge matter.</td><td>A clinic team builds a booking workflow around its own approval rules.</td><td><a href="#ch1-3-development-options">Open notes</a></td></tr>
+<tr id="is-ref-1-3"><td><strong>Build, buy or customise</strong></td><td>Compare fit, speed, control, support and total ownership cost.</td><td>A package covers most bookings, but needs a custom referral field.</td><td><a href="#ch1-5-build-buy-customize">Open notes</a></td></tr>
+<tr id="is-ref-1-4"><td><strong>Outsourcing and offshoring</strong></td><td>Choose external delivery or work in another country with explicit oversight.</td><td>A vendor hosts booking software under a support agreement.</td><td><a href="#ch1-6-outsourcing-saas-offshoring">Open notes</a></td></tr>
+<tr id="is-ref-1-5"><td><strong>SaaS and ASP</strong></td><td>Access provider-run software as a service; check continuity and data control.</td><td>The clinic subscribes to a hosted appointment platform.</td><td><a href="#ch1-6-outsourcing-saas-offshoring">Open notes</a></td></tr>
+<tr id="is-ref-1-6"><td><strong>Total cost of ownership</strong></td><td>Compare acquisition with training, integration, maintenance and support costs.</td><td>A cheap licence needs expensive data conversion and annual support.</td><td><a href="#ch1-5-build-buy-customize">Open notes</a></td></tr>
+<tr id="is-ref-1-7"><td><strong>RFP and vendor evaluation</strong></td><td>State requirements and assess proposals against common criteria.</td><td>Score suppliers on security, workflow fit, cost and support.</td><td><a href="#ch1-8-acquisition-process">Open notes</a></td></tr>
+<tr id="is-ref-1-8"><td><strong>Systems analysis completion</strong></td><td>Document the chosen option and obtain agreement before detailed design.</td><td>Present the recommendation, costs and unresolved risks to sponsors.</td><td><a href="#ch1-9-completion">Open notes</a></td></tr>
+</tbody></table></div>
+					<h3 id="is-ref-ch2">Chapter 2 · Design input, interface and output</h3>
+					<p>PDF pp. 37–76 · <a href="#chapter-2">Chapter notes</a> · <a href="#ch2-8-forms-reports-worked-example">Worked example</a></p>
+					<div class="card is-reference-table"><table><thead><tr><th>Concept, tool, method or standard</th><th>What it does / when to use it</th><th>Example</th><th>Fuller notes</th></tr></thead><tbody>
+<tr id="is-ref-2-1"><td><strong>HCI and usability</strong></td><td>Design around users, their tasks and feedback.</td><td>Reception staff can complete a booking with clear labels and few steps.</td><td><a href="#ch2-1-ui-hci">Open notes</a></td></tr>
+<tr id="is-ref-2-2"><td><strong>Seven interface design habits</strong></td><td>Understand the business, use models, focus on usability and document feedback.</td><td>Observe the booking desk before drawing the screen.</td><td><a href="#ch2-6-seven-habits">Open notes</a></td></tr>
+<tr id="is-ref-2-3"><td><strong>Ten interface guidelines</strong></td><td>Apply learnability, productivity, flexibility, help, layout and data-entry guidance.</td><td>Use consistent navigation, defaults and useful error messages.</td><td><a href="#ch2-7-ten-guidelines">Open notes</a></td></tr>
+<tr id="is-ref-2-4"><td><strong>Source document</strong></td><td>Capture and authorise data at its origin using clear form zones.</td><td>A numbered booking form records patient, time and approval.</td><td><a href="#ch2-4-reports-controls">Open notes</a></td></tr>
+<tr id="is-ref-2-5"><td><strong>Validation rules</strong></td><td>Check required, range, reasonableness, validity and field combinations.</td><td>Reject an appointment date before today; check Doctor ID exists.</td><td><a href="#ch2-3-validation">Open notes</a></td></tr>
+<tr id="is-ref-2-6"><td><strong>Report types</strong></td><td>Choose detail, summary or exception output for the decision.</td><td>Managers see overbooked sessions in an exception report.</td><td><a href="#ch2-4-reports-controls">Open notes</a></td></tr>
+<tr id="is-ref-2-7"><td><strong>Input and output controls</strong></td><td>Protect entry and reports with access, audit trails and secure handling.</td><td>Only authorised staff edit bookings; patient reports have restricted access.</td><td><a href="#ch2-9-technology-security">Open notes</a></td></tr>
+<tr id="is-ref-2-8"><td><strong>Responsive design and prototyping</strong></td><td>Test layouts on devices and revise a model with user feedback.</td><td>Try a booking form on a phone before implementation.</td><td><a href="#ch2-5-prototyping">Open notes</a></td></tr>
+</tbody></table></div>
+					<h3 id="is-ref-ch3">Chapter 3 · Model and control data</h3>
+					<p>PDF pp. 77–122 · <a href="#chapter-3">Chapter notes</a> · <a href="#ch3-8-erd-normalization-worked-example">Worked example</a></p>
+					<div class="card is-reference-table"><table><thead><tr><th>Concept, tool, method or standard</th><th>What it does / when to use it</th><th>Example</th><th>Fuller notes</th></tr></thead><tbody>
+<tr id="is-ref-3-1"><td><strong>DBMS and schema</strong></td><td>Use a database system and schema to manage shared data consistently.</td><td>Patient and appointment tables use defined fields and relationships.</td><td><a href="#ch3-1-dbms">Open notes</a></td></tr>
+<tr id="is-ref-3-2"><td><strong>Keys and referential integrity</strong></td><td>Identify records and keep foreign-key links valid.</td><td>Every Appointment.PatientID must match an existing patient.</td><td><a href="#ch3-2-terms-integrity">Open notes</a></td></tr>
+<tr id="is-ref-3-3"><td><strong>ERD and cardinality</strong></td><td>Draw entities and one-to-one, one-to-many or many-to-many relationships.</td><td>One patient can have many appointments.</td><td><a href="#ch3-3-erd">Open notes</a></td></tr>
+<tr id="is-ref-3-4"><td><strong>First normal form</strong></td><td>Remove repeating groups and keep values atomic.</td><td>Move several service codes out of one booking cell into separate rows.</td><td><a href="#ch3-4-normalization">Open notes</a></td></tr>
+<tr id="is-ref-3-5"><td><strong>Second normal form</strong></td><td>Remove attributes dependent on only part of a composite key.</td><td>Move ProductName out of an OrderLine table keyed by OrderID and ProductID.</td><td><a href="#ch3-4-normalization">Open notes</a></td></tr>
+<tr id="is-ref-3-6"><td><strong>Third normal form</strong></td><td>Remove dependencies between non-key attributes.</td><td>Store DepartmentName in Department, not in every employee row.</td><td><a href="#ch3-4-normalization">Open notes</a></td></tr>
+<tr id="is-ref-3-7"><td><strong>Codes and code design</strong></td><td>Use meaningful, unique, maintainable identifiers where appropriate.</td><td>Assign a stable clinic code rather than using a changing name as a key.</td><td><a href="#ch3-9-codes-storage-controls">Open notes</a></td></tr>
+<tr id="is-ref-3-8"><td><strong>Storage, access and data control</strong></td><td>Choose access methods and safeguard accuracy, permissions and recovery.</td><td>Index PatientID for lookup and restrict confidential records.</td><td><a href="#ch3-10-data-storage-access">Open notes</a></td></tr>
+</tbody></table></div>
+					<h3 id="is-ref-ch4">Chapter 4 · Select an architecture and network</h3>
+					<p>PDF pp. 123–157 · <a href="#chapter-4">Chapter notes</a> · <a href="#ch4-8-internet-processing-network-example">Worked example</a></p>
+					<div class="card is-reference-table"><table><thead><tr><th>Concept, tool, method or standard</th><th>What it does / when to use it</th><th>Example</th><th>Fuller notes</th></tr></thead><tbody>
+<tr id="is-ref-4-1"><td><strong>Architecture checklist</strong></td><td>Evaluate cost, scalability, legacy integration, processing and security.</td><td>Compare a local server with a hosted branch-wide system.</td><td><a href="#ch4-6-architecture-checklist-expanded">Open notes</a></td></tr>
+<tr id="is-ref-4-2"><td><strong>Client/server tiers</strong></td><td>Separate presentation, business logic and data responsibilities.</td><td>A browser calls an application tier that queries a database.</td><td><a href="#ch4-2-client-server">Open notes</a></td></tr>
+<tr id="is-ref-4-3"><td><strong>Middleware</strong></td><td>Connect applications or tiers and handle communication between them.</td><td>An integration service passes confirmed orders to inventory.</td><td><a href="#ch4-7-evolution-client-server">Open notes</a></td></tr>
+<tr id="is-ref-4-4"><td><strong>E-commerce architecture</strong></td><td>Choose in-house, packaged or provider-based delivery for online trade.</td><td>A retailer adopts a package and integrates stock data.</td><td><a href="#ch4-8-internet-processing-network-example">Open notes</a></td></tr>
+<tr id="is-ref-4-5"><td><strong>Online vs batch processing</strong></td><td>Use immediate processing for interactive work and scheduled batches for grouped jobs.</td><td>Confirm a booking now; produce end-of-day totals overnight.</td><td><a href="#ch4-3-processing">Open notes</a></td></tr>
+<tr id="is-ref-4-6"><td><strong>OSI model and network topology</strong></td><td>Use the layered model to reason about communication and topology to map links.</td><td>Check whether a branch fault is in cabling, routing or the application.</td><td><a href="#ch4-4-networks">Open notes</a></td></tr>
+<tr id="is-ref-4-7"><td><strong>IEEE 802.11 wireless standards</strong></td><td>Recognise WLAN standards as a factor in range, bandwidth and security choices.</td><td>Choose a suitable wireless network for mobile reception desks.</td><td><a href="#ch4-9-networks-wireless-design-completion">Open notes</a></td></tr>
+<tr id="is-ref-4-8"><td><strong>System design specification</strong></td><td>Record architecture and design decisions for review and implementation.</td><td>Document tiers, database, network, controls and interfaces.</td><td><a href="#ch4-5-design-completion">Open notes</a></td></tr>
+</tbody></table></div>
+					<h3 id="is-ref-ch5">Chapter 5 · Build, test and install the system</h3>
+					<p>PDF pp. 158–205 · <a href="#chapter-5">Chapter notes</a> · <a href="#ch5-9-installation-worked-example">Worked example</a></p>
+					<div class="card is-reference-table"><table><thead><tr><th>Concept, tool, method or standard</th><th>What it does / when to use it</th><th>Example</th><th>Fuller notes</th></tr></thead><tbody>
+<tr id="is-ref-5-1"><td><strong>Quality assurance and ISO</strong></td><td>Plan and document quality checks across development and maintenance.</td><td>Record review criteria and test evidence for a supplier build.</td><td><a href="#ch5-6-quality-engineering">Open notes</a></td></tr>
+<tr id="is-ref-5-2"><td><strong>Structure charts</strong></td><td>Show modules and the calls or data passed between them.</td><td>Booking module calls CheckAvailability and SaveBooking.</td><td><a href="#ch5-3-cohesion-coupling">Open notes</a></td></tr>
+<tr id="is-ref-5-3"><td><strong>Cohesion and coupling</strong></td><td>Keep each module focused and dependencies manageable.</td><td>Place price rules in one service, with a clear input/output contract.</td><td><a href="#ch5-3-cohesion-coupling">Open notes</a></td></tr>
+<tr id="is-ref-5-4"><td><strong>Object-oriented design</strong></td><td>Model responsibilities in objects with attributes and behaviour.</td><td>Appointment stores its time and can change status.</td><td><a href="#ch5-ooa-object-concepts">Open notes</a></td></tr>
+<tr id="is-ref-5-5"><td><strong>Agile, XP and user stories</strong></td><td>Deliver short iterations around prioritised user needs.</td><td>“As a receptionist, I can reschedule a booking” guides a sprint.</td><td><a href="#ch5-7-development-methods-expanded">Open notes</a></td></tr>
+<tr id="is-ref-5-6"><td><strong>Unit, integration and system tests</strong></td><td>Test a component, its interactions and the whole system in sequence.</td><td>Test a date rule, then booking-save flow, then full clinic workflow.</td><td><a href="#ch5-8-testing-docs-expanded">Open notes</a></td></tr>
+<tr id="is-ref-5-7"><td><strong>Documentation and training</strong></td><td>Prepare program, system, operations and user information for each audience.</td><td>Give support staff a recovery runbook and users a booking guide.</td><td><a href="#ch5-8-testing-docs-expanded">Open notes</a></td></tr>
+<tr id="is-ref-5-8"><td><strong>Changeover and data conversion</strong></td><td>Choose direct, parallel, pilot or phased rollout and migrate checked data.</td><td>Pilot one clinic, reconcile migrated appointments, then expand.</td><td><a href="#ch5-9-installation-worked-example">Open notes</a></td></tr>
+</tbody></table></div>
+					<h3 id="is-ref-ch6">Chapter 6 · Support, secure and retire the system</h3>
+					<p>PDF pp. 206–247 · <a href="#chapter-6">Chapter notes</a> · <a href="#ch6-9-backup-retirement-worked-example">Worked example</a></p>
+					<div class="card is-reference-table"><table><thead><tr><th>Concept, tool, method or standard</th><th>What it does / when to use it</th><th>Example</th><th>Fuller notes</th></tr></thead><tbody>
+<tr id="is-ref-6-1"><td><strong>Help desk and knowledge base</strong></td><td>Resolve user issues, record answers and spot recurring faults.</td><td>Log repeated booking errors and publish a short help article.</td><td><a href="#ch6-6-user-support-help-desk">Open notes</a></td></tr>
+<tr id="is-ref-6-2"><td><strong>Four maintenance types</strong></td><td>Classify corrective, adaptive, perfective and preventive changes.</td><td>Fix a bug, add a new rule, speed a report and replace fragile code.</td><td><a href="#ch6-7-maintenance-management-expanded">Open notes</a></td></tr>
+<tr id="is-ref-6-3"><td><strong>Configuration management</strong></td><td>Control requests, versions, releases, documentation and baselines.</td><td>Tie a security fix to its approved request and release number.</td><td><a href="#ch6-7-maintenance-management-expanded">Open notes</a></td></tr>
+<tr id="is-ref-6-4"><td><strong>Performance measures</strong></td><td>Compare response time, throughput, turnaround and bandwidth.</td><td>Measure how many booking requests finish per minute.</td><td><a href="#ch6-8-performance-security-expanded">Open notes</a></td></tr>
+<tr id="is-ref-6-5"><td><strong>Capacity planning</strong></td><td>Forecast future load, storage and network demand.</td><td>Add capacity before a new branch doubles booking traffic.</td><td><a href="#ch6-8-performance-security-expanded">Open notes</a></td></tr>
+<tr id="is-ref-6-6"><td><strong>Security policy and risk management</strong></td><td>Set protection rules and reduce identified risks to acceptable levels.</td><td>Require access review after a staff role changes.</td><td><a href="#ch6-8-performance-security-expanded">Open notes</a></td></tr>
+<tr id="is-ref-6-7"><td><strong>Security levels</strong></td><td>Apply physical, network, application, file, user and procedural controls.</td><td>Lock server rooms, patch apps and limit patient-file access.</td><td><a href="#ch6-4-security">Open notes</a></td></tr>
+<tr id="is-ref-6-8"><td><strong>Backup, recovery and continuity</strong></td><td>Set backup and retention rules; rehearse restoration and essential operations.</td><td>Restore a clean appointment backup after a server failure.</td><td><a href="#ch6-9-backup-retirement-worked-example">Open notes</a></td></tr>
+<tr id="is-ref-6-9"><td><strong>System retirement and cyberethics</strong></td><td>Plan replacement when value falls; handle access and data responsibly.</td><td>Archive required records and remove old access before shutdown.</td><td><a href="#ch6-10-future-professional-issues">Open notes</a></td></tr>
+</tbody></table></div></section>
 
 				<section class="section module-learning-lab" id="preparation-station" data-nav-section><div class="section-heading"><h2>Learning Lab</h2><p>Use these interactive tools to practise Information Systems 622 concepts. Your quiz attempts are saved only in this browser.</p></div><div class="learning-lab-grid"><div class="learning-lab-panel learning-lab-quiz"><h3>Quiz Builder</h3><p>Choose how many questions to draw from each topic, then answer and submit when ready.</p><div class="lab-counts"></div><div class="lab-actions"><button class="lab-button" type="button" data-lab-action="new-quiz">Start New Quiz</button><button class="lab-button secondary" type="button" data-lab-action="restart-quiz">Restart Current Quiz</button><button class="lab-button danger" type="button" data-lab-action="clear-progress">Clear Progress</button></div></div><div class="lab-summary" aria-live="polite"></div><div class="lab-questions"></div><button class="lab-button learning-lab-quiz lab-submit" type="button" data-lab-action="submit-quiz">Submit Quiz</button><div class="lab-history learning-lab-quiz"></div><article class="learning-lab-panel" id="lab-flashcards"><h3>Flashcards</h3><p>Recall the definition before flipping the card.</p><div class="lab-flashcard" tabindex="0" role="button"></div><div class="lab-actions"><button class="lab-button secondary" type="button" data-lab-action="previous-card">Previous</button><button class="lab-button" type="button" data-lab-action="flip">Flip card</button><button class="lab-button secondary" type="button" data-lab-action="next-card">Next</button></div><div class="lab-feedback lab-flashcard-status" aria-live="polite"></div></article><article class="learning-lab-panel" id="lab-challenge"><h3>Concept Challenge</h3><p class="lab-challenge-prompt"></p><div class="lab-options lab-challenge-options"></div><div class="lab-feedback lab-challenge-feedback" aria-live="polite"></div><div class="lab-actions"><button class="lab-button secondary" type="button" data-lab-action="next-challenge">Next challenge</button></div></article><article class="learning-lab-panel wide" id="lab-explain"><h3>Explain It</h3><p class="lab-explain-prompt"></p><textarea class="lab-explain-input" aria-label="Your explanation" placeholder="Write your explanation before revealing the model answer."></textarea><div class="lab-actions"><button class="lab-button" type="button" data-lab-action="show-explain">Reveal model answer</button></div><div class="lab-feedback lab-explain-answer"></div></article></div></section>
 
 				<footer class="footer">
-					<p>Built from the 2026 Information Systems 622 Study Guide and the local one-page study-site instructions.</p>
+					<p>Source: <em>2026 Information Systems 622 Study Guide</em>, condensed and reorganised for revision. Examples illustrate the concepts; consult the original guide for formal citation.</p>
 				</footer>
 			</div>
 		</main>
@@ -2256,6 +2372,93 @@
 			window.addEventListener("scroll", requestActiveNavUpdate, { passive: true });
 			window.addEventListener("resize", requestActiveNavUpdate);
 			updateActiveNav();
+		})();
+	</script>
+	<script>
+		(() => {
+			const root = document.getElementById('is-module-reference');
+			const search = document.getElementById('is-reference-search');
+			const status = document.getElementById('is-quick-status');
+			const results = document.getElementById('is-quick-results');
+			const azIndex = document.getElementById('is-az-index');
+			const letterLinks = document.getElementById('is-letter-links');
+			const nameIndex = document.getElementById('is-name-index');
+			if (!root || !search || !status || !results || !azIndex || !letterLinks || !nameIndex) return;
+
+			const makeLink = (href, label) => {
+				const link = document.createElement('a');
+				link.href = href;
+				link.textContent = label;
+				return link;
+			};
+			const entries = [];
+			root.querySelectorAll('h3[id^="is-ref-ch"]').forEach((heading) => {
+				const chapter = heading.id.replace('is-ref-ch', '');
+				const table = heading.nextElementSibling?.nextElementSibling;
+				if (!table?.classList.contains('is-reference-table')) return;
+				const termLinks = document.createElement('nav');
+				termLinks.className = 'is-term-links';
+				termLinks.setAttribute('aria-label', `Chapter ${chapter} terms`);
+				table.before(termLinks);
+				table.querySelectorAll('tbody tr[id]').forEach((row) => {
+					const term = row.cells[0].textContent.trim();
+					const entry = {
+						term,
+						id: row.id,
+						chapter,
+						searchText: `${term} ${row.cells[1].textContent} ${row.cells[2].textContent} ${row.cells[3].querySelector('a')?.getAttribute('href') || ''} chapter ${chapter}`.toLocaleLowerCase()
+					};
+					entries.push(entry);
+					termLinks.append(makeLink(`#${entry.id}`, term));
+					const details = row.cells[row.cells.length - 1];
+					const back = makeLink('#is-reference-index', 'Index ↑');
+					back.className = 'is-reference-return';
+					details.append(document.createTextNode(' · '), back);
+				});
+			});
+
+			const groups = new Map();
+			entries.sort((a, b) => a.term.localeCompare(b.term)).forEach((entry) => {
+				const letter = /^[a-z]/i.test(entry.term) ? entry.term[0].toUpperCase() : '#';
+				if (!groups.has(letter)) groups.set(letter, []);
+				groups.get(letter).push(entry);
+			});
+			Array.from(groups.keys()).sort().forEach((letter) => {
+				const group = document.createElement('div');
+				group.className = 'is-letter-group';
+				group.id = `is-letter-${letter}`;
+				const title = document.createElement('h4');
+				title.textContent = letter;
+				const links = document.createElement('div');
+				links.className = 'is-letter-terms';
+				groups.get(letter).forEach((entry) => links.append(makeLink(`#${entry.id}`, entry.term)));
+				group.append(title, links);
+				letterLinks.append(makeLink(`#${group.id}`, letter));
+				nameIndex.append(group);
+			});
+
+			const updateSearch = () => {
+				const query = search.value.trim().toLocaleLowerCase();
+				results.replaceChildren();
+				results.hidden = !query;
+				azIndex.hidden = !!query;
+				if (!query) {
+					status.textContent = `${entries.length} terms across six chapters. Search or browse A–Z.`;
+					return;
+				}
+				const words = query.split(/\s+/).filter(Boolean);
+				const matches = entries.filter((entry) => words.every((word) => entry.searchText.includes(word)));
+				status.textContent = matches.length ? `${matches.length} matching ${matches.length === 1 ? 'entry' : 'entries'}. Select a result to see its example and fuller notes.` : 'No matching entries. Try a broader term or another chapter.';
+				matches.forEach((entry) => results.append(makeLink(`#${entry.id}`, `${entry.term} · Chapter ${entry.chapter}`)));
+			};
+			search.addEventListener('input', updateSearch);
+			search.addEventListener('keydown', (event) => {
+				if (event.key === 'Enter' && results.firstElementChild) {
+					event.preventDefault();
+					results.firstElementChild.click();
+				}
+			});
+			updateSearch();
 		})();
 	</script>
 </body>

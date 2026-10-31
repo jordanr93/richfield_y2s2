@@ -1570,6 +1570,101 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" &amp;&amp; !$missingFields) {
 &lt;?php } ?&gt;</code></pre>
 						</details>
 
+						<details class="card chapter-card wide pattern glossary-card" id="ch1-code-review-multiselect">
+							<summary><span>Topic 1 Review Exercise: Process a Multi-Select List</span></summary>
+							<p>Use <code>name="languages[]"</code> so PHP receives an array. Accept only known options, then escape each value before HTML output.</p>
+							<pre><code>&lt;?php
+$allowed = ["PHP", "JavaScript", "Python"];
+$selected = [];
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+	$raw = $_POST["languages"] ?? [];
+	if (!is_array($raw)) $raw = [];
+	$selected = array_values(array_intersect($allowed, $raw));
+	echo "&lt;p&gt;Selected: " . htmlspecialchars(implode(", ", $selected), ENT_QUOTES, "UTF-8") . "&lt;/p&gt;";
+}
+?&gt;
+&lt;form method="post"&gt;
+	&lt;label for="languages"&gt;Favourite languages&lt;/label&gt;
+	&lt;select id="languages" name="languages[]" multiple size="3"&gt;
+		&lt;?php foreach ($allowed as $language): ?&gt;
+			&lt;option value="&lt;?= htmlspecialchars($language, ENT_QUOTES, "UTF-8") ?&gt;"&lt;?= in_array($language, $selected, true) ? " selected" : "" ?&gt;&gt;&lt;?= htmlspecialchars($language, ENT_QUOTES, "UTF-8") ?&gt;&lt;/option&gt;
+		&lt;?php endforeach; ?&gt;
+	&lt;/select&gt;
+	&lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+						</details>
+						<details class="card chapter-card wide pattern glossary-card" id="ch1-code-review-upload">
+							<summary><span>Topic 1 Review Exercise: Validate and Display an Image Upload</span></summary>
+							<p>This matches the review requirements: JPG/JPEG/PNG only, at most 2 MB, saved in <code>uploads/</code>, with an error if a check fails. The image content is checked as well as the filename extension. Save as <code>upload.php</code> and ensure the web server can write to the project folder.</p>
+							<pre><code>&lt;?php
+$message = "";
+$imageUrl = "";
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+	$file = $_FILES["photo"] ?? null;
+	if (!$file || $file["error"] !== UPLOAD_ERR_OK) {
+		$message = "Choose an image and try again.";
+	} elseif ($file["size"] &gt; 2 * 1024 * 1024) {
+		$message = "The image must be 2 MB or smaller.";
+	} else {
+		$extension = strtolower(pathinfo($file["name"], PATHINFO_EXTENSION));
+		$type = (new finfo(FILEINFO_MIME_TYPE))-&gt;file($file["tmp_name"]);
+		$allowed = ["jpg" =&gt; "image/jpeg", "jpeg" =&gt; "image/jpeg", "png" =&gt; "image/png"];
+		if (!isset($allowed[$extension]) || $allowed[$extension] !== $type || getimagesize($file["tmp_name"]) === false) {
+			$message = "Only JPG, JPEG, and PNG images are allowed.";
+		} else {
+			$folder = __DIR__ . "/uploads";
+			if (!is_dir($folder) &amp;&amp; !mkdir($folder, 0755)) {
+				$message = "Could not create the uploads folder.";
+			} else {
+				$name = bin2hex(random_bytes(16)) . "." . $extension;
+				if (move_uploaded_file($file["tmp_name"], $folder . "/" . $name)) {
+					$imageUrl = "uploads/" . $name;
+				} else {
+					$message = "Could not save the uploaded image.";
+				}
+			}
+		}
+	}
+}
+?&gt;
+&lt;form method="post" enctype="multipart/form-data"&gt;
+	&lt;label for="photo"&gt;Image (JPG or PNG, up to 2 MB)&lt;/label&gt;
+	&lt;input id="photo" name="photo" type="file" accept=".jpg,.jpeg,.png" required&gt;
+	&lt;button type="submit"&gt;Upload&lt;/button&gt;
+&lt;/form&gt;
+&lt;?php if ($message !== ""): ?&gt;&lt;p&gt;&lt;?= htmlspecialchars($message, ENT_QUOTES, "UTF-8") ?&gt;&lt;/p&gt;&lt;?php endif; ?&gt;
+&lt;?php if ($imageUrl !== ""): ?&gt;&lt;img src="&lt;?= htmlspecialchars($imageUrl, ENT_QUOTES, "UTF-8") ?&gt;" alt="Uploaded image"&gt;&lt;?php endif; ?&gt;</code></pre>
+						</details>
+						<details class="card chapter-card wide pattern glossary-card" id="ch1-code-review-login">
+							<summary><span>Topic 1 Review Exercise: Password Hash and Prepared Login Query</span></summary>
+							<p>The review requires a prepared statement, password hashing, and safe output. Assume a <code>users</code> table with <code>username</code> and <code>password_hash</code> columns, a working <code>$conn</code> MySQLi connection, and HTTPS. Save the hash at registration; never save the original password.</p>
+							<pre><code>&lt;?php
+// During registration, after validating the submitted password:
+$hash = password_hash($password, PASSWORD_DEFAULT);
+$insert = mysqli_prepare($conn, "INSERT INTO users (username, password_hash) VALUES (?, ?)");
+mysqli_stmt_bind_param($insert, "ss", $username, $hash);
+mysqli_stmt_execute($insert);
+mysqli_stmt_close($insert);
+
+// During login, retrieve the stored hash with a parameterized query:
+$username = trim($_POST["username"] ?? "");
+$password = $_POST["password"] ?? "";
+$query = mysqli_prepare($conn, "SELECT password_hash FROM users WHERE username = ?");
+mysqli_stmt_bind_param($query, "s", $username);
+mysqli_stmt_execute($query);
+mysqli_stmt_bind_result($query, $storedHash);
+$found = mysqli_stmt_fetch($query);
+mysqli_stmt_close($query);
+if ($found &amp;&amp; password_verify($password, $storedHash)) {
+	session_start();
+	session_regenerate_id(true);
+	$_SESSION["username"] = $username;
+	echo "Welcome, " . htmlspecialchars($username, ENT_QUOTES, "UTF-8");
+} else {
+	echo "Invalid username or password.";
+}</code></pre>
+							<p>Check connection and statement errors in a real application. The form uses <code>method="post"</code> and password input <code>type="password"</code>; output escaping protects the greeting, while the prepared query protects SQL parameters.</p>
+						</details>
 						<details class="card chapter-card wide architecture glossary-card" id="ch1-glossary">
 							<summary><span>Topic 1 Glossary: Forms, Request Data And Validation</span></summary>
 							<dl class="glossary-list">
@@ -2063,6 +2158,8 @@ exit;
 								<div><strong>file_get_contents()</strong><br>Reads the whole file into a string.</div>
 								<div><strong>fwrite()</strong><br>Writes through an open handle.</div>
 								<div><strong>file_put_contents()</strong><br>Writes a full string without manually opening a handle.</div>
+								<div><strong>readfile()</strong><br>Reads a file and sends it to output.</div>
+								<div><strong>fpassthru()</strong><br>Sends the remaining bytes from an open file handle to output.</div>
 							</div>
 							<pre><code>$handle = fopen("data.txt", "a");
 if ($handle) {
@@ -2107,9 +2204,9 @@ if ($handle) {
 								<div><strong>getcwd()</strong><br>Returns the current working directory.</div>
 								<div><strong>mkdir()</strong><br>Creates a directory.</div>
 								<div><strong>rmdir()</strong><br>Removes an empty directory.</div>
+								<div><strong>dirname()</strong><br>Returns the directory portion of a path.</div>
 							</div>
 						</article>
-
 						<article class="card chapter-card warning" id="ch3-6-file-management">
 							<h3>3.6 Copy, Rename, Delete, and Test Types</h3>
 							<p>File management functions can change data permanently, so check paths before using them.</p>
@@ -2125,6 +2222,20 @@ if ($handle) {
 }</code></pre>
 							<div class="callout danger"><strong>Destructive action:</strong> <code>unlink()</code> deletes the file. Make sure the target path is correct before calling it.</div>
 						</article>
+						<article class="card chapter-card pattern" id="ch3-7-directory-object">
+							<h3>3.7 The <code>Directory</code> Object</h3>
+							<p>The guide also shows an object-oriented way to list a directory. <code>dir()</code> returns a <code>Directory</code> object with <code>path</code> and <code>handle</code> properties. Its <code>read()</code>, <code>rewind()</code>, and <code>close()</code> methods correspond to <code>readdir()</code>, <code>rewinddir()</code>, and <code>closedir()</code>.</p>
+							<pre><code>$dir = dir(__DIR__ . "/files_dir");
+if ($dir !== false) {
+	while (($name = $dir-&gt;read()) !== false) {
+		if ($name === "." || $name === "..") continue;
+		echo htmlspecialchars($name, ENT_QUOTES, "UTF-8") . "&lt;br&gt;";
+	}
+	$dir-&gt;close();
+}</code></pre>
+							<p>Use <code>!== false</code> so a directory entry named <code>0</code> is not mistaken for the end. Check that <code>dir()</code> succeeded before calling a method.</p>
+						</article>
+
 					</div>
 					<div class="chapter-grid">
 						<details class="card chapter-card wide pattern glossary-card" id="ch3-code-file-metadata-counter">
@@ -2239,6 +2350,40 @@ fclose($csvHandle);
 ?&gt;</code></pre>
 						</details>
 
+						<details class="card chapter-card wide pattern glossary-card" id="ch3-code-review-read-append-binary">
+							<summary><span>Topic 3 Review Exercises: Read, Append, Handle Errors, and Copy Binary Data</span></summary>
+							<p>This completes the file review tasks alongside the metadata, counter, directory, and CSV examples above. The first script creates <code>data.txt</code>, reads it line by line, appends a sentence, and reports a missing file clearly.</p>
+							<pre><code>&lt;?php
+$path = __DIR__ . "/data.txt";
+if (!file_exists($path) &amp;&amp; file_put_contents($path, "Initial data\n") === false) {
+	die("Cannot create data.txt.");
+}
+$reader = fopen($path, "r");
+if ($reader === false) die("Cannot open data.txt for reading.");
+while (($line = fgets($reader)) !== false) {
+	echo htmlspecialchars($line, ENT_QUOTES, "UTF-8") . "&lt;br&gt;";
+}
+fclose($reader);
+if (file_put_contents($path, "This is new data added.\n", FILE_APPEND | LOCK_EX) === false) {
+	die("Cannot append to data.txt.");
+}
+$missing = @fopen(__DIR__ . "/nonexistent.txt", "r");
+if ($missing === false) echo "The requested file could not be opened.";
+else fclose($missing);</code></pre>
+							<p>For the binary task, use <code>rb</code>/<code>wb</code>, count bytes with <code>strlen()</code>, and never echo raw binary into an HTML page. Supply a small <code>sample.png</code> file first.</p>
+							<pre><code>&lt;?php
+$source = fopen(__DIR__ . "/sample.png", "rb");
+if ($source === false) die("Cannot read sample.png.");
+$bytes = stream_get_contents($source);
+fclose($source);
+if ($bytes === false) die("Cannot read binary data.");
+echo "Read " . strlen($bytes) . " bytes.";
+$target = fopen(__DIR__ . "/sample-copy.png", "wb");
+if ($target === false) die("Cannot create the copy.");
+$written = fwrite($target, $bytes);
+fclose($target);
+if ($written !== strlen($bytes)) die("The binary copy was incomplete.");</code></pre>
+						</details>
 						<details class="card chapter-card wide architecture glossary-card" id="ch3-glossary">
 							<summary><span>Topic 3 Glossary: Files, Pointers And Directories</span></summary>
 							<dl class="glossary-list">
@@ -2867,12 +3012,12 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 
 
 		<section id="detailed-reference" class="chapter ip-api-reference" data-nav-section>
-			<div class="section-heading"><h2>Classes, Functions, Methods &amp; Attributes</h2><p>Internet Programming 622 reference for the HTML form and PHP request/state work in Topics 1 &amp; 2. Choose a task or an alphabetical name; each entry says what it does, when to use it, gives a small example, and links to the fuller explanation in General Module Content.</p></div>
-			<p class="assignment-links"><a class="back-link" href="#test-focus-areas">Back to Topics 1 &amp; 2 Test Index</a></p>
-			<div class="callout"><strong>Scope:</strong> Entries marked “Study-guide content” follow Internet Programming Topics 1–2. “Supporting practice” adds useful implementation guidance and is not confirmed test coverage. HTML uses a <code>class</code> attribute for CSS/behavior hooks; PHP class definitions are not part of this test reference.</div>
+			<div class="section-heading"><h2>Classes, Functions, Methods &amp; Attributes</h2><p>Task-based reference for the complete Internet Programming 622 guide: forms, cookies and sessions, files and directories, SQL and MySQL, and local PHP setup. Each entry explains its purpose, shows a short example, and links to General Module Content.</p></div>
+			<p class="assignment-links"><a class="back-link" href="#chapter-1">Start General Module Content</a> · <a href="#test-focus-areas">Topics 1 &amp; 2 test index</a></p>
+			<div class="callout"><strong>Coverage:</strong> Topics 1–4 and the XAMPP addendum. “Supporting practice” identifies useful coding guidance beyond the guide examples. <code>class</code> on an HTML element is an attribute; the <code>Directory</code> class in Topic 3 is a PHP object with properties and methods.</div>
 			<h3>Choose an Internet Programming task</h3>
 			<nav id="ip-api-task-index" class="ip-api-jumps" aria-label="Choose an Internet Programming task">
-				<a href="#ip-api-form">Build and submit a form</a><a href="#ip-api-process">Process and validate a request</a><a href="#ip-api-state">Preserve state across requests</a>
+				<a href="#ip-api-form">Build and submit a form</a><a href="#ip-api-process">Process and validate a request</a><a href="#ip-api-state">Preserve state across requests</a><a href="#ip-api-files">Work with files</a><a href="#ip-api-directories">Work with directories</a><a href="#ip-api-sql">Write SQL</a><a href="#ip-api-mysql">Read MySQL from PHP</a><a href="#ip-api-local">Run PHP locally</a>
 			</nav>
 			<h3>Find an API name · A–Z</h3>
 			<nav id="ip-api-alpha" class="ip-api-jumps" aria-label="Alphabetical Internet Programming reference index"></nav>
@@ -2895,8 +3040,9 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 				<article class="ip-api-entry"><h4><code>filter_var()</code> and <code>FILTER_VALIDATE_EMAIL</code> <span class="ip-reference-label">Study-guide content</span></h4><p><strong>Does:</strong> Checks whether a value matches a recognized email format. <strong>Use it when:</strong> validating a non-empty email field on the server. <strong>Example:</strong> <code>$valid = filter_var($email, FILTER_VALIDATE_EMAIL) !== false;</code></p><a href="#ch1-6-validation-flow">Full explanation: server-side validation</a></article>
 				<article class="ip-api-entry"><h4><code>htmlspecialchars()</code> <span class="ip-reference-label">Study-guide content</span></h4><p><strong>Does:</strong> Encodes special characters for safe HTML output. <strong>Use it when:</strong> displaying submitted text in an HTML page; it prevents submitted markup from being interpreted as page markup. It is output escaping, not validation. <strong>Example:</strong> <code>echo htmlspecialchars($name, ENT_QUOTES, "UTF-8");</code></p><a href="#ch1-4-security">Full explanation: form-data security and XSS</a></article>
 				<article class="ip-api-entry"><h4><code>setValue()</code>, <code>setChecked()</code>, <code>setSelected()</code>, <code>validateField()</code> <span class="ip-reference-label">Study-guide helper patterns</span></h4><p><strong>Does:</strong> Preserves entered text/choices and marks fields with errors after failed validation. <strong>Use it when:</strong> generating and redisplaying a form. Escape restored values for their HTML context. <strong>Example:</strong> <code>value="&lt;?= htmlspecialchars($_POST["name"] ?? "", ENT_QUOTES, "UTF-8") ?&gt;"</code></p><a href="#ch1-6-validation-flow">Full explanation: dynamic forms and validation</a> · <a href="#ch1-code-validated-reusable-form">Full explanation: helper example</a></article>
-				<article class="ip-api-entry"><h4><code>$_FILES</code> and <code>move_uploaded_file()</code> <span class="ip-reference-label">Supporting practice for a Topic 1 review exercise</span></h4><p><strong>Does:</strong> Exposes uploaded-file details and moves a valid upload from PHP’s temporary location. <strong>Use it when:</strong> handling an upload after checking upload status, size, and allowed file type. <strong>Example:</strong> <code>move_uploaded_file($_FILES["photo"]["tmp_name"], $destination);</code></p><a href="#ch1-glossary">Full explanation: upload terms</a></article>
-				<article class="ip-api-entry"><h4><code>password_hash()</code> and <code>password_verify()</code> <span class="ip-reference-label">Supporting security practice</span></h4><p><strong>Does:</strong> Creates a one-way password hash and verifies a typed password against it. <strong>Use it when:</strong> implementing authentication; never store or redisplay plain-text passwords. <strong>Example:</strong> <code>$hash = password_hash($password, PASSWORD_DEFAULT);</code></p><a href="#ch1-4-security">Full explanation: security notes</a></article>
+				<article class="ip-api-entry"><h4><code>name="languages[]"</code> and <code>multiple</code> <span class="ip-reference-label">Study-guide review exercise</span></h4><p><strong>Does:</strong> Submits selected options as a PHP array. <strong>Use it when:</strong> a user may choose more than one item. <strong>Example:</strong> <code>&lt;select name="languages[]" multiple&gt;&lt;option value="PHP"&gt;PHP&lt;/option&gt;&lt;/select&gt;</code></p><a href="#ch1-code-review-multiselect">Full explanation: multi-select handler</a></article>
+				<article class="ip-api-entry"><h4><code>$_FILES</code>, <code>move_uploaded_file()</code>, <code>finfo</code> <span class="ip-reference-label">Study-guide review exercise + supporting validation</span></h4><p><strong>Does:</strong> Exposes uploaded-file details, checks content type, and moves a valid upload from PHP’s temporary location. <strong>Use it when:</strong> handling the guide's JPG/PNG upload task with a 2 MB maximum. <strong>Example:</strong> <code>move_uploaded_file($_FILES["photo"]["tmp_name"], $destination);</code></p><a href="#ch1-code-review-upload">Full explanation: complete upload example</a></article>
+				<article class="ip-api-entry"><h4><code>password_hash()</code>, <code>password_verify()</code>, <code>mysqli_prepare()</code> <span class="ip-reference-label">Study-guide review exercise</span></h4><p><strong>Does:</strong> Stores a one-way password hash, verifies a typed password, and keeps user input out of SQL syntax. <strong>Use it when:</strong> implementing the guide's secure-login task. <strong>Example:</strong> <code>$hash = password_hash($password, PASSWORD_DEFAULT);</code></p><a href="#ch1-code-review-login">Full explanation: prepared login query</a></article>
 			</div>
 
 			<div class="ip-api-task" id="ip-api-state"><h3>Task 3 · Preserve state across requests</h3>
@@ -2909,7 +3055,49 @@ echo "&lt;p&gt;Open this page with http://localhost/Demo/diagnostics.php, not fi
 				<article class="ip-api-entry"><h4><code>session_destroy()</code> and <code>unset()</code> <span class="ip-reference-label">Study-guide content + supporting practice</span></h4><p><strong>Does:</strong> Removes session data; <code>unset()</code> removes a selected session value. <strong>Use it when:</strong> logging out or clearing one saved step. For full logout, clear <code>$_SESSION</code>, destroy session data, and expire the session cookie. <strong>Example:</strong> <code>$_SESSION = []; session_destroy();</code></p><a href="#ch2-3-sessions">Full explanation: ending a session</a> · <a href="#ch2-code-session-login">Full explanation: logout code</a></article>
 				<article class="ip-api-entry"><h4><code>header()</code>, <code>exit</code>, <code>session_regenerate_id()</code> <span class="ip-reference-label">Supporting authentication practice</span></h4><p><strong>Does:</strong> Sends a redirect, stops script execution, and replaces the session ID. <strong>Use it when:</strong> redirecting after a login/logout transition and regenerating the ID after authentication. Send headers before output. <strong>Example:</strong> <code>session_regenerate_id(true); header("Location: welcome.php"); exit;</code></p><a href="#ch2-code-session-login">Full explanation: session login example</a></article>
 			</div>
-			<p class="assignment-links"><a href="#test-focus-areas">Back to Topics 1 &amp; 2 Test Index ↑</a> · <a href="#chapter-1">Topic 1 general content</a> · <a href="#chapter-2">Topic 2 general content</a></p>
+
+			<div class="ip-api-task" id="ip-api-files"><h3>Task 4 · Inspect, read, and write files</h3>
+				<article class="ip-api-entry"><h4><code>file_exists()</code>, <code>filesize()</code> <span class="ip-reference-label">Study-guide content</span></h4><p><strong>Does:</strong> Tests whether a path exists and reports a file's size in bytes. <strong>Use it when:</strong> checking a file before opening it. <strong>Example:</strong> <code>if (file_exists("data.txt")) echo filesize("data.txt");</code> <code>filesize()</code> can return <code>false</code> on error.</p><a href="#ch3-1-file-info">Full explanation: file metadata</a></article>
+				<article class="ip-api-entry"><h4><code>fileatime()</code>, <code>filectime()</code>, <code>filemtime()</code>, <code>date()</code> <span class="ip-reference-label">Study-guide content</span></h4><p><strong>Does:</strong> Reads access, change, and modification timestamps; <code>date()</code> formats a timestamp. <strong>Use it when:</strong> displaying file history. <code>filectime()</code> is metadata change time on Unix-like systems, not a portable creation time. <strong>Example:</strong> <code>echo date("Y-m-d", filemtime("data.txt"));</code></p><a href="#ch3-1-file-info">Full explanation: time-related properties</a></article>
+				<article class="ip-api-entry"><h4><code>basename()</code>, <code>dirname()</code> <span class="ip-reference-label">Study-guide content</span></h4><p><strong>Does:</strong> Extracts the final name or parent directory from a path. <strong>Use it when:</strong> separating a path for display or navigation. These functions parse strings; they do not confirm that the path exists. <strong>Example:</strong> <code>basename("/docs/report.txt")</code> gives <code>report.txt</code>; <code>dirname("/docs/report.txt")</code> gives <code>/docs</code>.</p><a href="#ch3-1-file-info">Full explanation: paths</a> · <a href="#ch3-5-directories">Directory functions</a></article>
+				<article class="ip-api-entry"><h4><code>fopen()</code>, <code>fclose()</code> <span class="ip-reference-label">Study-guide content</span></h4><p><strong>Does:</strong> Opens a file handle in a chosen mode and closes it. <strong>Use it when:</strong> reading or writing incrementally. <code>r</code> needs an existing file; <code>w</code> truncates; <code>a</code> appends. <strong>Example:</strong> <code>$h = fopen("log.txt", "a"); if ($h !== false) { fwrite($h, "OK\n"); fclose($h); }</code></p><a href="#ch3-2-open-modes">Full explanation: open modes</a></article>
+				<article class="ip-api-entry"><h4><code>fread()</code>, <code>fgetc()</code>, <code>fgets()</code>, <code>feof()</code> <span class="ip-reference-label">Study-guide content</span></h4><p><strong>Does:</strong> Reads a byte count, one character, or one line; <code>feof()</code> reports end of file. <strong>Use it when:</strong> processing a large file in pieces. For lines, test the read result so the final line is not skipped. <strong>Example:</strong> <code>while (($line = fgets($h)) !== false) echo htmlspecialchars($line, ENT_QUOTES, "UTF-8");</code></p><a href="#ch3-3-read-write">Full explanation: reading files</a> · <a href="#ch3-4-file-pointers">EOF</a></article>
+				<article class="ip-api-entry"><h4><code>fgetcsv()</code> <span class="ip-reference-label">Study-guide review exercise</span></h4><p><strong>Does:</strong> Parses the next CSV row into an array. <strong>Use it when:</strong> reading the guide's <code>name,age,city</code> table without splitting quoted commas incorrectly. <strong>Example:</strong> <code>while (($row = fgetcsv($h)) !== false) { /* escape each cell */ }</code></p><a href="#ch3-code-directory-and-csv">Full explanation: CSV table</a></article>
+				<article class="ip-api-entry"><h4><code>fwrite()</code>, <code>file_put_contents()</code> <span class="ip-reference-label">Study-guide content</span></h4><p><strong>Does:</strong> Writes through an open handle or writes a whole string in one call. <strong>Use it when:</strong> saving text; use <code>FILE_APPEND</code> to keep existing content with the whole-file function. <strong>Example:</strong> <code>file_put_contents("log.txt", "New entry\n", FILE_APPEND);</code> Check the return value for <code>false</code>.</p><a href="#ch3-3-read-write">Full explanation: writing files</a></article>
+				<article class="ip-api-entry"><h4><code>file()</code>, <code>file_get_contents()</code> <span class="ip-reference-label">Study-guide content</span></h4><p><strong>Does:</strong> Reads a whole file as an array of lines or one string. <strong>Use it when:</strong> the file is small enough to fit comfortably in memory. <strong>Example:</strong> <code>$lines = file("notes.txt", FILE_IGNORE_NEW_LINES);</code> Test for <code>false</code> before using the result.</p><a href="#ch3-3-read-write">Full explanation: whole-file reads</a></article>
+				<article class="ip-api-entry"><h4><code>readfile()</code>, <code>fpassthru()</code> <span class="ip-reference-label">Study-guide content</span></h4><p><strong>Does:</strong> Sends file contents to output; <code>fpassthru()</code> starts at the current position of an open handle. <strong>Use it when:</strong> returning trusted file contents directly. Do not send untrusted HTML into a page without escaping it. <strong>Example:</strong> <code>readfile("public.txt");</code> or <code>fpassthru($h);</code></p><a href="#ch3-3-read-write">Full explanation: entire-file functions</a></article>
+				<article class="ip-api-entry"><h4><code>fseek()</code>, <code>ftell()</code>, <code>rewind()</code> <span class="ip-reference-label">Study-guide content</span></h4><p><strong>Does:</strong> Moves, reports, or resets the file pointer. <strong>Use it when:</strong> reading a known position in a file. <strong>Example:</strong> <code>fseek($h, 7); echo fread($h, 5); rewind($h);</code> A successful <code>fseek()</code> returns <code>0</code>.</p><a href="#ch3-4-file-pointers">Full explanation: random access</a></article>
+				<article class="ip-api-entry"><h4><code>rb</code>, <code>wb</code>, <code>strlen()</code> <span class="ip-reference-label">Study-guide binary review exercise</span></h4><p><strong>Does:</strong> Opens binary files for reading/writing and counts bytes in a binary string. <strong>Use it when:</strong> copying image or other non-text data. <strong>Example:</strong> <code>$h = fopen("sample.png", "rb"); $bytes = fread($h, filesize("sample.png")); echo strlen($bytes);</code></p><a href="#ch3-code-review-read-append-binary">Full explanation: binary copy</a></article>
+				<article class="ip-api-entry"><h4><code>copy()</code>, <code>rename()</code>, <code>unlink()</code> <span class="ip-reference-label">Study-guide content</span></h4><p><strong>Does:</strong> Copies, moves/renames, or deletes a file. <strong>Use it when:</strong> managing a known server path. <strong>Example:</strong> <code>if (is_file("report.txt")) copy("report.txt", "backup.txt");</code> Check the return value and verify a target before <code>unlink()</code>.</p><a href="#ch3-6-file-management">Full explanation: file management</a></article>
+			</div>
+
+			<div class="ip-api-task" id="ip-api-directories"><h3>Task 5 · Navigate directories</h3>
+				<article class="ip-api-entry"><h4><code>opendir()</code>, <code>readdir()</code>, <code>closedir()</code>, <code>rewinddir()</code> <span class="ip-reference-label">Study-guide content</span></h4><p><strong>Does:</strong> Opens a directory, reads entries, closes it, or resets its pointer. <strong>Use it when:</strong> listing contents. Skip <code>.</code> and <code>..</code>; compare reads with <code>!== false</code>. <strong>Example:</strong> <code>while (($name = readdir($handle)) !== false) { if ($name !== "." &amp;&amp; $name !== "..") echo htmlspecialchars($name); }</code></p><a href="#ch3-5-directories">Full explanation: directory handles</a></article>
+				<article class="ip-api-entry"><h4><code>dir()</code>, <code>Directory</code>, <code>path</code>, <code>handle</code> <span class="ip-reference-label">Study-guide class and properties</span></h4><p><strong>Does:</strong> <code>dir()</code> creates a <code>Directory</code> object; its <code>path</code> and <code>handle</code> properties expose the directory path and underlying handle. <strong>Use it when:</strong> following the guide's object-oriented directory pattern. <strong>Example:</strong> <code>$dir = dir("files_dir"); if ($dir !== false) echo $dir-&gt;path;</code></p><a href="#ch3-7-directory-object">Full explanation: Directory object</a></article>
+				<article class="ip-api-entry"><h4><code>Directory::read()</code>, <code>Directory::rewind()</code>, <code>Directory::close()</code> <span class="ip-reference-label">Study-guide methods</span></h4><p><strong>Does:</strong> Reads the next entry, starts again from the first entry, and closes the directory. <strong>Use it when:</strong> traversing with a <code>Directory</code> object. <strong>Example:</strong> <code>while (($name = $dir-&gt;read()) !== false) { /* use $name */ } $dir-&gt;rewind(); $dir-&gt;close();</code></p><a href="#ch3-7-directory-object">Full explanation: methods and full example</a></article>
+				<article class="ip-api-entry"><h4><code>chdir()</code>, <code>getcwd()</code>, <code>mkdir()</code>, <code>rmdir()</code> <span class="ip-reference-label">Study-guide content</span></h4><p><strong>Does:</strong> Changes/reports the working directory or creates/removes a directory. <strong>Use it when:</strong> handling directory paths. <code>rmdir()</code> only removes an empty directory; changing working directory also changes how relative paths resolve. <strong>Example:</strong> <code>if (!is_dir("reports")) mkdir("reports"); echo getcwd();</code></p><a href="#ch3-5-directories">Full explanation: directory functions</a></article>
+				<article class="ip-api-entry"><h4><code>is_file()</code>, <code>is_dir()</code> <span class="ip-reference-label">Study-guide content</span></h4><p><strong>Does:</strong> Distinguishes a regular file from a directory. <strong>Use it when:</strong> choosing how to process a path found while listing entries. <strong>Example:</strong> <code>if (is_dir($path)) echo "Folder"; elseif (is_file($path)) echo "File";</code></p><a href="#ch3-6-file-management">Full explanation: file versus directory</a></article>
+			</div>
+
+			<div class="ip-api-task" id="ip-api-sql"><h3>Task 6 · Create and change database data with SQL</h3>
+				<article class="ip-api-entry"><h4><code>CREATE DATABASE</code>, <code>USE</code>, <code>CREATE TABLE</code> <span class="ip-reference-label">Study-guide SQL</span></h4><p><strong>Does:</strong> Creates a database, selects it, and defines a table. <strong>Use it when:</strong> setting up the guide's fruit exercise. <strong>Example:</strong> <code>CREATE DATABASE mydatabase; USE mydatabase; CREATE TABLE fruit (id INT PRIMARY KEY, name VARCHAR(30));</code></p><a href="#ch4-2-create-table">Full explanation: database and table setup</a></article>
+				<article class="ip-api-entry"><h4><code>PRIMARY KEY</code>, <code>AUTO_INCREMENT</code>, <code>INDEX</code> <span class="ip-reference-label">Study-guide SQL attributes</span></h4><p><strong>Does:</strong> Uniquely identifies rows, generates numeric IDs, and speeds lookups. <strong>Use it when:</strong> designing relational tables. <strong>Example:</strong> <code>id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT, PRIMARY KEY (id)</code>. An index helps reads but adds work to writes.</p><a href="#ch4-1-rdbms">Full explanation: indexes and keys</a> · <a href="#ch4-2-create-table">Table example</a></article>
+				<article class="ip-api-entry"><h4><code>INSERT INTO</code>, <code>SELECT</code>, <code>WHERE</code> <span class="ip-reference-label">Study-guide SQL</span></h4><p><strong>Does:</strong> Adds rows, reads rows, and filters the rows returned or changed. <strong>Use it when:</strong> doing create/read work. <strong>Example:</strong> <code>INSERT INTO fruit (name, color) VALUES ('plum', 'purple'); SELECT name FROM fruit WHERE color = 'purple';</code></p><a href="#ch4-3-crud-sql">Full explanation: CRUD</a></article>
+				<article class="ip-api-entry"><h4><code>UPDATE</code>, <code>DELETE</code>, <code>DROP TABLE</code> <span class="ip-reference-label">Study-guide SQL</span></h4><p><strong>Does:</strong> Changes selected rows, removes selected rows, or removes the table structure. <strong>Use it when:</strong> modifying or cleaning up data. <strong>Example:</strong> <code>UPDATE fruit SET color = 'red' WHERE id = 2; DELETE FROM fruit WHERE id = 3;</code> Omitting <code>WHERE</code> affects every row; <code>DROP TABLE fruit</code> removes the table.</p><a href="#ch4-3-crud-sql">Full explanation: update and delete</a></article>
+				<article class="ip-api-entry"><h4><code>INNER JOIN</code>, <code>SUM()</code>, <code>GROUP BY</code>, <code>ALTER TABLE</code> <span class="ip-reference-label">Study-guide review questions</span></h4><p><strong>Does:</strong> Connects related tables, totals grouped rows, and changes table structure. <strong>Use it when:</strong> answering the Customers/Orders review tasks. <strong>Example:</strong> <code>SELECT c.Name, SUM(o.TotalAmount) FROM Customers c INNER JOIN Orders o ON c.CustomerID = o.CustomerID GROUP BY c.CustomerID, c.Name;</code></p><a href="#ch4-5-complex-query-review">Full explanation: review query patterns</a> · <a href="#ch4-code-ecommerce-review">Extended worked example</a></article>
+			</div>
+
+			<div class="ip-api-task" id="ip-api-mysql"><h3>Task 7 · Connect PHP to MySQL and read rows</h3>
+				<article class="ip-api-entry"><h4><code>mysqli_connect()</code>, <code>mysqli_connect_error()</code>, <code>mysqli_close()</code> <span class="ip-reference-label">Study-guide content</span></h4><p><strong>Does:</strong> Opens a MySQL connection, reports a connection error, and closes it. <strong>Use it when:</strong> running the guide's procedural MySQL example. <strong>Example:</strong> <code>$conn = mysqli_connect("localhost", "root", "", "mydatabase"); if (!$conn) die(mysqli_connect_error()); /* queries */ mysqli_close($conn);</code> Modern PHP may throw a <code>mysqli_sql_exception</code> instead of returning <code>false</code> when strict reporting is enabled.</p><a href="#ch4-4-php-mysql">Full explanation: PHP connection</a></article>
+				<article class="ip-api-entry"><h4><code>mysqli_query()</code>, <code>mysqli_error()</code> <span class="ip-reference-label">Study-guide content</span></h4><p><strong>Does:</strong> Runs SQL and exposes an error if the query fails. <strong>Use it when:</strong> executing a fixed SQL statement. <strong>Example:</strong> <code>$result = mysqli_query($conn, "SELECT * FROM fruit"); if (!$result) die(mysqli_error($conn));</code> Use prepared statements for values supplied by users.</p><a href="#ch4-4-php-mysql">Full explanation: query errors</a></article>
+				<article class="ip-api-entry"><h4><code>mysqli_fetch_assoc()</code>, <code>mysqli_free_result()</code> <span class="ip-reference-label">Study-guide content and supporting cleanup</span></h4><p><strong>Does:</strong> Fetches a result row as a named array; optional cleanup releases the result set. <strong>Use it when:</strong> displaying rows returned by <code>SELECT</code>. <strong>Example:</strong> <code>while ($row = mysqli_fetch_assoc($result)) echo htmlspecialchars($row["name"], ENT_QUOTES, "UTF-8"); mysqli_free_result($result);</code></p><a href="#ch4-code-mysqli-read-fruit">Full explanation: complete fruit reader</a></article>
+				<article class="ip-api-entry"><h4><code>PDO</code>, <code>mysqli</code> <span class="ip-reference-label">Study-guide API choices</span></h4><p><strong>Does:</strong> Names PHP's two database access options discussed by the guide. <strong>Use it when:</strong> choosing a database interface; the guide's worked connection and fetch code uses procedural <code>mysqli</code>. <strong>Example:</strong> <code>mysqli_connect("localhost", "root", "", "mydatabase")</code>.</p><a href="#ch4-4-php-mysql">Full explanation: PHP database interfaces</a></article>
+			</div>
+
+			<div class="ip-api-task" id="ip-api-local"><h3>Task 8 · Run PHP on your computer</h3>
+				<article class="ip-api-entry"><h4><code>.php</code>, <code>htdocs</code>, <code>localhost</code> <span class="ip-reference-label">Study-guide addendum</span></h4><p><strong>Does:</strong> Identifies a PHP script, XAMPP's document folder, and the local web-server address. <strong>Use it when:</strong> testing a script through Apache. <strong>Example:</strong> save <code>Demo/test.php</code> under <code>htdocs</code>, start Apache, then open <code>http://localhost/Demo/test.php</code>.</p><a href="#ch5-2-run-php">Full explanation: running PHP</a> · <a href="#ch5-3-localhost">URL and folder mapping</a></article>
+			</div>
+			<p class="assignment-links"><a href="#chapter-1">Topic 1 general content</a> · <a href="#chapter-2">Topic 2</a> · <a href="#chapter-3">Topic 3</a> · <a href="#chapter-4">Topic 4</a> · <a href="#chapter-5">Addendum</a></p>
 		</section>
 
 		<section id="legacy-preparation-station" class="quiz-section" data-nav-section hidden>

@@ -714,6 +714,7 @@
 				<a href="#chapter-4" data-nav-link="chapter-4">Chapter 4: Classification</a>
 				<a href="#general-code-reference" data-nav-link="general-code-reference">Code walkthroughs: Topics 1–4</a>
 				<a href="#chapter-5" data-nav-link="chapter-5">Chapter 5: Clustering</a>
+						<a href="#ch5-guide-practice" data-nav-link="ch5-guide-practice">Chapter 5: Guide practice tasks</a>
 			</div>
 
 			<details class="nav-group nav-collapsible">
@@ -799,7 +800,7 @@
 		</section>
 		<section id="general-module-content" class="section-band">
 			<div class="section-inner">
-				<div class="section-heading"><h2>General Module Content</h2><p>Full explanations and worked examples. Chapters 1–4 are in your stated CA scope; Chapter 5 remains available for the wider module.</p></div>
+					<div class="section-heading"><h2>General Module Content</h2><p>Chapters 1–5 follow the study guide, with worked examples and the Chapter 5 practice tasks. Chapters 1–4 were the stated CA scope; Chapter 5 supports wider module revision.</p></div>
 				<section id="chapter-1" class="chapter" data-nav-section>
 					<h3>Chapter 1: Introduction to Machine Learning</h3>
 					<div class="chapter-tools">
@@ -2504,11 +2505,13 @@ def evaluate_clusters(name, labels):
     print("Cluster labels:", sorted(unique_labels))
     print("Cluster sizes:", pd.Series(labels).value_counts().sort_index().to_dict())
 
-    if len(non_noise_labels) &gt;= 2:
-        print("Silhouette:", round(silhouette_score(X_scaled, labels), 3))
-        print("Davies-Bouldin:", round(davies_bouldin_score(X_scaled, labels), 3))
+    keep = np.asarray(labels) != -1
+    clean_labels = np.asarray(labels)[keep]
+    if 2 &lt;= len(non_noise_labels) &lt; keep.sum():
+        print("Silhouette (non-noise):", round(silhouette_score(X_scaled[keep], clean_labels), 3))
+        print("Davies-Bouldin (non-noise):", round(davies_bouldin_score(X_scaled[keep], clean_labels), 3))
     else:
-        print("Not enough non-noise clusters for internal scores.")
+        print("Need 2 clusters and at least 1 extra non-noise sample for internal scores.")
 
 evaluate_clusters("k-Means", df["KMeans_Cluster"])
 evaluate_clusters("Hierarchical", df["Hierarchical_Cluster"])
@@ -2523,6 +2526,81 @@ print("\nk-Means customer profiles:\n", profile)
 noise_customers = df[df["DBSCAN_Cluster"] == -1]
 print("DBSCAN noise count:", len(noise_customers))</code></pre>
 							<div class="callout warning"><strong>Common error:</strong> Cluster labels are arbitrary. Interpret clusters by inspecting profiles, examples, centers, dendrograms, or visualizations.</div>
+						</article>
+
+						<article class="card chapter-card wide structure" id="ch5-guide-practice" data-nav-section>
+							<h4>Chapter 5 guide practice: all ten tasks</h4>
+							<p>The guide's closing exercises ask you to compare clustering on Iris or Digits, inspect a dendrogram, test DBSCAN on noisy shapes, compare PCA and scaling choices, visualise with t-SNE, engineer features, detect anomalies, choose k with an elbow plot, and compare a Gaussian mixture with k-means. These are wider-module practice tasks, not additions to the earlier CA scope. Source: Machine Learning 600 Study Guide, §5.6, PDF pp. 161–166 (printed pp. 159–164).</p>
+							<ol>
+								<li><strong>k-means:</strong> vary <code>n_clusters</code>; compare silhouette and, when true labels exist, ARI. Cluster numbers need not match class numbers.</li>
+								<li><strong>Hierarchical:</strong> inspect merge distances in a dendrogram; choose a cut and compare assignments with k-means.</li>
+								<li><strong>DBSCAN:</strong> vary <code>eps</code> and <code>min_samples</code>; count label <code>-1</code> as noise and inspect irregular shapes.</li>
+								<li><strong>PCA:</strong> plot two components, report <code>explained_variance_ratio_</code>, then compare clustering on original and reduced features.</li>
+								<li><strong>Preprocessing:</strong> compare original, scaled and row-normalised features. <code>Normalizer</code> scales each sample; <code>RobustScaler</code> scales columns robustly, so they answer different questions.</li>
+								<li><strong>t-SNE:</strong> use a 2D embedding for visual exploration; local neighbours matter more than global axis distances, and the embedding is not a fitted predictor.</li>
+								<li><strong>Feature engineering:</strong> add justified interactions, then compare clusters using the same evaluation method; extra features can also make distances less useful.</li>
+								<li><strong>Isolation Forest:</strong> inspect predictions (<code>-1</code> = anomaly) and compare the flagged points with DBSCAN noise or known synthetic outliers.</li>
+								<li><strong>Elbow:</strong> plot k-means <code>inertia_</code> over a range of k; an elbow is a judgement aid, not a guaranteed optimum.</li>
+								<li><strong>Gaussian mixture:</strong> compare hard labels and <code>predict_proba</code> membership probabilities with k-means; a mixture assumes Gaussian components.</li>
+							</ol>
+							<pre><code>from sklearn.datasets import load_iris, make_moons
+from sklearn.cluster import KMeans, DBSCAN, AgglomerativeClustering
+from sklearn.decomposition import PCA
+from sklearn.ensemble import IsolationForest
+from sklearn.manifold import TSNE
+from sklearn.metrics import adjusted_rand_score, silhouette_score
+from sklearn.mixture import GaussianMixture
+from sklearn.preprocessing import Normalizer, PolynomialFeatures, StandardScaler
+from scipy.cluster.hierarchy import dendrogram, linkage
+import matplotlib.pyplot as plt
+import numpy as np
+
+X, true_species = load_iris(return_X_y=True)
+X = StandardScaler().fit_transform(X)
+km = KMeans(n_clusters=3, random_state=42, n_init=10).fit(X)
+print("ARI:", adjusted_rand_score(true_species, km.labels_))
+print("Silhouette:", silhouette_score(X, km.labels_))
+print("K-means centers:", km.cluster_centers_.shape)
+
+# A dendrogram is drawn from a linkage matrix, not from model labels.
+tree = linkage(X, method="ward")
+dendrogram(tree, truncate_mode="lastp", p=12)
+plt.title("Last 12 merges")
+plt.show()
+hierarchical = AgglomerativeClustering(n_clusters=3).fit_predict(X)
+
+pca = PCA(n_components=2).fit(X)
+Z = pca.transform(X)
+print("PCA retained variance:", pca.explained_variance_ratio_.sum())
+print("PCA-space silhouette:", silhouette_score(Z, KMeans(n_clusters=3, random_state=42, n_init=10).fit_predict(Z)))
+unit_rows = Normalizer().fit_transform(X)
+print("Row-normalised silhouette:", silhouette_score(unit_rows, KMeans(n_clusters=3, random_state=42, n_init=10).fit_predict(unit_rows)))
+X_interactions = PolynomialFeatures(degree=2, include_bias=False).fit_transform(X)
+print("Engineered-feature silhouette:", silhouette_score(X_interactions, KMeans(n_clusters=3, random_state=42, n_init=10).fit_predict(X_interactions)))
+embedding = TSNE(n_components=2, random_state=42, perplexity=30).fit_transform(X)
+plt.scatter(embedding[:, 0], embedding[:, 1], c=true_species)
+plt.title("t-SNE view (colours shown only for interpretation)")
+plt.show()
+
+moons, _ = make_moons(n_samples=200, noise=0.07, random_state=42)
+db_labels = DBSCAN(eps=0.2, min_samples=5).fit_predict(moons)
+print("DBSCAN noise:", np.sum(db_labels == -1))
+keep = db_labels != -1
+if 2 &lt;= np.unique(db_labels[keep]).size &lt; keep.sum():
+    print("DBSCAN silhouette without noise:", silhouette_score(moons[keep], db_labels[keep]))
+anomaly_labels = IsolationForest(random_state=42, contamination=0.05).fit_predict(moons)
+print("Isolation Forest flags:", np.sum(anomaly_labels == -1))
+
+ks = range(1, 9)
+inertias = [KMeans(n_clusters=k, random_state=42, n_init=10).fit(X).inertia_ for k in ks]
+plt.plot(list(ks), inertias, marker="o")
+plt.xlabel("k")
+plt.ylabel("Within-cluster sum of squares")
+plt.show()
+gmm = GaussianMixture(n_components=3, random_state=42).fit(X)
+print("GMM agreement with species:", adjusted_rand_score(true_species, gmm.predict(X)))
+print("GMM memberships for first row:", gmm.predict_proba(X[:1]))</code></pre>
+							<p>The snippet demonstrates the APIs on bundled or generated data. For the guide's full comparison task, also inspect cluster profiles and repeat evaluation after PCA or justified feature engineering. Compare silhouette only when the evaluated labels contain at least two clusters and fewer clusters than samples.</p>
 						</article>
 
 						<details class="card chapter-card wide structure glossary-card" id="ch5-glossary">

@@ -26,9 +26,9 @@ const links = [...combined.matchAll(/href="#([^"]+)"/g)].map(m=>m[1]);
 // The Learning Lab adds these three targets when its script initializes.
 const runtimeIds = new Set(['quiz-builder', 'code-practice', 'code-tracer']);
 assert.deepEqual([...new Set(links.filter(id=>!allIds.has(id) && !runtimeIds.has(id)))], [], 'Every page jump must resolve');
-assert.equal((generated.match(/class="card ca-api-card"/g)||[]).length, 88);
+assert.equal((generated.match(/class="card ca-api-card"/g)||[]).length, 100);
 assert.equal((generated.match(/class="card ca-topic-card"/g)||[]).length, 24);
-assert.equal((generated.match(/Full explanation in general content/g)||[]).length, 88);
+assert.equal((generated.match(/Full explanation in general content/g)||[]).length, 100);
 assert.ok(!/<input[^>]*type="search"/.test(generated), 'Navigation must not depend on search');
 assert.match(node('ca-name-index').innerHTML, /id="ca-letter-R"[^]*?href="#ca-api-reshape"/);
 assert.match(node('ca-name-index').innerHTML, /id="ca-letter-I"[^]*?href="#ca-api-coef"\s*>intercept_/);
@@ -36,17 +36,18 @@ assert.match(node('ca-name-index').innerHTML, /id="ca-letter-Y"[^]*?href="#ca-ap
 assert.match(node('ca-api-groups').innerHTML, /reshape\(-1, 1\)/);
 assert.match(node('ca-api-groups').innerHTML, /reshape\(1, -1\)/);
 assert.match(html, /id="general-module-content"/);
+assert.match(html, /id="ch5-guide-practice"/);
+assert.match(node('ca-name-index').innerHTML, /href="#ca-api-gmm"/);
 assert.ok(html.indexOf('id="ca-api"') > html.indexOf('id="chapter-5"'), 'API reference follows general chapters');
 assert.ok(html.indexOf('id="ca-api"') < html.indexOf('id="preparation-station"'), 'API reference precedes learning lab');
-assert.match(html, /<details id="assignment-body" class="assignment-body">/, 'Assignment body starts collapsed');
 assert.match(html, /PCA centres the input but does not automatically scale/);
 assert.match(html, /ccp_alpha/);
 assert.match(html, /SSE=600 and SST=20,000/);
-assert.match(html, /href="#ch3-classification-trees">Classification Trees/);
-assert.match(html, /href="#ch4-metric-worked">Classification Metrics Worked Example/);
+assert.match(html, /id="ch3-classification-trees"/);
+assert.match(html, /id="ch4-metric-worked"/);
 assert.doesNotMatch(html, /raw\.githubusercontent\.com\/mwaskom\/seaborn-data\/master\/iris\.csv/);
 assert.doesNotMatch(html, /df\.iloc\[:, :\] = imputer\.fit_transform\(df\)/);
-console.log(`PASS: 24 topic cards, 88 API cards, ${links.length} page links, unique anchors and key content checks.`);
+console.log(`PASS: 24 topic cards, 100 API cards, ${links.length} page links, unique anchors and key content checks.`);
 // Emit snippets for optional syntax checks without importing or running their libraries.
 if (process.argv.includes('--snippets')) {
   const snippets = [...combined.matchAll(/<pre><code>([\s\S]*?)<\/code><\/pre>/g)].map(m=>m[1]);

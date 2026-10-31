@@ -1051,7 +1051,7 @@
 		<section class="content-section" id="general-module-content" data-nav-section>
 			<div class="section-heading">
 				<h2>General Module Content</h2>
-				<p>Use the chapter links below for fuller explanations and examples for all ten study-guide topics. Topics 1–4 are indexed above for this test.</p>
+				<p>Follow all ten topics in the study-guide order. Each chapter explains the key idea, shows a worked C++ example, and links to the related names and operations in the reference below. Topics 1–4 also have a separate test index above.</p>
 			</div>
 			<section class="chapter" id="chapter-1" data-nav-section>
 				<h2>1. Software Engineering Principles And C++ Classes</h2>
@@ -1094,7 +1094,7 @@
 					<article class="card chapter-card warning" id="ch1-3-big-o">
 						<h3>1.3 Algorithm Analysis: Big-O</h3>
 						<p>After designing an algorithm, the guide says it should also be analysed. The focus is normally the number of basic operations as a function of input size <code>n</code>, not the raw time on one computer.</p>
-						<p>Big-O describes the dominant growth term when <code>n</code> becomes large. Constants and smaller terms become less important. For example, <code>n2 + n</code> is treated as <code>O(n2)</code> because the quadratic term dominates.</p>
+						<p>Big-O describes the dominant growth term when <code>n</code> becomes large. Constants and smaller terms become less important. For example, <code>n² + n</code> is <code>O(n²)</code> because the quadratic term dominates.</p>
 						<div class="table-wrap">
 							<table>
 								<thead>
@@ -2179,8 +2179,9 @@ reversePrint(values.cbegin(), values.cend()); // Prints: 2 7 4</code></pre>
 					</article>
 					<details class="card chapter-card wide structure code-example-details" id="ch5-code-example">
 						<summary><h3>Topic 5 Extended Code Example: Postfix Calculator With stack</h3></summary>
-						<p>This program implements the guide's postfix rule: operands are pushed, operators pop two operands, and the final stack must contain exactly one answer.</p>
+						<p>This program implements the guide's postfix rule: operands are pushed, operators pop two operands, and the final stack must contain exactly one answer. Trace <code>6 3 + 2 * =</code>: push 6 and 3, replace them with 9, push 2, then replace 9 and 2 with 18. Subtraction and division use the first popped value as the right operand.</p>
 						<pre><code>#include &lt;iostream&gt;
+#include &lt;exception&gt;
 #include &lt;sstream&gt;
 #include &lt;stack&gt;
 #include &lt;string&gt;
@@ -2200,7 +2201,10 @@ bool applyOperator(stack&lt;double&gt;&amp; values, char op) {
 		case '+': values.push(left + right); break;
 		case '-': values.push(left - right); break;
 		case '*': values.push(left * right); break;
-		case '/': values.push(left / right); break;
+		case '/':
+			if (right == 0) return false;
+			values.push(left / right);
+			break;
 		default: return false; // Illegal operator.
 	}
 
@@ -2211,10 +2215,13 @@ bool evaluatePostfix(const string&amp; expression, double&amp; answer) {
 	stack&lt;double&gt; values;
 	istringstream input(expression);
 	string token;
+	bool sawEnd = false;
 
 	while (input &gt;&gt; token) {
 		if (token == "=") {
-			break; // End of expression, as in the guide examples.
+			sawEnd = true;
+			if (input &gt;&gt; token) return false;
+			break;
 		}
 
 		if (token == "+" || token == "-" || token == "*" || token == "/") {
@@ -2222,11 +2229,18 @@ bool evaluatePostfix(const string&amp; expression, double&amp; answer) {
 				return false;
 			}
 		} else {
-			values.push(stod(token)); // Token is an operand.
+			try {
+				size_t used = 0;
+				double value = stod(token, &amp;used);
+				if (used != token.size()) return false;
+				values.push(value);
+			} catch (const exception&amp;) {
+				return false;
+			}
 		}
 	}
 
-	if (values.size() != 1) {
+	if (!sawEnd || values.size() != 1) {
 		return false; // Too many operands remain, or no answer exists.
 	}
 
@@ -2499,6 +2513,7 @@ int main() {
 		return i;
 }
 return -1;</code></pre>
+						<p><strong>Ordered-list connection (7.3 and 7.5):</strong> If the keys are sorted, a sequential search can stop when the current key exceeds the target. To insert 35 into <code>[10, 30, 50]</code>, find the first value greater than 35, shift 50 right, and write 35 in the gap: <code>[10, 30, 35, 50]</code>. The shift still takes <code>O(n)</code> in an array-based list.</p>
 					</article>
 					<article class="card chapter-card success" id="ch7-4-binary-search">
 						<h3>7.4 Binary Search</h3>
@@ -2506,9 +2521,10 @@ return -1;</code></pre>
 						<ul>
 							<li>The list must be ordered before binary search is valid.</li>
 							<li><code>first</code> and <code>last</code> mark the active search range.</li>
-							<li><code>mid = (first + last) / 2</code> selects the middle index.</li>
+							<li><code>mid = first + (last - first) / 2</code> selects the middle index without adding two potentially large indexes.</li>
 							<li>The search range shrinks by about half each iteration.</li>
 						</ul>
+						<p><strong>Trace:</strong> To find 40 in <code>[10, 20, 30, 40, 50, 60, 70]</code>, compare with 40 at the middle index and stop. To find 60, compare with 40, keep the right half, then compare with 60.</p>
 						<div class="callout info"><strong>Guide comparison:</strong> For 1024 sorted items, binary search needs at most about 11 loop iterations, while sequential search averages about 512 comparisons.</div>
 					</article>
 					<article class="card chapter-card warning" id="ch7-6-hashing">
@@ -2709,7 +2725,7 @@ int main() {
 					</article>
 					<article class="card chapter-card definition" id="ch8-4-advanced-sorts">
 						<h3>8.4-8.5 Quicksort, Mergesort And Heapsort</h3>
-						<p>The later sorting sections focus on algorithms that improve on the usual quadratic behaviour of simple sorts.</p>
+						<p>The later sorting sections cover quicksort as a comparison, mergesort on linked lists, and heapsort on array-based lists. Sorting changes order; it does not create or remove items.</p>
 						<div class="table-wrap">
 							<table>
 								<thead>
@@ -2726,6 +2742,7 @@ int main() {
 								</tbody>
 							</table>
 						</div>
+						<p><strong>Trace:</strong> A merge step combines sorted chains <code>[2, 7]</code> and <code>[3, 5]</code> into <code>[2, 3, 5, 7]</code>. A max-heap repeatedly moves its root, the largest remaining key, to the end of the unsorted region.</p>
 					</article>
 					<article class="card chapter-card structure" id="ch8-6-priority-queues">
 						<h3>8.6 Priority Queues Revisited</h3>
@@ -2902,6 +2919,7 @@ int main() {
 							<li>Nonrecursive traversal uses an explicit stack to remember parent nodes.</li>
 							<li>Traversal functions can accept function parameters so the user controls what happens when a node is visited.</li>
 						</ul>
+						<p><strong>Example:</strong> For a root 4 with children 2 and 6, an explicit stack can produce preorder <code>4 2 6</code> by pushing the right child before the left child. A visit function could print each key or add it to a total.</p>
 					</article>
 					<article class="card chapter-card warning" id="ch9-7-avl-trees">
 						<h3>9.7-9.8 AVL Trees And Rotations</h3>
@@ -3114,7 +3132,7 @@ int main() {
 					</article>
 					<article class="card chapter-card warning" id="ch10-6-shortest-path">
 						<h3>10.7 Shortest Path</h3>
-						<p>For weighted graphs, the guide introduces Dijkstra's shortest path algorithm. Starting from a source vertex, it repeatedly chooses the closest unsettled vertex and updates distances through that vertex.</p>
+						<p>For graphs with nonnegative edge weights, the guide introduces Dijkstra's shortest path algorithm. Starting from a source vertex, it repeatedly chooses the closest unsettled vertex and updates distances through that vertex.</p>
 						<ol>
 							<li>Initialize the smallest known weights from the source.</li>
 							<li>Mark the source weight as 0.</li>
@@ -3133,6 +3151,7 @@ int main() {
 							<li>Topological ordering places vertices before the vertices that depend on them.</li>
 							<li>Breadth-first topological ordering uses indegrees and a queue.</li>
 						</ul>
+						<p><strong>Topological trace:</strong> For A→C and B→C, start with <code>predCount(A)=0</code>, <code>predCount(B)=0</code>, and <code>predCount(C)=2</code>. Queue A and B. Output each, decreasing C's count. Queue C only when its count becomes 0; the result can be <code>A, B, C</code> or <code>B, A, C</code>.</p>
 					</article>
 					<details class="card chapter-card wide success code-example-details" id="ch10-code-example">
 						<summary><h3>Topic 10 Extended Code Example: Adjacency List With DFS And BFS</h3></summary>
@@ -3268,9 +3287,9 @@ int main() {
 		<section class="content-section" id="detailed-reference" data-nav-section>
 			<div class="section-heading">
 				<h2>Classes, Functions, Methods &amp; Attributes</h2>
-				<p>Choose a programming task, or use the alphabetical index to jump to an API name. Each reference explains what it does, when to use it, gives a small example, and links to the fuller explanation in General Module Content.</p>
+				<p>Choose a task from Topics 1–10, or use the alphabetical index to jump to a name. Each entry explains its purpose, shows an example, and links to the full chapter explanation. Names from the guide are identified separately from useful standard C++ additions.</p>
 			</div>
-			<a class="back-link" href="#test-focus-areas">Back to Topics 1–4 index</a>
+			<a class="back-link" href="#general-module-content">Go to General Module Content</a>
 			<div class="callout info"><strong>Scope labels:</strong> “Study-guide term” marks concepts or APIs explicitly treated in the study guide. “Useful supporting detail” adds standard C++ usage or practical clarification; it is not additional confirmed test content.</div>
 			<h3>Choose a programming task</h3>
 			<nav id="cpp-task-index" class="cpp-jumps" aria-label="Choose a programming task">
@@ -3318,7 +3337,7 @@ int main() {
 				<article class="api-entry"><h4><code>nodeType</code>, <code>info</code>, <code>link</code>, <code>head</code>/<code>first</code> <span class="reference-label">Study-guide terms</span></h4><p><strong>Does:</strong> A node stores one item and a pointer to the next node; head/first reaches the first node. <strong>Use it when:</strong> representing a sequence with individually linked nodes. <strong>Example:</strong> <code>struct Node { int info; Node* link; };</code></p><a href="#ch3-1-linked-lists">Full explanation: nodes and links</a></article>
 				<article class="api-entry"><h4><code>last</code>, <code>count</code>, <code>current</code> <span class="reference-label">Guide-style attributes</span></h4><p><strong>Does:</strong> <code>last</code> caches the tail, <code>count</code> caches length, and <code>current</code> is a temporary traversal pointer. <strong>Use it when:</strong> the list implementation needs fast end insertion/count access or safe traversal. Keep cached values accurate after mutations. <strong>Example:</strong> <code>Node* current = first;</code></p><a href="#ch3-2-traversal">Full explanation: traversal discipline</a></article>
 				<article class="api-entry"><h4><code>new</code>, <code>delete</code>, and <code>nullptr</code> <span class="reference-label">Study-guide code terms</span></h4><p><strong>Does:</strong> Allocates a node, releases a node, and represents a pointer to no node. <strong>Use it when:</strong> managing a hand-built linked list. <strong>Example:</strong> <code>Node* p = new Node{value, nullptr}; delete p;</code> Every allocated node must be released exactly once.</p><a href="#ch3-code-example">Full explanation: linked-list code example</a></article>
-				<article class="api-entry"><h4><code>initializeList()</code>, <code>isEmptyList()</code>, <code>length()</code>, <code>print()</code> <span class="reference-label">Study-guide ADT operations</span></h4><p><strong>Does:</strong> Establishes an empty state, checks it, counts nodes, or displays items. <strong>Use it when:</strong> clients should work through the list interface rather than manipulate pointers. <strong>Example:</strong> <code>if (list.isEmptyList()) list.print();</code> Exact method names/signatures depend on the class design.</p><a href="#ch3-3-linked-list-adt">Full explanation: linked-list ADT</a></article>
+				<article class="api-entry"><h4><code>initializeList()</code>, <code>isEmptyList()</code>, <code>length()</code>, <code>print()</code> <span class="reference-label">Study-guide ADT operations</span></h4><p><strong>Does:</strong> Establishes an empty state, checks it, counts nodes, or displays items. <strong>Use it when:</strong> clients should work through the list interface rather than manipulate pointers. <strong>Example:</strong> <code>if (!list.isEmptyList()) list.print();</code> Exact method names/signatures depend on the class design.</p><a href="#ch3-3-linked-list-adt">Full explanation: linked-list ADT</a></article>
 				<article class="api-entry"><h4><code>front()</code>, <code>back()</code>, <code>search()</code>, <code>retrieve()</code> <span class="reference-label">Study-guide ADT operations</span></h4><p><strong>Does:</strong> Reads endpoint values or finds/returns a matching item. <strong>Use it when:</strong> asking for data without exposing node representation. Empty-list behavior must be specified. <strong>Example:</strong> <code>if (!list.isEmptyList()) firstValue = list.front();</code></p><a href="#ch3-3-linked-list-adt">Full explanation: linked-list ADT</a></article>
 				<article class="api-entry"><h4><code>insert()</code>, <code>deleteNode()</code>, <code>destroyList()</code>, <code>copyList()</code> <span class="reference-label">Study-guide ADT operations</span></h4><p><strong>Does:</strong> Adds an item, removes a matching node, frees every node, or creates a separate copy. <strong>Use it when:</strong> changing list contents or managing ownership. A copy should duplicate nodes rather than make two lists share one chain. <strong>Example:</strong> <code>insertAfter(p, value);</code> In a singly linked list, save the next link before bypassing and deleting a node.</p><a href="#ch3-2-insertion-deletion">Full explanation: insertion and deletion</a> · <a href="#ch3-3-linked-list-adt">Full explanation: list ADT and copy</a></article>
 				<article class="api-entry"><h4><code>operator*</code>, <code>operator++</code>, <code>operator!=</code> on a list iterator <span class="reference-label">Study-guide term</span></h4><p><strong>Does:</strong> Dereferences the current node, advances to its successor, and compares iterators. <strong>Use it when:</strong> making a custom list work with standard traversal patterns. <strong>Example:</strong> <code>for (auto it = values.begin(); it != values.end(); ++it) std::cout &lt;&lt; *it;</code></p><a href="#ch3-4-linked-list-iterators">Full explanation: linked-list iterators</a></article>
@@ -3335,7 +3354,48 @@ int main() {
 				<article class="api-entry"><h4><code>canPlaceQueen(k, column)</code> and <code>queensConfiguration(k)</code> <span class="reference-label">Study-guide functions</span></h4><p><strong>Does:</strong> Tests whether a queen is safe in a column, then recursively tries legal placements for row <code>k</code>. <strong>Use it when:</strong> following the guide's n-Queens backtracking example. <strong>Example:</strong> <code>if (canPlaceQueen(k, col)) { queen[k] = col; queensConfiguration(k + 1); }</code> The guide's class uses its own state and exact signatures.</p><a href="#ch4-4-backtracking">Full explanation: backtracking and n-Queens</a></article>
 				<article class="api-entry"><h4>Call stack and backtracking <span class="reference-label">Study-guide concepts/examples</span></h4><p><strong>Does:</strong> Each active call retains its parameters and local state; backtracking explores a choice and returns to try another when it fails. <strong>Use it when:</strong> reasoning about unwind order or searching a tree of choices. <strong>Example:</strong> place one queen, recurse to the next row, then try the next column when that branch fails.</p><a href="#ch4-3-recursion-vs-iteration">Full explanation: recursion and iteration costs</a> · <a href="#ch4-4-backtracking">Full explanation: backtracking and n-Queens</a></article>
 			</div>
-			<a class="back-link" href="#test-focus-areas">Back to Topics 1–4 index</a>
+
+			<div class="api-task" id="api-stacks">
+				<h3>Task 6 · Implement a stack and evaluate postfix</h3>
+				<article class="api-entry"><h4><code>stackTop</code>, <code>initializeStack()</code>, <code>isEmptyStack()</code>, <code>isFullStack()</code> <span class="reference-label">Study-guide terms</span></h4><p><strong>Does:</strong> Tracks the top and guards operations. In an array stack, <code>stackTop</code> is the element count and the top is at <code>stackTop - 1</code>; in a linked stack it points to the first node. <strong>Example:</strong> an empty array stack has <code>stackTop == 0</code>.</p><a href="#ch5-2-array-stack">Full explanation: array stack</a> · <a href="#ch5-2-linked-stack">Full explanation: linked stack</a></article>
+				<article class="api-entry"><h4><code>push()</code>, <code>top()</code>, <code>pop()</code> <span class="reference-label">Study-guide operations</span></h4><p><strong>Does:</strong> Adds, reads, or removes the most recent item. <strong>Use it when:</strong> work must be handled Last In First Out. <strong>Example:</strong> push A, then B; <code>top()</code> gives B; after <code>pop()</code>, top is A. Check empty before top or pop and full before pushing to a fixed array.</p><a href="#ch5-1-stack">Full explanation: stack ADT</a></article>
+				<article class="api-entry"><h4><code>std::stack&lt;T&gt;</code> and postfix evaluation <span class="reference-label">Study-guide terms</span></h4><p><strong>Does:</strong> Provides a stack adapter and a way to evaluate operators after their operands. <strong>Example:</strong> <code>6 3 + 2 * =</code> pushes 6 and 3, replaces them with 9, then multiplies by 2 to produce 18. For <code>8 3 -</code>, pop 3 as the right operand and 8 as the left operand.</p><a href="#ch5-4-postfix">Full explanation: postfix rules</a> · <a href="#ch5-code-example">Full C++ example</a></article>
+			</div>
+
+			<div class="api-task" id="api-queues">
+				<h3>Task 7 · Model a queue and a service line</h3>
+				<article class="api-entry"><h4><code>initializeQueue()</code>, <code>isEmptyQueue()</code>, <code>isFullQueue()</code>, <code>front()</code>, <code>back()</code> <span class="reference-label">Study-guide operations</span></h4><p><strong>Does:</strong> Establishes queue state, checks guards, and reads either end. <strong>Use it when:</strong> customers or jobs leave in arrival order. <strong>Example:</strong> with A then B waiting, <code>front()</code> gives A and <code>back()</code> gives B; do not read either end of an empty queue.</p><a href="#ch6-1-queue">Full explanation: queue operations</a></article>
+				<article class="api-entry"><h4><code>addQueue()</code>, <code>deleteQueue()</code>, <code>queueFront</code>, <code>queueRear</code> <span class="reference-label">Study-guide terms</span></h4><p><strong>Does:</strong> Adds at the rear and removes from the front. In a circular array, indexes wrap with <code>(index + 1) % capacity</code>; a count separates empty from full. <strong>Example:</strong> capacity 3, front index 2: after removal, the next front index is 0.</p><a href="#ch6-2-array-queue">Full explanation: circular array</a> · <a href="#ch6-code-example">Full C++ example</a></article>
+				<article class="api-entry"><h4><code>priority_queue&lt;T&gt;</code>, customer and server state <span class="reference-label">Study-guide terms</span></h4><p><strong>Does:</strong> Priority selection serves the highest-priority item first; a time-driven simulation uses arrival, service, and waiting times. <strong>Example:</strong> at minute 4, if a free server takes a customer who arrived at minute 2, that customer's wait is 2 minutes. A linked queue must reset both end pointers after its last node is removed.</p><a href="#ch6-4-priority-queues">Full explanation: priorities</a> · <a href="#ch6-5-simulation">Full explanation: simulation</a></article>
+			</div>
+
+			<div class="api-task" id="api-search-hash">
+				<h3>Task 8 · Search an ordered list or hash table</h3>
+				<article class="api-entry"><h4>Sequential search, ordered insertion, and binary search <span class="reference-label">Study-guide algorithms</span></h4><p><strong>Does:</strong> Sequential search checks items in order; binary search halves an already sorted array range. <strong>Example:</strong> insert 35 into <code>[10, 30, 50]</code> by shifting 50 right. Binary search for 50 compares a middle key and retains only the half that can contain 50. A sorted precondition is essential.</p><a href="#ch7-2-sequential-search">Full explanation: search and insertion</a> · <a href="#ch7-4-binary-search">Full explanation: binary search</a></article>
+				<article class="api-entry"><h4><code>hash(key)</code>, linear probing, rehashing, chaining <span class="reference-label">Study-guide terms</span></h4><p><strong>Does:</strong> Converts a key to a table index and resolves collisions. <strong>Example:</strong> with table size 7, keys 10 and 17 both map to index 3 using <code>key % 7</code>. Linear probing tests index 4 for 17; chaining keeps both keys in the bucket at index 3. Search and deletion must follow the same collision rule.</p><a href="#ch7-6-hashing">Full explanation: hashing</a> · <a href="#ch7-8-collisions">Full explanation: collisions</a></article>
+			</div>
+
+			<div class="api-task" id="api-sorting">
+				<h3>Task 9 · Select a sorting algorithm</h3>
+				<article class="api-entry"><h4><code>selectionSort()</code>, <code>insertionSort()</code>, Shellsort <span class="reference-label">Study-guide algorithms</span></h4><p><strong>Does:</strong> Selection repeatedly chooses the smallest remaining key; insertion shifts larger keys to open a slot; Shellsort insertion-sorts spaced subsequences with shrinking gaps. <strong>Example:</strong> insertion of 2 into sorted <code>[3, 5]</code> shifts both keys right, yielding <code>[2, 3, 5]</code>.</p><a href="#ch8-1-selection-sort">Full explanation: selection</a> · <a href="#ch8-2-insertion-sort">Full explanation: insertion</a> · <a href="#ch8-3-shellsort">Full explanation: Shellsort</a></article>
+				<article class="api-entry"><h4>Quicksort, linked-list mergesort, heapsort <span class="reference-label">Study-guide algorithms</span></h4><p><strong>Does:</strong> Partitions around a pivot, merges sorted linked chains, or repeatedly removes the largest heap root. <strong>Example:</strong> merge <code>[2, 7]</code> and <code>[3, 5]</code> into <code>[2, 3, 5, 7]</code>. Mergesort and heapsort have <code>O(n log n)</code> worst-case time; quicksort can degrade to <code>O(n²)</code>.</p><a href="#ch8-4-advanced-sorts">Full explanation: advanced sorts</a></article>
+			</div>
+
+			<div class="api-task" id="api-trees">
+				<h3>Task 10 · Traverse and balance a tree</h3>
+				<article class="api-entry"><h4><code>root</code>, <code>left</code>, <code>right</code>, preorder, inorder, postorder <span class="reference-label">Study-guide terms</span></h4><p><strong>Does:</strong> A binary node has at most two children; traversals visit root and subtrees in different orders. <strong>Example:</strong> root 4 with left 2 and right 6 yields preorder <code>4 2 6</code>, inorder <code>2 4 6</code>, and postorder <code>2 6 4</code>. A queue gives level order.</p><a href="#ch9-1-binary-trees">Full explanation: tree structure</a> · <a href="#ch9-2-tree-traversal">Full explanation: traversal</a></article>
+				<article class="api-entry"><h4>BST search, insert, delete, and nonrecursive traversal <span class="reference-label">Study-guide algorithms</span></h4><p><strong>Does:</strong> Compares a key with the current node and follows left for smaller or right for larger. <strong>Example:</strong> search 6 in the tree above: 6 is greater than 4, so move right. Deleting a node with two children requires a replacement key from a subtree; an explicit stack can replace the call stack during depth-first traversal.</p><a href="#ch9-3-binary-search-trees">Full explanation: BST operations</a> · <a href="#ch9-4-bst-analysis">Full explanation: analysis and traversal</a></article>
+				<article class="api-entry"><h4>AVL balance factor, rotations, and B-tree nodes <span class="reference-label">Study-guide terms</span></h4><p><strong>Does:</strong> AVL rotations restore height balance; a B-tree stores several ordered keys per node and keeps leaves at the same depth. <strong>Example:</strong> inserting 1, 2, 3 into an AVL tree creates a right-right imbalance; a left rotation makes 2 the root. B-tree insertion may split a full node and promote a key.</p><a href="#ch9-7-avl-trees">Full explanation: AVL trees</a> · <a href="#ch9-9-b-trees">Full explanation: B-trees</a></article>
+			</div>
+
+			<div class="api-task" id="api-graphs">
+				<h3>Task 11 · Represent and analyse a graph</h3>
+				<article class="api-entry"><h4>Vertex, edge, adjacency list, adjacency matrix <span class="reference-label">Study-guide terms</span></h4><p><strong>Does:</strong> Represents connections between vertices, with optional direction and weight. <strong>Example:</strong> edges A–B and A–C give A two neighbours in an adjacency list; a matrix marks their two A-row positions. A matrix uses <code>O(V²)</code> space, while a list uses <code>O(V + E)</code>.</p><a href="#ch10-2-graph-definitions">Full explanation: graph terms</a> · <a href="#ch10-3-representation">Full explanation: representations</a></article>
+				<article class="api-entry"><h4>Depth-first search (DFS), breadth-first search (BFS) <span class="reference-label">Study-guide algorithms</span></h4><p><strong>Does:</strong> DFS explores a path before returning; BFS visits neighbours in layers with a queue. <strong>Example:</strong> for A connected to B and C, BFS from A visits A before B and C; each vertex needs a visited mark to avoid repeats in a cycle.</p><a href="#ch10-5-traversals">Full explanation: graph traversals</a> · <a href="#ch10-code-example">Full C++ example</a></article>
+				<article class="api-entry"><h4>Dijkstra shortest path, Prim minimum spanning tree <span class="reference-label">Study-guide algorithms</span></h4><p><strong>Does:</strong> Dijkstra improves tentative source distances for nonnegative edge weights; Prim adds the cheapest edge from the growing tree to a new vertex in a connected weighted undirected graph. <strong>Example:</strong> if A–B costs 2 and B–C costs 3, the A–B–C route costs 5; compare that with any direct A–C edge before accepting it as shortest.</p><a href="#ch10-6-shortest-path">Full explanation: shortest path</a> · <a href="#ch10-8-mst">Full explanation: minimum spanning tree</a></article>
+				<article class="api-entry"><h4>Topological order, <code>predCount</code>, queue <span class="reference-label">Study-guide terms</span></h4><p><strong>Does:</strong> Orders vertices of a directed acyclic graph so each prerequisite comes first. The breadth-first method queues all indegree-zero vertices and lowers successor counts as each is output. <strong>Example:</strong> with A→C and B→C, A and B can appear in either order, but C must follow both. A cycle prevents a complete order.</p><a href="#ch10-8-mst">Full explanation: topological order</a></article>
+			</div>
+			<a class="back-link" href="#general-module-content">Back to General Module Content</a>
 		</section>
 
 		<section class="content-section module-learning-lab" id="preparation-station" data-nav-section>
@@ -4906,7 +4966,7 @@ catch (string message) {
 			const indexed = entries.map((entry, index) => {
 				const heading = entry.querySelector("h4");
 				const names = Array.from(heading.querySelectorAll("code"), (node) => node.textContent.trim()).filter(Boolean);
-				if (!names.length) names.push(heading.textContent.replace(/Study-guide term|Study-guide concept|Study-guide outcome|Study-guide examples|Study-guide functions|Study-guide ADT operations|Useful supporting detail|Guide-style attributes/g, "").trim());
+				if (!names.length) names.push(heading.textContent.replace(/Study-guide (?:terms?|concepts?|outcome|examples?|functions?|ADT operations|operations|algorithms)|Useful supporting detail|Guide-style attributes/g, "").trim());
 				const id = `cpp-api-${index + 1}`;
 				entry.id = id;
 				entry.dataset.apiName = names.join(", ");
