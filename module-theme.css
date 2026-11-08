@@ -232,6 +232,16 @@ body.module-page .section-heading p {
 	color: var(--muted);
 }
 
+/* A heading placed directly in .content needs the same inset as a section heading. */
+body.module-page .content > .section-heading {
+	margin-bottom: 0;
+	padding: 38px clamp(22px, 5vw, 70px) 0;
+}
+
+body.module-page .content > .section-heading + .chapter {
+	padding-top: 22px;
+}
+
 body.module-page h1 {
 	margin: 0 0 10px;
 	font-size: clamp(2rem, 4vw, 4rem);
@@ -421,6 +431,11 @@ body.module-page .to-top {
 
 	body.module-page main > section,
 	body.module-page .content > section {
+		padding-left: 18px;
+		padding-right: 18px;
+	}
+
+	body.module-page .content > .section-heading {
 		padding-left: 18px;
 		padding-right: 18px;
 	}

@@ -670,18 +670,30 @@
 
 				<details class="nav-group nav-collapsible">
 	<summary>Exam Focus Areas</summary>
-	<a class="nav-link" href="#exam-focus-areas" data-nav-link="exam-focus-areas">Coming Soon</a>
+	<a class="nav-link" href="#exam-focus-areas" data-nav-link="exam-focus-areas">Exam Summary</a>
+	<a class="nav-link" href="#exam-focus-map">Focus-to-Content Map</a>
 </details>
-				<div class="nav-group">
-					<h2>General Module Content</h2>
+				<details class="nav-group nav-collapsible">
+					<summary>General Module Content</summary>
+					<a class="nav-link" href="#general-module-content">Module Overview</a>
 					<a class="nav-link" href="#chapter-1">Chapter 1: Development Strategies</a>
 					<a class="nav-link" href="#chapter-2">Chapter 2: User Interface Design</a>
 					<a class="nav-link" href="#chapter-3">Chapter 3: Data Design</a>
 					<a class="nav-link" href="#chapter-4">Chapter 4: System Architecture</a>
 					<a class="nav-link" href="#chapter-5">Chapter 5: Implementation</a>
 					<a class="nav-link" href="#chapter-6">Chapter 6: Support and Security</a>
+				</details>
+				<details class="nav-group nav-collapsible">
+					<summary>Index Content</summary>
 					<a class="nav-link" href="#is-module-reference" data-nav-link="is-module-reference">Concepts, Tools, Methods &amp; Standards</a>
-				</div>
+					<a class="nav-link" href="#is-reference-index">Quick Index Search &amp; A–Z</a>
+					<a class="nav-link" href="#is-ref-ch1">Chapter 1: Development Strategies</a>
+					<a class="nav-link" href="#is-ref-ch2">Chapter 2: Interface &amp; Output</a>
+					<a class="nav-link" href="#is-ref-ch3">Chapter 3: Data Design</a>
+					<a class="nav-link" href="#is-ref-ch4">Chapter 4: Architecture</a>
+					<a class="nav-link" href="#is-ref-ch5">Chapter 5: Implementation</a>
+					<a class="nav-link" href="#is-ref-ch6">Chapter 6: Support &amp; Security</a>
+				</details>
 				<details class="nav-group nav-collapsible">
 					<summary>Learning Lab</summary>
 					<a class="nav-link" href="#preparation-station" data-nav-link="preparation-station">Quiz Builder</a>
@@ -701,6 +713,7 @@
 					<p>A dark, readable one-page guide covering the major development, design, implementation, support, and security ideas from the Information Systems 622 study guide.</p>
 					<div class="actions">
 						<a class="button primary" href="#test-focus-areas">Start CA Revision</a>
+						<a class="button" href="#exam-focus-areas">Exam Focus Summary</a>
 						<a class="button" href="#general-module-content">Browse General Content</a>
 					</div>
 					<div class="legend" aria-label="Colour legend">
@@ -1125,12 +1138,23 @@
 				<section class="section" id="exam-focus-areas" data-nav-section>
 					<div class="section-heading">
 						<h2>Exam Focus Areas</h2>
-						<p>Confirmed exam focus areas will be added here once the assessment coverage is available.</p>
+						<p>Use this summary for the focus areas supplied for the exam. Follow the links to detailed entries in the module-wide index and then to the fuller chapter notes.</p>
 					</div>
-					<div class="card coming-soon-card">
-						<span class="coming-soon-label">Coming soon</span>
-						<h3>Exam focus areas are coming soon</h3>
-						<p>The current exam-focus content has been cleared and will be updated when the confirmed focus areas are provided.</p>
+					<div class="card" id="exam-focus-map">
+						<h3>Focus-to-content map</h3>
+						<p>For each area, define the concept, show how it works in a short scenario, and explain the choice or control. The links open the detailed index entry; its “Open notes” link leads to General Module Content.</p>
+						<div class="is-reference-table"><table><thead><tr><th>Exam focus</th><th>What to explain</th><th>Start here</th></tr></thead><tbody>
+							<tr><td>Systems Development Life Cycle (SDLC)</td><td>Connect planning and analysis, design, implementation, and support; name the output or decision at each stage.</td><td><a href="#is-ref-1-9">SDLC overview</a></td></tr>
+							<tr><td>Human-Computer Interaction (HCI)</td><td>Apply user-centred design, consistency, feedback, error prevention and accessibility to a real task.</td><td><a href="#is-ref-2-9">HCI principles</a></td></tr>
+							<tr><td>1NF, 2NF and 3NF</td><td>Show the rule and the dependency removed at each step; retain keys and relationships.</td><td><a href="#is-ref-3-4">1NF</a> · <a href="#is-ref-3-5">2NF</a> · <a href="#is-ref-3-6">3NF</a></td></tr>
+							<tr><td>DBMS</td><td>Explain what a DBMS manages, its main components, benefits and controls.</td><td><a href="#is-ref-3-1">DBMS</a></td></tr>
+							<tr><td>Cloud computing and web-based systems</td><td>Distinguish internet delivery from provider-hosted computing; assess access, cost, scalability and provider risk.</td><td><a href="#is-ref-1-10">Cloud</a> · <a href="#is-ref-1-11">Web systems</a></td></tr>
+							<tr><td>Implementation strategies</td><td>Compare direct, parallel, pilot and phased changeover by risk, cost and rollout pattern.</td><td><a href="#is-ref-5-9">Direct</a> · <a href="#is-ref-5-10">Parallel</a> · <a href="#is-ref-5-11">Pilot</a> · <a href="#is-ref-5-12">Phased</a></td></tr>
+							<tr><td>Resistance to organisational change</td><td>Identify why users resist and select communication, participation, training and support responses.</td><td><a href="#is-ref-5-13">Managing resistance</a></td></tr>
+							<tr><td>Types of maintenance</td><td>Classify corrective, adaptive, perfective and preventive work from a scenario.</td><td><a href="#is-ref-6-10">Corrective</a> · <a href="#is-ref-6-11">Adaptive</a> · <a href="#is-ref-6-12">Perfective</a> · <a href="#is-ref-6-13">Preventive</a></td></tr>
+							<tr><td>Post-incident strategies</td><td>Connect authentication, disaster recovery, business continuity, backup policy and employee awareness to a coordinated response.</td><td><a href="#is-ref-6-14">Response sequence</a> · <a href="#is-ref-6-15">Authentication</a> · <a href="#is-ref-6-16">Recovery</a> · <a href="#is-ref-6-17">Continuity</a> · <a href="#is-ref-6-18">Backups</a> · <a href="#is-ref-6-19">Awareness</a></td></tr>
+						</tbody></table></div>
+						<div class="note"><strong>Scenario check:</strong> after a compromised account and service outage, secure access, activate the recovery plan, keep essential work running, restore a verified backup and retrain staff on reporting suspicious requests. <a href="#ch6-post-incident">See the worked response</a>.</div>
 					</div>
 				</section>
 					<div class="section-heading" id="general-module-content">
@@ -1146,6 +1170,16 @@
 							<span class="chapter-number">Chapter 1</span>
 						</div>
 						<div class="grid">
+							<article class="card chapter-card wide" id="ch1-sdlc-overview">
+							<h3>Exam bridge: Systems Development Life Cycle (SDLC)</h3>
+							<p>The SDLC connects the guide's chapters into one controlled process. A team revisits earlier decisions when testing or operating the system reveals a problem; each phase produces evidence for the next decision.</p>
+							<table><tr><th>Phase</th><th>Main question and output</th><th>Clinic booking example</th></tr>
+							<tr><td>Planning and analysis</td><td>What problem, requirements, options and feasibility must be agreed?</td><td>Document booking delays and compare building with buying.</td></tr>
+							<tr><td>Systems design</td><td>How will the interface, data, architecture and controls work?</td><td>Prototype the form, model Patient and Appointment, and choose a web architecture.</td></tr>
+							<tr><td>Implementation</td><td>How will the solution be built, tested, documented, trained and installed?</td><td>Test bookings, migrate records and pilot one clinic.</td></tr>
+							<tr><td>Support and security</td><td>How will users be helped, defects corrected, risks controlled and the system eventually retired?</td><td>Log faults, manage access, test backups and review performance.</td></tr></table>
+							<p><a href="#chapter-2">Interface design</a> · <a href="#chapter-3">Data design</a> · <a href="#chapter-4">Architecture</a> · <a href="#chapter-5">Implementation</a> · <a href="#chapter-6">Support</a></p>
+						</article>
 							<article class="card chapter-card" id="ch1-1-traditional-vs-web">
 								<h3>1.1 Traditional vs Web-Based Systems</h3>
 								<h4>1.1.1 Traditional development</h4>
@@ -1873,6 +1907,16 @@
 								</table>
 								<p>Installation also includes data conversion, user training, post-implementation evaluation, and a final report to management.</p>
 							</article>
+							<article class="card chapter-card wide" id="ch5-change-resistance">
+								<h3>Exam bridge: Resistance to Organisational Change</h3>
+								<p>A new system changes routines, responsibilities and sometimes people's confidence in their work. Resistance may come from unclear benefits, fear of errors or job loss, extra work during changeover, unfamiliar screens, or security rules that feel inconvenient. These are scenario clues to investigate, not assumptions about every user.</p>
+								<table><tr><th>Response</th><th>How it helps</th><th>Booking-system example</th></tr>
+								<tr><td>Explain and involve</td><td>State the reason for change, hear concerns and let users test prototypes.</td><td>Reception staff identify a missing cancellation workflow before rollout.</td></tr>
+								<tr><td>Train by role</td><td>Give hands-on practice, clear documentation and enough time before live use.</td><td>Receptionists practise bookings while managers practise reports.</td></tr>
+								<tr><td>Roll out with support</td><td>Choose a suitable changeover method, help desk and feedback route.</td><td>Pilot one branch, log obstacles and fix them before wider adoption.</td></tr>
+								<tr><td>Review after launch</td><td>Check adoption, satisfaction, errors and whether controls work in practice.</td><td>Repeated shared logins trigger safer access design and coaching.</td></tr></table>
+								<p>This applied exam topic connects the guide's <a href="#ch2-1-ui-hci">HCI</a>, <a href="#ch5-5-changeover">changeover</a>, <a href="#ch5-9-installation-worked-example">training and evaluation</a>, and <a href="#ch6-post-incident">security awareness</a> material.</p>
+							</article>
 							<article class="card chapter-card wide" id="ch5-6-quality-engineering">
 								<h3>Expanded notes: 5.1 Quality Assurance, Software Engineering and ISO</h3>
 								<p>The implementation phase includes application development, testing, documentation, training, and changeover, but quality assurance starts before code is written. The guide states that testing can find problems during implementation, but preventing or detecting mistakes earlier is cheaper and better.</p>
@@ -2029,6 +2073,18 @@
 								<p>Backup and recovery decisions include media, schedules, retention periods, RAID, cloud backup, and business continuity. Systems eventually reach the end of useful life when maintenance or operating costs rise, new technology becomes available, or the system cannot meet new requirements.</p>
 								<p>Future IT professionals need technical skill, critical thinking, credentials, and awareness of security, environmental, economic, political, and social pressures.</p>
 							</article>
+							<article class="card chapter-card wide" id="ch6-post-incident">
+								<h3>Exam bridge: Coordinated Post-Incident Response</h3>
+								<p><strong>Scenario:</strong> a staff account is misused after a deceptive message, and the booking service becomes unavailable. Connect five control areas rather than treating a backup alone as the whole response.</p>
+								<ol>
+									<li><strong>Authentication:</strong> disable the affected account and sessions, reset credentials through a trusted process, review access rights and logs, and verify legitimate users can sign in safely.</li>
+									<li><strong>Disaster recovery:</strong> activate the documented plan, assign roles, secure affected systems, assess damage and restore services in a tested order.</li>
+									<li><strong>Business continuity:</strong> keep essential bookings running through an approved alternate or manual process and communicate when normal service is safe to resume.</li>
+									<li><strong>Backup policy:</strong> identify a clean and recent copy under the retention rules, restore it, reconcile missing transactions and test the restored data before reopening the system.</li>
+									<li><strong>Employee awareness:</strong> explain the attack pattern and reporting route, practise spotting deceptive requests, and check whether staff can apply the guidance.</li>
+								</ol>
+								<p><strong>After service returns:</strong> review what happened, update access controls, the recovery test, backup schedule and training. The study guide covers the underlying security, user awareness, backup and continuity controls; this sequence applies them to the supplied exam focus.</p>
+							</article>
 							<article class="card chapter-card wide" id="ch6-6-user-support-help-desk">
 								<h3>Expanded notes: 6.1 User Support and Help Desks</h3>
 								<p>After implementation, a systems analyst often acts as an internal consultant. The guide notes that well-designed systems can require even more support because users discover features, ask for improvements, and need help applying the system to real work. Support can be in-house or outsourced, but quality must be actively monitored.</p>
@@ -2144,11 +2200,11 @@
 
 
 				<section class="section" id="is-module-reference" data-nav-section aria-labelledby="is-module-reference-title">
-					<div class="section-heading"><h2 id="is-module-reference-title">Concepts, Tools, Methods &amp; Standards</h2><p>A full-module reference for Chapters 1–6. Use the quick index to search, browse by chapter or choose a term A–Z. Each entry gives an example and links to fuller notes. Examples illustrate the study-guide concepts.</p></div>
+					<div class="section-heading"><h2 id="is-module-reference-title">Concepts, Tools, Methods &amp; Standards</h2><p>A full-module reference for Chapters 1–6, including the confirmed <a href="#exam-focus-map">exam focus areas</a>. Use the quick index to search, browse by chapter or choose a term A–Z. Each entry gives an example and links to fuller notes. The exam bridges apply the study-guide material to the supplied focus areas.</p></div>
 					<div class="card is-quick-index" id="is-reference-index" aria-label="Information Systems quick index">
 						<h3>Quick index search</h3>
 						<label for="is-reference-search">Find a concept, tool, method or standard</label>
-						<input id="is-reference-search" type="search" placeholder="Try normalization, testing, security…" autocomplete="off" aria-controls="is-quick-results">
+						<input id="is-reference-search" type="search" placeholder="Try SDLC, HCI, 1NF, backups…" autocomplete="off" aria-controls="is-quick-results">
 						<p class="is-quick-status" id="is-quick-status" role="status" aria-live="polite">Search all six chapters, or browse below.</p>
 						<nav class="is-quick-links is-quick-results" id="is-quick-results" aria-label="Search results" hidden></nav>
 						<div class="is-az-index" id="is-az-index"><h4>Browse A–Z</h4><nav class="is-letter-links" id="is-letter-links" aria-label="Alphabetical letters"></nav><div id="is-name-index"></div></div>
@@ -2172,6 +2228,9 @@
 <tr id="is-ref-1-6"><td><strong>Total cost of ownership</strong></td><td>Compare acquisition with training, integration, maintenance and support costs.</td><td>A cheap licence needs expensive data conversion and annual support.</td><td><a href="#ch1-5-build-buy-customize">Open notes</a></td></tr>
 <tr id="is-ref-1-7"><td><strong>RFP and vendor evaluation</strong></td><td>State requirements and assess proposals against common criteria.</td><td>Score suppliers on security, workflow fit, cost and support.</td><td><a href="#ch1-8-acquisition-process">Open notes</a></td></tr>
 <tr id="is-ref-1-8"><td><strong>Systems analysis completion</strong></td><td>Document the chosen option and obtain agreement before detailed design.</td><td>Present the recommendation, costs and unresolved risks to sponsors.</td><td><a href="#ch1-9-completion">Open notes</a></td></tr>
+<tr id="is-ref-1-9"><td><strong>Systems Development Life Cycle (SDLC)</strong></td><td>Move from planning and analysis through design, implementation, support and eventual retirement; review outputs before each transition.</td><td>Agree clinic requirements, model booking data, pilot the system, then maintain and secure it.</td><td><a href="#ch1-sdlc-overview">Open phase map</a></td></tr>
+<tr id="is-ref-1-10"><td><strong>Cloud computing</strong></td><td>Use provider-hosted computing resources over a network; assess scalability, connectivity, recurring cost, security and data control.</td><td>A clinic uses hosted servers and storage instead of operating its own server room.</td><td><a href="#ch1-2-trends">Open cloud notes</a></td></tr>
+<tr id="is-ref-1-11"><td><strong>Web-based systems</strong></td><td>Use a browser and web services as the access platform; compare cross-device reach with internet exposure and integration needs.</td><td>Patients book online while staff use the same controlled booking database.</td><td><a href="#ch1-1-traditional-vs-web">Open comparison</a></td></tr>
 </tbody></table></div>
 					<h3 id="is-ref-ch2">Chapter 2 · Design input, interface and output</h3>
 					<p>PDF pp. 37–76 · <a href="#chapter-2">Chapter notes</a> · <a href="#ch2-8-forms-reports-worked-example">Worked example</a></p>
@@ -2184,16 +2243,17 @@
 <tr id="is-ref-2-6"><td><strong>Report types</strong></td><td>Choose detail, summary or exception output for the decision.</td><td>Managers see overbooked sessions in an exception report.</td><td><a href="#ch2-4-reports-controls">Open notes</a></td></tr>
 <tr id="is-ref-2-7"><td><strong>Input and output controls</strong></td><td>Protect entry and reports with access, audit trails and secure handling.</td><td>Only authorised staff edit bookings; patient reports have restricted access.</td><td><a href="#ch2-9-technology-security">Open notes</a></td></tr>
 <tr id="is-ref-2-8"><td><strong>Responsive design and prototyping</strong></td><td>Test layouts on devices and revise a model with user feedback.</td><td>Try a booking form on a phone before implementation.</td><td><a href="#ch2-5-prototyping">Open notes</a></td></tr>
+<tr id="is-ref-2-9"><td><strong>Human-Computer Interaction (HCI) principles</strong></td><td>Understand users and tasks; make actions clear, navigation consistent, feedback timely, errors preventable and screens usable by different people.</td><td>Show an accessible date control, explain a conflict immediately and preserve entered data.</td><td><a href="#ch2-1-ui-hci">Open HCI notes</a> · <a href="#ch2-7-ten-guidelines">Design guidelines</a></td></tr>
 </tbody></table></div>
 					<h3 id="is-ref-ch3">Chapter 3 · Model and control data</h3>
 					<p>PDF pp. 77–122 · <a href="#chapter-3">Chapter notes</a> · <a href="#ch3-8-erd-normalization-worked-example">Worked example</a></p>
 					<div class="card is-reference-table"><table><thead><tr><th>Concept, tool, method or standard</th><th>What it does / when to use it</th><th>Example</th><th>Fuller notes</th></tr></thead><tbody>
-<tr id="is-ref-3-1"><td><strong>DBMS and schema</strong></td><td>Use a database system and schema to manage shared data consistently.</td><td>Patient and appointment tables use defined fields and relationships.</td><td><a href="#ch3-1-dbms">Open notes</a></td></tr>
+<tr id="is-ref-3-1"><td><strong>Database Management System (DBMS) and schema</strong></td><td>A DBMS defines, stores, updates and retrieves shared data. Its schema describes structure; user/DBA interfaces, subschemas and a physical repository support controlled access.</td><td>Patient and Appointment tables share PatientID; reception and managers see different permitted views.</td><td><a href="#ch3-1-dbms">Open components</a></td></tr>
 <tr id="is-ref-3-2"><td><strong>Keys and referential integrity</strong></td><td>Identify records and keep foreign-key links valid.</td><td>Every Appointment.PatientID must match an existing patient.</td><td><a href="#ch3-2-terms-integrity">Open notes</a></td></tr>
 <tr id="is-ref-3-3"><td><strong>ERD and cardinality</strong></td><td>Draw entities and one-to-one, one-to-many or many-to-many relationships.</td><td>One patient can have many appointments.</td><td><a href="#ch3-3-erd">Open notes</a></td></tr>
-<tr id="is-ref-3-4"><td><strong>First normal form</strong></td><td>Remove repeating groups and keep values atomic.</td><td>Move several service codes out of one booking cell into separate rows.</td><td><a href="#ch3-4-normalization">Open notes</a></td></tr>
-<tr id="is-ref-3-5"><td><strong>Second normal form</strong></td><td>Remove attributes dependent on only part of a composite key.</td><td>Move ProductName out of an OrderLine table keyed by OrderID and ProductID.</td><td><a href="#ch3-4-normalization">Open notes</a></td></tr>
-<tr id="is-ref-3-6"><td><strong>Third normal form</strong></td><td>Remove dependencies between non-key attributes.</td><td>Store DepartmentName in Department, not in every employee row.</td><td><a href="#ch3-4-normalization">Open notes</a></td></tr>
+<tr id="is-ref-3-4"><td><strong>First Normal Form (1NF)</strong></td><td>Remove repeating groups so each field holds one value and each row represents one occurrence.</td><td>Replace a booking cell containing three service codes with three BookingService rows.</td><td><a href="#ch3-4-normalization">Open normalization steps</a></td></tr>
+<tr id="is-ref-3-5"><td><strong>Second Normal Form (2NF)</strong></td><td>Start with 1NF; move non-key attributes that depend on only part of a composite key to their own table.</td><td>With OrderLine keyed by OrderID + ProductID, ProductName depends on ProductID, so store it in Product.</td><td><a href="#ch3-4-normalization">Open normalization steps</a></td></tr>
+<tr id="is-ref-3-6"><td><strong>Third Normal Form (3NF)</strong></td><td>Start with 2NF; remove a non-key attribute that depends on another non-key attribute instead of the key.</td><td>EmployeeID determines DepartmentID, which determines DepartmentName; put the name in Department.</td><td><a href="#ch3-4-normalization">Open normalization steps</a></td></tr>
 <tr id="is-ref-3-7"><td><strong>Codes and code design</strong></td><td>Use meaningful, unique, maintainable identifiers where appropriate.</td><td>Assign a stable clinic code rather than using a changing name as a key.</td><td><a href="#ch3-9-codes-storage-controls">Open notes</a></td></tr>
 <tr id="is-ref-3-8"><td><strong>Storage, access and data control</strong></td><td>Choose access methods and safeguard accuracy, permissions and recovery.</td><td>Index PatientID for lookup and restrict confidential records.</td><td><a href="#ch3-10-data-storage-access">Open notes</a></td></tr>
 </tbody></table></div>
@@ -2220,6 +2280,11 @@
 <tr id="is-ref-5-6"><td><strong>Unit, integration and system tests</strong></td><td>Test a component, its interactions and the whole system in sequence.</td><td>Test a date rule, then booking-save flow, then full clinic workflow.</td><td><a href="#ch5-8-testing-docs-expanded">Open notes</a></td></tr>
 <tr id="is-ref-5-7"><td><strong>Documentation and training</strong></td><td>Prepare program, system, operations and user information for each audience.</td><td>Give support staff a recovery runbook and users a booking guide.</td><td><a href="#ch5-8-testing-docs-expanded">Open notes</a></td></tr>
 <tr id="is-ref-5-8"><td><strong>Changeover and data conversion</strong></td><td>Choose direct, parallel, pilot or phased rollout and migrate checked data.</td><td>Pilot one clinic, reconcile migrated appointments, then expand.</td><td><a href="#ch5-9-installation-worked-example">Open notes</a></td></tr>
+<tr id="is-ref-5-9"><td><strong>Direct cutover</strong></td><td>Stop the old system and start the new one at a chosen time; lowest overlap cost, highest failure risk.</td><td>Switch a non-critical booking process overnight after full testing and a recovery plan.</td><td><a href="#ch5-5-changeover">Open changeover methods</a></td></tr>
+<tr id="is-ref-5-10"><td><strong>Parallel operation</strong></td><td>Run old and new systems together; compare results and keep the old system available at greater cost and workload.</td><td>Run both payroll systems for one pay cycle and reconcile every total.</td><td><a href="#ch5-5-changeover">Open changeover methods</a></td></tr>
+<tr id="is-ref-5-11"><td><strong>Pilot operation</strong></td><td>Introduce the complete new system to one site or group, learn from it, then expand.</td><td>One clinic branch uses the new booking system before the other branches.</td><td><a href="#ch5-5-changeover">Open changeover methods</a></td></tr>
+<tr id="is-ref-5-12"><td><strong>Phased operation</strong></td><td>Introduce functions or modules in stages, controlling disruption while managing temporary interfaces.</td><td>Deploy appointment entry first, then billing and reporting.</td><td><a href="#ch5-5-changeover">Open changeover methods</a></td></tr>
+<tr id="is-ref-5-13"><td><strong>Resistance to organisational change</strong></td><td>Investigate concerns about workload, skills, roles or controls; explain benefits, involve users, train by role and provide support.</td><td>Receptionists fear losing bookings during rollout, so they test a pilot and receive hands-on training.</td><td><a href="#ch5-change-resistance">Open applied notes</a></td></tr>
 </tbody></table></div>
 					<h3 id="is-ref-ch6">Chapter 6 · Support, secure and retire the system</h3>
 					<p>PDF pp. 206–247 · <a href="#chapter-6">Chapter notes</a> · <a href="#ch6-9-backup-retirement-worked-example">Worked example</a></p>
@@ -2233,6 +2298,16 @@
 <tr id="is-ref-6-7"><td><strong>Security levels</strong></td><td>Apply physical, network, application, file, user and procedural controls.</td><td>Lock server rooms, patch apps and limit patient-file access.</td><td><a href="#ch6-4-security">Open notes</a></td></tr>
 <tr id="is-ref-6-8"><td><strong>Backup, recovery and continuity</strong></td><td>Set backup and retention rules; rehearse restoration and essential operations.</td><td>Restore a clean appointment backup after a server failure.</td><td><a href="#ch6-9-backup-retirement-worked-example">Open notes</a></td></tr>
 <tr id="is-ref-6-9"><td><strong>System retirement and cyberethics</strong></td><td>Plan replacement when value falls; handle access and data responsibly.</td><td>Archive required records and remove old access before shutdown.</td><td><a href="#ch6-10-future-professional-issues">Open notes</a></td></tr>
+<tr id="is-ref-6-10"><td><strong>Corrective maintenance</strong></td><td>Fix a fault after the system behaves incorrectly; test the repair and record the change.</td><td>Correct a booking total that omits a service fee.</td><td><a href="#ch6-7-maintenance-management-expanded">Open maintenance table</a></td></tr>
+<tr id="is-ref-6-11"><td><strong>Adaptive maintenance</strong></td><td>Change the system for new business or external requirements.</td><td>Add a new appointment category after clinic policy changes.</td><td><a href="#ch6-7-maintenance-management-expanded">Open maintenance table</a></td></tr>
+<tr id="is-ref-6-12"><td><strong>Perfective maintenance</strong></td><td>Improve performance, usability or maintainability of an otherwise working system.</td><td>Speed up a slow daily report.</td><td><a href="#ch6-7-maintenance-management-expanded">Open maintenance table</a></td></tr>
+<tr id="is-ref-6-13"><td><strong>Preventive maintenance</strong></td><td>Reduce the chance of a future failure before it occurs.</td><td>Replace fragile code and test backup restoration ahead of an outage.</td><td><a href="#ch6-7-maintenance-management-expanded">Open maintenance table</a></td></tr>
+<tr id="is-ref-6-14"><td><strong>Post-incident response sequence</strong></td><td>Contain misuse, protect people and assets, maintain essential work, restore verified services and review controls.</td><td>After account misuse and an outage, disable sessions, use an alternate booking process and restore clean data.</td><td><a href="#ch6-post-incident">Open worked response</a></td></tr>
+<tr id="is-ref-6-15"><td><strong>Authentication mechanisms after an incident</strong></td><td>Revoke compromised access, reset credentials safely, review permissions and logs, and verify legitimate sign-in.</td><td>Disable a stolen staff account, end its sessions and check whether its role had excessive access.</td><td><a href="#ch6-post-incident">Open response</a> · <a href="#ch6-4-security">Security levels</a></td></tr>
+<tr id="is-ref-6-16"><td><strong>Disaster recovery plan (DRP)</strong></td><td>Specify people, actions, system priorities and a tested order for restoring damaged IT services.</td><td>Recovery staff replace a failed server and restore the booking database from a verified copy.</td><td><a href="#ch6-post-incident">Open response</a> · <a href="#ch6-9-backup-retirement-worked-example">Recovery example</a></td></tr>
+<tr id="is-ref-6-17"><td><strong>Business continuity</strong></td><td>Keep critical business activities operating during disruption while IT recovery proceeds.</td><td>Staff use an approved manual appointment log until the booking service is safe.</td><td><a href="#ch6-post-incident">Open response</a> · <a href="#ch6-5-backup-retirement">Continuity notes</a></td></tr>
+<tr id="is-ref-6-18"><td><strong>Backup policies</strong></td><td>Set what is copied, how often, where copies are kept, retention, access and restoration tests.</td><td>Use a recent clean appointment backup, reconcile missing bookings and rehearse restores.</td><td><a href="#ch6-post-incident">Open response</a> · <a href="#ch6-9-backup-retirement-worked-example">Backup example</a></td></tr>
+<tr id="is-ref-6-19"><td><strong>Employee awareness programmes</strong></td><td>Teach staff to recognise social engineering, follow access procedures and report suspicious activity; refresh and check learning.</td><td>After a phishing attempt, practise reporting deceptive sign-in messages without sharing passwords.</td><td><a href="#ch6-post-incident">Open response</a> · <a href="#ch6-8-performance-security-expanded">User controls</a></td></tr>
 </tbody></table></div></section>
 
 				<section class="section module-learning-lab" id="preparation-station" data-nav-section><div class="section-heading"><h2>Learning Lab</h2><p>Use these interactive tools to practise Information Systems 622 concepts. Your quiz attempts are saved only in this browser.</p></div><div class="learning-lab-grid"><div class="learning-lab-panel learning-lab-quiz"><h3>Quiz Builder</h3><p>Choose how many questions to draw from each topic, then answer and submit when ready.</p><div class="lab-counts"></div><div class="lab-actions"><button class="lab-button" type="button" data-lab-action="new-quiz">Start New Quiz</button><button class="lab-button secondary" type="button" data-lab-action="restart-quiz">Restart Current Quiz</button><button class="lab-button danger" type="button" data-lab-action="clear-progress">Clear Progress</button></div></div><div class="lab-summary" aria-live="polite"></div><div class="lab-questions"></div><button class="lab-button learning-lab-quiz lab-submit" type="button" data-lab-action="submit-quiz">Submit Quiz</button><div class="lab-history learning-lab-quiz"></div><article class="learning-lab-panel" id="lab-flashcards"><h3>Flashcards</h3><p>Recall the definition before flipping the card.</p><div class="lab-flashcard" tabindex="0" role="button"></div><div class="lab-actions"><button class="lab-button secondary" type="button" data-lab-action="previous-card">Previous</button><button class="lab-button" type="button" data-lab-action="flip">Flip card</button><button class="lab-button secondary" type="button" data-lab-action="next-card">Next</button></div><div class="lab-feedback lab-flashcard-status" aria-live="polite"></div></article><article class="learning-lab-panel" id="lab-challenge"><h3>Concept Challenge</h3><p class="lab-challenge-prompt"></p><div class="lab-options lab-challenge-options"></div><div class="lab-feedback lab-challenge-feedback" aria-live="polite"></div><div class="lab-actions"><button class="lab-button secondary" type="button" data-lab-action="next-challenge">Next challenge</button></div></article><article class="learning-lab-panel wide" id="lab-explain"><h3>Explain It</h3><p class="lab-explain-prompt"></p><textarea class="lab-explain-input" aria-label="Your explanation" placeholder="Write your explanation before revealing the model answer."></textarea><div class="lab-actions"><button class="lab-button" type="button" data-lab-action="show-explain">Reveal model answer</button></div><div class="lab-feedback lab-explain-answer"></div></article></div></section>
@@ -2261,42 +2336,31 @@
 				.filter(Boolean);
 			let activeNavId = null;
 
-			function parentChapterId(element) {
-				const chapter = element.closest(".chapter");
-				return chapter ? chapter.id : null;
-			}
-
 			function navIdForElement(element) {
-				if (navMap.has(element.id)) {
-					return element.id;
+				let current = element;
+				while (current) {
+					if (current.id && navMap.has(current.id)) return current.id;
+					current = current.parentElement;
 				}
-				return parentChapterId(element) || element.id;
+				return null;
 			}
 
-			function setActiveNav(id) {
-				if (!navMap.has(id) || activeNavId === id) return;
-				activeNavId = id;
+			function setActiveNav(id, reveal = false) {
+				if (!navMap.has(id)) return;
 				const activeLink = navMap.get(id);
-
-				navLinks.forEach((link) => {
-					const isActive = link.getAttribute("href") === "#" + id;
-					if (isActive) {
-						link.setAttribute("aria-current", "true");
-					} else {
-						link.removeAttribute("aria-current");
-					}
-				});
-
-				const activeDetails = new Set();
+				if (activeNavId !== id) {
+					activeNavId = id;
+					navLinks.forEach((link) => {
+						if (link === activeLink) link.setAttribute("aria-current", "true");
+						else link.removeAttribute("aria-current");
+					});
+				}
+				if (!reveal) return;
 				let parentDetails = activeLink.closest("details");
 				while (parentDetails) {
-					activeDetails.add(parentDetails);
+					parentDetails.open = true;
 					parentDetails = parentDetails.parentElement.closest("details");
 				}
-				sidebar.querySelectorAll("details.nav-collapsible").forEach((group) => {
-					if (group.hasAttribute("data-manual-toggle")) return;
-					group.open = activeDetails.has(group);
-				});
 
 				const sidebarBox = sidebar.getBoundingClientRect();
 				const linkBox = activeLink.getBoundingClientRect();
@@ -2353,7 +2417,7 @@
 				if (target && target.tagName === "DETAILS") {
 					target.open = true;
 				}
-				setActiveNav(targetId);
+				setActiveNav(targetId, true);
 				body.classList.remove("nav-open");
 				menuToggle.setAttribute("aria-expanded", "false");
 			});
@@ -2371,7 +2435,13 @@
 
 			window.addEventListener("scroll", requestActiveNavUpdate, { passive: true });
 			window.addEventListener("resize", requestActiveNavUpdate);
+			window.addEventListener("hashchange", () => {
+				const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+				if (target) setActiveNav(navIdForElement(target), true);
+			});
 			updateActiveNav();
+			const initialTarget = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+			if (initialTarget) setActiveNav(navIdForElement(initialTarget), true);
 		})();
 	</script>
 	<script>

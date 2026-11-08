@@ -63,7 +63,7 @@ body.module-machine-learning .footer { padding-bottom: 100px; }
   body.module-machine-learning .card { padding: 16px; }
   body.module-machine-learning .glossary-card summary { align-items: flex-start; }
   body.module-machine-learning .glossary-card summary span { min-width: 0; }
-  body.module-machine-learning .section-band { padding-left: 14px; padding-right: 14px; }
+  body.module-machine-learning .section-band { padding-left: 18px; padding-right: 18px; }
   body.module-machine-learning pre { font-size: .8rem; line-height: 1.6; padding: 12px; }
   body.module-machine-learning .table-wrap::before { content: 'Swipe sideways to read the full table →'; display: block; position: sticky; left: 0; width: 100%; padding: 8px; color: var(--muted); font-size: .75rem; }
   .ca-jumps a, .ca-jumps button, .ca-entry-links a { max-width: 100%; text-align: left; }
