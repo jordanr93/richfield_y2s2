@@ -48,6 +48,23 @@ body.module-machine-learning select, body.module-machine-learning input, body.mo
 .ca-general pre, .ca-api-card pre { max-width: 100%; overflow-x: auto; }
 .ca-source { font-size: .85rem; color: var(--muted); }
 .ca-api-card:target, .ca-topic-card:target, .ca-general:target { outline: 2px solid var(--cyan); outline-offset: 4px; }
+.ml-exam-index .card { margin-bottom: 18px; }
+.ml-exam-index .ml-index-search label { display: block; margin-bottom: 8px; font-weight: 700; }
+.ml-exam-index .ml-index-search input { width: 100%; max-width: 560px; padding: 11px 12px; border: 1px solid var(--border); border-radius: 8px; color: var(--text); background: var(--bg); font: inherit; }
+.ml-exam-index .ml-index-search input:focus-visible { outline: 2px solid var(--module-accent); outline-offset: 2px; }
+.ml-exam-index #ml-search-status { color: var(--muted); margin: 10px 0; }
+.ml-exam-index #ml-search-results[hidden] { display: none; }
+.ml-exam-index #ml-index-letters[hidden], .ml-exam-index #ml-az-terms[hidden] { display: none; }
+.ml-exam-index .ml-az-letter { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 7px 0; border-top: 1px solid var(--border); scroll-margin-top: 24px; }
+.ml-exam-index .ml-az-letter strong { min-width: 28px; color: var(--module-accent); }
+.ml-exam-index .ml-az-letter a { display: inline-flex; align-items: center; min-height: 40px; padding: 5px 9px; border: 1px solid var(--border); border-radius: 6px; background: var(--panel); }
+.ml-exam-index .ml-index-chapter { scroll-margin-top: 24px; }
+.ml-exam-index .ml-index-chapter h3 { margin-bottom: 14px; }
+.ml-exam-index .ml-index-chapter table { min-width: 780px; }
+.ml-exam-index .ml-index-chapter th, .ml-exam-index .ml-index-chapter td { vertical-align: top; }
+.ml-exam-index .ml-exam-entry { scroll-margin-top: 24px; }
+.ml-exam-index .ml-exam-entry:target { outline: 2px solid var(--module-accent); outline-offset: -2px; background: var(--module-accent-soft); }
+.ml-exam-index .ml-exam-calculations li { margin: 0 0 12px; }
 body.module-machine-learning .footer { padding-bottom: 100px; }
 @media (max-width: 1100px) { .ca-grid { grid-template-columns: 1fr; } }
 @media (max-width: 980px) {

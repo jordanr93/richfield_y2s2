@@ -703,19 +703,31 @@
 
 			<details class="nav-group nav-collapsible">
 	<summary>Exam Focus Areas</summary>
-	<a class="nav-link" href="#exam-focus-areas" data-nav-link="exam-focus-areas">Coming Soon</a>
+	<a class="nav-link" href="#exam-focus-areas" data-nav-link="exam-focus-areas">Exam Summary</a>
+	<a class="nav-link" href="#ml-exam-map">Focus-to-Content Map</a>
 </details>
 
-			<div class="nav-group">
-				<h2>General Module Content</h2>
+			<details class="nav-group nav-collapsible">
+				<summary>General Module Content</summary>
+				<a href="#general-module-content" data-nav-link="general-module-content">Module Overview</a>
 				<a href="#chapter-1" data-nav-link="chapter-1">Chapter 1: Introduction</a>
 				<a href="#chapter-2" data-nav-link="chapter-2">Chapter 2: Data Preparation</a>
 				<a href="#chapter-3" data-nav-link="chapter-3">Chapter 3: Regression</a>
 				<a href="#chapter-4" data-nav-link="chapter-4">Chapter 4: Classification</a>
 				<a href="#general-code-reference" data-nav-link="general-code-reference">Code walkthroughs: Topics 1–4</a>
 				<a href="#chapter-5" data-nav-link="chapter-5">Chapter 5: Clustering</a>
-						<a href="#ch5-guide-practice" data-nav-link="ch5-guide-practice">Chapter 5: Guide practice tasks</a>
-			</div>
+				<a href="#ch5-guide-practice" data-nav-link="ch5-guide-practice">Chapter 5: Guide practice tasks</a>
+			</details>
+
+			<details class="nav-group nav-collapsible">
+				<summary>Exam Concepts &amp; Calculations</summary>
+				<a href="#ml-concepts-index" data-nav-link="ml-concepts-index">Quick Search &amp; A–Z</a>
+				<a href="#ml-index-ch1" data-nav-link="ml-index-ch1">Chapter 1: Foundations</a>
+				<a href="#ml-index-ch2" data-nav-link="ml-index-ch2">Chapter 2: Preprocessing</a>
+				<a href="#ml-index-ch3" data-nav-link="ml-index-ch3">Chapter 3: Regression</a>
+				<a href="#ml-index-ch4" data-nav-link="ml-index-ch4">Chapter 4: Classification</a>
+				<a href="#ml-index-ch5" data-nav-link="ml-index-ch5">Chapter 5: Clustering</a>
+			</details>
 
 			<details class="nav-group nav-collapsible">
 				<summary>Classes, Functions, Methods &amp; Attributes</summary>
@@ -789,12 +801,21 @@
 			<div class="section-inner">
 				<div class="section-heading">
 					<h2>Exam Focus Areas</h2>
-					<p>Confirmed exam focus areas will be added here once the assessment coverage is available.</p>
+					<p>Use this summary to revise the supplied exam pointers. Start with a concept, work a small example or calculation, then follow the links to the detailed module notes and searchable exam index.</p>
 				</div>
-				<div class="card coming-soon-card">
-					<span class="coming-soon-label">Coming soon</span>
-					<h3>Exam focus areas are coming soon</h3>
-					<p>The current exam-focus content has been cleared and will be updated when the confirmed focus areas are provided.</p>
+				<div class="card" id="ml-exam-map">
+					<h3>Focus-to-content map</h3>
+					<p>The exam notice says Chapters 1–6, while the supplied <em>Machine Learning 600 Study Guide</em> contains Chapters 1–5. This page treats Chapters 1–5 as the supplied guide and maps every named exam concept below. The notice does not identify separate Chapter 6 content.</p>
+					<div class="table-wrap"><table><thead><tr><th>Exam focus</th><th>What to be able to do</th><th>Start here</th></tr></thead><tbody>
+						<tr><td>Python ML libraries</td><td>Match NumPy, Pandas, Scikit-learn and Matplotlib to array work, data handling, modelling and plots.</td><td><a href="#ml-index-libraries">Libraries</a> · <a href="#ch1-9-python-libraries">Chapter 1 notes</a></td></tr>
+						<tr><td>Model fit and evaluation</td><td>Interpret train/test scores, bias and variance; calculate a confusion matrix, accuracy, precision, recall and F1.</td><td><a href="#ml-index-fit">Fit</a> · <a href="#ml-index-confusion">Classification metrics</a></td></tr>
+						<tr><td>Preprocessing and PCA</td><td>Choose Min-Max or standard scaling, explain distance-sensitive models, the curse of dimensionality and retained variance.</td><td><a href="#ml-index-scaling">Scaling</a> · <a href="#ml-index-pca">PCA</a></td></tr>
+						<tr><td>Regression</td><td>Explain <code>y = mx + b</code>, least squares, a complete polynomial pipeline and training/test R², including a negative value.</td><td><a href="#ml-index-linear">Linear</a> · <a href="#ml-index-polynomial">Polynomial</a> · <a href="#ml-index-r2">R²</a></td></tr>
+						<tr><td>Classification algorithms</td><td>Explain sigmoid and C in logistic regression; SVM margin, support vectors and RBF; k-NN distance, voting and k.</td><td><a href="#ml-index-logistic">Logistic</a> · <a href="#ml-index-svm">SVM</a> · <a href="#ml-index-knn">k-NN</a></td></tr>
+						<tr><td>Clustering algorithms</td><td>Trace k-Means, choose k with inertia and silhouette, and compare hierarchical clustering and DBSCAN.</td><td><a href="#ml-index-kmeans">k-Means</a> · <a href="#ml-index-choose-k">Choosing k</a> · <a href="#ml-index-cluster-alternatives">Alternatives</a></td></tr>
+						<tr><td>Calculations and interpretation</td><td>Distinguish classification from clustering and justify the metric used for each result.</td><td><a href="#ml-index-compare-tasks">Task comparison</a> · <a href="#ml-exam-calculations">Worked calculations</a></td></tr>
+					</tbody></table></div>
+				<div class="callout success"><strong>Revision path:</strong> read the linked chapter explanation → work the calculation or code without looking → check what the result means and when the method can mislead.</div>
 				</div>
 			</div>
 		</section>
@@ -910,6 +931,7 @@
 						<article class="card chapter-card" id="ch1-9-python-libraries">
 							<h4>1.9 Introduction to Python ML Libraries</h4>
 							<p>The guide introduces NumPy for arrays and numerical computing, Pandas for DataFrame-based dataset work, Scikit-learn for ML models, and Matplotlib for visualizations.</p>
+							<div class="table-wrap"><table><thead><tr><th>Library</th><th>Main purpose</th><th>Typical exam cue</th></tr></thead><tbody><tr><td>NumPy</td><td>Fast numerical arrays, shapes and vectorised calculations.</td><td>Reshape one feature to a two-dimensional <code>X</code> array.</td></tr><tr><td>Pandas</td><td>Read, inspect, clean and select rows or columns in DataFrames.</td><td>Load a CSV, separate features from the target, check missing values.</td></tr><tr><td>Scikit-learn</td><td>Split, preprocess, fit, predict and evaluate machine learning models.</td><td>Use a pipeline so training and prediction apply the same transformation.</td></tr><tr><td>Matplotlib</td><td>Build plots to inspect data, predictions and evaluation curves.</td><td>Plot actual points against a fitted regression curve or inertia against k.</td></tr></tbody></table></div>
 							<pre><code>import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
@@ -1162,7 +1184,7 @@ print(df[df.duplicated(keep=False)])</code></pre>
 
 						<article class="card chapter-card" id="ch2-3-scaling">
 							<h4>2.3 Feature Scaling and Normalization</h4>
-							<p>Scaling puts features on comparable ranges. It is important when a model uses distances, gradients, or margins, as with k-NN and SVM.</p>
+							<p>Scaling puts features on comparable ranges. It is important when a model uses distances, gradients, or margins, as with k-NN, SVM and k-Means. Min-Max scaling maps the training range to 0–1; standardisation subtracts the training mean and divides by its standard deviation, so values are not bounded to 0–1. Outliers can distort either transformation.</p>
 							<pre><code>from sklearn.preprocessing import MinMaxScaler, StandardScaler
 
 data = [[100, 200], [300, 400], [500, 600]]
@@ -1174,7 +1196,7 @@ standardized = StandardScaler().fit_transform(data)</code></pre>
 
 						<article class="card chapter-card" id="ch2-4-pca">
 							<h4>2.4 Principal Component Analysis</h4>
-							<p>PCA is a dimensionality reduction technique that creates principal components, which are new axes capturing maximum variance. It reduces high-dimensional data while retaining as much variance as possible for the chosen number of components; high explained variance does not guarantee high predictive accuracy.</p>
+							<p>When many features make observations sparse, the curse of dimensionality can make distances less useful and models harder to generalise. PCA is a dimensionality reduction technique that creates principal components, which are new axes capturing maximum variance. It reduces high-dimensional data while retaining as much variance as possible for the chosen number of components; high explained variance does not guarantee high predictive accuracy.</p>
 							<ul>
 								<li>Reduces computational cost.</li>
 								<li>Can reduce overfitting risk by removing noisy dimensions.</li>
@@ -1495,6 +1517,31 @@ poly_model = make_pipeline(
 )
 poly_model.fit(X, y)</code></pre>
 						</article>
+						<article class="card chapter-card wide structure" id="ch3-exam-polynomial">
+							<h4>Exam code: complete a polynomial regression pipeline</h4>
+							<p>Keep the split before model fitting. The pipeline learns polynomial features and regression coefficients from training data, then applies the same feature expansion to test data. Degree 2 adds a squared term; a higher degree may fit training noise.</p>
+							<pre><code>import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score
+
+X = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]).reshape(-1, 1)
+y = np.array([2, 5, 10, 17, 26, 37, 50, 65, 82, 101, 122, 145])
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, random_state=42
+)
+model = make_pipeline(
+    PolynomialFeatures(degree=2, include_bias=False),
+    LinearRegression()
+)
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+print("Test R²:", r2_score(y_test, y_pred))
+print("Prediction at x=13:", model.predict([[13]])[0])</code></pre>
+							<p><strong>Fill-in order:</strong> <code>train_test_split</code> → <code>make_pipeline</code> → <code>PolynomialFeatures</code> → <code>LinearRegression</code> → <code>fit</code> → <code>predict</code> → <code>r2_score</code>. Compare training and test R² across degrees before choosing complexity.</p>
+						</article>
 
 						<article class="card chapter-card" id="ch3-5-decision-tree-regression">
 							<h4>3.5 Decision Tree Regression</h4>
@@ -1562,6 +1609,12 @@ poly_model.fit(X, y)</code></pre>
 								</table>
 							</div>
 							<div class="callout warning"><strong>Exam trap:</strong> Interpret coefficients only within the model context. A coefficient explains association in the fitted data; it is not automatically proof of real-world causation.</div>
+						</article>
+						<article class="card chapter-card wide definition" id="ch3-exam-r2">
+							<h4>Exam bridge: R², negative scores and the bias–variance trade-off</h4>
+							<p><code>R² = 1 − Σ(y−ŷ)² / Σ(y−ȳ)²</code>, using the mean of the evaluated actual values. If the test targets are [1,2,3], their mean is 2 and the total squared deviation is 2. Predictions [3,3,3] have squared error 5, giving <code>R² = 1−5/2 = −1.5</code>. A negative R² means the model is worse on this evaluation set than predicting its mean.</p>
+							<div class="table-wrap"><table><thead><tr><th>Training R²</th><th>Test R²</th><th>Likely interpretation</th><th>Next check</th></tr></thead><tbody><tr><td>High</td><td>High and similar</td><td>Fits the observed pattern and generalises on this split.</td><td>Check other splits or cross-validation before trusting it.</td></tr><tr><td>High</td><td>Much lower</td><td>Possible overfitting or high variance.</td><td>Reduce complexity, regularise, and check leakage.</td></tr><tr><td>Low</td><td>Low and similar</td><td>Possible underfitting or high bias.</td><td>Improve features or try a suitable richer model.</td></tr></tbody></table></div>
+							<p>R² is for a continuous regression target. Classification needs labelled metrics such as precision and recall; clustering without labels needs internal scores and interpretation.</p>
 						</article>
 
 						<article class="card chapter-card wide success" id="ch3-model-comparison">
@@ -2046,6 +2099,11 @@ print(knn.score(X_test, y_test))</code></pre>
 							<p><code>SVC</code> supports kernels and trains multiclass one-vs-one internally, even with one-vs-rest-shaped output scores. <code>LinearSVC</code> uses a different linear solver and ordinarily one-vs-rest. Logistic regression can use multinomial fitting with compatible solvers; do not apply a single multiclass rule to every estimator. <a href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html">SVC documentation</a>.</p>
 							<p>For one new Iris flower, use <code>[[5.0, 2.9, 1.0, 0.2]]</code>, shape (1,4), not a bare four-value vector. Predict using the fitted pipeline so scaling remains consistent. <a href="#general-code-shape">Array shape walkthrough</a>.</p>
 						</article>
+						<article class="card chapter-card wide success" id="ch4-exam-classifiers">
+							<h4>Exam comparison: logistic regression, SVM and k-NN</h4>
+							<div class="table-wrap"><table><thead><tr><th>Method</th><th>Decision rule</th><th>When it helps</th><th>Watch for</th></tr></thead><tbody><tr><td>Logistic regression</td><td>Sigmoid converts a linear score to a probability; a threshold assigns a class.</td><td>A fast, interpretable binary baseline with direct probability output.</td><td>A plain linear boundary cannot capture a curved pattern without engineered features; smaller C means stronger regularisation.</td></tr><tr><td>SVM</td><td>Finds a wide-margin separating hyperplane; support vectors define it. RBF can create a curved boundary.</td><td>May fit a non-linear separation that plain logistic regression misses.</td><td>Scale features; tune C and RBF gamma on validation data. Its advantage depends on the dataset, and probabilities require extra calibration.</td></tr><tr><td>k-NN</td><td>Stores examples and votes among the k nearest by distance.</td><td>A simple local decision pattern with little model training.</td><td>Scale features; small k can follow noise, large k can smooth away a minority pattern. Prediction can be costly on large sets.</td></tr></tbody></table></div>
+							<p><strong>Practical check:</strong> train and evaluate each on the same split, and report the confusion matrix with the positive class named. Accuracy alone can look good when the important class is rare; use precision, recall and F1 to explain the error trade-off.</p>
+						</article>
 						<article class="card chapter-card wide ca-general" id="ch4-metric-worked">
 							<h4>Classification metrics: labelled worked example</h4>
 							<p>Declare class 1 positive. Scikit-learn's confusion matrix has actual labels as rows and predicted labels as columns. With <code>labels=[0,1]</code>:</p>
@@ -2303,7 +2361,8 @@ df["DBSCAN_Cluster"] = dbscan.fit_predict(df_scaled)</code></pre>
 
 						<article class="card chapter-card" id="ch5-6-clustering-metrics">
 							<h4>5.6 Clustering Evaluation Metrics</h4>
-							<p>Because clustering is unsupervised, ordinary accuracy is not the main evaluation method. The guide lists internal evaluation methods.</p>
+							<p>Because clustering is unsupervised, ordinary accuracy is not the main evaluation method. The guide lists internal evaluation methods. Inertia is the sum of squared distances from points to their assigned k-Means centers; it always tends to fall as k increases, so choose an elbow where improvement starts to diminish, then inspect the groups.</p>
+							<p>For a point, let <code>a</code> be average distance to its own cluster and <code>b</code> average distance to the nearest other cluster. Its silhouette value is <code>(b−a)/max(a,b)</code>: near 1 suggests a well-separated point, near 0 suggests overlap, and a negative value suggests another cluster is closer. The overall score averages points and requires at least two clusters.</p>
 							<div class="table-wrap">
 								<table>
 									<thead>
@@ -2674,6 +2733,48 @@ print("GMM memberships for first row:", gmm.predict_proba(X[:1]))</code></pre>
 			</div>
 		</section>
 
+		<section id="ml-concepts-index" class="section-band ml-exam-index" data-nav-section>
+			<div class="section-inner">
+				<div class="section-heading"><h2>Exam Concepts &amp; Calculations</h2><p>Search the named exam pointers, browse A–Z, or go straight to a chapter. Each entry gives the idea, a worked cue and a link to the fuller General Module Content.</p></div>
+				<div class="card ml-index-search" id="ml-exam-index">
+					<label for="ml-exam-search">Quick index search</label>
+					<input id="ml-exam-search" type="search" placeholder="Try PCA, precision, polynomial, DBSCAN…" autocomplete="off" aria-controls="ml-search-results">
+					<p id="ml-search-status" role="status" aria-live="polite">Search the exam concepts or browse below.</p>
+					<nav class="ca-jumps" id="ml-search-results" aria-label="Exam index search results" hidden></nav>
+					<nav class="ca-jumps" id="ml-index-letters" aria-label="Exam index A to Z"></nav>
+					<div id="ml-az-terms" aria-label="Exam concepts A to Z"></div>
+					<nav class="ca-jumps" aria-label="Exam index chapters"><a href="#ml-index-ch1">Chapter 1</a><a href="#ml-index-ch2">Chapter 2</a><a href="#ml-index-ch3">Chapter 3</a><a href="#ml-index-ch4">Chapter 4</a><a href="#ml-index-ch5">Chapter 5</a></nav>
+				</div>
+				<div class="card ml-index-chapter" id="ml-index-ch1" data-nav-section><h3>Chapter 1 · Foundations and model fit</h3><div class="table-wrap"><table><thead><tr><th>Concept</th><th>What to know</th><th>Example or interpretation</th><th>Full notes</th></tr></thead><tbody>
+					<tr class="ml-exam-entry" id="ml-index-libraries" data-term="Python ML libraries"><th>NumPy, Pandas, Scikit-learn, Matplotlib</th><td>NumPy handles numerical arrays; Pandas loads, cleans and explores tabular data; Scikit-learn supplies preprocessing, models, splits and metrics; Matplotlib plots results.</td><td>Read a CSV with Pandas, turn selected columns into <code>X</code>, fit a Scikit-learn model, then plot predictions or scores with Matplotlib.</td><td><a href="#ch1-9-python-libraries">Libraries and code</a></td></tr>
+					<tr class="ml-exam-entry" id="ml-index-fit" data-term="Overfitting and underfitting"><th>Overfitting and underfitting</th><td>Compare scores on training and unseen test data. High train and much lower test performance suggests overfitting; both low suggests underfitting. Check the metric and class balance before deciding.</td><td>Train accuracy 99%, test 68%: investigate excessive complexity or leakage. Both near 60%: try better features or a more suitable model.</td><td><a href="#ch1-4-over-under-fitting">Fit notes</a></td></tr>
+					<tr class="ml-exam-entry" id="ml-index-bias-variance" data-term="Bias variance trade-off"><th>Bias–variance trade-off</th><td>High bias means a model is too simple to capture the pattern; high variance means it changes too much with training data. Complexity and regularisation shift that balance.</td><td>A straight line on curved data can underfit; a very high-degree polynomial can follow noise and fail on new data.</td><td><a href="#ch1-6-bias-variance">Bias and variance</a></td></tr>
+				</tbody></table></div></div>
+				<div class="card ml-index-chapter" id="ml-index-ch2" data-nav-section><h3>Chapter 2 · Scaling and dimensionality</h3><div class="table-wrap"><table><thead><tr><th>Concept</th><th>What to know</th><th>Example or interpretation</th><th>Full notes</th></tr></thead><tbody>
+					<tr class="ml-exam-entry" id="ml-index-scaling" data-term="Feature scaling Min-Max standardisation"><th>Min-Max scaling vs standardisation</th><td>Min-Max maps a feature to a chosen range, usually 0–1: <code>(x−min)/(max−min)</code>. Standardisation uses <code>(x−mean)/standard deviation</code>, giving mean 0 and unit variance. Fit the scaler on training data only.</td><td>Unscaled income can dominate age in k-NN distance, SVM geometry and k-Means assignment. Scaling makes the features comparable but does not remove outliers.</td><td><a href="#ch2-3-scaling">Scaling notes</a></td></tr>
+					<tr class="ml-exam-entry" id="ml-index-pca" data-term="Dimensionality reduction curse of dimensionality PCA"><th>Curse of dimensionality and PCA</th><td>As dimensions grow, observations become sparse and distances can become less informative. PCA rotates centered data onto orthogonal axes ordered by captured variance; keep enough components for the desired cumulative explained variance.</td><td>Components retaining 70%, 20% and 5% variance mean the first two preserve 90% of measured variance. That does not guarantee 90% predictive information.</td><td><a href="#ch2-4-pca">PCA</a> · <a href="#ch2-4-choosing-components">Choosing components</a></td></tr>
+				</tbody></table></div></div>
+				<div class="card ml-index-chapter" id="ml-index-ch3" data-nav-section><h3>Chapter 3 · Regression and R²</h3><div class="table-wrap"><table><thead><tr><th>Concept</th><th>What to know</th><th>Example or interpretation</th><th>Full notes</th></tr></thead><tbody>
+					<tr class="ml-exam-entry" id="ml-index-linear" data-term="Linear regression least squares slope intercept"><th>Linear regression and least squares</th><td><code>ŷ = mx + b</code>: slope <code>m</code> is the predicted change in <code>y</code> per unit of <code>x</code>; intercept <code>b</code> is the prediction at <code>x=0</code>. Least squares chooses coefficients that minimise the sum of squared residuals <code>Σ(y−ŷ)²</code>.</td><td>If <code>ŷ = 2x + 3</code>, at <code>x=4</code> predict 11. A residual for actual 13 is 2, contributing 4 to squared error.</td><td><a href="#ch3-3-linear-regression">Linear regression</a> · <a href="#ch3-regression-math">Worked maths</a></td></tr>
+					<tr class="ml-exam-entry" id="ml-index-polynomial" data-term="Polynomial regression scikit-learn code"><th>Polynomial regression code</th><td>Split <code>X, y</code>; create <code>make_pipeline(PolynomialFeatures(degree=d), LinearRegression())</code>; <code>fit</code> on train, <code>predict</code> on test, then calculate <code>r2_score</code>. Increasing degree adds curved terms and overfit risk.</td><td>The pipeline expands <code>x</code> into <code>x, x²</code> for degree 2 and keeps the transformation consistent when predicting new values.</td><td><a href="#ch3-exam-polynomial">Complete code</a></td></tr>
+					<tr class="ml-exam-entry" id="ml-index-r2" data-term="R squared negative R2 training test bias variance"><th>R² and training/test interpretation</th><td><code>R² = 1 − SSE/SST</code>. A value of 1 is perfect; 0 equals predicting the evaluation set's mean; negative means worse than that baseline. Compare train and test R² to judge generalisation.</td><td>High train R² and much lower test R² signals possible high variance. Low on both signals possible high bias; check data quality and leakage too.</td><td><a href="#ch3-exam-r2">R² worked example</a></td></tr>
+			</tbody></table></div></div>
+				<div class="card ml-index-chapter" id="ml-index-ch4" data-nav-section><h3>Chapter 4 · Classification</h3><div class="table-wrap"><table><thead><tr><th>Concept</th><th>What to know</th><th>Example or interpretation</th><th>Full notes</th></tr></thead><tbody>
+					<tr class="ml-exam-entry" id="ml-index-logistic" data-term="Logistic regression sigmoid binary classification C"><th>Logistic regression</th><td>For binary labels, a linear score <code>z</code> passes through sigmoid <code>1/(1+e^(−z))</code> to give a probability. A threshold turns it into a class. In Scikit-learn, smaller <code>C</code> means stronger regularisation; larger <code>C</code> means weaker regularisation.</td><td>A probability of 0.72 becomes positive at threshold 0.5, but negative at 0.8. Choose threshold and C using validation data, not the test set.</td><td><a href="#ch4-2-logistic-regression">Logistic notes</a> · <a href="#ch4-exam-classifiers">Exam comparison</a></td></tr>
+					<tr class="ml-exam-entry" id="ml-index-confusion" data-term="Confusion matrix accuracy precision recall F1"><th>Confusion matrix and metrics</th><td>With positive class defined: TP is correctly predicted positive, FP is incorrectly positive, FN is missed positive, TN is correctly negative. Accuracy <code>(TP+TN)/N</code>; precision <code>TP/(TP+FP)</code>; recall <code>TP/(TP+FN)</code>; F1 <code>2TP/(2TP+FP+FN)</code>.</td><td>For TP 40, FP 10, FN 5, TN 50: accuracy 85.7%, precision 80%, recall 88.9%, F1 84.2%.</td><td><a href="#ch4-metric-worked">Worked matrix</a> · <a href="#ml-exam-calculations">Calculation drill</a></td></tr>
+					<tr class="ml-exam-entry" id="ml-index-svm" data-term="Support Vector Machines hyperplane margin support vectors RBF kernel"><th>Support Vector Machines</th><td>A hyperplane separates classes; SVM seeks a wide margin while allowing controlled violations. Support vectors determine the boundary. An RBF kernel permits non-linear boundaries; scaling and C/gamma tuning matter.</td><td>SVM can model a curved boundary that plain logistic regression cannot without added features. Logistic regression is often simpler to interpret and produces direct class probabilities.</td><td><a href="#ch4-4-svm">SVM notes</a> · <a href="#ch4-exam-classifiers">Comparison</a></td></tr>
+					<tr class="ml-exam-entry" id="ml-index-knn" data-term="k nearest neighbours lazy learning Euclidean distance majority vote"><th>k-Nearest Neighbours</th><td>k-NN stores training examples (lazy learning). It computes distances, selects the k closest, and predicts the majority class. Small k can be noisy and high variance; large k smooths but may underfit.</td><td>For points (1,2) and (4,6), Euclidean distance is <code>√(3²+4²)=5</code>. Scale features before comparing distances.</td><td><a href="#ch4-3-knn">k-NN notes</a> · <a href="#ch4-knn-svm-detail">Decision detail</a></td></tr>
+			</tbody></table></div></div>
+				<div class="card ml-index-chapter" id="ml-index-ch5" data-nav-section><h3>Chapter 5 · Clustering</h3><div class="table-wrap"><table><thead><tr><th>Concept</th><th>What to know</th><th>Example or interpretation</th><th>Full notes</th></tr></thead><tbody>
+					<tr class="ml-exam-entry" id="ml-index-compare-tasks" data-term="Classification versus clustering"><th>Classification vs clustering</th><td>Classification learns from known labels and predicts a category; clustering groups unlabelled observations by similarity. Classification uses a labelled confusion matrix; clustering uses internal scores and domain interpretation unless true labels exist.</td><td>Predicting known churn/no-churn is classification. Finding customer segments without predefined groups is clustering; cluster numbers are arbitrary.</td><td><a href="#ch4-1-classification">Classification</a> · <a href="#ch5-2-clustering">Clustering</a></td></tr>
+					<tr class="ml-exam-entry" id="ml-index-kmeans" data-term="k-Means unsupervised learning scaled algorithm steps"><th>k-Means clustering</th><td>Choose k, initialise centroids, assign each point to its nearest centroid, recompute each mean, and repeat until assignments stabilise. Scale first because a large-unit feature otherwise dominates distance and centroid placement.</td><td>For customer age and annual spend, standardise both before k-Means so spending units do not overwhelm age.</td><td><a href="#ch5-3-kmeans">Algorithm steps</a></td></tr>
+					<tr class="ml-exam-entry" id="ml-index-choose-k" data-term="Elbow Method inertia silhouette score choosing k"><th>Choosing k: inertia and silhouette</th><td>Inertia is within-cluster squared distance to centroids; it falls as k rises, so look for diminishing returns (an elbow). Silhouette compares a point's mean within-cluster distance <code>a</code> with nearest-other-cluster distance <code>b</code>: <code>(b−a)/max(a,b)</code>.</td><td>If <code>a=0.2</code>, <code>b=0.6</code>, silhouette is 0.67: the point is closer to its own cluster. Scores near 0 overlap; negative values suggest poor assignment.</td><td><a href="#ch5-6-clustering-metrics">Metrics</a> · <a href="#ml-exam-calculations">Calculation drill</a></td></tr>
+					<tr class="ml-exam-entry" id="ml-index-cluster-alternatives" data-term="Hierarchical clustering DBSCAN alternatives"><th>Hierarchical clustering and DBSCAN</th><td>Agglomerative hierarchical clustering merges groups and displays a dendrogram; DBSCAN grows dense regions using <code>eps</code> and <code>min_samples</code> and can label noise. These are alternatives when centroid-shaped k-Means clusters fit poorly.</td><td>Use DBSCAN for curved dense regions with outliers; use a dendrogram to inspect nested groupings. Both still need parameter and scale choices.</td><td><a href="#ch5-4-hierarchical">Hierarchical</a> · <a href="#ch5-5-dbscan">DBSCAN</a></td></tr>
+			</tbody></table></div></div>
+			<div class="card ml-exam-calculations" id="ml-exam-calculations"><h3>Worked calculations and interpretation</h3><ol><li><strong>Classification:</strong> with actual rows and predicted columns, TN=50, FP=10, FN=5, TP=40. Accuracy is 90/105=85.7%; precision is 40/50=80%; recall is 40/45=88.9%; F1 is 80/95=84.2%. A missed positive raises FN and lowers recall.</li><li><strong>Regression:</strong> for actual values [1,2,3], the mean is 2 and SST is 2. Predicting [3,3,3] gives SSE=5, so R²=1−5/2=−1.5. The model is worse than predicting the mean of those actual values.</li><li><strong>Clustering:</strong> for one point with within-cluster distance <code>a=0.2</code> and nearest-other-cluster distance <code>b=0.6</code>, silhouette <code>(0.6−0.2)/0.6≈0.67</code>. Inertia values might fall 120 → 70 → 50 → 45 as k rises; k=3 is a possible elbow, then compare silhouette and whether the groups make sense.</li></ol><p><strong>Interpret before choosing:</strong> accuracy needs labelled outcomes and can hide minority-class failures; silhouette needs at least two clusters and does not prove that the groups have useful meaning.</p></div>
+			</div>
+		</section>
+
 				<section id="ca-api" class="section-band" data-nav-section>
 					<div class="section-inner">
 					<div class="section-heading"><h2>Classes, Functions, Methods &amp; Attributes</h2></div>
@@ -2716,17 +2817,21 @@ print("GMM memberships for first row:", gmm.predict_proba(X[:1]))</code></pre>
 		}
 
 		function navIdForElement(element) {
-			if (navLinkMap.has(element.id)) return element.id;
-			const chapter = element.closest(".chapter[data-nav-section]");
-			return chapter ? chapter.id : "";
+			for (let current = element; current; current = current.parentElement) {
+				if (current.id && navLinkMap.has(current.id)) return current.id;
+			}
+			return "";
 		}
 
-		function setActiveNav(id) {
+		function setActiveNav(id, reveal = false) {
 			navLinks.forEach((link) => {
 				const active = link.dataset.navLink === id;
 				if (active) link.setAttribute("aria-current", "true");
 				else link.removeAttribute("aria-current");
 			});
+			if (reveal && navLinkMap.has(id)) {
+				for (let group = navLinkMap.get(id).closest("details"); group; group = group.parentElement.closest("details")) group.open = true;
+			}
 		}
 
 		function updateProgress() {
@@ -2782,7 +2887,7 @@ print("GMM memberships for first row:", gmm.predict_proba(X[:1]))</code></pre>
 			setMenu(false);
 
 			const directNavId = navLinkMap.has(id) ? id : navIdForElement(target);
-			if (directNavId) setActiveNav(directNavId);
+			if (directNavId) setActiveNav(directNavId, true);
 			history.pushState(null, "", `#${id}`);
 		});
 
@@ -2795,6 +2900,57 @@ print("GMM memberships for first row:", gmm.predict_proba(X[:1]))</code></pre>
 		window.addEventListener("resize", requestScrollUpdate);
 		updateProgress();
 		updateActiveNav();
+	</script>
+	<script>
+		(() => {
+			const search = document.getElementById("ml-exam-search");
+			const status = document.getElementById("ml-search-status");
+			const results = document.getElementById("ml-search-results");
+			const letters = document.getElementById("ml-index-letters");
+			const azTerms = document.getElementById("ml-az-terms");
+			if (!search || !status || !results || !letters || !azTerms) return;
+			const entries = Array.from(document.querySelectorAll(".ml-exam-entry")).map((row) => ({
+				id: row.id,
+				name: row.querySelector("th")?.textContent.trim() || row.dataset.term || row.id,
+				searchText: (row.dataset.term + " " + row.textContent).toLowerCase()
+			})).sort((a, b) => a.name.localeCompare(b.name));
+			const addLink = (container, entry) => {
+				const link = document.createElement("a");
+				link.href = "#" + entry.id;
+				link.textContent = entry.name;
+				container.append(link);
+			};
+			for (const letter of [...new Set(entries.map((entry) => entry.name[0].toUpperCase()))]) {
+				const letterLink = document.createElement("a");
+				letterLink.href = "#ml-letter-" + letter;
+				letterLink.textContent = letter;
+				letters.append(letterLink);
+				const group = document.createElement("div");
+				group.className = "ml-az-letter";
+				group.id = "ml-letter-" + letter;
+				const heading = document.createElement("strong");
+				heading.textContent = letter;
+				group.append(heading);
+				entries.filter((entry) => entry.name[0].toUpperCase() === letter).forEach((entry) => addLink(group, entry));
+				azTerms.append(group);
+			}
+			const updateResults = () => {
+				const terms = search.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+				results.replaceChildren();
+				results.hidden = terms.length === 0;
+				azTerms.hidden = terms.length > 0;
+				letters.hidden = terms.length > 0;
+				if (!terms.length) {
+					status.textContent = `${entries.length} exam concepts. Search or browse A–Z and by chapter.`;
+					return;
+				}
+				const matches = entries.filter((entry) => terms.every((term) => entry.searchText.includes(term)));
+				matches.forEach((entry) => addLink(results, entry));
+				status.textContent = matches.length ? `${matches.length} matching ${matches.length === 1 ? "concept" : "concepts"}. Choose a result to see its example and full notes.` : "No matching concepts. Try a shorter term or browse by chapter.";
+			};
+			search.addEventListener("input", updateResults);
+			updateResults();
+		})();
 	</script>
 </body>
 </html>
