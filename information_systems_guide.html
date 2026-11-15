@@ -208,6 +208,31 @@
 			margin-top: 30px;
 		}
 
+		#test-focus-areas > .focus-body {
+			border: 1px solid var(--border);
+			border-radius: 12px;
+			background: var(--panel);
+			padding: 18px;
+			overflow-x: clip;
+		}
+
+		#test-focus-areas > .focus-body > summary {
+			padding: 6px 2px;
+		}
+
+		#test-focus-areas > .focus-body[open] > summary {
+			margin-bottom: 18px;
+		}
+
+		#test-focus-areas .focus-body > .grid {
+			grid-template-columns: minmax(0, 1fr);
+		}
+
+		#test-focus-areas .focus-body .card {
+			min-width: 0;
+			overflow-x: auto;
+		}
+
 		.menu-toggle {
 			display: none;
 			position: fixed;
@@ -360,6 +385,19 @@
 
 		.grid .wide {
 			grid-column: 1 / -1;
+		}
+
+		body.module-page .chapter > .grid {
+			grid-template-columns: minmax(0, 1fr);
+		}
+
+		.chapter > .grid .wide {
+			grid-column: auto;
+		}
+
+		.chapter > .grid > .chapter-card {
+			min-width: 0;
+			overflow-x: auto;
 		}
 
 		.is-reference-jumps { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
@@ -732,6 +770,8 @@
 						<h2>CA References</h2>
 						<p>A focused open-book reference for Chapters 1-3. Use the diagnostic index to identify the problem, then open the relevant chapter for solutions, trade-offs and limitations.</p>
 					</div>
+					<details class="focus-body glossary-card" id="ca-reference-body">
+						<summary><span>CA reference body: diagnostic index and Chapters 1–3</span></summary>
 					<div class="note success"><strong>Reference pattern:</strong> <code>Symptom -> Diagnosis -> Suitable response -> Benefit -> Limitation/risk -> Control</code>.</div>
 					<div class="grid">
 						<article class="card wide" id="ca-at-a-glance">
@@ -902,7 +942,7 @@
 							<p><strong>Source-document zones:</strong> heading, control, instructions, body, totals and authorisation. Good forms follow the business sequence, use clear captions and collect data once at its source.</p>
 
 							<h4 id="ca-ch2-6">2.6 Printed Output and Report Design</h4>
-							<p class="assignment-links"><a href="#ch2-4-reports-controls">View Forms, Reports and Controls</a> <a href="#ch2-8-forms-reports-worked-example">View the Worked Example ↓</a></p>
+							<p class="assignment-links"><a href="#ch2-4-reports-controls">View Form Design</a> <a href="#ch2-6-report-design">View Printed Output</a> <a href="#ch2-8-forms-reports-worked-example">View the Worked Example ↓</a></p>
 							<table>
 								<tr><th>Position</th><th>Typical content</th><th>Purpose</th></tr>
 								<tr><td>Report header</td><td>Report title, organisation and date range.</td><td>Identifies the whole report once.</td></tr>
@@ -1133,6 +1173,7 @@
 							<div class="note"><strong>Compact content chain:</strong> <code>Define -> Diagnose -> Select solution -> Justify benefit -> State limitation -> Add control -> Recommend</code>.</div>
 						</article>
 					</div>
+					</details>
 				</section>
 
 				<section class="section" id="exam-focus-areas" data-nav-section>
@@ -1178,6 +1219,13 @@
 							<tr><td>Systems design</td><td>How will the interface, data, architecture and controls work?</td><td>Prototype the form, model Patient and Appointment, and choose a web architecture.</td></tr>
 							<tr><td>Implementation</td><td>How will the solution be built, tested, documented, trained and installed?</td><td>Test bookings, migrate records and pilot one clinic.</td></tr>
 							<tr><td>Support and security</td><td>How will users be helped, defects corrected, risks controlled and the system eventually retired?</td><td>Log faults, manage access, test backups and review performance.</td></tr></table>
+							<h4>Follow the evidence through a clinic booking project</h4>
+							<table><tr><th>Stage</th><th>Deliverable or evidence</th><th>Decision before moving on</th></tr>
+							<tr><td>Planning and analysis</td><td>Agreed problem statement, requirements, feasibility and comparison of build/buy/service options.</td><td>Management approves a feasible direction and the requirements that design must satisfy.</td></tr>
+							<tr><td>Design</td><td>Screen prototypes, Patient–Appointment data model, architecture and security controls.</td><td>Users and reviewers confirm that the design covers real booking tasks and agreed requirements.</td></tr>
+							<tr><td>Implementation</td><td>Working code, unit/integration/system test results, converted data, training and changeover plan.</td><td>Accept the system for live use only after important tests and data checks pass.</td></tr>
+							<tr><td>Support</td><td>Help-desk records, maintenance requests, performance measures, security reviews and recovery tests.</td><td>Prioritise fixes and improvements; revisit earlier decisions when evidence shows a gap.</td></tr></table>
+							<div class="note"><strong>Exam answer pattern:</strong> name the stage, state its output, then explain the approval or feedback that connects it to the next stage. For example, a failed appointment-conflict test sends the booking rule back for design and code correction before changeover.</div>
 							<p><a href="#chapter-2">Interface design</a> · <a href="#chapter-3">Data design</a> · <a href="#chapter-4">Architecture</a> · <a href="#chapter-5">Implementation</a> · <a href="#chapter-6">Support</a></p>
 						</article>
 							<article class="card chapter-card" id="ch1-1-traditional-vs-web">
@@ -1398,6 +1446,14 @@
 								<h3>2.1 User Interfaces and 2.2 Human-Computer Interaction</h3>
 								<p>A user interface is the hardware, software, screens, menus, functions, outputs, and features that support communication between user and computer. HCI focuses on making that interaction productive, learnable, and user-friendly.</p>
 								<p>Modern UI design starts from user needs and business goals, not from printed outputs alone. The best interfaces often feel invisible because users can complete tasks naturally.</p>
+							<h4>Apply HCI to a booking screen</h4>
+								<p><strong>Weak design:</strong> a receptionist must remember a patient code, re-enter the date on three screens, receives only “Error 47” when a slot is taken, and loses the form after the error. The date picker also requires a mouse. Explain each problem in terms of the user's task, then propose a control that preserves accuracy.</p>
+							<table><tr><th>Observed problem</th><th>HCI principle</th><th>Improvement and expected effect</th></tr>
+							<tr><td>Staff must recall a code.</td><td>Recognition and learnability.</td><td>Offer a patient lookup with name and identifier; reduce memory load while confirming the correct record.</td></tr>
+							<tr><td>The same date is typed repeatedly.</td><td>Productivity and consistency.</td><td>Carry the selected date through the workflow and use a clear, editable default.</td></tr>
+							<tr><td>An unclear error clears the form.</td><td>Feedback, error recovery and usability.</td><td>Explain the conflict, show available slots and preserve entered details so the task can continue.</td></tr>
+							<tr><td>The date picker requires a mouse.</td><td>Accessibility and flexible interaction.</td><td>Provide keyboard access and a clearly labelled date field so users can complete the task with different input methods.</td></tr></table>
+							<p><strong>Check the redesign with users:</strong> ask a new and an experienced receptionist to complete the same booking; note errors, time taken and points of confusion, then revise the prototype. This applies the guide's user-centred design and feedback habits.</p>
 							</article>
 							<article class="card chapter-card" id="ch2-2-guidelines">
 								<h3>2.3 Guidelines for User Interface Design</h3>
@@ -1407,49 +1463,6 @@
 								</ul>
 								<h3>2.4 Detailed Guidelines for User Interface Design</h3>
 								<p>Use the 2.4.1-2.4.10 checklist below to translate the broad habits into concrete interface decisions.</p>
-							</article>
-							<article class="card chapter-card" id="ch2-3-validation">
-								<h3>Expanded detail: 2.4.8 Use Validation Rules</h3>
-								<p>Validation rules reduce incorrect or inconsistent data before it enters the system. The study guide highlights checks such as sequence, existence, range, reasonableness, and validity checks.</p>
-								<table>
-									<tr><th>Check</th><th>Purpose</th></tr>
-									<tr><td>Sequence</td><td>Ensures values are entered in the required order.</td></tr>
-									<tr><td>Existence</td><td>Prevents mandatory fields from being left blank.</td></tr>
-									<tr><td>Range</td><td>Rejects values outside allowed limits.</td></tr>
-									<tr><td>Reasonableness</td><td>Flags values that are possible but suspicious.</td></tr>
-									<tr><td>Validity</td><td>Checks values against accepted codes or records.</td></tr>
-								</table>
-							</article>
-							<article class="card chapter-card" id="ch2-4-reports-controls">
-								<h3>2.5 Source Document and Form Design</h3>
-								<p>Use six zones to make a source document clear and controllable: heading, control, instruction, body, totals and authorization.</p>
-								<h3>2.6 Printed Output</h3>
-								<h4>2.6.1 Report design</h4>
-								<p>Choose the report's purpose, audience, content, timing, distribution and control requirements before deciding its layout.</p>
-								<h4>2.6.2 Report design principles</h4>
-								<p>Use report headers and footers, page headers and footers, repeating fields where useful, and a consistent design.</p>
-								<h4>2.6.3 Types of reports</h4>
-								<p><strong>Detail reports</strong> list transactions; <strong>exception reports</strong> show items needing attention; <strong>summary reports</strong> group or total information.</p>
-							</article>
-							<article class="card chapter-card" id="ch2-5-prototyping">
-								<h3>2.7 Technology Issues</h3>
-								<h4>2.7.1 Output technology</h4>
-								<p>Output channels include internet-based delivery, email, blogs, instant messaging, wireless devices, digital audio/images/video, automated fax, podcasts, computer output to digital media (CODM), and specialised output forms.</p>
-								<h4>2.7.2 Input technology</h4>
-								<p>Compare <strong>batch input</strong> with <strong>online input</strong>. Online input is used in point-of-sale (POS) terminals, ATMs, factory workstations, hospitals, retail stores and libraries. Select between them based on timeliness, volume, error handling, cost and operational needs.</p>
-								<h3>2.8 Security and Control Issues</h3>
-								<h4>2.8.1 Output security and control</h4>
-								<p>Protect reports and other output through key control methods, secure distribution and storage, safe disposal, access restrictions and IT department oversight. Diskless workstations can reduce the risk of local data being retained on user devices.</p>
-								<h4>2.8.2 Input security and control</h4>
-								<p>Use audit trails, controlled handling of source documents, data security policies, audit-trail files and reports, protection from unauthorised access, and encryption of sensitive data.</p>
-								<h3>2.9 Emerging Trends</h3>
-								<h4>2.9.1 Modular design</h4>
-								<p>Modularity supports flexibility, team collaboration and easier maintenance.</p>
-								<h4>2.9.2 Responsive web design</h4>
-								<p>Responsive layouts combine CSS3, flexible images and fluid grids so content adapts to different screen sizes and devices.</p>
-								<h4>2.9.3 Prototyping</h4>
-								<p>Distinguish a system prototype, which explores system behavior, from a design prototype, which explores the interface. Weigh the value of early feedback against the risks of incomplete functionality, quality or maintainability.</p>
-								<div class="note">Prototype risk: users may want to adopt a rough prototype too quickly, even when reliability, maintainability, and quality have not been fully tested.</div>
 							</article>
 							<article class="card chapter-card wide" id="ch2-6-seven-habits">
 								<h3>Expanded notes: 2.3.1-2.3.7 Interface Design Habits</h3>
@@ -1483,6 +1496,37 @@
 								</table>
 								<div class="note">Exam trap: "attractive" does not mean decorative. In this chapter it means readable, consistent, predictable, and task-focused.</div>
 							</article>
+							<article class="card chapter-card" id="ch2-3-validation">
+								<h3>Expanded detail: 2.4.8 Use Validation Rules</h3>
+								<p>Validation rules reduce incorrect or inconsistent data before it enters the system. The study guide highlights checks such as sequence, existence, range, reasonableness, and validity checks.</p>
+								<table>
+									<tr><th>Check</th><th>Purpose</th></tr>
+									<tr><td>Sequence</td><td>Ensures values are entered in the required order.</td></tr>
+									<tr><td>Existence</td><td>Prevents mandatory fields from being left blank.</td></tr>
+									<tr><td>Range</td><td>Rejects values outside allowed limits.</td></tr>
+									<tr><td>Reasonableness</td><td>Flags values that are possible but suspicious.</td></tr>
+									<tr><td>Validity</td><td>Checks values against accepted codes or records.</td></tr>
+								</table>
+							</article>
+							<article class="card chapter-card" id="ch2-4-reports-controls">
+								<h3>2.5 Source Document and Form Design</h3>
+								<p>Use six zones to make a source document clear and controllable: heading, control, instruction, body, totals and authorization.</p>
+								<p>For a sales return, the control zone records a return number and date; the body lists returned items; the totals zone calculates the refund; and the authorization zone records approval. This gives staff a complete source record and supports later audit or reporting.</p>
+							</article>
+							<article class="card chapter-card" id="ch2-6-report-design">
+								<h3>2.6 Printed Output</h3>
+								<h4>2.6.1 Report design</h4>
+								<p>Choose the report's purpose, audience, content, timing, distribution and control requirements before deciding its layout.</p>
+								<h4>2.6.2 Report design principles</h4>
+								<p>Use report headers and footers, page headers and footers, repeating fields where useful, and a consistent design.</p>
+								<h4>2.6.3 Types of reports</h4>
+								<p><strong>Detail reports</strong> list transactions; <strong>exception reports</strong> show items needing attention; <strong>summary reports</strong> group or total information.</p>
+							<table><tr><th>Question from the case</th><th>Best output</th><th>Reason</th></tr>
+							<tr><td>Which individual returns were processed yesterday?</td><td>Detail report.</td><td>Staff need each transaction and its supporting identifiers.</td></tr>
+							<tr><td>How many returns and what refund total did each store have this month?</td><td>Summary report.</td><td>Managers need grouped totals; a control break can produce each store subtotal and a grand total.</td></tr>
+							<tr><td>Which returns exceed the approved refund limit?</td><td>Exception report.</td><td>Only unusual cases requiring review should be highlighted.</td></tr></table>
+							<div class="note"><strong>Design check:</strong> label the period, units and totals; show the source or run date; restrict confidential output; and verify that report totals reconcile to the underlying transactions. A neat report built from incorrect input is still wrong.</div>
+							</article>
 							<article class="card chapter-card wide" id="ch2-8-forms-reports-worked-example">
 								<h3>Worked Example: Redesigning a Sales Return Form and Report</h3>
 								<p><strong>Scenario:</strong> users complain that returned goods are recorded incorrectly and managers receive a confusing monthly report.</p>
@@ -1494,6 +1538,26 @@
 									<tr><td>Control break report</td><td>Sort by the control field before producing subtotals.</td><td>Sort by store number, print each store subtotal, then print a grand total in the report footer.</td></tr>
 								</table>
 								<div class="note danger">Exam trap: <code>GIGO</code> links form design to output quality. Bad source documents and weak validation produce bad reports even if the report layout looks professional.</div>
+							</article>
+							<article class="card chapter-card" id="ch2-5-prototyping">
+								<h3>2.7 Technology Issues</h3>
+								<h4>2.7.1 Output technology</h4>
+								<p>Output channels include internet-based delivery, email, blogs, instant messaging, wireless devices, digital audio/images/video, automated fax, podcasts, computer output to digital media (CODM), and specialised output forms.</p>
+								<h4>2.7.2 Input technology</h4>
+								<p>Compare <strong>batch input</strong> with <strong>online input</strong>. Online input is used in point-of-sale (POS) terminals, ATMs, factory workstations, hospitals, retail stores and libraries. Select between them based on timeliness, volume, error handling, cost and operational needs.</p>
+								<h3>2.8 Security and Control Issues</h3>
+								<h4>2.8.1 Output security and control</h4>
+								<p>Protect reports and other output through key control methods, secure distribution and storage, safe disposal, access restrictions and IT department oversight. Diskless workstations can reduce the risk of local data being retained on user devices.</p>
+								<h4>2.8.2 Input security and control</h4>
+								<p>Use audit trails, controlled handling of source documents, data security policies, audit-trail files and reports, protection from unauthorised access, and encryption of sensitive data.</p>
+								<h3>2.9 Emerging Trends</h3>
+								<h4>2.9.1 Modular design</h4>
+								<p>Modularity supports flexibility, team collaboration and easier maintenance.</p>
+								<h4>2.9.2 Responsive web design</h4>
+								<p>Responsive layouts combine CSS3, flexible images and fluid grids so content adapts to different screen sizes and devices.</p>
+								<h4>2.9.3 Prototyping</h4>
+								<p>Distinguish a system prototype, which explores system behavior, from a design prototype, which explores the interface. Weigh the value of early feedback against the risks of incomplete functionality, quality or maintainability.</p>
+								<div class="note">Prototype risk: users may want to adopt a rough prototype too quickly, even when reliability, maintainability, and quality have not been fully tested.</div>
 							</article>
 							<article class="card chapter-card wide" id="ch2-9-technology-security">
 								<h3>Expanded notes: 2.7-2.9 Technology, Security and Emerging Trends</h3>
@@ -1555,6 +1619,42 @@
 								<h3>3.3 Web-Based Design</h3>
 								<p>Internet or intranet access connects browsers and web servers to databases. Middleware translates web requests into database commands and translates results back into pages, across the database, web server and telecommunication links.</p>
 							</article>
+							<article class="card chapter-card wide" id="ch3-6-file-vs-dbms-case">
+								<h3>Expanded example: 3.1.2 Mario and Danica</h3>
+								<p>The guide's auto shop example is a clean way to remember why relational databases matter. Mario stores mechanic and job data in two separate file-oriented systems. Because <code>Mechanic No</code>, <code>Name</code>, and <code>Pay Rate</code> are duplicated, one file can show Jim Jones at one rate and another file can show a different rate. The issue is not just storage waste; it is data quality and integrity.</p>
+								<p>Danica uses a DBMS with two related tables joined by a common field, <code>Mechanic ID</code>. The pay rate appears in only one place, while the common field connects the mechanic table to the job table. This is the basic idea of the relational model: tables are separate, but meaningful relationships allow them to work together.</p>
+								<table>
+									<tr><th>Design</th><th>What happens</th><th>Main revision point</th></tr>
+									<tr><td>File-oriented system</td><td>Separate unlinked files store overlapping data.</td><td>Redundancy can create inconsistency.</td></tr>
+									<tr><td>Relational database</td><td>Tables are connected through common fields.</td><td>Data is stored once where possible and reused through relationships.</td></tr>
+									<tr><td>DBMS</td><td>Provides tools, interfaces, schemas, DML, and physical repositories.</td><td>Users get timely, flexible access while the DBA manages enterprise-wide structure.</td></tr>
+								</table>
+							</article>
+							<article class="card chapter-card wide" id="ch3-7-dbms-components-web-design">
+								<h3>Expanded notes: DBMS Components</h3>
+								<p>A DBMS sits between the database and the users, DBAs, applications, and related systems that need access. The guide highlights user interfaces, DBA interfaces, related-system interfaces, a <code>data manipulation language</code>, a <code>schema</code>, <code>subschemas</code>, and a <code>physical data repository</code>.</p>
+								<h4>3.2.1 Interfaces for Users, DBAs and Related Systems</h4>
+								<table>
+									<tr><th>Interface or component</th><th>Purpose</th></tr>
+									<tr><td>Users</td><td>Query, add, update and view data through business-oriented interfaces.</td></tr>
+									<tr><td>Database administrators (DBAs)</td><td>Define and administer the database, security, performance and structure.</td></tr>
+									<tr><td>Related information systems</td><td>Exchange data with applications and other systems.</td></tr>
+									<tr><td>Data manipulation language (DML)</td><td>Queries and changes stored data.</td></tr>
+									<tr><td>Schema and subschemas</td><td>Define the complete database structure and selected user/application views.</td></tr>
+									<tr><td>Physical data repository</td><td>Stores the actual data and associated definitions.</td></tr>
+								</table>
+								<h4>3.2.2 Schema</h4>
+								<p>The schema defines the overall logical structure of the database. Subschemas present only the relevant view to a particular user or application.</p>
+								<h4>3.2.3 Physical Data Repository</h4>
+								<p>The repository is the physical storage location for database data and definitions managed by the DBMS.</p>
+								<h3>Expanded notes: Web-Based Design</h3>
+								<h4>Internet</h4>
+								<p>Internet-based databases can provide global access, ease of use across multiple platforms and cost effectiveness. They also require attention to security and adaptability.</p>
+								<h4>Intranet</h4>
+								<p>An intranet applies web technologies and browser-based database access within an organisation.</p>
+								<h4>Middleware</h4>
+								<p><strong>Middleware</strong> connects the database and web-facing components. Consider the database itself, the web server and the telecommunication links between them and their users.</p>
+							</article>
 							<article class="card chapter-card" id="ch3-2-terms-integrity">
 								<h3>3.4 Data Design Terms and Referential Integrity</h3>
 								<table>
@@ -1603,80 +1703,34 @@
 								<p><strong>Magic Maintenance:</strong> use the service company's seven linked tables as a larger real-world illustration of normalized customer, technician and service-call data sharing common keys.</p>
 								<p>Normalization refines table design to reduce redundancy, update problems and data inconsistency.</p>
 							</article>
+							<article class="card chapter-card wide" id="ch3-8-erd-normalization-worked-example">
+								<h3>Worked Example: From Order Form to Normalized Tables <span class="muted">(supports 3.1-3.6)</span></h3>
+								<p><strong>Unnormalized source:</strong> <code>ORDER (ORDER_NO, DATE, CUSTOMER_NO, CUSTOMER_NAME, (PRODUCT_NO, DESCRIPTION, QTY_ORDERED, SUPPLIER_NO, SUPPLIER_NAME))</code>. The repeating product group means one order record can contain many product lines. Assume each product has one current supplier in this exercise.</p>
+								<ol>
+									<li><strong>1NF:</strong> remove the repeating product group. Make one row per order–product combination. For this example, assume a product occurs at most once on an order, so the key is <code>(ORDER_NO, PRODUCT_NO)</code>; if repeated lines are allowed, use a separate line number instead.</li>
+									<li><strong>2NF:</strong> remove facts that depend on only part of that combined key. <code>DATE</code> and <code>CUSTOMER_NO</code> depend on <code>ORDER_NO</code>; <code>DESCRIPTION</code> and <code>SUPPLIER_NO</code> depend on <code>PRODUCT_NO</code>. <code>QTY_ORDERED</code> depends on the whole order–product key.</li>
+									<li><strong>3NF:</strong> remove facts that depend on another non-key fact. <code>CUSTOMER_NO → CUSTOMER_NAME</code> and <code>SUPPLIER_NO → SUPPLIER_NAME</code>, so customer and supplier names belong in their own tables.</li>
+								</ol>
+								<h4>Trace two sample order lines</h4>
+								<table><tr><th>ORDER_NO</th><th>CUSTOMER_NO / name</th><th>PRODUCT_NO / description</th><th>SUPPLIER_NO / name</th><th>QTY</th></tr>
+								<tr><td>O17</td><td>C4 / Nala Stores</td><td>P10 / Printer</td><td>S2 / Tech Supply</td><td>2</td></tr>
+								<tr><td>O17</td><td>C4 / Nala Stores</td><td>P20 / Cable</td><td>S2 / Tech Supply</td><td>5</td></tr></table>
+								<p>These are 1NF rows, but changing Nala Stores' name or Tech Supply's name in only one row would create an update anomaly. The same order and supplier facts are repeated because several subjects are still mixed in one table.</p>
+								<p><strong>Intermediate 2NF split:</strong> <code>ORDER(ORDER_NO, DATE, CUSTOMER_NO, CUSTOMER_NAME)</code>, <code>PRODUCT(PRODUCT_NO, DESCRIPTION, SUPPLIER_NO, SUPPLIER_NAME)</code> and <code>ORDER_LINE(ORDER_NO, PRODUCT_NO, QTY_ORDERED)</code>. Order and product facts no longer depend on only half the ORDER_LINE key. Customer and supplier names still depend on other non-key fields, so continue to 3NF.</p>
+								<table>
+									<tr><th>3NF table</th><th>Primary key</th><th>Important fields and links</th></tr>
+									<tr><td><code>CUSTOMER</code></td><td><code>CUSTOMER_NO</code></td><td><code>CUSTOMER_NAME</code> is stored once.</td></tr>
+									<tr><td><code>ORDER</code></td><td><code>ORDER_NO</code></td><td><code>DATE</code>; <code>CUSTOMER_NO</code> references CUSTOMER.</td></tr>
+									<tr><td><code>SUPPLIER</code></td><td><code>SUPPLIER_NO</code></td><td><code>SUPPLIER_NAME</code> is stored once.</td></tr>
+									<tr><td><code>PRODUCT</code></td><td><code>PRODUCT_NO</code></td><td><code>DESCRIPTION</code>; <code>SUPPLIER_NO</code> references SUPPLIER.</td></tr>
+									<tr><td><code>ORDER_LINE</code></td><td><code>(ORDER_NO, PRODUCT_NO)</code></td><td><code>QTY_ORDERED</code>; both key columns reference their parent tables.</td></tr>
+								</table>
+								<p><strong>Check the result:</strong> changing a supplier name updates one SUPPLIER row; adding a customer does not require an order; deleting an order line does not delete product details. Foreign keys keep the separated facts connected.</p>
+								<div class="note">Exam trap: do not jump straight to 3NF language. Say what problem is removed at each stage: repeating groups, partial dependencies, then transitive dependencies.</div>
+							</article>
 							<article class="card chapter-card" id="ch3-5-codes-controls">
 								<h3>3.7 Codes</h3>
 								<p>Codes use letters or numbers to represent data. They can speed entry, reduce storage, cut transmission time, reveal information, or conceal information. The study guide groups them into sequence, block sequence, alphabetic, significant-digit, derivation, cipher and action codes.</p>
-							</article>
-							<article class="card chapter-card wide" id="ch3-10-data-storage-access">
-								<h3>3.8 Data Storage and Access</h3>
-								<p>Storage and access design covers strategic tools for using organisational data, the distinction between users' logical view and its physical implementation, suitable data formats and the treatment of date fields.</p>
-								<h4>3.8.1 Tools and Techniques</h4>
-								<ul>
-									<li><strong>Data warehousing:</strong> integrates data from multiple organisational systems—such as orders, inventory and payroll—so it can be analysed together to support management decisions.</li>
-									<li><strong>Data mart:</strong> a smaller, focused collection for a particular department. Its narrower scope can make access faster and more relevant to that department.</li>
-									<li><strong>Data storage and access:</strong> storing large volumes requires planned architecture and structure, regardless of whether the organisation uses a warehouse or a mart.</li>
-									<li><strong>Data mining:</strong> software searches data for meaningful patterns and relationships. The guide's examples include customer-purchase patterns and market-basket analysis; clickstream use also raises privacy and ethical concerns.</li>
-									<li><strong>Logical vs. physical storage:</strong> logical storage is the user's view of fields and records; physical storage is how hardware and the operating system place and retrieve binary data on media. Allocate field sizes for anticipated values without waste.</li>
-									<li><strong>Data coding:</strong> computers represent information with bits. The guide covers EBCDIC, ASCII, binary and Unicode: binary stores numeric values efficiently, while Unicode supports a broad range of multilingual characters.</li>
-									<li><strong>Storing dates:</strong> a four-digit-year ISO format (<code>YYYYMMDD</code>) avoids the two-digit-year problem and sorts chronologically. For date arithmetic, an <em>absolute date</em> counts the days from a chosen base date; subtracting two such values gives the interval.</li>
-								</ul>
-							</article>
-							<article class="card chapter-card wide" id="ch3-11-data-control">
-								<h3>3.9 Data Control</h3>
-								<p>File and database management must keep stored data accurate, complete and protected, including the physical security of the system and controls over input and output. A well-designed DBMS provides security and integrity features such as subschemas, passwords, encryption, audit-trail files, and backup and recovery procedures. The analyst ensures these controls are used correctly.</p>
-							</article>
-							<article class="card chapter-card wide" id="ch3-6-file-vs-dbms-case">
-								<h3>Expanded example: 3.1.2 Mario and Danica</h3>
-								<p>The guide's auto shop example is a clean way to remember why relational databases matter. Mario stores mechanic and job data in two separate file-oriented systems. Because <code>Mechanic No</code>, <code>Name</code>, and <code>Pay Rate</code> are duplicated, one file can show Jim Jones at one rate and another file can show a different rate. The issue is not just storage waste; it is data quality and integrity.</p>
-								<p>Danica uses a DBMS with two related tables joined by a common field, <code>Mechanic ID</code>. The pay rate appears in only one place, while the common field connects the mechanic table to the job table. This is the basic idea of the relational model: tables are separate, but meaningful relationships allow them to work together.</p>
-								<table>
-									<tr><th>Design</th><th>What happens</th><th>Main revision point</th></tr>
-									<tr><td>File-oriented system</td><td>Separate unlinked files store overlapping data.</td><td>Redundancy can create inconsistency.</td></tr>
-									<tr><td>Relational database</td><td>Tables are connected through common fields.</td><td>Data is stored once where possible and reused through relationships.</td></tr>
-									<tr><td>DBMS</td><td>Provides tools, interfaces, schemas, DML, and physical repositories.</td><td>Users get timely, flexible access while the DBA manages enterprise-wide structure.</td></tr>
-								</table>
-							</article>
-							<article class="card chapter-card wide" id="ch3-7-dbms-components-web-design">
-								<h3>Expanded notes: DBMS Components</h3>
-								<p>A DBMS sits between the database and the users, DBAs, applications, and related systems that need access. The guide highlights user interfaces, DBA interfaces, related-system interfaces, a <code>data manipulation language</code>, a <code>schema</code>, <code>subschemas</code>, and a <code>physical data repository</code>.</p>
-								<h4>3.2.1 Interfaces for Users, DBAs and Related Systems</h4>
-								<table>
-									<tr><th>Interface or component</th><th>Purpose</th></tr>
-									<tr><td>Users</td><td>Query, add, update and view data through business-oriented interfaces.</td></tr>
-									<tr><td>Database administrators (DBAs)</td><td>Define and administer the database, security, performance and structure.</td></tr>
-									<tr><td>Related information systems</td><td>Exchange data with applications and other systems.</td></tr>
-									<tr><td>Data manipulation language (DML)</td><td>Queries and changes stored data.</td></tr>
-									<tr><td>Schema and subschemas</td><td>Define the complete database structure and selected user/application views.</td></tr>
-									<tr><td>Physical data repository</td><td>Stores the actual data and associated definitions.</td></tr>
-								</table>
-								<h4>3.2.2 Schema</h4>
-								<p>The schema defines the overall logical structure of the database. Subschemas present only the relevant view to a particular user or application.</p>
-								<h4>3.2.3 Physical Data Repository</h4>
-								<p>The repository is the physical storage location for database data and definitions managed by the DBMS.</p>
-								<h3>Expanded notes: Web-Based Design</h3>
-								<h4>Internet</h4>
-								<p>Internet-based databases can provide global access, ease of use across multiple platforms and cost effectiveness. They also require attention to security and adaptability.</p>
-								<h4>Intranet</h4>
-								<p>An intranet applies web technologies and browser-based database access within an organisation.</p>
-								<h4>Middleware</h4>
-								<p><strong>Middleware</strong> connects the database and web-facing components. Consider the database itself, the web server and the telecommunication links between them and their users.</p>
-							</article>
-							<article class="card chapter-card wide" id="ch3-8-erd-normalization-worked-example">
-								<h3>Worked Example: From Order Form to Normalized Tables <span class="muted">(supports 3.1-3.6)</span></h3>
-								<p><strong>Unnormalized source:</strong> <code>ORDER (ORDER_NO, DATE, CUSTOMER_NO, CUSTOMER_NAME, (PRODUCT_NO, DESCRIPTION, QTY_ORDERED, SUPPLIER_NO, SUPPLIER_NAME))</code>. The repeating product group means one order record can contain many product lines.</p>
-								<ol>
-									<li><strong>1NF:</strong> remove repeating groups. Put each product line into its own row or separate child table so every field stores one value per record.</li>
-									<li><strong>2NF:</strong> if a table has a combined key such as <code>ORDER_NO + PRODUCT_NO</code>, every non-key field must depend on the whole key. Product description depends only on product, not on the whole order line key, so it belongs in <code>PRODUCT</code>.</li>
-									<li><strong>3NF:</strong> remove dependencies between non-key fields. If <code>SUPPLIER_NAME</code> depends on <code>SUPPLIER_NO</code>, store supplier details in <code>SUPPLIER</code> rather than repeating them in order lines.</li>
-								</ol>
-								<table>
-									<tr><th>Result table</th><th>Purpose</th><th>Key idea</th></tr>
-									<tr><td><code>ORDER</code></td><td>Order header: order number, date, customer number.</td><td>One row per order.</td></tr>
-									<tr><td><code>ORDER_LINE</code></td><td>Products listed on an order, including quantity.</td><td>Associative entity between order and product.</td></tr>
-									<tr><td><code>PRODUCT</code></td><td>Product description and supplier reference.</td><td>Product facts stored once.</td></tr>
-									<tr><td><code>SUPPLIER</code></td><td>Supplier name and details.</td><td>Supplier facts stored once.</td></tr>
-								</table>
-								<div class="note">Exam trap: do not jump straight to 3NF language. Say what problem is removed at each stage: repeating groups, partial dependencies, then transitive dependencies.</div>
 							</article>
 							<article class="card chapter-card wide" id="ch3-9-codes-storage-controls">
 								<h3>Expanded notes: 3.7 Codes</h3>
@@ -1698,6 +1752,24 @@
 								</table>
 								<h4>3.7.3 Designing Codes</h4>
 								<p>Apply all ten criteria when designing a code scheme; for example, avoid ambiguous characters such as <code>O</code>/<code>0</code> and <code>I</code>/<code>1</code>, leave capacity for growth, and avoid combining unrelated attributes in one code.</p>
+							</article>
+							<article class="card chapter-card wide" id="ch3-10-data-storage-access">
+								<h3>3.8 Data Storage and Access</h3>
+								<p>Storage and access design covers strategic tools for using organisational data, the distinction between users' logical view and its physical implementation, suitable data formats and the treatment of date fields.</p>
+								<h4>3.8.1 Tools and Techniques</h4>
+								<ul>
+									<li><strong>Data warehousing:</strong> integrates data from multiple organisational systems—such as orders, inventory and payroll—so it can be analysed together to support management decisions.</li>
+									<li><strong>Data mart:</strong> a smaller, focused collection for a particular department. Its narrower scope can make access faster and more relevant to that department.</li>
+									<li><strong>Data storage and access:</strong> storing large volumes requires planned architecture and structure, regardless of whether the organisation uses a warehouse or a mart.</li>
+									<li><strong>Data mining:</strong> software searches data for meaningful patterns and relationships. The guide's examples include customer-purchase patterns and market-basket analysis; clickstream use also raises privacy and ethical concerns.</li>
+									<li><strong>Logical vs. physical storage:</strong> logical storage is the user's view of fields and records; physical storage is how hardware and the operating system place and retrieve binary data on media. Allocate field sizes for anticipated values without waste.</li>
+									<li><strong>Data coding:</strong> computers represent information with bits. The guide covers EBCDIC, ASCII, binary and Unicode: binary stores numeric values efficiently, while Unicode supports a broad range of multilingual characters.</li>
+									<li><strong>Storing dates:</strong> a four-digit-year ISO format (<code>YYYYMMDD</code>) avoids the two-digit-year problem and sorts chronologically. For date arithmetic, an <em>absolute date</em> counts the days from a chosen base date; subtracting two such values gives the interval.</li>
+								</ul>
+							</article>
+							<article class="card chapter-card wide" id="ch3-11-data-control">
+								<h3>3.9 Data Control</h3>
+								<p>File and database management must keep stored data accurate, complete and protected, including the physical security of the system and controls over input and output. A well-designed DBMS provides security and integrity features such as subschemas, passwords, encryption, audit-trail files, and backup and recovery procedures. The analyst ensures these controls are used correctly.</p>
 							</article>
 							<details class="card chapter-card wide glossary-card" id="ch3-glossary">
 								<summary><span>Chapter 3 Glossary: Data Design Terms</span></summary>
@@ -1749,6 +1821,20 @@
 									<li>Processing options, security, and corporate portals</li>
 								</ul>
 							</article>
+							<article class="card chapter-card wide" id="ch4-6-architecture-checklist-expanded">
+								<h3>Expanded notes: 4.1 Architecture Checklist</h3>
+								<p>System architecture is the physical design of the information system. The guide's checklist asks whether the design fits corporate culture, enterprise systems, costs, growth, web integration, legacy systems, processing options, security, and portals.</p>
+								<table>
+									<tr><th>Checklist item</th><th>Question to ask</th><th>Why it matters</th></tr>
+									<tr><td>Corporate organization and culture</td><td>Will the architecture match how the company actually works?</td><td>A technically strong system can fail if it conflicts with business structure.</td></tr>
+									<tr><td>ERP and SCM</td><td>Does the design need to integrate enterprise resource planning or supply chain management?</td><td>Enterprise integration changes data, process, and interface requirements.</td></tr>
+									<tr><td>Initial cost and <code>TCO</code></td><td>Have assumptions changed since the build/buy decision?</td><td>Hard costs and soft costs continue across the system's life.</td></tr>
+									<tr><td>Scalability</td><td>Can the system expand, shrink, or change as business volumes change?</td><td>Architecture decisions are expensive to reverse later.</td></tr>
+									<tr><td>Web integration</td><td>Does the system use the internet, intranet, customer/vendor access, or web services?</td><td>Web access adds compatibility, availability, and security demands.</td></tr>
+									<tr><td>Legacy interfaces</td><td>What existing systems must still exchange data?</td><td>Old systems often constrain new architecture.</td></tr>
+									<tr><td>Security</td><td>What must be protected at the system, network, data, and user levels?</td><td>Security belongs in design, not only after installation.</td></tr>
+								</table>
+							</article>
 							<article class="card chapter-card" id="ch4-2-client-server">
 								<h3>4.2 The Evolution of System Architecture · 4.3 Client/Server Architecture</h3>
 								<p>Servers provide data and processing services to clients. In client/server architecture, processing is distributed between the client and a central server.</p>
@@ -1759,6 +1845,21 @@
 									<tr><td>Two-tier</td><td>Client handles UI; server stores data and may share logic.</td></tr>
 									<tr><td>Three-tier</td><td>Adds an application server/middle layer between client and data server.</td></tr>
 								</table>
+							</article>
+							<article class="card chapter-card wide" id="ch4-7-evolution-client-server">
+								<h3>Expanded notes: 4.2-4.3 Architecture Evolution and Client/Server Design</h3>
+								<p>The guide traces architecture from centralized mainframes, through personal computers, toward networked and distributed systems. In client/server architecture, clients request services and servers provide data, logic, storage, or processing.</p>
+								<table>
+									<tr><th>Architecture idea</th><th>Meaning</th><th>Exam clue</th></tr>
+									<tr><td>Mainframe</td><td>Central computer performs most processing for connected users.</td><td>Central control, but less distributed flexibility.</td></tr>
+									<tr><td>Personal computer impact</td><td>Processing power moves closer to the user.</td><td>Users gain local tools, but data sharing and support become harder.</td></tr>
+									<tr><td>Network evolution</td><td>Computers share hardware, software, data, and communication resources.</td><td>Architecture becomes a blend of local and central resources.</td></tr>
+									<tr><td>Fat client</td><td>Client handles much of the application processing.</td><td>Needs more capable client devices.</td></tr>
+									<tr><td>Thin client</td><td>Server handles most processing; client mainly presents the interface.</td><td>Useful when control, updates, and central management matter.</td></tr>
+									<tr><td>Two-tier</td><td>Client communicates directly with server/database layer.</td><td>Simpler, but can become harder to scale.</td></tr>
+									<tr><td>Three-tier</td><td>Client, application/middleware layer, and data layer are separated.</td><td>Improves flexibility and separates interface, logic, and data.</td></tr>
+								</table>
+								<div class="note">Exam trap: <code>middleware</code> is not the same as hardware. It is software that connects applications, manages communication, and supports data sharing between tiers or systems.</div>
 							</article>
 							<article class="card chapter-card" id="ch4-3-processing">
 								<h3>4.4 Impact of the Internet · 4.5 E-Commerce Architecture · 4.6 Processing Methods</h3>
@@ -1778,48 +1879,6 @@
 								<h3>4.9 Systems Design Completion</h3>
 								<p>The system design specification documents the complete architecture and supports final presentations. After review, the project may move into development, require more design work, or be canceled.</p>
 							</article>
-							<article class="card chapter-card wide" id="ch4-6-architecture-checklist-expanded">
-								<h3>Expanded notes: 4.1 Architecture Checklist</h3>
-								<p>System architecture is the physical design of the information system. The guide's checklist asks whether the design fits corporate culture, enterprise systems, costs, growth, web integration, legacy systems, processing options, security, and portals.</p>
-								<table>
-									<tr><th>Checklist item</th><th>Question to ask</th><th>Why it matters</th></tr>
-									<tr><td>Corporate organization and culture</td><td>Will the architecture match how the company actually works?</td><td>A technically strong system can fail if it conflicts with business structure.</td></tr>
-									<tr><td>ERP and SCM</td><td>Does the design need to integrate enterprise resource planning or supply chain management?</td><td>Enterprise integration changes data, process, and interface requirements.</td></tr>
-									<tr><td>Initial cost and <code>TCO</code></td><td>Have assumptions changed since the build/buy decision?</td><td>Hard costs and soft costs continue across the system's life.</td></tr>
-									<tr><td>Scalability</td><td>Can the system expand, shrink, or change as business volumes change?</td><td>Architecture decisions are expensive to reverse later.</td></tr>
-									<tr><td>Web integration</td><td>Does the system use the internet, intranet, customer/vendor access, or web services?</td><td>Web access adds compatibility, availability, and security demands.</td></tr>
-									<tr><td>Legacy interfaces</td><td>What existing systems must still exchange data?</td><td>Old systems often constrain new architecture.</td></tr>
-									<tr><td>Security</td><td>What must be protected at the system, network, data, and user levels?</td><td>Security belongs in design, not only after installation.</td></tr>
-								</table>
-							</article>
-							<article class="card chapter-card wide" id="ch4-7-evolution-client-server">
-								<h3>Expanded notes: 4.2-4.3 Architecture Evolution and Client/Server Design</h3>
-								<p>The guide traces architecture from centralized mainframes, through personal computers, toward networked and distributed systems. In client/server architecture, clients request services and servers provide data, logic, storage, or processing.</p>
-								<table>
-									<tr><th>Architecture idea</th><th>Meaning</th><th>Exam clue</th></tr>
-									<tr><td>Mainframe</td><td>Central computer performs most processing for connected users.</td><td>Central control, but less distributed flexibility.</td></tr>
-									<tr><td>Personal computer impact</td><td>Processing power moves closer to the user.</td><td>Users gain local tools, but data sharing and support become harder.</td></tr>
-									<tr><td>Network evolution</td><td>Computers share hardware, software, data, and communication resources.</td><td>Architecture becomes a blend of local and central resources.</td></tr>
-									<tr><td>Fat client</td><td>Client handles much of the application processing.</td><td>Needs more capable client devices.</td></tr>
-									<tr><td>Thin client</td><td>Server handles most processing; client mainly presents the interface.</td><td>Useful when control, updates, and central management matter.</td></tr>
-									<tr><td>Two-tier</td><td>Client communicates directly with server/database layer.</td><td>Simpler, but can become harder to scale.</td></tr>
-									<tr><td>Three-tier</td><td>Client, application/middleware layer, and data layer are separated.</td><td>Improves flexibility and separates interface, logic, and data.</td></tr>
-								</table>
-								<div class="note">Exam trap: <code>middleware</code> is not the same as hardware. It is software that connects applications, manages communication, and supports data sharing between tiers or systems.</div>
-							</article>
-							<article class="card chapter-card wide" id="ch4-8-internet-processing-network-example">
-								<h3>Worked Example: Architecture for a Retail Chain <span class="muted">(supports 4.1-4.9)</span></h3>
-								<p><strong>Scenario:</strong> a retail chain has local stores, a head office, an online shop, and shared inventory data.</p>
-								<table>
-									<tr><th>Need</th><th>Architecture decision</th><th>Reason</th></tr>
-									<tr><td>Sales must update inventory immediately.</td><td>Use <code>online processing</code> for store and website transactions.</td><td>Users need real-time interaction and current stock levels.</td></tr>
-									<tr><td>Monthly statements and large payroll runs.</td><td>Use <code>batch processing</code>.</td><td>Transactions can be collected and processed together on a schedule.</td></tr>
-									<tr><td>Website order, billing, and CRM support.</td><td>Compare in-house e-commerce, packaged solutions, and service providers.</td><td>Choice depends on control, cost, implementation speed, support, and TCO.</td></tr>
-									<tr><td>Store-to-head-office communication.</td><td>Use routers, gateways if different network environments must connect, and proxy servers for controlled internet access.</td><td>Network devices extend and protect communication paths.</td></tr>
-									<tr><td>Reliable store network layout.</td><td>Prefer star for manageability or mesh for high redundancy where justified.</td><td>Topology affects cost, performance, fault tolerance, and expandability.</td></tr>
-								</table>
-								<div class="note success">Strong answer: connect architecture choices to business timing. Immediate stock lookup points to online processing; scheduled totals point to batch processing.</div>
-							</article>
 							<article class="card chapter-card wide" id="ch4-9-networks-wireless-design-completion">
 								<h3>Expanded notes: 4.7-4.9 Networks, Wireless and Design Completion</h3>
 								<p>The guide uses the OSI model to organize network communication into seven layers: physical, data link, network, transport, session, presentation, and application. It also compares topologies such as hierarchical, bus, ring, star, and mesh.</p>
@@ -1833,6 +1892,19 @@
 								</table>
 								<p>Wireless networks add flexibility through IEEE 802.11 standards such as <code>802.11b</code>, <code>802.11g</code>, <code>802.11n</code>, and <code>802.11ac</code>, but the guide warns about interference and security exposure.</p>
 								<p>At completion, the <code>system design specification</code> should include a management summary, system components, system environment, implementation requirements, time/cost estimates, and additional material from earlier phases. Presentations usually move from technical team, to users/managers, to final management approval.</p>
+							</article>
+							<article class="card chapter-card wide" id="ch4-8-internet-processing-network-example">
+								<h3>Worked Example: Architecture for a Retail Chain <span class="muted">(supports 4.1-4.9)</span></h3>
+								<p><strong>Scenario:</strong> a retail chain has local stores, a head office, an online shop, and shared inventory data.</p>
+								<table>
+									<tr><th>Need</th><th>Architecture decision</th><th>Reason</th></tr>
+									<tr><td>Sales must update inventory immediately.</td><td>Use <code>online processing</code> for store and website transactions.</td><td>Users need real-time interaction and current stock levels.</td></tr>
+									<tr><td>Monthly statements and large payroll runs.</td><td>Use <code>batch processing</code>.</td><td>Transactions can be collected and processed together on a schedule.</td></tr>
+									<tr><td>Website order, billing, and CRM support.</td><td>Compare in-house e-commerce, packaged solutions, and service providers.</td><td>Choice depends on control, cost, implementation speed, support, and TCO.</td></tr>
+									<tr><td>Store-to-head-office communication.</td><td>Use routers, gateways if different network environments must connect, and proxy servers for controlled internet access.</td><td>Network devices extend and protect communication paths.</td></tr>
+									<tr><td>Reliable store network layout.</td><td>Prefer star for manageability or mesh for high redundancy where justified.</td><td>Topology affects cost, performance, fault tolerance, and expandability.</td></tr>
+								</table>
+								<div class="note success">Strong answer: connect architecture choices to business timing. Immediate stock lookup points to online processing; scheduled totals point to batch processing.</div>
 							</article>
 							<details class="card chapter-card wide glossary-card" id="ch4-glossary">
 								<summary><span>Chapter 4 Glossary: Architecture and Network Terms</span></summary>
@@ -1877,46 +1949,6 @@
 								<p>QA aims to prevent defects or detect them early. Poor quality can come from unclear requirements, design flaws, coding mistakes, weak documentation, or ineffective testing.</p>
 								<p>Software engineering applies engineering principles to requirements, design, construction, testing, and maintenance. Systems engineering widens the view to hardware, networks, and interfaces.</p>
 							</article>
-							<article class="card chapter-card" id="ch5-2-development-methods">
-								<h3>5.2 Application Development · 5.3 Structured Development · 5.4 Object-Oriented Development · 5.5 Agile Development</h3>
-								<table>
-									<tr><th>Method</th><th>Tools and ideas</th></tr>
-									<tr><td>Structured</td><td>DFDs, structure charts, modules, data flows, control flows, loops, conditions.</td></tr>
-									<tr><td>Object-oriented</td><td>Use case diagrams, class diagrams, sequence diagrams, state transition diagrams.</td></tr>
-									<tr><td>Agile</td><td>User stories, priorities, iterations, releases, and customer testing.</td></tr>
-								</table>
-							</article>
-							<article class="card chapter-card" id="ch5-3-cohesion-coupling">
-								<h3>Expanded detail: 5.3.2 Cohesion and Coupling</h3>
-								<p><strong>Cohesion</strong> measures how focused a module is. High cohesion is desirable because a module performs one specific function.</p>
-								<p><strong>Coupling</strong> measures interdependence between modules. Loose coupling is desirable because modules can work with less reliance on each other.</p>
-							</article>
-							<article class="card chapter-card" id="ch5-4-testing-docs">
-								<h3>5.7 Testing · 5.8 Documentation</h3>
-								<p>Programmers use desk checking, code reviews, and unit testing. Analysts prepare test plans for integration testing and system testing. Documentation includes program, system, operations, user, and online documentation.</p>
-								<div class="note success">A strong answer separates unit testing, integration testing, and system testing instead of calling everything "testing".</div>
-							</article>
-							<article class="card chapter-card" id="ch5-5-changeover">
-								<h3>5.9 Installation and Changeover</h3>
-								<table>
-									<tr><th>Method</th><th>Risk and cost profile</th></tr>
-									<tr><td>Direct cutover</td><td>Least expensive, but highest risk because the old system stops immediately.</td></tr>
-									<tr><td>Parallel operation</td><td>Safest, but most expensive because both systems run together.</td></tr>
-									<tr><td>Pilot operation</td><td>Tests the new system in one group before wider rollout.</td></tr>
-									<tr><td>Phased operation</td><td>Introduces the system one module or function at a time.</td></tr>
-								</table>
-								<p>Installation also includes data conversion, user training, post-implementation evaluation, and a final report to management.</p>
-							</article>
-							<article class="card chapter-card wide" id="ch5-change-resistance">
-								<h3>Exam bridge: Resistance to Organisational Change</h3>
-								<p>A new system changes routines, responsibilities and sometimes people's confidence in their work. Resistance may come from unclear benefits, fear of errors or job loss, extra work during changeover, unfamiliar screens, or security rules that feel inconvenient. These are scenario clues to investigate, not assumptions about every user.</p>
-								<table><tr><th>Response</th><th>How it helps</th><th>Booking-system example</th></tr>
-								<tr><td>Explain and involve</td><td>State the reason for change, hear concerns and let users test prototypes.</td><td>Reception staff identify a missing cancellation workflow before rollout.</td></tr>
-								<tr><td>Train by role</td><td>Give hands-on practice, clear documentation and enough time before live use.</td><td>Receptionists practise bookings while managers practise reports.</td></tr>
-								<tr><td>Roll out with support</td><td>Choose a suitable changeover method, help desk and feedback route.</td><td>Pilot one branch, log obstacles and fix them before wider adoption.</td></tr>
-								<tr><td>Review after launch</td><td>Check adoption, satisfaction, errors and whether controls work in practice.</td><td>Repeated shared logins trigger safer access design and coaching.</td></tr></table>
-								<p>This applied exam topic connects the guide's <a href="#ch2-1-ui-hci">HCI</a>, <a href="#ch5-5-changeover">changeover</a>, <a href="#ch5-9-installation-worked-example">training and evaluation</a>, and <a href="#ch6-post-incident">security awareness</a> material.</p>
-							</article>
 							<article class="card chapter-card wide" id="ch5-6-quality-engineering">
 								<h3>Expanded notes: 5.1 Quality Assurance, Software Engineering and ISO</h3>
 								<p>The implementation phase includes application development, testing, documentation, training, and changeover, but quality assurance starts before code is written. The guide states that testing can find problems during implementation, but preventing or detecting mistakes earlier is cheaper and better.</p>
@@ -1930,6 +1962,15 @@
 								</table>
 								<p><code>Software engineering</code> applies engineering principles to requirements, design, construction, testing, and maintenance/evolution. <code>Systems engineering</code> widens the view to hardware, networks, people, procedures, and interfaces. The guide also names ISO as an international quality standards body; ISO-style work emphasizes documented testing, records, procedures, and quality evidence.</p>
 							</article>
+							<article class="card chapter-card" id="ch5-2-development-methods">
+								<h3>5.2 Application Development · 5.3 Structured Development · 5.4 Object-Oriented Development · 5.5 Agile Development</h3>
+								<table>
+									<tr><th>Method</th><th>Tools and ideas</th></tr>
+									<tr><td>Structured</td><td>DFDs, structure charts, modules, data flows, control flows, loops, conditions.</td></tr>
+									<tr><td>Object-oriented</td><td>Use case diagrams, class diagrams, sequence diagrams, state transition diagrams.</td></tr>
+									<tr><td>Agile</td><td>User stories, priorities, iterations, releases, and customer testing.</td></tr>
+								</table>
+							</article>
 							<article class="card chapter-card wide" id="ch5-7-development-methods-expanded">
 								<h3>Expanded notes: 5.2-5.5 Development Methods</h3>
 								<p>Implementation method affects how the design turns into working software. Traditional structured or object-oriented approaches usually begin after design is complete; agile approaches begin with prioritized user stories and iterative releases.</p>
@@ -1941,6 +1982,11 @@
 									<tr><td>Extreme programming</td><td>Emphasizes small releases, constant testing, user involvement, and adaptable design.</td><td>Often appears in questions about rapid change and close customer participation.</td></tr>
 								</table>
 								<div class="note">Exam trap: <code>cohesion</code> and <code>coupling</code> are not opposites. You want high cohesion inside a module and loose coupling between modules.</div>
+							</article>
+							<article class="card chapter-card" id="ch5-3-cohesion-coupling">
+								<h3>Expanded detail: 5.3.2 Cohesion and Coupling</h3>
+								<p><strong>Cohesion</strong> measures how focused a module is. High cohesion is desirable because a module performs one specific function.</p>
+								<p><strong>Coupling</strong> measures interdependence between modules. Loose coupling is desirable because modules can work with less reliance on each other.</p>
 							</article>
 							<article class="card chapter-card wide" id="ch5-ooa-object-concepts">
 								<h3>Related modelling topics: OOA, Classes and Object Relationships <span class="muted">(supports 5.4)</span></h3>
@@ -1965,6 +2011,11 @@
 								</table>
 								<p>Use BPM for scenarios such as order fulfilment or employee onboarding when the main question is how work moves through the organisation. Use object modelling when the main question is how software objects represent and perform that work.</p>
 							</article>
+							<article class="card chapter-card" id="ch5-4-testing-docs">
+								<h3>5.7 Testing · 5.8 Documentation</h3>
+								<p>Programmers use desk checking, code reviews, and unit testing. Analysts prepare test plans for integration testing and system testing. Documentation includes program, system, operations, user, and online documentation.</p>
+								<div class="note success">A strong answer separates unit testing, integration testing, and system testing instead of calling everything "testing".</div>
+							</article>
 							<article class="card chapter-card wide" id="ch5-8-testing-docs-expanded">
 								<h3>Expanded notes: 5.6-5.8 Coding, Testing and Documentation</h3>
 								<p>After coding, testing proves whether programs and the whole system operate correctly. The guide separates programmer-level checks from analyst-planned integration and system testing.</p>
@@ -1981,6 +2032,41 @@
 									<tr><td>User documentation</td><td>Manuals, help screens, procedures, tutorials, and examples for daily use.</td><td>End users and managers.</td></tr>
 									<tr><td>Online documentation</td><td>Searchable, updateable help that can include hypertext, FAQs, webinars, and multimedia.</td><td>Users needing task-level assistance.</td></tr>
 								</table>
+								<h4>Turn a requirement into test data</h4>
+								<p><strong>Illustrative rule:</strong> a booking accepts 1–20 places. State the expected outcome before running a test; record the actual result afterwards and investigate any difference. Boundary and invalid inputs expose errors that a single normal value can miss.</p>
+								<table><tr><th>Input</th><th>Why test it?</th><th>Expected result</th></tr>
+								<tr><td>1 and 20</td><td>Minimum and maximum valid values.</td><td>Accept both if places remain.</td></tr>
+								<tr><td>0 and 21</td><td>Values just outside the range.</td><td>Reject with a clear range message; save no booking.</td></tr>
+								<tr><td>“five” or blank</td><td>Wrong data type or missing value.</td><td>Reject and preserve the other entered fields.</td></tr></table>
+								<p><strong>Move through the levels:</strong> unit-test the place-count validator; integration-test that a valid count reaches booking storage and invalid input does not; system-test a complete booking, confirmation and report with realistic users and data volume. Retest after a fix. A test plan should identify the requirement, inputs, expected result, tester and recorded outcome.</p>
+							</article>
+							<article class="card chapter-card" id="ch5-5-changeover">
+								<h3>5.9 Installation and Changeover</h3>
+								<table>
+									<tr><th>Method</th><th>Risk and cost profile</th></tr>
+									<tr><td>Direct cutover</td><td>Least expensive, but highest risk because the old system stops immediately.</td></tr>
+									<tr><td>Parallel operation</td><td>Safest, but most expensive because both systems run together.</td></tr>
+									<tr><td>Pilot operation</td><td>Tests the new system in one group before wider rollout.</td></tr>
+									<tr><td>Phased operation</td><td>Introduces the system one module or function at a time.</td></tr>
+								</table>
+								<p>Installation also includes data conversion, user training, post-implementation evaluation, and a final report to management.</p>
+							<h4>Choose a method from the risk, not its name</h4>
+							<table><tr><th>Case clue</th><th>Likely choice</th><th>Trade-off to explain</th></tr>
+							<tr><td>Payroll totals must be checked against the old system for one or more cycles.</td><td>Parallel operation.</td><td>Comparison and fallback reduce risk, but staff run both systems at extra cost.</td></tr>
+							<tr><td>Several branches can adopt the complete new system one at a time.</td><td>Pilot operation.</td><td>One branch reveals problems before wider rollout, but later branches wait.</td></tr>
+							<tr><td>Booking, billing and reporting modules can be introduced separately.</td><td>Phased operation.</td><td>Spreads disruption, but old and new functions may need temporary interfaces.</td></tr>
+							<tr><td>A low-impact system must switch at one time and overlap is impractical.</td><td>Direct cutover.</td><td>Lower overlap cost, but prepare recovery because the old operation stops.</td></tr></table>
+							<p><strong>Payroll decision:</strong> choose parallel operation when accurate pay is critical and both systems can run together. Compare employee counts, gross pay, deductions and net totals; resolve differences, approve the converted data and train staff before ending the old run. A pilot would test one group, but it would not by itself compare every payroll result; direct cutover removes that comparison.</p>
+							</article>
+							<article class="card chapter-card wide" id="ch5-change-resistance">
+								<h3>Exam bridge: Resistance to Organisational Change</h3>
+								<p>A new system changes routines, responsibilities and sometimes people's confidence in their work. Resistance may come from unclear benefits, fear of errors or job loss, extra work during changeover, unfamiliar screens, or security rules that feel inconvenient. These are scenario clues to investigate, not assumptions about every user.</p>
+								<table><tr><th>Response</th><th>How it helps</th><th>Booking-system example</th></tr>
+								<tr><td>Explain and involve</td><td>State the reason for change, hear concerns and let users test prototypes.</td><td>Reception staff identify a missing cancellation workflow before rollout.</td></tr>
+								<tr><td>Train by role</td><td>Give hands-on practice, clear documentation and enough time before live use.</td><td>Receptionists practise bookings while managers practise reports.</td></tr>
+								<tr><td>Roll out with support</td><td>Choose a suitable changeover method, help desk and feedback route.</td><td>Pilot one branch, log obstacles and fix them before wider adoption.</td></tr>
+								<tr><td>Review after launch</td><td>Check adoption, satisfaction, errors and whether controls work in practice.</td><td>Repeated shared logins trigger safer access design and coaching.</td></tr></table>
+								<p>This applied exam topic connects the guide's <a href="#ch2-1-ui-hci">HCI</a>, <a href="#ch5-5-changeover">changeover</a>, <a href="#ch5-9-installation-worked-example">training and evaluation</a>, and <a href="#ch6-post-incident">security awareness</a> material.</p>
 							</article>
 							<article class="card chapter-card wide" id="ch5-9-installation-worked-example">
 								<h3>Worked Example: Planning a Payroll System Changeover <span class="muted">(supports 5.6-5.9)</span></h3>
@@ -2040,51 +2126,6 @@
 								<p>Systems analysts often act as internal consultants. User support includes training, help desks, troubleshooting, technical guidance, knowledge bases, and support for new versions or changes.</p>
 								<p>A help desk is a centralized resource that helps users use system resources effectively, answers technical and operational questions, and improves productivity.</p>
 							</article>
-							<article class="card chapter-card" id="ch6-2-maintenance">
-								<h3>6.2 Maintenance Tasks</h3>
-								<table>
-									<tr><th>Type</th><th>Purpose</th></tr>
-									<tr><td>Corrective</td><td>Fix system errors.</td></tr>
-									<tr><td>Adaptive</td><td>Add capabilities or respond to new business/system requirements.</td></tr>
-									<tr><td>Perfective</td><td>Improve efficiency, performance, or maintainability.</td></tr>
-									<tr><td>Preventive</td><td>Reduce the likelihood of future failures.</td></tr>
-								</table>
-							</article>
-							<article class="card chapter-card" id="ch6-3-performance">
-								<h3>6.3 Maintenance Management · 6.4 System Performance Management</h3>
-								<p>Maintenance requests are evaluated, prioritized, scheduled, investigated, analyzed, designed, developed, tested, and implemented. Change management controls versions, documentation changes, and release timing.</p>
-								<p>Performance measures include response time, bandwidth, throughput, and turnaround time. Capacity management uses these measures to forecast future support needs.</p>
-							</article>
-							<article class="card chapter-card" id="ch6-4-security">
-								<h3>6.5 System Security · 6.6 Security Levels</h3>
-								<p>A security policy defines how assets are protected and how attacks are managed. Risk management identifies, analyzes, anticipates, and reduces risks to an acceptable level.</p>
-								<table>
-									<tr><th>Level</th><th>Focus</th></tr>
-									<tr><td>Physical</td><td>Protect rooms, servers, desktops, and equipment.</td></tr>
-									<tr><td>Network</td><td>Protect communications, including wireless links.</td></tr>
-									<tr><td>Application</td><td>Use hardening, permissions, input validation, patches, and logs.</td></tr>
-									<tr><td>File</td><td>Control file permissions and encryption.</td></tr>
-									<tr><td>User</td><td>Manage identities, passwords, awareness, and social engineering risk.</td></tr>
-									<tr><td>Procedural</td><td>Use managerial controls and secure operating procedures.</td></tr>
-								</table>
-							</article>
-							<article class="card chapter-card" id="ch6-5-backup-retirement">
-								<h3>6.7 Backup and Recovery · 6.8 System Retirement · 6.9 Future Challenges</h3>
-								<p>Backup and recovery decisions include media, schedules, retention periods, RAID, cloud backup, and business continuity. Systems eventually reach the end of useful life when maintenance or operating costs rise, new technology becomes available, or the system cannot meet new requirements.</p>
-								<p>Future IT professionals need technical skill, critical thinking, credentials, and awareness of security, environmental, economic, political, and social pressures.</p>
-							</article>
-							<article class="card chapter-card wide" id="ch6-post-incident">
-								<h3>Exam bridge: Coordinated Post-Incident Response</h3>
-								<p><strong>Scenario:</strong> a staff account is misused after a deceptive message, and the booking service becomes unavailable. Connect five control areas rather than treating a backup alone as the whole response.</p>
-								<ol>
-									<li><strong>Authentication:</strong> disable the affected account and sessions, reset credentials through a trusted process, review access rights and logs, and verify legitimate users can sign in safely.</li>
-									<li><strong>Disaster recovery:</strong> activate the documented plan, assign roles, secure affected systems, assess damage and restore services in a tested order.</li>
-									<li><strong>Business continuity:</strong> keep essential bookings running through an approved alternate or manual process and communicate when normal service is safe to resume.</li>
-									<li><strong>Backup policy:</strong> identify a clean and recent copy under the retention rules, restore it, reconcile missing transactions and test the restored data before reopening the system.</li>
-									<li><strong>Employee awareness:</strong> explain the attack pattern and reporting route, practise spotting deceptive requests, and check whether staff can apply the guidance.</li>
-								</ol>
-								<p><strong>After service returns:</strong> review what happened, update access controls, the recovery test, backup schedule and training. The study guide covers the underlying security, user awareness, backup and continuity controls; this sequence applies them to the supplied exam focus.</p>
-							</article>
 							<article class="card chapter-card wide" id="ch6-6-user-support-help-desk">
 								<h3>Expanded notes: 6.1 User Support and Help Desks</h3>
 								<p>After implementation, a systems analyst often acts as an internal consultant. The guide notes that well-designed systems can require even more support because users discover features, ask for improvements, and need help applying the system to real work. Support can be in-house or outsourced, but quality must be actively monitored.</p>
@@ -2095,6 +2136,16 @@
 									<tr><td>Improve productivity.</td><td>Build a knowledge base, identify repeated problems, support training, and guide users toward better system use.</td></tr>
 								</table>
 								<div class="note">Exam trap: outsourced support still belongs to management. Saving money does not help if long waits, weak online tools, or poor staff performance reduce customer satisfaction.</div>
+							</article>
+							<article class="card chapter-card" id="ch6-2-maintenance">
+								<h3>6.2 Maintenance Tasks</h3>
+								<table>
+									<tr><th>Type</th><th>Purpose</th></tr>
+									<tr><td>Corrective</td><td>Fix system errors.</td></tr>
+									<tr><td>Adaptive</td><td>Add capabilities or respond to new business/system requirements.</td></tr>
+									<tr><td>Perfective</td><td>Improve efficiency, performance, or maintainability.</td></tr>
+									<tr><td>Preventive</td><td>Reduce the likelihood of future failures.</td></tr>
+								</table>
 							</article>
 							<article class="card chapter-card wide" id="ch6-7-maintenance-management-expanded">
 								<h3>Expanded notes: 6.2-6.3 Maintenance Types and Management</h3>
@@ -2114,6 +2165,24 @@
 									<tr><td>Maintenance releases</td><td>Group approved changes into planned releases.</td></tr>
 									<tr><td>Version control</td><td>Tracks system versions and changes so teams know what is current.</td></tr>
 									<tr><td>Baselines</td><td>Formal reference points used to measure and control system evolution.</td></tr>
+								</table>
+							</article>
+							<article class="card chapter-card" id="ch6-3-performance">
+								<h3>6.3 Maintenance Management · 6.4 System Performance Management</h3>
+								<p>Maintenance requests are evaluated, prioritized, scheduled, investigated, analyzed, designed, developed, tested, and implemented. Change management controls versions, documentation changes, and release timing.</p>
+								<p>Performance measures include response time, bandwidth, throughput, and turnaround time. Capacity management uses these measures to forecast future support needs.</p>
+							</article>
+							<article class="card chapter-card" id="ch6-4-security">
+								<h3>6.5 System Security · 6.6 Security Levels</h3>
+								<p>A security policy defines how assets are protected and how attacks are managed. Risk management identifies, analyzes, anticipates, and reduces risks to an acceptable level.</p>
+								<table>
+									<tr><th>Level</th><th>Focus</th></tr>
+									<tr><td>Physical</td><td>Protect rooms, servers, desktops, and equipment.</td></tr>
+									<tr><td>Network</td><td>Protect communications, including wireless links.</td></tr>
+									<tr><td>Application</td><td>Use hardening, permissions, input validation, patches, and logs.</td></tr>
+									<tr><td>File</td><td>Control file permissions and encryption.</td></tr>
+									<tr><td>User</td><td>Manage identities, passwords, awareness, and social engineering risk.</td></tr>
+									<tr><td>Procedural</td><td>Use managerial controls and secure operating procedures.</td></tr>
 								</table>
 							</article>
 							<article class="card chapter-card wide" id="ch6-8-performance-security-expanded">
@@ -2138,6 +2207,31 @@
 									<tr><td>User</td><td>Authentication, password discipline, awareness, and social engineering prevention.</td></tr>
 									<tr><td>Procedural</td><td>Management policies, operating procedures, audits, and separation of duties.</td></tr>
 								</table>
+							</article>
+							<article class="card chapter-card" id="ch6-5-backup-retirement">
+								<h3>6.7 Backup and Recovery · 6.8 System Retirement · 6.9 Future Challenges</h3>
+								<p>Backup and recovery decisions include media, schedules, retention periods, RAID, cloud backup, and business continuity. Systems eventually reach the end of useful life when maintenance or operating costs rise, new technology becomes available, or the system cannot meet new requirements.</p>
+								<p>Future IT professionals need technical skill, critical thinking, credentials, and awareness of security, environmental, economic, political, and social pressures.</p>
+							</article>
+							<article class="card chapter-card wide" id="ch6-post-incident">
+								<h3>Exam bridge: Coordinated Post-Incident Response</h3>
+								<p><strong>Scenario:</strong> a staff account is misused after a deceptive message, and the booking service becomes unavailable. Connect five control areas rather than treating a backup alone as the whole response.</p>
+								<ol>
+									<li><strong>Authentication:</strong> disable the affected account and sessions, reset credentials through a trusted process, review access rights and logs, and verify legitimate users can sign in safely.</li>
+									<li><strong>Disaster recovery:</strong> activate the documented plan, assign roles, secure affected systems, assess damage and restore services in a tested order.</li>
+									<li><strong>Business continuity:</strong> keep essential bookings running through an approved alternate or manual process and communicate when normal service is safe to resume.</li>
+									<li><strong>Backup policy:</strong> identify a clean and recent copy under the retention rules, restore it, reconcile missing transactions and test the restored data before reopening the system.</li>
+									<li><strong>Employee awareness:</strong> explain the attack pattern and reporting route, practise spotting deceptive requests, and check whether staff can apply the guidance.</li>
+								</ol>
+								<h4>Put the actions in a safe order</h4>
+								<table><tr><th>When</th><th>Decision or action</th><th>Evidence that it worked</th></tr>
+								<tr><td>Immediately</td><td>Protect people; report the incident; disable the affected account and active sessions; preserve relevant logs.</td><td>Unauthorised sign-in stops and the response team has a record to investigate.</td></tr>
+								<tr><td>During the outage</td><td>Use the approved manual booking process while the disaster recovery team assesses systems and assigns restoration priorities.</td><td>Essential appointments continue without relying on the unavailable service.</td></tr>
+								<tr><td>Before restoration</td><td>Identify a verified clean backup, compare its date with the incident timeline and plan how to reconcile later bookings.</td><td>The team knows which data can be trusted and what transactions may need re-entry.</td></tr>
+								<tr><td>Before reopening</td><td>Restore into a controlled environment, test sign-in, booking and data accuracy, then authorise the return to normal operation.</td><td>Users can complete a valid booking and records agree with the approved manual log.</td></tr>
+								<tr><td>After recovery</td><td>Review access rights, backup and recovery tests, incident reporting and awareness training.</td><td>Actions and owners are recorded, then checked in a later exercise.</td></tr></table>
+								<div class="note"><strong>Do not merge the terms:</strong> business continuity keeps essential work going during disruption; disaster recovery restores the affected technology and data; the backup policy determines what trustworthy copies exist and how they are retained and tested. For example, if the last clean backup predates two manual bookings, reconcile those bookings before declaring the records complete.</div>
+								<p><strong>After service returns:</strong> review what happened, update access controls, the recovery test, backup schedule and training. The study guide covers the underlying security, user awareness, backup and continuity controls; this sequence applies them to the supplied exam focus.</p>
 							</article>
 							<article class="card chapter-card wide" id="ch6-9-backup-retirement-worked-example">
 								<h3>Worked Example: Recovering and Retiring an Ageing System <span class="muted">(supports 6.4-6.8)</span></h3>
@@ -2240,7 +2334,7 @@
 <tr id="is-ref-2-3"><td><strong>Ten interface guidelines</strong></td><td>Apply learnability, productivity, flexibility, help, layout and data-entry guidance.</td><td>Use consistent navigation, defaults and useful error messages.</td><td><a href="#ch2-7-ten-guidelines">Open notes</a></td></tr>
 <tr id="is-ref-2-4"><td><strong>Source document</strong></td><td>Capture and authorise data at its origin using clear form zones.</td><td>A numbered booking form records patient, time and approval.</td><td><a href="#ch2-4-reports-controls">Open notes</a></td></tr>
 <tr id="is-ref-2-5"><td><strong>Validation rules</strong></td><td>Check required, range, reasonableness, validity and field combinations.</td><td>Reject an appointment date before today; check Doctor ID exists.</td><td><a href="#ch2-3-validation">Open notes</a></td></tr>
-<tr id="is-ref-2-6"><td><strong>Report types</strong></td><td>Choose detail, summary or exception output for the decision.</td><td>Managers see overbooked sessions in an exception report.</td><td><a href="#ch2-4-reports-controls">Open notes</a></td></tr>
+<tr id="is-ref-2-6"><td><strong>Report types</strong></td><td>Choose detail, summary or exception output for the decision.</td><td>Managers see overbooked sessions in an exception report.</td><td><a href="#ch2-6-report-design">Open notes</a></td></tr>
 <tr id="is-ref-2-7"><td><strong>Input and output controls</strong></td><td>Protect entry and reports with access, audit trails and secure handling.</td><td>Only authorised staff edit bookings; patient reports have restricted access.</td><td><a href="#ch2-9-technology-security">Open notes</a></td></tr>
 <tr id="is-ref-2-8"><td><strong>Responsive design and prototyping</strong></td><td>Test layouts on devices and revise a model with user feedback.</td><td>Try a booking form on a phone before implementation.</td><td><a href="#ch2-5-prototyping">Open notes</a></td></tr>
 <tr id="is-ref-2-9"><td><strong>Human-Computer Interaction (HCI) principles</strong></td><td>Understand users and tasks; make actions clear, navigation consistent, feedback timely, errors preventable and screens usable by different people.</td><td>Show an accessible date control, explain a conflict immediately and preserve entered data.</td><td><a href="#ch2-1-ui-hci">Open HCI notes</a> · <a href="#ch2-7-ten-guidelines">Design guidelines</a></td></tr>
@@ -2345,6 +2439,19 @@
 				return null;
 			}
 
+			function revealContentDetails(target) {
+				let details = target.tagName === "DETAILS" ? target : target.closest("details");
+				let opened = false;
+				while (details) {
+					if (!details.open) {
+						details.open = true;
+						opened = true;
+					}
+					details = details.parentElement.closest("details");
+				}
+				return opened;
+			}
+
 			function setActiveNav(id, reveal = false) {
 				if (!navMap.has(id)) return;
 				const activeLink = navMap.get(id);
@@ -2403,6 +2510,13 @@
 				menuToggle.setAttribute("aria-expanded", String(isOpen));
 			});
 
+			document.addEventListener("click", (event) => {
+				const link = event.target.closest("a[href^='#']");
+				if (!link) return;
+				const target = document.getElementById(decodeURIComponent(link.hash.slice(1)));
+				if (target) revealContentDetails(target);
+			});
+
 			sidebar.addEventListener("click", (event) => {
 				const link = event.target.closest("a");
 				if (!link) return;
@@ -2414,9 +2528,7 @@
 				}
 				const targetId = link.getAttribute("href").slice(1);
 				const target = document.getElementById(targetId);
-				if (target && target.tagName === "DETAILS") {
-					target.open = true;
-				}
+				if (target) revealContentDetails(target);
 				setActiveNav(targetId, true);
 				body.classList.remove("nav-open");
 				menuToggle.setAttribute("aria-expanded", "false");
@@ -2437,11 +2549,17 @@
 			window.addEventListener("resize", requestActiveNavUpdate);
 			window.addEventListener("hashchange", () => {
 				const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
-				if (target) setActiveNav(navIdForElement(target), true);
+				if (target) {
+					if (revealContentDetails(target)) target.scrollIntoView();
+					setActiveNav(navIdForElement(target), true);
+				}
 			});
 			updateActiveNav();
 			const initialTarget = document.getElementById(decodeURIComponent(location.hash.slice(1)));
-			if (initialTarget) setActiveNav(navIdForElement(initialTarget), true);
+			if (initialTarget) {
+				if (revealContentDetails(initialTarget)) requestAnimationFrame(() => initialTarget.scrollIntoView());
+				setActiveNav(navIdForElement(initialTarget), true);
+			}
 		})();
 	</script>
 	<script>
