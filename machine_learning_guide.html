@@ -308,6 +308,21 @@
 		.section-band {
 			border-bottom: 1px solid var(--border);
 		}
+		.ca-collapsible > summary {
+			max-width: 1180px;
+			margin: 0 auto;
+		}
+		.ca-collapsible > summary .section-heading {
+			margin-bottom: 0;
+			min-width: 0;
+		}
+		.ca-collapsible > summary:focus-visible {
+			outline: 2px solid var(--cyan);
+			outline-offset: 8px;
+		}
+		.ca-collapsible > .section-inner {
+			margin-top: 1.4rem;
+		}
 
 
 		.section-heading {
@@ -513,7 +528,8 @@
 			margin: 0.95rem 0 0;
 		}
 
-		.glossary-card summary {
+		.glossary-card > summary,
+		.ca-collapsible > summary {
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
@@ -522,7 +538,8 @@
 			list-style: none;
 		}
 
-		.glossary-card summary::-webkit-details-marker {
+		.glossary-card > summary::-webkit-details-marker,
+		.ca-collapsible > summary::-webkit-details-marker {
 			display: none;
 		}
 
@@ -532,7 +549,8 @@
 			line-height: 1.25;
 		}
 
-		.glossary-card summary::after {
+		.glossary-card > summary::after,
+		.ca-collapsible > summary::after {
 			content: "Show";
 			flex: 0 0 auto;
 			padding: 0.18rem 0.55rem;
@@ -543,7 +561,8 @@
 			font-weight: 800;
 		}
 
-		.glossary-card[open] summary::after {
+		.glossary-card[open] > summary::after,
+		.ca-collapsible[open] > summary::after {
 			content: "Hide";
 		}
 
@@ -705,6 +724,7 @@
 	<summary>Exam Focus Areas</summary>
 	<a class="nav-link" href="#exam-focus-areas" data-nav-link="exam-focus-areas">Exam Summary</a>
 	<a class="nav-link" href="#ml-exam-map">Focus-to-Content Map</a>
+	<a class="nav-link" href="#ml-exam-case">Worked Exam Example</a>
 </details>
 
 			<details class="nav-group nav-collapsible">
@@ -714,9 +734,10 @@
 				<a href="#chapter-2" data-nav-link="chapter-2">Chapter 2: Data Preparation</a>
 				<a href="#chapter-3" data-nav-link="chapter-3">Chapter 3: Regression</a>
 				<a href="#chapter-4" data-nav-link="chapter-4">Chapter 4: Classification</a>
-				<a href="#general-code-reference" data-nav-link="general-code-reference">Code walkthroughs: Topics 1–4</a>
 				<a href="#chapter-5" data-nav-link="chapter-5">Chapter 5: Clustering</a>
 				<a href="#ch5-guide-practice" data-nav-link="ch5-guide-practice">Chapter 5: Guide practice tasks</a>
+				<a href="#general-code-reference" data-nav-link="general-code-reference">Code walkthroughs: Topics 1–5</a>
+				<a href="#general-code-cluster-k">Topic 5: clustering code</a>
 			</details>
 
 			<details class="nav-group nav-collapsible">
@@ -771,13 +792,15 @@
 
 
 
-		<section id="test-focus-areas" class="section-band" data-nav-section>
-			<div class="section-inner">
+		<details id="test-focus-areas" class="section-band ca-collapsible" data-nav-section>
+			<summary>
 				<div class="section-heading">
 					<p class="kicker">Open-book desk · Topics 1–4</p>
 					<h2>CA Quick Reference</h2>
 					<p>Choose a topic, a task or an API name. Every reference links to its explanation in General Module Content. Coverage is based on your stated CA scope, not a prediction of individual questions.</p>
 				</div>
+			</summary>
+			<div class="section-inner">
 				<nav class="ca-jumps" aria-label="CA quick links">
 					<!--suppress HtmlUnknownAnchorTarget -->
 					<a href="#ca-topic-1">1 · Foundations</a>
@@ -795,7 +818,7 @@
 				<section id="ca-formulas" class="ca-block" data-nav-section></section>
 				<noscript><p>The clickable CA catalogue requires JavaScript. The general chapter notes remain available below.</p></noscript>
 			</div>
-		</section>
+		</details>
 
 		<section id="exam-focus-areas" class="section-band" data-nav-section>
 			<div class="section-inner">
@@ -805,7 +828,7 @@
 				</div>
 				<div class="card" id="ml-exam-map">
 					<h3>Focus-to-content map</h3>
-					<p>The exam notice says Chapters 1–6, while the supplied <em>Machine Learning 600 Study Guide</em> contains Chapters 1–5. This page treats Chapters 1–5 as the supplied guide and maps every named exam concept below. The notice does not identify separate Chapter 6 content.</p>
+					<p>The exam scope covers Chapters 1–5 of the supplied <em>Machine Learning 600 Study Guide</em>. Use the map below for the named focus areas, then work through the customer example.</p>
 					<div class="table-wrap"><table><thead><tr><th>Exam focus</th><th>What to be able to do</th><th>Start here</th></tr></thead><tbody>
 						<tr><td>Python ML libraries</td><td>Match NumPy, Pandas, Scikit-learn and Matplotlib to array work, data handling, modelling and plots.</td><td><a href="#ml-index-libraries">Libraries</a> · <a href="#ch1-9-python-libraries">Chapter 1 notes</a></td></tr>
 						<tr><td>Model fit and evaluation</td><td>Interpret train/test scores, bias and variance; calculate a confusion matrix, accuracy, precision, recall and F1.</td><td><a href="#ml-index-fit">Fit</a> · <a href="#ml-index-confusion">Classification metrics</a></td></tr>
@@ -817,6 +840,134 @@
 					</tbody></table></div>
 				<div class="callout success"><strong>Revision path:</strong> read the linked chapter explanation → work the calculation or code without looking → check what the result means and when the method can mislead.</div>
 				</div>
+				<article class="card" id="ml-exam-case">
+					<h3>Worked exam code: one customer dataset</h3>
+					<p>Run these blocks in order. The same customer features support three exam tasks: predict next month's spend (regression), predict whether a customer leaves (binary classification), and find groups without labels (clustering). The data is generated locally, so no file or internet connection is needed.</p>
+					<h4>1. Build, inspect, scale and reduce the data (Chapters 1–2)</h4>
+					<pre><code>import numpy as np                      # arrays and calculations
+import pandas as pd                     # tables and cleaning
+import matplotlib.pyplot as plt         # plots
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import MinMaxScaler, StandardScaler
+from sklearn.decomposition import PCA
+
+# Reproducible practice data: each row is one customer.
+rng = np.random.default_rng(42)
+n = 240
+visits = rng.integers(1, 21, n)
+months = rng.integers(1, 61, n)
+spend = 30 + 7 * visits + rng.normal(0, 12, n)
+df = pd.DataFrame({&quot;visits&quot;: visits, &quot;spend&quot;: spend,
+                   &quot;account_months&quot;: months})
+df[&quot;next_spend&quot;] = (20 + 0.85 * spend + 0.05 * visits**2
+                    + rng.normal(0, 15, n))
+prob_leave = 1 / (1 + np.exp(-(
+    2.5 - 0.22 * visits - 0.035 * months)))
+df[&quot;leaves&quot;] = rng.binomial(1, prob_leave)  # 1 = leaves
+print(df.head())
+print(df.isna().sum())                   # inspect missing values
+X = df[[&quot;visits&quot;, &quot;spend&quot;, &quot;account_months&quot;]]
+
+# Learn scaling and PCA from training rows only.
+X_train, X_test = train_test_split(X, test_size=0.2, random_state=42)
+minmax = MinMaxScaler().fit(X_train)
+standard = StandardScaler().fit(X_train)
+print(minmax.transform(X_test.iloc[:1]))
+print(standard.transform(X_test.iloc[:1]))
+pca = PCA(n_components=0.95).fit(standard.transform(X_train))
+print(&quot;Retained variance:&quot;, pca.explained_variance_ratio_.sum())
+print(&quot;Components kept:&quot;, pca.n_components_)
+X_test_pca = pca.transform(standard.transform(X_test))</code></pre>
+					<p><strong>Read the code:</strong> NumPy makes arrays, Pandas handles the table, Matplotlib plots, and scikit-learn splits and transforms. Min-Max scaling maps each training feature to a 0–1 range; standardisation subtracts its training mean and divides by its training standard deviation. For visits ranging 0–40, 20 becomes <code>0.5</code> under Min-Max scaling. If the mean is 10 and standard deviation 5, it becomes <code>2</code> after standardisation. Distance-sensitive k-NN, SVM and k-Means need comparable feature scales. PCA creates fewer axes that retain the chosen share of variance; it can reduce the curse of dimensionality, though retained variance does not guarantee retained predictive power.</p>
+					<h4>2. Complete the regression code and interpret R² (Chapter 3)</h4>
+					<pre><code>from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score
+
+Xr_train, Xr_test, yr_train, yr_test = train_test_split(
+    X, df[&quot;next_spend&quot;], test_size=0.2, random_state=42
+)
+line = LinearRegression().fit(Xr_train[[&quot;visits&quot;]], yr_train)
+print(&quot;y = mx + b:&quot;, line.coef_[0], line.intercept_)
+# Least squares chooses m and b to minimise sum((actual - predicted)**2).
+toy_x = np.array([1, 2, 3]).reshape(-1, 1)
+toy_y = np.array([2, 3, 5])
+toy_line = LinearRegression().fit(toy_x, toy_y)
+print(&quot;Toy slope/intercept:&quot;, toy_line.coef_[0], toy_line.intercept_)
+# The toy line is approximately y = 1.5x + 0.33.
+poly = make_pipeline(PolynomialFeatures(degree=2), LinearRegression())
+poly.fit(Xr_train, yr_train)
+y_pred = poly.predict(Xr_test)
+print(&quot;Train R²:&quot;, r2_score(yr_train, poly.predict(Xr_train)))
+print(&quot;Test R²:&quot;, r2_score(yr_test, y_pred))
+
+# Negative R² means worse than predicting the evaluation-set mean.
+actual = np.array([1, 2, 3])
+predicted = np.array([3, 3, 3])
+print(&quot;Negative R² example:&quot;, r2_score(actual, predicted))  # -1.5</code></pre>
+					<p><strong>Exam reading:</strong> <code>line.coef_[0]</code> is the slope <code>m</code> in <code>y=mx+b</code>; <code>line.intercept_</code> is <code>b</code>. <code>make_pipeline</code> applies <code>PolynomialFeatures</code> before <code>LinearRegression</code>; <code>fit</code> learns, <code>predict</code> produces values, and <code>r2_score</code> evaluates them. Low train and test R² suggests underfitting (high bias). High train R² and much lower test R² suggests overfitting (high variance). The final toy score is <code>−1.5</code> because its squared error is 5 while predicting the mean has squared error 2.</p>
+					<h4>3. Compare classifiers and calculate the confusion matrix (Chapter 4)</h4>
+					<pre><code>from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import SVC
+from sklearn.metrics import (confusion_matrix, accuracy_score,
+                             precision_score, recall_score, f1_score)
+
+Xc_train, Xc_test, yc_train, yc_test = train_test_split(
+    X, df[&quot;leaves&quot;], test_size=0.2, random_state=42,
+    stratify=df[&quot;leaves&quot;]
+)
+models = {
+    &quot;logistic&quot;: make_pipeline(StandardScaler(),
+                              LogisticRegression(C=0.5, max_iter=1000)),
+    &quot;SVM RBF&quot;: make_pipeline(StandardScaler(), SVC(kernel=&quot;rbf&quot;, C=1)),
+    &quot;k-NN&quot;: make_pipeline(StandardScaler(), KNeighborsClassifier(n_neighbors=5))
+}
+for name, model in models.items():
+    model.fit(Xc_train, yc_train)
+    print(name, &quot;train/test accuracy:&quot;,
+          model.score(Xc_train, yc_train), model.score(Xc_test, yc_test))
+
+# Positive class = customer leaves. Rows are actual; columns predicted.
+y_pred = models[&quot;logistic&quot;].predict(Xc_test)
+tn, fp, fn, tp = confusion_matrix(yc_test, y_pred, labels=[0, 1]).ravel()
+print(&quot;TN, FP, FN, TP:&quot;, tn, fp, fn, tp)
+print(&quot;Accuracy:&quot;, accuracy_score(yc_test, y_pred))
+print(&quot;Precision:&quot;, precision_score(yc_test, y_pred))
+print(&quot;Recall:&quot;, recall_score(yc_test, y_pred))
+print(&quot;F1:&quot;, f1_score(yc_test, y_pred))
+print(&quot;sigmoid(0):&quot;, 1 / (1 + np.exp(0)))  # 0.5
+
+scaled = StandardScaler().fit_transform(Xc_train)
+print(&quot;Euclidean distance:&quot;, np.linalg.norm(scaled[0] - scaled[1]))</code></pre>
+					<p><strong>Exam reading:</strong> logistic regression uses a sigmoid to turn a linear score into a probability; smaller <code>C</code> means stronger regularisation. An RBF SVM can learn a curved boundary using its margin and support vectors, where a linear logistic model cannot; compare held-out results before choosing. k-NN is lazy learning: it stores cases and uses Euclidean distance plus majority vote. Small <code>k</code> is noise-sensitive; large <code>k</code> can underfit. Here TP means a leaver predicted to leave; FP a stayer predicted to leave; FN a leaver predicted to stay; TN a stayer predicted to stay. Calculate accuracy <code>(TP+TN)/N</code>, precision <code>TP/(TP+FP)</code>, recall <code>TP/(TP+FN)</code>, and F1 <code>2TP/(2TP+FP+FN)</code>. A high accuracy can hide missed leavers, so inspect recall too.</p>
+					<h4>4. Cluster customers and choose k (Chapter 5)</h4>
+					<pre><code>from sklearn.cluster import KMeans, AgglomerativeClustering, DBSCAN
+from sklearn.metrics import silhouette_score
+
+# No target label is supplied to these unsupervised methods.
+X_scaled = StandardScaler().fit_transform(X)
+ks = range(2, 7)
+inertias, silhouettes = [], []
+for k in ks:
+    km = KMeans(n_clusters=k, random_state=42, n_init=10).fit(X_scaled)
+    inertias.append(km.inertia_)
+    silhouettes.append(silhouette_score(X_scaled, km.labels_))
+print(&quot;Inertia:&quot;, inertias)
+print(&quot;Silhouette:&quot;, silhouettes)
+plt.plot(list(ks), inertias, marker=&quot;o&quot;)
+plt.xlabel(&quot;k (number of groups)&quot;)
+plt.ylabel(&quot;Inertia&quot;)
+plt.title(&quot;Elbow method&quot;)
+plt.show()
+
+hierarchical = AgglomerativeClustering(n_clusters=3).fit_predict(X_scaled)
+density = DBSCAN(eps=0.6, min_samples=5).fit_predict(X_scaled)
+print(&quot;Hierarchical groups:&quot;, np.unique(hierarchical))
+print(&quot;DBSCAN groups (-1 means noise):&quot;, np.unique(density))</code></pre>
+					<p><strong>Exam reading:</strong> k-Means alternates between assigning points to the nearest centre and updating each centre to the assigned points' mean. Inertia is the sum of squared distances to centres. Look for an elbow where its improvement slows, then compare silhouette scores: for one point, <code>(b−a)/max(a,b)</code> compares its average distance to its own cluster (<code>a</code>) with the nearest other cluster (<code>b</code>). Hierarchical clustering merges groups into a tree; DBSCAN finds dense regions and labels noise <code>−1</code>. Cluster IDs are arbitrary. Use R² for numerical regression, a confusion matrix for labelled classification, and inertia/silhouette plus practical meaning for unlabelled clustering.</p>
+				</article>
 			</div>
 		</section>
 		<section id="general-module-content" class="section-band">
@@ -2233,68 +2384,6 @@ print("Predicted iris species:", iris.target_names[predicted_class])</code></pre
 					<div class="back-row"><a class="button" href="#exam-focus-areas">Back to Exam Focus Areas</a></div>
 				</section>
 
-				<section id="general-code-reference" class="chapter" data-nav-section>
-					<h3>General code walkthroughs · Topics 1–4</h3>
-					<p>Supporting explanations for the clickable API reference. Examples are illustrative unless a complete dataset setup is provided. Imports: <code>import numpy as np</code>, <code>import pandas as pd</code>, <code>import matplotlib.pyplot as plt</code>.</p>
-					<article class="card ca-general" id="general-code-load"><h4>Creating and loading data</h4><p>A NumPy array is a numerical container; a pandas DataFrame adds row/column labels and allows different column types. A dictionary of equally sized lists creates a table, while a nested list passed to <code>np.array</code> creates a matrix. <code>pd.read_csv</code> parses a CSV into a DataFrame; inspect inferred types and missing-value markers before modelling.</p><p>Scikit-learn's built-in dataset loaders return Bunch objects with <code>data</code>, <code>target</code> and descriptive metadata; <code>return_X_y=True</code> returns two arrays instead. Iris has 4 features and 3 classes; breast cancer has 30 features and 2 classes; digits provides both flattened rows and 2D images. These bundled datasets avoid network downloads.</p><pre><code>from sklearn.datasets import load_iris
-iris = load_iris()
-df = pd.DataFrame(iris.data, columns=iris.feature_names)
-df["target"] = iris.target
-X = df.drop(columns=["target"])
-y = df["target"]</code></pre><!--suppress HtmlUnknownAnchorTarget --><a href="#ca-group-load">Back to create/load reference</a></article>
-					<article class="card ca-general" id="general-code-inspect"><h4>Inspect before modelling</h4><p><code>head</code> previews records, <code>info</code> prints schema and non-null counts, and <code>describe</code> summarises distributions. <code>shape</code> reports dimension lengths; <code>ndim</code> counts dimensions; <code>size</code> counts elements. NumPy <code>dtype</code> describes an array's element type; pandas <code>dtypes</code> reports each column's type. Attributes do not take parentheses.</p><pre><code>print(df.head())
-df.info()  # prints a summary, returns None
-print(df.describe())
-print(df.shape, df.dtypes, df.columns)
-print(df.isna().sum())</code></pre><!--suppress HtmlUnknownAnchorTarget --><a href="#ca-group-inspect">Back to inspection reference</a></article>
-					<article class="card ca-general" id="general-code-shape"><h4>Array shapes, selection and reshaping</h4><p>The models here expect X shaped <code>(n_samples, n_features)</code>. For ordinary single-target problems y is usually <code>(n_samples,)</code>. Three house areas are three observations of one feature, not one observation with three features. <code>reshape</code> keeps the elements and changes their arrangement; one <code>-1</code> infers a dimension from the element count. Total size must remain compatible.</p><pre><code>values = np.array([1200, 1500, 1800])
-print(values.shape)                   # (3,)
-print(values.reshape(-1, 1).shape)    # (3, 1): 3 houses, 1 feature
-print(values.reshape(1, -1).shape)    # (1, 3): 1 sample, 3 features
-one_new_house = np.array([[2000]])    # (1, 1)
-X = np.array([[1, 2], [3, 4], [5, 6]])
-print(X[:, 0])                        # [1, 3, 5], shape (3,)
-print(X[:, [0]])                      # column table, shape (3, 1)
-print(X[0])                           # first row
-print(X.T.shape)                      # (2, 3)</code></pre><p><code>ravel</code> flattens, sharing data when possible; <code>flatten</code> always returns a copy. Neither should be used to erase sample boundaries accidentally. A 1D array's <code>.T</code> remains 1D. <code>hstack</code> joins matching 2D feature blocks horizontally. With pandas, <code>df["Age"]</code> returns a Series but <code>df[["Age"]]</code> returns a one-column table. <code>loc</code> selects labels/masks (label slice endpoints included); <code>iloc</code> selects positions (slice stop excluded).</p><p>A Boolean mask selects only matching records: <code>df.loc[df["Age"] &gt;= 18, ["Age"]]</code>. Combine masks using parenthesised expressions and <code>&amp;</code>/<code>|</code>. In indexing, -1 means the last position, not inferred length. <a href="https://numpy.org/doc/stable/reference/generated/numpy.reshape.html">NumPy reshape reference</a>.</p><!--suppress HtmlUnknownAnchorTarget --><a href="#ca-api-reshape">Back to reshape card</a></article>
-					<article class="card ca-general" id="general-code-clean"><h4>Missingness, summaries and clean subsets</h4><p><code>isna</code> creates a Boolean mask; summing counts True values. <code>dropna</code> removes incomplete rows/columns, whereas <code>fillna</code> replaces values. <code>drop(columns=[...])</code> removes named columns regardless of missingness. These ordinarily return new objects: assign the result. Learn imputation values on training data only.</p><p>Mean is sensitive to outliers; median is more robust; mode may return multiple values or an empty result. Pandas numeric summaries normally skip missing entries, while ordinary NumPy percentile does not. <code>duplicated</code> flags repeats and <code>drop_duplicates</code> removes them; check whether repetition is legitimate before deleting. A percentile cutoff identifies a distribution tail, not automatically a data error.</p><pre><code>print(df.isna().sum())
-X = df.drop(columns=["target"])
-y = df["target"]
-# After splitting X into training and test tables:
-replacement = X_train["Age"].median()
-train_age = X_train["Age"].fillna(replacement)
-test_age = X_test["Age"].fillna(replacement)
-a = np.array([[1, 2], [3, 4]])
-print(a.sum(axis=0))  # [4, 6]: column totals
-print(a.sum(axis=1))  # [3, 7]: row totals</code></pre><!--suppress HtmlUnknownAnchorTarget --><a href="#ca-group-clean">Back to cleaning reference</a></article>
-					<article class="card ca-general" id="general-code-pipeline"><h4>Splits and pipelines: one consistent workflow</h4><p><code>train_test_split(X,y)</code> returns X_train, X_test, y_train, y_test in that order. <code>test_size</code> controls the held-out fraction; <code>random_state</code> makes a random split reproducible; <code>stratify=y</code> preserves approximate class proportions when feasible. Regression targets are not class strata. Random splitting is not suitable for every time-ordered or grouped dataset.</p><p>A Pipeline fits its intermediate transformers on training data and passes their outputs to the final estimator. Prediction reuses those transformers. <code>make_pipeline</code> supplies lowercase names automatically; <code>Pipeline</code> accepts explicit (name, estimator) pairs. <code>named_steps</code> accesses a component. During cross-validation, fit the entire pipeline inside each training fold.</p><pre><code>from sklearn.model_selection import train_test_split
-from sklearn.pipeline import make_pipeline
-from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LogisticRegression
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, stratify=y, test_size=0.2, random_state=42)
-model = make_pipeline(SimpleImputer(strategy="median"),
-    StandardScaler(), LogisticRegression(max_iter=1000))
-model.fit(X_train, y_train)
-predictions = model.predict(X_test)
-print(model.named_steps["logisticregression"].coef_)</code></pre><!--suppress HtmlUnknownAnchorTarget --><a href="#ca-group-split">Back to pipeline reference</a></article>
-					<article class="card ca-general" id="general-code-model"><h4>Fit, predict and score are different operations</h4><p><code>fit(X_train,y_train)</code> learns an estimator and returns that estimator. <code>predict(X_test)</code> returns labels for classifiers or numbers for regressors. <code>predict_proba</code>, where available, gives columns ordered by <code>classes_</code>; <code>decision_function</code> returns scores, not probabilities. SVC needs <code>probability=True</code> before fitting to expose probabilities; LinearSVC has no probability method.</p><p>The classifiers in Topics 1–4 use accuracy for <code>score</code>; LinearRegression and DecisionTreeRegressor use R². A Pipeline delegates this to its final estimator. Maintain the same feature order and representation at prediction time. A new sample is still a row of a 2D table.</p><!--suppress HtmlUnknownAnchorTarget --><a href="#ca-group-model">Back to train/predict reference</a></article>
-					<article class="card ca-general" id="general-code-results"><h4>Parameters, learned attributes and interpretation</h4><p>Constructor parameters such as <code>n_neighbors</code>, <code>max_depth</code> and <code>C</code> are choices made before training. Attributes such as <code>coef_</code>, <code>classes_</code>, <code>components_</code> and <code>feature_importances_</code> are learned results, typically available after fit. They are read without parentheses. <code>shape</code> is also an attribute but is not a learned estimator parameter.</p><p>Linear coefficients depend on units and correlations. A PCA component is a direction, not an observation. Class labels determine probability-column order. Tree importance is not a signed or causal effect. Inspect a pipeline's estimator through <code>named_steps</code>, not by assuming the pipeline exposes every internal attribute.</p><!--suppress HtmlUnknownAnchorTarget --><a href="#ca-group-learned">Back to learned-results reference</a></article>
-					<article class="card ca-general" id="general-code-plot"><h4>Plots and synthetic examples</h4><p>Use <code>scatter</code> for points; <code>plot</code> connects points in supplied order; <code>hist</code> shows a distribution; <code>imshow</code> displays a pixel array. <code>subplots</code> returns a Figure and Axes (or an array of Axes). Label axes/units, add a title and use labelled series for a legend. <code>show</code> displays the figure.</p><p>For a smooth one-feature regression curve, generate a column grid using <code>linspace(...).reshape(-1,1)</code>, predict on that grid, and plot in ascending x order. <code>argsort</code> returns sorting indices for existing observations. For a decision tree use <code>plot_tree</code>, or export DOT text with the guide's <code>export_graphviz</code>.</p><pre><code># model must be fitted on one feature for this particular curve example.
-grid = np.linspace(X[:, 0].min(), X[:, 0].max(), 100).reshape(-1, 1)
-plt.scatter(X[:, 0], y, label="Observed")
-plt.plot(grid[:, 0], model.predict(grid), label="Fitted")
-plt.xlabel("Feature value")
-plt.ylabel("Target value")
-plt.title("One-feature regression")
-plt.legend()
-plt.show()
-# Guide-style synthetic data; seed makes the draws reproducible.
-np.random.seed(42)
-synthetic_X = np.random.rand(100, 2)
-noise = np.random.randn(100, 1)</code></pre><p><code>rand</code> draws uniform values on [0,1); <code>randn</code> draws standard-normal values. Modern code can use an independent <code>np.random.default_rng</code>. Synthetic exercises demonstrate mechanics, not evidence of real-world performance.</p><!--suppress HtmlUnknownAnchorTarget --><a href="#ca-group-plot">Back to plotting reference</a></article>
-				</section>
 				<section id="chapter-5" class="chapter" data-nav-section>
 					<h3>Chapter 5: Unsupervised Learning - Clustering Algorithms</h3>
 					<div class="chapter-tools">
@@ -2728,7 +2817,145 @@ print("GMM memberships for first row:", gmm.predict_proba(X[:1]))</code></pre>
 							</dl>
 						</details>
 					</div>
-					<div class="back-row"><a class="button" href="#exam-focus-areas">Back to Exam Focus Areas</a></div>
+					<div class="back-row"><a class="button" href="#general-code-cluster-k">Continue to Topic 5 code</a><a class="button secondary" href="#exam-focus-areas">Back to Exam Focus Areas</a></div>
+				</section>
+				<section id="general-code-reference" class="chapter" data-nav-section>
+					<h3>General code walkthroughs · Topics 1–5</h3>
+					<p>Supporting explanations for the clickable API reference. Examples are illustrative unless a complete dataset setup is provided. The Topic 5 blocks use a complete synthetic dataset and run in order. Imports used by the earlier examples: <code>import numpy as np</code>, <code>import pandas as pd</code>, <code>import matplotlib.pyplot as plt</code>.</p>
+					<article class="card ca-general" id="general-code-load"><h4>Creating and loading data</h4><p>A NumPy array is a numerical container; a pandas DataFrame adds row/column labels and allows different column types. A dictionary of equally sized lists creates a table, while a nested list passed to <code>np.array</code> creates a matrix. <code>pd.read_csv</code> parses a CSV into a DataFrame; inspect inferred types and missing-value markers before modelling.</p><p>Scikit-learn's built-in dataset loaders return Bunch objects with <code>data</code>, <code>target</code> and descriptive metadata; <code>return_X_y=True</code> returns two arrays instead. Iris has 4 features and 3 classes; breast cancer has 30 features and 2 classes; digits provides both flattened rows and 2D images. These bundled datasets avoid network downloads.</p><pre><code>from sklearn.datasets import load_iris
+iris = load_iris()
+df = pd.DataFrame(iris.data, columns=iris.feature_names)
+df["target"] = iris.target
+X = df.drop(columns=["target"])
+y = df["target"]</code></pre><!--suppress HtmlUnknownAnchorTarget --><a href="#ca-group-load">Back to create/load reference</a></article>
+					<article class="card ca-general" id="general-code-inspect"><h4>Inspect before modelling</h4><p><code>head</code> previews records, <code>info</code> prints schema and non-null counts, and <code>describe</code> summarises distributions. <code>shape</code> reports dimension lengths; <code>ndim</code> counts dimensions; <code>size</code> counts elements. NumPy <code>dtype</code> describes an array's element type; pandas <code>dtypes</code> reports each column's type. Attributes do not take parentheses.</p><pre><code>print(df.head())
+df.info()  # prints a summary, returns None
+print(df.describe())
+print(df.shape, df.dtypes, df.columns)
+print(df.isna().sum())</code></pre><!--suppress HtmlUnknownAnchorTarget --><a href="#ca-group-inspect">Back to inspection reference</a></article>
+					<article class="card ca-general" id="general-code-shape"><h4>Array shapes, selection and reshaping</h4><p>The models here expect X shaped <code>(n_samples, n_features)</code>. For ordinary single-target problems y is usually <code>(n_samples,)</code>. Three house areas are three observations of one feature, not one observation with three features. <code>reshape</code> keeps the elements and changes their arrangement; one <code>-1</code> infers a dimension from the element count. Total size must remain compatible.</p><pre><code>values = np.array([1200, 1500, 1800])
+print(values.shape)                   # (3,)
+print(values.reshape(-1, 1).shape)    # (3, 1): 3 houses, 1 feature
+print(values.reshape(1, -1).shape)    # (1, 3): 1 sample, 3 features
+one_new_house = np.array([[2000]])    # (1, 1)
+X = np.array([[1, 2], [3, 4], [5, 6]])
+print(X[:, 0])                        # [1, 3, 5], shape (3,)
+print(X[:, [0]])                      # column table, shape (3, 1)
+print(X[0])                           # first row
+print(X.T.shape)                      # (2, 3)</code></pre><p><code>ravel</code> flattens, sharing data when possible; <code>flatten</code> always returns a copy. Neither should be used to erase sample boundaries accidentally. A 1D array's <code>.T</code> remains 1D. <code>hstack</code> joins matching 2D feature blocks horizontally. With pandas, <code>df["Age"]</code> returns a Series but <code>df[["Age"]]</code> returns a one-column table. <code>loc</code> selects labels/masks (label slice endpoints included); <code>iloc</code> selects positions (slice stop excluded).</p><p>A Boolean mask selects only matching records: <code>df.loc[df["Age"] &gt;= 18, ["Age"]]</code>. Combine masks using parenthesised expressions and <code>&amp;</code>/<code>|</code>. In indexing, -1 means the last position, not inferred length. <a href="https://numpy.org/doc/stable/reference/generated/numpy.reshape.html">NumPy reshape reference</a>.</p><!--suppress HtmlUnknownAnchorTarget --><a href="#ca-api-reshape">Back to reshape card</a></article>
+					<article class="card ca-general" id="general-code-clean"><h4>Missingness, summaries and clean subsets</h4><p><code>isna</code> creates a Boolean mask; summing counts True values. <code>dropna</code> removes incomplete rows/columns, whereas <code>fillna</code> replaces values. <code>drop(columns=[...])</code> removes named columns regardless of missingness. These ordinarily return new objects: assign the result. Learn imputation values on training data only.</p><p>Mean is sensitive to outliers; median is more robust; mode may return multiple values or an empty result. Pandas numeric summaries normally skip missing entries, while ordinary NumPy percentile does not. <code>duplicated</code> flags repeats and <code>drop_duplicates</code> removes them; check whether repetition is legitimate before deleting. A percentile cutoff identifies a distribution tail, not automatically a data error.</p><pre><code>print(df.isna().sum())
+X = df.drop(columns=["target"])
+y = df["target"]
+# After splitting X into training and test tables:
+replacement = X_train["Age"].median()
+train_age = X_train["Age"].fillna(replacement)
+test_age = X_test["Age"].fillna(replacement)
+a = np.array([[1, 2], [3, 4]])
+print(a.sum(axis=0))  # [4, 6]: column totals
+print(a.sum(axis=1))  # [3, 7]: row totals</code></pre><!--suppress HtmlUnknownAnchorTarget --><a href="#ca-group-clean">Back to cleaning reference</a></article>
+					<article class="card ca-general" id="general-code-pipeline"><h4>Splits and pipelines: one consistent workflow</h4><p><code>train_test_split(X,y)</code> returns X_train, X_test, y_train, y_test in that order. <code>test_size</code> controls the held-out fraction; <code>random_state</code> makes a random split reproducible; <code>stratify=y</code> preserves approximate class proportions when feasible. Regression targets are not class strata. Random splitting is not suitable for every time-ordered or grouped dataset.</p><p>A Pipeline fits its intermediate transformers on training data and passes their outputs to the final estimator. Prediction reuses those transformers. <code>make_pipeline</code> supplies lowercase names automatically; <code>Pipeline</code> accepts explicit (name, estimator) pairs. <code>named_steps</code> accesses a component. During cross-validation, fit the entire pipeline inside each training fold.</p><pre><code>from sklearn.model_selection import train_test_split
+from sklearn.pipeline import make_pipeline
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, stratify=y, test_size=0.2, random_state=42)
+model = make_pipeline(SimpleImputer(strategy="median"),
+    StandardScaler(), LogisticRegression(max_iter=1000))
+model.fit(X_train, y_train)
+predictions = model.predict(X_test)
+print(model.named_steps["logisticregression"].coef_)</code></pre><!--suppress HtmlUnknownAnchorTarget --><a href="#ca-group-split">Back to pipeline reference</a></article>
+					<article class="card ca-general" id="general-code-model"><h4>Fit, predict and score are different operations</h4><p><code>fit(X_train,y_train)</code> learns an estimator and returns that estimator. <code>predict(X_test)</code> returns labels for classifiers or numbers for regressors. <code>predict_proba</code>, where available, gives columns ordered by <code>classes_</code>; <code>decision_function</code> returns scores, not probabilities. SVC needs <code>probability=True</code> before fitting to expose probabilities; LinearSVC has no probability method.</p><p>The classifiers in Topics 1–4 use accuracy for <code>score</code>; LinearRegression and DecisionTreeRegressor use R². A Pipeline delegates this to its final estimator. Maintain the same feature order and representation at prediction time. A new sample is still a row of a 2D table.</p><!--suppress HtmlUnknownAnchorTarget --><a href="#ca-group-model">Back to train/predict reference</a></article>
+					<article class="card ca-general" id="general-code-results"><h4>Parameters, learned attributes and interpretation</h4><p>Constructor parameters such as <code>n_neighbors</code>, <code>max_depth</code> and <code>C</code> are choices made before training. Attributes such as <code>coef_</code>, <code>classes_</code>, <code>components_</code> and <code>feature_importances_</code> are learned results, typically available after fit. They are read without parentheses. <code>shape</code> is also an attribute but is not a learned estimator parameter.</p><p>Linear coefficients depend on units and correlations. A PCA component is a direction, not an observation. Class labels determine probability-column order. Tree importance is not a signed or causal effect. Inspect a pipeline's estimator through <code>named_steps</code>, not by assuming the pipeline exposes every internal attribute.</p><!--suppress HtmlUnknownAnchorTarget --><a href="#ca-group-learned">Back to learned-results reference</a></article>
+					<article class="card ca-general" id="general-code-plot"><h4>Plots and synthetic examples</h4><p>Use <code>scatter</code> for points; <code>plot</code> connects points in supplied order; <code>hist</code> shows a distribution; <code>imshow</code> displays a pixel array. <code>subplots</code> returns a Figure and Axes (or an array of Axes). Label axes/units, add a title and use labelled series for a legend. <code>show</code> displays the figure.</p><p>For a smooth one-feature regression curve, generate a column grid using <code>linspace(...).reshape(-1,1)</code>, predict on that grid, and plot in ascending x order. <code>argsort</code> returns sorting indices for existing observations. For a decision tree use <code>plot_tree</code>, or export DOT text with the guide's <code>export_graphviz</code>.</p><pre><code># model must be fitted on one feature for this particular curve example.
+grid = np.linspace(X[:, 0].min(), X[:, 0].max(), 100).reshape(-1, 1)
+plt.scatter(X[:, 0], y, label="Observed")
+plt.plot(grid[:, 0], model.predict(grid), label="Fitted")
+plt.xlabel("Feature value")
+plt.ylabel("Target value")
+plt.title("One-feature regression")
+plt.legend()
+plt.show()
+# Guide-style synthetic data; seed makes the draws reproducible.
+np.random.seed(42)
+synthetic_X = np.random.rand(100, 2)
+noise = np.random.randn(100, 1)</code></pre><p><code>rand</code> draws uniform values on [0,1); <code>randn</code> draws standard-normal values. Modern code can use an independent <code>np.random.default_rng</code>. Synthetic exercises demonstrate mechanics, not evidence of real-world performance.</p><!--suppress HtmlUnknownAnchorTarget --><a href="#ca-group-plot">Back to plotting reference</a></article>
+					<article class="card ca-general" id="general-code-cluster-k">
+						<h4>Topic 5: Scale data, fit k-Means, and choose k</h4>
+						<p>k-Means uses distances to assign each row to its nearest centre, then updates centres to the mean of assigned rows. Scale features first so a large unit does not dominate. The code prints inertia and silhouette for several values of <code>k</code> and plots the elbow.</p>
+						<pre><code>import matplotlib.pyplot as plt
+from sklearn.datasets import make_blobs
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
+
+# Synthetic features; true_groups is kept only for a later check.
+X, true_groups = make_blobs(n_samples=180, centers=3,
+                            cluster_std=0.65, random_state=42)
+X_scaled = StandardScaler().fit_transform(X)
+results = []
+for k in range(2, 7):
+    km = KMeans(n_clusters=k, random_state=42, n_init=10).fit(X_scaled)
+    results.append((k, km.inertia_, silhouette_score(X_scaled, km.labels_)))
+for k, inertia, silhouette in results:
+    print(f&quot;k={k}: inertia={inertia:.1f}, silhouette={silhouette:.3f}&quot;)
+plt.plot([r[0] for r in results], [r[1] for r in results], marker=&quot;o&quot;)
+plt.xlabel(&quot;Number of clusters (k)&quot;)
+plt.ylabel(&quot;Inertia&quot;)
+plt.title(&quot;Elbow method&quot;)
+plt.show()
+
+# k=3 is known for this generated example; real data needs evaluation.
+km = KMeans(n_clusters=3, random_state=42, n_init=10).fit(X_scaled)
+labels = km.labels_
+print(&quot;Centers:&quot;, km.cluster_centers_)
+print(&quot;First five assignments:&quot;, labels[:5])</code></pre>
+						<p><strong>Interpret:</strong> inertia is the within-cluster sum of squared distances. It generally improves as <code>k</code> grows, so inspect where the improvement slows. Silhouette compares within-group cohesion with separation from the nearest other group; higher is usually better. The numeric cluster IDs are arbitrary.</p>
+						<a href="#ca-group-cluster">Back to clustering API reference</a>
+					</article>
+					<article class="card ca-general" id="general-code-cluster-alternatives">
+						<h4>Topic 5: Compare hierarchical clustering and DBSCAN</h4>
+						<p>Run this after the k-Means block, which defines <code>X_scaled</code>. Agglomerative clustering merges nearby groups; a dendrogram shows the merge order. DBSCAN forms density-connected groups and marks noise as <code>-1</code>.</p>
+						<pre><code>import numpy as np
+from sklearn.cluster import AgglomerativeClustering, DBSCAN
+from scipy.cluster.hierarchy import linkage, dendrogram
+
+hier_labels = AgglomerativeClustering(n_clusters=3).fit_predict(X_scaled)
+print(&quot;Hierarchical labels:&quot;, np.unique(hier_labels))
+plt.figure(figsize=(8, 4))
+dendrogram(linkage(X_scaled[:30], method=&quot;ward&quot;),
+           truncate_mode=&quot;lastp&quot;, p=10)
+plt.title(&quot;Hierarchical merge tree (first 30 rows)&quot;)
+plt.show()
+
+db_labels = DBSCAN(eps=0.3, min_samples=5).fit_predict(X_scaled)
+print(&quot;DBSCAN labels and counts:&quot;,
+      np.unique(db_labels, return_counts=True))  # -1 means noise
+keep = db_labels != -1
+if 2 &lt;= np.unique(db_labels[keep]).size &lt; keep.sum():
+    print(&quot;DBSCAN silhouette without noise:&quot;,
+          silhouette_score(X_scaled[keep], db_labels[keep]))</code></pre>
+						<p><strong>Interpret:</strong> hierarchical clustering still needs a cut or chosen group count. DBSCAN needs <code>eps</code> and <code>min_samples</code>, not <code>k</code>. A silhouette score is only valid when at least two non-noise groups remain and fewer groups than observations are scored.</p>
+						<a href="#ch5-hierarchical-dbscan-deeper">Full clustering explanation</a>
+					</article>
+					<article class="card ca-general" id="general-code-cluster-results">
+						<h4>Topic 5: Evaluate and explain the groups</h4>
+						<p>Run this after the first block, which defines <code>X</code>, <code>X_scaled</code>, <code>labels</code> and <code>true_groups</code>. Count assigned rows and describe feature values in the original units before naming any group.</p>
+						<pre><code>import pandas as pd
+from sklearn.metrics import davies_bouldin_score, adjusted_rand_score
+
+profile = pd.DataFrame(X, columns=[&quot;feature_1&quot;, &quot;feature_2&quot;])
+profile[&quot;cluster&quot;] = labels
+print(&quot;Group sizes:&quot;, pd.Series(labels).value_counts().sort_index())
+print(&quot;Group centres in original units:&quot;)
+print(profile.groupby(&quot;cluster&quot;)[[&quot;feature_1&quot;, &quot;feature_2&quot;]].mean())
+print(&quot;Silhouette:&quot;, silhouette_score(X_scaled, labels))  # higher is better
+print(&quot;Davies-Bouldin:&quot;, davies_bouldin_score(X_scaled, labels))  # lower
+print(&quot;ARI vs known synthetic groups:&quot;,
+      adjusted_rand_score(true_groups, labels))</code></pre>
+						<p><strong>Interpret:</strong> silhouette and Davies-Bouldin are internal checks and do not prove that groups are useful. ARI compares the result with the known labels of this synthetic dataset; real unsupervised customer data normally has no such ground truth. Do not calculate classification accuracy from arbitrary cluster numbers.</p>
+						<a href="#ch5-evaluation-guide">Full evaluation explanation</a>
+					</article>
 				</section>
 			</div>
 		</section>
@@ -2778,7 +3005,14 @@ print("GMM memberships for first row:", gmm.predict_proba(X[:1]))</code></pre>
 				<section id="ca-api" class="section-band" data-nav-section>
 					<div class="section-inner">
 					<div class="section-heading"><h2>Classes, Functions, Methods &amp; Attributes</h2></div>
-					<p>Choose a task below, or click a letter and then an API name. <strong>Course/page</strong> identifies APIs used in the study material or existing examples; <strong>Supporting</strong> identifies useful additions, not extra confirmed test scope. Examples assume the imports shown in the general-content walkthroughs.</p>
+					<p>Choose a task below, or click a letter and then an API name. This catalogue covers the classes, functions, methods and attributes used across Chapters 1–5 of the supplied guide and this page's worked code. <strong>Course/page</strong> identifies an item used or named in that material; <strong>Supporting</strong> identifies a useful addition, not extra confirmed exam scope. It is a course reference, not a listing of every API in the Python libraries.</p>
+					<div class="table-wrap"><table><thead><tr><th>Chapter</th><th>Relevant catalogue tasks</th></tr></thead><tbody>
+						<tr><td>1 · Foundations and libraries</td><td><a href="#ca-group-load">Create &amp; load data</a> · <a href="#ca-group-inspect">Inspect data</a> · <a href="#ca-group-plot">Plot &amp; generate examples</a></td></tr>
+						<tr><td>2 · Cleaning, scaling and PCA</td><td><a href="#ca-group-clean">Clean &amp; summarise</a> · <a href="#ca-group-prepare">Scale, impute &amp; PCA</a> · <a href="#ca-group-learned">Learned results</a></td></tr>
+						<tr><td>3 · Regression and trees</td><td><a href="#ca-group-split">Split &amp; organise training</a> · <a href="#ca-group-model">Train &amp; predict</a> · <a href="#ca-group-evaluate">Evaluate predictions</a></td></tr>
+						<tr><td>4 · Classification</td><td><a href="#ca-group-model">Train &amp; predict</a> · <a href="#ca-group-evaluate">Evaluate predictions</a> · <a href="#ca-group-numeric">Numerical helpers</a></td></tr>
+						<tr><td>5 · Clustering</td><td><a href="#ca-group-cluster">Cluster &amp; explore</a> · <a href="#ca-group-clean">Group and count results</a> · <a href="#ca-group-plot">Plot results</a></td></tr>
+					</tbody></table></div>
 					<nav id="ca-task-index" class="ca-jumps" aria-label="Choose a coding task"></nav>
 					<nav id="ca-alpha" class="ca-jumps" aria-label="Alphabetical API index"></nav>
 					<div id="ca-name-index"></div>
@@ -2878,6 +3112,7 @@ print("GMM memberships for first row:", gmm.predict_proba(X[:1]))</code></pre>
 			const id = link.getAttribute("href").slice(1);
 			const target = document.getElementById(id);
 			if (!target) return;
+			if (target.tagName === "DETAILS") target.open = true;
 			for (let parent = target.parentElement; parent; parent = parent.parentElement) {
 				if (parent.tagName === "DETAILS") parent.open = true;
 			}

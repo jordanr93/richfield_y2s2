@@ -26,9 +26,10 @@ const links = [...combined.matchAll(/href="#([^"]+)"/g)].map(m=>m[1]);
 // The Learning Lab adds these three targets when its script initializes.
 const runtimeIds = new Set(['quiz-builder', 'code-practice', 'code-tracer']);
 assert.deepEqual([...new Set(links.filter(id=>!allIds.has(id) && !runtimeIds.has(id)))], [], 'Every page jump must resolve');
-assert.equal((generated.match(/class="card ca-api-card"/g)||[]).length, 100);
+const apiCardCount = (generated.match(/class="card ca-api-card"/g)||[]).length;
+assert.equal(apiCardCount, 123);
 assert.equal((generated.match(/class="card ca-topic-card"/g)||[]).length, 24);
-assert.equal((generated.match(/Full explanation in general content/g)||[]).length, 100);
+assert.equal((generated.match(/Full explanation in general content/g)||[]).length, apiCardCount);
 assert.ok(!/<input[^>]*type="search"/.test(generated), 'Navigation must not depend on search');
 assert.match(node('ca-name-index').innerHTML, /id="ca-letter-R"[^]*?href="#ca-api-reshape"/);
 assert.match(node('ca-name-index').innerHTML, /id="ca-letter-I"[^]*?href="#ca-api-coef"\s*>intercept_/);
@@ -39,6 +40,8 @@ assert.match(html, /id="general-module-content"/);
 assert.match(html, /id="ch5-guide-practice"/);
 assert.match(node('ca-name-index').innerHTML, /href="#ca-api-gmm"/);
 assert.ok(html.indexOf('id="ca-api"') > html.indexOf('id="chapter-5"'), 'API reference follows general chapters');
+assert.ok(html.indexOf('id="general-code-reference"') > html.indexOf('id="chapter-5"'), 'Code walkthroughs follow Chapter 5');
+assert.ok(html.indexOf('id="general-code-cluster-k"') > html.indexOf('id="general-code-reference"'), 'Topic 5 has a code walkthrough');
 assert.ok(html.indexOf('id="ca-api"') < html.indexOf('id="preparation-station"'), 'API reference precedes learning lab');
 assert.match(html, /PCA centres the input but does not automatically scale/);
 assert.match(html, /ccp_alpha/);
@@ -47,7 +50,7 @@ assert.match(html, /id="ch3-classification-trees"/);
 assert.match(html, /id="ch4-metric-worked"/);
 assert.doesNotMatch(html, /raw\.githubusercontent\.com\/mwaskom\/seaborn-data\/master\/iris\.csv/);
 assert.doesNotMatch(html, /df\.iloc\[:, :\] = imputer\.fit_transform\(df\)/);
-console.log(`PASS: 24 topic cards, 100 API cards, ${links.length} page links, unique anchors and key content checks.`);
+console.log(`PASS: 24 topic cards, ${apiCardCount} API cards, ${links.length} page links, unique anchors and key content checks.`);
 // Emit snippets for optional syntax checks without importing or running their libraries.
 if (process.argv.includes('--snippets')) {
   const snippets = [...combined.matchAll(/<pre><code>([\s\S]*?)<\/code><\/pre>/g)].map(m=>m[1]);
