@@ -1820,7 +1820,7 @@ print("Prediction at x=13:", model.predict([[13]])[0])</code></pre>
 						<article class="card chapter-card wide ca-general" id="ch3-assumptions-metrics">
 							<h4>Regression assumptions, residuals and evaluation</h4>
 							<p>A residual is <code>actual − predicted</code>. A curved residual pattern suggests unmodelled structure; a fan-shaped spread suggests nonconstant error variance (heteroscedasticity). The guide names linearity, independence, constant error variance and normally distributed errors. Normal-error assumptions support conventional inference; normality is not required simply to compute least-squares predictions. Coefficients describe conditional associations, not automatically causal effects.</p>
-							<p><strong>MAE:</strong> average absolute error. Actual values [100, 200, 300] and predictions [110, 180, 310] give (10+20+10)/3 = 13.33 target units. <strong>R²:</strong> 1 − SSE/SST. Here SSE=600 and SST=20,000, so R²=0.97. For nonconstant targets, R²=0 matches predicting the evaluation-set mean; negative scores are possible. Constant targets make the raw denominator zero, and scikit-learn handles that special case through <code>force_finite</code>.</p>
+							<p><strong>MAE:</strong> average absolute error. Actual values [100, 200, 300] and predictions [110, 180, 310] give (10+20+10)/3 = 13.33 target units. <strong>MSE:</strong> average squared error, <code>SSE/n</code>; for the same values it is <code>600/3 = 200</code> squared target units. MSE gives larger errors more weight. <strong>R²:</strong> 1 − SSE/SST. Here SSE=600 and SST=20,000, so R²=0.97. For nonconstant targets, R²=0 matches predicting the evaluation-set mean; negative scores are possible. Constant targets make the raw denominator zero, and scikit-learn handles that special case through <code>force_finite</code>.</p>
 							<p>Use the same held-out observations for comparisons. Tune on training/validation data; reserve the test set for the final assessment. Similar train/test scores do not by themselves establish underfitting: also assess absolute performance and suitable baselines.</p>
 							<details><summary>Show larger worked example with plots</summary><pre><code>from sklearn.datasets import load_diabetes
 from sklearn.model_selection import train_test_split
@@ -1828,7 +1828,7 @@ from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler, PolynomialFeatures
 from sklearn.linear_model import LinearRegression
 from sklearn.tree import DecisionTreeRegressor
-from sklearn.metrics import mean_absolute_error, r2_score
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 import matplotlib.pyplot as plt
 
 # Supporting bundled dataset: no network download required.
@@ -1846,7 +1846,8 @@ for name, model in models.items():
     predicted = model.predict(X_test)
     print(name, "train R²:", model.score(X_train, y_train),
           "test R²:", r2_score(y_test, predicted),
-          "MAE:", mean_absolute_error(y_test, predicted))
+          "MAE:", mean_absolute_error(y_test, predicted),
+          "MSE:", mean_squared_error(y_test, predicted))
 predicted = models["Linear"].predict(X_test)
 fig, axes = plt.subplots(1, 2)
 axes[0].scatter(y_test, predicted)

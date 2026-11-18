@@ -27,7 +27,7 @@ const links = [...combined.matchAll(/href="#([^"]+)"/g)].map(m=>m[1]);
 const runtimeIds = new Set(['quiz-builder', 'code-practice', 'code-tracer']);
 assert.deepEqual([...new Set(links.filter(id=>!allIds.has(id) && !runtimeIds.has(id)))], [], 'Every page jump must resolve');
 const apiCardCount = (generated.match(/class="card ca-api-card"/g)||[]).length;
-assert.equal(apiCardCount, 124);
+assert.equal(apiCardCount, 125);
 assert.equal((generated.match(/class="card ca-topic-card"/g)||[]).length, 24);
 assert.equal((generated.match(/Full explanation in general content/g)||[]).length, apiCardCount);
 assert.ok(!/<input[^>]*type="search"/.test(generated), 'Navigation must not depend on search');
