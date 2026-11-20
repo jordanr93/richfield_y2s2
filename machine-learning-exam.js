@@ -213,4 +213,82 @@ print(density[:5])  # -1 means noise`
       </div>
     </section>`;
   }).join('');
+
+  // [Name, use, formula, variables]
+  const formulaGroups = [
+    ['Preprocessing and PCA', [
+      ['Min-Max scaling', 'Map a feature to the default training range of 0 to 1.',
+        'x′ = (x − x_min) / (x_max − x_min)', 'x is the original value, x′ is the scaled value, and x_min and x_max are the training feature’s minimum and maximum.'],
+      ['Standardisation', 'Centre and scale a feature before comparing distances or fitting PCA.',
+        'z = (x − μ) / σ', 'x is the original value, z is the standardised value, and μ and σ are the training feature’s mean and standard deviation.'],
+      ['PCA projection', 'Find the score of a centred observation along a retained principal component.',
+        'zⱼ = (x − μ) · vⱼ', 'x is the observation vector, μ is the training mean vector, vⱼ is the unit direction of component j, · denotes the dot product, and zⱼ is its component score.'],
+      ['PCA explained variance', 'Find the fraction of total variance captured by one component or by the first k components.',
+        'rⱼ = λⱼ / Σₗ λₗ; retained fraction = r₁ + ⋯ + rₖ', 'λⱼ is the variance captured by component j (its eigenvalue), l indexes all components in the denominator, rⱼ is the fraction for component j, and k is the number retained.']
+    ]],
+    ['Regression', [
+      ['Simple linear regression', 'Predict a numerical target from one feature.',
+        'ŷ = mx + b', 'ŷ is the prediction, x is the feature value, m is the slope (predicted change in y per unit of x), and b is the intercept (prediction at x = 0).'],
+      ['Least squares coefficients', 'Find the slope and intercept of the best-fit line for one feature with nonzero variance.',
+        'm = Σ[(xᵢ − x̄)(yᵢ − ȳ)] / Σ(xᵢ − x̄)²; b = ȳ − mx̄', 'xᵢ and yᵢ are the feature and target for training observation i, x̄ and ȳ are their training means, m is the slope, and b is the intercept. Both sums run over the training observations.'],
+      ['Residual and sum of squared errors (SSE)', 'Measure prediction errors. Ordinary least squares minimises training SSE.',
+        'eᵢ = yᵢ − ŷᵢ; SSE = Σ eᵢ²', 'For observation i, yᵢ is the actual target, ŷᵢ is its prediction, and eᵢ is its residual. Sum over all observations being evaluated.'],
+      ['Polynomial regression', 'Predict a curved relationship by fitting a linear model to powers of the input.',
+        'ŷ = β₀ + β₁x + β₂x² + ⋯ + β_d xᵈ', 'ŷ is the prediction, x is the input feature, d is the polynomial degree, β₀ is the intercept, and βⱼ is the fitted coefficient for x to the power j.'],
+      ['Mean absolute error (MAE)', 'Measure average error magnitude in the original target units.',
+        'MAE = Σ |yᵢ − ŷᵢ| / n', 'yᵢ is the actual target and ŷᵢ is the prediction for observation i. n is the number of evaluated observations.'],
+      ['Mean squared error (MSE)', 'Measure average squared error, giving larger misses more weight.',
+        'MSE = Σ (yᵢ − ŷᵢ)² / n = SSE / n', 'yᵢ is the actual target, ŷᵢ is the prediction for observation i, n is the number of evaluated observations, and SSE is the sum of squared errors.'],
+      ['Coefficient of determination (R²)', 'Compare predictions with the mean-target baseline. A negative value means worse than that baseline.',
+        'R² = 1 − SSE / SST; SST = Σ (yᵢ − ȳ)²', 'SSE is the sum of squared prediction errors, SST is the total squared deviation from the mean, yᵢ is actual target i, and ȳ is the mean of the targets on the set being scored. The formula assumes SST > 0.']
+    ]],
+    ['Classification algorithms and distances', [
+      ['Logistic regression sigmoid', 'Turn a linear score into an estimated positive-class probability and apply a threshold.',
+        'z = w · x + b; p = 1 / (1 + exp(−z)); predict positive when p ≥ t', 'x is the feature vector, w is the fitted weight vector, b is the intercept, z is the linear score, exp is the exponential function, p is the estimated probability, and t is the chosen threshold.'],
+      ['Linear SVM hyperplane and margin', 'Find the decision boundary and the width of the margin in the standard SVM scaling.',
+        'w · x + b = 0; margin width = 2 / ‖w‖₂', 'x is a point in feature space, w is the weight vector perpendicular to the boundary, b is the intercept, and ‖w‖₂ is the Euclidean length of w. The two margin boundaries have scores +1 and −1.'],
+      ['RBF kernel', 'Measure similarity between points for an SVM that can learn curved boundaries.',
+        'K(x, q) = exp(−γ ‖x − q‖₂²)', 'x and q are feature vectors, K is their kernel similarity, exp is the exponential function, γ (gamma) controls how quickly similarity falls, and ‖x − q‖₂² is squared Euclidean distance.'],
+      ['Euclidean distance', 'Rank neighbours in k-NN or find the nearest centroid in k-Means.',
+        'd(x, q) = √[Σⱼ (xⱼ − qⱼ)²]', 'xⱼ and qⱼ are feature j for points x and q. Sum over every feature and take the square root to get distance d.'],
+      ['k-NN majority vote', 'Predict the class with the most votes when neighbours are weighted equally.',
+        'ŷ = argmax over c of count(yᵢ = c among the k nearest neighbours)', 'ŷ is the predicted class, c is a candidate class, yᵢ is the label of neighbour i, and k is the number of neighbours. Argmax returns the class with the largest count.']
+    ]],
+    ['Confusion matrix and classification metrics', [
+      ['Binary confusion matrix', 'Identify the counts used to calculate classification metrics.',
+        '[[TN, FP], [FN, TP]]; N = TP + FP + FN + TN', 'Rows are actual labels and columns are predicted labels, both ordered negative then positive. TP is a correctly predicted positive, FP a false alarm, FN a missed positive, TN a correctly predicted negative, and N the total.'],
+      ['Accuracy', 'Find the fraction of all predictions that are correct.',
+        '(TP + TN) / N', 'TP and TN are correctly predicted positives and negatives. N is the total number of predictions.'],
+      ['Precision', 'Find the fraction of predicted positives that are correct.',
+        'TP / (TP + FP)', 'TP counts correct positive predictions and FP counts false alarms.'],
+      ['Recall (sensitivity)', 'Find the fraction of actual positives that the classifier detects.',
+        'TP / (TP + FN)', 'TP counts detected positives and FN counts missed positives.'],
+      ['F1 score', 'Balance precision and recall using their harmonic mean.',
+        '2TP / (2TP + FP + FN)', 'TP counts detected positives, FP counts false alarms, and FN counts missed positives.'],
+      ['Specificity and false positive rate', 'Measure how often actual negatives are correctly rejected or falsely flagged.',
+        'Specificity = TN / (TN + FP); FPR = FP / (TN + FP)', 'TN counts correctly rejected negatives and FP counts false alarms. Their sum is the actual negative count.']
+    ]],
+    ['Clustering', [
+      ['k-Means centroid update', 'Move a centroid to the mean of its assigned points.',
+        'μⱼ = (Σ xᵢ in cluster j) / nⱼ', 'μⱼ is the centroid of cluster j, xᵢ is an assigned feature vector, and nⱼ is the number of points assigned to that cluster. The sum is taken feature by feature.'],
+      ['k-Means inertia', 'Measure within-cluster squared distance and plot it against k for the elbow method.',
+        'Inertia = Σᵢ ‖xᵢ − μ_(cᵢ)‖₂²', 'xᵢ is observation i, cᵢ is its assigned cluster, μ_(cᵢ) is that cluster’s centroid, and ‖·‖₂² is squared Euclidean length. The sum covers all observations.'],
+      ['Silhouette coefficient and mean score', 'Compare cohesion within a cluster with separation from the nearest other cluster.',
+        'sᵢ = (bᵢ − aᵢ) / max(aᵢ, bᵢ); mean score = Σ sᵢ / n', 'aᵢ is the mean distance from point i to other points in its own cluster. bᵢ is the smallest mean distance to any other cluster. sᵢ is the point’s coefficient (set to 0 for singleton clusters), and n is the number of scored points.'],
+      ['Davies–Bouldin index', 'Compare within-cluster spread with the separation of each cluster from its most similar rival. Lower values indicate better separation relative to spread.',
+        'DB = (1/k) Σᵢ max over j ≠ i of [(Sᵢ + Sⱼ) / d(μᵢ, μⱼ)]', 'k is the number of clusters. Sᵢ and Sⱼ are the mean distances to the centres of clusters i and j. d is Euclidean distance between their centroids μᵢ and μⱼ.'],
+      ['DBSCAN core point condition', 'Check whether a point has enough nearby observations to be a core point.',
+        'count(q with d(x, q) ≤ ε) ≥ min_samples', 'x is the candidate point, q ranges over all observations including x, d is the chosen distance, ε (eps) is the neighbourhood radius, and min_samples is the minimum count.'],
+      ['Adjusted Rand index (ARI)', 'Compare two groupings, such as predicted clusters and reference labels, while adjusting for chance.',
+        'ARI = 2(AD − BC) / [(A + B)(B + D) + (A + C)(C + D)]', 'Count unordered pairs of distinct observations. A counts pairs together in both groupings and D counts pairs apart in both. B counts pairs together only in the reference grouping and C counts pairs together only in the predicted grouping. Identical groupings score 1, including when the denominator is zero.']
+    ]]
+  ];
+  document.getElementById('exam-formula-tables').innerHTML = formulaGroups.map(([title, rows]) => `
+    <h4>${esc(title)}</h4>
+    <div class="table-wrap"><table aria-label="${esc(title)} formulas">
+      <thead><tr><th scope="col">Name</th><th scope="col">Use</th><th scope="col">Formula</th><th scope="col">Variables</th></tr></thead>
+      <tbody>${rows.map(([name, use, formula, variables]) => `
+        <tr><th scope="row">${esc(name)}</th><td>${esc(use)}</td><td><code>${esc(formula)}</code></td><td>${esc(variables)}</td></tr>`).join('')}
+      </tbody>
+    </table></div>`).join('');
 })();
