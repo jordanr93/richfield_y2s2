@@ -19,6 +19,16 @@ body.module-machine-learning select, body.module-machine-learning input, body.mo
 .ca-block, .ca-topic-card, .ca-api-card, .ca-general, .ca-letter { scroll-margin-top: 20px; }
 .ca-block { margin: 2rem 0; }
 .ca-block > h3 { font-size: 1.5rem; margin-bottom: .5rem; }
+.exam-quick-reference { margin: 2rem 0; }
+.exam-quick-reference > h3 { margin-bottom: .35rem; }
+.exam-quick-reference > p { color: var(--muted); max-width: 850px; }
+.exam-code { margin-top: .85rem; border-top: 1px solid var(--border); }
+.exam-code > summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 44px; cursor: pointer; color: var(--cyan); font-weight: 700; list-style: none; }
+.exam-code > summary::-webkit-details-marker { display: none; }
+.exam-code > summary::after { content: 'Show'; flex: 0 0 auto; padding: .18rem .55rem; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); font-size: .78rem; font-weight: 800; }
+.exam-code[open] > summary::after { content: 'Hide'; }
+.exam-code > summary:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+.exam-code pre { margin: .5rem 0 0; }
 .ca-jumps, .ca-entry-links { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0; }
 .ca-jumps a, .ca-jumps button, .ca-entry-links a, .ca-return-dock a, .ca-return-dock button {
   display: inline-flex; align-items: center; min-height: 44px; padding: .45rem .75rem;

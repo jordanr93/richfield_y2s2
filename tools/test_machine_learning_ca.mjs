@@ -6,17 +6,20 @@ import assert from 'node:assert/strict';
 const root = new URL('../', import.meta.url);
 const html = readFileSync(new URL('machine_learning_guide.html', root), 'utf8');
 const script = readFileSync(new URL('machine-learning-ca.js', root), 'utf8');
+const examScript = readFileSync(new URL('machine-learning-exam.js', root), 'utf8');
 const nodes = new Map();
 const handlers = new Map();
 const node = id => {
   if (!nodes.has(id)) nodes.set(id, {innerHTML:'', hidden:true, addEventListener(){}});
   return nodes.get(id);
 };
-vm.runInNewContext(script, {
+const context = {
   document: {getElementById:node, querySelectorAll:()=>[], addEventListener:(event,fn)=>handlers.set(event,fn)},
   window: {addEventListener(){},scrollTo(){},print(){}},
   location: {hash:''}, history: {pushState(){}}, requestAnimationFrame(){},
-});
+};
+vm.runInNewContext(script, context);
+vm.runInNewContext(examScript, context);
 const generated = [...nodes.values()].map(n=>n.innerHTML).join('\n');
 const combined = html + generated;
 const ids = [...combined.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
@@ -28,7 +31,16 @@ const runtimeIds = new Set(['quiz-builder', 'code-practice', 'code-tracer']);
 assert.deepEqual([...new Set(links.filter(id=>!allIds.has(id) && !runtimeIds.has(id)))], [], 'Every page jump must resolve');
 const apiCardCount = (generated.match(/class="card ca-api-card"/g)||[]).length;
 assert.equal(apiCardCount, 125);
-assert.equal((generated.match(/class="card ca-topic-card"/g)||[]).length, 24);
+assert.equal((node('ca-topics').innerHTML.match(/class="card ca-topic-card"/g)||[]).length, 24);
+assert.equal((node('exam-topics').innerHTML.match(/class="card ca-topic-card"/g)||[]).length, 18);
+assert.equal((node('exam-topics').innerHTML.match(/id="exam-topic-[1-7]"/g)||[]).length, 7);
+const mapHeadings = [...html.slice(html.indexOf('id="ml-exam-map"'), html.indexOf('id="exam-quick-reference"')).matchAll(/<tr><td>([^<]+)<\/td>/g)].map(match=>match[1]);
+const examHeadings = [...node('exam-topics').innerHTML.matchAll(/<section id="exam-topic-\d"[^>]*>\s*<h3>([^<]+)<\/h3>/g)].map(match=>match[1]);
+assert.deepEqual(examHeadings, mapHeadings, 'Exam blocks must follow the focus-map headings');
+assert.doesNotMatch(node('exam-topics').innerHTML, /Try it:/);
+const examSnippets = [...node('exam-topics').innerHTML.matchAll(/<details class="exam-code"><summary>Code example<\/summary><pre><code>([\s\S]*?)<\/code><\/pre><\/details>/g)].map(match=>match[1]);
+assert.ok(examSnippets.length >= 8, 'Short code examples should cover practical exam areas');
+assert.ok(examSnippets.every(code=>code.trim().split('\n').length <= 10), 'Exam code examples stay within 10 lines');
 assert.equal((generated.match(/Full explanation in general content/g)||[]).length, apiCardCount);
 assert.ok(!/<input[^>]*type="search"/.test(generated), 'Navigation must not depend on search');
 assert.match(node('ca-name-index').innerHTML, /id="ca-letter-R"[^]*?href="#ca-api-reshape"/);
@@ -50,7 +62,7 @@ assert.match(html, /id="ch3-classification-trees"/);
 assert.match(html, /id="ch4-metric-worked"/);
 assert.doesNotMatch(html, /raw\.githubusercontent\.com\/mwaskom\/seaborn-data\/master\/iris\.csv/);
 assert.doesNotMatch(html, /df\.iloc\[:, :\] = imputer\.fit_transform\(df\)/);
-console.log(`PASS: 24 topic cards, ${apiCardCount} API cards, ${links.length} page links, unique anchors and key content checks.`);
+console.log(`PASS: 24 CA cards, 18 exam cards in 7 focus areas, ${examSnippets.length} short code examples, ${apiCardCount} API cards, ${links.length} page links.`);
 // Emit snippets for optional syntax checks without importing or running their libraries.
 if (process.argv.includes('--snippets')) {
   const snippets = [...combined.matchAll(/<pre><code>([\s\S]*?)<\/code><\/pre>/g)].map(m=>m[1]);

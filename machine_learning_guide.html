@@ -724,6 +724,14 @@
 	<summary>Exam Focus Areas</summary>
 	<a class="nav-link" href="#exam-focus-areas" data-nav-link="exam-focus-areas">Exam Summary</a>
 	<a class="nav-link" href="#ml-exam-map">Focus-to-Content Map</a>
+	<a class="nav-link" href="#exam-quick-reference" data-nav-link="exam-quick-reference">Exam Quick Reference</a>
+	<a href="#exam-topic-1" data-nav-link="exam-topic-1">Python ML libraries</a>
+	<a href="#exam-topic-2" data-nav-link="exam-topic-2">Model fit and evaluation</a>
+	<a href="#exam-topic-3" data-nav-link="exam-topic-3">Preprocessing and PCA</a>
+	<a href="#exam-topic-4" data-nav-link="exam-topic-4">Regression</a>
+	<a href="#exam-topic-5" data-nav-link="exam-topic-5">Classification algorithms</a>
+	<a href="#exam-topic-6" data-nav-link="exam-topic-6">Clustering algorithms</a>
+	<a href="#exam-topic-7" data-nav-link="exam-topic-7">Calculations and interpretation</a>
 	<a class="nav-link" href="#ml-exam-case">Worked Exam Example</a>
 </details>
 
@@ -828,7 +836,7 @@
 				</div>
 				<div class="card" id="ml-exam-map">
 					<h3>Focus-to-content map</h3>
-					<p>The exam scope covers Chapters 1–5 of the supplied <em>Machine Learning 600 Study Guide</em>. Use the map below for the named focus areas, then work through the customer example.</p>
+					<p>The exam scope covers Chapters 1–5 of the supplied <em>Machine Learning 600 Study Guide</em>. Use this map to find a focus area, practise its quick-reference card, then work through the customer code example.</p>
 					<div class="table-wrap"><table><thead><tr><th>Exam focus</th><th>What to be able to do</th><th>Start here</th></tr></thead><tbody>
 						<tr><td>Python ML libraries</td><td>Match NumPy, Pandas, Scikit-learn and Matplotlib to array work, data handling, modelling and plots.</td><td><a href="#ml-index-libraries">Libraries</a> · <a href="#ch1-9-python-libraries">Chapter 1 notes</a></td></tr>
 						<tr><td>Model fit and evaluation</td><td>Interpret train/test scores, bias and variance; calculate a confusion matrix, accuracy, precision, recall and F1.</td><td><a href="#ml-index-fit">Fit</a> · <a href="#ml-index-confusion">Classification metrics</a></td></tr>
@@ -840,6 +848,21 @@
 					</tbody></table></div>
 				<div class="callout success"><strong>Revision path:</strong> read the linked chapter explanation → work the calculation or code without looking → check what the result means and when the method can mislead.</div>
 				</div>
+				<section id="exam-quick-reference" class="exam-quick-reference" data-nav-section>
+					<h3>Exam Quick Reference · Chapters 1–5</h3>
+					<p>The seven blocks match the focus map above. Each card explains the concept, shows how to interpret a result, and links to the full notes. Short code examples open where they help with an exam task. Snippets using <code>X</code>, <code>y</code> or train/test arrays assume those variables have been prepared for the stated task.</p>
+					<nav class="ca-jumps" aria-label="Exam focus area quick links">
+						<a href="#exam-topic-1">Python ML libraries</a>
+						<a href="#exam-topic-2">Model fit and evaluation</a>
+						<a href="#exam-topic-3">Preprocessing and PCA</a>
+						<a href="#exam-topic-4">Regression</a>
+						<a href="#exam-topic-5">Classification algorithms</a>
+						<a href="#exam-topic-6">Clustering algorithms</a>
+						<a href="#exam-topic-7">Calculations and interpretation</a>
+					</nav>
+					<div id="exam-topics"></div>
+					<noscript><p>Enable JavaScript for the clickable topic cards. The focus map and worked example remain available on this page.</p></noscript>
+				</section>
 				<article class="card" id="ml-exam-case">
 					<h3>Worked exam code: one customer dataset</h3>
 					<p>Run these blocks in order. The same customer features support three exam tasks: predict next month's spend (regression), predict whether a customer leaves (binary classification), and find groups without labels (clustering). The data is generated locally, so no file or internet connection is needed.</p>
@@ -2991,7 +3014,13 @@ print(&quot;ARI vs known synthetic groups:&quot;,
 					<tr class="ml-exam-entry" id="ml-index-logistic" data-term="Logistic regression sigmoid binary classification C"><th>Logistic regression</th><td>For binary labels, a linear score <code>z</code> passes through sigmoid <code>1/(1+e^(−z))</code> to give a probability. A threshold turns it into a class. In Scikit-learn, smaller <code>C</code> means stronger regularisation; larger <code>C</code> means weaker regularisation.</td><td>A probability of 0.72 becomes positive at threshold 0.5, but negative at 0.8. Choose threshold and C using validation data, not the test set.</td><td><a href="#ch4-2-logistic-regression">Logistic notes</a> · <a href="#ch4-exam-classifiers">Exam comparison</a></td></tr>
 					<tr class="ml-exam-entry" id="ml-index-confusion" data-term="Confusion matrix accuracy precision recall F1"><th>Confusion matrix and metrics</th><td>With positive class defined: TP is correctly predicted positive, FP is incorrectly positive, FN is missed positive, TN is correctly negative. Accuracy <code>(TP+TN)/N</code>; precision <code>TP/(TP+FP)</code>; recall <code>TP/(TP+FN)</code>; F1 <code>2TP/(2TP+FP+FN)</code>.</td><td>For TP 40, FP 10, FN 5, TN 50: accuracy 85.7%, precision 80%, recall 88.9%, F1 84.2%.</td><td><a href="#ch4-metric-worked">Worked matrix</a> · <a href="#ml-exam-calculations">Calculation drill</a></td></tr>
 					<tr class="ml-exam-entry" id="ml-index-svm" data-term="Support Vector Machines hyperplane margin support vectors RBF kernel"><th>Support Vector Machines</th><td>A hyperplane separates classes; SVM seeks a wide margin while allowing controlled violations. Support vectors determine the boundary. An RBF kernel permits non-linear boundaries; scaling and C/gamma tuning matter.</td><td>SVM can model a curved boundary that plain logistic regression cannot without added features. Logistic regression is often simpler to interpret and produces direct class probabilities.</td><td><a href="#ch4-4-svm">SVM notes</a> · <a href="#ch4-exam-classifiers">Comparison</a></td></tr>
-					<tr class="ml-exam-entry" id="ml-index-knn" data-term="k nearest neighbours lazy learning Euclidean distance majority vote"><th>k-Nearest Neighbours</th><td>k-NN stores training examples (lazy learning). It computes distances, selects the k closest, and predicts the majority class. Small k can be noisy and high variance; large k smooths but may underfit.</td><td>For points (1,2) and (4,6), Euclidean distance is <code>√(3²+4²)=5</code>. Scale features before comparing distances.</td><td><a href="#ch4-3-knn">k-NN notes</a> · <a href="#ch4-knn-svm-detail">Decision detail</a></td></tr>
+					<tr class="ml-exam-entry" id="ml-index-knn" data-term="k nearest neighbours lazy learning Euclidean distance majority vote"><th>k-Nearest Neighbours</th><td>k-NN stores training examples (lazy learning). It computes distances, selects the k closest, and predicts the majority class. Small k can be noisy and high variance; large k smooths but may underfit.</td><td>With k=3 and nearest labels [1, 1, 0], predict class 1. See the <a href="#ml-index-euclidean">Euclidean distance calculation</a> for how neighbours are ranked.</td><td><a href="#ch4-3-knn">k-NN notes</a> · <a href="#ch4-knn-svm-detail">Decision detail</a></td></tr>
+					<tr class="ml-exam-entry" id="ml-index-euclidean" data-term="Euclidean distance Euclidean distances L2 straight-line distance k-NN k-Means np.linalg.norm">
+						<th scope="row">Euclidean distance</th>
+						<td>Measures the straight-line distance between two points. For any number of features, subtract corresponding values, square the differences, add them, and take the square root: <code>d(x, q) = √Σ(xᵢ − qᵢ)²</code>. Scale features with different units so a large-scale feature does not dominate.</td>
+						<td>From (1, 2) to (4, 6), the differences are 3 and 4. The distance is <code>√(3² + 4²) = √25 = 5</code>. k-NN ranks neighbours by distance, and k-Means assigns a point to its nearest centre.</td>
+						<td><a href="#ch4-knn-svm-detail">k-NN notes</a> · <a href="#ca-api-norm">NumPy code example</a> · <a href="#ml-index-scaling">Feature scaling</a></td>
+					</tr>
 			</tbody></table></div></div>
 				<div class="card ml-index-chapter" id="ml-index-ch5" data-nav-section><h3>Chapter 5 · Clustering</h3><div class="table-wrap"><table><thead><tr><th>Concept</th><th>What to know</th><th>Example or interpretation</th><th>Full notes</th></tr></thead><tbody>
 					<tr class="ml-exam-entry" id="ml-index-compare-tasks" data-term="Classification versus clustering"><th>Classification vs clustering</th><td>Classification learns from known labels and predicts a category; clustering groups unlabelled observations by similarity. Classification uses a labelled confusion matrix; clustering uses internal scores and domain interpretation unless true labels exist.</td><td>Predicting known churn/no-churn is classification. Finding customer segments without predefined groups is clustering; cluster numbers are arbitrary.</td><td><a href="#ch4-1-classification">Classification</a> · <a href="#ch5-2-clustering">Clustering</a></td></tr>
@@ -3034,6 +3063,7 @@ print(&quot;ARI vs known synthetic groups:&quot;,
 
 	<div class="ca-return-dock" aria-label="Reference return controls"><button type="button" id="ca-return" hidden>Return to reference</button><a href="#ca-api">Methods index</a><a href="#test-focus-areas">CA home</a><a href="#general-module-content">General notes</a></div>
 	<script src="machine-learning-ca.js"></script>
+	<script src="machine-learning-exam.js"></script>
 	<script src="module-learning-lab.js"></script>
 	<script>
 		const body = document.body;
