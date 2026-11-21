@@ -573,7 +573,9 @@
 				margin: 14px 0 0;
 			}
 
-			.glossary-card summary {
+			.glossary-card summary,
+			.ca-test > summary,
+			.exam-disclosure > summary {
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
@@ -582,7 +584,9 @@
 				list-style: none;
 			}
 
-			.glossary-card summary::-webkit-details-marker {
+			.glossary-card summary::-webkit-details-marker,
+			.ca-test > summary::-webkit-details-marker,
+			.exam-disclosure > summary::-webkit-details-marker {
 				display: none;
 			}
 
@@ -592,7 +596,9 @@
 				line-height: 1.25;
 			}
 
-			.glossary-card summary::after {
+			.glossary-card summary::after,
+			.ca-test > summary::after,
+			.exam-disclosure > summary::after {
 				content: "Show";
 				flex: 0 0 auto;
 				padding: 0.18em 0.55em;
@@ -603,7 +609,9 @@
 				font-weight: 700;
 			}
 
-			.glossary-card[open] summary::after {
+			.glossary-card[open] summary::after,
+			.ca-test[open] > summary::after,
+			.exam-disclosure[open] > summary::after {
 				content: "Hide";
 			}
 
@@ -874,11 +882,26 @@
 	</style>
 	<link rel="stylesheet" href="module-theme.css">
 	<link rel="stylesheet" href="module-learning-lab.css">
+	<style>
+		body.module-programming .ca-test > summary { width: 100%; max-width: none; cursor: pointer; color: var(--module-accent); }
+		body.module-programming .ca-test > summary::after { margin-left: auto; }
+		body.module-programming .ca-test > summary h2 { display: inline; }
+		body.module-programming .ca-test > summary:focus-visible { outline: 2px solid var(--module-accent); outline-offset: 6px; }
+		body.module-programming .ca-test:not([open]) > summary { margin-bottom: 0; }
+		body.module-programming .exam-disclosure > summary { width: 100%; max-width: none; }
+		body.module-programming .exam-disclosure > summary::after { margin-left: auto; }
+		body.module-programming .exam-disclosure > summary > :is(h3, h4) { margin: 0; }
+		body.module-programming .exam-disclosure > summary:focus-visible { outline: 2px solid var(--module-accent); outline-offset: 6px; }
+		body.module-programming .exam-topic { margin: 18px 0; }
+		body.module-programming .exam-code { margin: 18px 0; padding: 16px; border: 1px solid var(--border); border-radius: var(--radius); }
+		body.module-programming .exam-topic > table { display: block; max-width: 100%; overflow-x: auto; }
+
+	</style>
 </head>
 <body class="module-page module-programming" data-learning-lab="programming" style="--module-accent: var(--green); --module-accent-soft: rgba(63, 185, 80, 0.14); --module-accent-border: rgba(63, 185, 80, 0.5);">
 	<a class="skip-link" href="#main">Skip to main content</a>
 	<div class="progress" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
-	<button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false"><span class="menu-icon" aria-hidden="true"></span></button>
+	<button class="menu-toggle" id="menuToggle" aria-controls="sidebar" aria-label="Open navigation" aria-expanded="false"><span class="menu-icon" aria-hidden="true"></span></button>
 	<div class="overlay" id="overlay"></div>
 
 	<nav class="sidebar" id="sidebar" aria-label="Study navigation">
@@ -894,7 +917,7 @@
 
 
 
-<details class="nav-group nav-collapsible" open>
+<details class="nav-group nav-collapsible">
 	<summary>CA Test</summary>
 	<a class="nav-link" href="#test-focus-areas" data-nav-link="test-focus-areas">Topic index and quick reference</a>
 	<a class="nav-link" href="#test-topic-1">Topic 1 · Classes and design</a>
@@ -905,7 +928,11 @@
 
 		<details class="nav-group nav-collapsible">
 	<summary>Exam Focus Areas</summary>
-	<a class="nav-link" href="#exam-focus-areas" data-nav-link="exam-focus-areas">Coming Soon</a>
+	<a class="nav-link" href="#exam-focus-areas" data-nav-link="exam-focus-areas">Overview</a>
+	<a class="nav-link" href="#exam-stacks">Stacks</a>
+	<a class="nav-link" href="#exam-queues">Queues</a>
+	<a class="nav-link" href="#exam-stl-stack-queue">STL stack and queue</a>
+	<a class="nav-link" href="#exam-linked-lists">Linked lists</a>
 </details>
 
 
@@ -987,9 +1014,9 @@
 
 
 
-		<section class="content-section" id="test-focus-areas" data-nav-section>
+		<details class="content-section ca-test" id="test-focus-areas" data-nav-section>
+			<summary class="section-heading"><h2>CA Test</h2></summary>
 			<div class="section-heading">
-				<h2>CA Test</h2>
 				<p>Use this index with a mouse or touchscreen to jump to a topic, subtopic, or fuller explanation. The topic boundaries below follow the Programming 622 Study Guide.</p>
 			</div>
 			<div class="callout info">
@@ -1034,19 +1061,475 @@
 				</article>
 			</nav>
 			<p class="scope-label">Review-question ranges are also included in the source guide: Topic 1 pages 58–64, Topic 2 pages 111–117, Topic 3 pages 224–232, and Topic 4 pages 281–284.</p>
-		</section>
+		</details>
 
-		<section class="content-section" id="exam-focus-areas" data-nav-section>
-			<div class="section-heading">
-				<h2>Exam Focus Areas</h2>
-				<p>Confirmed exam focus areas will be added here once the assessment coverage is available.</p>
-			</div>
-			<div class="card coming-soon-card">
-				<span class="coming-soon-label">Coming soon</span>
-				<h3>Exam focus areas are coming soon</h3>
-				<p>The current exam-focus content has been cleared and will be updated when the confirmed focus areas are provided.</p>
-			</div>
-			</section>
+<section class="content-section" id="exam-focus-areas" data-nav-section>
+<div class="section-heading">
+<h2>Exam Focus Areas</h2>
+<p>Focus areas provided for the exam. Open a topic to study it; code examples can be opened separately.</p>
+</div>
+<details class="card exam-disclosure exam-topic" id="exam-stacks">
+<summary><h3>Stacks</h3></summary>
+<p>A stack follows <strong>LIFO — Last In, First Out</strong>. The last item added is the first item removed, like a pile of plates.</p>
+<h4>Main operations</h4>
+<table><thead><tr><th scope="col">Operation</th><th scope="col">Purpose</th></tr></thead><tbody><tr><td><code>push(value)</code></td><td>Add an item to the top</td></tr><tr><td><code>pop()</code></td><td>Remove the top item</td></tr><tr><td><code>top()</code></td><td>Access the top item without removing it</td></tr><tr><td>Empty check</td><td>Determine whether the stack has no items</td></tr><tr><td>Full check</td><td>Determine whether a fixed-capacity stack has space</td></tr></tbody></table>
+<p>Pushing <code>10</code>, <code>20</code>, then <code>30</code> produces:</p>
+<pre><code>TOP → [30]  ← Removed first
+      [20]
+      [10]  ← Added first</code></pre>
+<p>After one <code>pop()</code>, the top is <code>20</code>.</p>
+<h4>Example 1: STL stack and bracket matching</h4>
+<p>This complete program includes <code>&lt;iostream&gt;</code>, <code>&lt;stack&gt;</code> and <code>&lt;string&gt;</code>. It creates a stack, pushes values, reads the top, removes items, checks the size and safely empties the stack. A separate <code>stack&lt;char&gt;</code> matches brackets.</p>
+<details class="exam-disclosure exam-code" id="exam-stacks-stl-code">
+<summary><h4>STL stack and bracket matching — complete program</h4></summary>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;stack&gt;
+#include &lt;string&gt;
+using namespace std;
+
+bool bracketsMatch(string expression) {
+    stack&lt;char&gt; brackets;
+
+    for (char ch : expression) {
+        // Store opening brackets.
+        if (ch == &#x27;(&#x27; || ch == &#x27;[&#x27; || ch == &#x27;{&#x27;) {
+            brackets.push(ch);
+        }
+        else if (ch == &#x27;)&#x27; || ch == &#x27;]&#x27; || ch == &#x27;}&#x27;) {
+            // A closing bracket needs an opening bracket.
+            if (brackets.empty()) {
+                return false;
+            }
+
+            char opening = brackets.top();
+
+            // Check that the bracket types match.
+            if ((ch == &#x27;)&#x27; &amp;&amp; opening != &#x27;(&#x27;) ||
+                (ch == &#x27;]&#x27; &amp;&amp; opening != &#x27;[&#x27;) ||
+                (ch == &#x27;}&#x27; &amp;&amp; opening != &#x27;{&#x27;)) {
+                return false;
+            }
+
+            brackets.pop();  // Remove the matched opening bracket.
+        }
+        // Ignore other characters.
+    }
+
+    // No unmatched opening brackets should remain.
+    return brackets.empty();
+}
+
+int main() {
+    stack&lt;int&gt; numbers;
+
+    numbers.push(10);
+    numbers.push(20);
+    numbers.push(30);
+
+    cout &lt;&lt; &quot;Top: &quot; &lt;&lt; numbers.top() &lt;&lt; &#x27;\n&#x27;;
+
+    numbers.pop();  // Removes 30.
+
+    cout &lt;&lt; &quot;Top after pop: &quot; &lt;&lt; numbers.top() &lt;&lt; &#x27;\n&#x27;;
+    cout &lt;&lt; &quot;Size: &quot; &lt;&lt; numbers.size() &lt;&lt; &#x27;\n&#x27;;
+
+    while (!numbers.empty()) {
+        cout &lt;&lt; &quot;Removing: &quot; &lt;&lt; numbers.top() &lt;&lt; &#x27;\n&#x27;;
+        numbers.pop();
+    }
+
+    // Bracket matching examples.
+    string expressions[] = {
+        &quot;{[()]}&quot;,     // Correct nesting.
+        &quot;([)]&quot;,       // Wrong closing order.
+        &quot;())&quot;,        // Extra closing bracket.
+        &quot;(()&quot;,        // Unclosed opening bracket.
+        &quot;(a + b) * c&quot; // Other characters are ignored.
+    };
+
+    for (string expression : expressions) {
+        cout &lt;&lt; expression &lt;&lt; &quot;: &quot;
+             &lt;&lt; (bracketsMatch(expression) ? &quot;Balanced&quot; : &quot;Unbalanced&quot;)
+             &lt;&lt; &#x27;\n&#x27;;
+    }
+
+    // Both stacks release their storage automatically.
+    return 0;
+}</code></pre>
+<h5>Expected output</h5>
+<pre><code>Top: 30
+Top after pop: 20
+Size: 2
+Removing: 20
+Removing: 10
+{[()]}: Balanced
+([)]: Unbalanced
+()): Unbalanced
+((): Unbalanced
+(a + b) * c: Balanced</code></pre>
+</details>
+<h4>How bracket matching works</h4>
+<ol><li>Scan the expression from left to right.</li><li>Push each opening bracket: <code>(</code>, <code>[</code> or <code>{</code>.</li><li>For a closing bracket, reject the expression if the stack is empty or the top is the wrong opening bracket. Otherwise, pop the matching opening bracket.</li><li>At the end, accept only if the stack is empty. Ignore non-bracket characters.</li></ol>
+<table><thead><tr><th scope="col">Expression</th><th scope="col">Result</th><th scope="col">Reason</th></tr></thead><tbody><tr><td><code>{[()]}</code></td><td>Balanced</td><td>Brackets close in the correct order</td></tr><tr><td><code>([)]</code></td><td>Unbalanced</td><td><code>)</code> encounters <code>[</code> at the top</td></tr><tr><td><code>())</code></td><td>Unbalanced</td><td>Extra closing bracket</td></tr><tr><td><code>(()</code></td><td>Unbalanced</td><td>Opening bracket remains</td></tr><tr><td><code>(a + b) * c</code></td><td>Balanced</td><td>Non-bracket characters are ignored</td></tr></tbody></table>
+<p><strong>Why a stack?</strong> The most recently opened bracket must close first.</p>
+<h4>Array implementation</h4>
+<p>An array stack stores its items in an array and tracks how many items are currently present. Using the guide’s convention:</p>
+<table><thead><tr><th scope="col">Item</th><th scope="col">Meaning</th></tr></thead><tbody><tr><td><code>items</code></td><td>Array holding the stack’s values</td></tr><tr><td><code>MAX_SIZE</code></td><td>Maximum number of items</td></tr><tr><td><code>stackTop</code></td><td>Current number of items; also the next free position</td></tr><tr><td><code>items[stackTop - 1]</code></td><td>Current top item, when nonempty</td></tr></tbody></table>
+<p>After pushing <code>10</code> and <code>20</code>:</p>
+<pre><code>Index:        0    1    2
+Array:      [10] [20] [ ]
+                  ↑
+                 top
+
+stackTop = 2</code></pre>
+<ul><li><strong>Push:</strong> Store at <code>items[stackTop]</code>, then increase <code>stackTop</code>.</li><li><strong>Pop:</strong> Decrease <code>stackTop</code>.</li><li><strong>Top:</strong> Read <code>items[stackTop - 1]</code> without changing <code>stackTop</code>.</li></ul>
+<h4>Example 2: Array stack implemented as a class</h4>
+<p>This complete program uses <code>ArrayStack</code>, with a private array of capacity <code>3</code>, a private <code>stackTop</code> count, a constructor, <code>isEmptyStack()</code>, <code>isFullStack()</code>, <code>push()</code>, <code>pop()</code> and <code>top()</code>. Its <code>main()</code> demonstrates normal operations, overflow and underflow.</p>
+<details class="exam-disclosure exam-code" id="exam-stacks-array-code">
+<summary><h4>Array stack class — complete program</h4></summary>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+class ArrayStack {
+private:
+    static const int MAX_SIZE = 3;
+    int items[MAX_SIZE];
+    int stackTop;
+
+public:
+    ArrayStack() {
+        stackTop = 0;
+    }
+
+    bool isEmptyStack() const {
+        return stackTop == 0;
+    }
+
+    bool isFullStack() const {
+        return stackTop == MAX_SIZE;
+    }
+
+    void push(int value) {
+        if (isFullStack()) {
+            cout &lt;&lt; &quot;Stack overflow\n&quot;;
+        } else {
+            items[stackTop] = value;
+            stackTop++;
+        }
+    }
+
+    void pop() {
+        if (isEmptyStack()) {
+            cout &lt;&lt; &quot;Stack underflow\n&quot;;
+        } else {
+            stackTop--;
+        }
+    }
+
+    void top() const {
+        if (isEmptyStack()) {
+            cout &lt;&lt; &quot;Stack is empty\n&quot;;
+        } else {
+            cout &lt;&lt; &quot;Top: &quot; &lt;&lt; items[stackTop - 1] &lt;&lt; &#x27;\n&#x27;;
+        }
+    }
+};
+
+int main() {
+    ArrayStack numbers;  // Creates an empty stack.
+
+    numbers.push(10);
+    numbers.push(20);
+    numbers.push(30);
+    numbers.top();      // Top: 30
+
+    numbers.push(40);    // Overflow: capacity is 3.
+
+    numbers.pop();       // Removes 30.
+    numbers.top();       // Top: 20
+
+    numbers.pop();       // Removes 20.
+    numbers.pop();       // Removes 10.
+    numbers.pop();       // Underflow: already empty.
+
+    numbers.top();       // Stack is empty.
+
+    return 0;
+}</code></pre>
+<h5>Expected output</h5>
+<pre><code>Top: 30
+Stack overflow
+Top: 20
+Stack underflow
+Stack is empty</code></pre>
+</details>
+<p>The class keeps the array and count private, so stack operations control how they change.</p>
+<h4>Overflow and underflow</h4>
+<table><thead><tr><th scope="col">Situation</th><th scope="col">Meaning</th><th scope="col">Array-stack check</th></tr></thead><tbody><tr><td>Overflow</td><td>Attempting to push onto a full stack</td><td><code>stackTop == MAX_SIZE</code></td></tr><tr><td>Underflow</td><td>Attempting to pop from an empty stack</td><td><code>stackTop == 0</code></td></tr><tr><td>Invalid top access</td><td>Attempting to read an empty stack</td><td><code>stackTop == 0</code></td></tr></tbody></table>
+<p>Check these conditions <strong>before</strong> accessing or changing the array.</p>
+<h4>Key differences between the examples</h4>
+<table><thead><tr><th scope="col">Feature</th><th scope="col">STL example</th><th scope="col">Array-class example</th></tr></thead><tbody><tr><td>Creation</td><td><code>stack&lt;int&gt; numbers;</code></td><td><code>ArrayStack numbers;</code></td></tr><tr><td>Implementation</td><td>Provided by C++</td><td>Written by us</td></tr><tr><td>Capacity</td><td>Grows as needed, subject to available memory</td><td>Fixed at 3</td></tr><tr><td>Empty check</td><td><code>empty()</code></td><td><code>isEmptyStack()</code></td></tr><tr><td>Full check</td><td>No <code>full()</code> member</td><td><code>isFullStack()</code></td></tr><tr><td><code>top()</code> in our example</td><td>Accesses the value</td><td>Prints the value</td></tr><tr><td>Cleanup</td><td>Automatic</td><td>Automatic</td></tr></tbody></table>
+<h4>Exam reminders</h4>
+<ul><li><strong>LIFO:</strong> The last item pushed is the first item popped.</li><li><code>top()</code> does not remove an item.</li><li>STL <code>pop()</code> removes the top item and returns no value.</li><li>Check that an STL stack is nonempty before calling <code>top()</code> or <code>pop()</code>.</li><li>In our array implementation, <code>stackTop</code> is a count, not the index of the top item.</li><li>Array-stack <code>pop()</code> changes the count; it does not need to erase the old value.</li><li>Neither example requires an explicit <code>delete</code>. Both release their storage automatically.</li><li>Equal numbers of opening and closing brackets do not guarantee correct nesting.</li></ul>
+</details>
+<details class="card exam-disclosure exam-topic" id="exam-queues">
+<summary><h3>Queues</h3></summary>
+<p>A queue follows <strong>FIFO — First In, First Out</strong>. The first item added is the first item removed, like people waiting in a line.</p>
+<p>Items enter at the <strong>rear</strong> and leave from the <strong>front</strong>.</p>
+<pre><code>Remove here                         Add here
+    ↓                                  ↓
+FRONT → [10] [20] [30] ← REAR</code></pre>
+<h4>Main member functions</h4>
+<p>Include <code>&lt;queue&gt;</code> and create a queue using <code>queue&lt;int&gt;</code>.</p>
+<table><thead><tr><th scope="col">Function</th><th scope="col">Purpose</th></tr></thead><tbody><tr><td><code>push(value)</code></td><td>Enqueue: add an item at the rear</td></tr><tr><td><code>pop()</code></td><td>Dequeue: remove the front item</td></tr><tr><td><code>front()</code></td><td>Access the front item without removing it</td></tr><tr><td><code>back()</code></td><td>Access the rear item without removing it</td></tr><tr><td><code>empty()</code></td><td>Return true if the queue has no items</td></tr><tr><td><code>size()</code></td><td>Return the number of items</td></tr></tbody></table>
+<p><strong>Naming:</strong> Enqueue and dequeue describe the operations. In STL, their function names are <code>push()</code> and <code>pop()</code>.</p>
+<details class="exam-disclosure exam-code" id="exam-queues-stl-code">
+<summary><h4>STL queue — complete program</h4></summary>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;queue&gt;
+using namespace std;
+
+int main() {
+    queue&lt;int&gt; numbers;  // Create an empty queue.
+
+    numbers.push(10);
+    numbers.push(20);
+    numbers.push(30);
+    // Front → [10] [20] [30] ← Rear
+
+    cout &lt;&lt; &quot;Front: &quot; &lt;&lt; numbers.front() &lt;&lt; &#x27;\n&#x27;;
+    cout &lt;&lt; &quot;Rear: &quot; &lt;&lt; numbers.back() &lt;&lt; &#x27;\n&#x27;;
+    cout &lt;&lt; &quot;Size: &quot; &lt;&lt; numbers.size() &lt;&lt; &#x27;\n&#x27;;
+
+    numbers.pop();  // Removes 10 — first in, first out.
+
+    cout &lt;&lt; &quot;Front after pop: &quot; &lt;&lt; numbers.front() &lt;&lt; &#x27;\n&#x27;;
+
+    numbers.push(40);  // Add 40 at the rear.
+    // Front → [20] [30] [40] ← Rear
+
+    cout &lt;&lt; &quot;Rear after push: &quot; &lt;&lt; numbers.back() &lt;&lt; &#x27;\n&#x27;;
+
+    // Read and remove each remaining item safely.
+    while (!numbers.empty()) {
+        cout &lt;&lt; &quot;Removing: &quot; &lt;&lt; numbers.front() &lt;&lt; &#x27;\n&#x27;;
+        numbers.pop();
+    }
+
+    cout &lt;&lt; &quot;Size after emptying: &quot; &lt;&lt; numbers.size() &lt;&lt; &#x27;\n&#x27;;
+
+    // Storage is released automatically when numbers leaves scope.
+    return 0;
+}</code></pre>
+<h5>Expected output</h5>
+<pre><code>Front: 10
+Rear: 30
+Size: 3
+Front after pop: 20
+Rear after push: 40
+Removing: 20
+Removing: 30
+Removing: 40
+Size after emptying: 0</code></pre>
+</details>
+<h4>Front and rear</h4>
+<p>Conceptually, the front identifies the next item to remove, and the rear identifies the most recently added item.</p>
+<p>STL manages the underlying storage for you. You use <code>front()</code> and <code>back()</code> rather than maintaining pointers yourself.</p>
+<h4>Stacks compared with queues</h4>
+<table><thead><tr><th scope="col">Feature</th><th scope="col">STL stack</th><th scope="col">STL queue</th></tr></thead><tbody><tr><td>Ordering</td><td>LIFO</td><td>FIFO</td></tr><tr><td>Add</td><td><code>push()</code> at the top</td><td><code>push()</code> at the rear</td></tr><tr><td>Remove</td><td><code>pop()</code> from the top</td><td><code>pop()</code> from the front</td></tr><tr><td>Read next item</td><td><code>top()</code></td><td><code>front()</code></td></tr><tr><td>Push 10, 20, 30, then pop once</td><td>Removes 30</td><td>Removes 10</td></tr></tbody></table>
+<h4>Exam reminders</h4>
+<ul><li><code>push()</code> adds at the rear; <code>pop()</code> removes from the front.</li><li><code>front()</code> and <code>back()</code> access values without removing them.</li><li><code>pop()</code> returns <strong>no value</strong>. Read <code>front()</code> before popping if you need the removed value.</li><li>Check <code>empty()</code> before calling <code>front()</code>, <code>back()</code> or <code>pop()</code>.</li><li>An STL queue has no <code>top()</code> function.</li><li>No explicit <code>new</code> or <code>delete</code> is needed.</li></ul>
+</details>
+<details class="card exam-disclosure exam-topic" id="exam-stl-stack-queue">
+<summary><h3>STL stack and queue</h3></summary>
+<p>Compare the main member functions and practise predicting program output. A stack follows <strong>LIFO</strong>; a queue follows <strong>FIFO</strong>.</p>
+<h4>Main member functions</h4>
+<table><thead><tr><th scope="col">Purpose</th><th scope="col"><code>stack&lt;int&gt;</code></th><th scope="col"><code>queue&lt;int&gt;</code></th></tr></thead><tbody><tr><td>Header</td><td><code>&lt;stack&gt;</code></td><td><code>&lt;queue&gt;</code></td></tr><tr><td>Add an item</td><td><code>push(value)</code></td><td><code>push(value)</code></td></tr><tr><td>Remove an item</td><td><code>pop()</code> — removes top</td><td><code>pop()</code> — removes front</td></tr><tr><td>Read next item</td><td><code>top()</code></td><td><code>front()</code></td></tr><tr><td>Read rear item</td><td>—</td><td><code>back()</code></td></tr><tr><td>Check if empty</td><td><code>empty()</code></td><td><code>empty()</code></td></tr><tr><td>Count items</td><td><code>size()</code></td><td><code>size()</code></td></tr></tbody></table>
+<p>Both containers manage their storage automatically. Neither needs explicit <code>new</code> or <code>delete</code>.</p>
+<h4>Complete example: predict the output</h4>
+<p>The same values go into both containers. Follow how their different removal orders affect the output.</p>
+<details class="exam-disclosure exam-code" id="exam-stl-output-code">
+<summary><h4>STL stack and queue — output prediction program</h4></summary>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;stack&gt;
+#include &lt;queue&gt;
+using namespace std;
+
+int main() {
+    stack&lt;int&gt; s;
+    queue&lt;int&gt; q;
+
+    // Add the same values to both containers.
+    for (int value = 10; value &lt;= 30; value += 10) {
+        s.push(value);
+        q.push(value);
+    }
+
+    cout &lt;&lt; &quot;Stack top: &quot; &lt;&lt; s.top() &lt;&lt; &#x27;\n&#x27;;
+    cout &lt;&lt; &quot;Queue front: &quot; &lt;&lt; q.front() &lt;&lt; &#x27;\n&#x27;;
+    cout &lt;&lt; &quot;Queue rear: &quot; &lt;&lt; q.back() &lt;&lt; &#x27;\n&#x27;;
+
+    s.pop();  // Removes 30.
+    q.pop();  // Removes 10.
+
+    s.push(40);
+    q.push(40);
+
+    cout &lt;&lt; &quot;Stack size: &quot; &lt;&lt; s.size() &lt;&lt; &#x27;\n&#x27;;
+    cout &lt;&lt; &quot;Queue size: &quot; &lt;&lt; q.size() &lt;&lt; &#x27;\n&#x27;;
+
+    cout &lt;&lt; &quot;Stack removal order: &quot;;
+    while (!s.empty()) {
+        cout &lt;&lt; s.top() &lt;&lt; &#x27; &#x27;;
+        s.pop();
+    }
+    cout &lt;&lt; &#x27;\n&#x27;;
+
+    cout &lt;&lt; &quot;Queue removal order: &quot;;
+    while (!q.empty()) {
+        cout &lt;&lt; q.front() &lt;&lt; &#x27; &#x27;;
+        q.pop();
+    }
+    cout &lt;&lt; &#x27;\n&#x27;;
+
+    return 0;
+}</code></pre>
+<h5>Expected output</h5>
+<pre><code>Stack top: 30
+Queue front: 10
+Queue rear: 30
+Stack size: 3
+Queue size: 3
+Stack removal order: 40 20 10
+Queue removal order: 20 30 40</code></pre>
+</details>
+<h4>Trace the changes</h4>
+<p>Write the stack <strong>bottom → top</strong> and the queue <strong>front → rear</strong>.</p>
+<table><thead><tr><th scope="col">Step</th><th scope="col">Stack</th><th scope="col">Queue</th></tr></thead><tbody><tr><td>Push 10, 20, 30</td><td>10, 20, 30</td><td>10, 20, 30</td></tr><tr><td>Pop once</td><td>10, 20</td><td>20, 30</td></tr><tr><td>Push 40</td><td>10, 20, 40</td><td>20, 30, 40</td></tr><tr><td>Remove everything</td><td>40, then 20, then 10</td><td>20, then 30, then 40</td></tr></tbody></table>
+<h4>How to predict output</h4>
+<ol><li>Start with empty containers.</li><li>Record each <code>push()</code> and <code>pop()</code> in order.</li><li>Apply <strong>LIFO</strong> to the stack and <strong>FIFO</strong> to the queue.</li><li>Reading with <code>top()</code>, <code>front()</code> or <code>back()</code> leaves the contents unchanged.</li><li>Evaluate <code>size()</code> at the point where it is printed.</li></ol>
+<h4>Exam traps</h4>
+<ul><li><code>pop()</code> returns <strong>no value</strong>. <code>cout &lt;&lt; s.pop();</code> will not compile.</li><li>A queue uses <code>front()</code>, not <code>top()</code>.</li><li>A stack has no <code>front()</code> or <code>back()</code> member.</li><li>Check <code>empty()</code> before accessing or removing an item.</li><li>After a pop followed by a push, the size returns to its previous value, but the contents have changed.</li></ul>
+</details>
+<details class="card exam-disclosure exam-topic" id="exam-linked-lists">
+<summary><h3>Linked lists</h3></summary>
+<p>A linked list stores items in <strong>nodes</strong>. Each node contains:</p>
+<ul><li><strong>Data</strong> — the value being stored.</li><li><strong>A link</strong> — a pointer to the next node.</li></ul>
+<p>The <code>head</code> pointer identifies the first node. The last node’s link is <code>nullptr</code>.</p>
+<pre><code>head
+ ↓
+[10 | next] → [20 | next] → [30 | nullptr]</code></pre>
+<p>Unlike an array, the nodes do not need to occupy neighbouring memory locations.</p>
+<h4>Creating and deleting nodes</h4>
+<table><thead><tr><th scope="col">Code</th><th scope="col">Purpose</th></tr></thead><tbody><tr><td><code>new Node{10, nullptr}</code></td><td>Allocate a node containing 10, with no next node</td></tr><tr><td><code>node-&gt;data</code></td><td>Access a node’s data</td></tr><tr><td><code>node-&gt;next</code></td><td>Access its link</td></tr><tr><td><code>delete node</code></td><td>Release the allocated node</td></tr></tbody></table>
+<p><strong>Important:</strong> Before deleting a node, update the list’s links so the remaining nodes stay connected.</p>
+<h4>Traversal</h4>
+<p>Traversal means visiting each node by following its link. Use a separate pointer such as <code>current</code>, so the <code>head</code> pointer continues to identify the start of the list.</p>
+<details class="exam-disclosure exam-code" id="exam-linked-list-traversal-code">
+<summary><h4>Traversal — code snippet</h4></summary>
+<pre><code class="language-cpp">Node* current = head;
+
+while (current != nullptr) {
+    cout &lt;&lt; current-&gt;data &lt;&lt; &#x27; &#x27;;
+    current = current-&gt;next;
+}</code></pre>
+</details>
+<h4>Complete example: create, traverse, insert and remove</h4>
+<p>This example uses a simple node structure so the pointer changes remain visible.</p>
+<details class="exam-disclosure exam-code" id="exam-linked-list-code">
+<summary><h4>Linked list — complete program</h4></summary>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+struct Node {
+    int data;
+    Node* next;
+};
+
+void display(Node* head) {
+    Node* current = head;
+
+    while (current != nullptr) {
+        cout &lt;&lt; current-&gt;data &lt;&lt; &#x27; &#x27;;
+        current = current-&gt;next;
+    }
+
+    cout &lt;&lt; &#x27;\n&#x27;;
+}
+
+int main() {
+    // Create two linked nodes: 10 → 30.
+    Node* head = new Node{10, nullptr};
+    head-&gt;next = new Node{30, nullptr};
+
+    cout &lt;&lt; &quot;Original: &quot;;
+    display(head);
+
+    // Insert 20 after the first node.
+    Node* newNode = new Node{20, head-&gt;next};
+    head-&gt;next = newNode;
+
+    cout &lt;&lt; &quot;After inserting 20: &quot;;
+    display(head);
+
+    // Insert 5 at the beginning.
+    newNode = new Node{5, head};
+    head = newNode;
+
+    cout &lt;&lt; &quot;After inserting 5: &quot;;
+    display(head);
+
+    // Remove the first node, which contains 5.
+    Node* toDelete = head;
+    head = head-&gt;next;
+    delete toDelete;
+
+    cout &lt;&lt; &quot;After removing first: &quot;;
+    display(head);
+
+    // Remove the node after head, which contains 20.
+    // These nodes are known to exist in this example.
+    toDelete = head-&gt;next;
+    head-&gt;next = toDelete-&gt;next;
+    delete toDelete;
+
+    cout &lt;&lt; &quot;After removing 20: &quot;;
+    display(head);
+
+    // Delete all remaining nodes.
+    while (head != nullptr) {
+        toDelete = head;
+        head = head-&gt;next;
+        delete toDelete;
+    }
+
+    cout &lt;&lt; &quot;List is empty: &quot; &lt;&lt; (head == nullptr) &lt;&lt; &#x27;\n&#x27;;
+
+    return 0;
+}</code></pre>
+<h5>Expected output</h5>
+<pre><code>Original: 10 30
+After inserting 20: 10 20 30
+After inserting 5: 5 10 20 30
+After removing first: 10 20 30
+After removing 20: 10 30
+List is empty: 1</code></pre>
+<p>Here, <code>1</code> means <code>true</code>.</p>
+</details>
+<h4>Inserting and removing</h4>
+<h5>Insert at the beginning</h5>
+<ol><li>Point the new node’s link to the current head.</li><li>Move <code>head</code> to the new node.</li></ol>
+<h5>Insert after an existing node</h5>
+<ol><li>Point the new node to the existing node’s successor.</li><li>Point the existing node to the new node.</li></ol>
+<h5>Remove a node</h5>
+<ol><li>Save its address.</li><li>Update <code>head</code> or the previous node’s link to bypass it.</li><li>Delete the removed node.</li></ol>
+<p>The order matters: changing a link too early can lose access to the rest of the list.</p>
+<h4>Linked lists compared with arrays</h4>
+<table><thead><tr><th scope="col">Feature</th><th scope="col">Array</th><th scope="col">Singly linked list</th></tr></thead><tbody><tr><td>Memory layout</td><td>Contiguous elements</td><td>Nodes connected by pointers</td></tr><tr><td>Access by index</td><td>Direct: <code>items[i]</code>, O(1)</td><td>Follow links, O(n)</td></tr><tr><td>Insertion/removal in the middle</td><td>Usually requires shifting elements</td><td>Update links once the preceding node is known</td></tr><tr><td>Finding a position</td><td>Direct by index</td><td>Usually requires traversal</td></tr><tr><td>Extra storage</td><td>No next pointer per element</td><td>A next pointer in each node</td></tr><tr><td>Size</td><td>A fixed array has a fixed capacity</td><td>Nodes can be allocated and deleted as needed</td></tr></tbody></table>
+<h4>Exam reminders</h4>
+<ul><li>An empty list has <code>head == nullptr</code>.</li><li>Never access <code>current-&gt;data</code> or <code>current-&gt;next</code> when <code>current</code> is <code>nullptr</code>.</li><li>Traverse using a separate pointer; preserve <code>head</code>.</li><li><code>new</code> allocates a node; <code>delete</code> releases it.</li><li>Deleting a node does not automatically repair the list’s links.</li><li>Never access a node after deleting it.</li><li>Insertion and removal can be O(1) when the necessary pointers are already available. Finding the position may take O(n).</li><li>Delete all dynamically allocated nodes when finished.</li></ul>
+</details>
+</section>
 
 		<section class="content-section" id="general-module-content" data-nav-section>
 			<div class="section-heading">
@@ -4870,6 +5353,14 @@ catch (string message) {
 			menuToggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
 		}
 
+		function revealTarget(id) {
+			let target = document.getElementById(id);
+			while (target) {
+				if (target.tagName === "DETAILS") target.open = true;
+				target = target.parentElement;
+			}
+		}
+
 		function navIdForElement(element) {
 			if (navLinkMap.has(element.id)) return element.id;
 			const chapter = element.closest(".chapter[data-nav-section]");
@@ -4913,6 +5404,7 @@ catch (string message) {
 			const id = link.getAttribute("href").slice(1);
 			const target = document.getElementById(id);
 			if (!target) return;
+			revealTarget(id);
 
 			setTimeout(() => {
 				const navId = navIdForElement(target);
@@ -4929,6 +5421,18 @@ catch (string message) {
 		});
 
 		overlay.addEventListener("click", () => setMenu(false));
+		document.addEventListener("keydown", (event) => {
+			if (event.key === "Escape" && sidebar.classList.contains("open")) {
+				setMenu(false);
+				menuToggle.focus();
+			}
+		});
+		window.addEventListener("hashchange", () => revealTarget(location.hash.slice(1)));
+		document.getElementById("test-focus-areas").addEventListener("toggle", () => {
+			updateProgress();
+			updateActiveFromScroll();
+		});
+		revealTarget(location.hash.slice(1));
 		backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
 		window.addEventListener("scroll", () => {
